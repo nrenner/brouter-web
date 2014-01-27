@@ -1,0 +1,13 @@
+{
+  "name": "leaflet-gpx",
+  "homepage": "https://github.com/mpetazzoni/leaflet-gpx",
+  "_release": "f0622fa76e",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f0622fa76ec80639b530a2348a7b291ed05a4418"
+  },
+  "_source": "git://github.com/mpetazzoni/leaflet-gpx.git",
+  "_target": "*",
+  "_originalSource": "mpetazzoni/leaflet-gpx"
+}

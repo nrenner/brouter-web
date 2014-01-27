@@ -1,0 +1,14 @@
+{
+  "name": "shramov-plugins-permalink",
+  "homepage": "https://github.com/shramov/leaflet-plugins",
+  "version": "1.0.1",
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1",
+    "commit": "a03de1df77d53c58dd7194bf7e1ddbc100231ac2"
+  },
+  "_source": "git://github.com/shramov/leaflet-plugins.git",
+  "_target": "*",
+  "_originalSource": "leaflet-plugins"
+}
