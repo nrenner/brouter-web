@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BRouter desktop web client</title>
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="leaflet.draw.ie.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="http://mrmufflon.github.io/Leaflet.Elevation/dist/Leaflet.Elevation-0.0.1.css" />
+    <link rel="stylesheet" href="bower_components/leaflet-search/dist/leaflet-search.min.css" />
+    <link rel="stylesheet" href="css/leaflet-routing.css" />
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div id="map"></div>
+
+    <div id="message" class="info hidden">
+        <span class="hint">Requires a local desktop installation of BRouter</span><br>
+    </div>
+    <div id="header" class="hidden">
+        <div class="title"><span class="title-name">BRouter web</span>&nbsp;&nbsp;<sup class="version">alpha1</sup></div>
+        <div class="header-text">
+            'ESC' to cancel drawing, 'M' to enable drawing<br>
+            Web client for <a href="http://dr-brenschede.de/brouter/" target="_blank">BRouter</a> &middot;  
+            <a href="" target="_blank">about</a> &middot; <a href="" target="_blank">GitHub</a> &middot; <a href="" target="_blank">contact</a><br>
+        </div>
+    </div>
+    <div id="route_options" class="hidden">
+        <table>
+            <tr><td>Profile:</td>
+                <td><select id="profile">
+                        <!-- sample profiles -->
+                        <option value="trekking">trekking</option>
+                        <option value="fastbike">fastbike</option>
+                        <option value="safety">safety</option>
+                        <option value="shortest">shortest</option>
+                        <option value="trekking-ignore-cr">trekking-ignore-cr</option>
+                        <option value="trekking-steep">trekking-steep</option>
+                        <option value="trekking-noferries">trekking-noferries</option>
+                        <option value="trekking-nosteps">trekking-nosteps</option>
+                        <option value="moped">moped</option>
+                        <option value="car-test">car-test</option>
+                    </select></td></tr>
+            <tr><td>Alternative:</td>
+                <td><select id="alternative">
+                        <option value="0">original</option>
+                        <option value="1">first alternative</option>
+                        <option value="2">second alternative</option>
+                        <option value="3">third alternative</option>
+                    </select>
+                </td></tr>
+        </table>
+    </div>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+    <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw-src.js"></script>
+    <script src="bower_components/leaflet-gpx/gpx.js"></script>
+    <!--
+    <script src="lib/spin.min.js"></script>
+    <script src="lib/leaflet.spin.js"></script>
+    -->
+    <script src="bower_components/leaflet-search/dist/leaflet-search.min.js"></script>
+    <script src="bower_components/leaflet-plugins/control/Permalink.js"></script>
+    <script src="bower_components/leaflet-plugins/control/Permalink.Layer.js"></script>
+
+    <script src="bower_components/leaflet-routing/src/utils/LineUtil.Snapping.js"></script>
+    <script src="bower_components/leaflet-routing/src/utils/Marker.Snapping.js"></script>
+    <script src="bower_components/leaflet-routing/src/L.Routing.js"></script>
+    <script src="bower_components/leaflet-routing/src/L.Routing.Storage.js"></script>
+    <script src="bower_components/leaflet-routing/src/L.Routing.Draw.js"></script>
+    <script src="bower_components/leaflet-routing/src/L.Routing.Edit.js"></script>
+
+    <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>
+    <script src="http://mrmufflon.github.io/Leaflet.Elevation/dist/Leaflet.Elevation-0.0.1.min.js"></script>
+
+    <script>
+        // global package prefix for BRouter web application
+        BR = {};
+    </script>
+    <script src="js/router/BRouter.js"></script>
+    <!-- <script src="js/router/brouterCgi.js"></script> -->
+    <script src="js/control/Control.js"></script>
+    <script src="js/plugin/Routing.js"></script>
+    <script src="js/plugin/NogoAreas.js"></script>
+    <script src="js/plugin/Elevation.js"></script>
+    <script src="js/plugin/Search.js"></script>
+    <script src="js/control/TrackStats.js"></script>
+    <script src="js/control/Download.js"></script>
+    <script src="js/control/Profile.js"></script>
+    <script src="js/control/RoutingOptions.js"></script>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

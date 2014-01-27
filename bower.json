@@ -1,0 +1,16 @@
+{
+  "name": "brouter-web",
+  "version": "0.1.0",
+  "main": "js/index.js",
+  "ignore": [
+    "**/.*",
+    "bower_components"
+  ],
+  "dependencies": {
+    "normalize-css": "*",
+    "leaflet-gpx": "mpetazzoni/leaflet-gpx",
+    "leaflet-search": "*",
+    "leaflet-plugins": "*",
+    "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages"
+  }
+}
