@@ -296,6 +296,43 @@ L.Routing = L.Control.extend({
   }
 
   /**
+   * Recalculate the complete route by routing each segment
+   *
+   * @access public
+   *
+   * @param <Function> cb - callback function
+   *
+   * @return void
+   *
+   * @todo add propper error checking for callback
+  */
+  ,routeAllSegments: function(cb) {
+    var numSegments = this.getWaypoints().length - 1;
+    var callbackCount = 0;
+    var $this = this;
+
+    var callback = function(err, data) {
+      callbackCount++;
+      if (callbackCount >= numSegments) {
+        $this.fire('routing:routeAllSegmentsEnd');
+        if (cb) {
+          cb(err);
+        }
+      }
+    };
+
+    $this.fire('routing:routeAllSegmentsStart');
+
+    if (numSegments < 1) {
+      return callback(null, true);
+    }
+
+    this._eachSegment(function(m1, m2) {
+      this._routeSegment(m1, m2, callback);
+    });
+  }
+
+  /**
    * Route segment between two markers
    *
    * @access private

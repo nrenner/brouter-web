@@ -39,6 +39,11 @@ routing.routing(true);
 routing.snapping(true);
 ```
 
+### Recalculate the complete route by routing each segment
+```javascript
+routing.routeAllSegments(callback);
+```
+
 ### Get first waypoint
 
 ```javascript
