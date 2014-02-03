@@ -7,18 +7,27 @@
 (function() {
 
     function initMap() {
-        var odblAttribution = 'data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
-            + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)';
-
-        var landscape = L.tileLayer('http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> '
-                + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)' + odblAttribution
-        });
-
         var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: 'tiles &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            minZoom: 5,
+            maxZoom: 15,
+            attribution: 'tiles &copy; <a href="https://opentopomap.org">OpenTopoMap</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
+                + ', <a href="http://viewfinderpanoramas.org">SRTM</a>'
+        });
+
+        var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> '
+            + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)';
+        var cycle = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: thunderforestAttribution
+        });
+        var outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: thunderforestAttribution
         });
 
         var map = new L.Map('map', {
@@ -33,7 +42,9 @@
 
         L.control.layers({
             'OpenStreetMap': osm,
-            'Landscape (Thunderforest)': landscape
+            'OpenTopoMap': topo,
+            'OpenCycleMap': cycle,
+            'Outdoors': outdoors
         }, {
             /*
              'Hiking (Waymarked Trails)': hiking
