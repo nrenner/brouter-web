@@ -11,6 +11,7 @@
     "leaflet-gpx": "mpetazzoni/leaflet-gpx",
     "leaflet-search": "*",
     "leaflet-plugins": "*",
-    "leaflet-routing": "nrenner/leaflet-routing#reroute"
+    "leaflet-routing": "nrenner/leaflet-routing#reroute",
+    "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master"
   }
 }
