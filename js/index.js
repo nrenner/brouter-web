@@ -76,7 +76,7 @@
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
-            routing.routeAllSegments(onUpdate);
+            routing.rerouteAllSegments(onUpdate);
         }
 
         routingOptions = new BR.RoutingOptions();

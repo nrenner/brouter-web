@@ -306,7 +306,7 @@ L.Routing = L.Control.extend({
    *
    * @todo add propper error checking for callback
   */
-  ,routeAllSegments: function(cb) {
+  ,rerouteAllSegments: function(cb) {
     var numSegments = this.getWaypoints().length - 1;
     var callbackCount = 0;
     var $this = this;
@@ -314,14 +314,14 @@ L.Routing = L.Control.extend({
     var callback = function(err, data) {
       callbackCount++;
       if (callbackCount >= numSegments) {
-        $this.fire('routing:routeAllSegmentsEnd');
+        $this.fire('routing:rerouteAllSegmentsEnd');
         if (cb) {
           cb(err);
         }
       }
     };
 
-    $this.fire('routing:routeAllSegmentsStart');
+    $this.fire('routing:rerouteAllSegmentsStart');
 
     if (numSegments < 1) {
       return callback(null, true);

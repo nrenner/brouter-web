@@ -1,13 +1,13 @@
 {
   "name": "leaflet-routing",
-  "homepage": "https://github.com/nrenner/leaflet-routing",
-  "_release": "ac4d02c54b",
+  "homepage": "https://github.com/Turistforeningen/leaflet-routing",
+  "_release": "f78c22ed00",
   "_resolution": {
     "type": "branch",
-    "branch": "reroute",
-    "commit": "ac4d02c54b06da9d1e21fe77ba5a0c553095d15e"
+    "branch": "gh-pages",
+    "commit": "f78c22ed001788761b81172ef746a357a92e2f5f"
   },
-  "_source": "git://github.com/nrenner/leaflet-routing.git",
-  "_target": "reroute",
-  "_originalSource": "nrenner/leaflet-routing"
+  "_source": "git://github.com/Turistforeningen/leaflet-routing.git",
+  "_target": "gh-pages",
+  "_originalSource": "Turistforeningen/leaflet-routing"
 }

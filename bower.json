@@ -11,7 +11,7 @@
     "leaflet-gpx": "mpetazzoni/leaflet-gpx",
     "leaflet-search": "*",
     "leaflet-plugins": "*",
-    "leaflet-routing": "nrenner/leaflet-routing#reroute",
+    "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
     "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master"
   }
 }
