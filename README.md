@@ -4,12 +4,15 @@ brouter-web
 Web client for the [BRouter](http://brensche.de/brouter) bike routing engine ([Github](https://github.com/abrensch/brouter)).
 
 
-Client URL (needs the BRouter standalone server running on your local desktop):  
-http://nrenner.github.io/brouter-web/
+BRouter online service:  
+http://h2096617.stratoserver.net/brouter-web/
 
 ## Installation
 
 TODO
+
+* Client URL for BRouter standalone server running on your local desktop:  
+http://nrenner.github.io/brouter-web/
 
 ## License
 
