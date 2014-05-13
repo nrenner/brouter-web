@@ -56,7 +56,7 @@
             zoom: 6
         });
         map.attributionControl.addAttribution(
-                '<a href="http://brensche.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
+                '<a href="http://brouter.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
                 + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)');
 
