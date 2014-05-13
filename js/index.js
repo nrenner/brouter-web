@@ -7,9 +7,16 @@
 (function() {
 
     function initMap() {
+        var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
         var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: 'tiles &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: 'tiles ' + osmAttribution
+        });
+
+        var osmde = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'tiles by <a target="_blank" href="http://openstreetmap.de/karte.html">openstreetmap.de</a> ' + osmAttribution
         });
 
         var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -42,6 +49,7 @@
 
         L.control.layers({
             'OpenStreetMap': osm,
+            'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
             'OpenCycleMap': cycle,
             'Outdoors': outdoors
