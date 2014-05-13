@@ -37,6 +37,19 @@
             attribution: thunderforestAttribution
         });
 
+        var cycling = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          opacity: 0.7,
+          attribution: 'Cycling &copy; <a target="_blank" href="http://cycling.waymarkedtrails.org">Waymarked Trails</a> '
+                  + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
+        });
+        var hiking = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          opacity: 0.7,
+          attribution: 'Hiking &copy; <a target="_blank" href="http://hiking.waymarkedtrails.org">Waymarked Trails</a> '
+                  + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
+        });
+
         var map = new L.Map('map', {
             layers: [osm], 
             center: new L.LatLng(50.99, 9.86), 
@@ -51,12 +64,11 @@
             'OpenStreetMap': osm,
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
-            'OpenCycleMap': cycle,
-            'Outdoors': outdoors
+            'OpenCycleMap (Thunderf.)': cycle,
+            'Outdoors (Thunderforest)': outdoors
         }, {
-            /*
+             'Cycling (Waymarked Trails)': cycling,
              'Hiking (Waymarked Trails)': hiking
-            */
         }).addTo(map);
 
         map.addControl(new L.Control.Permalink({text: 'Permalink', position: 'bottomright'})); //, layers: layersControl
