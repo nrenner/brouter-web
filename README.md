@@ -5,7 +5,7 @@ Web client for the [BRouter](http://brensche.de/brouter) bike routing engine ([G
 
 
 BRouter online service:  
-http://h2096617.stratoserver.net/brouter-web/
+http://brouter.de/brouter-web/
 
 ## Installation
 
