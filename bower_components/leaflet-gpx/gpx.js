@@ -107,12 +107,17 @@ L.GPX = L.FeatureGroup.extend({
     return s;
   },
 
+  // Public methods
   to_miles:            function(v) { return v / 1.60934; },
   to_ft:               function(v) { return v * 3.28084; },
   m_to_km:             function(v) { return v / 1000; },
   m_to_mi:             function(v) { return v / 1609.34; },
 
   get_name:            function() { return this._info.name; },
+  get_desc:            function() { return this._info.desc; },
+  get_author:          function() { return this._info.author; },
+  get_copyright:       function() { return this._info.copyright; },
+  get_desc:            function() { return this._info.desc; },
   get_distance:        function() { return this._info.length; },
   get_distance_imp:    function() { return this.to_miles(this.m_to_km(this.get_distance())); },
 
@@ -123,6 +128,9 @@ L.GPX = L.FeatureGroup.extend({
 
   get_moving_pace:     function() { return this.get_moving_time() / this.m_to_km(this.get_distance()); },
   get_moving_pace_imp: function() { return this.get_moving_time() / this.get_distance_imp(); },
+  
+  get_moving_speed:    function() { return this.m_to_km(this.get_distance()) / (this.get_moving_time() / (3600 * 1000)) ; },
+  get_moving_speed_imp:function() { return this.to_miles(this.m_to_km(this.get_distance())) / (this.get_moving_time() / (3600 * 1000)) ; },
 
   get_elevation_gain:     function() { return this._info.elevation.gain; },
   get_elevation_loss:     function() { return this._info.elevation.loss; },
@@ -157,8 +165,12 @@ L.GPX = L.FeatureGroup.extend({
       });
   },
 
-  // Private methods
+  reload: function() {
+    this.clearLayers();
+    this._parse(this._gpx, this.options, this.options.async);
+  },
 
+  // Private methods
   _merge_objs: function(a, b) {
     var _ = {};
     for (var attr in a) { _[attr] = a[attr]; }
@@ -213,6 +225,18 @@ L.GPX = L.FeatureGroup.extend({
     var name = xml.getElementsByTagName('name');
     if (name.length > 0) {
       this._info.name = name[0].textContent;
+    }
+    var desc = xml.getElementsByTagName('desc');
+    if (desc.length > 0) {
+      this._info.desc = desc[0].textContent;
+    }
+    var author = xml.getElementsByTagName('author');
+    if (author.length > 0) {
+      this._info.author = author[0].textContent;
+    }
+    var copyright = xml.getElementsByTagName('copyright');
+    if (copyright.length > 0) {
+      this._info.copyright = copyright[0].textContent;
     }
 
     for (j = 0; j < tags.length; j++) {
@@ -333,5 +357,5 @@ L.GPX = L.FeatureGroup.extend({
 
   _deg2rad: function(deg) {
     return deg * Math.PI / 180;
-  },
+  }
 });
