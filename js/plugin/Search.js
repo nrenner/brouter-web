@@ -6,6 +6,7 @@ BR.Search = L.Control.Search.extend({
         propertyName: 'display_name',
         propertyLoc: ['lat','lon'],
         markerLocation: false,
+        circleLocation: false,
         autoType: false,
         autoCollapse: true,
         minLength: 2,
