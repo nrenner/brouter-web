@@ -4,9 +4,9 @@ BR.Elevation = L.Control.Elevation.extend({
         width: 385,
         margins: {
             top: 20,
-            right: 20,
+            right: 30,
             bottom: 30,
-            left: 50
+            left: 60
         },
         theme: "steelblue-theme" //purple
     },
