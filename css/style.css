@@ -88,8 +88,8 @@ td {
     width: 92.5px;
 }
 
-.leaflet-container {
-	cursor: auto;
+.routing-draw-enabled {
+	cursor: crosshair;
 }
 
 /* left sidebar as additional control position */
