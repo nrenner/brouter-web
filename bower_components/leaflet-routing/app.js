@@ -141,7 +141,7 @@ var routing, data;
         var coords = routing.toGeoJSON().coordinates;
         var data = [];
         for (var i = 0; i < coords.length; i++) {
-          data.push(coords[i][1] + ' ' + coords[i][0]);
+          data.push(coords[i][0] + ' ' + coords[i][1]);
         }
         data = 'LINESTRING(' + data.join(',') + ')';
         $.post('http://mintur.ut.no/lib/ajax/post_geom.php?api_key=' + apiKey + '&tp_id=' + id, {coords: data}, function(data) {

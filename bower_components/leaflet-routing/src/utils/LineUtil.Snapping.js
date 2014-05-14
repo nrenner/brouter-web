@@ -18,6 +18,11 @@ L.Util.extend(L.LineUtil, {
 		minDist = Infinity;
 		minPoint = latlng;
 		minPoint._feature = null; // containing layer
+
+    if (!opts || !opts.layers || !opts.layers.length) {
+      return minPoint;
+    }
+
 		map = opts.layers[0]._map; // @todo check for undef
 
 		for (i = 0; i < opts.layers.length; i++) {

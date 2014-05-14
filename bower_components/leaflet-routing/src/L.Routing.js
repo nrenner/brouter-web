@@ -17,7 +17,7 @@ L.Routing = L.Control.extend({
 
   // CONSTANTS
   ,statics: {
-    VERSION: '0.0.2-dev'
+    VERSION: '0.1.1-dev'
   }
 
   // OPTIONS
@@ -27,6 +27,7 @@ L.Routing = L.Control.extend({
       start: new L.Icon.Default()
       ,end: new L.Icon.Default()
       ,normal: new L.Icon.Default()
+      ,draw: new L.Icon.Default()
     }
     ,zIndexOffset: 2000
     ,routing: {
@@ -36,6 +37,12 @@ L.Routing = L.Control.extend({
       layers: []         // layers to snap to
       ,sensitivity: 10   // snapping sensitivity
       ,vertexonly: false // vertex only snapping
+    }
+    ,shortcut: {
+      draw: {
+        enable: 68,      // char code for 'd'
+        disable: 81      // char code for 'q'
+      }
     }
   }
 
@@ -79,7 +86,10 @@ L.Routing = L.Control.extend({
     //L.DomUtil.disableTextSelection();
     //this._tooltip = new L.Tooltip(this._map);
     //this._tooltip.updateContent({ text: L.drawLocal.draw.marker.tooltip.start });
-    L.DomEvent.addListener(this._container, 'keyup', this._keyupListener, this);
+
+    if (this.options.shortcut) {
+      L.DomEvent.addListener(this._container, 'keyup', this._keyupListener, this);
+    }
 
     this._draw = new L.Routing.Draw(this, {
       icons: this.options.icons
@@ -138,9 +148,16 @@ L.Routing = L.Control.extend({
     delete this.options;
   }
 
+  /**
+   * Called whenever a waypoint is clicked
+   *
+   * @access private
+   *
+   * @param <L.Event> e - click event
+  */
   ,_waypointClickHandler: function(e) {
     this.removeWaypoint(e.marker, function() {
-      console.log(arguments);
+      // console.log(arguments);
     });
   }
 
@@ -152,7 +169,7 @@ L.Routing = L.Control.extend({
    * @param <L.Marker> marker - new waypoint marker (can be ll)
    * @param <L.Marker> prev - previous waypoint marker
    * @param <L.Marker> next - next waypoint marker
-   * @param <Function> cb - callback method
+   * @param <Function> cb - callback method (err, marker)
    *
    * @return void
   */
@@ -501,25 +518,132 @@ L.Routing = L.Control.extend({
 
     if (current === null) { return geojson; }
 
-    geojson.properties.waypoints.push([current.getLatLng().lng, current.getLatLng().lat]);
+    // First waypoint marker
+    geojson.properties.waypoints.push({
+      coordinates: [current.getLatLng().lng, current.getLatLng().lat],
+      _index: 0
+    });
 
     while (current._routing.nextMarker) {
-      var next = current._routing.nextMarker
-      geojson.properties.waypoints.push([next.getLatLng().lng, next.getLatLng().lat]);
+      var next = current._routing.nextMarker;
 
+      // Line segment
       var tmp = current._routing.nextLine.getLatLngs();
       for (var i = 0; i < tmp.length; i++) {
         if (tmp[i].alt && (typeof enforce2d === 'undefined' || enforce2d === false)) {
-          geojson.coordinates.push([tmp[i].lat, tmp[i].lng, tmp[i].alt]);
+          geojson.coordinates.push([tmp[i].lng, tmp[i].lat, tmp[i].alt]);
         } else {
-          geojson.coordinates.push([tmp[i].lat, tmp[i].lng]);
+          geojson.coordinates.push([tmp[i].lng, tmp[i].lat]);
         }
       }
 
+      // Waypoint marker
+      geojson.properties.waypoints.push({
+        coordinates: [next.getLatLng().lng, next.getLatLng().lat],
+        _index: geojson.coordinates.length-1
+      });
+
+      // Next waypoint marker
       current = current._routing.nextMarker;
     }
 
     return geojson
+  }
+
+  /**
+   * Import route from GeoJSON
+   *
+   * @access public
+   *
+   * @param <object> geojson - GeoJSON object with waypoints
+   * @param <object> opts - parsing options
+   * @param <function> cb - callback method (err)
+   *
+   * @return undefined
+   *
+  */
+  ,loadGeoJSON: function(geojson, opts, cb) {
+    var $this, oldRouter, index, waypoints;
+
+    $this = this;
+
+    // Check for optional options parameter
+    if (typeof opts === 'function' || typeof opts === 'undefined') {
+      cb = opts;
+      opts = {}
+    }
+
+    // Set default options
+    opts.waypointDistance = opts.waypointDistance || 50;
+    opts.fitBounds = opts.fitBounds || true;
+
+    // Check for waypoints before processing geojson
+    if (!geojson.properties || !geojson.properties.waypoints) {
+      if (!geojson.properties) { geojson.properties = {} };
+      geojson.properties.waypoints = [];
+
+      for (var i = 0; i < geojson.coordinates.length; i = i + opts.waypointDistance) {
+        geojson.properties.waypoints.push({
+          _index: i,
+          coordinates: geojson.coordinates[i].slice(0, 2)
+        });
+      }
+
+      if (i > geojson.coordinates.length-1) {
+        geojson.properties.waypoints.push({
+          _index: geojson.coordinates.length-1,
+          coordinates: geojson.coordinates[geojson.coordinates.length-1].slice(0, 2)
+        });
+      }
+    }
+
+    index = 0;
+    oldRouter = $this._router;
+    waypoints = geojson.properties.waypoints;
+
+    // This is a fake router.
+    //
+    // It is currently not possible to add a waypoint with a known line segment
+    // manually. We are hijacking the router so that we can intercept the
+    // request and return the correct linesegment.
+    //
+    // It you want to fix this; please make a patch and submit a pull request on
+    // GitHub.
+    $this._router = function(m1, m2, cb) { var start =
+      waypoints[index-1]._index; var end = waypoints[index]._index+1;
+
+      return cb(null, L.GeoJSON.geometryToLayer({
+        type: 'LineString',
+        coordinates: geojson.coordinates.slice(start, end)
+      }));
+    };
+
+    // Clean up
+    end = function() {
+      $this._router = oldRouter; // Restore router
+      // Set map bounds based on loaded geometry
+      setTimeout(function() {
+        if (opts.fitBounds) {
+          $this._map.fitBounds(L.polyline(L.GeoJSON.coordsToLatLngs(geojson.coordinates)).getBounds());
+        }
+
+        if (typeof cb === 'function') { cb(null); }
+      }, 0);
+    }
+
+    // Add waypoints
+    add = function() {
+      if (!waypoints[index]) { return end() }
+
+      var coords = waypoints[index].coordinates;
+      var prev = $this._waypoints._last;
+
+      $this.addWaypoint(L.latLng(coords[1], coords[0]), prev, null, function(err, m) {
+        add(++index);
+      });
+    }
+
+    add();
   }
 
   /**
@@ -583,9 +707,9 @@ L.Routing = L.Control.extend({
    * @return void
   */
   ,_keyupListener: function (e) {
-    if (e.keyCode === 27) {
+    if (e.keyCode === this.options.shortcut.draw.disable) {
       this._draw.disable();
-    } else if (e.keyCode === 77) {
+    } else if (e.keyCode === this.options.shortcut.draw.enable) {
       this._draw.enable();
     }
   }

@@ -99,7 +99,8 @@ L.Routing.Draw = L.Handler.extend({
     // Visible Marker
     if (!this._marker) {
       this._marker = new L.Marker(this._map.getCenter(), {
-        icon: this.options.icons.normal
+        icon: (this.options.icons.draw ? this.options.icons.draw : new L.Icon.Default())
+        ,opacity: (this.options.icons.draw ? 1.0 : 0.0)
         ,zIndexOffset: this.options.zIndexOffset
         ,clickable: false
       });
@@ -224,7 +225,7 @@ L.Routing.Draw = L.Handler.extend({
   */
   ,_show: function() {
     this._hidden = false;
-    this._marker.setOpacity(1.0);
+    this._marker.setOpacity(this.options.icons.draw ? 1.0 : 0.0);
     this._trailer.setStyle({opacity: 0.2});
   }
 
