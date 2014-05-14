@@ -1,16 +1,17 @@
 Leaflet.Control.Search
 ============
 
-#What
-A leaflet control that search markers/features location by cutstom property.
-With ajax/jsonp autocompletion and json fields re-mapping
+A leaflet control that search markers/features location by custom property.<br />
+With ajax/jsonp autocompletion and JSON fields filter/remap
 
-Tested in Leaflet 0.6.4
+Copyright 2014 [Stefano Cudini](http://labs.easyblog.it/stefano-cudini/)
+
+Tested in Leaflet 0.7.2
 
 
 #Where
 
-**Demos:**  
+**Demo online:**  
 [labs.easyblog.it/maps/leaflet-search](http://labs.easyblog.it/maps/leaflet-search/)
 
 **Source code:**  
@@ -19,36 +20,49 @@ Tested in Leaflet 0.6.4
 [NPM](https://npmjs.org/package/leaflet-search)  
 [Atmosphere](https://atmosphere.meteor.com/package/leaflet-search)
 
-#How
-Insert leaflet-search.css styles to your css page
+#Build
+
+Since Version 1.4.7 this plugin support [Grunt](http://gruntjs.com/) for building process.
+Therefore the deployment require [NPM](https://npmjs.org/) installed in your system.
+After you've made sure to have npm working, run this in command line:
+```bash
+npm install
+grunt
+```
+
+#Examples
+(require src/leaflet-search.css)
 
 Adding the search control to the map:
-
-```
+```javascript
 map.addControl( new L.Control.Search({layer: searchLayer}) );
-//searchLayer if a L.LayerGroup contains searched markers
+//searchLayer is a L.LayerGroup contains searched markers
 ```
-short way:
-```
+
+Short way:
+```javascript
 var map = new L.Map('map', { searchControl: {layer: searchLayer} });
 ```
 
-other examples:
-```
-//ajax request to search.php for retrieve elements locations
+#Advanced Examples
+
+Ajax request to search.php for retrieve elements locations:
+```javascript
 map.addControl( new L.Control.Search({url: 'search.php?q={s}'}) );
+```
 
-
-//jsonp request to 3rd party service, implements Geocode Searching using OSM API
+Request to third party JSONP service, implements Geocode Searching using OSM API:
+```javascript
 map.addControl( new L.Control.Search({
 	url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
 	jsonpParam: 'json_callback',
 	propertyName: 'display_name',
 	propertyLoc: ['lat','lon']
 }) );
+```
 
-
-//geojson layer, search and color feature vector
+Search and color features vector in GeoJSON layer:
+```javascript
 var searchControl = new L.Control.Search({layer: geojsonLayer, circleLocation:false});
 searchControl.on('search_locationfound', function(e) {
 	
@@ -61,5 +75,24 @@ searchControl.on('search_locationfound', function(e) {
 	});	
 });
 map.addControl(searchControl);
+```
+
+Static data source:
+```
+var data = [
+	{"loc":[41.575330,13.102411], "title":"aquamarine"},
+	{"loc":[41.575730,13.002411], "title":"black"},
+	{"loc":[41.219190,13.062145], "title":"cyan"}
+];
+
+map.addControl(new L.Control.Search({
+	markerLocation: true,
+	callData: function(text, callResponse) {
+		
+		//here can use custom criteria or merge data from multiple layers
+
+		callResponse(data);
+	}
+}) );
 ```
 
