@@ -58,6 +58,16 @@ BR.NogoAreas = L.Control.Draw.extend({
         };
     },
 
+    setOptions: function(options) {
+        var nogos = options.nogos;
+        if (nogos) {
+            this.drawnItems.clearLayers();
+            for (var i = 0; i < nogos.length; i++) {
+                this.drawnItems.addLayer(nogos[i]);
+            }
+        }
+    },
+
     _fireUpdate: function () {
         this.fire('update', {options: this.getOptions()});
     }

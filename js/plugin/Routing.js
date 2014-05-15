@@ -26,4 +26,47 @@ BR.Routing = L.Routing.extend({
         
         return container;
     }
+
+  ,_removeMarkerEvents: function(marker) {
+      marker.off('mouseover', this._fireWaypointEvent, this);
+      marker.off('mouseout' , this._fireWaypointEvent, this);
+      marker.off('dragstart', this._fireWaypointEvent, this);
+      marker.off('dragend'  , this._fireWaypointEvent, this);
+      marker.off('drag'     , this._fireWaypointEvent, this);
+      marker.off('click'    , this._fireWaypointEvent, this);
+  }
+
+  ,clear: function() {
+    var current = this._waypoints._first;
+    if (current === null) { return; }
+    this._removeMarkerEvents(current);
+    while (current._routing.nextMarker) {
+      var marker = current._routing.nextMarker;
+      this._removeMarkerEvents(marker);
+      current = marker;
+    };
+    
+    this._waypoints._first = null;
+    this._waypoints._last = null;
+    this._waypoints.clearLayers();
+    this._segments.clearLayers();
+  }
+
+  ,setWaypoints: function(latLngs) {
+    var $this = this;
+    var index = 0;
+
+    var add = function() {
+      if (!latLngs || index >= latLngs.length) { return; }
+
+      var prev = $this._waypoints._last;
+
+      $this.addWaypoint(latLngs[index], prev, null, function(err, m) {
+        add(++index);
+      });
+    };
+
+    add();
+  }
+ 
 });

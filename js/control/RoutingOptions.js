@@ -17,7 +17,16 @@ BR.RoutingOptions = BR.Control.extend({
             alternative: L.DomUtil.get('alternative').value
         };
     },
-            
+
+    setOptions: function(options) {
+        if (options.profile) {
+            L.DomUtil.get('profile').value = options.profile;
+        }
+        if (options.alternative) {
+            L.DomUtil.get('alternative').value = options.alternative;
+        }
+    },
+
     _getChangeHandler: function() {
         return L.bind(function(evt) {
             this.fire('update', {options: this.getOptions()});

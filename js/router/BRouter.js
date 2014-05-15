@@ -19,14 +19,38 @@ L.BRouter = L.Class.extend({
         L.setOptions(this, options);
     },
 
-    getUrl: function(latLngs, format) {
-        var urlParams = {
+    getUrlParams: function(latLngs, format) {
+        return {
             lonlats: this._getLonLatsString(latLngs),
             nogos: this._getNogosString(this.options.nogos),
             profile: this.options.profile,
             alternativeidx: this.options.alternative,
             format: format || this.options.format
         };
+    },
+
+    parseUrlParams: function(params) {
+        var opts = {};
+        if (params.lonlats) {
+            opts.lonlats = this._parseLonLats(params.lonlats);
+        }
+        if (params.nogos) {
+            opts.nogos = this._parseNogos(params.nogos);
+        }
+        if (params.alternativeidx) {
+            opts.alternative = params.alternativeidx;
+        }
+        if (params.profile) {
+            opts.profile = params.profile;
+        }
+        if (params.format) {
+            opts.format = params.format;
+        }
+        return opts;
+    },
+
+    getUrl: function(latLngs, format) {
+        var urlParams = this.getUrlParams(latLngs, format);
         var url = L.Util.template(L.BRouter.URL_TEMPLATE, urlParams);
         return url;
     },
@@ -74,7 +98,26 @@ L.BRouter = L.Class.extend({
         }
         return s;
     },
-    
+
+    _parseLonLats: function(s) {
+        var groups,
+            numbers,
+            lonlats = [];
+
+        if (!s) {
+            return lonlats;
+        }
+
+        groups = s.split(L.BRouter.GROUP_SEPARATOR);
+        for (var i = 0; i < groups.length; i++) {
+            // lng,lat
+            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+            lonlats.push(L.latLng(numbers[1], numbers[0]));
+        }
+
+        return lonlats;
+    },
+
     _getNogosString: function(nogos) {
         var s = '';
         for (var i = 0, circle; i < nogos.length; i++) {
@@ -87,6 +130,27 @@ L.BRouter = L.Class.extend({
             }
         }
         return s;
+    },
+
+    _parseNogos: function(s) {
+        var groups,
+            numbers,
+            nogos = [];
+
+        if (!s) {
+            return nogos;
+        }
+        
+        groups = s.split(L.BRouter.GROUP_SEPARATOR);
+        for (var i = 0; i < groups.length; i++) {
+            // lng,lat,radius
+            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+            // TODO refactor: pass simple obj, create circle in NogoAreas; use shapeOptions of instance
+            // [lat,lng],radius
+            nogos.push(L.circle([numbers[1], numbers[0]], numbers[2], L.Draw.Circle.prototype.options.shapeOptions));
+        }
+
+        return nogos;
     },
 
     // formats L.LatLng object as lng,lat string

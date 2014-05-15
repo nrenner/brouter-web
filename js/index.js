@@ -6,6 +6,9 @@
 
 (function() {
 
+    var map,
+        layersControl;
+
     function initMap() {
         var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
@@ -50,7 +53,7 @@
                   + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
         });
 
-        var map = new L.Map('map', {
+        map = new L.Map('map', {
             layers: [osm], 
             center: new L.LatLng(50.99, 9.86), 
             zoom: 6
@@ -60,7 +63,7 @@
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
                 + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)');
 
-        var layersControl = L.control.layers({
+        layersControl = L.control.layers({
             'OpenStreetMap': osm,
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
@@ -71,13 +74,10 @@
              'Hiking (Waymarked Trails)': hiking
         }).addTo(map);
 
-        map.addControl(new L.Control.Permalink({text: 'Permalink', position: 'bottomright', layers: layersControl}));
         map.addControl(new BR.Search());
-        
-        return map;
     }
     
-    function initApp(map) {
+    function initApp() {
         var router,
             routing,
             routesLayer, 
@@ -147,9 +147,19 @@
 
         nogos.addTo(map);
         routing.addTo(map);
+        
+        map.addControl(new L.Control.Permalink({
+            text: 'Permalink',
+            position: 'bottomright',
+            layers: layersControl,
+            routingOptions: routingOptions,
+            nogos: nogos,
+            router: router,
+            routing: routing
+        }));
     }
     
-    map = initMap();
-    initApp(map);
+    initMap();
+    initApp();
 
 })();

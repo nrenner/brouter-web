@@ -1,0 +1,85 @@
+//#include "Permalink.js
+
+// patch to not encode URL (beside 'layer', better readable/hackable, Browser can handle)
+L.Control.Permalink.include({
+	_update_href: function() {
+		//var params = L.Util.getParamString(this._params);
+		var params = this.getParamString(this._params);
+
+		var sep = '?';
+		if (this.options.useAnchor) sep = '#';
+		var url = this._url_base + sep + params.slice(1);
+		if (this._href) this._href.setAttribute('href', url);
+		if (this.options.useLocation)
+			location.replace('#' + params.slice(1));
+		return url;
+	},
+          
+	getParamString: function (obj, existingUrl, uppercase) {
+		var params = [];
+		for (var i in obj) {
+      // do encode layer (e.g. spaces)
+      if (i === 'layer') {
+        params.push(encodeURIComponent(uppercase ? i.toUpperCase() : i) + '=' + encodeURIComponent(obj[i]));
+      } else {
+        params.push(uppercase ? i.toUpperCase() : i + '=' + obj[i]);
+      }
+		}
+		return ((!existingUrl || existingUrl.indexOf('?') === -1) ? '?' : '&') + params.join('&');
+	}
+});
+
+
+L.Control.Permalink.include({
+
+	initialize_routing: function() {
+		this.on('update', this._set_routing, this);
+		this.on('add', this._onadd_routing, this);
+	},
+
+	_onadd_routing: function(e) {
+    this.options.routingOptions.on('update', this._update_routing, this);
+    this.options.nogos.on('update', this._update_routing, this);
+    // waypoint add, move, delete (but last)
+    this.options.routing.on('routing:routeWaypointEnd', this._update_routing, this);
+    // delete last waypoint
+    this.options.routing.on('waypoint:click', function(evt) {
+        var r = evt.marker._routing;
+        if (!r.prevMarker && ! r.nextMarker) {
+            console.log('delete last');
+            this._update_routing(evt);
+        }
+    }, this);
+	},
+
+	_update_routing: function(evt) {
+    var router = this.options.router,
+        routing = this.options.routing,
+        latLngs;
+
+    if (evt && evt.options) {
+      router.setOptions(evt.options);
+    }
+
+    latLngs = routing.getWaypoints();
+    this._update(router.getUrlParams(latLngs));
+	},
+
+	_set_routing: function(e) {
+    var router = this.options.router,
+        routing = this.options.routing,
+        routingOptions = this.options.routingOptions,
+        nogos = this.options.nogos;
+
+    var opts = router.parseUrlParams(e.params);
+    router.setOptions(opts);
+    routingOptions.setOptions(opts);
+    nogos.setOptions(opts);
+    
+    if (opts.lonlats) {
+        routing.draw(false);
+        routing.clear();
+        routing.setWaypoints(opts.lonlats);
+    }
+  }
+});
