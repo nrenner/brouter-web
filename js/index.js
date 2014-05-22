@@ -114,7 +114,8 @@
         elevation = new BR.Elevation();
         profile = new BR.Profile();
         profile.on('update', function(evt) {
-            router.uploadProfile(evt.profileText, function(profile) {
+            var profileId = routingOptions.getCustomProfile();
+            router.uploadProfile(profileId, evt.profileText, function(profile) {
                 routingOptions.setCustomProfile(profile);
             });
         });

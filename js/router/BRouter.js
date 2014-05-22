@@ -92,9 +92,16 @@ L.BRouter = L.Class.extend({
         return this.getRoute([l1, l2], cb);
     },
 
-    uploadProfile: function(profileText, cb) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', L.BRouter.URL_PROFILE_UPLOAD, true);
+    uploadProfile: function(profileId, profileText, cb) {
+        var url = L.BRouter.URL_PROFILE_UPLOAD;
+            xhr = new XMLHttpRequest();
+
+        // reuse existing profile file
+        if (profileId) {
+            url += '/' + profileId;
+        }
+
+        xhr.open('POST', url, true);
         xhr.onload = L.bind(this._handleProfileResponse, this, xhr, cb);
 
         // send profile text only, as text/plain;charset=UTF-8

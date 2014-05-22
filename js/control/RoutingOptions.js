@@ -52,6 +52,17 @@ BR.RoutingOptions = BR.Control.extend({
         }
     },
 
+    getCustomProfile: function() {
+        var select = L.DomUtil.get('profile'),
+            option = select.options[0],
+            profile = null;
+
+        if (!option.disabled) {
+            profile = option.value;
+        }
+        return profile;
+    },
+
     _getChangeHandler: function() {
         return L.bind(function(evt) {
             this.fire('update', {options: this.getOptions()});
