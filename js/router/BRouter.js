@@ -1,7 +1,11 @@
+
+BR.HOST = 'http://localhost:17777';
+
 L.BRouter = L.Class.extend({
     statics: {
-        // http://localhost:17777/brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
-        URL_TEMPLATE: 'http://localhost:17777/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+        // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
+        URL_TEMPLATE: BR.HOST + '/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+        URL_PROFILE_UPLOAD: BR.HOST + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
         GROUP_SEPARATOR: '|'
@@ -86,6 +90,26 @@ L.BRouter = L.Class.extend({
 
     getRouteSegment: function(l1, l2, cb) {
         return this.getRoute([l1, l2], cb);
+    },
+
+    uploadProfile: function(profileText, cb) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', L.BRouter.URL_PROFILE_UPLOAD, true);
+        xhr.onload = L.bind(this._handleProfileResponse, this, xhr, cb);
+
+        // send profile text only, as text/plain;charset=UTF-8
+        xhr.send(profileText);
+    },
+
+    _handleProfileResponse: function(xhr, cb) {
+        var profile;
+
+        if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
+            // e.g. profileid=1400498280259
+            profile = xhr.responseText.split('=')[1];
+
+            cb(profile);
+        }
     },
 
     _getLonLatsString: function(latLngs) {

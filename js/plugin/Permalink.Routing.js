@@ -46,7 +46,6 @@ L.Control.Permalink.include({
     this.options.routing.on('waypoint:click', function(evt) {
         var r = evt.marker._routing;
         if (!r.prevMarker && ! r.nextMarker) {
-            console.log('delete last');
             this._update_routing(evt);
         }
     }, this);

@@ -103,7 +103,7 @@
         routingOptions.on('update', updateRoute);
 
         nogos = new BR.NogoAreas();
-        nogos.on('update',  updateRoute);
+        nogos.on('update', updateRoute);
 
         // initial option settings
         router.setOptions(nogos.getOptions());
@@ -113,6 +113,11 @@
         download = new BR.Download();
         elevation = new BR.Elevation();
         profile = new BR.Profile();
+        profile.on('update', function(evt) {
+            router.uploadProfile(evt.profileText, function(profile) {
+                routingOptions.setCustomProfile(profile);
+            });
+        });
 
         routing = new BR.Routing({routing: {
             router: L.bind(router.getRouteSegment, router)

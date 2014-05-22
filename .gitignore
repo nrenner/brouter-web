@@ -4,3 +4,4 @@ bower_components/Leaflet.Elevation/*
 !bower_components/Leaflet.Elevation/dist/
 !bower_components/Leaflet.Elevation/src/
 nbproject/
+.idea/

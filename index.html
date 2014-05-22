@@ -25,9 +25,9 @@
         <div class="title"><span class="title-name">BRouter web</span>&nbsp;&nbsp;<sup class="version">alpha1</sup></div>
         <div class="header-text">
             'q' to cancel drawing, 'd' to enable drawing<br>
-            Web client for <a href="http://brouter.de/brouter" target="_blank">BRouter</a> &middot;  
-            <a href="https://github.com/nrenner/brouter-web#readme" target="_blank">about</a> &middot; 
-            <a href="https://github.com/nrenner/brouter-web" target="_blank">GitHub</a> &middot; 
+            Web client for <a href="http://brouter.de/brouter" target="_blank">BRouter</a> &middot;
+            <a href="https://github.com/nrenner/brouter-web#readme" target="_blank">about</a> &middot;
+            <a href="https://github.com/nrenner/brouter-web" target="_blank">GitHub</a> &middot;
             <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">contact</a><br>
         </div>
     </div>
@@ -36,6 +36,7 @@
             <tr><td>Profile:</td>
                 <td><select id="profile">
                         <!-- sample profiles -->
+                        <option value="" disabled>&lt;custom&gt;</custom></option>
                         <option value="trekking">trekking</option>
                         <option value="fastbike">fastbike</option>
                         <option value="safety">safety</option>
@@ -56,6 +57,14 @@
                     </select>
                 </td></tr>
         </table>
+    </div>
+    <div id="profile_div" class="hidden">
+        <form id="profile_upload" name="profile_upload">
+            <input type="submit" value="Upload" />
+            <div id="textarea_container">
+                <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+            </div>
+        </form>
     </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
