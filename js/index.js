@@ -119,6 +119,9 @@
                 routingOptions.setCustomProfile(profile);
             });
         });
+        profile.on('clear', function(evt) {
+            routingOptions.setCustomProfile(null);
+        });
 
         routing = new BR.Routing({routing: {
             router: L.bind(router.getRouteSegment, router)

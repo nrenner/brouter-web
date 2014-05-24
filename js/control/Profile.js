@@ -5,9 +5,18 @@ BR.Profile = BR.Control.extend({
     },
 
     onAdd: function (map) {
-        L.DomUtil.get('profile_upload').onsubmit = L.bind(this._submit, this)
+        L.DomUtil.get('profile_upload').onsubmit = L.bind(this._submit, this);
+        L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
+
 
         return BR.Control.prototype.onAdd.call(this, map);
+    },
+
+    clear: function(evt) {
+        evt.preventDefault();
+        document.profile_upload.profile.value = null;
+
+        this.fire('clear');
     },
 
     _submit: function(evt) {

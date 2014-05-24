@@ -44,8 +44,8 @@ BR.RoutingOptions = BR.Control.extend({
         select = L.DomUtil.get('profile');
         option = select.options[0]
         option.value = profile;
-        select.value = profile;
-        option.disabled = false;
+        option.disabled = !profile;
+        option.selected = !!profile;
 
         if (!noUpdate) {
             this.fire('update', {options: this.getOptions()});
