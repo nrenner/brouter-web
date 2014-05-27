@@ -44,6 +44,8 @@ div.elevation {
 }
 .title {
     padding-top: 4px;
+    /* normalize height, for absolute Profile control positioning */
+    height: 17px;
 }
 .title-name {
     font-size: larger;
@@ -66,6 +68,12 @@ div.elevation {
 }
 .heading, .content, .content > .label, .content > .value {
     float: left;
+}
+
+select {
+    max-width: 180px;
+    /* normalize height, for absolute Profile control positioning */
+    height: 24px;
 }
 
 table {
@@ -117,7 +125,7 @@ td {
 
 .leaflet-leftpane .leaflet-control:last-child {
     position: absolute;
-    top: 432px;
+    top: 441px;
     bottom: 0px;
 }
 
