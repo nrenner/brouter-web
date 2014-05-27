@@ -139,6 +139,7 @@
             if (latLngs.length > 1) {
                 urls.gpx = router.getUrl(latLngs, 'gpx');
                 urls.kml = router.getUrl(latLngs, 'kml');
+                urls.csv = router.getUrl(latLngs, 'csv');
             }
 
             download.update(urls);
