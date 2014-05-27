@@ -103,19 +103,24 @@ L.BRouter = L.Class.extend({
 
         xhr.open('POST', url, true);
         xhr.onload = L.bind(this._handleProfileResponse, this, xhr, cb);
+        xhr.onerror = function(evt) {
+            var xhr = this;
+            cb('Upload error: ' + xhr.statusText);
+        };
 
         // send profile text only, as text/plain;charset=UTF-8
         xhr.send(profileText);
     },
 
     _handleProfileResponse: function(xhr, cb) {
-        var profile;
+        var response,
+            profile;
 
         if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
-            // e.g. profileid=1400498280259
-            profile = xhr.responseText.split('=')[1];
-
-            cb(profile);
+            response = JSON.parse(xhr.responseText);
+            cb(response.error, response.profileid);
+        } else {
+            cb('Profile error: no or empty response from server');
         }
     },
 

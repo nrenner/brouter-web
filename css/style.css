@@ -60,7 +60,10 @@ div.elevation {
     line-height: 1.4em;
 }
 .hint {
-    color: orangered;
+    color: orange;
+}
+.error {
+    color: red;
 }
 
 .heading {
