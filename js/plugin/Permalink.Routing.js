@@ -54,14 +54,21 @@ L.Control.Permalink.include({
     _update_routing: function (evt) {
         var router = this.options.router,
             routing = this.options.routing,
-            latLngs;
+            routingOptions = this.options.routingOptions,
+            latLngs = routing.getWaypoints(),
+            params = router.getUrlParams(latLngs);
 
         if (evt && evt.options) {
             router.setOptions(evt.options);
         }
 
-        latLngs = routing.getWaypoints();
-        this._update(router.getUrlParams(latLngs));
+        // don't permalink to custom profile, as these are only stored temporarily
+        if (params.profile && params.profile === routingOptions.getCustomProfile()) {
+            params.profile = null;
+        }
+
+        this._update(params);
+        //console.log('permalink: ' + this._href.href);
     },
 
     _set_routing: function (e) {
