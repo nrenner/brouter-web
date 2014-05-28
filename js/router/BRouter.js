@@ -60,32 +60,48 @@ L.BRouter = L.Class.extend({
     },
 
     getRoute: function(latLngs, cb) {
-        var url = this.getUrl(latLngs);
+        var url = this.getUrl(latLngs),
+            xhr = new XMLHttpRequest(),
+            gpx;
+
         if (!url) {
             return cb(new Error('Error getting route URL'));
         }
 
-        var gpxLayer = new L.GPX(url, {
-            async: true,
-            polyline_options: {
-                opacity: 0.6
-            },
-            marker_options: {
-                startIconUrl: null,
-                endIconUrl: null
-            }
-        }).on('loaded', function(e) {
+        xhr.open('GET', url, true);
+        xhr.onload = L.bind(this._handleRouteResponse, this, xhr, cb);
+        xhr.onerror = function(evt) {
+            // TODO L.Routing._routeSegment doesn't forward err to cb
+            //cb('Server error');
+            throw 'Server error';
+        };
+        xhr.send();
+    },
+
+    _handleRouteResponse: function(xhr, cb) {
+        var gpx = xhr.responseXML;
+
+        if (xhr.status === 200 && gpx) {
+            // L.GPX has no XHR error handling, and expects either URL or text (not document),
+            // so bypass by passing null and call internal _parse_gpx_data directly
+            var gpxLayer = new L.GPX(null, {
+                polyline_options: {
+                    opacity: 0.6
+                },
+                marker_options: {
+                    startIconUrl: null,
+                    endIconUrl: null
+                }
+            });
+            var layer = gpxLayer._parse_gpx_data(gpx, gpxLayer.options);
             // leaflet.spin
-            gpxLayer.fire('data:loaded');
-            var gpx = e.target;
-           
-            return cb(null, gpx.getLayers()[0]);
-        })/* TODO no error handling in leaflet-gpx
-          .on('error', function(e){
-            console.error('error');
-            gpxLayer.fire('data:loaded');
-            return cb(new Error('Routing failed'));
-        })*/;
+            //gpxLayer.fire('data:loaded');
+            return cb(null, layer);
+        } else {
+            // TODO L.Routing._routeSegment doesn't forward err to cb
+            //cb('Server error');
+            throw 'Server error ' + xhr.responseText || xhr.statusText;
+        }
     },
 
     getRouteSegment: function(l1, l2, cb) {
