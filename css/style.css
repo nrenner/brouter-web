@@ -59,8 +59,8 @@ div.elevation {
     margin-top: 0.5em;
     line-height: 1.4em;
 }
-.hint {
-    color: orange;
+.warning {
+    color: darkorange;
 }
 .error {
     color: red;

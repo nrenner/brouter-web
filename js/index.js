@@ -87,27 +87,14 @@
             elevation,
             download,
             profile,
-            leftPaneId = 'leftpane';
+            leftPaneId = 'leftpane',
+            saveWarningShown = false;
+        ;
 
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
 
         router = L.bRouter(); //brouterCgi dummyRouter
-
-        function showError(err) {
-            var ele =L.DomUtil.get('message');
-            ele.innerText = err;
-            L.DomUtil.removeClass(ele, 'hidden');
-            L.DomUtil.addClass(ele, 'error');
-        }
-
-        function hideError() {
-            var ele =L.DomUtil.get('message');
-            if (!L.DomUtil.hasClass(ele, 'hidden')) {
-                L.DomUtil.addClass(ele, 'hidden');
-                ele.innerText = '';
-            }
-        }
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
@@ -129,13 +116,18 @@
         elevation = new BR.Elevation();
         profile = new BR.Profile();
         profile.on('update', function(evt) {
-            hideError();
+            BR.message.hideError();
             var profileId = routingOptions.getCustomProfile();
             router.uploadProfile(profileId, evt.profileText, function(err, profile) {
                 if (!err) {
                     routingOptions.setCustomProfile(profile);
+                    if (!saveWarningShown) {
+                        BR.message.showWarning('Note: Uploaded custom profiles are only cached temporarily on the server.'
+                            + '<br/>Please save your edits to your local PC.');
+                        saveWarningShown = true;
+                    }
                 } else {
-                    showError(err);
+                    BR.message.showError(err);
                     if (profile) {
                         routingOptions.setCustomProfile(profile, true);
                         router.setOptions(routingOptions.getOptions());
@@ -144,7 +136,7 @@
             });
         });
         profile.on('clear', function(evt) {
-            hideError();
+            BR.message.hideError();
             routingOptions.setCustomProfile(null);
         });
 
