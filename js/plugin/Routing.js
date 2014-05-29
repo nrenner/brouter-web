@@ -68,5 +68,13 @@ BR.Routing = L.Routing.extend({
 
     add();
   }
- 
+
+  ,_routeSegment: function(m1, m2, cb) {
+    // change segment color before request to indicate recalculation (mark old)
+    if (m1 && m1._routing.nextLine !== null) {
+        m1._routing.nextLine.options.color = 'dimgray';
+        m1._routing.nextLine._updateStyle();
+    }
+    L.Routing.prototype._routeSegment.call(this, m1, m2, cb);
+  }
 });
