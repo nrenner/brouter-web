@@ -25,8 +25,8 @@
         var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             minZoom: 5,
             maxZoom: 15,
-            attribution: 'tiles &copy; <a href="https://opentopomap.org">OpenTopoMap</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
-                + ', <a href="http://viewfinderpanoramas.org">SRTM</a>'
+            attribution: 'tiles &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
+                + ', <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>'
         });
 
         var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> '
@@ -89,7 +89,6 @@
             profile,
             leftPaneId = 'leftpane',
             saveWarningShown = false;
-        ;
 
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
