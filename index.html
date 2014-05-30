@@ -34,18 +34,8 @@
         <table>
             <tr><td>Profile:</td>
                 <td><select id="profile">
-                        <!-- sample profiles -->
-                        <option value="" disabled>&lt;custom&gt;</custom></option>
-                        <option value="trekking">trekking</option>
-                        <option value="fastbike">fastbike</option>
-                        <option value="safety">safety</option>
-                        <option value="shortest">shortest</option>
-                        <option value="trekking-ignore-cr">trekking-ignore-cr</option>
-                        <option value="trekking-steep">trekking-steep</option>
-                        <option value="trekking-noferries">trekking-noferries</option>
-                        <option value="trekking-nosteps">trekking-nosteps</option>
-                        <option value="moped">moped</option>
-                        <option value="car-test">car-test</option>
+                        <option value="" disabled>&lt;custom&gt;</option>
+                        <!-- profile option list built dynamically from config -->
                     </select></td></tr>
             <tr><td>Alternative:</td>
                 <td><select id="alternative">
@@ -95,6 +85,7 @@
         // global package prefix for BRouter web application
         BR = {};
     </script>
+    <script src="config.js"></script>
     <script src="js/router/BRouter.js"></script>
     <!-- <script src="js/router/brouterCgi.js"></script> -->
     <script src="js/control/Control.js"></script>

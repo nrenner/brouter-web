@@ -5,8 +5,23 @@ BR.RoutingOptions = BR.Control.extend({
     },
 
     onAdd: function (map) {
-        L.DomUtil.get('profile').onchange = this._getChangeHandler();
+        var select = L.DomUtil.get('profile'),
+            i,
+            option;
+
+        select.onchange = this._getChangeHandler();
         L.DomUtil.get('alternative').onchange = this._getChangeHandler();
+
+        // build option list from config
+        var profiles = BR.conf.profiles;
+        for (i = 0; i < profiles.length; i++) {
+            option = document.createElement("option");
+            option.value = profiles[i];
+            option.text = profiles[i];
+            select.add(option, null);
+        }
+        // <custom> option disabled, select next
+        select.options[1].selected = true;
 
         return BR.Control.prototype.onAdd.call(this, map);
     },

@@ -106,10 +106,6 @@
         nogos = new BR.NogoAreas();
         nogos.on('update', updateRoute);
 
-        // initial option settings
-        router.setOptions(nogos.getOptions());
-        router.setOptions(routingOptions.getOptions());
-
         stats = new BR.TrackStats();
         download = new BR.Download();
         elevation = new BR.Elevation();
@@ -173,7 +169,11 @@
 
         nogos.addTo(map);
         routing.addTo(map);
-        
+
+        // initial option settings (after controls are added and initialized with onAdd, before permalink)
+        router.setOptions(nogos.getOptions());
+        router.setOptions(routingOptions.getOptions());
+
         map.addControl(new L.Control.Permalink({
             text: 'Permalink',
             position: 'bottomright',
