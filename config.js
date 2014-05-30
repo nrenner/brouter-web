@@ -23,6 +23,8 @@
             'vm-forum-velomobil-schnell'
         ];
 
+        BR.conf.host = 'http://h2096617.stratoserver.net:443';
+
     } else {
 
         // desktop configuration
@@ -38,6 +40,8 @@
             'moped',
             'car-test'
         ];
+
+        BR.conf.host = 'http://localhost:17777';
 
     }
 
