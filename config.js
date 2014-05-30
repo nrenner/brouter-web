@@ -11,12 +11,13 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
+            'safety',
             'shortest',
             'shortest-eudem',
-            'all',
-            /* "does not contain expressions for context node" (?)
-             'softaccess',
-             */
+            'trekking-ignore-cr',
+            'trekking-steep',
+            'trekking-noferries',
+            'trekking-nosteps',
             'moped',
             'car-test',
             'vm-forum-liegerad-schnell',
@@ -32,11 +33,13 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
+            'safety',
             'shortest',
-            'all',
-            /* "does not contain expressions for context node" (?)
-             'softaccess',
-             */
+            'shortest-eudem',
+            'trekking-ignore-cr',
+            'trekking-steep',
+            'trekking-noferries',
+            'trekking-nosteps',
             'moped',
             'car-test'
         ];
