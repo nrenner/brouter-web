@@ -33,13 +33,7 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
-            'safety',
             'shortest',
-            'shortest-eudem',
-            'trekking-ignore-cr',
-            'trekking-steep',
-            'trekking-noferries',
-            'trekking-nosteps',
             'moped',
             'car-test'
         ];
