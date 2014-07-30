@@ -14,17 +14,18 @@ As an alternative to the above online version, the standalone server of BRouter 
 ### Install
 
 1. download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
-e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``0_9_9`` with latest version):  
+e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_0_1`` with latest version):  
 
         mkdir ~/opt/brouter
         cd ~/opt/brouter
-        wget http://brouter.de/brouter_bin/brouter_0_9_9.zip
-        unzip brouter_0_9_9.zip
+        wget http://brouter.de/brouter_bin/brouter_1_0_1.zip
+        unzip brouter_1_0_1.zip
         chmod +x ./standalone/server.sh
+        mv segments3 segments2  # workaround until scripts are updated
 fix line endings with ``fromdos`` or ``dos2unix`` (might need to be installed first)  
 
         fromdos ./standalone/server.sh
-2. download one or more [data file(s)](http://brouter.de/brouter/segments2/) (rd5) into ``segments2`` dir
+2. download one or more [data file(s)](http://brouter.de/brouter/segments3/) (rd5) into ``segments2`` dir
 
 ### Run
 
