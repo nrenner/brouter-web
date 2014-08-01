@@ -56,6 +56,16 @@ L.BRouter = L.Class.extend({
         return url;
     },
 
+    _getError: function(xhr) {
+        var msg = 'no response from server';
+        if (xhr.responseText) {
+          msg = xhr.responseText;
+        } else if (this.status || this.statusText) {
+          msg = this.status + ': ' + this.statusText;
+        }
+        return new Error(msg);
+    },
+
     getRoute: function(latLngs, cb) {
         var url = this.getUrl(latLngs),
             xhr = new XMLHttpRequest(),
@@ -67,11 +77,9 @@ L.BRouter = L.Class.extend({
 
         xhr.open('GET', url, true);
         xhr.onload = L.bind(this._handleRouteResponse, this, xhr, cb);
-        xhr.onerror = function(evt) {
-            // TODO L.Routing._routeSegment doesn't forward err to cb
-            //cb('Server error');
-            throw 'Server error';
-        };
+        xhr.onerror = L.bind(function(xhr, cb) {
+            cb(this._getError(xhr));
+        }, this, xhr, cb);
         xhr.send();
     },
 
@@ -95,9 +103,7 @@ L.BRouter = L.Class.extend({
             //gpxLayer.fire('data:loaded');
             return cb(null, layer);
         } else {
-            // TODO L.Routing._routeSegment doesn't forward err to cb
-            //cb('Server error');
-            throw 'Server error ' + xhr.responseText || xhr.statusText;
+            cb(this._getError(xhr));
         }
     },
 

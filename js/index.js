@@ -138,9 +138,18 @@
         routing = new BR.Routing({routing: {
             router: L.bind(router.getRouteSegment, router)
         }});
-        routing.on('routing:routeWaypointEnd', onUpdate);
+        routing.on('routing:routeWaypointEnd', function(evt) {
+            onUpdate(evt && evt.err);
+        });
 
-        function onUpdate() {
+        function onUpdate(err) {
+            if (err) {
+                BR.message.showError(err);
+                return;
+            } else {
+                BR.message.hideError();
+            }
+          
             var track = routing.toPolyline(),
                 latLngs = routing.getWaypoints(),
                 urls = {};
