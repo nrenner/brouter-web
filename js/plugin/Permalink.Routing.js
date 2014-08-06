@@ -29,6 +29,18 @@ L.Control.Permalink.include({
     }
 });
 
+// patch: no animation when setting the map view, strange effects with nogo circles
+L.Control.Permalink.include({
+    _set_center: function(e)
+    {
+      //console.info('Update center', e);
+      var params = e.params;
+      if (params.zoom === undefined ||
+          params.lat === undefined ||
+          params.lon === undefined) return;
+      this._map.setView(new L.LatLng(params.lat, params.lon), params.zoom, { reset: true });
+    }
+});
 
 L.Control.Permalink.include({
 
