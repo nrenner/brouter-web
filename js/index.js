@@ -135,9 +135,21 @@
             routingOptions.setCustomProfile(null);
         });
 
-        routing = new BR.Routing({routing: {
-            router: L.bind(router.getRouteSegment, router)
-        }});
+        routing = new BR.Routing({
+            routing: {
+                router: L.bind(router.getRouteSegment, router)
+            },
+            styles: {
+                trailer: {
+                    dashArray: [10, 10],
+                    opacity: 0.4
+                },
+                track: {},
+                nodata: {
+                    color: 'darkred'
+                }
+            }
+        });
         routing.on('routing:routeWaypointEnd', function(evt) {
             onUpdate(evt && evt.err);
         });
