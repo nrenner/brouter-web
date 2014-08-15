@@ -70,11 +70,29 @@ BR.Routing = L.Routing.extend({
   }
 
   ,_routeSegment: function(m1, m2, cb) {
+    var loadingTrailer;
+
     // change segment color before request to indicate recalculation (mark old)
     if (m1 && m1._routing.nextLine !== null) {
         m1._routing.nextLine.options.color = 'dimgray';
         m1._routing.nextLine._updateStyle();
     }
-    L.Routing.prototype._routeSegment.call(this, m1, m2, cb);
+
+    // animate dashed trailer as loading indicator
+    if (m1 && m2) {
+        loadingTrailer = new L.Polyline([m1.getLatLng(), m2.getLatLng()], {
+            opacity: 0.6,
+            dashArray: [10, 10],
+            className: 'loading-trailer'
+        });
+        loadingTrailer.addTo(this._map);
+    }
+
+    L.Routing.prototype._routeSegment.call(this, m1, m2, L.bind(function(err, data) {
+        if (loadingTrailer) {
+            this._map.removeLayer(loadingTrailer);
+        }
+        cb(err, data);
+    }, this));
   }
 });

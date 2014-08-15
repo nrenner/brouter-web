@@ -161,3 +161,27 @@ textarea {
 textarea:focus {
     background-color: rgba(255,255,255,255);
 }
+
+/* dashed line animation, derived from Chris Coyier and others
+   http://css-tricks.com/svg-line-animation-works/
+ */
+.loading-trailer {
+    -webkit-animation: dash 0.4s linear infinite;
+    animation: dash 0.4s linear infinite;
+}
+@-webkit-keyframes dash {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
