@@ -14,6 +14,10 @@ L.BRouter = L.Class.extend({
 
     initialize: function (options) {
         L.setOptions(this, options);
+
+        this.queue = async.queue(L.bind(function (task, callback) {
+            this.getRoute(task.segment, callback);
+        }, this), 1);
     },
 
     setOptions: function(options) {
@@ -108,7 +112,7 @@ L.BRouter = L.Class.extend({
     },
 
     getRouteSegment: function(l1, l2, cb) {
-        return this.getRoute([l1, l2], cb);
+        this.queue.push({ segment: [l1, l2] }, cb);
     },
 
     uploadProfile: function(profileId, profileText, cb) {

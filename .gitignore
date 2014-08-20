@@ -3,5 +3,9 @@ bower_components/leaflet-routing/examples/
 bower_components/Leaflet.Elevation/*
 !bower_components/Leaflet.Elevation/dist/
 !bower_components/Leaflet.Elevation/src/
+bower_components/async/*
+!bower_components/async/lib/
+!bower_components/async/README.md
+!bower_components/async/LICENSE
 nbproject/
 .idea/

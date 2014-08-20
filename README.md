@@ -59,3 +59,5 @@ Copyright (c) 2013 Stefano Cudini; [MIT License](https://github.com/stefanocudin
 Copyright (c) 2011-2012, Pavel Shramov; [2-clause BSD License](https://github.com/shramov/leaflet-plugins/blob/master/LICENSE)
 * [normalize.css](https://github.com/necolas/normalize.css)  
 Copyright (c) Nicolas Gallagher and Jonathan Neal; [MIT License](https://github.com/necolas/normalize.css/blob/master/LICENSE.md)
+* [Async.js](https://github.com/caolan/async)  
+Copyright (c) 2010-2014 Caolan McMahon; [MIT License](https://github.com/caolan/async/blob/master/LICENSE)
