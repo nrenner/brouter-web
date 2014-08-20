@@ -97,6 +97,11 @@
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
+
+            // abort pending requests from previous rerouteAllSegments
+            if (!router.queue.idle()) {
+                router.queue.kill();
+            }
             routing.rerouteAllSegments(onUpdate);
         }
 
@@ -156,7 +161,9 @@
 
         function onUpdate(err) {
             if (err) {
-                BR.message.showError(err);
+                if (err !== L.BRouter.ABORTED_ERROR) {
+                    BR.message.showError(err);
+                }
                 return;
             } else {
                 BR.message.hideError();

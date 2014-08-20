@@ -5,7 +5,8 @@ L.BRouter = L.Class.extend({
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
-        GROUP_SEPARATOR: '|'
+        GROUP_SEPARATOR: '|',
+        ABORTED_ERROR: 'aborted'
     },
     
     options: {
@@ -18,6 +19,16 @@ L.BRouter = L.Class.extend({
         this.queue = async.queue(L.bind(function (task, callback) {
             this.getRoute(task.segment, callback);
         }, this), 1);
+
+        // patch to call callbacks on kill for cleanup (loadingTrailer)
+        this.queue.kill = function () {
+            var aborted = this.tasks;
+            this.drain = null;
+            this.tasks = [];
+            aborted.forEach(function(task) {
+                task.callback(L.BRouter.ABORTED_ERROR);
+            });
+        };
     },
 
     setOptions: function(options) {
