@@ -179,6 +179,7 @@
             if (latLngs.length > 1) {
                 urls.gpx = router.getUrl(latLngs, 'gpx');
                 urls.kml = router.getUrl(latLngs, 'kml');
+                urls.geojson = router.getUrl(latLngs, 'geojson');
                 urls.csv = router.getUrl(latLngs, 'csv');
             }
 

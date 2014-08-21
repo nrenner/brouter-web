@@ -9,10 +9,11 @@ BR.Download = BR.Control.extend({
     },
 
     update: function (urls) {
-        var html = '<div class="label">&nbsp;</div><div class="value">';
+        var html = '<div class="value">';
         if (urls.gpx) {
             html += '<a href="' + urls.gpx + '" download="brouter.gpx" target="_blank">GPX</a> &middot; ';
             html += '<a href="' + urls.kml + '" download="brouter.kml" target="_blank">KML</a> &middot; ';
+            html += '<a href="' + urls.geojson + '" download="brouter.geojson">GeoJSON</a> &middot; ';
             html += '<a href="' + urls.csv + '" download="brouter.tsv" target="_blank">CSV</a>';
         }
         html += '</div>'
