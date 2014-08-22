@@ -10,8 +10,9 @@ L.BRouter = L.Class.extend({
     },
     
     options: {
-        format: 'geojson'
     },
+
+    format: 'geojson',
 
     initialize: function (options) {
         L.setOptions(this, options);
@@ -41,7 +42,7 @@ L.BRouter = L.Class.extend({
             nogos: this._getNogosString(this.options.nogos),
             profile: this.options.profile,
             alternativeidx: this.options.alternative,
-            format: format || this.options.format
+            format: format || this.format
         };
     },
 
@@ -58,9 +59,6 @@ L.BRouter = L.Class.extend({
         }
         if (params.profile) {
             opts.profile = params.profile;
-        }
-        if (params.format) {
-            opts.format = params.format;
         }
         return opts;
     },
