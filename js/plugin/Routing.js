@@ -105,4 +105,13 @@ BR.Routing = L.Routing.extend({
 
     return segments;
   }
+
+  // add 'esc' to disable drawing
+  ,_keyupListener: function (e) {
+    if (e.keyCode === 27) {
+        this._draw.disable();
+    } else {
+        L.Routing.prototype._keyupListener.call(this, e);
+    }
+  }
 });
