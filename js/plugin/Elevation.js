@@ -14,7 +14,7 @@ BR.Elevation = L.Control.Elevation.extend({
     update: function(track) {
         this.clear();
         if (track && track.getLatLngs().length > 0) {
-            this.addData(track);
+            this.addData(track.toGeoJSON());
         }
     }
 });

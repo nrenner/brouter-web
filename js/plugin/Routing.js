@@ -95,4 +95,14 @@ BR.Routing = L.Routing.extend({
         cb(err, data);
     }, this));
   }
+
+  ,getSegments: function() {
+    var segments = [];
+
+    this._eachSegment(function(m1, m2, line) {
+        segments.push(line);
+    });
+
+    return segments;
+  }
 });

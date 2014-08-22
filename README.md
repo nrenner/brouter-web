@@ -50,9 +50,6 @@ Copyright (c) 2013 Felix Bache; [MIT License](https://github.com/MrMufflon/Leafl
 Copyright (c) 2013, Michael Bostock. All rights reserved.; [3-clause BSD License](https://github.com/mbostock/d3/blob/master/LICENSE)
 * [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw)  
 Copyright 2012 Jacob Toye; [MIT License](https://github.com/Leaflet/Leaflet.draw/blob/master/MIT-LICENCE.txt)
-* [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx)  
-Copyright (C) 2011-2012 Pavel Shramov, Copyright (C) 2013 Maxime Petazzoni  
-All rights reserved. [2-clause BSD License](https://github.com/mpetazzoni/leaflet-gpx/blob/master/LICENSE)
 * [Leaflet.Control.Search](https://github.com/stefanocudini/leaflet-search)  
 Copyright (c) 2013 Stefano Cudini; [MIT License](https://github.com/stefanocudini/leaflet-search/blob/master/LICENSE.txt)
 * [leaflet-plugins](https://github.com/shramov/leaflet-plugins)  

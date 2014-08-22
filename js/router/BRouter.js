@@ -10,7 +10,7 @@ L.BRouter = L.Class.extend({
     },
     
     options: {
-        format: 'gpx'
+        format: 'geojson'
     },
 
     initialize: function (options) {
@@ -83,8 +83,7 @@ L.BRouter = L.Class.extend({
 
     getRoute: function(latLngs, cb) {
         var url = this.getUrl(latLngs),
-            xhr = new XMLHttpRequest(),
-            gpx;
+            xhr = new XMLHttpRequest();
 
         if (!url) {
             return cb(new Error('Error getting route URL'));
@@ -99,23 +98,20 @@ L.BRouter = L.Class.extend({
     },
 
     _handleRouteResponse: function(xhr, cb) {
-        var gpx = xhr.responseXML;
+        var layer,
+            geojson;
 
-        if (xhr.status === 200 && gpx) {
-            // L.GPX has no XHR error handling, and expects either URL or text (not document),
-            // so bypass by passing null and call internal _parse_gpx_data directly
-            var gpxLayer = new L.GPX(null, {
-                polyline_options: {
-                    opacity: 0.6
-                },
-                marker_options: {
-                    startIconUrl: null,
-                    endIconUrl: null
-                }
-            });
-            var layer = gpxLayer._parse_gpx_data(gpx, gpxLayer.options);
+        if (xhr.status === 200
+                && xhr.responseText
+                // application error when not GeoJSON format (text/plain for errors)
+                && xhr.getResponseHeader('Content-Type').split(';')[0] === 'application/vnd.geo+json') {
+
             // leaflet.spin
             //gpxLayer.fire('data:loaded');
+
+            geojson = JSON.parse(xhr.responseText);
+            layer = L.geoJson(geojson).getLayers()[0];
+
             return cb(null, layer);
         } else {
             cb(this._getError(xhr));
@@ -147,8 +143,7 @@ L.BRouter = L.Class.extend({
     },
 
     _handleProfileResponse: function(xhr, cb) {
-        var response,
-            profile;
+        var response;
 
         if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
             response = JSON.parse(xhr.responseText);

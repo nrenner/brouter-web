@@ -74,7 +74,7 @@ div.elevation {
 }
 
 select {
-    max-width: 180px;
+    max-width: 176px;
     /* normalize height, for absolute Profile control positioning */
     height: 24px;
 }
@@ -96,7 +96,7 @@ td {
 
 .heading, tr > td:first-child, .label {
     /* 1/4 of net info control width (370), so that values start at 50% */
-    width: 92.5px;
+    width: 95px;
 }
 
 .routing-draw-enabled {
@@ -128,7 +128,7 @@ td {
 
 .leaflet-leftpane .leaflet-control:last-child {
     position: absolute;
-    top: 441px;
+    top: 461px;
     bottom: 0px;
 }
 

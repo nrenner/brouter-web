@@ -9,41 +9,37 @@ BR.TrackStats = BR.Control.extend({
         return container;
     },
 
-    update: function (polyline) {
-        var stats = this.calcStats(polyline),
+    update: function (polyline, segments) {
+        var stats = this.calcStats(polyline, segments),
             html = '';
 
         html += '<table id="stats">';
-        html += '<tr><td>Length: </td><td>' +  L.Util.formatNum(stats.distance/1000,1) + '</td><td>km</td></tr>';
-        html += '<tr><td>Ascent: </td><td>' + Math.round(stats.elevationGain) + '</td><td>m</td></tr>';
-        html += '<tr><td>Descent: </td><td>' + Math.round(stats.elevationLoss) + '</td><td>m</td></tr>';
+        html += '<tr><td>Length: </td><td>' + L.Util.formatNum(stats.trackLength/1000,1) + '</td><td>km</td></tr>';
+        html += '<tr><td>Ascent filtered:</td><td>' + stats.filteredAscend + '</td><td>m</td></tr>';
+        html += '<tr><td>Ascent plain:</td><td>' + stats.plainAscend + '</td><td>m</td></tr>';
+        html += '<tr><td>Cost: </td><td>' + stats.cost + '</td><td></td></tr>';
         html += '</table>'; 
 
         this._content.innerHTML = html;
     },
 
-    calcStats: function(polyline) {
+    calcStats: function(polyline, segments) {
         var stats = {
-            distance: 0,
-            elevationGain: 0,
-            elevationLoss: 0
+            trackLength: 0,
+            filteredAscend: 0,
+            plainAscend: 0,
+            cost: 0
         };
+        var i, props;
 
-        var latLngs = polyline ? polyline.getLatLngs() : [];
-        for (var i = 0, current, next, eleDiff; i < latLngs.length - 1; i++) {
-            current = latLngs[i];
-            next = latLngs[i + 1];
-            stats.distance += current.distanceTo(next);
-
-            // from Leaflet.gpx plugin (writes to LatLng.meta.ele, LatLng now supports ele)
-            eleDiff = (next.ele || next.meta.ele) - (current.ele || current.meta.ele);
-            if (eleDiff > 0) {
-                stats.elevationGain += eleDiff;
-            } else {
-                stats.elevationLoss += Math.abs(eleDiff);
-            }
+        for (i = 0; segments && i < segments.length; i++) {
+            props = segments[i].feature.properties;
+            stats.trackLength += +props['track-length'];
+            stats.filteredAscend += +props['filtered ascend'];
+            stats.plainAscend += +props['plain-ascend'];
+            stats.cost += +props['cost'];
         }
-        
+
         return stats;
     }
 });

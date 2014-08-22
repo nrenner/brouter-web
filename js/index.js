@@ -168,13 +168,14 @@
             } else {
                 BR.message.hideError();
             }
-          
+
             var track = routing.toPolyline(),
+                segments = routing.getSegments(),
                 latLngs = routing.getWaypoints(),
                 urls = {};
 
             elevation.update(track);
-            stats.update(track);          
+            stats.update(track, segments);
 
             if (latLngs.length > 1) {
                 urls.gpx = router.getUrl(latLngs, 'gpx');
