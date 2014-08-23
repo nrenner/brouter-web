@@ -11,15 +11,16 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
+            'car-test',
             'safety',
             'shortest',
-            'shortest-eudem',
             'trekking-ignore-cr',
             'trekking-steep',
             'trekking-noferries',
             'trekking-nosteps',
             'moped',
-            'car-test',
+            'rail',
+            'river',
             'vm-forum-liegerad-schnell',
             'vm-forum-velomobil-schnell'
         ];
