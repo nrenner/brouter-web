@@ -155,7 +155,7 @@
                 }
             }
         });
-        routing.on('routing:routeWaypointEnd', function(evt) {
+        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
             onUpdate(evt && evt.err);
         });
 

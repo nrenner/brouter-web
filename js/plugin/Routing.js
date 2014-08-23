@@ -52,21 +52,43 @@ BR.Routing = L.Routing.extend({
     this._segments.clearLayers();
   }
 
-  ,setWaypoints: function(latLngs) {
+  ,setWaypoints: function(latLngs, cb) {
+    var i;
+    var callbackCount = 0;
+    var firstErr;
     var $this = this;
-    var index = 0;
 
-    var add = function() {
-      if (!latLngs || index >= latLngs.length) { return; }
-
-      var prev = $this._waypoints._last;
-
-      $this.addWaypoint(latLngs[index], prev, null, function(err, m) {
-        add(++index);
-      });
+    var callback = function(err, data) {
+      callbackCount++;
+      firstErr = firstErr || err;
+      if (callbackCount >= latLngs.length) {
+        $this.fire('routing:setWaypointsEnd', { err: firstErr });
+        if (cb) {
+          cb(firstErr);
+        }
+      }
     };
 
-    add();
+    this.fire('routing:setWaypointsStart');
+    for (i = 0; latLngs && i < latLngs.length; i++) {
+      this.addWaypoint(latLngs[i], this._waypoints._last, null, callback);
+    }
+  }
+
+  // patch to fix error when line is null or error line
+  // (when called while still segments to calculate, e.g. permalink or fast drawing)
+   ,toPolyline: function() {
+    var latLngs = [];
+
+    this._eachSegment(function(m1, m2, line) {
+      // omit if null (still calculating) or error
+      // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
+      if (line && line.feature) {
+        latLngs = latLngs.concat(line.getLatLngs());
+      }
+    });
+
+    return L.polyline(latLngs);
   }
 
   ,_routeSegment: function(m1, m2, cb) {
@@ -100,7 +122,11 @@ BR.Routing = L.Routing.extend({
     var segments = [];
 
     this._eachSegment(function(m1, m2, line) {
+      // omit if null (still calculating) or error
+      // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
+      if (line && line.feature) {
         segments.push(line);
+      }
     });
 
     return segments;
