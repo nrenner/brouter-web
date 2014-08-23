@@ -15,7 +15,11 @@ BR.Routing = L.Routing.extend({
         var container = L.Routing.prototype.onAdd.call(this, map);
 
         this._draw.on('enabled', function() {
+            // crosshair cursor
             L.DomUtil.addClass(map.getContainer(), 'routing-draw-enabled');
+
+            // prevent cursor marker from consuming mouse events (invisible with draw:false)
+            this._marker._icon.style.pointerEvents = 'none';
         });
         this._draw.on('disabled', function() {
             L.DomUtil.removeClass(map.getContainer(), 'routing-draw-enabled');
