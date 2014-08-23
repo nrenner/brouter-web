@@ -7,9 +7,12 @@ Changelog
 
 * Add option for overriding draw shortcuts (#23)
 * Add option for disabling drawing marker (#18)
+* Add options for tooltips (waypoint, segment)
 * Disable shortcuts by setting `options.shortcut` to `false`.
 * Add support for loading GeoJSON without waypoints (#16).
 * Add option to #loadGeoJSON() to disable map fit bounds.
+* Add [OSM demo](http://turistforeningen.github.io/leaflet-routing/examples/osm.html)
+* …as well as countless updates to the readme and code readability.
 
 **Breaking changes**
 

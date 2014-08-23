@@ -10,7 +10,7 @@
     "normalize-css": "*",
     "leaflet-search": "*",
     "leaflet-plugins": "*",
-    "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
+    "leaflet-routing": "nrenner/leaflet-routing#styles",
     "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master",
     "async": "*"
   }

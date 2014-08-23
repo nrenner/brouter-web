@@ -23,11 +23,20 @@ L.Routing = L.Control.extend({
   // OPTIONS
   ,options: {
     position: 'topleft'
+    ,tooltips: {
+      waypoint: 'Waypoint. Drag to move; Click to remove.',
+      segment: 'Drag to create a new waypoint'
+    }
     ,icons: {
       start: new L.Icon.Default()
       ,end: new L.Icon.Default()
       ,normal: new L.Icon.Default()
       ,draw: new L.Icon.Default()
+    }
+    ,styles: {
+      trailer: {}
+      ,track: {}
+      ,nodata: {}
     }
     ,zIndexOffset: 2000
     ,routing: {
@@ -91,17 +100,8 @@ L.Routing = L.Control.extend({
       L.DomEvent.addListener(this._container, 'keyup', this._keyupListener, this);
     }
 
-    this._draw = new L.Routing.Draw(this, {
-      icons: this.options.icons
-      ,zIndexOffset: this.options.zIndexOffset
-      ,snapping: this.options.snapping
-    });
-
-    this._edit = new L.Routing.Edit(this, {
-      icons: this.options.icons
-      ,zIndexOffset: this.options.zIndexOffset
-      ,snapping: this.options.snapping
-    });
+    this._draw = new L.Routing.Draw(this, this.options);
+    this._edit = new L.Routing.Edit(this, this.options);
     this._edit.enable();
 
     this.on('waypoint:click', this._waypointClickHandler, this)
@@ -175,7 +175,7 @@ L.Routing = L.Control.extend({
   */
   ,addWaypoint: function(marker, prev, next, cb) {
     if (marker instanceof L.LatLng) {
-      marker = new L.Marker(marker);
+      marker = new L.Marker(marker, { title: this.options.tooltips.waypoint });
     }
 
     marker._routing = {
@@ -297,12 +297,14 @@ L.Routing = L.Control.extend({
   */
   ,routeWaypoint: function(marker, cb) {
     var i = 0;
+    var firstErr;
     var $this = this;
     var callback = function(err, data) {
       i++;
+      firstErr = firstErr || err;
       if (i === 2) {
-        $this.fire('routing:routeWaypointEnd');
-        cb(err, marker);
+        $this.fire('routing:routeWaypointEnd', { err: firstErr });
+        cb(firstErr, marker);
       }
     }
 
@@ -326,14 +328,16 @@ L.Routing = L.Control.extend({
   ,rerouteAllSegments: function(cb) {
     var numSegments = this.getWaypoints().length - 1;
     var callbackCount = 0;
+    var firstErr;
     var $this = this;
 
     var callback = function(err, data) {
       callbackCount++;
+      firstErr = firstErr || err;
       if (callbackCount >= numSegments) {
-        $this.fire('routing:rerouteAllSegmentsEnd');
+        $this.fire('routing:rerouteAllSegmentsEnd', { err: firstErr });
         if (cb) {
-          cb(err);
+          cb(firstErr);
         }
       }
     };
@@ -371,7 +375,9 @@ L.Routing = L.Control.extend({
 
     this._router(m1.getLatLng(), m2.getLatLng(), function(err, layer) {
       if (typeof layer === 'undefined') {
-        var layer = new L.Polyline([m1.getLatLng(), m2.getLatLng()]);
+        var layer = new L.Polyline([m1.getLatLng(), m2.getLatLng()], $this.options.styles.nodata);
+      } else {
+        layer.setStyle($this.options.styles.track);
       }
 
       layer._routing = {
@@ -387,7 +393,7 @@ L.Routing = L.Control.extend({
       m1._routing.nextLine = layer;
       m2._routing.prevLine = layer;
 
-      return cb(null, layer);
+      return cb(err, layer);
     });
   }
 
