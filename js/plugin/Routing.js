@@ -8,11 +8,22 @@ BR.Routing = L.Routing.extend({
             */
             draw: false
         },
-        snapping: null
+        snapping: null,
+        zIndexOffset: -2000
     },
 
     onAdd: function (map) {
         var container = L.Routing.prototype.onAdd.call(this, map);
+
+        // turn line mouse marker off while over waypoint marker
+        this.on('waypoint:mouseover', this._edit._segmentOnMouseout, this._edit);
+        this.on('waypoint:mouseout', this._edit._segmentOnMouseover, this._edit);
+
+        this._edit._mouseMarker.setIcon(L.divIcon({
+          className: 'line-mouse-marker'
+          ,iconAnchor: [8, 8] // size/2 + border/2
+          ,iconSize: [8, 8]
+        }));
 
         this._draw.on('enabled', function() {
             // crosshair cursor
