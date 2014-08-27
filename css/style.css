@@ -45,7 +45,7 @@ div.elevation {
 .title {
     padding-top: 4px;
     /* normalize height, for absolute Profile control positioning */
-    height: 17px;
+    height: 21px;
 }
 .title-name {
     font-size: larger;
@@ -121,7 +121,7 @@ td {
 
 .leaflet-leftpane .leaflet-control {
     margin: 3px 5px;
-    width: 370px;
+    width: 386px;
 }
 
 /* Profile Control */
@@ -184,4 +184,16 @@ textarea:focus {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* override Bootstrap label for Leaflet layer switcher */
+.leaflet-control-layers label {
+    max-width: none;
+    margin-bottom: 0px;
+    font-weight: normal;
+    /* normalize label height
+                    | Firefox | Chrome |
+       Leaflet only | 21      | 20     |
+       Bootstrap    | 23      | 22     |*/
+    height: 21px;
 }

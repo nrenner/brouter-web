@@ -7,7 +7,6 @@
     "bower_components"
   ],
   "dependencies": {
-    "normalize-css": "*",
     "leaflet-search": "*",
     "leaflet-plugins": "*",
     "leaflet-routing": "nrenner/leaflet-routing#styles",

@@ -33,7 +33,7 @@ BR.Routing = L.Routing.extend({
         this._edit._mouseMarker.setIcon(L.divIcon({
           className: 'line-mouse-marker'
           ,iconAnchor: [8, 8] // size/2 + border/2
-          ,iconSize: [8, 8]
+          ,iconSize: [16, 16]
         }));
 
         this._draw.on('enabled', function() {
