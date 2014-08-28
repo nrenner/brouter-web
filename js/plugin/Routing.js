@@ -16,9 +16,20 @@ BR.Routing = L.Routing.extend({
         var container = L.Routing.prototype.onAdd.call(this, map);
 
         // turn line mouse marker off while over waypoint marker
-        this.on('waypoint:mouseover', this._edit._segmentOnMouseout, this._edit);
-        this.on('waypoint:mouseout', this._edit._segmentOnMouseover, this._edit);
+        this.on('waypoint:mouseover', function(e) {
+            // L.Routing.Edit._segmentOnMouseout without firing 'segment:mouseout' (enables draw)
+            if (this._dragging) { return; }
 
+            this._mouseMarker.setOpacity(0.0);
+            this._map.off('mousemove', this._segmentOnMousemove, this);
+            this._suspended = true;
+        }, this._edit);
+
+        this.on('waypoint:mouseout', function(e) {
+            this._segmentOnMouseover(e);
+            this._suspended = false;
+        }, this._edit);
+        
         this._edit._mouseMarker.setIcon(L.divIcon({
           className: 'line-mouse-marker'
           ,iconAnchor: [8, 8] // size/2 + border/2
@@ -31,6 +42,15 @@ BR.Routing = L.Routing.extend({
 
             // prevent cursor marker from consuming mouse events (invisible with draw:false)
             this._marker._icon.style.pointerEvents = 'none';
+
+            // intercept listener: only re-show draw trailer after marker hover 
+            // when edit is not active (i.e. wasn't also supended)
+            this._parent.off('waypoint:mouseout' , this._catchWaypointEvent, this);
+            this.on('waypoint:mouseout' , function(e) {
+                if (!this._parent._edit._suspended) {
+                    this._catchWaypointEvent(e);
+                }
+            }, this);
         });
         this._draw.on('disabled', function() {
             L.DomUtil.removeClass(map.getContainer(), 'routing-draw-enabled');
