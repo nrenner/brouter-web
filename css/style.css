@@ -132,16 +132,21 @@ td {
     bottom: 0px;
 }
 
+.tab-content {
+    padding: 5px 0px;
+}
+/*
 #profile_upload input {
     position: absolute;
     top: 6px;
     right: 8px;
 }
+*/
 
 /* http://snook.ca/archives/html_and_css/absolute-position-textarea */
 #textarea_container {
     position: absolute;
-    top: 32px;
+    top: 64px;
     bottom: 6px;
     left: 8px;
     right: 8px;
@@ -186,6 +191,10 @@ textarea:focus {
   }
 }
 
+/*
+ * Bootstrap
+ */
+
 /* override Bootstrap label for Leaflet layer switcher */
 .leaflet-control-layers label {
     max-width: none;
@@ -196,4 +205,9 @@ textarea:focus {
        Leaflet only | 21      | 20     |
        Bootstrap    | 23      | 22     |*/
     height: 21px;
+}
+
+/* smaller tab height */
+.nav > li > a {
+    padding: 2px 15px;
 }

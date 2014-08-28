@@ -51,14 +51,29 @@
         </table>
     </div>
     <div id="profile_div" class="hidden">
-        <form id="profile_upload" name="profile_upload">
-            <button id="clear">Clear</button>&nbsp;
-            <a href="http://brouter.de/brouter/costfunctions.html" target="_blank">Help</a>
-            <input type="submit" value="Upload" />
-            <div id="textarea_container">
-                <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+      
+        <ul id="tab" class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab_profile" role="tab">Profile</a></li>
+            <li><a href="#tab_data" role="tab">Data</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_profile">
+                <form id="profile_upload" name="profile_upload">
+                    &nbsp;<div class="btn-group">
+                        <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                        <!-- TODO type="reset" -->
+                        <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
+                    </div>
+                    <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
+                    <div id="textarea_container">
+                        <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="tab-pane" id="tab_data">
+            </div>
+        </div>
     </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
