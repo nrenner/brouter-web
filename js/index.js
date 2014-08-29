@@ -196,7 +196,7 @@
         stats.addTo(map);
         download.addTo(map);
         elevation.addTo(map);
-        profile.addTo(map);
+        map.addControl(new BR.Tabs());
 
         nogos.addTo(map);
         routing.addTo(map);

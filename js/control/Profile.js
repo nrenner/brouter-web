@@ -1,18 +1,7 @@
-BR.Profile = BR.Control.extend({
-    options: {
-        divId: 'profile_div'
-    },
-
-    onAdd: function (map) {
+BR.Profile = L.Class.extend({
+    initialize: function () {
         L.DomUtil.get('profile_upload').onsubmit = L.bind(this._submit, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
-
-        $('#tab a').click(function (e) {
-          e.preventDefault();
-          $(this).tab('show');
-        });
-
-        return BR.Control.prototype.onAdd.call(this, map);
     },
 
     clear: function(evt) {
