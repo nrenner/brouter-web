@@ -58,3 +58,7 @@ Copyright (c) 2011-2012, Pavel Shramov; [2-clause BSD License](https://github.co
 Copyright (c) 2010-2014 Caolan McMahon; [MIT License](https://github.com/caolan/async/blob/master/LICENSE)
 * [Bootstrap](http://getbootstrap.com/)  
 Copyright (c) 2011-2014 Twitter, Inc; [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* [jQuery](https://github.com/jquery/jquery)  
+Copyright 2005, 2014 jQuery Foundation and other contributors; [MIT License](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
+* [DataTables](https://github.com/DataTables/DataTables)  
+Copyright (C) 2008-2014, SpryMedia Ltd.; [MIT License](http://www.datatables.net/license/mit)

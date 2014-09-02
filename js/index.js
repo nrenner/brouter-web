@@ -88,6 +88,7 @@
             elevation,
             download,
             profile,
+            trackMessages,
             leftPaneId = 'leftpane',
             saveWarningShown = false;
 
@@ -140,6 +141,7 @@
             BR.message.hideError();
             routingOptions.setCustomProfile(null);
         });
+        trackMessages = new BR.TrackMessages();
 
         routing = new BR.Routing({
             routing: {
@@ -177,6 +179,7 @@
 
             elevation.update(track);
             stats.update(track, segments);
+            trackMessages.update(track, segments);
 
             if (latLngs.length > 1) {
                 urls.gpx = router.getUrl(latLngs, 'gpx');

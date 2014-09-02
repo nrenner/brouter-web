@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/leaflet-routing.css" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -72,6 +73,7 @@
                 </form>
             </div>
             <div class="tab-pane" id="tab_data">
+                <table id="datatable" class="table mini cell-border hover stripe"></table>
             </div>
         </div>
     </div>
@@ -101,6 +103,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+
     <script>
         // global package prefix for BRouter web application
         BR = {};
@@ -118,6 +122,7 @@
     <script src="js/control/Download.js"></script>
     <script src="js/control/Tabs.js"></script>
     <script src="js/control/Profile.js"></script>
+    <script src="js/control/TrackMessages.js"></script>
     <script src="js/control/RoutingOptions.js"></script>
     <script src="js/control/Message.js"></script>
 

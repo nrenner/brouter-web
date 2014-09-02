@@ -167,6 +167,11 @@ textarea:focus {
     background-color: rgba(255,255,255,255);
 }
 
+/* track messages (data tab) */
+#tab_data {
+    font-size: x-small;
+}
+
 /* dashed line animation, derived from Chris Coyier and others
    http://css-tricks.com/svg-line-animation-works/
  */
@@ -210,4 +215,23 @@ textarea:focus {
 /* smaller tab height */
 .nav > li > a {
     padding: 2px 15px;
+}
+
+/*
+ * DataTables
+ */
+
+table.dataTable.mini thead th,
+table.dataTable.mini thead td {
+  padding: 3px 13px 3px 2px;
+}
+
+table.dataTable.mini tbody th,
+table.dataTable.mini tbody td {
+  padding: 2px 2px;
+}
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+  background-position: center right -3px;
 }
