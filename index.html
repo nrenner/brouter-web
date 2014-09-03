@@ -61,14 +61,14 @@
         <div class="tab-content">
             <div class="tab-pane active" id="tab_profile">
                 <form id="profile_upload" name="profile_upload">
-                    &nbsp;<div class="btn-group">
-                        <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-upload"></span> Upload</button>
-                        <!-- TODO type="reset" -->
-                        <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
-                    </div>
-                    <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
-                    <div id="textarea_container">
-                        <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+                    <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+                    <div id="profile_buttons">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                            <!-- TODO type="reset" -->
+                            <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
+                        </div>
+                        <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
                     </div>
                 </form>
             </div>

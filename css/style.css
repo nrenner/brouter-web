@@ -15,11 +15,6 @@ html, body, #map {
 div.elevation {
     margin-bottom: -2px !important;
 }
-/*
-.info, div.elevation {
-    display:table-row;
-}
-*/
 
 .hidden {
     display: none;
@@ -44,8 +39,6 @@ div.elevation {
 }
 .title {
     padding-top: 4px;
-    /* normalize height, for absolute Profile control positioning */
-    height: 21px;
 }
 .title-name {
     font-size: larger;
@@ -75,8 +68,6 @@ div.elevation {
 
 select {
     max-width: 176px;
-    /* normalize height, for absolute Profile control positioning */
-    height: 24px;
 }
 
 table {
@@ -126,32 +117,51 @@ td {
 
 /* Profile Control */
 
-.leaflet-leftpane .leaflet-control:last-child {
-    position: absolute;
-    top: 461px;
-    bottom: 0px;
+/* flexbox layout: maximize textarea and data table (nested container/box path) */
+.flex_container,
+.leaflet-leftpane,
+.leaflet-leftpane .leaflet-control:last-child,
+#tabs_div,
+.tab-content,
+.tab-pane.active,
+#profile_upload,
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody {
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 
-.tab-content {
-    padding: 5px 0px;
+.flex_box_none,
+.leaflet-leftpane .leaflet-control,
+#tab,
+.dataTables_scrollHead {
+  -webkit-flex: none;
+  flex: none;
 }
-/*
-#profile_upload input {
-    position: absolute;
-    top: 6px;
-    right: 8px;
-}
-*/
 
-/* http://snook.ca/archives/html_and_css/absolute-position-textarea */
-#textarea_container {
-    position: absolute;
-    top: 64px;
-    bottom: 6px;
-    left: 8px;
-    right: 8px;
-
+.flex_box,
+.leaflet-leftpane .leaflet-control:last-child,
+#tabs_div,
+.tab-content,
+.tab-pane.active,
+#profile_upload,
+textarea,
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody,
+#datatable {
+  -webkit-flex: auto;
+  flex: auto;
 }
+
+#profile_buttons {
+    padding-top: 4px;
+}
+
 textarea {
     width: 100%;
     height: 100%;
