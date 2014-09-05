@@ -1,4 +1,6 @@
 BR.TrackMessages = L.Class.extend({
+    // true when tab is shown, false when hidden
+    active: false,
 
     columnOptions: {
         'Longitude': { visible: false },
@@ -10,7 +12,9 @@ BR.TrackMessages = L.Class.extend({
         'TurnCost': { title: 'turncost', className: 'dt-body-right' }
     },
 
-    initialize: function () {
+    initialize: function (options) {
+        L.setOptions(this, options);
+
         var table = document.getElementById('datatable');
         this.tableClassName = table.className;
         this.tableParent = table.parentElement;
@@ -23,6 +27,9 @@ BR.TrackMessages = L.Class.extend({
             columns,
             headings,
             table;
+
+        if (!this.active)
+            return;
 
         for (i = 0; segments && i < segments.length; i++) {
             messages = segments[i].feature.properties.messages;
@@ -52,6 +59,15 @@ BR.TrackMessages = L.Class.extend({
         });
 
         console.timeEnd('datatable');
+    },
+
+    show: function() {
+        this.active = true;
+        this.options.requestUpdate(this);
+    },
+
+    hide: function() {
+        this.active = false;
     },
 
     _destroyTable: function() {

@@ -107,6 +107,13 @@
             routing.rerouteAllSegments(onUpdate);
         }
 
+        function requestUpdate(updatable) {
+            var track = routing.toPolyline(),
+                segments = routing.getSegments();
+        
+            updatable.update(track, segments);
+        }
+
         routingOptions = new BR.RoutingOptions();
         routingOptions.on('update', updateRoute);
 
@@ -141,7 +148,9 @@
             BR.message.hideError();
             routingOptions.setCustomProfile(null);
         });
-        trackMessages = new BR.TrackMessages();
+        trackMessages = new BR.TrackMessages({
+            requestUpdate: requestUpdate
+        });
 
         routing = new BR.Routing({
             routing: {
@@ -199,7 +208,12 @@
         stats.addTo(map);
         download.addTo(map);
         elevation.addTo(map);
-        map.addControl(new BR.Tabs());
+        map.addControl(new BR.Tabs({
+            tabs: {
+                '#tab_profile': profile,
+                '#tab_data': trackMessages
+            }
+        }));
 
         nogos.addTo(map);
         routing.addTo(map);
