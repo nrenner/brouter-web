@@ -10,6 +10,14 @@ BR.Tabs = BR.Control.extend({
     },
 
     onAdd: function (map) {
+        var tabs = this.options.tabs;
+
+        for (var key in tabs) {
+            if (tabs[key].onAdd) {
+                tabs[key].onAdd(map);
+            }
+        }
+
         $('#tab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');

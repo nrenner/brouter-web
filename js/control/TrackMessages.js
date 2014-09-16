@@ -1,4 +1,12 @@
 BR.TrackMessages = L.Class.extend({
+
+    options: {
+        edgeStyle: {
+            color: 'yellow',
+            weight: 8
+        }
+    },
+
     // true when tab is shown, false when hidden
     active: false,
 
@@ -20,13 +28,16 @@ BR.TrackMessages = L.Class.extend({
         this.tableParent = table.parentElement;
     },
 
+    onAdd: function (map) {
+        this._map = map;
+    },
+
     update: function (polyline, segments) {
         var i,
             messages,
             data = [],
             columns,
-            headings,
-            table;
+            headings;
 
         if (!this.active)
             return;
@@ -45,7 +56,7 @@ BR.TrackMessages = L.Class.extend({
         columns = this._getColumns(headings, data);
 
         console.time('datatable');
-        table = $('#datatable').DataTable({
+        this._table = $('#datatable').DataTable({
             destroy: true,
             data: data,
             columns: columns,
@@ -57,6 +68,10 @@ BR.TrackMessages = L.Class.extend({
             scrollCollapse: true,
             order: []
         });
+
+        // highlight track segment (graph edge) on row hover
+        this._setEdges(this._table, polyline);
+        $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
 
         console.timeEnd('datatable');
     },
@@ -119,6 +134,55 @@ BR.TrackMessages = L.Class.extend({
         });
 
         return empty;
+    },
+
+    _getRowLatLng: function(row) {
+        var data = row.data(),
+            lon = data[0] / 1000000,
+            lat = data[1] / 1000000;
+    
+        return L.latLng(lat, lon);
+    },
+            
+    _setEdges: function(table, polyline) {
+        var trackLatLngs = polyline.getLatLngs(),
+            index = 0;
+
+        this._track = polyline;
+        // track latLngs index for end node of edge
+        this._edges = [];
+
+        table.rows().indexes().each(L.bind(function(rowIndex) {
+            var row = table.row(rowIndex),
+                latLng = this._getRowLatLng(row),
+                i;
+            
+            for (i = index; i < trackLatLngs.length; i++) {
+                if (latLng.equals(trackLatLngs[i])) {
+                    break;
+                }
+            }
+
+            this._edges.push(i);
+
+            index = i;
+        }, this));
+    },
+
+    _handleHover: function(evt) {
+        var tr = $(evt.currentTarget),
+            row = this._table.row(tr),
+            trackLatLngs = this._track.getLatLngs(),
+            startIndex = row.index() > 0 ? this._edges[row.index() - 1] : 0,
+            endIndex = this._edges[row.index()],
+            edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
+
+        this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
+    },
+
+    _handleHoverOut: function(evt) {
+        this._map.removeLayer(this._selectedEdge);
+        this._selectedEdge = null;
     }
 });
 
