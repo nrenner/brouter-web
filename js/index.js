@@ -46,6 +46,12 @@
           attribution: 'Cycling &copy; <a target="_blank" href="http://cycling.waymarkedtrails.org">Waymarked Trails</a> '
                   + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
         });
+
+        var stravac = L.tileLayer('http://d2z9m7k9h4f0yp.cloudfront.net/tiles/cycling/color2/{z}/{x}/{y}.png', {
+          maxZoom: 17,
+          opacity: 0.7,
+          attribution: 'Heatmap &copy; <a target="_blank" href="http://labs.strava.com/heatmap/">Strava</a> '
+        });
         var hiking = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
           maxZoom: 19,
           opacity: 0.7,
@@ -71,7 +77,8 @@
             'Outdoors (Thunderforest)': outdoors
         }, {
              'Cycling (Waymarked Trails)': cycling,
-             'Hiking (Waymarked Trails)': hiking
+             'Hiking (Waymarked Trails)': hiking,
+             'Strava (Cycling Heatmap)': stravac
         }).addTo(map);
 
         map.addControl(new BR.Search());
