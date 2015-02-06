@@ -56,7 +56,8 @@
         map = new L.Map('map', {
             layers: [osm], 
             center: new L.LatLng(50.99, 9.86), 
-            zoom: 6
+            zoom: 6,
+            worldCopyJump: true
         });
         map.attributionControl.addAttribution(
                 '<a href="http://brouter.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
