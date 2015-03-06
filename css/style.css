@@ -239,6 +239,7 @@ table.dataTable.mini thead td {
 table.dataTable.mini tbody th,
 table.dataTable.mini tbody td {
   padding: 2px 2px;
+  white-space: nowrap;
 }
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,

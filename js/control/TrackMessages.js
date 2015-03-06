@@ -15,9 +15,12 @@ BR.TrackMessages = L.Class.extend({
         'Latitude': { visible: false },
         'Elevation': { title: 'elev.', className: 'dt-body-right' },
         'Distance': { title: 'dist.', className: 'dt-body-right' },
-        'CostPerKm': { title: 'cost/km', className: 'dt-body-right' },
-        'ElevCost': { title: 'elevcost', className: 'dt-body-right' },
-        'TurnCost': { title: 'turncost', className: 'dt-body-right' }
+        'CostPerKm': { title: '$/km', className: 'dt-body-right' },
+        'ElevCost': { title: 'elev$', className: 'dt-body-right' },
+        'TurnCost': { title: 'turn$', className: 'dt-body-right' },
+        'NodeCost': { title: 'node$', className: 'dt-body-right' },
+        'InitialCost': { title: 'initial$', className: 'dt-body-right' },
+        'OsmTags': { title: 'tags'}
     },
 
     initialize: function (options) {
