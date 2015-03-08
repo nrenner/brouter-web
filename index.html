@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BRouter web client</title>
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
@@ -12,7 +14,9 @@
     <link rel="stylesheet" href="bower_components/Leaflet.Elevation/dist/Leaflet.Elevation-0.0.2.css" />
     <link rel="stylesheet" href="bower_components/leaflet-search/dist/leaflet-search.min.css" />
     <link rel="stylesheet" href="css/leaflet-routing.css" />
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -47,15 +51,28 @@
                 </td></tr>
         </table>
     </div>
-    <div id="profile_div" class="hidden">
-        <form id="profile_upload" name="profile_upload">
-            <button id="clear">Clear</button>&nbsp;
-            <a href="http://brouter.de/brouter/costfunctions.html" target="_blank">Help</a>
-            <input type="submit" value="Upload" />
-            <div id="textarea_container">
-                <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+    <div id="tabs_div" class="hidden">
+      
+        <ul id="tab" class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#tab_profile" role="tab">Profile</a></li>
+            <li><a href="#tab_data" role="tab">Data</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_profile">
+                <form id="profile_upload" name="profile_upload">
+                    <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+                    <div id="profile_buttons">
+                        <button id="upload" type="button" class="btn btn-default btn-xs" data-uploading-text="Uploading..."><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                        <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
+                        <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="tab-pane" id="tab_data">
+                <table id="datatable" class="table mini cell-border hover stripe"></table>
+            </div>
+        </div>
     </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
@@ -80,6 +97,11 @@
     <script src="bower_components/Leaflet.Elevation/src/L.Control.Elevation.js"></script>
     <script src="bower_components/async/lib/async.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+
     <script>
         // global package prefix for BRouter web application
         BR = {};
@@ -95,7 +117,9 @@
     <script src="js/plugin/Permalink.Routing.js"></script>
     <script src="js/control/TrackStats.js"></script>
     <script src="js/control/Download.js"></script>
+    <script src="js/control/Tabs.js"></script>
     <script src="js/control/Profile.js"></script>
+    <script src="js/control/TrackMessages.js"></script>
     <script src="js/control/RoutingOptions.js"></script>
     <script src="js/control/Message.js"></script>
 

@@ -15,11 +15,6 @@ html, body, #map {
 div.elevation {
     margin-bottom: -2px !important;
 }
-/*
-.info, div.elevation {
-    display:table-row;
-}
-*/
 
 .hidden {
     display: none;
@@ -44,8 +39,6 @@ div.elevation {
 }
 .title {
     padding-top: 4px;
-    /* normalize height, for absolute Profile control positioning */
-    height: 17px;
 }
 .title-name {
     font-size: larger;
@@ -75,8 +68,6 @@ div.elevation {
 
 select {
     max-width: 176px;
-    /* normalize height, for absolute Profile control positioning */
-    height: 24px;
 }
 
 table {
@@ -121,32 +112,56 @@ td {
 
 .leaflet-leftpane .leaflet-control {
     margin: 3px 5px;
-    width: 370px;
+    width: 386px;
 }
 
 /* Profile Control */
 
-.leaflet-leftpane .leaflet-control:last-child {
-    position: absolute;
-    top: 461px;
-    bottom: 0px;
+/* flexbox layout: maximize textarea and data table (nested container/box path) */
+.flex_container,
+.leaflet-leftpane,
+.leaflet-leftpane .leaflet-control:last-child,
+#tabs_div,
+.tab-content,
+.tab-pane.active,
+#profile_upload,
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody {
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 
-#profile_upload input {
-    position: absolute;
-    top: 6px;
-    right: 8px;
+.flex_box_none,
+.leaflet-leftpane .leaflet-control,
+#tab,
+.dataTables_scrollHead {
+  -webkit-flex: none;
+  flex: none;
 }
 
-/* http://snook.ca/archives/html_and_css/absolute-position-textarea */
-#textarea_container {
-    position: absolute;
-    top: 32px;
-    bottom: 6px;
-    left: 8px;
-    right: 8px;
-
+.flex_box,
+.leaflet-leftpane .leaflet-control:last-child,
+#tabs_div,
+.tab-content,
+.tab-pane.active,
+#profile_upload,
+textarea,
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody,
+#datatable {
+  -webkit-flex: auto;
+  flex: auto;
 }
+
+#profile_buttons {
+    padding-top: 4px;
+}
+
 textarea {
     width: 100%;
     height: 100%;
@@ -160,6 +175,11 @@ textarea {
 }
 textarea:focus {
     background-color: rgba(255,255,255,255);
+}
+
+/* track messages (data tab) */
+#tab_data {
+    font-size: x-small;
 }
 
 /* dashed line animation, derived from Chris Coyier and others
@@ -184,4 +204,45 @@ textarea:focus {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/*
+ * Bootstrap
+ */
+
+/* override Bootstrap label for Leaflet layer switcher */
+.leaflet-control-layers label {
+    max-width: none;
+    margin-bottom: 0px;
+    font-weight: normal;
+    /* normalize label height
+                    | Firefox | Chrome |
+       Leaflet only | 21      | 20     |
+       Bootstrap    | 23      | 22     |*/
+    height: 21px;
+}
+
+/* smaller tab height */
+.nav > li > a {
+    padding: 2px 15px;
+}
+
+/*
+ * DataTables
+ */
+
+table.dataTable.mini thead th,
+table.dataTable.mini thead td {
+  padding: 3px 13px 3px 2px;
+}
+
+table.dataTable.mini tbody th,
+table.dataTable.mini tbody td {
+  padding: 2px 2px;
+  white-space: nowrap;
+}
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting {
+  background-position: center right -3px;
 }

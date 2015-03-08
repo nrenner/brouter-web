@@ -76,6 +76,10 @@
         }).addTo(map);
 
         map.addControl(new BR.Search());
+
+        // expose map instance for console debugging
+        BR.debug = BR.debug || {};
+        BR.debug.map = map;
     }
 
     function initApp() {
@@ -88,6 +92,7 @@
             elevation,
             download,
             profile,
+            trackMessages,
             leftPaneId = 'leftpane',
             saveWarningShown = false;
 
@@ -104,6 +109,13 @@
                 router.queue.kill();
             }
             routing.rerouteAllSegments(onUpdate);
+        }
+
+        function requestUpdate(updatable) {
+            var track = routing.toPolyline(),
+                segments = routing.getSegments();
+        
+            updatable.update(track, segments);
         }
 
         routingOptions = new BR.RoutingOptions();
@@ -134,11 +146,18 @@
                         router.setOptions(routingOptions.getOptions());
                     }
                 }
+
+                if (evt.callback) {
+                    evt.callback();
+                }
             });
         });
         profile.on('clear', function(evt) {
             BR.message.hideError();
             routingOptions.setCustomProfile(null);
+        });
+        trackMessages = new BR.TrackMessages({
+            requestUpdate: requestUpdate
         });
 
         routing = new BR.Routing({
@@ -177,6 +196,7 @@
 
             elevation.update(track);
             stats.update(track, segments);
+            trackMessages.update(track, segments);
 
             if (latLngs.length > 1) {
                 urls.gpx = router.getUrl(latLngs, 'gpx');
@@ -196,7 +216,12 @@
         stats.addTo(map);
         download.addTo(map);
         elevation.addTo(map);
-        profile.addTo(map);
+        map.addControl(new BR.Tabs({
+            tabs: {
+                '#tab_profile': profile,
+                '#tab_data': trackMessages
+            }
+        }));
 
         nogos.addTo(map);
         routing.addTo(map);
