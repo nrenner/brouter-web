@@ -63,11 +63,8 @@
                 <form id="profile_upload" name="profile_upload">
                     <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
                     <div id="profile_buttons">
-                        <div class="btn-group">
-                            <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-upload"></span> Upload</button>
-                            <!-- TODO type="reset" -->
-                            <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
-                        </div>
+                        <button id="upload" type="button" class="btn btn-default btn-xs" data-uploading-text="Uploading..."><span class="glyphicon glyphicon-upload"></span> Upload</button>
+                        <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>
                         <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
                     </div>
                 </form>

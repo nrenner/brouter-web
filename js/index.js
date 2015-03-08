@@ -146,6 +146,10 @@
                         router.setOptions(routingOptions.getOptions());
                     }
                 }
+
+                if (evt.callback) {
+                    evt.callback();
+                }
             });
         });
         profile.on('clear', function(evt) {
