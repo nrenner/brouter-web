@@ -36,24 +36,25 @@ BR.TrackMessages = L.Class.extend({
     },
 
     update: function (polyline, segments) {
-        var i,
-            messages,
-            data = [],
-            columns,
-            headings;
+        var i, messages, columns, headings,
+            data = [];
 
-        if (!this.active)
+        if (!this.active) {
             return;
+        }
 
         for (i = 0; segments && i < segments.length; i++) {
             messages = segments[i].feature.properties.messages;
-            data = data.concat(messages.slice(1));
+            if (messages) {
+                data = data.concat(messages.slice(1));
+            }
         }
 
         this._destroyTable();
 
-        if (data.length === 0)
+        if (data.length === 0) {
            return;
+        }
 
         headings = messages[0];
         columns = this._getColumns(headings, data);
