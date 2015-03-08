@@ -246,3 +246,12 @@ table.dataTable thead .sorting_desc,
 table.dataTable thead .sorting {
   background-position: center right -3px;
 }
+
+table.dataTable.hover tbody tr:hover,
+table.dataTable.hover tbody tr.odd:hover,
+table.dataTable.hover tbody tr.even:hover,
+table.dataTable.display tbody tr:hover,
+table.dataTable.display tbody tr.odd:hover,
+table.dataTable.display tbody tr.even:hover {
+  background-color: rgba(255,255,0,0.2);
+}
