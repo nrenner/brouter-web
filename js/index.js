@@ -76,6 +76,10 @@
         }).addTo(map);
 
         map.addControl(new BR.Search());
+
+        // expose map instance for console debugging
+        BR.debug = BR.debug || {};
+        BR.debug.map = map;
     }
 
     function initApp() {
