@@ -73,7 +73,7 @@ BR.TrackMessages = L.Class.extend({
         });
 
         // highlight track segment (graph edge) on row hover
-        this._setEdges(this._table, polyline);
+        this._setEdges(polyline, segments);
         $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
 
         console.timeEnd('datatable');
@@ -139,37 +139,45 @@ BR.TrackMessages = L.Class.extend({
         return empty;
     },
 
-    _getRowLatLng: function(row) {
-        var data = row.data(),
-            lon = data[0] / 1000000,
-            lat = data[1] / 1000000;
+    _getMessageLatLng: function(message) {
+        var lon = message[0] / 1000000,
+            lat = message[1] / 1000000;
     
         return L.latLng(lat, lon);
     },
-            
-    _setEdges: function(table, polyline) {
-        var trackLatLngs = polyline.getLatLngs(),
-            index = 0;
 
-        this._track = polyline;
+    _setEdges: function(polyline, segments) {
+        var messages, segLatLngs, length, si, mi, latLng, i, segIndex,
+            baseIndex = 0;
+
         // track latLngs index for end node of edge
         this._edges = [];
+        this._track = polyline;
 
-        table.rows().indexes().each(L.bind(function(rowIndex) {
-            var row = table.row(rowIndex),
-                latLng = this._getRowLatLng(row),
-                i;
-            
-            for (i = index; i < trackLatLngs.length; i++) {
-                if (latLng.equals(trackLatLngs[i])) {
-                    break;
+        for (si = 0; si < segments.length; si++) {
+            messages = segments[si].feature.properties.messages;
+            segLatLngs = segments[si].getLatLngs();
+            length = segLatLngs.length;
+            segIndex = 0;
+
+            for (mi = 1; mi < messages.length; mi++) {
+                latLng = this._getMessageLatLng(messages[mi]);
+
+                for (i = segIndex; i < length; i++) {
+                    if (latLng.equals(segLatLngs[i])) {
+                        break;
+                    }
                 }
+                if (i === length) {
+                    i = length - 1;
+                    if (mi !== messages.length - 1) debugger;
+                }
+
+                segIndex = i + 1;
+                this._edges.push(baseIndex + i);
             }
-
-            this._edges.push(i);
-
-            index = i;
-        }, this));
+            baseIndex += length;
+        }
     },
 
     _handleHover: function(evt) {
