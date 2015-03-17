@@ -120,6 +120,9 @@
 
         routingOptions = new BR.RoutingOptions();
         routingOptions.on('update', updateRoute);
+        routingOptions.on('update', function(evt) {
+            profile.update(evt.options);
+        });
 
         nogos = new BR.NogoAreas();
         nogos.on('update', updateRoute);
@@ -229,6 +232,7 @@
         // initial option settings (after controls are added and initialized with onAdd, before permalink)
         router.setOptions(nogos.getOptions());
         router.setOptions(routingOptions.getOptions());
+        profile.update(routingOptions.getOptions());
 
         map.addControl(new L.Control.Permalink({
             text: 'Permalink',
@@ -237,7 +241,8 @@
             routingOptions: routingOptions,
             nogos: nogos,
             router: router,
-            routing: routing
+            routing: routing,
+            profile: profile
         }));
     }
     

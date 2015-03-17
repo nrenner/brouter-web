@@ -11,15 +11,15 @@ http://brouter.de/brouter-web/
 
 As an alternative to the above online version, the standalone server of BRouter can also be run on your local desktop.
 
-### Install
+### Install BRouter (server with routing engine)
 
 1. download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
-e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_0_1`` with latest version):  
+e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_1`` with latest version):  
 
         mkdir ~/opt/brouter
         cd ~/opt/brouter
-        wget http://brouter.de/brouter_bin/brouter_1_0_1.zip
-        unzip brouter_1_0_1.zip
+        wget http://brouter.de/brouter_bin/brouter_1_1.zip
+        unzip brouter_1_1.zip
         chmod +x ./standalone/server.sh
         mv segments3 segments2  # workaround until scripts are updated
 fix line endings with ``fromdos`` or ``dos2unix`` (might need to be installed first)  
@@ -27,10 +27,28 @@ fix line endings with ``fromdos`` or ``dos2unix`` (might need to be installed fi
         fromdos ./standalone/server.sh
 2. download one or more [data file(s)](http://brouter.de/brouter/segments3/) (rd5) into ``segments2`` dir
 
+### Install BRouter-Web (client)
+
+1. download BRouter-Web as subdirectory ``brouter-web`` of the ``brouter`` directory
+
+         wget https://github.com/nrenner/brouter-web/archive/master.zip
+         unzip master.zip
+         mv brouter-web-master brouter-web
+
+2. configure URL to ``profiles2`` directory  
+set ``BR.conf.profilesUrl`` in [config.js](config.js), e.g. uncomment:
+
+        BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
+
 ### Run
 
-1. start server in the ``standalone`` directory with ``./server.sh`` or ``server.cmd`` (Windows)
-2. open http://nrenner.github.io/brouter-web/
+1. start BRouter server in the ``standalone`` directory with ``./server.sh`` or ``server.cmd`` (Windows)
+2. serve the ``brouter`` directory for BRouter-Web  
+This is needed for pre-loading the selected profile (unless you allowed local file access in the Browser). Depending on your setup (see [How to run things locally](https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally)), start a web server in the ``brouter`` directory, e.g.:
+
+        python -m SimpleHTTPServer
+
+2. open http://localhost:8000/brouter-web/  
 
 ## License
 

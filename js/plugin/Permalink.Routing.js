@@ -87,12 +87,14 @@ L.Control.Permalink.include({
         var router = this.options.router,
             routing = this.options.routing,
             routingOptions = this.options.routingOptions,
-            nogos = this.options.nogos;
+            nogos = this.options.nogos,
+            profile = this.options.profile;
 
         var opts = router.parseUrlParams(e.params);
         router.setOptions(opts);
         routingOptions.setOptions(opts);
         nogos.setOptions(opts);
+        profile.update(opts);
 
         if (opts.lonlats) {
             routing.draw(false);

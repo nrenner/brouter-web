@@ -26,6 +26,7 @@
         ];
 
         BR.conf.host = 'http://h2096617.stratoserver.net:443';
+        BR.conf.profilesUrl = 'http://brouter.de/brouter/profiles2/';
 
     } else {
 
@@ -41,6 +42,12 @@
 
         BR.conf.host = 'http://localhost:17777';
 
+        // Pre-loading selected profile disabled locally. Needs brouter-web to run on a
+        // local web server with the profiles in a subdirectory or allowing file access 
+        // in the Browser (security!), see
+        // https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
+        //BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
+        //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
 
 })();
