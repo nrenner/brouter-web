@@ -50,4 +50,9 @@
         //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
 
+    // COPYING: Please get your own Bing maps key at http://www.microsoft.com/maps/default.aspx
+    //BR.conf.bingKeyUrl = 'bingkey.txt';
+    // External URL for key retrieval, does not work locally on desktop
+    BR.conf.bingKeyUrl = 'http://norbertrenner.de/key/bing.php';
+
 })();

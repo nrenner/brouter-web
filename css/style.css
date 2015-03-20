@@ -115,6 +115,11 @@ td {
     width: 386px;
 }
 
+/* margin left sidebar + Bing logo (Bing layer) */
+.leaflet-control-attribution {
+    margin-left: 480px !important;
+}
+
 /* Profile Control */
 
 /* flexbox layout: maximize textarea and data table (nested container/box path) */

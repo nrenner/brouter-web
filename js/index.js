@@ -53,6 +53,18 @@
                   + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
         });
 
+        // COPYING: Please get your own Bing maps key at http://www.microsoft.com/maps/default.aspx
+        var bing = new BR.BingLayer();
+        BR.Util.get(BR.conf.bingKeyUrl, function (err, key) {
+            if (err) {
+                layersControl.removeLayer(bing);
+                return;
+            }
+
+            bing._key = key;
+            bing.loadMetadata();
+        });
+
         map = new L.Map('map', {
             layers: [osm], 
             center: new L.LatLng(50.99, 9.86), 
@@ -69,7 +81,8 @@
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
             'OpenCycleMap (Thunderf.)': cycle,
-            'Outdoors (Thunderforest)': outdoors
+            'Outdoors (Thunderforest)': outdoors,
+            'Bing Aerial': bing
         }, {
              'Cycling (Waymarked Trails)': cycling,
              'Hiking (Waymarked Trails)': hiking
