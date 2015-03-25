@@ -149,7 +149,10 @@
             var profileId = routingOptions.getCustomProfile();
             router.uploadProfile(profileId, evt.profileText, function(err, profile) {
                 if (!err) {
-                    routingOptions.setCustomProfile(profile);
+                    routingOptions.setCustomProfile(profile, true);
+                    updateRoute({
+                        options: routingOptions.getOptions()
+                    });
                     if (!saveWarningShown) {
                         BR.message.showWarning('Note: Uploaded custom profiles are only cached temporarily on the server.'
                             + '<br/>Please save your edits to your local PC.');
