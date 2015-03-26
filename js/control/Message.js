@@ -29,16 +29,12 @@ BR.Message = L.Class.extend({
         }
     },
 
-    _hide: function (type) {
+    hide: function () {
         $('#' + this.id + ' .alert').alert('close');
     },
 
     showError: function (err) {
         this._show(err, 'error');
-    },
-
-    hideError: function () {
-        this._hide('error');
     },
 
     showWarning: function (msg) {

@@ -57,7 +57,7 @@ BR.Profile = L.Class.extend({
         var button = evt.target || evt.srcElement,
             profile = this.ele.value;
 
-        this.message.hideError();
+        this.message.hide();
         $(button).button('uploading');
         evt.preventDefault();
 

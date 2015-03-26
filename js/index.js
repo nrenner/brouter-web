@@ -145,7 +145,7 @@
         elevation = new BR.Elevation();
         profile = new BR.Profile();
         profile.on('update', function(evt) {
-            BR.message.hideError();
+            BR.message.hide();
             var profileId = routingOptions.getCustomProfile();
             router.uploadProfile(profileId, evt.profileText, function(err, profileId) {
                 if (!err) {
@@ -172,7 +172,7 @@
             });
         });
         profile.on('clear', function(evt) {
-            profile.message.hideError();
+            profile.message.hide();
             routingOptions.setCustomProfile(null);
         });
         trackMessages = new BR.TrackMessages({
@@ -205,7 +205,7 @@
                 }
                 return;
             } else {
-                BR.message.hideError();
+                BR.message.hide();
             }
 
             var track = routing.toPolyline(),
