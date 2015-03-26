@@ -22,8 +22,7 @@
 <body>
     <div id="map"></div>
 
-    <div id="message" class="info hidden">
-    </div>
+    <div id="message"></div>
     <div id="header" class="hidden">
         <div class="title"><span class="title-name">BRouter web</span>&nbsp;&nbsp;<sup class="version">0.4.0</sup></div>
         <div class="header-text">
@@ -62,6 +61,7 @@
             <div class="tab-pane active" id="tab_profile">
                 <form id="profile_upload" name="profile_upload">
                     <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
+                    <div id="profile_message"></div>
                     <div id="profile_buttons">
                         <button id="upload" type="button" class="btn btn-default btn-xs" data-uploading-text="Uploading..."><span class="glyphicon glyphicon-upload"></span> Upload</button>
                         <button id="clear" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-ban-circle"></span> Clear</button>

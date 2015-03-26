@@ -147,21 +147,21 @@
         profile.on('update', function(evt) {
             BR.message.hideError();
             var profileId = routingOptions.getCustomProfile();
-            router.uploadProfile(profileId, evt.profileText, function(err, profile) {
+            router.uploadProfile(profileId, evt.profileText, function(err, profileId) {
                 if (!err) {
-                    routingOptions.setCustomProfile(profile, true);
+                    routingOptions.setCustomProfile(profileId, true);
                     updateRoute({
                         options: routingOptions.getOptions()
                     });
                     if (!saveWarningShown) {
-                        BR.message.showWarning('Note: Uploaded custom profiles are only cached temporarily on the server.'
+                        profile.message.showWarning('<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.'
                             + '<br/>Please save your edits to your local PC.');
                         saveWarningShown = true;
                     }
                 } else {
-                    BR.message.showError(err);
-                    if (profile) {
-                        routingOptions.setCustomProfile(profile, true);
+                    profile.message.showError(err);
+                    if (profileId) {
+                        routingOptions.setCustomProfile(profileId, true);
                         router.setOptions(routingOptions.getOptions());
                     }
                 }
@@ -172,7 +172,7 @@
             });
         });
         profile.on('clear', function(evt) {
-            BR.message.hideError();
+            profile.message.hideError();
             routingOptions.setCustomProfile(null);
         });
         trackMessages = new BR.TrackMessages({

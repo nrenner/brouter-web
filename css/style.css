@@ -26,7 +26,6 @@ div.elevation {
     top: 0px;
     margin-top: 10px;
     z-index: 1000;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 
 #header {
@@ -51,12 +50,6 @@ div.elevation {
     font-size: small;
     margin-top: 0.5em;
     line-height: 1.4em;
-}
-.warning {
-    color: darkorange;
-}
-.error {
-    color: red;
 }
 
 .heading {
@@ -230,6 +223,17 @@ textarea:focus {
 /* smaller tab height */
 .nav > li > a {
     padding: 2px 15px;
+}
+
+.alert {
+    margin-top: 3px;
+    margin-bottom: 0px;
+    padding-left: 35px;
+}
+.alert span.glyphicon {
+    position: relative;
+    left: -23px;
+    margin-right: -1em;
 }
 
 /*

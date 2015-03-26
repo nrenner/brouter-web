@@ -6,6 +6,9 @@ BR.Profile = L.Class.extend({
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
         
         this.ele = document.profile_upload.profile;
+        this.message = new BR.Message('profile_message', {
+            alert: true
+        });
     },
 
     clear: function(evt) {
