@@ -10,6 +10,8 @@
         layersControl;
 
     function initMap() {
+        L.Icon.Default.imagePath = 'dist/images';
+        
         var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
         var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -211,9 +213,10 @@
             var track = routing.toPolyline(),
                 segments = routing.getSegments(),
                 latLngs = routing.getWaypoints(),
+                segmentsLayer = routing._segments,
                 urls = {};
 
-            elevation.update(track);
+            elevation.update(track, segmentsLayer);
             stats.update(track, segments);
             trackMessages.update(track, segments);
 

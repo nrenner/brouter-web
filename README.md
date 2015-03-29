@@ -48,7 +48,27 @@ This is needed for pre-loading the selected profile (unless you allowed local fi
 
         python -m SimpleHTTPServer
 
-2. open http://localhost:8000/brouter-web/  
+2. open http://localhost:8000/brouter-web/
+
+## Build
+
+Requires [Node and npm](http://nodejs.org/) (or [io.js](https://iojs.org)), [Bower](http://bower.io/) and [Gulp](http://gulpjs.com/):
+
+    npm install -g bower
+    npm install -g gulp
+
+Install:
+
+    npm install
+    bower install
+
+Build:
+
+    gulp
+
+Develop:
+
+    gulp watch
 
 ## License
 

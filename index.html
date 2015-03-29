@@ -6,25 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BRouter web client</title>
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css" />
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="leaflet.draw.ie.css" />
-    <![endif]-->
-    <link rel="stylesheet" href="bower_components/Leaflet.Elevation/dist/Leaflet.Elevation-0.0.2.css" />
-    <link rel="stylesheet" href="bower_components/leaflet-search/dist/leaflet-search.min.css" />
-    <link rel="stylesheet" href="css/leaflet-routing.css" />
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="dist/brouter-web.css" />
 </head>
 <body>
     <div id="map"></div>
 
     <div id="message"></div>
     <div id="header" class="hidden">
-        <div class="title"><span class="title-name">BRouter web</span>&nbsp;&nbsp;<sup class="version">0.4.0</sup></div>
+        <div class="title"><span class="title-name">BRouter-Web</span>&nbsp;&nbsp;<sup class="version">0.4.0</sup></div>
         <div class="header-text">
             'esc' or 'q' to disable drawing, 'd' to enable drawing<br>
             Web client for <a href="http://brouter.de/brouter" target="_blank">BRouter</a> &middot;
@@ -75,57 +64,12 @@
         </div>
     </div>
 
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet-src.js"></script>
-
-    <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw-src.js"></script>
-    <!--
-    <script src="lib/spin.min.js"></script>
-    <script src="lib/leaflet.spin.js"></script>
-    -->
-    <script src="bower_components/leaflet-search/dist/leaflet-search.min.js"></script>
-    <script src="bower_components/leaflet-plugins/control/Permalink.js"></script>
-    <script src="bower_components/leaflet-plugins/control/Permalink.Layer.js"></script>
-    <script src="bower_components/leaflet-plugins/layer/tile/Bing.js"></script>
-
-    <script src="bower_components/leaflet-routing/src/utils/LineUtil.Snapping.js"></script>
-    <script src="bower_components/leaflet-routing/src/utils/Marker.Snapping.js"></script>
-    <script src="bower_components/leaflet-routing/src/L.Routing.js"></script>
-    <script src="bower_components/leaflet-routing/src/L.Routing.Draw.js"></script>
-    <script src="bower_components/leaflet-routing/src/L.Routing.Edit.js"></script>
-
-    <!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.1/d3.min.js"></script>
-    <script src="bower_components/Leaflet.Elevation/src/L.Control.Elevation.js"></script>
-    <script src="bower_components/async/lib/async.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
-
     <script>
         // global package prefix for BRouter web application
         BR = {};
     </script>
-    <script src="config.js"></script>
-    <script src="js/Util.js"></script>
-    <script src="js/router/BRouter.js"></script>
-    <!-- <script src="js/router/brouterCgi.js"></script> -->
-    <script src="js/control/Control.js"></script>
-    <script src="js/plugin/Routing.js"></script>
-    <script src="js/plugin/NogoAreas.js"></script>
-    <script src="js/plugin/Elevation.js"></script>
-    <script src="js/plugin/Search.js"></script>
-    <script src="js/plugin/Bing.js"></script>
-    <script src="js/plugin/Permalink.Routing.js"></script>
-    <script src="js/control/TrackStats.js"></script>
-    <script src="js/control/Download.js"></script>
-    <script src="js/control/Tabs.js"></script>
-    <script src="js/control/Profile.js"></script>
-    <script src="js/control/TrackMessages.js"></script>
-    <script src="js/control/RoutingOptions.js"></script>
-    <script src="js/control/Message.js"></script>
 
-    <script src="js/index.js"></script>
+    <script src="config.js"></script>
+    <script src="dist/brouter-web.js"></script>
 </body>
 </html>

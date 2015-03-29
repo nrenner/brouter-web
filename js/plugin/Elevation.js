@@ -11,10 +11,10 @@ BR.Elevation = L.Control.Elevation.extend({
         theme: "steelblue-theme" //purple
     },
 
-    update: function(track) {
+    update: function(track, layer) {
         this.clear();
         if (track && track.getLatLngs().length > 0) {
-            this.addData(track.toGeoJSON());
+            this.addData(track.toGeoJSON(), layer);
         }
     }
 });
