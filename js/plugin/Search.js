@@ -1,18 +1,38 @@
-BR.Search = L.Control.Search.extend({
+BR.Search = L.Control.Geocoder.extend({
     options: {
-        //url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
-        url: 'http://open.mapquestapi.com/nominatim/v1/search.php?format=json&q={s}',
-        jsonpParam: 'json_callback',
-        propertyName: 'display_name',
-        propertyLoc: ['lat','lon'],
-        markerLocation: false,
-        circleLocation: false,
-        autoType: false,
-        autoCollapse: true,
-        minLength: 2,
-        zoom: 12
+        geocoder: new L.Control.Geocoder.Nominatim({
+            serviceUrl: 'https://open.mapquestapi.com/nominatim/v1/'
+        }),
+        position: 'topleft'
     },
- 
-    // patch: interferes with draw plugin (adds all layers twice to map?) 
-    _onLayerAddRemove: function() {}
+
+		onAdd: function (map) {
+        map.attributionControl.addAttribution('Nominatim Search Courtesy of '
+            + '<a href="http://www.mapquest.com/" target="_blank">MapQuest</a>'
+            + ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">');
+
+        return L.Control.Geocoder.prototype.onAdd.call(this, map);
+    },
+
+    markGeocode: function(result) {
+        this._map.fitBounds(result.bbox, {
+            maxZoom: 17
+        });
+
+        this.clear();
+        this._geocodeMarker = new L.CircleMarker(result.center, {
+            clickable: false,
+            color: 'red',
+            opacity: 1,
+            weight: 3
+        }).addTo(this._map);
+
+    	  return this;
+    },
+
+    clear: function() {
+        if (this._geocodeMarker) {
+          this._map.removeLayer(this._geocodeMarker);
+        }
+    }
 });

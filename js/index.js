@@ -26,7 +26,7 @@
 
         var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             minZoom: 5,
-            maxZoom: 15,
+            maxZoom: 16,
             attribution: 'tiles &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
                 + ', <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>'
         });
@@ -90,15 +90,14 @@
              'Hiking (Waymarked Trails)': hiking
         }).addTo(map);
 
-        map.addControl(new BR.Search());
-
         // expose map instance for console debugging
         BR.debug = BR.debug || {};
         BR.debug.map = map;
     }
 
     function initApp() {
-        var router,
+        var search,
+            router,
             routing,
             routesLayer, 
             routingOptions, 
@@ -113,6 +112,9 @@
 
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
+
+        search = new BR.Search();
+        map.addControl(search);
 
         router = L.bRouter(); //brouterCgi dummyRouter
 
@@ -197,6 +199,7 @@
             }
         });
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
+            search.clear();
             onUpdate(evt && evt.err);
         });
 
