@@ -56,9 +56,33 @@ BR.Routing = L.Routing.extend({
             L.DomUtil.removeClass(map.getContainer(), 'routing-draw-enabled');
         });
 
+        // hide trailer over controls and outside map
+        function show() {
+            if (this._hidden) {
+                this._show();
+            }
+        }
+        function hide() {
+            if (!this._hidden) {
+                this._hide();
+            }
+        }
+        this._draw.on('enabled', function() {
+            this._map.on('mouseout', hide, this);
+            this._map.on('mouseover', show, this);
+            L.DomEvent.on(this._map._controlContainer, 'mouseout', show, this);
+            L.DomEvent.on(this._map._controlContainer, 'mouseover', hide, this);
+        });
+        this._draw.on('disabled', function() {
+            this._map.off('mouseout', hide, this);
+            this._map.off('mouseover', show, this);
+            L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
+            L.DomEvent.off(this._map._controlContainer, 'mouseover', hide, this);
+        });
+
         // enable drawing mode
         this.draw(true);
-        
+
         return container;
     }
 
