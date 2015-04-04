@@ -96,7 +96,11 @@ BR.Routing = L.Routing.extend({
   }
 
   ,clear: function() {
+    var drawEnabled = this._draw._enabled;
     var current = this._waypoints._first;
+
+    this._draw.disable();
+
     if (current === null) { return; }
     this._removeMarkerEvents(current);
     while (current._routing.nextMarker) {
@@ -109,6 +113,10 @@ BR.Routing = L.Routing.extend({
     this._waypoints._last = null;
     this._waypoints.clearLayers();
     this._segments.clearLayers();
+
+    if (drawEnabled) {
+        this._draw.enable();
+    }
   }
 
   ,setWaypoints: function(latLngs, cb) {

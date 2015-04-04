@@ -107,6 +107,8 @@
             download,
             profile,
             trackMessages,
+            routingToolbar,
+            permalink,
             leftPaneId = 'leftpane',
             saveWarningShown = false;
 
@@ -117,6 +119,21 @@
         map.addControl(search);
 
         router = L.bRouter(); //brouterCgi dummyRouter
+
+        routingToolbar = L.easyButton(
+            'glyphicon-trash',
+            function () {
+                bootbox.confirm("Delete route?", function(result) {
+                    if (result) {
+                        routing.clear();
+                        onUpdate();
+                        permalink._update_routing();
+                    }
+                });
+            },
+            'Clear route',
+            map
+        );
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
@@ -256,7 +273,7 @@
         router.setOptions(routingOptions.getOptions());
         profile.update(routingOptions.getOptions());
 
-        map.addControl(new L.Control.Permalink({
+        permalink = new L.Control.Permalink({
             text: 'Permalink',
             position: 'bottomright',
             layers: layersControl,
@@ -265,7 +282,7 @@
             router: router,
             routing: routing,
             profile: profile
-        }));
+        }).addTo(map);
     }
     
     initMap();

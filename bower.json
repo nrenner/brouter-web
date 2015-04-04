@@ -16,7 +16,9 @@
     "bootstrap": "~3.3.4",
     "DataTables": "~1.10.5",
     "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master",
-    "leaflet-control-geocoder": "~1.1.0"
+    "leaflet-control-geocoder": "~1.1.0",
+    "L.EasyButton": "*",
+    "bootbox": "~4.4.0"
   },
   "overrides": {
     "leaflet": {
