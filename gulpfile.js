@@ -11,6 +11,7 @@ var tap = require('gulp-tap');
 var path = require('path');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
+var inject = require('gulp-inject');
 
 var paths = {
   // see overrides in bower.json
@@ -103,6 +104,14 @@ gulp.task('debug', function() {
     .pipe(debug());
 
   //return gulp.src(mainBowerFiles({debugging: true}));
+});
+
+gulp.task('inject', function () {
+  var target = gulp.src('index.html');
+  var sources =  gulp.src(paths.scripts, { base: '.', read: false });
+
+  return target.pipe(inject(sources, { relative: true }))
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('default', ['clean', 'scripts', 'styles', 'images', 'fonts']);
