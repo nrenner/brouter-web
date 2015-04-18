@@ -99,7 +99,7 @@ BR.Routing = L.Routing.extend({
     var drawEnabled = this._draw._enabled;
     var current = this._waypoints._first;
 
-    this._draw.disable();
+    this.draw(false);
 
     if (current === null) { return; }
     this._removeMarkerEvents(current);
@@ -115,7 +115,7 @@ BR.Routing = L.Routing.extend({
     this._segments.clearLayers();
 
     if (drawEnabled) {
-        this._draw.enable();
+        this.draw(true);
     }
   }
 
