@@ -207,9 +207,18 @@
             styles: {
                 trailer: {
                     dashArray: [10, 10],
-                    opacity: 0.4
+                    opacity: 0.6,
+                    color: 'magenta'
                 },
-                track: {},
+                track: {
+                    color: 'magenta',
+                    opacity: 1
+                },
+                trackCasing: {
+                    weight: 8,
+                    color: 'white',
+                    opacity: 1
+                },
                 nodata: {
                     color: 'darkred'
                 }

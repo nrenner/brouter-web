@@ -1,5 +1,5 @@
 div.line-mouse-marker {
-  background-color: #ffffff;
-  border: 4px solid rgba(0, 51, 255, 0.6);
+  background-color: white;
+  border: 4px solid magenta;
   border-radius: 8px;
 }

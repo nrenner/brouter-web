@@ -13,7 +13,12 @@ BR.Routing = L.Routing.extend({
     },
 
     onAdd: function (map) {
+        this._segmentsCasing = new L.FeatureGroup().addTo(map);
+
         var container = L.Routing.prototype.onAdd.call(this, map);
+
+        this._segments.on('layeradd', this._addSegmentCasing, this);
+        this._segments.on('layerremove', this._removeSegmentCasing, this);
 
         // turn line mouse marker off while over waypoint marker
         this.on('waypoint:mouseover', function(e) {
@@ -85,6 +90,17 @@ BR.Routing = L.Routing.extend({
 
         return container;
     }
+
+  ,_addSegmentCasing: function(e) {
+    var casing = L.polyline(e.layer.getLatLngs(), this.options.styles.trackCasing);
+    this._segmentsCasing.addLayer(casing);
+    e.layer._casing = casing;
+    this._segments.bringToFront();
+  }
+
+  ,_removeSegmentCasing: function(e) {
+    this._segmentsCasing.removeLayer(e.layer._casing);
+  }
 
   ,_removeMarkerEvents: function(marker) {
       marker.off('mouseover', this._fireWaypointEvent, this);

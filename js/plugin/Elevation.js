@@ -13,6 +13,13 @@ BR.Elevation = L.Control.Elevation.extend({
 
     update: function(track, layer) {
         this.clear();
+
+        // bring height indicator to front, because of track casing in BR.Routing
+        if (this._mouseHeightFocus) {
+            var g = this._mouseHeightFocus[0][0].parentNode;
+            g.parentNode.appendChild(g);
+        }
+
         if (track && track.getLatLngs().length > 0) {
             this.addData(track.toGeoJSON(), layer);
         }
