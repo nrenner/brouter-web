@@ -217,6 +217,7 @@
                 trackCasing: {
                     weight: 8,
                     color: 'white',
+                    // assumed to be same as track, see setOpacity
                     opacity: 1
                 },
                 nodata: {
@@ -276,6 +277,9 @@
 
         nogos.addTo(map);
         routing.addTo(map);
+        map.addControl(new BR.OpacitySlider({
+            callback: L.bind(routing.setOpacity, routing)
+        }));
 
         // initial option settings (after controls are added and initialized with onAdd, before permalink)
         router.setOptions(nogos.getOptions());
@@ -293,7 +297,7 @@
             profile: profile
         }).addTo(map);
     }
-    
+
     initMap();
     initApp();
 

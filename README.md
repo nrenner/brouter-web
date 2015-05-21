@@ -97,3 +97,5 @@ Copyright (c) 2011-2014 Twitter, Inc; [MIT License](https://github.com/twbs/boot
 Copyright 2005, 2014 jQuery Foundation and other contributors; [MIT License](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
 * [DataTables](https://github.com/DataTables/DataTables)  
 Copyright (C) 2008-2014, SpryMedia Ltd.; [MIT License](http://www.datatables.net/license/mit)
+* [bootstrap-slider](https://github.com/seiyria/bootstrap-slider)  
+Copyright (c) 2015 Kyle Kemp, Rohit Kalkur, and contributors; [MIT License](https://github.com/seiyria/bootstrap-slider/blob/master/LICENSE.md)

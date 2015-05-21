@@ -264,3 +264,51 @@ table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
   background-color: rgba(255,255,0,0.2);
 }
+
+/*
+ * opacity slider control (seiyria-bootstrap-slider)
+ */
+
+.control-slider {
+  background: #fff;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.slider.slider-vertical {
+  height: 80px;
+}
+
+/* invert track and selection styles to get partial gradient for "selection" */
+.slider.slider-vertical .slider-track {
+  width: 8px;
+  margin-left: -4px;
+  background-image: linear-gradient(to right, #f0f0f0 0%, #e9e9e9 100%);
+  box-shadow: inset -1px -0px 1px rgba(55, 55, 55, 0.3), inset 1px 0px 1px rgba(230, 230, 230, 1);
+}
+
+.control-slider:hover .slider-track,
+.control-slider:active .slider-track {
+  background-image: linear-gradient(to bottom, magenta 0%, white 100%);
+}
+
+.slider-selection {
+  background-color: #C6C6C6;
+  background-image: none;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.slider.slider-vertical .slider-tick,
+.slider.slider-vertical .slider-handle {
+  margin-left: -6px;
+  cursor: ns-resize;
+  box-sizing: border-box;
+  background: none;
+
+  /* bootstrap .btn-default */ 
+  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+  background-repeat: repeat-x;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+  border: 1px solid #adadad;
+}

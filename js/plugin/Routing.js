@@ -1,12 +1,14 @@
 BR.Routing = L.Routing.extend({
     options: {
+        position: 'topright',
         icons: {
             /* not implemented yet
             start: new L.Icon.Default({iconUrl: 'bower_components/leaflet-gpx/pin-icon-start.png'}),
             end: new L.Icon.Default(),
             normal: new L.Icon.Default()
             */
-            draw: false
+            draw: false,
+            opacity: 1
         },
         snapping: null,
         zIndexOffset: -2000
@@ -19,6 +21,8 @@ BR.Routing = L.Routing.extend({
 
         this._segments.on('layeradd', this._addSegmentCasing, this);
         this._segments.on('layerremove', this._removeSegmentCasing, this);
+
+        this._waypoints.on('layeradd', this._setMarkerOpacity, this);
 
         // turn line mouse marker off while over waypoint marker
         this.on('waypoint:mouseover', function(e) {
@@ -100,6 +104,33 @@ BR.Routing = L.Routing.extend({
 
   ,_removeSegmentCasing: function(e) {
     this._segmentsCasing.removeLayer(e.layer._casing);
+  }
+
+  ,setOpacity: function(opacity) {
+    // Due to the second Polyline layer for casing, the combined opacity is less
+    // transparent than with a single layer and the slider is non-linear. The
+    // inverted formula is used to get the same result as with a single layer.
+    // SVG simple alpha compositing: Ca' = 1 - (1 - Ea) * (1 - Ca)
+    // http://www.w3.org/TR/SVG11/masking.html#SimpleAlphaBlending
+    var sourceOpacity = 1 - Math.sqrt(1 - opacity);
+
+    this.options.styles.track.opacity = sourceOpacity;
+    this.options.styles.trackCasing.opacity = sourceOpacity;
+    this.options.icons.opacity = opacity;
+
+    this._segments.setStyle({
+        opacity: sourceOpacity
+    });
+    this._segmentsCasing.setStyle({
+        opacity: sourceOpacity
+    });
+    this._waypoints.eachLayer(function(marker) {
+        marker.setOpacity(opacity);
+    });
+  }
+
+  ,_setMarkerOpacity: function(e) {
+    e.layer.setOpacity(this.options.icons.opacity);
   }
 
   ,_removeMarkerEvents: function(marker) {
@@ -186,7 +217,8 @@ BR.Routing = L.Routing.extend({
     // animate dashed trailer as loading indicator
     if (m1 && m2) {
         loadingTrailer = new L.Polyline([m1.getLatLng(), m2.getLatLng()], {
-            opacity: 0.6,
+            color: this.options.styles.track.color,
+            opacity: this.options.styles.trailer.opacity,
             dashArray: [10, 10],
             className: 'loading-trailer'
         });

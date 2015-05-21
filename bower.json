@@ -18,7 +18,8 @@
     "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master",
     "leaflet-control-geocoder": "~1.1.0",
     "L.EasyButton": "*",
-    "bootbox": "~4.4.0"
+    "bootbox": "~4.4.0",
+    "seiyria-bootstrap-slider": "~4.8.1"
   },
   "overrides": {
     "leaflet": {
