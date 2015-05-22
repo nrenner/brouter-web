@@ -14,7 +14,11 @@ BR.Util = {
         xhr.onerror = function() {
             cb(BR.Util.getError(xhr));
         };
-        xhr.send();
+        try {
+            xhr.send();
+        } catch(e) {
+            cb(e);
+        }
     },
 
     getError: function(xhr) {
