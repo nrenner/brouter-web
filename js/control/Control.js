@@ -27,7 +27,8 @@ BR.Control = L.Control.extend({
             .on(container, 'click', stop)
             .on(container, 'mousedown', stop)
             .on(container, 'dblclick', stop)
-            .on(container, 'mousewheel', stop);
+            .on(container, 'mousewheel', stop)
+            .on(container, 'MozMousePixelScroll', stop);
         // disabled because links not working, remove?
         //L.DomEvent.on(container, 'click', L.DomEvent.preventDefault);
 
