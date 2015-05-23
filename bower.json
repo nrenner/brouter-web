@@ -15,7 +15,7 @@
     "leaflet.draw": "~0.2.3",
     "bootstrap": "~3.3.4",
     "DataTables": "~1.10.5",
-    "Leaflet.Elevation": "MrMufflon/Leaflet.Elevation#master",
+    "leaflet.elevation": "MrMufflon/Leaflet.Elevation#master",
     "leaflet-control-geocoder": "~1.1.0",
     "L.EasyButton": "*",
     "bootbox": "~4.4.0",
@@ -61,7 +61,12 @@
         "dist/fonts/*"
       ]
     },
-    "Leaflet.Elevation": {
+    "leaflet.elevation": {
+      "main": [
+        "dist/leaflet.elevation-0.0.4.src.js",
+        "dist/leaflet.elevation-0.0.4.css",
+        "dist/images/*.png"
+      ],
       "dependencies": null
     },
     "leaflet-control-geocoder": {
@@ -71,5 +76,8 @@
         "images/*.+(png|gif)"
       ]
     }
+  },
+  "resolutions": {
+    "leaflet.elevation": "master"
   }
 }

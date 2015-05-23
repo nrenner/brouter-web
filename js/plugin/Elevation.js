@@ -21,7 +21,10 @@ BR.Elevation = L.Control.Elevation.extend({
         }
 
         if (track && track.getLatLngs().length > 0) {
-            this.addData(track.toGeoJSON(), layer);
+            // TODO disabled track layer mouseover, as it doesn't really work 
+            // with line marker and indicator does not get removed (no mouseout?)
+            //this.addData(track.toGeoJSON(), layer);
+            this.addData(track.toGeoJSON());
         }
     }
 });
