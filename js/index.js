@@ -123,11 +123,15 @@
         routingToolbar = L.easyButton(
             'glyphicon-trash',
             function () {
-                bootbox.confirm("Delete route?", function(result) {
-                    if (result) {
-                        routing.clear();
-                        onUpdate();
-                        permalink._update_routing();
+                bootbox.confirm({
+                    size: 'small',
+                    message: "Delete route?",
+                    callback: function(result) {
+                        if (result) {
+                            routing.clear();
+                            onUpdate();
+                            permalink._update_routing();
+                        }
                     }
                 });
             },
