@@ -67,12 +67,12 @@ BR.Routing = L.Routing.extend({
 
         // hide trailer over controls and outside map
         function show() {
-            if (this._hidden) {
+            if (this._hidden && this._parent._waypoints._first) {
                 this._show();
             }
         }
         function hide() {
-            if (!this._hidden) {
+            if (!this._hidden && this._parent._waypoints._first) {
                 this._hide();
             }
         }
