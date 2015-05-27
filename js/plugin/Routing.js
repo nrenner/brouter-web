@@ -1,3 +1,9 @@
+L.Routing.Draw.prototype._hideTrailer = function() {
+  if (this._trailer.options.opacity !== 0.0) {
+    this._trailer.setStyle({opacity: 0.0});
+  }
+};
+
 BR.Routing = L.Routing.extend({
     options: {
         position: 'topright',
@@ -88,6 +94,18 @@ BR.Routing = L.Routing.extend({
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseover', hide, this);
         });
+
+        // Call show after deleting last waypoint, but hide trailer.
+        // Gets hidden in _catchWaypointEvent on waypoint mouseover, but 
+        // mouseout to show again never fires when deleted. Click handler 
+        // _onMouseClick aborts when hidden, so no waypoint can be added 
+        // although enabled.
+        this.on('waypoint:click', function() {
+            if (this._hidden && !this._parent._waypoints._first) {
+                this._show();
+                this._hideTrailer();
+            }
+        }, this._draw);
 
         // enable drawing mode
         this.draw(true);
