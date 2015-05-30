@@ -108,9 +108,9 @@ td {
     width: 386px;
 }
 
-/* margin left sidebar + Bing logo (Bing layer) */
+/* margin left sidebar + Scale */
 .leaflet-control-attribution {
-    margin-left: 480px !important;
+    margin-left: 515px !important;
 }
 
 /* Profile Control */

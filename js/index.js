@@ -300,6 +300,8 @@
             routing: routing,
             profile: profile
         }).addTo(map);
+
+        L.control.scale().addTo(map);
     }
 
     initMap();
