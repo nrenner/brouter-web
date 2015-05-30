@@ -107,6 +107,10 @@ BR.Routing = L.Routing.extend({
             }
         }, this._draw);
 
+        // keys not working when map container does not have focus, use document instead
+        L.DomEvent.removeListener(this._container, 'keyup', this._keyupListener);
+        L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
+
         // enable drawing mode
         this.draw(true);
 
