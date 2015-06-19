@@ -115,6 +115,13 @@
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
 
+        document.getElementById('about_link').onclick = function() {
+            bootbox.alert({
+                title: 'About',
+                message: document.getElementById('about').innerHTML
+            });
+        };
+
         search = new BR.Search();
         map.addControl(search);
 

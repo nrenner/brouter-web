@@ -1,11 +1,19 @@
 brouter-web
 ===========
 
-Web client for the [BRouter](http://brensche.de/brouter) bike routing engine ([Github](https://github.com/abrensch/brouter)).
-
+Web client for the BRouter routing engine. *Work in progress*.
 
 BRouter online service:  
 http://brouter.de/brouter-web/
+
+This repository is only about the frontend. For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
+https://github.com/abrensch/brouter
+
+More information:  
+http://brouter.de
+
+General BRouter discussions/questions, support:  
+http://groups.google.com/group/osm-android-bikerouting
 
 ## Installation
 

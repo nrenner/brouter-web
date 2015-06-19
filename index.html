@@ -16,10 +16,8 @@
         <div class="title"><span class="title-name">BRouter-Web</span>&nbsp;&nbsp;<sup class="version">0.4.0</sup></div>
         <div class="header-text">
             'esc' or 'q' to disable drawing, 'd' to enable drawing<br>
-            Web client for <a href="http://brouter.de/brouter" target="_blank">BRouter</a> &middot;
-            <a href="https://github.com/nrenner/brouter-web#readme" target="_blank">about</a> &middot;
-            <a href="https://github.com/nrenner/brouter-web" target="_blank">GitHub</a> &middot;
-            <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">contact</a><br>
+            Web client for <a href="http://brouter.de/" target="_blank">BRouter</a> &middot; <i>work in progress</i> &middot;
+            <a id="about_link" href="#" role="button">about</a>
         </div>
     </div>
     <div id="route_options" class="hidden">
@@ -62,6 +60,43 @@
                 <table id="datatable" class="table mini cell-border hover stripe"></table>
             </div>
         </div>
+    </div>
+    <div id="about">
+        <p>
+            Online service of the BRouter routing engine. For the offline Android app and more information see <a href="http://brouter.de/" target="_blank">brouter.de</a>.
+        </p>
+        <p>
+            <i>Work in progress:</i> The web client is still in (slow) development; it has some glitches, 
+            you might miss some essential features and stumble upon bugs. The user interface is subject to change.
+        </p>
+        <p>
+            <i>Contact:</i><br>
+            <ul>
+                <li>
+                    general discussions/questions, support:<br>
+                    <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">http://groups.google.com/group/osm-android-bikerouting</a>
+                </li>
+                <li>bug reports and feature requests:
+                    <ul>
+                        <li>
+                            server / backend, routing engine, Android app, profiles, brouter.de site:<br>
+                            <a href="https://github.com/abrensch/brouter/issues" target="_blank">https://github.com/abrensch/brouter/issues</a>
+                        </li>
+                        <li>
+                            web client / frontend:<br>
+                            <a href="https://github.com/nrenner/brouter-web/issues" target="_blank">https://github.com/nrenner/brouter-web/issues</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </p>
+        <p>
+            <i>Data:</i> based on <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, 
+            see dates of <a href="http://brouter.de/brouter/segments3/" target="_blank">data files</a>.
+        </p>
+        <p>
+             <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i> and <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i> on the client.
+        </p>
     </div>
 
     <script>
