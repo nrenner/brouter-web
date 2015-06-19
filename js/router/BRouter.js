@@ -1,5 +1,6 @@
 L.BRouter = L.Class.extend({
     statics: {
+        // NOTE: the routing API used here is not public!
         // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
         URL_TEMPLATE: BR.conf.host + '/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
