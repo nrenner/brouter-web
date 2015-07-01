@@ -22,7 +22,10 @@
             'rail',
             'river',
             'vm-forum-liegerad-schnell',
-            'vm-forum-velomobil-schnell'
+            'vm-forum-velomobil-schnell',
+            'fastbike-lowtraffic',
+            'fastbike-asia-pacific',
+            'hiking-beta'
         ];
 
         BR.conf.host = 'http://h2096617.stratoserver.net:443';
