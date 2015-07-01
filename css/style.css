@@ -180,6 +180,10 @@ textarea:focus {
     font-size: x-small;
 }
 
+#about {
+    display: none;
+}
+
 /* dashed line animation, derived from Chris Coyier and others
    http://css-tricks.com/svg-line-animation-works/
  */
