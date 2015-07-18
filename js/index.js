@@ -142,9 +142,8 @@
                     }
                 });
             },
-            'Clear route',
-            map
-        );
+            'Clear route'
+        ).addTo(map);
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
