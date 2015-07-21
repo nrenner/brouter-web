@@ -58,4 +58,13 @@
     // External URL for key retrieval, does not work locally on desktop
     BR.conf.bingKeyUrl = 'http://norbertrenner.de/key/bing.php';
 
+    // Add custom tile layers
+    // URL template see http://leafletjs.com/reference.html#tilelayer
+    // Multiple entries separated by comma (,)
+    BR.conf.baseLayers = {
+        // 'display name': 'url'[,]
+        // e.g. for offline tiles with https://github.com/develar/mapsforge-tile-server
+        //'Mapsforge Tile Server': 'http://localhost:6090/{z}/{x}/{y}.png'
+    };
+
 })();

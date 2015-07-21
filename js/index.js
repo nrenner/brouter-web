@@ -78,17 +78,26 @@
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
                 + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)');
 
-        layersControl = L.control.layers({
+        var baseLayers = {
             'OpenStreetMap': osm,
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
             'OpenCycleMap (Thunderf.)': cycle,
             'Outdoors (Thunderforest)': outdoors,
             'Bing Aerial': bing
-        }, {
+        };
+        var overlays = {
              'Cycling (Waymarked Trails)': cycling,
              'Hiking (Waymarked Trails)': hiking
-        }).addTo(map);
+        };
+
+        for (i in BR.conf.baseLayers) {
+            if (BR.conf.baseLayers.hasOwnProperty(i)) {
+                baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i]);
+            }
+        }
+
+        layersControl = L.control.layers(baseLayers, overlays).addTo(map);
 
         // expose map instance for console debugging
         BR.debug = BR.debug || {};
