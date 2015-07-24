@@ -1,6 +1,15 @@
 BRouter-Web Changelog
 =====================
 
+## 0.5.1 (2015-07-24)
+
+* config option ``baseLayers`` to add custom base layers locally (#24)
+* reset slider on page load to minimum opacity (#22),  
+  customizable locally with config setting ``minOpacity``
+* set OpenTopoMap max zoom back to z15 while on fallback server (#21),  
+  also fix max zoom of other services
+* overscale tiles to common max zoom (avoids gray screen when switching)
+
 ## 0.5.0 (2015-07-01)
 
 ### Features
