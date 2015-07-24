@@ -8,7 +8,12 @@ BR.OpacitySlider = L.Control.extend({
         var container = L.DomUtil.create('div', 'leaflet-bar control-slider'),
             input = $('<input id="slider" type="text"/>'),
             item = localStorage.opacitySliderValue,
-            value = item ? parseInt(item) : 100;
+            value = item ? parseInt(item) : 100,
+            minOpacity = (BR.conf.minOpacity || 0) * 100;
+
+        if (value < minOpacity) {
+            value = minOpacity;
+        }
 
         var stopClickAfterSlide = function(evt) {
             L.DomEvent.stop(evt);

@@ -67,4 +67,7 @@
         //'Mapsforge Tile Server': 'http://localhost:6090/{z}/{x}/{y}.png'
     };
 
+    // Minimum transparency slider value on load, values between 0 and 1 (0=invisible).
+    // 0 = no minimum, use stored setting; 1 = always reset to full visibility on load
+    BR.conf.minOpacity = 0.3;
 })();
