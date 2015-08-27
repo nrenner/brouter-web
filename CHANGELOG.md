@@ -1,6 +1,10 @@
 BRouter-Web Changelog
 =====================
 
+## 0.5.2 (2015-08-27)
+
+* switch search from MapQuest to Nominatim (MapQuest licensing change)
+
 ## 0.5.1 (2015-07-24)
 
 * config option ``baseLayers`` to add custom base layers locally (#24)
