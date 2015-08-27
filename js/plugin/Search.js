@@ -1,15 +1,14 @@
 BR.Search = L.Control.Geocoder.extend({
     options: {
         geocoder: new L.Control.Geocoder.Nominatim({
-            serviceUrl: 'https://open.mapquestapi.com/nominatim/v1/'
+            serviceUrl: 'https://nominatim.openstreetmap.org/'
         }),
         position: 'topleft'
     },
 
 		onAdd: function (map) {
-        map.attributionControl.addAttribution('Nominatim Search Courtesy of '
-            + '<a href="http://www.mapquest.com/" target="_blank">MapQuest</a>'
-            + ' <img src="http://developer.mapquest.com/content/osm/mq_logo.png">');
+        map.attributionControl.addAttribution(
+            'search by <a href="http://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
 
         return L.Control.Geocoder.prototype.onAdd.call(this, map);
     },
