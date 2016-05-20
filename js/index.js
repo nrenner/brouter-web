@@ -119,6 +119,7 @@
             routingOptions, 
             nogos, 
             stats,
+            iternity,
             elevation,
             download,
             profile,
@@ -187,7 +188,8 @@
         nogos = new BR.NogoAreas();
         nogos.on('update', updateRoute);
 
-        stats = new BR.TrackStats();
+//        stats = new BR.TrackStats();
+        iternity = new BR.Iternity();
         download = new BR.Download();
         elevation = new BR.Elevation();
         profile = new BR.Profile();
@@ -273,7 +275,8 @@
                 urls = {};
 
             elevation.update(track, segmentsLayer);
-            stats.update(track, segments);
+//            stats.update(track, segments);
+            iternity.update(track, segments);
             trackMessages.update(track, segments);
 
             if (latLngs.length > 1) {
@@ -286,12 +289,15 @@
             download.update(urls);
         };
 
+/*
         map.addControl(new BR.Control({
              heading: '',
              divId: 'header'
         }));
+*/
         routingOptions.addTo(map);
-        stats.addTo(map);
+//        stats.addTo(map);
+        iternity.addTo(map);
         download.addTo(map);
         elevation.addTo(map);
         map.addControl(new BR.Tabs({

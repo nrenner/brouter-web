@@ -9,23 +9,15 @@
         // online service (brouter.de) configuration
 
         BR.conf.profiles = [
+            '../im/bike',
+            '../im/foot',
+            '../im/like-bike',
+            '../im/like-foot',
             'trekking',
             'fastbike',
-            'car-test',
-            'safety',
             'shortest',
-            'trekking-ignore-cr',
-            'trekking-steep',
-            'trekking-noferries',
-            'trekking-nosteps',
             'moped',
-            'rail',
-            'river',
-            'vm-forum-liegerad-schnell',
-            'vm-forum-velomobil-schnell',
-            'fastbike-lowtraffic',
-            'fastbike-asia-pacific',
-            'hiking-beta'
+            'car-test'
         ];
 
         BR.conf.host = 'http://h2096617.stratoserver.net:443';
@@ -36,6 +28,10 @@
         // desktop configuration
 
         BR.conf.profiles = [
+            '../im/bike',
+            '../im/foot',
+            '../im/like-bike',
+            '../im/like-foot',
             'trekking',
             'fastbike',
             'shortest',
