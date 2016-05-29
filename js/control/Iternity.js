@@ -21,28 +21,8 @@ BR.Iternity = BR.Control.extend({
               html += iter[j] + '\n';
             }
         }
-        html += '</pre></small>'; 
+        html += '</pre></small>';
 
         this._content.innerHTML = html;
-    },
-
-    calcStats: function(polyline, segments) {
-        var stats = {
-            trackLength: 0,
-            filteredAscend: 0,
-            plainAscend: 0,
-            cost: 0
-        };
-        var i, props;
-
-        for (i = 0; segments && i < segments.length; i++) {
-            props = segments[i].feature.properties;
-            stats.trackLength += +props['track-length'];
-            stats.filteredAscend += +props['filtered ascend'];
-            stats.plainAscend += +props['plain-ascend'];
-            stats.cost += +props['cost'];
-        }
-
-        return stats;
     }
 });
