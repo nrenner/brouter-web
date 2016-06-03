@@ -1,6 +1,7 @@
 BR.TrackMessages = L.Class.extend({
 
     options: {
+        heading: 'Data',
         edgeStyle: {
             color: 'yellow',
             opacity: 0.8,

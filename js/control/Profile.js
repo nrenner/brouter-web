@@ -1,4 +1,8 @@
 BR.Profile = L.Class.extend({
+	  options: {
+        heading: 'Profile'
+    },
+
     cache: {},
 
     initialize: function () {

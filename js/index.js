@@ -122,6 +122,7 @@
             iternity,
             elevation,
             download,
+            tabs,
             profile,
             trackMessages,
             routingToolbar,
@@ -303,19 +304,23 @@
             }));
         }
         routingOptions.addTo(map);
-        if (BR.conf.transit) {
-            iternity.addTo(map);
-        } else {
+        if (!BR.conf.transit) {
             stats.addTo(map);
         }
         download.addTo(map);
         elevation.addTo(map);
-        map.addControl(new BR.Tabs({
+
+        tabs = new BR.Tabs({
             tabs: {
+                '#tab_iternity': iternity,
                 '#tab_profile': profile,
                 '#tab_data': trackMessages
             }
-        }));
+        });
+        if (!BR.conf.transit) {
+            delete tabs.options.tabs['#tab_iternity'];
+        }
+        map.addControl(tabs);
 
         nogos.addTo(map);
         routing.addTo(map);

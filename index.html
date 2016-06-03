@@ -40,12 +40,14 @@
     <div id="tabs_div" class="hidden">
       
         <ul id="tab" class="nav nav-tabs" role="tablist">
-            <li class="active"><a href="#tab_profile" role="tab">Profile</a></li>
-            <li><a href="#tab_data" role="tab">Data</a></li>
         </ul>
 
         <div class="tab-content">
-            <div class="tab-pane active" id="tab_profile">
+            <div class="tab-pane hidden" id="tab_iternity">
+                <div id="iternity">
+                </div>
+            </div>
+            <div class="tab-pane" id="tab_profile">
                 <form id="profile_upload" name="profile_upload">
                     <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
                     <div id="profile_message"></div>

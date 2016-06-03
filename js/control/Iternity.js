@@ -1,18 +1,18 @@
-BR.Iternity = BR.Control.extend({
+BR.Iternity = L.Class.extend({
 	  options: {
         heading: 'Iternity'
     },
 
     onAdd: function (map) {
-        var container = BR.Control.prototype.onAdd.call(this, map);
+        this._content = document.getElementById('iternity');
+        L.DomUtil.removeClass(this._content.parentElement, 'hidden');
         this.update();
-        return container;
     },
 
     update: function (polyline, segments) {
         var i, j, iter, html = '';
 
-        html += '<small><pre>';
+        html += '<pre>';
         for (i = 0; segments && i < segments.length; i++)
         {
             iter = segments[i].feature.iternity;
@@ -21,7 +21,7 @@ BR.Iternity = BR.Control.extend({
               html += iter[j] + '\n';
             }
         }
-        html += '</pre></small>';
+        html += '</pre>';
 
         this._content.innerHTML = html;
     }

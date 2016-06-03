@@ -125,7 +125,8 @@ td {
 #profile_upload,
 #datatable_wrapper,
 .dataTables_scroll,
-.dataTables_scrollBody {
+.dataTables_scrollBody,
+#iternity {
   display: -webkit-flex;
   display: flex;
 
@@ -151,9 +152,17 @@ textarea,
 #datatable_wrapper,
 .dataTables_scroll,
 .dataTables_scrollBody,
-#datatable {
+#datatable,
+#iternity,
+#iternity pre {
   -webkit-flex: auto;
   flex: auto;
+}
+
+#iternity pre {
+    font-size: small;
+    /* turn off bootstrap 'break-word' */
+    word-wrap: normal;
 }
 
 #profile_buttons {

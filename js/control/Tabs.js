@@ -13,6 +13,8 @@ BR.Tabs = BR.Control.extend({
         var tabs = this.options.tabs;
 
         for (var key in tabs) {
+            $('<li><a href="' + key + '" role="tab">' + tabs[key].options.heading + '</a></li>').appendTo('#tab');
+
             if (tabs[key].onAdd) {
                 tabs[key].onAdd(map);
             }
@@ -27,7 +29,7 @@ BR.Tabs = BR.Control.extend({
         // e.relatedTarget = previous tab
         $('#tab a').on('shown.bs.tab', L.bind(function (e) {
             var tab = this.options.tabs[e.target.hash],
-                prevTab = this.options.tabs[e.relatedTarget.hash];
+                prevTab = e.relatedTarget ? this.options.tabs[e.relatedTarget.hash] : null;
 
             if (tab && tab.show) {
                 tab.show();
@@ -36,6 +38,9 @@ BR.Tabs = BR.Control.extend({
                 prevTab.hide();
             }
         }, this));
+
+        // activate first tab (instead of setting 'active' class in html)
+        $('#tab li:not(.hidden) a:first').tab('show');
 
         return BR.Control.prototype.onAdd.call(this, map);
     }
