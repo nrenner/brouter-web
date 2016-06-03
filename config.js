@@ -1,23 +1,39 @@
 (function() {
 
     var hostname = window.location.hostname;
+    var params = new URLSearchParams(window.location.search.slice(1));
 
     BR.conf = {};
+
+    // Switch for intermodal routing demo
+    //BR.conf.transit = true;
+    // or as query parameter (index.html?transit=true#zoom=...)
+    // (uses search/query (?) not hash (#) params, as config only executed once at load)
+    // TODO not included in permalink (better replace permalink with hash plugin)
+    BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
     if (hostname === 'brouter.de' || hostname === 'h2096617.stratoserver.net') {
 
         // online service (brouter.de) configuration
 
         BR.conf.profiles = [
-            '../im/bike',
-            '../im/foot',
-            '../im/like-bike',
-            '../im/like-foot',
             'trekking',
             'fastbike',
+            'car-test',
+            'safety',
             'shortest',
+            'trekking-ignore-cr',
+            'trekking-steep',
+            'trekking-noferries',
+            'trekking-nosteps',
             'moped',
-            'car-test'
+            'rail',
+            'river',
+            'vm-forum-liegerad-schnell',
+            'vm-forum-velomobil-schnell',
+            'fastbike-lowtraffic',
+            'fastbike-asia-pacific',
+            'hiking-beta'
         ];
 
         BR.conf.host = 'http://h2096617.stratoserver.net:443';
@@ -28,10 +44,6 @@
         // desktop configuration
 
         BR.conf.profiles = [
-            '../im/bike',
-            '../im/foot',
-            '../im/like-bike',
-            '../im/like-foot',
             'trekking',
             'fastbike',
             'shortest',
@@ -66,4 +78,22 @@
     // Minimum transparency slider value on load, values between 0 and 1 (0=invisible).
     // 0 = no minimum, use stored setting; 1 = always reset to full visibility on load
     BR.conf.minOpacity = 0.3;
+
+
+    // transit (intermodal routing) demo config
+    if (BR.conf.transit) {
+
+        BR.conf.profiles = [
+            '../im/bike',
+            '../im/foot',
+            '../im/like-bike',
+            '../im/like-foot',
+            'trekking',
+            'fastbike',
+            'shortest',
+            'moped',
+            'car-test'
+        ];
+
+    }
 })();

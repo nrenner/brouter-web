@@ -188,8 +188,12 @@
         nogos = new BR.NogoAreas();
         nogos.on('update', updateRoute);
 
-//        stats = new BR.TrackStats();
-        iternity = new BR.Iternity();
+        // intermodal routing demo?
+        if (BR.conf.transit) {
+            iternity = new BR.Iternity();
+        } else {
+            stats = new BR.TrackStats();
+        }
         download = new BR.Download();
         elevation = new BR.Elevation();
         profile = new BR.Profile();
@@ -275,8 +279,11 @@
                 urls = {};
 
             elevation.update(track, segmentsLayer);
-//            stats.update(track, segments);
-            iternity.update(track, segments);
+            if (BR.conf.transit) {
+                iternity.update(track, segments);
+            } else {
+                stats.update(track, segments);
+            }
             trackMessages.update(track, segments);
 
             if (latLngs.length > 1) {
@@ -289,15 +296,18 @@
             download.update(urls);
         };
 
-/*
-        map.addControl(new BR.Control({
-             heading: '',
-             divId: 'header'
-        }));
-*/
+        if (!BR.conf.transit) {
+            map.addControl(new BR.Control({
+                 heading: '',
+                 divId: 'header'
+            }));
+        }
         routingOptions.addTo(map);
-//        stats.addTo(map);
-        iternity.addTo(map);
+        if (BR.conf.transit) {
+            iternity.addTo(map);
+        } else {
+            stats.addTo(map);
+        }
         download.addTo(map);
         elevation.addTo(map);
         map.addControl(new BR.Tabs({

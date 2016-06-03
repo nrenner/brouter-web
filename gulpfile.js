@@ -15,9 +15,11 @@ var inject = require('gulp-inject');
 
 var paths = {
   // see overrides in bower.json
+  scriptsConfig: mainBowerFiles('**/url-search-params/**/*.js'),
   scripts: mainBowerFiles([
     '**/*.js', 
-    '!**/*.min.js'
+    '!**/*.min.js',
+    '!**/url-search-params/**/*.js'
   ]).concat([
     'js/Util.js',
     'js/router/BRouter.js',
@@ -31,6 +33,13 @@ var paths = {
   dest: 'dist',
   destName: 'brouter-web'
 };
+
+// libs that require loading before config.js
+gulp.task('scripts_config', ['clean'], function() {
+  // just copy for now
+  return gulp.src(paths.scriptsConfig)
+    .pipe(gulp.dest(paths.dest));
+});
 
 gulp.task('scripts', function() {
   return gulp.src(paths.scripts, { base: '.' })
@@ -114,4 +123,4 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['clean', 'scripts', 'styles', 'images', 'fonts']);
+gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts']);
