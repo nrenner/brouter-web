@@ -1,4 +1,4 @@
-BR.Iternity = L.Class.extend({
+BR.Itinerary = L.Class.extend({
 	  options: {
         heading: 'Itinerary'
     },

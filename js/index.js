@@ -191,7 +191,7 @@
 
         // intermodal routing demo?
         if (BR.conf.transit) {
-            itinerary = new BR.Iternity();
+            itinerary = new BR.Itinerary();
         } else {
             stats = new BR.TrackStats();
         }
