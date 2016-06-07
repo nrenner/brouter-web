@@ -1,10 +1,10 @@
 BR.Iternity = L.Class.extend({
 	  options: {
-        heading: 'Iternity'
+        heading: 'Itinerary'
     },
 
     onAdd: function (map) {
-        this._content = document.getElementById('iternity');
+        this._content = document.getElementById('itinerary');
         L.DomUtil.removeClass(this._content.parentElement, 'hidden');
         this.update();
     },

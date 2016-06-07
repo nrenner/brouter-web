@@ -119,7 +119,7 @@
             routingOptions, 
             nogos, 
             stats,
-            iternity,
+            itinerary,
             elevation,
             download,
             tabs,
@@ -191,7 +191,7 @@
 
         // intermodal routing demo?
         if (BR.conf.transit) {
-            iternity = new BR.Iternity();
+            itinerary = new BR.Iternity();
         } else {
             stats = new BR.TrackStats();
         }
@@ -281,7 +281,7 @@
 
             elevation.update(track, segmentsLayer);
             if (BR.conf.transit) {
-                iternity.update(track, segments);
+                itinerary.update(track, segments);
             } else {
                 stats.update(track, segments);
             }
@@ -312,13 +312,13 @@
 
         tabs = new BR.Tabs({
             tabs: {
-                '#tab_iternity': iternity,
+                '#tab_itinerary': itinerary,
                 '#tab_profile': profile,
                 '#tab_data': trackMessages
             }
         });
         if (!BR.conf.transit) {
-            delete tabs.options.tabs['#tab_iternity'];
+            delete tabs.options.tabs['#tab_itinerary'];
         }
         map.addControl(tabs);
 
