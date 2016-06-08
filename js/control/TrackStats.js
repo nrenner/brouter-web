@@ -14,7 +14,8 @@ BR.TrackStats = BR.Control.extend({
             html = '';
 
         html += '<table id="stats">';
-        html += '<tr><td>Length: </td><td>' + L.Util.formatNum(stats.trackLength/1000,1) + '</td><td>km</td></tr>';
+        html += '<tr><td>Length: </td><td title="' + L.Util.formatNum(stats.trackLength/1000,3) + ' km">'
+                + L.Util.formatNum(stats.trackLength/1000,1) + '</td><td>km</td></tr>';
         html += '<tr><td>Ascent filtered:</td><td>' + stats.filteredAscend + '</td><td>m</td></tr>';
         html += '<tr><td>Ascent plain:</td><td>' + stats.plainAscend + '</td><td>m</td></tr>';
         html += '<tr><td>Cost: </td><td>' + stats.cost + '</td><td></td></tr>';
