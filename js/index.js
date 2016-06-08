@@ -74,7 +74,6 @@
         });
 
         map = new L.Map('map', {
-            layers: [osm], 
             center: new L.LatLng(50.99, 9.86), 
             zoom: 6,
             worldCopyJump: true
@@ -97,10 +96,18 @@
              'Hiking (Waymarked Trails)': hiking
         };
 
+        if (BR.conf.clearBaseLayers) {
+            baseLayers = {};
+        }
         for (i in BR.conf.baseLayers) {
             if (BR.conf.baseLayers.hasOwnProperty(i)) {
                 baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i]);
             }
+        }
+        // after applying custom base layer configurations, add first base layer to map
+        var firstLayer = baseLayers[Object.keys(baseLayers)[0]];
+        if (firstLayer) {
+            map.addLayer(firstLayer);
         }
 
         layersControl = L.control.layers(baseLayers, overlays).addTo(map);

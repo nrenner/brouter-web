@@ -66,6 +66,9 @@
     // External URL for key retrieval, does not work locally on desktop
     BR.conf.bingKeyUrl = 'http://norbertrenner.de/key/bing.php';
 
+    // Removes default base layers when 'true'. Useful for only having custom layers (see below).
+    BR.conf.clearBaseLayers = false;
+
     // Add custom tile layers
     // URL template see http://leafletjs.com/reference.html#tilelayer
     // Multiple entries separated by comma (,)
