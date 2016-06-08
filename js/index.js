@@ -27,8 +27,7 @@
         });
 
         var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            minZoom: 5,
-            maxNativeZoom: 15,
+            maxNativeZoom: 17,
             maxZoom: maxZoom,
             attribution: 'tiles &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
                 + ', <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>'
