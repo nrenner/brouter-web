@@ -251,13 +251,13 @@
                 },
                 track: {
                     color: 'magenta',
-                    opacity: 1
+                    opacity: BR.conf.defaultOpacity
                 },
                 trackCasing: {
                     weight: 8,
                     color: 'white',
                     // assumed to be same as track, see setOpacity
-                    opacity: 1
+                    opacity: BR.conf.defaultOpacity
                 },
                 nodata: {
                     color: 'darkred'
