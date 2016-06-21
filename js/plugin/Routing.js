@@ -51,6 +51,25 @@ BR.Routing = L.Routing.extend({
           ,iconSize: [16, 16]
         }));
 
+        // Forward mousemove event to snapped feature (for Leaflet.Elevation to
+        // update indicator), see also L.Routing.Edit._segmentOnMousemove
+        this._edit._mouseMarker.on('move', L.bind(function(e) {
+            var latLng = e.latlng;
+            if (latLng._feature) {
+                this._mouseMarker._feature = latLng._feature;
+                latLng._feature.fire('mousemove', e);
+            }
+        }, this._edit));
+        var mouseoutHandler = function(e) {
+            if (this._mouseMarker._feature) {
+                this._mouseMarker._feature.fire('mouseout', e);
+                this._mouseMarker._feature = null;
+            }
+        };
+        this._edit.on('segment:mouseout', mouseoutHandler, this._edit);
+        this._edit._mouseMarker.on('dragstart', mouseoutHandler, this._edit);
+        this.on('waypoint:mouseover', mouseoutHandler, this._edit);
+
         this._draw.on('enabled', function() {
             // crosshair cursor
             L.DomUtil.addClass(map.getContainer(), 'routing-draw-enabled');
