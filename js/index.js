@@ -1,6 +1,6 @@
 /*
     BRouter web - web client for BRouter bike routing engine
-   
+
     Licensed under the MIT license.
 */
 
@@ -11,7 +11,7 @@
 
     function initMap() {
         L.Icon.Default.imagePath = 'dist/images';
-        
+
         var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         var maxZoom = 19;
 
@@ -74,7 +74,7 @@
         });
 
         map = new L.Map('map', {
-            center: new L.LatLng(50.99, 9.86), 
+            center: new L.LatLng(50.99, 9.86),
             zoom: 6,
             worldCopyJump: true
         });
@@ -104,6 +104,12 @@
                 baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i]);
             }
         }
+
+        for (i in BR.conf.overlays) {
+            if (BR.conf.overlays.hasOwnProperty(i)) {
+                overlays[i] = L.tileLayer(BR.conf.overlays[i]);
+            }
+        }
         // after applying custom base layer configurations, add first base layer to map
         var firstLayer = baseLayers[Object.keys(baseLayers)[0]];
         if (firstLayer) {
@@ -121,9 +127,9 @@
         var search,
             router,
             routing,
-            routesLayer, 
-            routingOptions, 
-            nogos, 
+            routesLayer,
+            routingOptions,
+            nogos,
             stats,
             itinerary,
             elevation,
@@ -182,7 +188,7 @@
         function requestUpdate(updatable) {
             var track = routing.toPolyline(),
                 segments = routing.getSegments();
-        
+
             updatable.update(track, segments);
         }
 
