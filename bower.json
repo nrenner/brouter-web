@@ -21,7 +21,8 @@
     "bootbox": "~4.4.0",
     "seiyria-bootstrap-slider": "~4.8.1",
     "url-search-params": "~0.5.0",
-    "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master"
+    "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
+    "leaflet.locatecontrol": "^0.52.0"
   },
   "overrides": {
     "leaflet": {

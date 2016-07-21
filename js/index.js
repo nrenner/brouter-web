@@ -140,6 +140,11 @@
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
 
+        L.control.locate({
+            icon: 'glyphicon glyphicon-screenshot',
+            iconLoading: 'glyphicon glyphicon-refresh',
+        }).addTo(map);
+
         document.getElementById('about_link').onclick = function() {
             bootbox.alert({
                 title: 'About',
