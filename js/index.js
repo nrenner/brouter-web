@@ -1,6 +1,6 @@
 /*
     BRouter web - web client for BRouter bike routing engine
-   
+
     Licensed under the MIT license.
 */
 
@@ -11,7 +11,7 @@
 
     function initMap() {
         L.Icon.Default.imagePath = 'dist/images';
-        
+
         var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         var maxZoom = 19;
 
@@ -74,10 +74,11 @@
         });
 
         map = new L.Map('map', {
-            center: new L.LatLng(50.99, 9.86), 
-            zoom: 6,
             worldCopyJump: true
         });
+        if (!map.restoreView()) {
+          map.setView([50.99, 9.86], 6);
+        }
         map.attributionControl.addAttribution(
                 '<a href="http://brouter.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
@@ -121,9 +122,9 @@
         var search,
             router,
             routing,
-            routesLayer, 
-            routingOptions, 
-            nogos, 
+            routesLayer,
+            routingOptions,
+            nogos,
             stats,
             itinerary,
             elevation,
@@ -182,7 +183,7 @@
         function requestUpdate(updatable) {
             var track = routing.toPolyline(),
                 segments = routing.getSegments();
-        
+
             updatable.update(track, segments);
         }
 
