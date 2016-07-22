@@ -12,9 +12,6 @@ html, body, #map {
 .leaflet-control.elevation .background {
     box-shadow: 0px 0px 0px 3px rgba(70,130,180,0.2);
 }
-div.elevation {
-    margin-bottom: -2px !important;
-}
 
 .hidden {
     display: none;
@@ -89,10 +86,6 @@ td {
 
 /* left sidebar as additional control position */
 
-.leaflet-left {
-	left: 400px !important;
-}
-
 .leaflet-leftpane {
 	left: 5px;
     top: 7px;
@@ -106,11 +99,6 @@ td {
 .leaflet-leftpane .leaflet-control {
     margin: 3px 5px;
     width: 386px;
-}
-
-/* margin left sidebar + Scale */
-.leaflet-control-attribution {
-    margin-left: 515px !important;
 }
 
 /* Profile Control */
@@ -324,4 +312,33 @@ table.dataTable.display tbody tr.even:hover {
   background-repeat: repeat-x;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
   border: 1px solid #adadad;
+}
+
+/*
+ * media queries for mobile support
+ */
+@media (max-width: 799px) {
+    .leaflet-leftpane {
+        display: none !important;
+    }
+
+    /* margin Scale */
+    .leaflet-control-attribution {
+        margin-left: 115px !important;
+    }
+}
+@media (min-width: 800px) {
+    .leaflet-left {
+      left: 400px !important;
+    }
+
+    /* margin left sidebar + Scale */
+    .leaflet-control-attribution {
+        margin-left: 515px !important;
+    }
+
+    /* no margin when elevation control in left pane */
+    div.elevation {
+        margin-bottom: -2px !important;
+    }
 }

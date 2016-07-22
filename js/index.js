@@ -84,6 +84,8 @@
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
                 + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)');
 
+        L.control.scale().addTo(map);
+
         var baseLayers = {
             'OpenStreetMap': osm,
             'OpenStreetMap.de': osmde,
@@ -141,7 +143,8 @@
             routingToolbar,
             permalink,
             leftPaneId = 'leftpane',
-            saveWarningShown = false;
+            saveWarningShown = false,
+            smallScreen = window.matchMedia ? window.matchMedia("(max-width: 799px)").matches : false;
 
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
@@ -236,7 +239,10 @@
             stats = new BR.TrackStats();
         }
         download = new BR.Download();
-        elevation = new BR.Elevation();
+        elevation = new BR.Elevation({
+            position: smallScreen ? "bottomleft" : "leftpane",
+            collapsed: smallScreen
+        });
         profile = new BR.Profile();
         profile.on('update', function(evt) {
             BR.message.hide();
@@ -390,8 +396,6 @@
             routing: routing,
             profile: profile
         }).addTo(map);
-
-        L.control.scale().addTo(map);
     }
 
     initMap();
