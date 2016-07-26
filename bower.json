@@ -20,7 +20,9 @@
     "Leaflet.EasyButton": "*",
     "bootbox": "~4.4.0",
     "seiyria-bootstrap-slider": "~4.8.1",
-    "url-search-params": "~0.5.0"
+    "url-search-params": "~0.5.0",
+    "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
+    "leaflet.locatecontrol": "^0.52.0"
   },
   "overrides": {
     "leaflet": {
@@ -79,6 +81,9 @@
     },
     "url-search-params": {
       "main": "build/url-search-params.js"
+    },
+    "Leaflet.RestoreView": {
+      "main": "leaflet.restoreview.js"
     }
   },
   "resolutions": {
