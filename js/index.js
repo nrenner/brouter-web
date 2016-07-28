@@ -163,7 +163,27 @@
 
         router = L.bRouter(); //brouterCgi dummyRouter
 
-        routingToolbar = L.easyButton(
+        drawButton = L.easyButton({
+            states: [{
+                stateName: 'deactivate-draw',
+                icon: 'glyphicon-ok',
+                onClick: function (control) {
+                    routing.draw(false);
+                    control.state('activate-draw');
+                },
+                title: 'Stop drawing route'
+            }, {
+                stateName: 'activate-draw',
+                icon: 'glyphicon-road',
+                onClick: function (control) {
+                    routing.draw(true);
+                    control.state('deactivate-draw');
+                },
+                title: 'Draw route'
+            }]
+        });
+
+        deleteButton = L.easyButton(
             'glyphicon-trash',
             function () {
                 bootbox.confirm({
@@ -179,7 +199,9 @@
                 });
             },
             'Clear route'
-        ).addTo(map);
+        );
+
+        drawToolbar = L.easyBar([drawButton, deleteButton]).addTo(map);
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
@@ -276,9 +298,16 @@
                 }
             }
         });
+
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
             search.clear();
             onUpdate(evt && evt.err);
+        });
+        map.on('routing:draw-start', function() {
+            drawButton.state('deactivate-draw');
+        });
+        map.on('routing:draw-end', function() {
+            drawButton.state('activate-draw');
         });
 
         function onUpdate(err) {
