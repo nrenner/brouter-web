@@ -74,8 +74,6 @@
         });
 
         map = new L.Map('map', {
-            center: new L.LatLng(50.99, 9.86),
-            zoom: 6,
             worldCopyJump: true
         });
         if (!map.restoreView()) {
