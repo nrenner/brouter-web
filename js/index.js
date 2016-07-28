@@ -105,6 +105,12 @@
                 baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i]);
             }
         }
+
+        for (i in BR.conf.overlays) {
+            if (BR.conf.overlays.hasOwnProperty(i)) {
+                overlays[i] = L.tileLayer(BR.conf.overlays[i]);
+            }
+        }
         // after applying custom base layer configurations, add first base layer to map
         var firstLayer = baseLayers[Object.keys(baseLayers)[0]];
         if (firstLayer) {
