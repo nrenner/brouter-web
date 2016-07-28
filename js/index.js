@@ -78,6 +78,9 @@
             zoom: 6,
             worldCopyJump: true
         });
+        if (!map.restoreView()) {
+          map.setView([50.99, 9.86], 6);
+        }
         map.attributionControl.addAttribution(
                 '<a href="http://brouter.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
                 + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
@@ -144,6 +147,11 @@
 
         // left sidebar as additional control position
         map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
+
+        L.control.locate({
+            icon: 'glyphicon glyphicon-screenshot',
+            iconLoading: 'glyphicon glyphicon-refresh',
+        }).addTo(map);
 
         document.getElementById('about_link').onclick = function() {
             bootbox.alert({
