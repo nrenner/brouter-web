@@ -77,7 +77,7 @@ Develop:
 
 ## License
 
-Copyright (c) 2014 Norbert Renner, licensed under the [MIT License (MIT)](LICENSE)
+Copyright (c) 2016 Norbert Renner and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors), licensed under the [MIT License (MIT)](LICENSE)
 
 ## Credits and Licenses
 
