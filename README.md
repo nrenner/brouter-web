@@ -1,9 +1,9 @@
 brouter-web
 ===========
 
-Web client for the BRouter routing engine. *Work in progress*.
+Web client (by [@nrenner](https://github.com/nrenner)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)). *Work in progress*.
 
-BRouter online service:  
+BRouter online service (provided by [@abrensch](https://github.com/abrensch)):  
 http://brouter.de/brouter-web/
 
 This repository is only about the frontend. For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
