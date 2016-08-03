@@ -111,3 +111,7 @@ Copyright (C) 2014 Daniel Montague; [MIT License](https://github.com/CliffCloud/
 Copyright (C) 2011-2014 by Nick Payne; [MIT License](https://github.com/makeusabrew/bootbox/blob/master/LICENSE.md)
 * [bootstrap-slider](https://github.com/seiyria/bootstrap-slider)  
 Copyright (c) 2015 Kyle Kemp, Rohit Kalkur, and contributors; [MIT License](https://github.com/seiyria/bootstrap-slider/blob/master/LICENSE.md)
+* [Leaflet.RestoreView](https://github.com/makinacorpus/Leaflet.RestoreView)  
+Copyright (c) 2012 Makina Corpus, [MIT License](https://github.com/makinacorpus/Leaflet.RestoreView/blob/master/LICENSE)
+* [Leaflet.Locate](https://github.com/domoritz/leaflet-locatecontrol)  
+Copyright (c) 2014 Dominik Moritz, [MIT License](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE)
