@@ -113,10 +113,17 @@ BR.Map = {
 
         layersControl = L.control.layers(baseLayers, overlays).addTo(map);
 
+        L.control.locate({
+            icon: 'glyphicon glyphicon-screenshot',
+            iconLoading: 'glyphicon glyphicon-refresh',
+        }).addTo(map);
+
+        L.control.scale().addTo(map);
+
         // expose map instance for console debugging
         BR.debug = BR.debug || {};
         BR.debug.map = map;
-        
+
         return {
             map: map,
             layersControl: layersControl
