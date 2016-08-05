@@ -85,6 +85,26 @@
     // 0 = no minimum, use stored setting; 1 = always reset to full visibility on load
     BR.conf.minOpacity = 0.3;
 
+    BR.conf.routingStyles = {
+        trailer: {
+            dashArray: [10, 10],
+            opacity: 0.6,
+            color: 'magenta'
+        },
+        track: {
+            color: 'magenta',
+            opacity: BR.conf.defaultOpacity
+        },
+        trackCasing: {
+            weight: 8,
+            color: 'white',
+            // assumed to be same as track, see setOpacity
+            opacity: BR.conf.defaultOpacity
+        },
+        nodata: {
+            color: 'darkred'
+        }
+    };
 
     // transit (intermodal routing) demo config
     if (BR.conf.transit) {

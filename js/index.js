@@ -159,26 +159,7 @@
             routing: {
                 router: L.bind(router.getRouteSegment, router)
             },
-            styles: {
-                trailer: {
-                    dashArray: [10, 10],
-                    opacity: 0.6,
-                    color: 'magenta'
-                },
-                track: {
-                    color: 'magenta',
-                    opacity: BR.conf.defaultOpacity
-                },
-                trackCasing: {
-                    weight: 8,
-                    color: 'white',
-                    // assumed to be same as track, see setOpacity
-                    opacity: BR.conf.defaultOpacity
-                },
-                nodata: {
-                    color: 'darkred'
-                }
-            }
+            styles: BR.conf.routingStyles
         });
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
