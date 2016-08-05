@@ -22,6 +22,7 @@ var paths = {
     '!**/url-search-params/**/*.js'
   ]).concat([
     'js/Util.js',
+    'js/Map.js',
     'js/router/BRouter.js',
     'js/plugin/*.js',
     'js/control/*.js',
