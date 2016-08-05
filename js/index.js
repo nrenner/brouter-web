@@ -14,7 +14,6 @@
             search,
             router,
             routing,
-            routesLayer,
             routingOptions,
             nogos,
             stats,
@@ -24,7 +23,9 @@
             tabs,
             profile,
             trackMessages,
-            routingToolbar,
+            drawButton,
+            deleteButton,
+            drawToolbar,
             permalink,
             leftPaneId = 'leftpane',
             saveWarningShown = false;
