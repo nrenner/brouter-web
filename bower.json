@@ -8,7 +8,7 @@
   ],
   "dependencies": {
     "leaflet": "~0.7.3",
-    "leaflet-plugins": "nrenner/leaflet-plugins#https-only",
+    "leaflet-plugins": "~2.0.0",
     "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
     "async": "~0.9.2",
     "d3": "~3.5.5",

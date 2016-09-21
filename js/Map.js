@@ -64,7 +64,6 @@ BR.Map = {
             }
 
             bing._key = key;
-            bing.loadMetadata();
         });
 
         map = new L.Map('map', {

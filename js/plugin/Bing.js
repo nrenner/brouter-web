@@ -6,13 +6,7 @@ BR.BingLayer = L.BingLayer.extend({
     },
 
     initialize: function(key, options) {
-        // override super to disable loadMetadata until async key load (called explicitly then)
-        L.Util.setOptions(this, options);
-
-        this._key = key;
-        this._url = null;
-        this.meta = {};
-        //this.loadMetadata();
+        L.BingLayer.prototype.initialize.call(this, key, options);
 
         this._logo = L.control({position: 'bottomleft'});
         this._logo.onAdd = function (map) {
