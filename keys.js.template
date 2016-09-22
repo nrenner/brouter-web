@@ -4,7 +4,10 @@
 
     BR.keys = {
         // Bing maps, http://www.microsoft.com/maps/default.aspx
-        bing: ''
+        bing: '',
+        
+        // DigitalGlobe, https://developer.digitalglobe.com/maps-api/#plans
+        digitalGlobe: ''
     };
 
 })();

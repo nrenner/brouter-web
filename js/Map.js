@@ -84,6 +84,16 @@ BR.Map = {
             baseLayers['Bing Aerial'] = new BR.BingLayer(BR.keys.bing);
         }
 
+        if (BR.keys.digitalGlobe) {
+            var recent = new L.tileLayer('https://{s}.tiles.mapbox.com/v4/digitalglobe.nal0g75k/{z}/{x}/{y}.png?access_token=' + BR.keys.digitalGlobe, {
+                minZoom: 1,
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.digitalglobe.com/platforms/mapsapi">DigitalGlobe</a> ('
+                           + '<a href="http://bit.ly/mapsapiview">Terms of Use</a>)'
+            });
+            baseLayers['DigitalGlobe Recent Imagery'] = recent;
+        }
+
         if (BR.conf.clearBaseLayers) {
             baseLayers = {};
         }
