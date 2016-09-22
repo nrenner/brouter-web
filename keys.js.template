@@ -1,0 +1,10 @@
+(function() {
+
+    // COPYING: Please get your own API keys from the sites listed below
+
+    BR.keys = {
+        // Bing maps, http://www.microsoft.com/maps/default.aspx
+        bing: ''
+    };
+
+})();

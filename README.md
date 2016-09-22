@@ -45,6 +45,9 @@ set ``BR.conf.profilesUrl`` in [config.js](config.js), e.g. uncomment:
 
         BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
 
+3. add your API keys (optional)  
+copy ``keys.js.template`` to ``keys.js`` and edit to add your keys
+
 ### Run
 
 1. start BRouter server in the ``standalone`` directory with ``./server.sh`` or ``server.cmd`` (Windows)

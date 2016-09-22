@@ -5,6 +5,8 @@ BR.Map = {
             layersControl;
 
         L.Icon.Default.imagePath = 'dist/images';
+        
+        BR.keys = BR.keys || {};
 
         var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         var maxZoom = 19;
@@ -55,17 +57,6 @@ BR.Map = {
                   + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
         });
 
-        // COPYING: Please get your own Bing maps key at http://www.microsoft.com/maps/default.aspx
-        var bing = new BR.BingLayer();
-        BR.Util.get(BR.conf.bingKeyUrl, function (err, key) {
-            if (err) {
-                layersControl.removeLayer(bing);
-                return;
-            }
-
-            bing._key = key;
-        });
-
         map = new L.Map('map', {
             worldCopyJump: true
         });
@@ -82,13 +73,16 @@ BR.Map = {
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
             'OpenCycleMap (Thunderf.)': cycle,
-            'Outdoors (Thunderforest)': outdoors,
-            'Bing Aerial': bing
+            'Outdoors (Thunderforest)': outdoors
         };
         var overlays = {
              'Cycling (Waymarked Trails)': cycling,
              'Hiking (Waymarked Trails)': hiking
         };
+
+        if (BR.keys.bing) {
+            baseLayers['Bing Aerial'] = new BR.BingLayer(BR.keys.bing);
+        }
 
         if (BR.conf.clearBaseLayers) {
             baseLayers = {};
