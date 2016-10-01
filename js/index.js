@@ -48,7 +48,7 @@
         drawButton = L.easyButton({
             states: [{
                 stateName: 'deactivate-draw',
-                icon: 'glyphicon-ok',
+                icon: 'fa-pencil active',
                 onClick: function (control) {
                     routing.draw(false);
                     control.state('activate-draw');
@@ -56,7 +56,7 @@
                 title: 'Stop drawing route'
             }, {
                 stateName: 'activate-draw',
-                icon: 'glyphicon-road',
+                icon: 'fa-pencil',
                 onClick: function (control) {
                     routing.draw(true);
                     control.state('deactivate-draw');
@@ -66,7 +66,7 @@
         });
 
         deleteButton = L.easyButton(
-            'glyphicon-trash',
+            'fa-trash-o',
             function () {
                 bootbox.confirm({
                     size: 'small',

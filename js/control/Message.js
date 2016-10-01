@@ -12,7 +12,7 @@ BR.Message = L.Class.extend({
 
     _show: function (msg, type) {
         var ele = L.DomUtil.get(this.id),
-            iconClass = (type === 'warning') ? 'glyphicon-warning-sign' : 'glyphicon-remove',
+            iconClass = (type === 'warning') ? 'fa-exclamation-triangle' : 'fa-times-circle',
             alertClass = (type === 'warning') ? 'alert-warning' : 'alert-danger';
 
         ele.innerHTML =
@@ -20,7 +20,7 @@ BR.Message = L.Class.extend({
             + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
             + '    <span aria-hidden="true">&times;</span>'
             + '  </button>'
-            + '  <span class="glyphicon ' + iconClass + '" aria-hidden="true"/></span>'
+            + '  <span class="fa ' + iconClass + '" aria-hidden="true"/></span>'
             + msg
             + '</div>';
 

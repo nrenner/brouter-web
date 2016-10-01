@@ -118,3 +118,5 @@ Copyright (c) 2015 Kyle Kemp, Rohit Kalkur, and contributors; [MIT License](http
 Copyright (c) 2012 Makina Corpus, [MIT License](https://github.com/makinacorpus/Leaflet.RestoreView/blob/master/LICENSE)
 * [Leaflet.Locate](https://github.com/domoritz/leaflet-locatecontrol)  
 Copyright (c) 2014 Dominik Moritz, [MIT License](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE)
+* [Font Awesome](http://fontawesome.io/license/)  
+by Dave Gandy; [SIL OFL 1.1](http://scripts.sil.org/OFL) (Font), MIT License (Code), CC BY 3.0 (Documentation)

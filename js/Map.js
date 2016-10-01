@@ -117,8 +117,8 @@ BR.Map = {
         layersControl = L.control.layers(baseLayers, overlays).addTo(map);
 
         L.control.locate({
-            icon: 'glyphicon glyphicon-screenshot',
-            iconLoading: 'glyphicon glyphicon-refresh',
+            icon: 'fa fa-location-arrow',
+            iconLoading: 'fa fa-spinner fa-pulse',
         }).addTo(map);
 
         L.control.scale().addTo(map);

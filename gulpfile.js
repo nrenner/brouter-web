@@ -30,7 +30,7 @@ var paths = {
   ]),
   styles: mainBowerFiles('**/*.css').concat('css/*.css'),
   images: mainBowerFiles('**/*.+(png|gif)'),
-  fonts: mainBowerFiles('**/fonts/**/*'),
+  fonts: mainBowerFiles('**/font-awesome/fonts/*'),
   dest: 'dist',
   destName: 'brouter-web'
 };

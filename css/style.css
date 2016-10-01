@@ -243,10 +243,20 @@ textarea:focus {
     margin-bottom: 0px;
     padding-left: 35px;
 }
-.alert span.glyphicon {
+.alert span.fa {
     position: relative;
     left: -23px;
     margin-right: -1em;
+}
+
+/* activated Font Awesome icon (for EasyButton add ' active' to icon class property) */
+.fa.active {
+    /* use same color as leaflet-locatecontrol */
+    color: #2074B6;
+}
+
+.leaflet-bar .fa {
+    font-size: 16px;
 }
 
 /*
