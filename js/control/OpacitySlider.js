@@ -7,7 +7,7 @@ BR.OpacitySlider = L.Control.extend({
     onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar control-slider'),
             input = $('<input id="slider" type="text"/>'),
-            item = localStorage.opacitySliderValue,
+            item = BR.Util.localStorageAvailable() ? localStorage.opacitySliderValue : null,
             value = item ? parseInt(item) : BR.conf.defaultOpacity * 100,
             minOpacity = (BR.conf.minOpacity || 0) * 100;
 
@@ -39,7 +39,9 @@ BR.OpacitySlider = L.Control.extend({
         }).on('slide slideStop', { self: this }, function (evt) {
             evt.data.self.options.callback(evt.value / 100);
         }).on('slideStop', function (evt) {
-            localStorage.opacitySliderValue = evt.value;
+            if (BR.Util.localStorageAvailable()) {
+                localStorage.opacitySliderValue = evt.value;
+            }
 
             // When dragging outside slider and over map, click event after mouseup
             // adds marker when active on Chromium. So disable click (not needed) 

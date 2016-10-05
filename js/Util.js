@@ -29,6 +29,26 @@ BR.Util = {
           msg = xhr.status + ': ' + xhr.statusText;
         }
         return new Error(msg);
-    }
+    },
 
+    // check if localStorage is available, especially for catching SecurityError
+    // when cookie settings are blocking access (Chrome, Pale Moon, older Firefox)
+    // 
+    // see also https://github.com/Modernizr/Modernizr/blob/master/feature-detects/storage/localstorage.js
+    // 
+    // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_support_vs_availability
+    // by Mozilla Contributors, with modifications; 
+    // Any copyright is dedicated to the Public Domain. http://creativecommons.org/publicdomain/zero/1.0/
+    localStorageAvailable: function() {
+        try {
+            var storage = window.localStorage,
+                x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            return true;
+        }
+        catch(e) {
+            return false;
+        }
+    }
 };
