@@ -98,10 +98,15 @@ L.BRouter = L.Class.extend({
             // leaflet.spin
             //gpxLayer.fire('data:loaded');
 
-            geojson = JSON.parse(xhr.responseText);
-            layer = L.geoJson(geojson).getLayers()[0];
+            try {
+                geojson = JSON.parse(xhr.responseText);
+                layer = L.geoJson(geojson).getLayers()[0];
 
-            return cb(null, layer);
+                return cb(null, layer);
+            } catch(e) {
+                console.error(e, xhr.responseText);
+                return cb(e);
+            }
         } else {
             cb(BR.Util.getError(xhr));
         }
