@@ -60,7 +60,7 @@ BR.Map = {
         map = new L.Map('map', {
             worldCopyJump: true
         });
-        if (!BR.Util.localStorageAvailable() || !map.restoreView()) {
+        if (!map.restoreView()) {
             map.setView([50.99, 9.86], 6);
         }
         map.attributionControl.addAttribution(
