@@ -1,6 +1,31 @@
 BRouter-Web Changelog
 =====================
 
+## 0.6.0 (2016-10-11)
+
+See also [milestone 0.6.0](https://github.com/nrenner/brouter-web/milestone/1?closed=1), remaining issues moved to [milestone 0.7.0](https://github.com/nrenner/brouter-web/milestone/4)
+
+### Features/Improvements
+
+* Update OpenTopoMap zoom range to 0-17
+* [local installation] Option to remove default base layers ([#27](https://github.com/nrenner/brouter-web/issues/27))
+* Add tooltip to display length in meter precision (3 digits) ([#38](https://github.com/nrenner/brouter-web/issues/38))
+* Add "mean cost" to route statistics ([#39](https://github.com/nrenner/brouter-web/issues/39))
+* Set route transparency slider to partially transparent by default ([#36](https://github.com/nrenner/brouter-web/issues/36))
+* Show position in elevation diagram when hovering path on map ([#29](https://github.com/nrenner/brouter-web/issues/29))
+* [local installation] Added ability to specify custom overlays in configuration - by [@saesh](https://github.com/saesh) ([#46](https://github.com/nrenner/brouter-web/pull/46))
+* Add button to get/follow the current location (leaflet.locatecontrol plugin) - by [@bagage](https://github.com/bagage) ([#49](https://github.com/nrenner/brouter-web/pull/49))
+* Save and restore last map position (leaflet.restoreview.js plugin) - by [@bagage](https://github.com/bagage) ([#49](https://github.com/nrenner/brouter-web/pull/49))
+* Toggle drawing mode via panel button - by [@bagage](https://github.com/bagage) ([#50](https://github.com/nrenner/brouter-web/pull/50))
+* [local installation] add keys.js to configure API keys instead of bingkey request
+* Switch to new icon set (Font Awesome) with more options
+
+### Bugfixes
+
+* Replace Bing (usage limit exceeded) with DigitalGlobe Recent Imagery layer (newer images, but sometimes cloudy) 
+* [local installation] Show error message for invalid server response with custom profiles on Windows (still needs to be fixed) ([#53](https://github.com/nrenner/brouter-web/issues/53))
+* Restrictive Cookie settings caused app to stop responding ([#47](https://github.com/nrenner/brouter-web/issues/47))
+
 ## 0.5.2 (2015-08-27)
 
 * switch search from MapQuest to Nominatim (MapQuest licensing change)
