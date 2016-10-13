@@ -6,11 +6,11 @@
     BR.conf = {};
 
     // Switch for intermodal routing demo
-    //BR.conf.transit = true;
+    BR.conf.transit = false;
     // or as query parameter (index.html?transit=true#zoom=...)
     // (uses search/query (?) not hash (#) params, as config only executed once at load)
     // TODO not included in permalink (better replace permalink with hash plugin)
-    BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
+    //BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
     if (hostname === 'brouter.de' || hostname === 'h2096617.stratoserver.net') {
 
