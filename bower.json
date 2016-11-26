@@ -7,23 +7,25 @@
     "bower_components"
   ],
   "dependencies": {
-    "leaflet": "~0.7.3",
+    "leaflet": "^1.0.2",
     "leaflet-plugins": "~2.0.0",
     "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
     "async": "~0.9.2",
     "d3": "~3.5.5",
     "leaflet.draw": "~0.2.3",
-    "bootstrap": "~3.3.4",
+    "bootstrap": "4.0.0-alpha.5",
     "DataTables": "~1.10.5",
     "leaflet.elevation": "MrMufflon/Leaflet.Elevation#master",
-    "leaflet-control-geocoder": "~1.1.0",
+    "leaflet-control-geocoder": "1.5.3",
     "Leaflet.EasyButton": "*",
     "bootbox": "~4.4.0",
     "seiyria-bootstrap-slider": "~4.8.1",
     "url-search-params": "~0.5.0",
     "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
     "leaflet.locatecontrol": "^0.52.0",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "bootstrap-select": "hugdx/bootstrap-select#patch-1",
+    "leaflet-sidebar": "^0.1.9"
   },
   "overrides": {
     "leaflet": {
@@ -57,12 +59,16 @@
       ],
       "dependencies": null
     },
+    "bootstrap-select": {
+      "main": [
+        "js/bootstrap-select.js",
+        "dist/css/bootstrap-select.css"
+      ]
+    },
     "bootstrap": {
       "main": [
         "dist/js/bootstrap.js",
-        "dist/css/bootstrap.css",
-        "dist/css/bootstrap-theme.css",
-        "dist/fonts/*"
+        "dist/css/bootstrap.css"
       ]
     },
     "leaflet.elevation": {
@@ -75,8 +81,8 @@
     },
     "leaflet-control-geocoder": {
       "main": [
-        "Control.Geocoder.js",
-        "Control.Geocoder.css",
+        "dist/Control.Geocoder.js",
+        "dist/Control.Geocoder.css",
         "images/*.+(png|gif)"
       ]
     },
@@ -94,7 +100,7 @@
     }
   },
   "resolutions": {
-    "leaflet.elevation": "master",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "leaflet": "^1.0.2"
   }
 }

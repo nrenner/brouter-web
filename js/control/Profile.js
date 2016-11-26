@@ -1,15 +1,10 @@
 BR.Profile = L.Class.extend({
-	  options: {
-        heading: 'Profile'
-    },
-
     cache: {},
 
     initialize: function () {
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
-        
-        this.ele = document.profile_upload.profile;
+        this.ele = L.DomUtil.get('profile_upload');
         this.message = new BR.Message('profile_message', {
             alert: true
         });
@@ -65,8 +60,8 @@ BR.Profile = L.Class.extend({
         $(button).button('uploading');
         evt.preventDefault();
 
-        this.fire('update', { 
-            profileText: profile, 
+        this.fire('update', {
+            profileText: profile,
             callback: function () {
                 $(button).button('reset');
                 $(button).blur();

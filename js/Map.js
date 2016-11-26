@@ -4,42 +4,33 @@ BR.Map = {
         var map,
             layersControl;
 
-        L.Icon.Default.imagePath = 'dist/images';
-        
         BR.keys = BR.keys || {};
 
-        var osmAttribution = '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
         var maxZoom = 19;
 
         var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: maxZoom,
-            attribution: 'tiles ' + osmAttribution
+            maxZoom: maxZoom
         });
 
         var osmde = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
             maxNativeZoom: 18,
-            maxZoom: maxZoom,
-            attribution: 'tiles by <a target="_blank" href="http://openstreetmap.de/karte.html">openstreetmap.de</a> ' + osmAttribution
+            maxZoom: maxZoom
         });
 
         var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxNativeZoom: 17,
-            maxZoom: maxZoom,
-            attribution: 'tiles &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>'
-                + ', <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>'
+            maxZoom: maxZoom
         });
 
         var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> '
             + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)';
         var cycle = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
             maxNativeZoom: 18,
-            maxZoom: maxZoom,
-            attribution: thunderforestAttribution
+            maxZoom: maxZoom
         });
         var outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
             maxNativeZoom: 18,
-            maxZoom: maxZoom,
-            attribution: thunderforestAttribution
+            maxZoom: maxZoom
         });
 
         var esri = L.tileLayer('https://{s}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -53,17 +44,13 @@ BR.Map = {
 
         var cycling = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
-          maxZoom: maxZoom,
           opacity: 0.7,
-          attribution: 'Cycling &copy; <a target="_blank" href="http://cycling.waymarkedtrails.org">Waymarked Trails</a> '
-                  + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
+          maxZoom: maxZoom
         });
         var hiking = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
-          maxZoom: maxZoom,
           opacity: 0.7,
-          attribution: 'Hiking &copy; <a target="_blank" href="http://hiking.waymarkedtrails.org">Waymarked Trails</a> '
-                  + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>)'
+          maxZoom: maxZoom
         });
 
         map = new L.Map('map', {
@@ -72,10 +59,9 @@ BR.Map = {
         if (!map.restoreView()) {
             map.setView([50.99, 9.86], 6);
         }
-        map.attributionControl.addAttribution(
-                '<a href="http://brouter.de/brouter" target="_blank">BRouter</a> &copy; Arndt Brenschede, '
-                + 'routing + map data &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors '
-                + '(<a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>)');
+        map.attributionControl.setPrefix(false);
+        map.attributionControl.addAttribution('<a href="" data-toggle="modal" data-target="#credits">Copyright & credits</a>')
+
 
         var baseLayers = {
             'OpenStreetMap': osm,

@@ -44,7 +44,7 @@ BR.Routing = L.Routing.extend({
             this._segmentOnMouseover(e);
             this._suspended = false;
         }, this._edit);
-        
+
         this._edit._mouseMarker.setIcon(L.divIcon({
           className: 'line-mouse-marker'
           ,iconAnchor: [8, 8] // size/2 + border/2
@@ -77,7 +77,7 @@ BR.Routing = L.Routing.extend({
             // prevent cursor marker from consuming mouse events (invisible with draw:false)
             this._marker._icon.style.pointerEvents = 'none';
 
-            // intercept listener: only re-show draw trailer after marker hover 
+            // intercept listener: only re-show draw trailer after marker hover
             // when edit is not active (i.e. wasn't also supended)
             this._parent.off('waypoint:mouseout' , this._catchWaypointEvent, this);
             this.on('waypoint:mouseout' , function(e) {
@@ -115,9 +115,9 @@ BR.Routing = L.Routing.extend({
         });
 
         // Call show after deleting last waypoint, but hide trailer.
-        // Gets hidden in _catchWaypointEvent on waypoint mouseover, but 
-        // mouseout to show again never fires when deleted. Click handler 
-        // _onMouseClick aborts when hidden, so no waypoint can be added 
+        // Gets hidden in _catchWaypointEvent on waypoint mouseover, but
+        // mouseout to show again never fires when deleted. Click handler
+        // _onMouseClick aborts when hidden, so no waypoint can be added
         // although enabled.
         this.on('waypoint:click', function() {
             if (this._hidden && !this._parent._waypoints._first) {
@@ -196,7 +196,7 @@ BR.Routing = L.Routing.extend({
       this._removeMarkerEvents(marker);
       current = marker;
     };
-    
+
     this._waypoints._first = null;
     this._waypoints._last = null;
     this._waypoints.clearLayers();
@@ -251,8 +251,7 @@ BR.Routing = L.Routing.extend({
 
     // change segment color before request to indicate recalculation (mark old)
     if (m1 && m1._routing.nextLine !== null) {
-        m1._routing.nextLine.options.color = 'dimgray';
-        m1._routing.nextLine._updateStyle();
+        m1._routing.nextLine.setStyle({color: 'dimgray' });
     }
 
     // animate dashed trailer as loading indicator

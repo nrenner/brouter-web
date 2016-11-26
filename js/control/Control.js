@@ -1,6 +1,6 @@
 BR.Control = L.Control.extend({
     options: {
-        position: 'leftpane'
+        position: 'bottomleft'
     },
 
     onAdd: function (map) {

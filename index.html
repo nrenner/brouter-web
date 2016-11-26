@@ -9,100 +9,239 @@
 
     <link rel="stylesheet" href="dist/brouter-web.css" />
 </head>
-<body>
-    <div id="map"></div>
-
-    <div id="message"></div>
-    <div id="header" class="hidden">
-        <div class="title"><span class="title-name">BRouter-Web</span>&nbsp;&nbsp;<sup class="version">0.6.1</sup></div>
-        <div class="header-text">
-            'esc' or 'q' to disable drawing, 'd' to enable drawing<br>
-            Web client for <a href="http://brouter.de/" target="_blank">BRouter</a> &middot; <i>work in progress</i> &middot;
-            <a id="about_link" href="#" role="button">about</a>
+<body class="flexcolumn">
+    <nav class="navbar navbar-full navbar-dark bg-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" data-toggle="modal" data-target="#about">BRouter-Web <sup class="version">0.6.1</sup></a>
+            <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
         </div>
-    </div>
-    <div id="route_options" class="hidden">
-        <table>
-            <tr><td>Profile:</td>
-                <td><select id="profile">
-                        <option value="" disabled>&lt;custom&gt;</option>
-                        <!-- profile option list built dynamically from config -->
-                    </select></td></tr>
-            <tr><td>Alternative:</td>
-                <td><select id="alternative">
-                        <option value="0">original</option>
-                        <option value="1">first alternative</option>
-                        <option value="2">second alternative</option>
-                        <option value="3">third alternative</option>
-                    </select>
-                </td></tr>
-        </table>
-    </div>
-    <div id="tabs_div" class="hidden">
-
-        <ul id="tab" class="nav nav-tabs" role="tablist">
-        </ul>
-
-        <div class="tab-content">
-            <div class="tab-pane hidden" id="tab_itinerary">
-                <div id="itinerary">
+        <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
+            <div class="nav navbar-nav">
+                <a class="nav-item nav-link" href="" data-toggle="modal" data-target="#options">
+                    <span class="fa fa-lg fa-cog"></span>&nbsp;Options</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-lg fa-cloud-download"></span>&nbsp;Download</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" id="dl-gpx" href="#" disabled>GPX</a>
+                        <a class="dropdown-item" id="dl-kml" href="#" disabled>KML</a>
+                        <a class="dropdown-item" id="dl-geojson" href="#" disabled>GeoJSON</a>
+                        <a class="dropdown-item" id="dl-csv" href="#" disabled>data CSV</a>
+                    </div>
                 </div>
-            </div>
-            <div class="tab-pane" id="tab_profile">
-                <form id="profile_upload" name="profile_upload">
-                    <textarea type="text" name="profile" spellcheck="false" wrap="off" maxlength="100000" placeholder="... paste your custom routing profile here ..."></textarea>
-                    <div id="profile_message"></div>
-                    <div id="profile_buttons">
-                        <button id="upload" type="button" class="btn btn-default btn-xs" data-uploading-text="Uploading..."><span class="fa fa-upload"></span> Upload</button>
-                        <button id="clear" type="button" class="btn btn-default btn-xs"><span class="fa fa-trash-o"></span> Clear</button>
-                        <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn-xs">Help</a>
+                <a class="nav-item nav-link" href="" data-toggle="modal" data-target="#permalink-win" id="permalink">
+                    <span class="fa fa-lg fa-share-alt"></span>&nbsp;Share URL</a>
+
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <select class="selectpicker show-tick" id="profile-alternative" multiple>
+                            <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
+                                <option>Custom</option>
+                            </optgroup>
+                            <optgroup label="Alternative" data-max-options="1" data-icon="fa-random" id="alternative">
+                                <option value="0" selected>Original</option>
+                                <option value="1">1st alternative</option>
+                                <option value="2">2nd alternative</option>
+                                <option value="3">3rd alternative</option>
+                            </optgroup>
+                        </select>
                     </div>
                 </form>
             </div>
-            <div class="tab-pane" id="tab_data">
-                <table id="datatable" class="table mini cell-border hover stripe"></table>
+        </div>
+    </nav>
+
+    <!-- Permalink -->
+    <div class="modal fade" id="permalink-win" tabindex="-1" role="dialog" aria-labelledby="Permalink window" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Permalink</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="permalink-input" >
+                </div>
             </div>
         </div>
     </div>
-    <div id="about">
-        <p>
-            Online service of the BRouter routing engine. For the offline Android app and more information see <a href="http://brouter.de/" target="_blank">brouter.de</a>.
-        </p>
-        <p>
-            <i>Work in progress:</i> The web client is still in (slow) development; it has some glitches,
-            you might miss some essential features and stumble upon bugs. The user interface is subject to change.
-        </p>
-        <p>
-            <i>Contact:</i><br>
-            <ul>
-                <li>
-                    general discussions/questions, support:<br>
-                    <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">http://groups.google.com/group/osm-android-bikerouting</a>
+
+    <!-- Credits modal window -->
+    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="Credits window" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Credits</h4>
+                </div>
+                <div class="modal-body">
+                    <dl>
+                        <dt>Map data</dt>
+                        <dd>
+                            &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+                            under <a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>
+                        </dd>
+                        <dt>OpenstreetMap.de tiles</dt>
+                        <dd><a target="_blank" href="http://openstreetmap.de/karte.html">openstreetmap.de</a></dd>
+                        <dt>OpenTopoMap tiles</dt>
+                        <dd>
+                            &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>
+                            under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>
+                            <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>
+                        </dd>
+                        <dt>Thunderforest tiles</dt>
+                        <dd>
+                            &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a>
+                            under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
+                        </dd>
+                        <dt>Waymarked Trails tiles</dt>
+                        <dd>
+                            &copy; <a target="_blank" href="http://cycling.waymarkedtrails.org">Waymarked Trails</a>
+                            under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>
+                        </dd>
+                        <dt>BRouter</dt>
+                        <dd>
+                            <a target="_blank" href="http://brouter.de/brouter">BRouter</a> &copy; Arndt Brenschede
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Options modal window -->
+    <div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="Help window" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Options</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="profile_upload">Custom routing profile:</label>
+                        <textarea class="form-control" type="text" id="profile_upload" spellcheck="false" wrap="off" rows="5"></textarea>
+                        <div id="profile_message"></div>
+                        <div class="form-group" id="profile_buttons">
+                             <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> Clear</button>
+                             <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> Upload</button>
+                             <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> Help</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- About modal window -->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="About window" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">About</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Online service of the BRouter routing engine. For the offline Android app and more information
+                        see <a href="http://brouter.de/" target="_blank">brouter.de</a>.</p>
+                    <p>
+                        <i>Contact:</i><br>
+                        <ul>
+                            <li>General discussions/questions, support:<br>
+                                <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">http://groups.google.com/group/osm-android-bikerouting</a>
+                            </li>
+                            <li>Bug reports and feature requests:
+                                <ul>
+                                    <li>
+                                        server / backend, routing engine, Android app, profiles, brouter.de site:<br>
+                                        <a href="https://github.com/abrensch/brouter/issues" target="_blank">https://github.com/abrensch/brouter/issues</a>
+                                    </li>
+                                    <li>
+                                        web client / frontend:<br>
+                                        <a href="https://github.com/nrenner/brouter-web/issues" target="_blank">https://github.com/nrenner/brouter-web/issues</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        <i>Data:</i><br>
+                        This is based on <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
+                        see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
+                    </p>
+                    <p>
+                         <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i>,
+                         <i><a href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a></i> and
+                         <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i> on the client.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="map"></div>
+
+        <div id="message"></div>
+    </div>
+
+
+    <div id="sidebar">
+            <ul id="tab" class="nav nav-tabs" role="tablist">
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane hidden" id="tab_itinerary">
+                    <div id="itinerary">
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab_data">
+                    <table id="datatable" class="table mini cell-border hover stripe"></table>
+                </div>
+            </div>
+    </div>
+
+    <div class="collapse in" id="elevation-chart"></div>
+
+    <footer>
+        <div class="flexrow">
+            <ul id="stats">
+                <li class="d-inline-block">
+                    <div class="text-muted small hidden-sm-down">Profile</div>
+                    <p class="stats-label" id="stat-profile">Profile</p>
                 </li>
-                <li>bug reports and feature requests:
-                    <ul>
-                        <li>
-                            server / backend, routing engine, Android app, profiles, brouter.de site:<br>
-                            <a href="https://github.com/abrensch/brouter/issues" target="_blank">https://github.com/abrensch/brouter/issues</a>
-                        </li>
-                        <li>
-                            web client / frontend:<br>
-                            <a href="https://github.com/nrenner/brouter-web/issues" target="_blank">https://github.com/nrenner/brouter-web/issues</a>
-                        </li>
-                    </ul>
+                <li class="d-inline-block">
+                    <div class="text-muted small hidden-sm-down">Distance</div>
+                    <p class="stats-label" id="distance">0 <abbr title="kilometer">km</abbr></p>
+                </li>
+                <li class="d-inline-block">
+                    <div class="text-muted small hidden-sm-down">Ascend (Plain ascend)</div>
+                    <p class="stats-label" id="ascend">0 (0) <abbr title="meter">m</abbr></p>
+                </li>
+                <li class="d-inline-block">
+                    <div class="text-muted small hidden-sm-down">Cost (Mean cost factor)</div>
+                    <p class="stats-label" id="cost">- (-)</p>
                 </li>
             </ul>
-        </p>
-        <p>
-            <i>Data:</i> based on <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
-            see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
-        </p>
-        <p>
-             <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i>,
-             <i><a href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a></i> and
-             <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i> on the client.
-        </p>
-    </div>
+            <button id="sidebar-btn" class="btn btn-secondary btn-sm" type="button" aria-label="Toggle sidebar">
+                <span class="fa fa-compress"></span>
+            </button>
+
+            <button class="btn btn-secondary btn-sm active" type="button" data-toggle="collapse" data-target="#elevation-chart" aria-controls="elevation-chart" id="elevation-btn" aria-expanded="false" aria-label="Toggle elevation chart">
+                <span class="fa fa-area-chart"></span>
+            </button>
+        </div>
+    </footer>
 
     <script>
         // global package prefix for BRouter web application
@@ -119,6 +258,5 @@
     <!-- inject:js -->
     <script src="dist/brouter-web.js"></script>
     <!-- endinject -->
-
   </body>
 </html>

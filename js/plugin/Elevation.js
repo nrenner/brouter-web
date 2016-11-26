@@ -1,7 +1,6 @@
 BR.Elevation = L.Control.Elevation.extend({
     options: {
-        position: "leftpane",
-        width: 385,
+        width:$('#map').outerWidth(),
         margins: {
             top: 20,
             right: 30,
@@ -9,6 +8,23 @@ BR.Elevation = L.Control.Elevation.extend({
             left: 60
         },
         theme: "steelblue-theme" //purple
+    },
+
+    addBelow: function(map) {
+        // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
+        // this.width($('#map').outerWidth());
+        this.options.width = $('#map').outerWidth();
+
+        if (this.getContainer() != null) {
+            this.remove(map);
+        }
+
+        function setParent(el, newParent) {
+            newParent.appendChild(el);
+         }
+         this.addTo(map);
+        // move elevation graph outside of the map
+         setParent(this.getContainer(), document.getElementById('elevation-chart'));
     },
 
     update: function(track, layer) {

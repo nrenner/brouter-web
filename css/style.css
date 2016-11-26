@@ -2,21 +2,94 @@ html, body, #map {
     height: 100%;
 }
 
-.info {
-    padding: 6px 8px;
-    font: 14px/16px "Helvetica Neue", Arial, Helvetica, sans-serif;
-  	box-shadow: 0px 0px 0px 3px rgba(70,130,180,0.2), 0 1px 5px rgba(0,0,0,0.4);
-    background: rgba(255,255,255,0.9);
-    border-radius: 5px;
-}
-.leaflet-control.elevation .background {
-    box-shadow: 0px 0px 0px 3px rgba(70,130,180,0.2);
-}
-div.elevation {
-    margin-bottom: -2px !important;
+.flexcolumn {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-flow: column;
 }
 
-.hidden {
+.flexrow {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-direction: row;
+}
+
+#content {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+footer {
+    -webkit-box-flex: none;
+    -moz-box-flex: none;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+
+    background-color: #f7f7f9;
+}
+
+#stats {
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+#stats li {
+    margin: 0 1rem;
+}
+
+#elevation-chart {
+    height: 175px;
+    font-size: 80%;
+}
+
+.form-group {
+    margin-bottom: 0
+}
+
+.bootstrap-select.btn-group:not(.input-group-btn),
+.bootstrap-select.btn-group[class*="col-"] {
+    margin-left: 10px;
+}
+
+
+.axis path,
+.axis line {
+    stroke: #818a91;
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    fill: #818a91;
+}
+
+.area {
+    fill: rgba(129, 138, 145, 0.45);
+}
+
+#elevation-btn {
+    align-items: center;
+    margin-right: 0.5rem;
+}
+
+.routing-draw-enabled {
+    cursor: crosshair;
+}
+
+/* FIXME permalink temporary hack */
+.leaflet-control-permalink {
     display: none;
 }
 
@@ -28,209 +101,93 @@ div.elevation {
     z-index: 1000;
 }
 
-#header {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-}
-#header, .heading {
-    color: #333;
-}
-.title {
-    padding-top: 4px;
-}
-.title-name {
-    font-size: larger;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-}
-.version {
-    font-size: x-small;
-}
-.header-text {
-    font-size: small;
-    margin-top: 0.5em;
-    line-height: 1.4em;
-}
-
-.heading {
-    font-weight: bold;
-}
-.heading, .content, .content > .label, .content > .value {
-    float: left;
-}
-
-select {
-    max-width: 176px;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 4px;
-    /* spacing between cells only */
-    margin: -4px;
-}
-
-td {
-    vertical-align: top;
-    padding: 0;
-}
-#stats td:nth-child(2) {
-    text-align: right;
-}
-
-.heading, tr > td:first-child, .label {
-    /* 1/4 of net info control width (370), so that values start at 50% */
-    width: 95px;
-}
-
-.routing-draw-enabled {
-	cursor: crosshair;
-}
-
-/* left sidebar as additional control position */
-
-.leaflet-left {
-	left: 400px !important;
-}
-
-.leaflet-leftpane {
-	left: 5px;
-    top: 7px;
-    bottom: 7px;
-
-    position: absolute;
-    z-index: 1000;
-    pointer-events: none;
-}
-
-.leaflet-leftpane .leaflet-control {
-    margin: 3px 5px;
-    width: 386px;
-}
-
-/* margin left sidebar + Scale */
-.leaflet-control-attribution {
-    margin-left: 515px !important;
-}
-
-/* Profile Control */
-
-/* flexbox layout: maximize textarea and data table (nested container/box path) */
-.flex_container,
-.leaflet-leftpane,
-.leaflet-leftpane .leaflet-control:last-child,
-#tabs_div,
-.tab-content,
-.tab-pane.active,
-#profile_upload,
-#datatable_wrapper,
-.dataTables_scroll,
-.dataTables_scrollBody,
-#iternity {
-  display: -webkit-flex;
-  display: flex;
-
-  -webkit-flex-direction: column;
-  flex-direction: column;
-}
-
-.flex_box_none,
-.leaflet-leftpane .leaflet-control,
-#tab,
-.dataTables_scrollHead {
-  -webkit-flex: none;
-  flex: none;
-}
-
-.flex_box,
-.leaflet-leftpane .leaflet-control:last-child,
-#tabs_div,
-.tab-content,
-.tab-pane.active,
-#profile_upload,
-textarea,
-#datatable_wrapper,
-.dataTables_scroll,
-.dataTables_scrollBody,
-#datatable,
-#iternity,
-#iternity pre {
-  -webkit-flex: auto;
-  flex: auto;
-}
-
-#iternity pre {
-    font-size: small;
-    /* turn off bootstrap 'break-word' */
-    word-wrap: normal;
-}
-
-#profile_buttons {
-    padding-top: 4px;
-}
-
-textarea {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-
-    font-size: 10px;
-    font-family: "Courier New", Courier, monospace;
-    line-height: 1.2em;
-
-    background-color: rgba(255,255,255,0);
-}
-textarea:focus {
-    background-color: rgba(255,255,255,255);
-}
-
 /* track messages (data tab) */
 #tab_data {
     font-size: x-small;
 }
 
-#about {
-    display: none;
-}
-
 /* dashed line animation, derived from Chris Coyier and others
-   http://css-tricks.com/svg-line-animation-works/
- */
+http://css-tricks.com/svg-line-animation-works/
+*/
 .loading-trailer {
     -webkit-animation: dash 0.4s linear infinite;
     animation: dash 0.4s linear infinite;
 }
 @-webkit-keyframes dash {
-  from {
-    stroke-dashoffset: 20;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+    from {
+        stroke-dashoffset: 20;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 @keyframes dash {
-  from {
-    stroke-dashoffset: 20;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
+    from {
+        stroke-dashoffset: 20;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 /*
- * Bootstrap
- */
+* opacity slider control (seiyria-bootstrap-slider)
+*/
 
-/* override Bootstrap label for Leaflet layer switcher */
-.leaflet-control-layers label {
-    max-width: none;
-    margin-bottom: 0px;
-    font-weight: normal;
-    /* normalize label height
-                    | Firefox | Chrome |
-       Leaflet only | 21      | 20     |
-       Bootstrap    | 23      | 22     |*/
-    height: 21px;
+.control-slider {
+    background: #fff;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.slider.slider-vertical {
+    height: 80px;
+}
+
+/* invert track and selection styles to get partial gradient for "selection" */
+.slider.slider-vertical .slider-track {
+    width: 8px;
+    margin-left: -4px;
+    background-image: linear-gradient(to right, #f0f0f0 0%, #e9e9e9 100%);
+    box-shadow: inset -1px -0px 1px rgba(55, 55, 55, 0.3), inset 1px 0px 1px rgba(230, 230, 230, 1);
+}
+
+.control-slider:hover .slider-track,
+.control-slider:active .slider-track {
+    background-image: linear-gradient(to bottom, magenta 0%, white 100%);
+}
+
+.slider-selection {
+    background-color: #C6C6C6;
+    background-image: none;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.slider.slider-vertical .slider-tick,
+.slider.slider-vertical .slider-handle {
+    margin-left: -6px;
+    cursor: ns-resize;
+    box-sizing: border-box;
+    background: none;
+
+    /* bootstrap .btn-default */
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    background-repeat: repeat-x;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+    border: 1px solid #adadad;
+}
+
+/* activated Font Awesome icon and Bootstrap button
+(for EasyButton add ' active' to icon class property) */
+.fa.active, .btn.active, .btn.active:hover, .btn.active:focus {
+    /* use same color as leaflet-locatecontrol */
+    color: #2074B6;
+}
+
+.stats-label {
+    word-break: break-all;
+    font-weight: bold;
 }
 
 /* smaller tab height */
@@ -238,45 +195,24 @@ textarea:focus {
     padding: 2px 15px;
 }
 
-.alert {
-    margin-top: 3px;
-    margin-bottom: 0px;
-    padding-left: 35px;
-}
-.alert span.fa {
-    position: relative;
-    left: -23px;
-    margin-right: -1em;
-}
-
-/* activated Font Awesome icon (for EasyButton add ' active' to icon class property) */
-.fa.active {
-    /* use same color as leaflet-locatecontrol */
-    color: #2074B6;
-}
-
-.leaflet-bar .fa {
-    font-size: 16px;
-}
-
 /*
- * DataTables
- */
+* DataTables
+*/
 
 table.dataTable.mini thead th,
 table.dataTable.mini thead td {
-  padding: 3px 13px 3px 2px;
+    padding: 3px 13px 3px 2px;
 }
 
 table.dataTable.mini tbody th,
 table.dataTable.mini tbody td {
-  padding: 2px 2px;
-  white-space: nowrap;
+    padding: 2px 2px;
+    white-space: nowrap;
 }
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
 table.dataTable thead .sorting {
-  background-position: center right -3px;
+    background-position: center right -3px;
 }
 
 table.dataTable.hover tbody tr:hover,
@@ -285,53 +221,5 @@ table.dataTable.hover tbody tr.even:hover,
 table.dataTable.display tbody tr:hover,
 table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
-  background-color: rgba(255,255,0,0.2);
-}
-
-/*
- * opacity slider control (seiyria-bootstrap-slider)
- */
-
-.control-slider {
-  background: #fff;
-  border-radius: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.slider.slider-vertical {
-  height: 80px;
-}
-
-/* invert track and selection styles to get partial gradient for "selection" */
-.slider.slider-vertical .slider-track {
-  width: 8px;
-  margin-left: -4px;
-  background-image: linear-gradient(to right, #f0f0f0 0%, #e9e9e9 100%);
-  box-shadow: inset -1px -0px 1px rgba(55, 55, 55, 0.3), inset 1px 0px 1px rgba(230, 230, 230, 1);
-}
-
-.control-slider:hover .slider-track,
-.control-slider:active .slider-track {
-  background-image: linear-gradient(to bottom, magenta 0%, white 100%);
-}
-
-.slider-selection {
-  background-color: #C6C6C6;
-  background-image: none;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-.slider.slider-vertical .slider-tick,
-.slider.slider-vertical .slider-handle {
-  margin-left: -6px;
-  cursor: ns-resize;
-  box-sizing: border-box;
-  background: none;
-
-  /* bootstrap .btn-default */ 
-  background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
-  background-repeat: repeat-x;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
-  border: 1px solid #adadad;
+    background-color: rgba(255,255,0,0.2);
 }
