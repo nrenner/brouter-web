@@ -60,21 +60,24 @@ This is needed for pre-loading the selected profile (unless you allowed local fi
 
 ## Build
 
+### Dependencies
+
 Requires [Node and npm](http://nodejs.org/) (or [io.js](https://iojs.org)), [Bower](http://bower.io/) and [Gulp](http://gulpjs.com/):
 
     npm install -g bower
     npm install -g gulp
 
-Install:
+### Install
 
     npm install
     bower install
 
-Build:
+### Build
 
-    gulp
+    gulp #for release
+    gulp debug #for development
 
-Develop:
+### Develop
 
     gulp watch
 
