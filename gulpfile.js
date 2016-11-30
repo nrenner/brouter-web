@@ -12,12 +12,16 @@ var path = require('path');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
 var inject = require('gulp-inject');
+var gulpif = require('gulp-if');
+var gutil = require('gulp-util');
+
+var debug = false;
 
 var paths = {
   // see overrides in bower.json
   scriptsConfig: mainBowerFiles('**/url-search-params/**/*.js'),
   scripts: mainBowerFiles([
-    '**/*.js', 
+    '**/*.js',
     '!**/*.min.js',
     '!**/url-search-params/**/*.js'
   ]).concat([
@@ -43,10 +47,15 @@ gulp.task('scripts_config', ['clean'], function() {
 });
 
 gulp.task('scripts', function() {
+  if (debug)
+    gutil.log( gutil.colors.yellow('Running in Debug mode') );
+  else
+    gutil.log( gutil.colors.green('Running in Release mode') );
+
   return gulp.src(paths.scripts, { base: '.' })
     .pipe(sourcemaps.init())
-      .pipe(cached('scripts')) 
-      .pipe(uglify())
+      .pipe(cached('scripts'))
+      .pipe(gulpif(!debug, uglify()))
       .pipe(remember('scripts'))
       .pipe(concat(paths.destName + '.js'))
     .pipe(sourcemaps.write('.'))
@@ -93,16 +102,17 @@ gulp.task('fonts', ['clean'], function() {
 
 gulp.task('clean', function(cb) {
   del(paths.dest + '/**/*' , cb);
-}); 
+});
 
 gulp.task('watch', function() {
+  debug = true;
   var watcher = gulp.watch(paths.scripts, ['scripts']);
   watcher.on('change', function (event) {
     if (event.type === 'deleted') {
       delete cached.caches.scripts[event.path];
       remember.forget('scripts', event.path);
     }
-  });  
+  });
 });
 
 gulp.task('debug', function() {
@@ -125,3 +135,8 @@ gulp.task('inject', function () {
 });
 
 gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts']);
+
+gulp.task('debug', function() {
+  debug = true;
+  gulp.start('default');
+});
