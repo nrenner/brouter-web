@@ -113,6 +113,7 @@ gulp.task('watch', function() {
       remember.forget('scripts', event.path);
     }
   });
+  gulp.watch(paths.styles, ['styles']);
 });
 
 gulp.task('debug', function() {
