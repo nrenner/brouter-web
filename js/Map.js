@@ -42,6 +42,15 @@ BR.Map = {
             attribution: thunderforestAttribution
         });
 
+        var esri = L.tileLayer('https://{s}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            maxNativeZoom: 19,
+            maxZoom: maxZoom,
+            subdomains: ['server', 'services'],
+            attribution: '<a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a> '
+                + '&copy; <a target="_blank" href="http://www.esri.com/">Esri</a>, sources: '
+                + 'Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community'
+        });   
+
         var cycling = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           maxZoom: maxZoom,
@@ -73,7 +82,8 @@ BR.Map = {
             'OpenStreetMap.de': osmde,
             'OpenTopoMap': topo,
             'OpenCycleMap (Thunderf.)': cycle,
-            'Outdoors (Thunderforest)': outdoors
+            'Outdoors (Thunderforest)': outdoors,
+            'Esri World Imagery': esri
         };
         var overlays = {
              'Cycling (Waymarked Trails)': cycling,

@@ -1,6 +1,10 @@
 BRouter-Web Changelog
 =====================
 
+## 0.6.1 (2016-12-12)
+
+* Add Esri World Imagery layer (DigitalGlobe is now also blocked because monthly usage limit is exceeded)
+
 ## 0.6.0 (2016-10-11)
 
 See also [milestone 0.6.0](https://github.com/nrenner/brouter-web/milestone/1?closed=1), remaining issues moved to [milestone 0.7.0](https://github.com/nrenner/brouter-web/milestone/4)
