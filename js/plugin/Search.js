@@ -6,7 +6,7 @@ BR.Search = L.Control.Geocoder.extend({
         position: 'topleft'
     },
 
-		onAdd: function (map) {
+        onAdd: function (map) {
         map.attributionControl.addAttribution(
             'search by <a href="http://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
 
@@ -14,19 +14,19 @@ BR.Search = L.Control.Geocoder.extend({
     },
 
     markGeocode: function(result) {
-        this._map.fitBounds(result.bbox, {
+        this._map.fitBounds(result.geocode.bbox, {
             maxZoom: 17
         });
 
         this.clear();
-        this._geocodeMarker = new L.CircleMarker(result.center, {
+        this._geocodeMarker = new L.CircleMarker(result.geocode.center, {
             clickable: false,
             color: 'red',
             opacity: 1,
             weight: 3
         }).addTo(this._map);
 
-    	  return this;
+          return this;
     },
 
     clear: function() {

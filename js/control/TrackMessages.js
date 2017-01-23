@@ -1,7 +1,7 @@
 BR.TrackMessages = L.Class.extend({
 
     options: {
-        heading: 'Data',
+        heading: 'Segment data',
         edgeStyle: {
             color: 'yellow',
             opacity: 0.8,
@@ -60,7 +60,6 @@ BR.TrackMessages = L.Class.extend({
         headings = messages[0];
         columns = this._getColumns(headings, data);
 
-        console.time('datatable');
         this._table = $('#datatable').DataTable({
             destroy: true,
             data: data,
@@ -68,9 +67,6 @@ BR.TrackMessages = L.Class.extend({
             paging: false,
             searching: false,
             info: false,
-            // flexbox workaround: without scrollY height Firefox extends to content height
-            // (^= minimum height with flexbox?)
-            scrollY: 50,
             scrollX: true,
             scrollCollapse: true,
             order: []
@@ -79,8 +75,6 @@ BR.TrackMessages = L.Class.extend({
         // highlight track segment (graph edge) on row hover
         this._setEdges(polyline, segments);
         $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
-
-        console.timeEnd('datatable');
     },
 
     show: function() {
@@ -129,7 +123,7 @@ BR.TrackMessages = L.Class.extend({
     _getEmptyColumns: function(data) {
         var empty = new Array(data[0].length),
             i;
-    
+
         for (i = 0; i < empty.length; i++) {
             empty[i] = true;
         }
@@ -146,7 +140,7 @@ BR.TrackMessages = L.Class.extend({
     _getMessageLatLng: function(message) {
         var lon = message[0] / 1000000,
             lat = message[1] / 1000000;
-    
+
         return L.latLng(lat, lon);
     },
 

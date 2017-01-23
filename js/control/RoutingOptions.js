@@ -1,51 +1,62 @@
 BR.RoutingOptions = BR.Control.extend({
-    options: {
-        heading: 'Options',
-        divId: 'route_options'
-    },
 
     onAdd: function (map) {
-        var select = L.DomUtil.get('profile'),
-            i,
-            option;
-
-        select.onchange = this._getChangeHandler();
-        L.DomUtil.get('alternative').onchange = this._getChangeHandler();
+        $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
         // build option list from config
         var profiles = BR.conf.profiles;
-        for (i = 0; i < profiles.length; i++) {
-            option = document.createElement("option");
+        var profiles_list = L.DomUtil.get('profile');
+        for (var i = 0; i < profiles.length; i++) {
+            var option = document.createElement("option");
             option.value = profiles[i];
             option.text = profiles[i];
-            select.add(option, null);
+            profiles_list.appendChild(option);
         }
-        // <custom> option disabled, select next
-        select.options[1].selected = true;
-
+        // <custom> profile is empty at start, select next one
+        profiles_list.children[1].selected = true;
         return BR.Control.prototype.onAdd.call(this, map);
     },
 
     getOptions: function() {
+        var profile = $('#profile option:selected'),
+            alternative = $('#alternative option:selected');
+        $('#stat-profile').html(profile.text() + ' (' + alternative.text() +')');
+
+        // we do not allow to select more than one profile and/or alternative at a time
+        // so we disable the current selected items
+        $('#profile-alternative').find('option:disabled').each(function(index) {
+            $(this).prop('disabled', false);
+        });
+        $('#profile-alternative').find('option:selected').each(function(index) {
+            $(this).prop('disabled', true);
+        });
+
+        // disable custom option if it has no value yet (default value is "Custom")
+        var custom = L.DomUtil.get('profile').children[0];
+        if (custom.value === "Custom") {
+            custom.disabled = true;
+        }
+
+        $('.selectpicker').selectpicker('refresh')
+
         return {
-            profile: L.DomUtil.get('profile').value,
-            alternative: L.DomUtil.get('alternative').value
+            profile: profile.val(),
+            alternative: alternative.val()
         };
     },
 
     setOptions: function(options) {
-        var select,
+        var profiles_grp,
             profile = options.profile;
 
         if (profile) {
-            select = L.DomUtil.get('profile');
-            select.value = profile;
+            profiles_grp = L.DomUtil.get('profile');
+            profiles_grp.value = profile;
 
             // profile got not selected = not in option values -> custom profile passed with permalink
-            if (select.value != profile) {
+            if (profiles_grp.value != profile) {
                 this.setCustomProfile(profile, true);
             }
-
         }
         if (options.alternative) {
             L.DomUtil.get('alternative').value = options.alternative;
@@ -53,13 +64,18 @@ BR.RoutingOptions = BR.Control.extend({
     },
 
     setCustomProfile: function(profile, noUpdate) {
-        var select,
+        var profiles_grp,
             option;
 
-        select = L.DomUtil.get('profile');
-        option = select.options[0]
+        profiles_grp = L.DomUtil.get('profile');
+        option = profiles_grp.children[0]
         option.value = profile;
         option.disabled = !profile;
+
+        $('#profile').find('option:selected').each(function(index) {
+            $(this).prop('selected', false);
+        });
+
         option.selected = !!profile;
 
         if (!noUpdate) {
@@ -68,8 +84,8 @@ BR.RoutingOptions = BR.Control.extend({
     },
 
     getCustomProfile: function() {
-        var select = L.DomUtil.get('profile'),
-            option = select.options[0],
+        var profiles_grp = L.DomUtil.get('profile'),
+            option = profiles_grp.children[0],
             profile = null;
 
         if (!option.disabled) {

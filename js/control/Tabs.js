@@ -1,6 +1,6 @@
 BR.Tabs = BR.Control.extend({
     options: {
-        divId: 'tabs_div',
+        divId: 'sidebar',
         // tab a.hash > instance
         tabs: {}
     },

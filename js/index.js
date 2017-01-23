@@ -27,18 +27,13 @@
             deleteButton,
             drawToolbar,
             permalink,
-            leftPaneId = 'leftpane',
             saveWarningShown = false;
 
-        // left sidebar as additional control position
-        map._controlCorners[leftPaneId] = L.DomUtil.create('div', 'leaflet-' + leftPaneId, map._controlContainer);
-
-        document.getElementById('about_link').onclick = function() {
-            bootbox.alert({
-                title: 'About',
-                message: document.getElementById('about').innerHTML
-            });
-        };
+        // By default bootstrap-select use glyphicons
+        $('.selectpicker').selectpicker({
+            iconBase: 'fa',
+            tickIcon: 'fa-check'
+        });
 
         search = new BR.Search();
         map.addControl(search);
@@ -53,7 +48,7 @@
                     routing.draw(false);
                     control.state('activate-draw');
                 },
-                title: 'Stop drawing route'
+                title: 'Stop drawing route (ESC key)'
             }, {
                 stateName: 'activate-draw',
                 icon: 'fa-pencil',
@@ -61,7 +56,7 @@
                     routing.draw(true);
                     control.state('deactivate-draw');
                 },
-                title: 'Draw route'
+                title: 'Draw route (D key)'
             }]
         });
 
@@ -119,6 +114,7 @@
         }
         download = new BR.Download();
         elevation = new BR.Elevation();
+
         profile = new BR.Profile();
         profile.on('update', function(evt) {
             BR.message.hide();
@@ -207,23 +203,14 @@
             download.update(urls);
         };
 
-        if (!BR.conf.transit) {
-            map.addControl(new BR.Control({
-                 heading: '',
-                 divId: 'header'
-            }));
-        }
         routingOptions.addTo(map);
-        if (!BR.conf.transit) {
-            stats.addTo(map);
-        }
-        download.addTo(map);
-        elevation.addTo(map);
+
+        routing.addTo(map);
+        elevation.addBelow(map);
 
         tabs = new BR.Tabs({
             tabs: {
                 '#tab_itinerary': itinerary,
-                '#tab_profile': profile,
                 '#tab_data': trackMessages
             }
         });
@@ -232,8 +219,12 @@
         }
         map.addControl(tabs);
 
+        var sidebar = L.control.sidebar('sidebar', {
+            position: 'left'
+        });
+        map.addControl(sidebar);
+
         nogos.addTo(map);
-        routing.addTo(map);
         map.addControl(new BR.OpacitySlider({
             callback: L.bind(routing.setOpacity, routing)
         }));
@@ -253,6 +244,32 @@
             routing: routing,
             profile: profile
         }).addTo(map);
+
+        // FIXME permalink temporary hack
+        $('#permalink').on('click', function() {
+            $('#permalink-input').val($('.leaflet-control-permalink a')[0].href)
+        })
+        $('#permalink-input').on('click', function() {
+            $(this).select()
+        })
+
+        $(window).resize(function () {
+            elevation.addBelow(map);
+        });
+
+        $('#elevation-chart').on('show.bs.collapse', function () {
+            $('#elevation-btn').addClass('active');
+        });
+        $('#elevation-chart').on('hidden.bs.collapse', function () {
+            $('#elevation-btn').removeClass('active');
+            // we must fetch tiles that are located behind elevation-chart
+            map._onResize();
+        });
+
+        $('#sidebar-btn').on('click', function (event) {
+            sidebar.toggle();
+            $('#sidebar-btn').toggleClass('active');
+        });
     }
 
     mapContext = BR.Map.initMap();
