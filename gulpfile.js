@@ -4,7 +4,7 @@ var concatCss = require('gulp-concat-css');
 var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
-var debug = require('gulp-debug');
+var gulpDebug = require('gulp-debug');
 var mainBowerFiles = require('main-bower-files');
 var del = require('del');
 var tap = require('gulp-tap');
@@ -116,13 +116,15 @@ gulp.task('watch', function() {
   gulp.watch(paths.styles, ['styles']);
 });
 
-gulp.task('debug', function() {
+// Print paths to console, for manually debugging the gulp build
+// (comment out corresponding line of paths to print)
+gulp.task('log', function() {
   //return gulp.src(mainBowerFiles(['**/*.js', '!**/*.min.js']))
   //return gulp.src(mainBowerFiles('**/*.css'))
   return gulp.src(paths.scripts)
   //return gulp.src(paths.styles)
   //return gulp.src(paths.images)
-    .pipe(debug());
+    .pipe(gulpDebug());
 
   //return gulp.src(mainBowerFiles({debugging: true}));
 });
