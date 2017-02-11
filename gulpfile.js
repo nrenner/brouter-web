@@ -33,7 +33,7 @@ var paths = {
     'js/index.js'
   ]),
   styles: mainBowerFiles('**/*.css').concat('css/*.css'),
-  images: mainBowerFiles('**/*.+(png|gif)'),
+  images: mainBowerFiles('**/*.+(png|gif|svg)'),
   fonts: mainBowerFiles('**/font-awesome/fonts/*'),
   dest: 'dist',
   destName: 'brouter-web'

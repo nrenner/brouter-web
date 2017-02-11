@@ -7,12 +7,12 @@
     "bower_components"
   ],
   "dependencies": {
-    "leaflet": "^1.0.2",
-    "leaflet-plugins": "~2.0.0",
+    "leaflet": "^1.0.3",
+    "leaflet-plugins": "~3.0.0",
     "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
     "async": "~0.9.2",
     "d3": "~3.5.5",
-    "leaflet.draw": "~0.2.3",
+    "leaflet.draw": "~0.4.9",
     "bootstrap": "4.0.0-alpha.5",
     "DataTables": "~1.10.5",
     "leaflet.elevation": "MrMufflon/Leaflet.Elevation#master",
@@ -22,8 +22,8 @@
     "seiyria-bootstrap-slider": "~4.8.1",
     "url-search-params": "~0.5.0",
     "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
-    "leaflet.locatecontrol": "^0.52.0",
-    "font-awesome": "^4.6.3",
+    "leaflet.locatecontrol": "^0.60.0",
+    "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
     "leaflet-sidebar": "^0.1.9"
   },
@@ -55,7 +55,8 @@
       "main": [
         "dist/leaflet.draw-src.js",
         "dist/leaflet.draw.css",
-        "dist/images/*.png"
+        "dist/images/*.png",
+        "dist/images/*.svg"
       ],
       "dependencies": null
     },
@@ -98,9 +99,5 @@
         "fonts/*"
       ]
     }
-  },
-  "resolutions": {
-    "font-awesome": "^4.6.3",
-    "leaflet": "^1.0.2"
   }
 }
