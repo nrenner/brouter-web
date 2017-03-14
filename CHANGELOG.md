@@ -1,6 +1,10 @@
 BRouter-Web Changelog
 =====================
 
+## 0.6.2 (2017-03-14)
+
+* Fix "API Key Required" in OpenCycleMap & Outdoors by registering for Thunderforest "Hobby Project" plan
+
 ## 0.6.1 (2016-12-12)
 
 * Add Esri World Imagery layer (DigitalGlobe is now also blocked because monthly usage limit is exceeded)
