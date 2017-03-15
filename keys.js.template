@@ -7,7 +7,10 @@
         bing: '',
         
         // DigitalGlobe, https://developer.digitalglobe.com/maps-api/#plans
-        digitalGlobe: ''
+        digitalGlobe: '',
+
+        // Thunderforest, http://thunderforest.com/pricing/
+        thunderforest: ''
     };
 
 })();
