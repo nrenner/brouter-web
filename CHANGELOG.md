@@ -1,9 +1,13 @@
 BRouter-Web Changelog
 =====================
 
+## 0.6.3 (2017-03-16)
+
+* Fix data tab showing only two rows (regression from v0.6.2) ([#72](https://github.com/nrenner/brouter-web/issues/72))
+
 ## 0.6.2 (2017-03-14)
 
-* Fix "API Key Required" in OpenCycleMap & Outdoors by registering for Thunderforest "Hobby Project" plan
+* Fix "API Key Required" in OpenCycleMap & Outdoors by registering for Thunderforest "Hobby Project" plan ([#70](https://github.com/nrenner/brouter-web/issues/70))
 
 ## 0.6.1 (2016-12-12)
 

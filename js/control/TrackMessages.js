@@ -72,7 +72,6 @@ BR.TrackMessages = L.Class.extend({
             // (^= minimum height with flexbox?)
             scrollY: 50,
             scrollX: true,
-            scrollCollapse: true,
             order: []
         });
 
