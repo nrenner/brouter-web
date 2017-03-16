@@ -100,7 +100,7 @@ L.BRouter = L.Class.extend({
 
             try {
                 geojson = JSON.parse(xhr.responseText);
-                layer = L.geoJson(geojson).getLayers()[0];
+                layer = L.geoJSON(geojson).getLayers()[0];
 
                 return cb(null, layer);
             } catch(e) {
