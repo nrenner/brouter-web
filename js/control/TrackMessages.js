@@ -68,7 +68,6 @@ BR.TrackMessages = L.Class.extend({
             searching: false,
             info: false,
             scrollX: true,
-            scrollCollapse: true,
             order: []
         });
 

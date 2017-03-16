@@ -14,7 +14,7 @@
     "d3": "~3.5.5",
     "leaflet.draw": "~0.4.9",
     "bootstrap": "4.0.0-alpha.5",
-    "DataTables": "~1.10.5",
+    "DataTables": "~1.10.13",
     "leaflet.elevation": "MrMufflon/Leaflet.Elevation#master",
     "leaflet-control-geocoder": "1.5.3",
     "Leaflet.EasyButton": "*",
