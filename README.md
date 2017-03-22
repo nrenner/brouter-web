@@ -34,11 +34,21 @@ e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_1``
 
 ### Install BRouter-Web (client)
 
-1. download BRouter-Web as subdirectory ``brouter-web`` of the ``brouter`` directory
+1. download BRouter-Web as subdirectory ``brouter-web`` of the ``brouter`` directory  
+   * using the latest stable release - adjust to current version number - from
+     https://github.com/nrenner/brouter-web/releases:
+
+         wget https://github.com/nrenner/brouter-web/archive/0.6.3.zip
+         unzip 0.6.3.zip
+         mv brouter-web-0.6.3 brouter-web
+
+   * OR the current development state (potentially instable and without runtime distributables):
 
          wget https://github.com/nrenner/brouter-web/archive/master.zip
          unzip master.zip
          mv brouter-web-master brouter-web
+
+     * build the distributable files required for runtime (only for development state), see section [Build](#build)
 
 2. configure URL to ``profiles2`` directory  
 set ``BR.conf.profilesUrl`` in [config.js](config.js), e.g. uncomment:
