@@ -126,7 +126,8 @@ BR.Map = {
 
         return {
             map: map,
-            layersControl: layersControl
+            layersControl: layersControl,
+            layers: baseLayers
         };
     }
 

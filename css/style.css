@@ -88,11 +88,6 @@ footer {
     cursor: crosshair;
 }
 
-/* FIXME permalink temporary hack */
-.leaflet-control-permalink {
-    display: none;
-}
-
 #message {
     position: absolute;
     left: 446px; /* 400 + 10 + 26 + 10 */
