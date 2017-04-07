@@ -236,11 +236,7 @@
         profile.update(routingOptions.getOptions());
 
         urlHash = new L.Hash(map, mapLayers, function() {
-            var latLngs = routing.getWaypoints();
-            if (latLngs.length > 1) {
-               return router.getUrl(latLngs, null);
-            }
-            return null;
+           return router.getUrl(routing.getWaypoints(), null);
         });
         routingOptions.on('update', urlHash.updateHash, urlHash);
         nogos.on('update', urlHash.updateHash, urlHash);

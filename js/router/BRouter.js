@@ -79,7 +79,7 @@ L.BRouter = L.Class.extend({
         var urlParams = this.getUrlParams(latLngs, format);
 
         var args = []
-        if (urlParams.lonlats != null)
+        if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
         if (urlParams.nogos != null)
             args.push(L.Util.template('nogos={nogos}', urlParams));
