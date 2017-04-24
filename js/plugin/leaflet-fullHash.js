@@ -20,7 +20,7 @@
         if(hash.indexOf('#map=') === 0) {
             hash = hash.substr(5);
         }
-        var args = hash.split("&");
+        var args = hash.split("?");
         var mapsArgs = args[0].split("/");
         if (mapsArgs.length == 4) {
             var zoom = parseInt(mapsArgs[0], 10),
