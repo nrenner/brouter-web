@@ -263,10 +263,12 @@
             }
         };
 
-        urlHash = new L.Hash(map, mapLayers, function() {
+        urlHash = new BR.Hash(map, mapLayers);
+        urlHash.additionalCb = function() {
             var url = router.getUrl(routing.getWaypoints(), null);
             return "&" + url.substr('brouter?'.length + 1);
-        }, onHashChangeCb);
+        };
+        urlHash.onHashChangeCb = onHashChangeCb;
         routingOptions.on('update', urlHash.updateHash, urlHash);
         nogos.on('update', urlHash.updateHash, urlHash);
         // waypoint add, move, delete (but last)
