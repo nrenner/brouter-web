@@ -138,11 +138,13 @@
                 var options = this.options,
                     layer = parsed.layer in options ? parsed.layer : Object.keys(options)[0],
                     that = this;
+
+                //FIXME: removing/readding layers breaks Routing plugin
                 //Add/remove layer
-                this.map.eachLayer(function(layer) {
-                    that.map.removeLayer(layer);
-                });
-                that.map.addLayer(options[layer]);
+                // this.map.eachLayer(function(layer) {
+                //     that.map.removeLayer(layer);
+                // });
+                // that.map.addLayer(options[layer]);
 
                 this.isUpdatingHash = false;
             } else {
