@@ -23,7 +23,7 @@
             var zoom = parseInt(args[0], 10),
             lat = parseFloat(args[1]),
             lon = parseFloat(args[2]),
-            layer = args[3];
+            layer = decodeURIComponent(args[3]);
             additional = args[4];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
@@ -51,7 +51,7 @@
         for(var key in options) {
             if (options.hasOwnProperty(key)) {
                 if (map.hasLayer(options[key])) {
-                    layer = key;
+                    layer = encodeURIComponent(key);
                     break;
                 };
             };
