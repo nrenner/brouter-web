@@ -25,8 +25,7 @@
     "leaflet.locatecontrol": "^0.60.0",
     "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
-    "leaflet-sidebar": "^0.1.9",
-    "leaflet-fullHash": "KoGor/leaflet-fullHash#master"
+    "leaflet-sidebar": "^0.1.9"
   },
   "overrides": {
     "leaflet": {
@@ -97,9 +96,6 @@
         "css/font-awesome.css",
         "fonts/*"
       ]
-    },
-    "leaflet-fullHash": {
-      "main": "leaflet-fullHash.js"
     }
   }
 }
