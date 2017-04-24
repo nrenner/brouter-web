@@ -235,38 +235,21 @@
         router.setOptions(routingOptions.getOptions());
         profile.update(routingOptions.getOptions());
 
-        urlHash = new L.Hash(map, mapLayers, function() {
-           return router.getUrl(routing.getWaypoints(), null);
-        });
-        routingOptions.on('update', urlHash.updateHash, urlHash);
-        nogos.on('update', urlHash.updateHash, urlHash);
-        // waypoint add, move, delete (but last)
-        routing.on('routing:routeWaypointEnd', urlHash.updateHash, urlHash);
-        // delete last waypoint
-        routing.on('waypoint:click', function (evt) {
-            var r = evt.marker._routing;
-            if (!r.prevMarker && !r.nextMarker) {
-                urlHash.updateHash();
+        var onHashChangeCb = function(url) {
+            var url2params = function (s) {
+                var p = {};
+                var sep = '&';
+                if (s.search('&amp;') !== -1)
+                    sep = '&amp;';
+                var params = s.split(sep);
+                for (var i = 0; i < params.length; i++) {
+                    var tmp = params[i].split('=');
+                    if (tmp.length !== 2) continue;
+                    p[tmp[0]] = decodeURIComponent(tmp[1]);
+                }
+                return p;
             }
-        }, urlHash);
-
-        var url2params = function (s) {
-            var p = {};
-            var sep = '&';
-            if (s.search('&amp;') !== -1)
-                sep = '&amp;';
-            var params = s.split(sep);
-            for (var i = 0; i < params.length; i++) {
-                var tmp = params[i].split('=');
-                if (tmp.length !== 2) continue;
-                p[tmp[0]] = decodeURIComponent(tmp[1]);
-            }
-            return p;
-        }
-
-        urlHash.onHashChangeCb = function(url) {
             if (url == null) return;
-            url = url.substr('brouter?'.length);
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
             routingOptions.setOptions(opts);
@@ -280,6 +263,21 @@
             }
         };
 
+        urlHash = new L.Hash(map, mapLayers, function() {
+            var url = router.getUrl(routing.getWaypoints(), null);
+            return "&" + url.substr('brouter?'.length + 1);
+        }, onHashChangeCb);
+        routingOptions.on('update', urlHash.updateHash, urlHash);
+        nogos.on('update', urlHash.updateHash, urlHash);
+        // waypoint add, move, delete (but last)
+        routing.on('routing:routeWaypointEnd', urlHash.updateHash, urlHash);
+        // delete last waypoint
+        routing.on('waypoint:click', function (evt) {
+            var r = evt.marker._routing;
+            if (!r.prevMarker && !r.nextMarker) {
+                urlHash.updateHash();
+            }
+        }, urlHash);
 
         $(window).resize(function () {
             elevation.addBelow(map);

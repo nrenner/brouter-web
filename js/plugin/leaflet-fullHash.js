@@ -9,6 +9,7 @@
         this.onHashChange = L.Util.bind(this.onHashChange, this);
         this.additionalCb = additionalCb;
         this.onHashChangeCb = onHashChangeCb;
+        this.layers = layers;
         if (map) {
             this.init(map, layers);
         }
@@ -18,13 +19,14 @@
         if(hash.indexOf('#map=') === 0) {
             hash = hash.substr(5);
         }
-        var args = hash.split("/");
-        if (args.length >= 4) {
-            var zoom = parseInt(args[0], 10),
-            lat = parseFloat(args[1]),
-            lon = parseFloat(args[2]),
-            layer = decodeURIComponent(args[3]);
-            additional = args[4];
+        var args = hash.split("&");
+        var mapsArgs = args[0].split("/");
+        if (mapsArgs.length == 4) {
+            var zoom = parseInt(mapsArgs[0], 10),
+            lat = parseFloat(mapsArgs[1]),
+            lon = parseFloat(mapsArgs[2]),
+            layer = decodeURIComponent(mapsArgs[3]);
+            additional = args[1];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
             } else {
@@ -139,12 +141,16 @@
                     layer = parsed.layer in options ? parsed.layer : Object.keys(options)[0],
                     that = this;
 
-                //FIXME: removing/readding layers breaks Routing plugin
                 //Add/remove layer
-                // this.map.eachLayer(function(layer) {
-                //     that.map.removeLayer(layer);
-                // });
-                // that.map.addLayer(options[layer]);
+                this.map.eachLayer(function(layer) {
+                    for (alayer in that.layers) {
+                        if (that.layers[alayer] == layer) {
+                            that.map.removeLayer(layer);
+                            break;
+                        }
+                    }
+                });
+                that.map.addLayer(options[layer]);
 
                 this.isUpdatingHash = false;
             } else {
