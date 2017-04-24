@@ -5,10 +5,11 @@
             (doc_mode === undefined || doc_mode > 7);
     })();
 
-    L.Hash = function(map, layers, additionalCb, onHashChangeCb) {
+    L.Hash = function(map, layers, additionalCb, onHashChangeCb, onInvalidHashChangeCb) {
         this.onHashChange = L.Util.bind(this.onHashChange, this);
         this.additionalCb = additionalCb;
         this.onHashChangeCb = onHashChangeCb;
+        this.onInvalidHashChangeCb = onInvalidHashChangeCb;
         this.layers = layers;
         if (map) {
             this.init(map, layers);
@@ -127,6 +128,16 @@
                 return;
             }
             var parsed = this.parseHash(hash);
+            if (!parsed) {
+                // migration from old hash style to new one
+                if (this.onInvalidHashChangeCb != null) {
+                    var newHash = this.onInvalidHashChangeCb(hash);
+                    if (newHash != null && newHash != hash) {
+                        parsed = this.parseHash(newHash);
+                    }
+                }
+            }
+
             if (parsed) {
                 this.isUpdatingHash = true;
 

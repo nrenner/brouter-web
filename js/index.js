@@ -263,10 +263,18 @@
             }
         };
 
+        var onInvalidHashChangeCb = function(params) {
+            params = params.replace('zoom=', 'map=');
+            params = params.replace('&lat=', '/');
+            params = params.replace('&lon=', '/');
+            params = params.replace('&layer=', '/');
+            return params;
+        };
+
         urlHash = new L.Hash(map, mapLayers, function() {
             var url = router.getUrl(routing.getWaypoints(), null);
             return "&" + url.substr('brouter?'.length + 1);
-        }, onHashChangeCb);
+        }, onHashChangeCb, onInvalidHashChangeCb);
         routingOptions.on('update', urlHash.updateHash, urlHash);
         nogos.on('update', urlHash.updateHash, urlHash);
         // waypoint add, move, delete (but last)
