@@ -25,7 +25,7 @@
             var zoom = parseInt(mapsArgs[0], 10),
             lat = parseFloat(mapsArgs[1]),
             lon = parseFloat(mapsArgs[2]),
-            layer = decodeURIComponent(mapsArgs[3]);
+            layers = decodeURIComponent(mapsArgs[3]).split('-');
             additional = args[1];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
@@ -33,7 +33,7 @@
                 return {
                     center: new L.LatLng(lat, lon),
                     zoom: zoom,
-                    layer: layer,
+                    layers: layers,
                     additional: additional
                 };
             }
@@ -46,15 +46,14 @@
         var center = map.getCenter(),
             zoom = map.getZoom(),
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
-            layer = null;
+            layers = [];
 
         var options = this.options;
         //Check active layer
         for(var key in options) {
             if (options.hasOwnProperty(key)) {
                 if (map.hasLayer(options[key])) {
-                    layer = encodeURIComponent(key);
-                    break;
+                    layers.push(key);
                 };
             };
         };
@@ -62,7 +61,7 @@
             zoom,
             center.lat.toFixed(precision),
             center.lng.toFixed(precision),
-            layer
+            encodeURIComponent(layers.join("-"))
         ];
         url = "#map=" + params.join("/");
         if (this.additionalCb != null) {
@@ -138,9 +137,8 @@
                 }
 
                 var options = this.options,
-                    layer = parsed.layer in options ? parsed.layer : Object.keys(options)[0],
+                    layers = parsed.layers.length > 0 ? parsed.layers : [Object.keys(options)[0]],
                     that = this;
-
                 //Add/remove layer
                 this.map.eachLayer(function(layer) {
                     for (alayer in that.layers) {
@@ -150,7 +148,9 @@
                         }
                     }
                 });
-                that.map.addLayer(options[layer]);
+                layers.forEach(function(element, index, array) {
+                    that.map.addLayer(options[element]);
+                });
 
                 this.isUpdatingHash = false;
             } else {
