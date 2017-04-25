@@ -5,6 +5,7 @@ BR.Profile = L.Class.extend({
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
         this.ele = L.DomUtil.get('profile_upload');
+        autosize(this.ele);
         this.message = new BR.Message('profile_message', {
             alert: true
         });
@@ -15,7 +16,8 @@ BR.Profile = L.Class.extend({
 
         evt.preventDefault();
         this.ele.value = null;
-        this.ele.defaultValue = this.ele.value;
+        this.ele.defaultValue = null;
+        autosize.update(this.ele);
 
         this.fire('clear');
         button.blur();
@@ -43,11 +45,13 @@ BR.Profile = L.Class.extend({
                     if (!this.profileName || this.profileName === profileName) {
                         ele.value = profileText;
                         ele.defaultValue = ele.value;
+                        autosize.update(this.ele);
                     }
                 }, this));
             } else {
                 ele.value = this.cache[profileName];
                 ele.defaultValue = ele.value;
+                autosize.update(this.ele);
             }
         }
     },
