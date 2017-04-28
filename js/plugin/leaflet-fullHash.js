@@ -5,14 +5,11 @@
             (doc_mode === undefined || doc_mode > 7);
     })();
 
-    L.Hash = function(map, layers, additionalCb, onHashChangeCb, onInvalidHashChangeCb) {
+    L.Hash = function(map, options) {
         this.onHashChange = L.Util.bind(this.onHashChange, this);
-        this.additionalCb = additionalCb;
-        this.onHashChangeCb = onHashChangeCb;
-        this.onInvalidHashChangeCb = onInvalidHashChangeCb;
-        this.layers = layers;
+
         if (map) {
-            this.init(map, layers);
+            this.init(map, options);
         }
     };
 
@@ -49,8 +46,9 @@
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
             layers = [];
 
+        //console.log(this.options);
         var options = this.options;
-        //Check active layer
+        //Check active layers
         for(var key in options) {
             if (options.hasOwnProperty(key)) {
                 if (map.hasLayer(options[key])) {
@@ -106,11 +104,11 @@
             this.map = null;
         },
 
-        updateHash: function() {
+        onMapMove: function() {
             // bail if we're moving the map (updating from a hash),
             // or if the map is not yet loaded
 
-            if (this.isUpdatingHash || !this.map._loaded) {
+            if (this.movingMap || !this.map._loaded) {
                 return false;
             }
 
@@ -121,7 +119,7 @@
             }
         },
 
-        isUpdatingHash: false,
+        movingMap: false,
         update: function() {
             var hash = location.hash;
             if (hash === this.lastHash) {
@@ -139,16 +137,11 @@
             }
 
             if (parsed) {
-                this.isUpdatingHash = true;
+                this.movingMap = true;
 
                 this.map.setView(parsed.center, parsed.zoom);
-
-                if (this.onHashChangeCb != null) {
-                    this.onHashChangeCb(parsed.additional);
-                }
-
-                var options = this.options,
-                    layers = parsed.layers.length > 0 ? parsed.layers : [Object.keys(options)[0]],
+                var layers = parsed.layers.length > 0 ? parsed.layers : [Object.keys(options)[0]],
+                    options = this.options,
                     that = this;
                 //Add/remove layer
                 this.map.eachLayer(function(layer) {
@@ -165,9 +158,13 @@
                     }
                 });
 
-                this.isUpdatingHash = false;
+                if (this.onHashChangeCb != null) {
+                    this.onHashChangeCb(parsed.additional);
+                }
+
+                this.movingMap = false;
             } else {
-                this.updateHash(this.map);
+                this.onMapMove(this.map);
             }
         },
 
@@ -189,7 +186,7 @@
         isListening: false,
         hashChangeInterval: null,
         startListening: function() {
-            this.map.on("moveend layeradd layerremove", this.updateHash, this);
+            this.map.on("moveend layeradd layerremove", this.onMapMove, this);
 
             if (HAS_HASHCHANGE) {
                 L.DomEvent.addListener(window, "hashchange", this.onHashChange);
@@ -201,7 +198,7 @@
         },
 
         stopListening: function() {
-            this.map.off("moveend layeradd layerremove", this.updateHash, this);
+            this.map.off("moveend layeradd layerremove", this.onMapMove, this);
 
             if (HAS_HASHCHANGE) {
                 L.DomEvent.removeListener(window, "hashchange", this.onHashChange);
