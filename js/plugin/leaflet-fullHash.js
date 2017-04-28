@@ -20,7 +20,7 @@
         if(hash.indexOf('#map=') === 0) {
             hash = hash.substr(5);
         }
-        var args = hash.split("?");
+        var args = hash.split(/\&(.+)/);
         var mapsArgs = args[0].split("/");
         if (mapsArgs.length == 4) {
             var zoom = parseInt(mapsArgs[0], 10),
@@ -160,7 +160,9 @@
                     }
                 });
                 layers.forEach(function(element, index, array) {
-                    that.map.addLayer(options[element]);
+                    if (element in options) {
+                        that.map.addLayer(options[element]);
+                    }
                 });
 
                 this.isUpdatingHash = false;
