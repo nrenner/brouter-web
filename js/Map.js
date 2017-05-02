@@ -120,6 +120,8 @@ BR.Map = {
 
         L.control.scale().addTo(map);
 
+        new BR.Layers().init(map, layersControl, baseLayers, overlays);
+
         // expose map instance for console debugging
         BR.debug = BR.debug || {};
         BR.debug.map = map;

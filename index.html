@@ -141,6 +141,23 @@
         </div>
     </div>
 
+    <!-- Layers modal window -->
+    <div class="modal fade" id="custom_layers" tabindex="-1" role="dialog" aria-labelledby="Layers window" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+                    <h4 class="modal-title">Customize layers</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" placeholder="Custom layer name. (ex: OpenStreetMap)"></input>
+                    <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"></input>
+
+                    <button type="button" id="custom_layers_add_base" class="btn btn-success">Add base layer</button>
+                    <button type="button" id="custom_layers_add_overlay" class="btn btn-success">Add overlay</button>
+                    <button type="button" id="custom_layers_remove" class="btn btn-danger">Remove selection</button>
+                    <table id="custom_layers_table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- About modal window -->
     <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="About window" aria-hidden="true">
