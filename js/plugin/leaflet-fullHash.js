@@ -23,7 +23,7 @@
             var zoom = parseInt(mapsArgs[0], 10),
             lat = parseFloat(mapsArgs[1]),
             lon = parseFloat(mapsArgs[2]),
-            layers = decodeURIComponent(mapsArgs[3]).split('-');
+            layers = decodeURIComponent(mapsArgs[3]).split('-'),
             additional = args[1];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
@@ -56,6 +56,9 @@
                 };
             };
         };
+        if (layers.length == 0) {
+            layers.push(Object.keys(options)[0]);
+        }
         var params = [
             zoom,
             center.lat.toFixed(precision),
@@ -140,7 +143,7 @@
                 this.movingMap = true;
 
                 this.map.setView(parsed.center, parsed.zoom);
-                var layers = parsed.layers.length > 0 ? parsed.layers : [Object.keys(options)[0]],
+                var layers = parsed.layers,
                     options = this.options,
                     that = this;
                 //Add/remove layer
@@ -152,11 +155,17 @@
                         }
                     }
                 });
+                var added = false;
                 layers.forEach(function(element, index, array) {
                     if (element in options) {
+                        added = true;
                         that.map.addLayer(options[element]);
                     }
                 });
+                if (!added) {
+                    // if we couldn't add layers (custom ones or invalid name), add the default one
+                    this.map.addLayer(options[Object.keys(options)[0]]);
+                }
 
                 if (this.onHashChangeCb != null) {
                     this.onHashChangeCb(parsed.additional);

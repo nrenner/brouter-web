@@ -271,7 +271,8 @@
             return params;
         };
 
-        urlHash = new L.Hash(map, mapLayers);
+        // do not initialize immediately
+        urlHash = new L.Hash(null, null);
         urlHash.additionalCb = function() {
                 var url = router.getUrl(routing.getWaypoints(), null);
                 return '&' + url.substr('brouter?'.length+1);
@@ -279,6 +280,8 @@
         urlHash.onHashChangeCb = onHashChangeCb;
         urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
         urlHash.layers = mapLayers;
+        urlHash.map = map;
+        urlHash.init(map, mapLayers);
 
         routingOptions.on('update', urlHash.onMapMove, urlHash);
         nogos.on('update', urlHash.onMapMove, urlHash);
