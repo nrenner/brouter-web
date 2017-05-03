@@ -3,7 +3,7 @@ brouter-web
 
 Web client (by [@nrenner](https://github.com/nrenner)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)). *Work in progress*.
 
-**New web client available mobile-ready to test on [brouter.damsy.net](brouter.damsy.net]).
+**New web client available mobile-ready to test on [brouter.damsy.net](http://brouter.damsy.net).
 Feedbacks are appreciated, do not hesitate to create issues about it!**
 
 BRouter online service (provided by [@abrensch](https://github.com/abrensch)):  
