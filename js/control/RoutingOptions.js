@@ -17,9 +17,10 @@ BR.RoutingOptions = BR.Control.extend({
         return BR.Control.prototype.onAdd.call(this, map);
     },
 
-    getOptions: function() {
+    refreshUI: function() {
         var profile = $('#profile option:selected'),
             alternative = $('#alternative option:selected');
+
         $('#stat-profile').html(profile.text() + ' (' + alternative.text() +')');
 
         // we do not allow to select more than one profile and/or alternative at a time
@@ -36,8 +37,13 @@ BR.RoutingOptions = BR.Control.extend({
         if (custom.value === "Custom") {
             custom.disabled = true;
         }
-
         $('.selectpicker').selectpicker('refresh')
+    },
+
+    getOptions: function() {
+        var profile = $('#profile option:selected'),
+            alternative = $('#alternative option:selected');
+        this.refreshUI();
 
         return {
             profile: profile.val(),
@@ -46,20 +52,18 @@ BR.RoutingOptions = BR.Control.extend({
     },
 
     setOptions: function(options) {
-        var profiles_grp,
-            profile = options.profile;
+        var values = [
+            options.profile ? options.profile : $('#profile option:selected').val(),
+            options.alternative ? options.alternative : $('#alternative option:selected').val()
+        ];
+        $('.selectpicker').selectpicker('val', values);
+        this.refreshUI();
 
-        if (profile) {
-            profiles_grp = L.DomUtil.get('profile');
-            profiles_grp.value = profile;
-
+        if (options.profile) {
             // profile got not selected = not in option values -> custom profile passed with permalink
-            if (profiles_grp.value != profile) {
-                this.setCustomProfile(profile, true);
+            if (L.DomUtil.get('profile').value != options.profile) {
+                this.setCustomProfile(options.profile, true);
             }
-        }
-        if (options.alternative) {
-            L.DomUtil.get('alternative').value = options.alternative;
         }
     },
 

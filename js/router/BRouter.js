@@ -47,13 +47,17 @@ L.BRouter = L.Class.extend({
         if (this.options.profile != null)
             params.profile = this.options.profile;
 
-        // do not put alternative in URL if it has its default value,
-        // but always set it if we want to generate route because Brouter API requires it.
-        if (this.options.alternative != 0 || format != null)
-            params.alternativeidx = this.options.alternative;
+        params.alternativeidx = this.options.alternative;
 
-        if (format != null)
+        if (format != null) {
             params.format = format;
+        } else {
+            // do not put values in URL if this is the default value (format===null)
+            if (params.profile === BR.conf.profiles[0])
+                delete params.profile;
+            if (params.alternativeidx == 0)
+                delete params.alternativeidx;
+        }
 
         return params;
     },

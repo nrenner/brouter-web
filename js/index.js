@@ -274,8 +274,8 @@
         // do not initialize immediately
         urlHash = new L.Hash(null, null);
         urlHash.additionalCb = function() {
-                var url = router.getUrl(routing.getWaypoints(), null);
-                return '&' + url.substr('brouter?'.length+1);
+                var url = router.getUrl(routing.getWaypoints(), null).substr('brouter?'.length+1);
+                return url.length > 0 ? '&' + url : null;
             };
         urlHash.onHashChangeCb = onHashChangeCb;
         urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
