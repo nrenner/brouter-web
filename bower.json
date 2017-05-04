@@ -37,8 +37,6 @@
     },
     "leaflet-plugins": {
       "main": [
-        "control/Permalink.js",
-        "control/Permalink.Layer.js",
         "layer/tile/Bing.js"
       ]
     },

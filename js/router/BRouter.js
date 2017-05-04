@@ -2,18 +2,16 @@ L.BRouter = L.Class.extend({
     statics: {
         // NOTE: the routing API used here is not public!
         // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
-        URL_TEMPLATE: BR.conf.host + '/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+        URL_TEMPLATE: '/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
         GROUP_SEPARATOR: '|',
         ABORTED_ERROR: 'aborted'
     },
-    
+
     options: {
     },
-
-    format: 'geojson',
 
     initialize: function (options) {
         L.setOptions(this, options);
@@ -38,13 +36,30 @@ L.BRouter = L.Class.extend({
     },
 
     getUrlParams: function(latLngs, format) {
-        return {
-            lonlats: this._getLonLatsString(latLngs),
-            nogos: this._getNogosString(this.options.nogos),
-            profile: this.options.profile,
-            alternativeidx: this.options.alternative,
-            format: format || this.format
-        };
+        params = {};
+
+        if (this._getLonLatsString(latLngs) != null)
+            params.lonlats = this._getLonLatsString(latLngs);
+
+        if (this._getNogosString(this.options.nogos).length > 0)
+            params.nogos = this._getNogosString(this.options.nogos);
+
+        if (this.options.profile != null)
+            params.profile = this.options.profile;
+
+        params.alternativeidx = this.options.alternative;
+
+        if (format != null) {
+            params.format = format;
+        } else {
+            // do not put values in URL if this is the default value (format===null)
+            if (params.profile === BR.conf.profiles[0])
+                delete params.profile;
+            if (params.alternativeidx == 0)
+                delete params.alternativeidx;
+        }
+
+        return params;
     },
 
     parseUrlParams: function(params) {
@@ -66,12 +81,26 @@ L.BRouter = L.Class.extend({
 
     getUrl: function(latLngs, format) {
         var urlParams = this.getUrlParams(latLngs, format);
-        var url = L.Util.template(L.BRouter.URL_TEMPLATE, urlParams);
-        return url;
+
+        var args = []
+        if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
+            args.push(L.Util.template('lonlats={lonlats}', urlParams));
+        if (urlParams.nogos != null)
+            args.push(L.Util.template('nogos={nogos}', urlParams));
+        if (urlParams.profile != null)
+            args.push(L.Util.template('profile={profile}', urlParams));
+        if (urlParams.alternativeidx != null)
+            args.push(L.Util.template('alternativeidx={alternativeidx}', urlParams));
+        if (urlParams.format != null)
+            args.push(L.Util.template('format={format}', urlParams));
+
+        var prepend_host = (format != null);
+
+        return (prepend_host ? BR.conf.host : '') + '/brouter?' + args.join('&');
     },
 
     getRoute: function(latLngs, cb) {
-        var url = this.getUrl(latLngs),
+        var url = this.getUrl(latLngs, 'geojson'),
             xhr = new XMLHttpRequest();
 
         if (!url) {
@@ -199,14 +228,14 @@ L.BRouter = L.Class.extend({
         if (!s) {
             return nogos;
         }
-        
+
         groups = s.split(L.BRouter.GROUP_SEPARATOR);
         for (var i = 0; i < groups.length; i++) {
             // lng,lat,radius
             numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
             // TODO refactor: pass simple obj, create circle in NogoAreas; use shapeOptions of instance
             // [lat,lng],radius
-            nogos.push(L.circle([numbers[1], numbers[0]], numbers[2], L.Draw.Circle.prototype.options.shapeOptions));
+            nogos.push(L.circle([numbers[1], numbers[0]], {radius: numbers[2]}));
         }
 
         return nogos;
