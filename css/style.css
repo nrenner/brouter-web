@@ -2,6 +2,14 @@ html, body, #map {
     height: 100%;
 }
 
+/* This is important so that bootstrap-select list goes over leaflet buttons
+Since the list is in navbar and leaflet buttons within map, we create a
+stacking context on their common ancestor */
+body, #content {
+    position: relative;
+    z-index: 1;
+}
+
 .flexcolumn {
     display: -webkit-box;
     display: -moz-box;
