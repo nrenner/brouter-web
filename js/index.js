@@ -223,6 +223,7 @@
         var sidebar = L.control.sidebar('sidebar', {
             position: 'left'
         });
+        sidebar.id = 'sidebar-control'; //required for persistence in local storage
         map.addControl(sidebar);
 
         nogos.addTo(map);
@@ -308,10 +309,34 @@
             map._onResize();
         });
 
-        $('#sidebar-btn').on('click', function (event) {
+        var onHide = function() {
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage[this.id] = 'true';
+            }
+        };
+        var onShow = function() {
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage.removeItem(this.id);
+            }
+        };
+        var toggleSidebar = function (event) {
             sidebar.toggle();
             $('#sidebar-btn').toggleClass('active');
-        });
+        };
+        $('#sidebar-btn').on('click', toggleSidebar);
+        sidebar.on('shown', onShow);
+        sidebar.on('hidden', onHide);
+        // on page load, we want to restore collapsible elements from previous usage
+        $('.collapse').on('hidden.bs.collapse', onHide)
+                      .on('shown.bs.collapse', onShow)
+                      .each(function() {
+                            if (!(this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true' )) {
+                                $(this).collapse('hide');
+                            }
+                      });
+        if (BR.Util.localStorageAvailable() && localStorage[sidebar.id] !== 'true') {
+            toggleSidebar();
+        }
     }
 
     mapContext = BR.Map.initMap();
