@@ -101,7 +101,7 @@ footer {
     left: 446px; /* 400 + 10 + 26 + 10 */
     top: 0px;
     margin-top: 10px;
-    z-index: 1000;
+    z-index: 3000;
 }
 
 /* track messages (data tab) */
