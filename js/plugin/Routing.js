@@ -152,7 +152,7 @@ BR.Routing = L.Routing.extend({
     // transparent than with a single layer and the slider is non-linear. The
     // inverted formula is used to get the same result as with a single layer.
     // SVG simple alpha compositing: Ca' = 1 - (1 - Ea) * (1 - Ca)
-    // http://www.w3.org/TR/SVG11/masking.html#SimpleAlphaBlending
+    // https://www.w3.org/TR/SVG11/masking.html#SimpleAlphaBlending
     var sourceOpacity = 1 - Math.sqrt(1 - opacity);
 
     this.options.styles.track.opacity = sourceOpacity;

@@ -110,7 +110,7 @@ footer {
 }
 
 /* dashed line animation, derived from Chris Coyier and others
-http://css-tricks.com/svg-line-animation-works/
+https://css-tricks.com/svg-line-animation-works/
 */
 .loading-trailer {
     -webkit-animation: dash 0.4s linear infinite;
