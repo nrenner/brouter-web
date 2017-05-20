@@ -8,7 +8,7 @@ BR.Search = L.Control.Geocoder.extend({
 
     onAdd: function (map) {
         map.attributionControl.addAttribution(
-            'search by <a href="http://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
+            'search by <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
 
         return L.Control.Geocoder.prototype.onAdd.call(this, map);
     },

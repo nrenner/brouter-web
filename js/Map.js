@@ -8,28 +8,28 @@ BR.Map = {
 
         var maxZoom = 19;
 
-        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: maxZoom
         });
 
-        var osmde = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        var osmde = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
             maxNativeZoom: 18,
             maxZoom: maxZoom
         });
 
-        var topo = L.tileLayer('http://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxNativeZoom: 17,
             maxZoom: maxZoom
         });
 
-        var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a> '
-            + '(<a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)';
+        var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="https://www.thunderforest.com">Thunderforest</a> '
+            + '(<a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)';
         var thunderforestAuth = BR.keys.thunderforest ? '?apikey=' + BR.keys.thunderforest : '';
-        var cycle = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + thunderforestAuth, {
+        var cycle = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + thunderforestAuth, {
             maxNativeZoom: 18,
             maxZoom: maxZoom
         });
-        var outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' + thunderforestAuth, {
+        var outdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' + thunderforestAuth, {
             maxNativeZoom: 18,
             maxZoom: maxZoom
         });
@@ -39,16 +39,16 @@ BR.Map = {
             maxZoom: maxZoom,
             subdomains: ['server', 'services'],
             attribution: '<a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a> '
-                + '&copy; <a target="_blank" href="http://www.esri.com/">Esri</a>, sources: '
+                + '&copy; <a target="_blank" href="https://www.esri.com/">Esri</a>, sources: '
                 + 'Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community'
         });
 
-        var cycling = L.tileLayer('http://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
+        var cycling = L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
           maxZoom: maxZoom
         });
-        var hiking = L.tileLayer('http://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
+        var hiking = L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
           maxZoom: maxZoom
@@ -86,7 +86,7 @@ BR.Map = {
                 minZoom: 1,
                 maxZoom: 19,
                 attribution: '&copy; <a href="https://www.digitalglobe.com/platforms/mapsapi">DigitalGlobe</a> ('
-                           + '<a href="http://bit.ly/mapsapiview">Terms of Use</a>)'
+                           + '<a href="https://bit.ly/mapsapiview">Terms of Use</a>)'
             });
             baseLayers['DigitalGlobe Recent Imagery'] = recent;
         }
