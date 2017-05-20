@@ -1,6 +1,6 @@
 {
   "name": "brouter-web",
-  "version": "0.5.0",
+  "version": "0.6.3",
   "main": "dist/**/*",
   "ignore": [
     "**/.*",
@@ -38,8 +38,6 @@
     },
     "leaflet-plugins": {
       "main": [
-        "control/Permalink.js",
-        "control/Permalink.Layer.js",
         "layer/tile/Bing.js"
       ]
     },

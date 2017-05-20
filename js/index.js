@@ -11,6 +11,7 @@
     function initApp(mapContext) {
         var map = mapContext.map,
             layersControl = mapContext.layersControl,
+            mapLayers = mapContext.layers,
             search,
             router,
             routing,
@@ -26,7 +27,7 @@
             drawButton,
             deleteButton,
             drawToolbar,
-            permalink,
+            urlHash,
             saveWarningShown = false;
 
         // By default bootstrap-select use glyphicons
@@ -70,7 +71,7 @@
                         if (result) {
                             routing.clear();
                             onUpdate();
-                            permalink._update_routing();
+                            urlHash.onMapMove();
                         }
                     }
                 });
@@ -222,6 +223,7 @@
         var sidebar = L.control.sidebar('sidebar', {
             position: 'left'
         });
+        sidebar.id = 'sidebar-control'; //required for persistence in local storage
         map.addControl(sidebar);
 
         nogos.addTo(map);
@@ -229,29 +231,70 @@
             callback: L.bind(routing.setOpacity, routing)
         }));
 
-        // initial option settings (after controls are added and initialized with onAdd, before permalink)
+        // initial option settings (after controls are added and initialized with onAdd)
         router.setOptions(nogos.getOptions());
         router.setOptions(routingOptions.getOptions());
         profile.update(routingOptions.getOptions());
 
-        permalink = new L.Control.Permalink({
-            text: 'Permalink',
-            position: 'bottomright',
-            layers: layersControl,
-            routingOptions: routingOptions,
-            nogos: nogos,
-            router: router,
-            routing: routing,
-            profile: profile
-        }).addTo(map);
+        var onHashChangeCb = function(url) {
+            var url2params = function (s) {
+                var p = {};
+                var sep = '&';
+                if (s.search('&amp;') !== -1)
+                    sep = '&amp;';
+                var params = s.split(sep);
+                for (var i = 0; i < params.length; i++) {
+                    var tmp = params[i].split('=');
+                    if (tmp.length !== 2) continue;
+                    p[tmp[0]] = decodeURIComponent(tmp[1]);
+                }
+                return p;
+            }
+            if (url == null) return;
+            var opts = router.parseUrlParams(url2params(url));
+            router.setOptions(opts);
+            routingOptions.setOptions(opts);
+            nogos.setOptions(opts);
+            profile.update(opts);
 
-        // FIXME permalink temporary hack
-        $('#permalink').on('click', function() {
-            $('#permalink-input').val($('.leaflet-control-permalink a')[0].href)
-        })
-        $('#permalink-input').on('click', function() {
-            $(this).select()
-        })
+            if (opts.lonlats) {
+                routing.draw(false);
+                routing.clear();
+                routing.setWaypoints(opts.lonlats);
+            }
+        };
+
+        var onInvalidHashChangeCb = function(params) {
+            params = params.replace('zoom=', 'map=');
+            params = params.replace('&lat=', '/');
+            params = params.replace('&lon=', '/');
+            params = params.replace('&layer=', '/');
+            return params;
+        };
+
+        // do not initialize immediately
+        urlHash = new L.Hash(null, null);
+        urlHash.additionalCb = function() {
+                var url = router.getUrl(routing.getWaypoints(), null).substr('brouter?'.length+1);
+                return url.length > 0 ? '&' + url : null;
+            };
+        urlHash.onHashChangeCb = onHashChangeCb;
+        urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
+        urlHash.layers = mapLayers;
+        urlHash.map = map;
+        urlHash.init(map, mapLayers);
+
+        routingOptions.on('update', urlHash.onMapMove, urlHash);
+        nogos.on('update', urlHash.onMapMove, urlHash);
+        // waypoint add, move, delete (but last)
+        routing.on('routing:routeWaypointEnd', urlHash.onMapMove, urlHash);
+        // delete last waypoint
+        routing.on('waypoint:click', function (evt) {
+            var r = evt.marker._routing;
+            if (!r.prevMarker && !r.nextMarker) {
+                urlHash.onMapMove();
+            }
+        }, urlHash);
 
         $(window).resize(function () {
             elevation.addBelow(map);
@@ -266,10 +309,34 @@
             map._onResize();
         });
 
-        $('#sidebar-btn').on('click', function (event) {
+        var onHide = function() {
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage[this.id] = 'true';
+            }
+        };
+        var onShow = function() {
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage.removeItem(this.id);
+            }
+        };
+        var toggleSidebar = function (event) {
             sidebar.toggle();
             $('#sidebar-btn').toggleClass('active');
-        });
+        };
+        $('#sidebar-btn').on('click', toggleSidebar);
+        sidebar.on('shown', onShow);
+        sidebar.on('hidden', onHide);
+        // on page load, we want to restore collapsible elements from previous usage
+        $('.collapse').on('hidden.bs.collapse', onHide)
+                      .on('shown.bs.collapse', onShow)
+                      .each(function() {
+                            if (!(this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true' )) {
+                                $(this).collapse('hide');
+                            }
+                      });
+        if (BR.Util.localStorageAvailable() && localStorage[sidebar.id] !== 'true') {
+            toggleSidebar();
+        }
     }
 
     mapContext = BR.Map.initMap();

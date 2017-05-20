@@ -2,6 +2,14 @@ html, body, #map {
     height: 100%;
 }
 
+/* This is important so that bootstrap-select list goes over leaflet buttons
+Since the list is in navbar and leaflet buttons within map, we create a
+stacking context on their common ancestor */
+body, #content {
+    position: relative;
+    z-index: 1;
+}
+
 .flexcolumn {
     display: -webkit-box;
     display: -moz-box;
@@ -88,17 +96,12 @@ footer {
     cursor: crosshair;
 }
 
-/* FIXME permalink temporary hack */
-.leaflet-control-permalink {
-    display: none;
-}
-
 #message {
     position: absolute;
     left: 446px; /* 400 + 10 + 26 + 10 */
     top: 0px;
     margin-top: 10px;
-    z-index: 1000;
+    z-index: 3000;
 }
 
 /* track messages (data tab) */
@@ -107,7 +110,7 @@ footer {
 }
 
 /* dashed line animation, derived from Chris Coyier and others
-http://css-tricks.com/svg-line-animation-works/
+https://css-tricks.com/svg-line-animation-works/
 */
 .loading-trailer {
     -webkit-animation: dash 0.4s linear infinite;

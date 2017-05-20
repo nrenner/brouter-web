@@ -3,6 +3,9 @@ brouter-web
 
 Web client (by [@nrenner](https://github.com/nrenner)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)). *Work in progress*.
 
+**New web client available mobile-ready to test on [brouter.damsy.net](http://brouter.damsy.net).
+Feedbacks are appreciated, do not hesitate to create issues about it!**
+
 BRouter online service (provided by [@abrensch](https://github.com/abrensch)):  
 http://brouter.de/brouter-web/
 
@@ -13,7 +16,7 @@ More information:
 http://brouter.de
 
 General BRouter discussions/questions, support:  
-http://groups.google.com/group/osm-android-bikerouting
+https://groups.google.com/group/osm-android-bikerouting
 
 ## Installation
 
@@ -72,7 +75,7 @@ This is needed for pre-loading the selected profile (unless you allowed local fi
 
 ### Dependencies
 
-Requires [Node and npm](http://nodejs.org/) (or [io.js](https://iojs.org)), [Bower](http://bower.io/) and [Gulp](http://gulpjs.com/):
+Requires [Node and npm](https://nodejs.org/) (or [io.js](https://iojs.org)), [Bower](https://bower.io/) and [Gulp](http://gulpjs.com/):
 
     npm install -g bower
     npm install -g gulp
@@ -115,12 +118,12 @@ Copyright (c) 2012 [sa3m](https://github.com/sa3m), Copyright (c) 2013 Per Liedm
 Copyright (c) 2011-2012, Pavel Shramov; [2-clause BSD License](https://github.com/shramov/leaflet-plugins/blob/master/LICENSE)
 * [Async.js](https://github.com/caolan/async)  
 Copyright (c) 2010-2014 Caolan McMahon; [MIT License](https://github.com/caolan/async/blob/master/LICENSE)
-* [Bootstrap](http://getbootstrap.com/)  
+* [Bootstrap](https://getbootstrap.com/)  
 Copyright (c) 2011-2014 Twitter, Inc; [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
 * [jQuery](https://github.com/jquery/jquery)  
 Copyright 2005, 2014 jQuery Foundation and other contributors; [MIT License](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
 * [DataTables](https://github.com/DataTables/DataTables)  
-Copyright (C) 2008-2014, SpryMedia Ltd.; [MIT License](http://www.datatables.net/license/mit)
+Copyright (C) 2008-2014, SpryMedia Ltd.; [MIT License](https://www.datatables.net/license/MIT-LICENCE)
 * [Leaflet.EasyButton](https://github.com/CliffCloud/Leaflet.EasyButton)  
 Copyright (C) 2014 Daniel Montague; [MIT License](https://github.com/CliffCloud/Leaflet.EasyButton/blob/master/LICENSE)
 * [Bootbox](https://github.com/makeusabrew/bootbox)  
@@ -132,4 +135,4 @@ Copyright (c) 2012 Makina Corpus, [MIT License](https://github.com/makinacorpus/
 * [Leaflet.Locate](https://github.com/domoritz/leaflet-locatecontrol)  
 Copyright (c) 2014 Dominik Moritz, [MIT License](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE)
 * [Font Awesome](http://fontawesome.io/license/)  
-by Dave Gandy; [SIL OFL 1.1](http://scripts.sil.org/OFL) (Font), MIT License (Code), CC BY 3.0 (Documentation)
+by Dave Gandy; [SIL OFL 1.1](https://scripts.sil.org/OFL) (Font), MIT License (Code), CC BY 3.0 (Documentation)

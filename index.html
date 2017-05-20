@@ -29,9 +29,6 @@
                         <a class="dropdown-item" id="dl-csv" href="#" disabled>data CSV</a>
                     </div>
                 </div>
-                <a class="nav-item nav-link" href="" data-toggle="modal" data-target="#permalink-win" id="permalink">
-                    <span class="fa fa-lg fa-share-alt"></span>&nbsp;Share URL</a>
-
                 <form class="navbar-form">
                     <div class="form-group">
                         <select class="selectpicker show-tick" id="profile-alternative" multiple>
@@ -51,23 +48,6 @@
         </div>
     </nav>
 
-    <!-- Permalink -->
-    <div class="modal fade" id="permalink-win" tabindex="-1" role="dialog" aria-labelledby="Permalink window" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Permalink</h4>
-                </div>
-                <div class="modal-body">
-                    <input class="form-control" type="text" id="permalink-input" >
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Credits modal window -->
     <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="Credits window" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -82,11 +62,11 @@
                     <dl>
                         <dt>Map data</dt>
                         <dd>
-                            &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
-                            under <a target="_blank" href="http://opendatacommons.org/licenses/odbl/">ODbL</a>
+                            &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
+                            under <a target="_blank" href="https://opendatacommons.org/licenses/odbl/">ODbL</a>
                         </dd>
                         <dt>OpenstreetMap.de tiles</dt>
-                        <dd><a target="_blank" href="http://openstreetmap.de/karte.html">openstreetmap.de</a></dd>
+                        <dd><a target="_blank" href="https://openstreetmap.de/karte.html">openstreetmap.de</a></dd>
                         <dt>OpenTopoMap tiles</dt>
                         <dd>
                             &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>
@@ -95,19 +75,37 @@
                         </dd>
                         <dt>Thunderforest tiles</dt>
                         <dd>
-                            &copy; <a target="_blank" href="http://www.thunderforest.com">Thunderforest</a>
-                            under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
+                            &copy; <a target="_blank" href="https://www.thunderforest.com">Thunderforest</a>
+                            under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
                         </dd>
                         <dt>Waymarked Trails tiles</dt>
                         <dd>
-                            &copy; <a target="_blank" href="http://cycling.waymarkedtrails.org">Waymarked Trails</a>
-                            under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>
+                            &copy; <a target="_blank" href="https://cycling.waymarkedtrails.org">Waymarked Trails</a>
+                            under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>
                         </dd>
                         <dt>BRouter</dt>
                         <dd>
                             <a target="_blank" href="http://brouter.de/brouter">BRouter</a> &copy; Arndt Brenschede
                         </dd>
                     </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layers modal window -->
+    <div class="modal fade" id="custom_layers" tabindex="-1" role="dialog" aria-labelledby="Layers window" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+                    <h4 class="modal-title">Customize layers</h4>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" placeholder="Custom layer name. (ex: OpenStreetMap)"></input>
+                    <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"></input>
+
+                    <button type="button" id="custom_layers_add_base" class="btn btn-success">Add base layer</button>
+                    <button type="button" id="custom_layers_add_overlay" class="btn btn-success">Add overlay</button>
+                    <button type="button" id="custom_layers_remove" class="btn btn-danger">Remove selection</button>
+                    <table id="custom_layers_table"></table>
                 </div>
             </div>
         </div>
@@ -130,7 +128,7 @@
                         <i>Contact:</i><br>
                         <ul>
                             <li>General discussions/questions, support:<br>
-                                <a href="http://groups.google.com/group/osm-android-bikerouting" target="_blank">http://groups.google.com/group/osm-android-bikerouting</a>
+                                <a href="https://groups.google.com/group/osm-android-bikerouting" target="_blank">https://groups.google.com/group/osm-android-bikerouting</a>
                             </li>
                             <li>Bug reports and feature requests:
                                 <ul>
@@ -148,7 +146,7 @@
                     </p>
                     <p>
                         <i>Data:</i><br>
-                        This is based on <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
+                        This is based on <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
                         see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
                     </p>
                     <p>
@@ -193,7 +191,7 @@
             </div>
     </div>
 
-    <div class="collapse in" id="elevation-chart"></div>
+    <div class="collapse" id="elevation-chart"></div>
 
     <footer>
         <div class="flexrow">
@@ -219,7 +217,7 @@
                 <span class="fa fa-compress"></span>
             </button>
 
-            <button class="btn btn-secondary btn-sm active" type="button" data-toggle="collapse" data-target="#elevation-chart" aria-controls="elevation-chart" id="elevation-btn" aria-expanded="false" aria-label="Toggle elevation chart">
+            <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#elevation-chart" aria-controls="elevation-chart" id="elevation-btn" aria-expanded="false" aria-label="Toggle elevation chart">
                 <span class="fa fa-area-chart"></span>
             </button>
         </div>
