@@ -105,7 +105,7 @@ footer {
 }
 
 /* track messages (data tab) */
-#tab_data {
+#tab_data, #profile_upload {
     font-size: x-small;
 }
 
