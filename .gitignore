@@ -2,8 +2,8 @@ bower_components/
 node_modules/
 nbproject/
 .idea/
-bingkey.txt
 /.project
+/config.js
 /keys.js
 /dist
 brouter-web.*.zip
