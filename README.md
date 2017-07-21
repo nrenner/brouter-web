@@ -53,13 +53,14 @@ e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_1``
 
      * build the distributable files required for runtime (only for development state), see section [Build](#build)
 
-2. configure URL to ``profiles2`` directory  
-set ``BR.conf.profilesUrl`` in [config.js](config.js), e.g. uncomment:
+2. copy ``config.template.js`` to ``config.js``
+3. configure URL to ``profiles2`` directory  
+set ``BR.conf.profilesUrl`` in config.js, e.g. uncomment:
 
         BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
 
-3. add your API keys (optional)  
-copy ``keys.js.template`` to ``keys.js`` and edit to add your keys
+4. add your API keys (optional)  
+copy ``keys.template.js`` to ``keys.js`` and edit to add your keys
 
 ### Run
 
