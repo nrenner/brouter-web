@@ -82,11 +82,13 @@
 
     BR.conf.routingStyles = {
         trailer: {
+            weight: 5,
             dashArray: [10, 10],
             opacity: 0.6,
             color: 'magenta'
         },
         track: {
+            weight: 5,
             color: 'magenta',
             opacity: BR.conf.defaultOpacity
         },
