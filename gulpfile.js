@@ -31,6 +31,7 @@ var paths = {
     '!**/*.min.js',
     '!**/url-search-params/**/*.js'
   ]).concat([
+    'js/Browser.js',
     'js/Util.js',
     'js/Map.js',
     'js/router/BRouter.js',
