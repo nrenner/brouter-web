@@ -15,6 +15,9 @@ BR.OpacitySlider = L.Control.extend({
             value = minOpacity;
         }
 
+        // prevent also dragging map in Chrome
+        L.DomEvent.disableClickPropagation(container);
+
         var stopClickAfterSlide = function(evt) {
             L.DomEvent.stop(evt);
             removeStopClickListeners();
@@ -36,12 +39,17 @@ BR.OpacitySlider = L.Control.extend({
             reversed : true,
             selection: 'before', // inverted, serves as track style, see css
             tooltip: 'hide'
+        }).on('slideStart', function (evt) {
+            // dragging beyond slider control selects zoom control +/- text in Firefox
+            L.DomUtil.disableTextSelection();
         }).on('slide slideStop', { self: this }, function (evt) {
             evt.data.self.options.callback(evt.value / 100);
         }).on('slideStop', function (evt) {
             if (BR.Util.localStorageAvailable()) {
                 localStorage.opacitySliderValue = evt.value;
             }
+            
+            L.DomUtil.enableTextSelection();
 
             // When dragging outside slider and over map, click event after mouseup
             // adds marker when active on Chromium. So disable click (not needed) 

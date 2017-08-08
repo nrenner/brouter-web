@@ -1,7 +1,6 @@
 {
   "name": "brouter-web",
   "version": "0.6.3",
-  "main": "dist/**/*",
   "main": [
     "dist/brouter-web.css",
     "dist/brouter-web.js"
@@ -23,7 +22,7 @@
     "leaflet-control-geocoder": "1.5.3",
     "Leaflet.EasyButton": "*",
     "bootbox": "~4.4.0",
-    "seiyria-bootstrap-slider": "~4.8.1",
+    "seiyria-bootstrap-slider": "^9.8.1",
     "url-search-params": "~0.5.0",
     "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
     "leaflet.locatecontrol": "^0.60.0",
@@ -103,7 +102,13 @@
       ]
     },
     "autosize": {
-      "main":  "dist/autosize.js"
+      "main": "dist/autosize.js"
+    },
+    "seiyria-bootstrap-slider": {
+      "dependencies": {
+        "jquery": "*",
+        "bootstrap": "*"
+      }
     }
   },
   "resolutions": {
