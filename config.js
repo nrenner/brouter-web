@@ -19,7 +19,8 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
-            'car-test',
+            'car-eco',
+            'car-fast',
             'safety',
             'shortest',
             'trekking-ignore-cr',
@@ -48,7 +49,8 @@
             'fastbike',
             'shortest',
             'moped',
-            'car-test'
+            'car-eco',
+            'car-fast'
         ];
 
         BR.conf.host = 'http://localhost:17777';
