@@ -13,12 +13,13 @@
             
             return result;
         }()),
-        touchScreenDetectable = touchScreen !== null;
-    
-    
+        touchScreenDetectable = touchScreen !== null,
+        touch = touchScreenDetectable ? touchScreen : L.Browser.touch;
+
     BR.Browser = {
         touchScreen: touchScreen,
-        touchScreenDetectable: touchScreenDetectable
+        touchScreenDetectable: touchScreenDetectable,
+        touch: touch
     };
 
 }());

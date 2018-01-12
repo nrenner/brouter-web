@@ -111,8 +111,8 @@ Copyright (c) 2013, Turistforeningen, Hans Kristian Flaatten. All rights reserve
 Copyright (c) 2013 Felix Bache; [MIT License](https://github.com/MrMufflon/Leaflet.Elevation/blob/master/LICENSE)
 * [D3.js](https://github.com/mbostock/d3)  
 Copyright (c) 2013, Michael Bostock. All rights reserved.; [3-clause BSD License](https://github.com/mbostock/d3/blob/master/LICENSE)
-* [Leaflet.draw](https://github.com/Leaflet/Leaflet.draw)  
-Copyright 2012 Jacob Toye; [MIT License](https://github.com/Leaflet/Leaflet.draw/blob/master/MIT-LICENCE.txt)
+* [Leaflet.Editable](https://github.com/Leaflet/Leaflet.Editable)  
+Yohan Boniface; WTFPL licence
 * [Leaflet Control Geocoder](https://github.com/perliedman/leaflet-control-geocoder)  
 Copyright (c) 2012 [sa3m](https://github.com/sa3m), Copyright (c) 2013 Per Liedman; [2-clause BSD License](https://github.com/perliedman/leaflet-control-geocoder/blob/master/LICENSE)
 * [leaflet-plugins](https://github.com/shramov/leaflet-plugins)  

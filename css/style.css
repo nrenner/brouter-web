@@ -226,3 +226,40 @@ table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
     background-color: rgba(255,255,0,0.2);
 }
+
+/* 
+ * No-go areas
+ */
+
+.nogo-delete-marker {
+    text-align: center;
+    line-height: 16px;
+    font-size: 11px;
+    border-radius: 8px;
+}
+.leaflet-touch .nogo-delete-marker {
+    border-radius: 12px;
+    line-height: 24px;
+}
+
+/* tooltip */
+
+.editing-tooltip,
+.editing-tooltip-create {
+    color: #fff;
+    background-color: rgba(0,0,0,0.7);
+    /* for direction arrows that inherit */
+    border-color: rgba(0,0,0,0.7);
+    /* no border but still set a color for direction arrows */
+    border-width: 0px;
+}
+.editing-tooltip-create {
+    /* no (invisible) direction arrow for cursor tooltip */
+    border-color: transparent;
+}
+.leaflet-tooltip-bottom:before {
+	  border-bottom-color: inherit;
+}
+.leaflet-tooltip-right:before {
+    border-right-color: inherit;
+}

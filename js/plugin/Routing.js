@@ -295,4 +295,8 @@ BR.Routing = L.Routing.extend({
         L.Routing.prototype._keyupListener.call(this, e);
     }
   }
+  
+  ,isDrawing: function () {
+      return this._draw._enabled;
+  }
 });

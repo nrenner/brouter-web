@@ -15,7 +15,6 @@
     "leaflet-routing": "nrenner/leaflet-routing#leaflet-1.0",
     "async": "~0.9.2",
     "d3": "~3.5.5",
-    "leaflet.draw": "~0.4.9",
     "bootstrap": "4.0.0-alpha.5",
     "DataTables": "~1.10.13",
     "leaflet.elevation": "MrMufflon/Leaflet.Elevation#master",
@@ -29,7 +28,8 @@
     "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
     "leaflet-sidebar": "^0.1.9",
-    "autosize": "^3.0.20"
+    "autosize": "^3.0.20",
+    "leaflet.editable": "^1.1.0"
   },
   "overrides": {
     "leaflet": {
@@ -52,15 +52,6 @@
         "src/L.Routing.Draw.js",
         "src/L.Routing.Edit.js"
       ]
-    },
-    "leaflet.draw": {
-      "main": [
-        "dist/leaflet.draw-src.js",
-        "dist/leaflet.draw.css",
-        "dist/images/*.png",
-        "dist/images/*.svg"
-      ],
-      "dependencies": null
     },
     "bootstrap-select": {
       "main": [

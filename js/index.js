@@ -235,6 +235,8 @@
         map.addControl(sidebar);
 
         nogos.addTo(map);
+        nogos.preventRoutePointOnCreate(routing);
+
         map.addControl(new BR.OpacitySlider({
             callback: L.bind(routing.setOpacity, routing)
         }));
