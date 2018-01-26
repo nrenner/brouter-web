@@ -55,6 +55,7 @@ footer {
 }
 #stats li {
     margin: 0 1rem;
+    display: inline-block;
 }
 
 #elevation-chart {
