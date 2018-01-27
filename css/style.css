@@ -58,6 +58,15 @@ footer {
     display: inline-block;
 }
 
+.stats-label {
+    word-break: break-all;
+    font-weight: bold;
+}
+.stats-label abbr[title] {
+    text-decoration: none;
+    border-bottom: 1px dotted #818a91;
+}
+
 #elevation-chart {
     height: 175px;
     font-size: 80%;
@@ -187,11 +196,6 @@ https://css-tricks.com/svg-line-animation-works/
 .fa.active, .btn.active, .btn.active:hover, .btn.active:focus {
     /* use same color as leaflet-locatecontrol */
     color: #2074B6;
-}
-
-.stats-label {
-    word-break: break-all;
-    font-weight: bold;
 }
 
 /* smaller tab height */
