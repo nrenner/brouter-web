@@ -8,14 +8,14 @@ BR.TrackStats = L.Class.extend({
             formattedEnergy = L.Util.formatNum(stats.totalEnergy / 3600000., 2),
             meanEnergy = stats.trackLength ? L.Util.formatNum(stats.totalEnergy / 36. / stats.trackLength, 2) : '';
 
-        $('#distance').html(length1 + ' <abbr title="kilometer">km</abbr>');
-        $('#ascend').html(stats.filteredAscend + ' (' + stats.plainAscend +')' + ' <abbr title="meter">m</abbr>');
+        $('#distance').html(length1);
+        $('#ascend').html(stats.filteredAscend + ' (' + stats.plainAscend +')');
         $('#cost').html(stats.cost + ' (' + meanCostFactor + ')');
-        $('#totaltime').html(formattedTime + ' <abbr title="minutes">min</abbr>');
-        $('#totalenergy').html(formattedEnergy + ' (' + meanEnergy +') kWh');
+        $('#totaltime').html(formattedTime);
+        $('#totalenergy').html(formattedEnergy + ' (' + meanEnergy +')');
 
-        document.getElementById('totaltime').parentElement.hidden = !stats.totalTime;
-        document.getElementById('totalenergy').parentElement.hidden = !stats.totalEnergy;
+        document.getElementById('totaltime').parentElement.parentElement.hidden = !stats.totalTime;
+        document.getElementById('totalenergy').parentElement.parentElement.hidden = !stats.totalEnergy;
     },
 
     calcStats: function(polyline, segments) {
