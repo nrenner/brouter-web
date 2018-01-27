@@ -18,11 +18,6 @@ BR.RoutingOptions = BR.Control.extend({
     },
 
     refreshUI: function() {
-        var profile = $('#profile option:selected'),
-            alternative = $('#alternative option:selected');
-
-        $('#stat-profile').html(profile.text() + ' (' + alternative.text() +')');
-
         // we do not allow to select more than one profile and/or alternative at a time
         // so we disable the current selected items
         $('#profile-alternative').find('option:disabled').each(function(index) {

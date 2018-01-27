@@ -52,6 +52,7 @@ footer {
     flex-grow: 1;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 #stats li {
     margin: 0 1rem;
