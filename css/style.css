@@ -63,7 +63,8 @@ footer {
     word-break: break-all;
     font-weight: bold;
 }
-.stats-label abbr[title] {
+.stats-label abbr[title],
+#distance {
     text-decoration: none;
     border-bottom: 1px dotted #818a91;
 }

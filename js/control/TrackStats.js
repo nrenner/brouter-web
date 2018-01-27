@@ -9,6 +9,8 @@ BR.TrackStats = L.Class.extend({
             meanEnergy = stats.trackLength ? L.Util.formatNum(stats.totalEnergy / 36. / stats.trackLength, 2) : '';
 
         $('#distance').html(length1);
+        // alternative 3-digit format down to meters as tooltip
+        $('#distance').attr('title', length3 + ' km');
         $('#ascend').html(stats.filteredAscend + ' (' + stats.plainAscend +')');
         $('#cost').html(stats.cost + ' (' + meanCostFactor + ')');
         $('#totaltime').html(formattedTime);
