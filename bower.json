@@ -1,13 +1,16 @@
 {
   "name": "brouter-web",
-  "version": "0.5.0",
-  "main": "dist/**/*",
+  "version": "0.6.4",
+  "main": [
+    "dist/brouter-web.css",
+    "dist/brouter-web.js"
+  ],
   "ignore": [
     "**/.*",
     "bower_components"
   ],
   "dependencies": {
-    "leaflet": "~0.7.3",
+    "leaflet": "~0.7.7",
     "leaflet-plugins": "~2.0.0",
     "leaflet-routing": "Turistforeningen/leaflet-routing#gh-pages",
     "async": "~0.9.2",
@@ -95,6 +98,7 @@
   },
   "resolutions": {
     "leaflet.elevation": "master",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "leaflet": "~0.7.7"
   }
 }
