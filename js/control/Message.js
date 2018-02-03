@@ -34,6 +34,9 @@ BR.Message = L.Class.extend({
     },
 
     showError: function (err) {
+        if (err == 'Error: target island detected for section 0\n') {
+            err = 'Error: cannot find a route for given points. Maybe try to move them closer to roads?';
+        }
         this._show(err, 'error');
     },
 
