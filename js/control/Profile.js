@@ -1,4 +1,4 @@
-BR.Profile = L.Class.extend({
+BR.Profile = L.Evented.extend({
     cache: {},
 
     initialize: function () {
@@ -73,5 +73,3 @@ BR.Profile = L.Class.extend({
         });
     }
 });
-
-BR.Profile.include(L.Mixin.Events);

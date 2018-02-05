@@ -151,7 +151,7 @@ BR.NogoAreas = L.Control.extend({
     }
 });
 
-BR.NogoAreas.include(L.Mixin.Events);
+BR.NogoAreas.include(L.Evented.prototype);
 
 
 L.Editable.prototype.createVertexIcon = function (options) {

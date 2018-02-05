@@ -1,4 +1,4 @@
-BR.TrackMessages = L.Class.extend({
+BR.TrackMessages = L.Evented.extend({
 
     options: {
         heading: 'Segment data',
@@ -193,5 +193,3 @@ BR.TrackMessages = L.Class.extend({
         this._selectedEdge = null;
     }
 });
-
-BR.TrackMessages.include(L.Mixin.Events);
