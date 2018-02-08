@@ -10,13 +10,17 @@ body, #content {
     z-index: 1;
 }
 
-.flexcolumn {
+.flexcolumn,
+.sidebar-pane.active,
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-
+    
     flex-flow: column;
 }
 
@@ -30,12 +34,24 @@ body, #content {
     flex-direction: row;
 }
 
-#content {
+.flexgrow {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
+}
+
+/* 'auto' (1 1 auto) instead of '1' (1 1 0) needed for DataTables tab in Firefox */
+#datatable_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody,
+#datatable {
+    -webkit-box-flex: auto;
+    -moz-box-flex: auto;
+    -webkit-flex: auto;
+    -ms-flex: auto;
+    flex: auto;
 }
 
 footer {
@@ -269,4 +285,12 @@ table.dataTable.display tbody tr.even:hover {
 }
 .leaflet-tooltip-right:before {
     border-right-color: inherit;
+}
+
+/*
+ * sidebar-v2 
+ */
+
+.sidebar-pane {
+    height: 100%;
 }

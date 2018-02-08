@@ -67,6 +67,9 @@ BR.TrackMessages = L.Evented.extend({
             paging: false,
             searching: false,
             info: false,
+            // flexbox workaround: without scrollY height Firefox extends to content height
+            // (^= minimum height with flexbox?)
+            scrollY: 50,            
             scrollX: true,
             order: []
         });

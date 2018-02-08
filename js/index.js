@@ -29,9 +29,9 @@
             itinerary,
             elevation,
             download,
-            tabs,
             profile,
             trackMessages,
+            sidebar,
             drawButton,
             deleteButton,
             drawToolbar,
@@ -217,22 +217,13 @@
         routing.addTo(map);
         elevation.addBelow(map);
 
-        tabs = new BR.Tabs({
-            tabs: {
-                '#tab_itinerary': itinerary,
-                '#tab_data': trackMessages
-            }
-        });
-        if (!BR.conf.transit) {
-            delete tabs.options.tabs['#tab_itinerary'];
-        }
-        map.addControl(tabs);
+        trackMessages.onAdd(map);
 
-        var sidebar = L.control.sidebar('sidebar', {
-            position: 'left'
-        });
-        sidebar.id = 'sidebar-control'; //required for persistence in local storage
-        map.addControl(sidebar);
+        sidebar = BR.sidebar('sidebar', {
+            listeningTabs: {
+                'tab_data': trackMessages
+            }
+        }).addTo(map);
 
         nogos.addTo(map);
         nogos.preventRoutePointOnCreate(routing);
@@ -319,6 +310,7 @@
             map._onResize();
         });
 
+
         var onHide = function() {
             if (this.id && BR.Util.localStorageAvailable()) {
                 localStorage[this.id] = 'true';
@@ -329,13 +321,6 @@
                 localStorage.removeItem(this.id);
             }
         };
-        var toggleSidebar = function (event) {
-            sidebar.toggle();
-            $('#sidebar-btn').toggleClass('active');
-        };
-        $('#sidebar-btn').on('click', toggleSidebar);
-        sidebar.on('shown', onShow);
-        sidebar.on('hidden', onHide);
         // on page load, we want to restore collapsible elements from previous usage
         $('.collapse').on('hidden.bs.collapse', onHide)
                       .on('shown.bs.collapse', onShow)
@@ -344,9 +329,7 @@
                                 $(this).collapse('hide');
                             }
                       });
-        if (BR.Util.localStorageAvailable() && localStorage[sidebar.id] !== 'true') {
-            toggleSidebar();
-        }
+
     }
 
     mapContext = BR.Map.initMap();
