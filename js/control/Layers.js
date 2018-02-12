@@ -59,16 +59,9 @@ BR.Layers = L.Class.extend({
             }
         });
 
-        addLayer = L.easyButton(
-            'fa-plus-square',
-            function () {
-                $('#custom_layers').modal();
-            },
-            'Add or remove custom layers',
-            {
-                position: 'topright'
-            }
-            ).addTo(map);
+        L.DomUtil.get('custom_layers_button').onclick = function () {
+            $('#custom_layers').modal();
+        };
     },
 
     _remove: function(evt) {
