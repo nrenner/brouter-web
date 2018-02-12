@@ -111,7 +111,7 @@ BR.Map = {
             map.addLayer(firstLayer);
         }
 
-        layersControl = L.control.layers(baseLayers, overlays).addTo(map);
+        layersControl = BR.layersTab(baseLayers, overlays).addTo(map);
 
         L.control.locate({
             icon: 'fa fa-location-arrow',

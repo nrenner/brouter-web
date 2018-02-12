@@ -294,3 +294,10 @@ table.dataTable.display tbody tr.even:hover {
 .sidebar-pane {
     height: 100%;
 }
+
+/* layers control as sidebar tab */
+#layers-control-wrapper label {
+    display: block;
+    font-size: 0.9rem;
+    line-height: normal;
+}
