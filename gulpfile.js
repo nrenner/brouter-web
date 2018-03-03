@@ -138,7 +138,7 @@ gulp.task('log', function() {
 
 gulp.task('inject', function () {
   var target = gulp.src('index.html');
-  var sources =  gulp.src(paths.scripts, { base: '.', read: false });
+  var sources = gulp.src(paths.scripts.concat(paths.styles), { base: '.', read: false });
 
   return target.pipe(inject(sources, { relative: true }))
     .pipe(gulp.dest('.'));
