@@ -11,7 +11,7 @@ body, #content {
 }
 
 .flexcolumn,
-.sidebar-pane.active,
+.leaflet-sidebar-pane.active,
 #datatable_wrapper,
 .dataTables_scroll,
 .dataTables_scrollBody {
@@ -288,10 +288,13 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 /*
- * sidebar-v2 
+ * leaflet-sidebar-v2
  */
 
-.sidebar-pane {
+.leaflet-sidebar-pane#tab_profile,
+.leaflet-sidebar-pane#tab_data {
+    /* Full height for content with inner scrolling, 
+       overrides scroll fix for long content in Firefox */
     height: 100%;
 }
 
@@ -300,4 +303,9 @@ table.dataTable.display tbody tr.even:hover {
     display: block;
     font-size: 0.9rem;
     line-height: normal;
+}
+
+/* hide currently unused bottom tabs container because of touch border artefacts */
+.leaflet-sidebar-tabs > ul:last-child {
+    display: none;
 }

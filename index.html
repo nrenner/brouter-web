@@ -165,54 +165,57 @@
     </div>
 
     <div id="content" class="flexcolumn flexgrow">
-        <div id="sidebar" class="sidebar collapsed">
-            <div class="sidebar-tabs">
-                <ul role="tablist">
-                    <li><a href="#tab_layers_control" role="tab"><img src="dist/images/layers.png"></a></li>
-                    <li hidden><a href="#tab_itinerary" role="tab"><i class="fa fa-map-signs"></i></a></li>
-                    <li><a href="#tab_profile" role="tab"><i class="fa fa-wrench"></i></a></li>
-                    <li><a href="#tab_data" role="tab"><i class="fa fa-table"></i></a></li> 
-                </ul>
-            </div>
-            <div class="sidebar-content">
+        <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
+            <ul role="tablist">
+                <li><a href="#tab_layers_control" role="tab"><img src="dist/images/layers.png" width="20px"></a></li>
+                <li hidden><a href="#tab_itinerary" role="tab"><i class="fa fa-map-signs"></i></a></li>
+                <li><a href="#tab_profile" role="tab"><i class="fa fa-wrench"></i></a></li>
+                <li><a href="#tab_data" role="tab"><i class="fa fa-table"></i></a></li> 
+            </ul>
+        </div>
+        
+        <div class="leaflet-sidebar-flex-row flexgrow">
+            <div id="map" class="leaflet-sidebar-map"></div>
 
-                <div class="sidebar-pane" id="tab_layers_control">
-                    <h1 class="sidebar-header">Layers<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
-                    <div id="layers-control-wrapper"></div>
-                    <div class="leaflet-control-layers-separator"></div>
-                    <div>
-                        <button type="button" id="custom_layers_button" class="btn btn-sm pull-right" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> Customize layers</button>
-                    </div>
-                </div>
-                
-                <div class="sidebar-pane" id="tab_profile">
-                    <h1 class="sidebar-header">Custom routing profile<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
-                    <form class="flexcolumn flexgrow">
-                        <textarea class="form-control flexgrow" id="profile_upload" spellcheck="false" wrap="off" placeholder="Write your custom profile here."></textarea>
-                        <div id="profile_message"></div>
-                        <div class="form-group" id="profile_buttons">
-                             <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> Clear</button>
-                             <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> Upload</button>
-                             <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> Help</a>
+            <div id="sidebar" class="leaflet-sidebar collapsed">
+
+                <div class="leaflet-sidebar-content">
+                    <div class="leaflet-sidebar-pane" id="tab_layers_control">
+                        <h1 class="leaflet-sidebar-header">Layers<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                        <div id="layers-control-wrapper"></div>
+                        <div class="leaflet-control-layers-separator"></div>
+                        <div>
+                            <button type="button" id="custom_layers_button" class="btn btn-sm pull-right" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> Custom layers</button>
                         </div>
-                    </form>
-                </div>
-
-                <div class="sidebar-pane" id="tab_data">
-                    <h1 class="sidebar-header">Data<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
-                    <table id="datatable" class="table mini cell-border hover stripe"></table>
-                </div>
-
-                <div class="sidebar-pane" id="tab_itinerary">
-                    <h1 class="sidebar-header">Itinerary<span class="sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
-                    <div id="itinerary">
                     </div>
-                </div>
 
+                    <div class="leaflet-sidebar-pane" id="tab_profile">
+                        <h1 class="leaflet-sidebar-header">Custom routing profile<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                        <form class="flexcolumn flexgrow">
+                            <textarea class="form-control flexgrow" id="profile_upload" spellcheck="false" wrap="off" placeholder="Write your custom profile here."></textarea>
+                            <div id="profile_message"></div>
+                            <div class="form-group" id="profile_buttons">
+                                 <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> Clear</button>
+                                 <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> Upload</button>
+                                 <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> Help</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="leaflet-sidebar-pane" id="tab_data">
+                        <h1 class="leaflet-sidebar-header">Data<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                        <table id="datatable" class="table mini cell-border hover stripe"></table>
+                    </div>
+
+                    <div class="leaflet-sidebar-pane" id="tab_itinerary">
+                        <h1 class="leaflet-sidebar-header">Itinerary<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span></h1>
+                        <div id="itinerary">
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-        <div id="map" class="sidebar-map"></div>
 
         <div id="message"></div>
     </div>

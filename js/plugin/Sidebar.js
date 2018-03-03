@@ -3,6 +3,9 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
     options: {
         position: 'right',
+        container: 'sidebar', 
+        tabContainer: 'sidebarTabs',
+        autopan: false,
 
         // Tabs to be notified when shown or hidden
         // (tab div id -> object implementing show/hide methods)
@@ -22,6 +25,11 @@ BR.Sidebar = L.Control.Sidebar.extend({
         this.on('closing', this._notifyOnClose, this);
 
         this._rememberTabState();
+
+        if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
+            L.DomUtil.removeClass(this._container, 'leaflet-touch');
+            L.DomUtil.removeClass(this._tabContainer, 'leaflet-touch');
+        }
 
         return this;
     },

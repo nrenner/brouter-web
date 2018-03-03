@@ -219,7 +219,7 @@
 
         trackMessages.onAdd(map);
 
-        sidebar = BR.sidebar('sidebar', {
+        sidebar = BR.sidebar({
             listeningTabs: {
                 'tab_data': trackMessages
             }

@@ -27,7 +27,7 @@
     "leaflet.locatecontrol": "^0.60.0",
     "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
-    "sidebar-v2": "~0.4.0",
+    "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
     "leaflet.editable": "^1.1.0"
   },
   "overrides": {
@@ -99,12 +99,6 @@
         "jquery": "*",
         "bootstrap": "*"
       }
-    },
-    "sidebar-v2": {
-      "main": [
-        "css/leaflet-sidebar.css",
-        "js/leaflet-sidebar.js"
-      ]
     }
   },
   "resolutions": {
