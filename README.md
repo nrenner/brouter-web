@@ -25,12 +25,12 @@ As an alternative to the above online version, the standalone server of BRouter 
 ### Install BRouter (server with routing engine)
 
 1. download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
-e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_1`` with latest version):  
+e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_10`` with latest version):  
 
         mkdir ~/opt/brouter
         cd ~/opt/brouter
-        wget http://brouter.de/brouter_bin/brouter_1_4_1.zip
-        unzip brouter_1_4_1.zip
+        wget http://brouter.de/brouter_bin/brouter_1_4_10.zip
+        unzip brouter_1_4_10.zip
         chmod +x ./standalone/server.sh
 
 2. download one or more [data file(s)](http://brouter.de/brouter/segments4/) (rd5) into ``segments4`` dir
@@ -41,9 +41,9 @@ e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_1``
    * using the latest stable release - adjust to current version number - from
      https://github.com/nrenner/brouter-web/releases:
 
-         wget https://github.com/nrenner/brouter-web/archive/0.6.3.zip
-         unzip 0.6.3.zip
-         mv brouter-web-0.6.3 brouter-web
+         wget https://github.com/nrenner/brouter-web/archive/0.6.4.zip
+         unzip 0.6.4.zip
+         mv brouter-web-0.6.4 brouter-web
 
    * OR the current development state (potentially instable and without runtime distributables):
 

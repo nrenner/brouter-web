@@ -47,10 +47,14 @@
         BR.conf.profiles = [
             'trekking',
             'fastbike',
+            'car-eco',
+            'car-fast',
             'shortest',
             'moped',
-            'car-eco',
-            'car-fast'
+            'vm-forum-liegerad-schnell',
+            'vm-forum-velomobil-schnell',
+            'fastbike-lowtraffic',
+            'fastbike-asia-pacific'
         ];
 
         BR.conf.host = 'http://0.0.0.0:17777';
