@@ -28,7 +28,8 @@
     "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
     "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
-    "leaflet.editable": "^1.1.0"
+    "leaflet.editable": "^1.1.0",
+    "codemirror": "^5.35.0"
   },
   "overrides": {
     "leaflet": {

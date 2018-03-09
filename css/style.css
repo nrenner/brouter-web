@@ -133,7 +133,7 @@ footer {
 }
 
 /* track messages (data tab) */
-#tab_data, #profile_upload {
+#tab_data, .CodeMirror {
     font-size: x-small;
 }
 
@@ -313,4 +313,14 @@ table.dataTable.display tbody tr.even:hover {
 /* hide currently unused bottom tabs container because of touch border artefacts */
 .leaflet-sidebar-tabs > ul:last-child {
     display: none;
+}
+
+
+/*
+ * CodeMirror
+ */
+
+.CodeMirror {
+    height: 100%;
+    border: 1px solid #ddd;
 }

@@ -221,6 +221,7 @@
 
         sidebar = BR.sidebar({
             listeningTabs: {
+                'tab_profile': profile,
                 'tab_data': trackMessages
             }
         }).addTo(map);
