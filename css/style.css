@@ -12,7 +12,7 @@ body, #content {
 
 .flexcolumn,
 .leaflet-sidebar-pane.active,
-#datatable_wrapper,
+.dataTables_wrapper,
 .dataTables_scroll,
 .dataTables_scrollBody {
     display: -webkit-box;
@@ -43,10 +43,10 @@ body, #content {
 }
 
 /* 'auto' (1 1 auto) instead of '1' (1 1 0) needed for DataTables tab in Firefox */
-#datatable_wrapper,
+.dataTables_wrapper,
 .dataTables_scroll,
 .dataTables_scrollBody,
-#datatable {
+table.dataTable {
     -webkit-box-flex: auto;
     -moz-box-flex: auto;
     -webkit-flex: auto;
@@ -224,6 +224,11 @@ https://css-tricks.com/svg-line-animation-works/
 /*
 * DataTables
 */
+
+table.dataTable {
+    /* avoid getting centered and header misaligned with flex row (sidebar) */
+    margin: 0;
+}
 
 table.dataTable.mini thead th,
 table.dataTable.mini thead td {
