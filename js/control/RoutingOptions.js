@@ -1,5 +1,5 @@
 BR.RoutingOptions = BR.Control.extend({
-
+    
     onAdd: function (map) {
         $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
@@ -12,6 +12,8 @@ BR.RoutingOptions = BR.Control.extend({
             option.text = profiles[i];
             profiles_list.appendChild(option);
         }
+        // set default value, used as indicator for empty custom profile 
+        profiles_list.children[0].value = "Custom";
         // <custom> profile is empty at start, select next one
         profiles_list.children[1].selected = true;
         return BR.Control.prototype.onAdd.call(this, map);
@@ -67,13 +69,18 @@ BR.RoutingOptions = BR.Control.extend({
             option;
 
         profiles_grp = L.DomUtil.get('profile');
-        option = profiles_grp.children[0]
-        option.value = profile;
+        option = profiles_grp.children[0];
+        option.value = profile || "Custom";
         option.disabled = !profile;
 
-        $('#profile').find('option:selected').each(function(index) {
-            $(this).prop('selected', false);
-        });
+        if (profile) {
+            $('#profile').find('option:selected').each(function(index) {
+                $(this).prop('selected', false);
+            });
+        } else if (option.selected) {
+            // clear, select next in group when custom deselected
+            profiles_grp.children[1].selected = true;
+        }
 
         option.selected = !!profile;
 
@@ -87,7 +94,7 @@ BR.RoutingOptions = BR.Control.extend({
             option = profiles_grp.children[0],
             profile = null;
 
-        if (!option.disabled) {
+        if (option.value !== "Custom") {
             profile = option.value;
         }
         return profile;
