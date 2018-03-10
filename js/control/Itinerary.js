@@ -5,7 +5,7 @@ BR.Itinerary = L.Class.extend({
 
     onAdd: function (map) {
         this._content = document.getElementById('itinerary');
-        L.DomUtil.removeClass(this._content.parentElement, 'hidden');
+        document.getElementById('tab_itinerary').hidden = false;
         this.update();
     },
 

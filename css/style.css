@@ -10,13 +10,17 @@ body, #content {
     z-index: 1;
 }
 
-.flexcolumn {
+.flexcolumn,
+.leaflet-sidebar-pane.active,
+.dataTables_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-
+    
     flex-flow: column;
 }
 
@@ -30,12 +34,24 @@ body, #content {
     flex-direction: row;
 }
 
-#content {
+.flexgrow {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
+}
+
+/* 'auto' (1 1 auto) instead of '1' (1 1 0) needed for DataTables tab in Firefox */
+.dataTables_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody,
+table.dataTable {
+    -webkit-box-flex: auto;
+    -moz-box-flex: auto;
+    -webkit-flex: auto;
+    -ms-flex: auto;
+    flex: auto;
 }
 
 footer {
@@ -117,7 +133,7 @@ footer {
 }
 
 /* track messages (data tab) */
-#tab_data, #profile_upload {
+#tab_data, .CodeMirror {
     font-size: x-small;
 }
 
@@ -209,6 +225,11 @@ https://css-tricks.com/svg-line-animation-works/
 * DataTables
 */
 
+table.dataTable {
+    /* avoid getting centered and header misaligned with flex row (sidebar) */
+    margin: 0;
+}
+
 table.dataTable.mini thead th,
 table.dataTable.mini thead td {
     padding: 3px 13px 3px 2px;
@@ -269,4 +290,37 @@ table.dataTable.display tbody tr.even:hover {
 }
 .leaflet-tooltip-right:before {
     border-right-color: inherit;
+}
+
+/*
+ * leaflet-sidebar-v2
+ */
+
+.leaflet-sidebar-pane#tab_profile,
+.leaflet-sidebar-pane#tab_data {
+    /* Full height for content with inner scrolling, 
+       overrides scroll fix for long content in Firefox */
+    height: 100%;
+}
+
+/* layers control as sidebar tab */
+#layers-control-wrapper label {
+    display: block;
+    font-size: 0.9rem;
+    line-height: normal;
+}
+
+/* hide currently unused bottom tabs container because of touch border artefacts */
+.leaflet-sidebar-tabs > ul:last-child {
+    display: none;
+}
+
+
+/*
+ * CodeMirror
+ */
+
+.CodeMirror {
+    height: 100%;
+    border: 1px solid #ddd;
 }

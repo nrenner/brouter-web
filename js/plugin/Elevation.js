@@ -36,7 +36,7 @@ BR.Elevation = L.Control.Elevation.extend({
     addBelow: function(map) {
         // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
         // this.width($('#map').outerWidth());
-        this.options.width = $('#map').outerWidth();
+        this.options.width = $('#content').outerWidth();
 
         if (this.getContainer() != null) {
             this.remove(map);
