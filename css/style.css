@@ -132,6 +132,10 @@ footer {
     z-index: 3000;
 }
 
+#profile_buttons {
+    padding-top: 4px;
+}
+
 /* track messages (data tab) */
 #tab_data, .CodeMirror {
     font-size: x-small;
@@ -224,9 +228,34 @@ https://css-tricks.com/svg-line-animation-works/
     color: #2074B6;
 }
 
+.leaflet-bar button {
+    /* override button for horizontal fa center in Firefox */
+    padding: 0;
+}
+.leaflet-bar .fa {
+    font-size: 14px;
+    
+    /* override fa with Leaflet button height for vertical center */
+    line-height: 26px;
+}
+
 /* smaller tab height */
 .nav > li > a {
     padding: 2px 15px;
+}
+
+#profile_message .alert {
+    margin-top: 3px;
+}
+
+.alert {
+    margin-bottom: 0px;
+    padding-left: 35px;
+}
+.alert span.fa {
+    position: relative;
+    left: -23px;
+    margin-right: -1em;
 }
 
 /*
@@ -314,9 +343,17 @@ table.dataTable.display tbody tr.even:hover {
 
 /* layers control as sidebar tab */
 #layers-control-wrapper label {
-    display: block;
     font-size: 0.9rem;
     line-height: normal;
+
+    /* override Bootstrap/Reboot label */
+    display: block;
+    margin-bottom: 0px;
+    /* normalize label height
+                    | Firefox | Chrome |
+       Leaflet only | 21      | 20     |
+       Bootstrap    | 23      | 22     |*/
+    height: 23px;
 }
 
 /* hide currently unused bottom tabs container because of touch border artefacts */
@@ -332,4 +369,7 @@ table.dataTable.display tbody tr.even:hover {
 .CodeMirror {
     height: 100%;
     border: 1px solid #ddd;
+    
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    line-height: 1.2em;
 }
