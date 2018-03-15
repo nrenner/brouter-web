@@ -137,6 +137,14 @@ footer {
     font-size: x-small;
 }
 
+/* transit demo */
+#itinerary pre {
+    font-size: small;
+    /* turn off bootstrap 'break-word' */
+    word-wrap: normal;
+    margin: 0;
+}
+
 /* dashed line animation, derived from Chris Coyier and others
 https://css-tricks.com/svg-line-animation-works/
 */
@@ -297,7 +305,8 @@ table.dataTable.display tbody tr.even:hover {
  */
 
 .leaflet-sidebar-pane#tab_profile,
-.leaflet-sidebar-pane#tab_data {
+.leaflet-sidebar-pane#tab_data,
+.leaflet-sidebar-pane#tab_itinerary {
     /* Full height for content with inner scrolling, 
        overrides scroll fix for long content in Firefox */
     height: 100%;

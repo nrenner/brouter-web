@@ -1,18 +1,14 @@
 BR.Itinerary = L.Class.extend({
-	  options: {
-        heading: 'Itinerary'
-    },
 
-    onAdd: function (map) {
+    initialize: function () {
         this._content = document.getElementById('itinerary');
-        document.getElementById('tab_itinerary').hidden = false;
         this.update();
     },
 
     update: function (polyline, segments) {
         var i, j, iter, html = '';
 
-        html += '<pre>';
+        html += '<pre class="flexgrow">';
         for (i = 0; segments && i < segments.length; i++)
         {
             iter = segments[i].feature.iternity;

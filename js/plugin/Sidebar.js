@@ -6,6 +6,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
         container: 'sidebar', 
         tabContainer: 'sidebarTabs',
         autopan: false,
+        defaultTabId: '',
 
         // Tabs to be notified when shown or hidden
         // (tab div id -> object implementing show/hide methods)
@@ -33,7 +34,14 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
         return this;
     },
-    
+
+    showPanel: function(id) {
+        var tab = this._getTab(id);
+        tab.hidden = false;
+
+        return this;
+    },
+
     _rememberTabState: function () {
         if (BR.Util.localStorageAvailable()) {
             this.on('content closing', this._storeActiveTab, this);
@@ -43,7 +51,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
             // not set: open sidebar by default for new users
             // 'true': legacy value for toggling old sidebar
             if (tabId === null || tabId === 'true') {
-                tabId = 'tab_profile';
+                tabId = this.options.defaultTabId;
             }
             if (tabId !== '') {
                 this.open(tabId);

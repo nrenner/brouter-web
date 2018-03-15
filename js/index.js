@@ -220,11 +220,15 @@
         trackMessages.onAdd(map);
 
         sidebar = BR.sidebar({
+            defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
                 'tab_profile': profile,
                 'tab_data': trackMessages
             }
         }).addTo(map);
+        if (BR.conf.transit) {
+            sidebar.showPanel('tab_itinerary');
+        }
 
         nogos.addTo(map);
         nogos.preventRoutePointOnCreate(routing);
