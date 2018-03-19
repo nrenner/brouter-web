@@ -361,6 +361,9 @@ table.dataTable.display tbody tr.even:hover {
     display: none;
 }
 
+.leaflet-sidebar-expand {
+    transform: rotate(45deg);
+}
 
 /*
  * CodeMirror

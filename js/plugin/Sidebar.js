@@ -24,6 +24,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
         this.on('content', this._notifyOnContent, this);
         this.on('closing', this._notifyOnClose, this);
+        this.on('toggleExpand', this._notifyOnResize, this);
 
         this._rememberTabState();
 
@@ -83,6 +84,13 @@ BR.Sidebar = L.Control.Sidebar.extend({
         this.oldTab = null;
     },
     
+    _notifyOnResize: function (e) {
+        var tab = this.oldTab;
+        if (tab && tab.onResize) {
+            tab.onResize();
+        }
+    },
+
     _storeActiveTab: function (e) {
         localStorage.setItem(this.storageId, e.id || '');
     }
