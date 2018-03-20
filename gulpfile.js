@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
 var minifyCss = require('gulp-minify-css');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var gulpDebug = require('gulp-debug');
@@ -91,6 +93,7 @@ gulp.task('styles', function() {
       }
     }))
     .pipe(concatCss(paths.destName + '.css'))
+    .pipe(postcss([ autoprefixer({ remove: false }) ]))
     .pipe(minifyCss({
       rebase: false
     }))

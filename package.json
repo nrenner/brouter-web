@@ -11,7 +11,9 @@
     "url": "https://github.com/nrenner/brouter-web.git"
   },
   "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, Explorer >= 10, Android >= 4.1, Safari >= 7, iOS >= 7",
   "devDependencies": {
+    "autoprefixer": "^8.1.0",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-bump": "^2.7.0",
@@ -25,6 +27,7 @@
     "gulp-if": "^2.0.0",
     "gulp-inject": "^1.2.0",
     "gulp-minify-css": "^1.0.0",
+    "gulp-postcss": "^7.0.1",
     "gulp-remember": "^0.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.5.4",

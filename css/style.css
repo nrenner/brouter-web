@@ -15,30 +15,18 @@ body, #content {
 .dataTables_wrapper,
 .dataTables_scroll,
 .dataTables_scrollBody {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     
     flex-flow: column;
 }
 
 .flexrow {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
 
     flex-direction: row;
 }
 
 .flexgrow {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
     flex: 1;
 }
 
@@ -47,18 +35,10 @@ body, #content {
 .dataTables_scroll,
 .dataTables_scrollBody,
 table.dataTable {
-    -webkit-box-flex: auto;
-    -moz-box-flex: auto;
-    -webkit-flex: auto;
-    -ms-flex: auto;
     flex: auto;
 }
 
 footer {
-    -webkit-box-flex: none;
-    -moz-box-flex: none;
-    -webkit-flex: none;
-    -ms-flex: none;
     flex: none;
 
     background-color: #f7f7f9;
@@ -153,7 +133,6 @@ footer {
 https://css-tricks.com/svg-line-animation-works/
 */
 .loading-trailer {
-    -webkit-animation: dash 0.4s linear infinite;
     animation: dash 0.4s linear infinite;
 }
 @-webkit-keyframes dash {
