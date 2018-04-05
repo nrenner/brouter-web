@@ -104,12 +104,15 @@ footer {
     cursor: crosshair;
 }
 
+#map {
+    /* center error message horizontally */
+    display: flex;
+    justify-content: center;
+}
 #message {
-    position: absolute;
-    left: 446px; /* 400 + 10 + 26 + 10 */
-    top: 0px;
-    margin-top: 10px;
+    margin: 10px 46px; /* 10 + 26 + 10 */
     z-index: 3000;
+    font-size: 1rem;
 }
 
 #profile_buttons {
