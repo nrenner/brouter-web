@@ -49,10 +49,12 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
             var tabId = localStorage.getItem(this.storageId);
             
-            // not set: open sidebar by default for new users
             // 'true': legacy value for toggling old sidebar
-            if (tabId === null || tabId === 'true') {
+            if (tabId === 'true') {
                 tabId = this.options.defaultTabId;
+            } else if (tabId === null) {
+                // not set: closed by default for new users
+                tabId = '';
             }
             if (tabId !== '') {
                 this.open(tabId);
