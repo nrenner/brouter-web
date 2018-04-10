@@ -65,9 +65,10 @@ footer {
     border-bottom: 1px dotted #818a91;
 }
 
-#elevation-chart {
-    height: 175px;
+.steelblue-theme.leaflet-control.elevation .background {
+    display: block;
     font-size: 80%;
+    border-radius: 0;
 }
 
 .form-group {
