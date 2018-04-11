@@ -41,7 +41,9 @@
         // By default bootstrap-select use glyphicons
         $('.selectpicker').selectpicker({
             iconBase: 'fa',
-            tickIcon: 'fa-check'
+            tickIcon: 'fa-check',
+            // don't overlap with footer
+            windowPadding: [0, 0, 40, 0]
         });
 
         search = new BR.Search();

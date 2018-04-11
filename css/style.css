@@ -38,6 +38,16 @@ table.dataTable {
     flex: auto;
 }
 
+.navbar {
+    /* align with leaflet-control */
+    padding: .5rem 10px;
+}    
+.navbar-brand {
+    float: right;
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
 footer {
     flex: none;
 
@@ -74,12 +84,6 @@ footer {
 .form-group {
     margin-bottom: 0
 }
-
-.bootstrap-select.btn-group:not(.input-group-btn),
-.bootstrap-select.btn-group[class*="col-"] {
-    margin-left: 10px;
-}
-
 
 .axis path,
 .axis line {

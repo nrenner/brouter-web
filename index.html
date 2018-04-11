@@ -21,17 +21,7 @@
         </div>
         <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
             <div class="nav navbar-nav">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="fa fa-lg fa-cloud-download"></span>&nbsp;Download</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" id="dl-gpx" href="#" disabled>GPX</a>
-                        <a class="dropdown-item" id="dl-kml" href="#" disabled>KML</a>
-                        <a class="dropdown-item" id="dl-geojson" href="#" disabled>GeoJSON</a>
-                        <a class="dropdown-item" id="dl-csv" href="#" disabled>data CSV</a>
-                    </div>
-                </div>
-                <form class="navbar-form">
+                <form class="nav-item form-inline">
                     <div class="form-group">
                         <select class="selectpicker show-tick" id="profile-alternative" multiple>
                             <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
@@ -46,6 +36,16 @@
                         </select>
                     </div>
                 </form>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-lg fa-cloud-download"></span>&nbsp;Download</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" id="dl-gpx" href="#" disabled>GPX</a>
+                        <a class="dropdown-item" id="dl-kml" href="#" disabled>KML</a>
+                        <a class="dropdown-item" id="dl-geojson" href="#" disabled>GeoJSON</a>
+                        <a class="dropdown-item" id="dl-csv" href="#" disabled>data CSV</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
