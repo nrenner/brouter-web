@@ -365,7 +365,11 @@ table.dataTable.display tbody tr.even:hover {
  */
 
 .CodeMirror {
-    height: 100%;
+    /* auto instead of 1 to avoid overflow to content height in Firefox */
+    flex: auto;
+    /* override default 300px, behaves like min-height with flex auto */
+    height: 0;
+    
     border: 1px solid #ddd;
     
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
