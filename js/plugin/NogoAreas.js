@@ -45,7 +45,7 @@ BR.NogoAreas = L.Control.extend({
             featuresLayer: this.drawnItems
         });
 
-        var button = L.easyButton({
+        this.button = L.easyButton({
             states: [{
                 stateName: BR.NogoAreas.STATE_CREATE,
                 icon: 'fa-ban',
@@ -66,10 +66,10 @@ BR.NogoAreas = L.Control.extend({
                     control.state('no-go-create');
                 }
             }]
-        }).addTo(map);
+        });
 
         this.editTools.on('editable:drawing:end', function (e) {
-            button.state(BR.NogoAreas.STATE_CREATE);
+            self.button.state(BR.NogoAreas.STATE_CREATE);
 
             setTimeout(L.bind(function () {
                 // turn editing off after create; async to still fire 'editable:vertex:dragend'
@@ -88,7 +88,7 @@ BR.NogoAreas = L.Control.extend({
            e.layer.setStyle(this.style);
         }, this);
 
-        this.tooltip = new BR.EditingTooltip(map, editTools, button);
+        this.tooltip = new BR.EditingTooltip(map, editTools, this.button);
         this.tooltip.enable();
 
         // dummy, no own representation, delegating to EasyButton
@@ -148,6 +148,10 @@ BR.NogoAreas = L.Control.extend({
     
     getEditGroup: function() {
         return this.editTools.editLayer;
+    },
+    
+    getButton: function() {
+        return this.button;
     }
 });
 

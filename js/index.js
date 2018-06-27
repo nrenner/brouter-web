@@ -89,8 +89,6 @@
             'Clear route'
         );
 
-        drawToolbar = L.easyBar([drawButton, deleteButton]).addTo(map);
-
         function updateRoute(evt) {
             router.setOptions(evt.options);
 
@@ -233,6 +231,7 @@
         }
 
         nogos.addTo(map);
+        drawToolbar = L.easyBar([drawButton, nogos.getButton(), deleteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         map.addControl(new BR.OpacitySlider({
