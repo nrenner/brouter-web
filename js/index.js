@@ -74,12 +74,22 @@
         deleteButton = L.easyButton(
             'fa-trash-o',
             function () {
-                bootbox.confirm({
+                bootbox.prompt({
                     size: 'small',
-                    message: "Delete route?",
+                    title: "Delete route?",
+                    inputType: 'checkbox',
+                    inputOptions: [
+                        {
+                            text: '&nbsp;&nbsp;also delete all no-go areas',
+                            value: 'nogo'
+                        }
+                    ],
                     callback: function(result) {
-                        if (result) {
+                        if (result !== null) {
                             routing.clear();
+                            if (result.length > 0 && result[0] === 'nogo') {
+                                nogos.clear();
+                            }
                             onUpdate();
                             urlHash.onMapMove();
                         }
