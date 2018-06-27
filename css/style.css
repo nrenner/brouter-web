@@ -293,7 +293,7 @@ table.dataTable.display tbody tr.even:hover {
 
 .nogo-delete-marker {
     text-align: center;
-    line-height: 16px;
+    line-height: 15px;
     font-size: 11px;
     border-radius: 8px;
 }
