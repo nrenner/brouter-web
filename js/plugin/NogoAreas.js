@@ -263,15 +263,24 @@ BR.EditingTooltip = L.Handler.extend({
         }
     },
 
+    _setCloseTimeout: function(layer) {
+        var timeoutId = setTimeout(function () {
+           layer.closeTooltip();
+        }, this.options.closeTimeout);
+        
+        // prevent timer to close tooltip that changed in the meantime
+        layer.once('tooltipopen', function (e) {
+           clearTimeout(timeoutId);
+        });
+    },
+
     _postCreate: function () {
         // editing is disabled by another handler, tooltip won't stay open before
         this.editTools.once('editable:disable', function (e) {
 
             // show for a few seconds, as mouse often not hovering circle after create
             e.layer.openTooltip(e.layer);
-            setTimeout(function () {
-               e.layer.closeTooltip();
-            }, this.options.closeTimeout);
+            this._setCloseTimeout(e.layer);
         }, this);
     },
 
@@ -285,10 +294,7 @@ BR.EditingTooltip = L.Handler.extend({
 
     _disable: function (e) {
         e.layer.setTooltipContent(BR.NogoAreas.MSG_DISABLED);
-
-        setTimeout(function () {
-            e.layer.closeTooltip();
-        }, this.options.closeTimeout);
+        this._setCloseTimeout(e.layer);
     }
 });
 
