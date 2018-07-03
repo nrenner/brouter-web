@@ -29,7 +29,8 @@
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
     "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
     "leaflet.editable": "^1.1.0",
-    "codemirror": "^5.35.0"
+    "codemirror": "^5.35.0",
+    "mapbbcode": "MapBBCode/mapbbcode#v1.2.0"
   },
   "overrides": {
     "leaflet": {
@@ -100,6 +101,9 @@
         "jquery": "*",
         "bootstrap": "*"
       }
+    },
+    "mapbbcode": {
+      "main": "src/controls/PermalinkAttribution.js"
     }
   },
   "resolutions": {

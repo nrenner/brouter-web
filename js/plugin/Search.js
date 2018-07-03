@@ -6,13 +6,6 @@ BR.Search = L.Control.Geocoder.extend({
         position: 'topleft'
     },
 
-    onAdd: function (map) {
-        map.attributionControl.addAttribution(
-            'search by <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
-
-        return L.Control.Geocoder.prototype.onAdd.call(this, map);
-    },
-
     markGeocode: function(result) {
         this._map.fitBounds(result.geocode.bbox, {
             maxZoom: 17

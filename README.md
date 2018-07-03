@@ -137,3 +137,5 @@ Copyright (c) 2012 Makina Corpus, [MIT License](https://github.com/makinacorpus/
 Copyright (c) 2014 Dominik Moritz, [MIT License](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE)
 * [Font Awesome](http://fontawesome.io/license/)  
 by Dave Gandy; [SIL OFL 1.1](https://scripts.sil.org/OFL) (Font), MIT License (Code), CC BY 3.0 (Documentation)
+* [Map BBCode](https://github.com/MapBBCode/mapbbcode)  
+Ilya Zverev; [Do What The F*ck You Want To Public License](https://github.com/MapBBCode/mapbbcode/blob/master/LICENSE)

@@ -8,50 +8,57 @@ BR.Map = {
 
         var maxZoom = 19;
 
+        // Layer attribution here only as short link to original site, 
+        // to keep current position use placeholders: {zoom}/{lat}/{lon}
+        // Copyright attribution in index.html #credits
+
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: maxZoom
+            maxZoom: maxZoom,
+            attribution: '<a target="_blank" href="https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}">OpenStreetMap</a>'
         });
 
         var osmde = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
             maxNativeZoom: 18,
-            maxZoom: maxZoom
+            maxZoom: maxZoom,
+            attribution: '<a target="_blank" href="https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF">OpenStreetMap.de</a>'
         });
 
         var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
             maxNativeZoom: 17,
-            maxZoom: maxZoom
+            maxZoom: maxZoom,
+            attribution: '<a target="_blank" href="https://opentopomap.org/#map={zoom}/{lat}/{lon}">OpenTopoMap</a>'
         });
 
-        var thunderforestAttribution = 'tiles &copy; <a target="_blank" href="https://www.thunderforest.com">Thunderforest</a> '
-            + '(<a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>)';
         var thunderforestAuth = BR.keys.thunderforest ? '?apikey=' + BR.keys.thunderforest : '';
         var cycle = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + thunderforestAuth, {
             maxNativeZoom: 18,
-            maxZoom: maxZoom
+            maxZoom: maxZoom,
+            attribution: '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000">OpenCycleMap</a>'
         });
         var outdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' + thunderforestAuth, {
             maxNativeZoom: 18,
-            maxZoom: maxZoom
+            maxZoom: maxZoom,
+            attribution: '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=000B0">Outdoors</a>'
         });
 
         var esri = L.tileLayer('https://{s}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             maxNativeZoom: 19,
             maxZoom: maxZoom,
             subdomains: ['server', 'services'],
-            attribution: '<a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a> '
-                + '&copy; <a target="_blank" href="https://www.esri.com/">Esri</a>, sources: '
-                + 'Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community'
+            attribution: '<a target="_blank" href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri World Imagery</a>'
         });
 
         var cycling = L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
-          maxZoom: maxZoom
+          maxZoom: maxZoom,
+          attribution: '<a target="_blank" href="http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">Cycling</a>'
         });
         var hiking = L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
-          maxZoom: maxZoom
+          maxZoom: maxZoom,
+          attribution: '<a target="_blank" href="http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">Hiking</a>'
         });
 
         map = new L.Map('map', {
@@ -60,9 +67,17 @@ BR.Map = {
         if (!map.restoreView()) {
             map.setView([50.99, 9.86], 6);
         }
-        map.attributionControl.setPrefix(false);
-        map.attributionControl.addAttribution('<a href="" data-toggle="modal" data-target="#credits">Copyright & credits</a>')
 
+        // two attribution lines by adding two controls, prevents ugly wrapping on
+        // small screens, better separates static from layer-specific attribution
+        map.attributionControl.setPrefix(
+            '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
+            ($(map.getContainer()).outerWidth() >= 400 ? ' contributers' : '') +
+            ' &middot; <a href="" data-toggle="modal" data-target="#credits">Copyright</a>' +
+            ' &middot; <a target="_blank" href="http://brouter.de/privacypolicy.html">Privacy</a>');
+
+        new L.Control.PermalinkAttribution().addTo(map);
+        map.attributionControl.setPrefix(false);
 
         var baseLayers = {
             'OpenStreetMap': osm,
