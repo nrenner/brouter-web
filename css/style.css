@@ -80,35 +80,41 @@ footer {
     border-bottom: 1px dotted #818a91;
 }
 
+.form-group {
+    margin-bottom: 0
+}
+
+/*
+ * elevation diagram
+ */
+
 .steelblue-theme.leaflet-control.elevation .background {
     display: block;
     font-size: 80%;
     border-radius: 0;
 }
 
-.form-group {
-    margin-bottom: 0
+/* diagram colors lighter, less dominant */
+.steelblue-theme.leaflet-control.elevation .background {
+  background-color: rgba(105, 155, 196, 0.2);
 }
-
-.axis path,
-.axis line {
-    stroke: #818a91;
-    fill: none;
-    shape-rendering: crispEdges;
+.steelblue-theme.leaflet-control.elevation .axis path,
+.steelblue-theme.leaflet-control.elevation .axis line {
+  stroke: #8398aa;
+  shape-rendering: crispEdges;
 }
-
-.axis text {
-    fill: #818a91;
+.steelblue-theme.leaflet-control.elevation .axis text {
+  fill: #8398aa;
 }
-
-.area {
-    fill: rgba(129, 138, 145, 0.45);
+.steelblue-theme.leaflet-control.elevation .area {
+  fill: #699bc4;
 }
 
 #elevation-btn {
     align-items: center;
     margin-right: 0.5rem;
 }
+
 
 .routing-draw-enabled {
     cursor: crosshair;
