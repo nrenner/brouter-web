@@ -166,7 +166,7 @@
             profile.message.hide();
             routingOptions.setCustomProfile(null);
         });
-        trackMessages = new BR.TrackMessages({
+        trackMessages = new BR.TrackMessages(map, {
             requestUpdate: requestUpdate
         });
 
@@ -222,12 +222,8 @@
             download.update(urls);
         };
 
-        routingOptions.addTo(map);
-
         routing.addTo(map);
         elevation.addBelow(map);
-
-        trackMessages.onAdd(map);
 
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',

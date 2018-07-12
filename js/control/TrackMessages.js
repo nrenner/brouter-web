@@ -1,7 +1,6 @@
-BR.TrackMessages = L.Evented.extend({
+BR.TrackMessages = L.Class.extend({
 
     options: {
-        heading: 'Segment data',
         edgeStyle: {
             color: 'yellow',
             opacity: 0.8,
@@ -24,16 +23,13 @@ BR.TrackMessages = L.Evented.extend({
         'InitialCost': { title: 'initial$', className: 'dt-body-right' }
     },
 
-    initialize: function (options) {
+    initialize: function (map, options) {
         L.setOptions(this, options);
+        this._map = map;
 
         var table = document.getElementById('datatable');
         this.tableClassName = table.className;
         this.tableParent = table.parentElement;
-    },
-
-    onAdd: function (map) {
-        this._map = map;
     },
 
     update: function (polyline, segments) {
