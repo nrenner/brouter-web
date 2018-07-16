@@ -124,6 +124,13 @@ footer {
     /* center error message horizontally */
     display: flex;
     justify-content: center;
+
+    /* map click/drag selects text in controls in Firefox because of display flex */
+    -moz-user-select: none;
+}
+.leaflet-control-container,
+#message .alert {
+    -moz-user-select: text;
 }
 #message {
     z-index: 3000;
