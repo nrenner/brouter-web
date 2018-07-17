@@ -133,8 +133,11 @@ footer {
     -moz-user-select: text;
 }
 #message {
+    position: absolute;
+    margin: 10px 46px; /* 10 + 26 + 10 */
     z-index: 3000;
     font-size: 1rem;
+    cursor: auto;
 }
 
 #profile_buttons {
@@ -246,10 +249,6 @@ https://css-tricks.com/svg-line-animation-works/
 /* smaller tab height */
 .nav > li > a {
     padding: 2px 15px;
-}
-
-#message .alert {
-    margin: 10px 46px; /* 10 + 26 + 10 */
 }
 
 #profile_message .alert {

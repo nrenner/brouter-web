@@ -15,6 +15,8 @@ BR.Message = L.Class.extend({
             iconClass = (type === 'warning') ? 'fa-exclamation-triangle' : 'fa-times-circle',
             alertClass = (type === 'warning') ? 'alert-warning' : 'alert-danger';
 
+        L.DomEvent.disableClickPropagation(ele);
+
         ele.innerHTML =
               '<div class="alert ' + alertClass + ' alert-dismissible fade in" role="alert">'
             + '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'
