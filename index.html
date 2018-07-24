@@ -185,7 +185,18 @@
     <div id="content" class="flexcolumn flexgrow">
         <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
             <ul role="tablist">
-                <li><a href="#tab_layers_control" role="tab" title="Layers"><img src="dist/images/layers.png" width="20px"></a></li>
+                <li><a href="#tab_layers_control" role="tab" title="Layers">
+                        <!--
+                        https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
+                        MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
+                        modifications: line gap -0.5, stroke-width +0.2
+                        -->
+                        <svg class="fa" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon style="fill: currentColor" points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 11.5 12 16.5 22 11.5"></polyline>
+                            <polyline points="2 16 12 21 22 16"></polyline>
+                        </svg>
+                    </a></li>
                 <li hidden><a href="#tab_itinerary" role="tab" title="Itinerary"><i class="fa fa-map-signs"></i></a></li>
                 <li><a href="#tab_profile" role="tab" title="Custom profile"><i class="fa fa-wrench"></i></a></li>
                 <li><a href="#tab_data" role="tab" title="Data"><i class="fa fa-table"></i></a></li> 

@@ -368,6 +368,13 @@ table.dataTable.display tbody tr.even:hover {
     display: none;
 }
 
+/* layers svg icon not properly centered */
+.leaflet-sidebar-tabs > ul > li > a[href="#tab_layers_control"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /*
  * CodeMirror
  */
