@@ -26,6 +26,10 @@ BR.Sidebar = L.Control.Sidebar.extend({
         this.on('closing', this._notifyOnClose, this);
         this.on('toggleExpand', this._notifyOnResize, this);
 
+        this.on('closing', function () {
+            this._map.getContainer().focus();
+        }, this);
+
         this._rememberTabState();
 
         if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
