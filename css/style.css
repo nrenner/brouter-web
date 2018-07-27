@@ -47,6 +47,9 @@ table.dataTable {
     margin-left: 1rem;
     margin-right: 0;
 }
+.nav-link .fa {
+    margin-right: 0.2em;
+}
 
 /* disabled style for "Custom" option, but not for selected items */
 .bootstrap-select.btn-group .dropdown-menu li.disabled:not(.selected) a {
