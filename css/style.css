@@ -72,6 +72,17 @@ footer {
     margin: 0 1rem;
     display: inline-block;
 }
+@media (max-width: 767px) {
+    #stats li {
+        margin: 0 0.5rem;
+    }
+    #stats {
+        padding-top: 0.4em;
+    }
+    p.stats-label {
+        margin-bottom: 0.4em;
+    }
+}
 
 .stats-label {
     word-break: break-all;
