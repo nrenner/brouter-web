@@ -259,6 +259,10 @@ https://css-tricks.com/svg-line-animation-works/
     /* override fa with Leaflet button height for vertical center */
     line-height: 26px;
 }
+.leaflet-touch .leaflet-bar .fa {
+    font-size: 16px;
+    line-height: 30px;
+}
 
 /* smaller tab height */
 .nav > li > a {
