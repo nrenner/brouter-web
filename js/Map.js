@@ -18,7 +18,7 @@ BR.Map = {
         });
 
         var osmde = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-            maxNativeZoom: 18,
+            maxNativeZoom: 19,
             maxZoom: maxZoom,
             attribution: '<a target="_blank" href="https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF">OpenStreetMap.de</a>'
         });
