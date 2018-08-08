@@ -38,6 +38,22 @@ table.dataTable {
     flex: auto;
 }
 
+/* wrap toolbar controls */
+.leaflet-top.leaflet-left {
+    bottom: 0;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* bottom underneath top controls when overlapping */
+.leaflet-bottom {
+    z-index: 999;
+}
+
 .navbar {
     /* align with leaflet-control */
     padding: .5rem 10px;
