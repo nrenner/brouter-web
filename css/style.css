@@ -70,6 +70,9 @@ table.dataTable {
 .nav-link .fa {
     margin-right: 0.2em;
 }
+.navbar-dark .navbar-toggler {
+    background-image: none;
+}
 
 /* disabled style for "Custom" option, but not for selected items */
 .bootstrap-select.btn-group .dropdown-menu li.disabled:not(.selected) a {
