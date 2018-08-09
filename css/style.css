@@ -10,6 +10,10 @@ body, #content {
     z-index: 1;
 }
 
+#content {
+    overflow: hidden;
+}
+
 .flexcolumn,
 .leaflet-sidebar-pane.active,
 .dataTables_wrapper,
