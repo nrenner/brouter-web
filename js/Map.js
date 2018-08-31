@@ -128,10 +128,13 @@ BR.Map = {
 
         layersControl = BR.layersTab(baseLayers, overlays).addTo(map);
 
-        L.control.locate({
-            icon: 'fa fa-location-arrow',
-            iconLoading: 'fa fa-spinner fa-pulse',
-        }).addTo(map);
+        var secureContext = 'isSecureContext' in window ? isSecureContext : location.protocol === 'https:';
+        if (secureContext) {
+            L.control.locate({
+                icon: 'fa fa-location-arrow',
+                iconLoading: 'fa fa-spinner fa-pulse',
+            }).addTo(map);
+        }
 
         L.control.scale().addTo(map);
 
