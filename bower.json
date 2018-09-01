@@ -24,13 +24,15 @@
     "seiyria-bootstrap-slider": "^9.8.1",
     "url-search-params": "~0.5.0",
     "Leaflet.RestoreView": "makinacorpus/Leaflet.RestoreView#master",
+    "leaflet.stravasegments": "bagage/leaflet.stravasegments#master",
     "leaflet.locatecontrol": "^0.60.0",
     "font-awesome": "^4.7.0",
     "bootstrap-select": "hugdx/bootstrap-select#patch-1",
     "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
     "leaflet.editable": "^1.1.0",
     "codemirror": "^5.35.0",
-    "mapbbcode": "MapBBCode/mapbbcode#v1.2.0"
+    "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
+    "@mapbox/polyline": "^0.2.0"
   },
   "overrides": {
     "leaflet": {
