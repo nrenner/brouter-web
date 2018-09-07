@@ -79,6 +79,9 @@
         //'Mapsforge Tile Server': 'http://localhost:6090/{z}/{x}/{y}.png'
     };
 
+    // Base layer to show on start, as position number in the layer switcher, starting from 0, default is first
+    BR.conf.defaultBaseLayerIndex = 0;
+
     // Initial route line transparency (0-1, overridden by stored slider setting)
     BR.conf.defaultOpacity = 0.67;
 
