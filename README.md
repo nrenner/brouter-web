@@ -97,7 +97,7 @@ Requires [Node and npm](https://nodejs.org/) (or [io.js](https://iojs.org)), [Bo
 
 ## License
 
-Copyright (c) 2016 Norbert Renner and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors), licensed under the [MIT License (MIT)](LICENSE)
+Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors), licensed under the [MIT License (MIT)](LICENSE)
 
 ## Credits and Licenses
 
