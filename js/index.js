@@ -240,6 +240,14 @@
         drawToolbar = L.easyBar([drawButton, nogos.getButton(), deleteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
+        if (BR.conf.stravaToken) {
+            new L.Control.StravaSegments(
+            {
+                stravaToken: BR.conf.stravaToken
+            })
+            .addTo(map);
+        }
+
         map.addControl(new BR.OpacitySlider({
             callback: L.bind(routing.setOpacity, routing)
         }));
