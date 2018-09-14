@@ -1,6 +1,29 @@
 BRouter-Web Changelog
 =====================
 
+## 0.7.0 (2018-09)
+
+See also [milestone 0.7.0](https://github.com/nrenner/brouter-web/milestone/4?closed=1)
+
+### New Features
+
+* Redesign of the user interface to also support mobile devices - by [@bagage](https://github.com/bagage) and [@RoPP](https://github.com/RoPP) ([#34](https://github.com/nrenner/brouter-web/issues/34), [#66](https://github.com/nrenner/brouter-web/issues/66))
+* Permalink replaced with auto-updating URL address bar - by [@bagage](https://github.com/bagage) ([#62](https://github.com/nrenner/brouter-web/issues/62))
+* Allow user to add custom layers - by [@bagage](https://github.com/bagage) ([#77](https://github.com/nrenner/brouter-web/pull/77))
+* Profile and data table now in a collapsible, full-height sidebar ([#90](https://github.com/nrenner/brouter-web/issues/90), [#114](https://github.com/nrenner/brouter-web/issues/114))
+* No-go areas individually editable and deletable ([#100](https://github.com/nrenner/brouter-web/issues/100))
+
+### Improvements
+
+* New gulp debug task and watch CSS folder - by [@bagage](https://github.com/bagage) ([#58](https://github.com/nrenner/brouter-web/pull/58))
+* Locate button not shown when no https ([#60](https://github.com/nrenner/brouter-web/issues/60))
+* Support Leaflet 1.0 ([#65](https://github.com/nrenner/brouter-web/issues/65), [#69](https://github.com/nrenner/brouter-web/issues/69))
+* Add a gulp command for release - by [@RoPP](https://github.com/RoPP) ([#85](https://github.com/nrenner/brouter-web/pull/85))
+* Use https scheme whenever possible, to avoid mixed content issues - by [@bagage](https://github.com/bagage) ([#87](https://github.com/nrenner/brouter-web/pull/87))
+* Add car-eco/fast profiles + display energy/time - by [@abrensch](https://github.com/abrensch) ([#95](https://github.com/nrenner/brouter-web/pull/95))
+* Improve error message if no route found - by [@bagage](https://github.com/bagage) ([#99](https://github.com/nrenner/brouter-web/issues/99))
+* Support zoom 19 for German style - by [@giggls](https://github.com/giggls) ([#128](https://github.com/nrenner/brouter-web/pull/128))
+
 ## 0.6.3 (2017-03-16)
 
 * Fix data tab showing only two rows (regression from v0.6.2) ([#72](https://github.com/nrenner/brouter-web/issues/72))
