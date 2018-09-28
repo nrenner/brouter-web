@@ -240,10 +240,10 @@
         drawToolbar = L.easyBar([drawButton, nogos.getButton(), deleteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
-        if (BR.conf.stravaToken) {
+        if (BR.keys.strava) {
             new L.Control.StravaSegments(
             {
-                stravaToken: BR.conf.stravaToken
+                stravaToken: BR.keys.strava
             })
             .addTo(map);
         }

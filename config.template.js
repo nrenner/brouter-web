@@ -128,7 +128,4 @@
         ];
 
     }
-
-    // Strava API token in case you want to display Strava segments
-    BR.conf.stravaToken = null;
 })();
