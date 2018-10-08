@@ -57,6 +57,11 @@ L.BRouter = L.Class.extend({
                 delete params.profile;
             if (params.alternativeidx == 0)
                 delete params.alternativeidx;
+
+            // don't add custom profile, as these are only stored temporarily
+            if (params.profile && params.profile.substring(0, 7) === 'custom_') {
+                delete params.profile;
+            }
         }
 
         return params;
