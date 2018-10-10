@@ -233,7 +233,7 @@ gulp.task('release:publish', ['release:zip'], function() {
   .pipe(release({
     tag: nextVersion,
     token: ghToken,
-    manifeste: pkg,
+    manifest: pkg,
   }))
 });
 
