@@ -1,7 +1,7 @@
 BRouter-Web Changelog
 =====================
 
-## 0.7.0 (2018-09)
+## 0.7.0 (2018-10-10)
 
 See also [milestone 0.7.0](https://github.com/nrenner/brouter-web/milestone/4?closed=1)
 
