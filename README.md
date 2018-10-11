@@ -1,13 +1,11 @@
 brouter-web
 ===========
 
-Web client (by [@nrenner](https://github.com/nrenner)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)). *Work in progress*.
+Web client (by [@nrenner](https://github.com/nrenner) and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)). *Work in progress*.
 
-**New web client available mobile-ready to test on [brouter.damsy.net](http://brouter.damsy.net).
-Feedbacks are appreciated, do not hesitate to create issues about it!**
-
-BRouter online service (provided by [@abrensch](https://github.com/abrensch)):  
-http://brouter.de/brouter-web/
+Instances:  
+* [brouter.de/brouter-web](http://brouter.de/brouter-web/) *(provided by [@abrensch](https://github.com/abrensch))*
+* [brouter.damsy.net](http://brouter.damsy.net) *(provided by [@bagage](https://github.com/bagage))*
 
 This repository is only about the frontend. For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
 https://github.com/abrensch/brouter
@@ -25,12 +23,12 @@ As an alternative to the above online version, the standalone server of BRouter 
 ### Install BRouter (server with routing engine)
 
 1. download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
-e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_10`` with latest version):  
+e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_11`` with latest version):  
 
         mkdir ~/opt/brouter
         cd ~/opt/brouter
-        wget http://brouter.de/brouter_bin/brouter_1_4_10.zip
-        unzip brouter_1_4_10.zip
+        wget http://brouter.de/brouter_bin/brouter_1_4_11.zip
+        unzip brouter_1_4_11.zip
         chmod +x ./standalone/server.sh
 
 2. download one or more [data file(s)](http://brouter.de/brouter/segments4/) (rd5) into ``segments4`` dir
@@ -41,9 +39,8 @@ e.g. for Linux (replace ``~/opt/`` with your preferred install dir and ``1_4_10`
    * using the latest stable release - adjust to current version number - from
      https://github.com/nrenner/brouter-web/releases:
 
-         wget https://github.com/nrenner/brouter-web/archive/0.6.4.zip
-         unzip 0.6.4.zip
-         mv brouter-web-0.6.4 brouter-web
+         wget https://github.com/nrenner/brouter-web/releases/download/0.7.0/brouter-web-0.7.0.zip
+         unzip brouter-web-0.7.0.zip -d brouter-web
 
    * OR the current development state (potentially instable and without runtime distributables):
 
