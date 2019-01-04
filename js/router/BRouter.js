@@ -218,6 +218,10 @@ L.BRouter = L.Class.extend({
             s += this._formatLatLng(circle.getLatLng());
             s += L.BRouter.NUMBER_SEPARATOR;
             s += Math.round(circle.getRadius());
+            if (circle.options.weight) {
+                s += L.BRouter.NUMBER_SEPARATOR;
+                s += circle.options.weight;
+            }
             if (i < (nogos.length - 1)) {
                 s += L.BRouter.GROUP_SEPARATOR;
             }
@@ -236,11 +240,16 @@ L.BRouter = L.Class.extend({
 
         groups = s.split(L.BRouter.GROUP_SEPARATOR);
         for (var i = 0; i < groups.length; i++) {
-            // lng,lat,radius
+            // lng,lat,radius(,weight)
             numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
             // TODO refactor: pass simple obj, create circle in NogoAreas; use shapeOptions of instance
             // [lat,lng],radius
-            nogos.push(L.circle([numbers[1], numbers[0]], {radius: numbers[2]}));
+            // Parse as a nogo circle
+            var nogoOptions = {radius: numbers[2]};
+            if (numbers.length > 3) {
+                nogoOptions.weight = numbers[3];
+            }
+            nogos.push(L.circle([numbers[1], numbers[0]], nogoOptions));
         }
 
         return nogos;
