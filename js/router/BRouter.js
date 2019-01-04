@@ -2,7 +2,7 @@ L.BRouter = L.Class.extend({
     statics: {
         // NOTE: the routing API used here is not public!
         // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
-        URL_TEMPLATE: '/brouter?lonlats={lonlats}&nogos={nogos}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+        URL_TEMPLATE: '/brouter?lonlats={lonlats}&nogos={nogos}&polylines={polylines}&polygons={polygons}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
@@ -41,8 +41,14 @@ L.BRouter = L.Class.extend({
         if (this._getLonLatsString(latLngs) != null)
             params.lonlats = this._getLonLatsString(latLngs);
 
-        if (this._getNogosString(this.options.nogos).length > 0)
+        if (this.options.nogos && this._getNogosString(this.options.nogos).length > 0)
             params.nogos = this._getNogosString(this.options.nogos);
+
+        if (this.options.polylines && this._getNogosPolylinesString(this.options.polylines).length > 0)
+            params.polylines = this._getNogosPolylinesString(this.options.polylines);
+
+        if (this.options.polygons && this._getNogosPolygonsString(this.options.polygons).length > 0)
+            params.polygons = this._getNogosPolygonsString(this.options.polygons);
 
         if (this.options.profile != null)
             params.profile = this.options.profile;
@@ -75,6 +81,12 @@ L.BRouter = L.Class.extend({
         if (params.nogos) {
             opts.nogos = this._parseNogos(params.nogos);
         }
+        if (params.polylines) {
+            opts.polylines = this._parseNogosPolylines(params.polylines);
+        }
+        if (params.polygons) {
+            opts.polygons = this._parseNogosPolygons(params.polygons);
+        }
         if (params.alternativeidx) {
             opts.alternative = params.alternativeidx;
         }
@@ -92,6 +104,10 @@ L.BRouter = L.Class.extend({
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
         if (urlParams.nogos != null)
             args.push(L.Util.template('nogos={nogos}', urlParams));
+        if (urlParams.polylines != null)
+            args.push(L.Util.template('polylines={polylines}', urlParams));
+        if (urlParams.polygons != null)
+            args.push(L.Util.template('polygons={polygons}', urlParams));
         if (urlParams.profile != null)
             args.push(L.Util.template('profile={profile}', urlParams));
         if (urlParams.alternativeidx != null)
@@ -218,9 +234,9 @@ L.BRouter = L.Class.extend({
             s += this._formatLatLng(circle.getLatLng());
             s += L.BRouter.NUMBER_SEPARATOR;
             s += Math.round(circle.getRadius());
-            if (circle.options.weight) {
+            if (circle.options.nogoWeight) {
                 s += L.BRouter.NUMBER_SEPARATOR;
-                s += circle.options.weight;
+                s += circle.options.nogoWeight;
             }
             if (i < (nogos.length - 1)) {
                 s += L.BRouter.GROUP_SEPARATOR;
@@ -247,11 +263,93 @@ L.BRouter = L.Class.extend({
             // Parse as a nogo circle
             var nogoOptions = {radius: numbers[2]};
             if (numbers.length > 3) {
-                nogoOptions.weight = numbers[3];
+                nogoOptions.nogoWeight = numbers[3];
             }
             nogos.push(L.circle([numbers[1], numbers[0]], nogoOptions));
         }
 
+        return nogos;
+    },
+
+    _getNogosPolylinesString: function(nogos) {
+        var s = '';
+        for (var i = 0, polyline, vertices; i < nogos.length; i++) {
+            polyline = nogos[i];
+            vertices = polyline.getLatLngs();
+            for (var j = 0; j < vertices.length; j++) {
+                if (j > 0) {
+                    s += L.BRouter.NUMBER_SEPARATOR;
+                }
+                s += this._formatLatLng(vertices[j]);
+            }
+            if (i < (nogos.length - 1)) {
+                s += L.BRouter.GROUP_SEPARATOR;
+            }
+        }
+        return s;
+    },
+
+    _parseNogosPolylines: function(s) {
+        var groups,
+            numbers,
+            latlngs,
+            nogos = [];
+
+        groups = s.split(L.BRouter.GROUP_SEPARATOR);
+        for (var i = 0; i < groups.length; i++)
+        {
+            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+            if (numbers.length > 1)
+            {
+                latlngs = [];
+                for (var j = 0; j < numbers.length - 1;)
+                {
+                    latlngs.push([numbers[j++], numbers[j++]]);
+                }
+                nogos.push(L.polyline(latlngs));
+            }
+        }
+        return nogos;
+    },
+
+    _getNogosPolygonsString: function(nogos) {
+        var s = '';
+        for (var i = 0, polygon, vertices; i < nogos.length; i++) {
+            polygon = nogos[i];
+            vertices = polygon.getLatLngs()[0];
+            for (var j = 0; j < vertices.length; j++) {
+                if (j > 0) {
+                    s += L.BRouter.NUMBER_SEPARATOR;
+                }
+                s += this._formatLatLng(vertices[j]);
+            }
+            if (i < (nogos.length - 1)) {
+                s += L.BRouter.GROUP_SEPARATOR;
+            }
+        }
+        return s;
+    },
+
+    _parseNogosPolygons: function(s) {
+        var groups,
+            numbers,
+            latlngs,
+            nogos = [];
+
+        groups = s.split(L.BRouter.GROUP_SEPARATOR);
+        for (var i = 0; i < groups.length; i++)
+        {
+            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+            if (numbers.length > 1)
+            {
+                latlngs = [];
+                for (var j = 0; j < numbers.length - 1;)
+                {
+                    latlngs.push([numbers[j++], numbers[j++]]);
+                }
+                nogos.push(L.polygon(latlngs));
+            }
+        }
         return nogos;
     },
 
