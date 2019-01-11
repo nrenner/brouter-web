@@ -1,7 +1,5 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var concatCss = require('gulp-concat-css');
-var minifyCss = require('gulp-minify-css');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var uglify = require('gulp-uglify');
@@ -9,7 +7,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var gulpDebug = require('gulp-debug');
 var mainBowerFiles = require('main-bower-files');
 var del = require('del');
-var tap = require('gulp-tap');
 var path = require('path');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
@@ -22,6 +19,8 @@ var semver = require('semver');
 var git = require('gulp-git');
 var replace = require('gulp-replace');
 var release = require('gulp-github-release');
+var cleanCSS = require('gulp-clean-css');
+var modifyCssUrls = require('gulp-modify-css-urls');
 
 var debug = false;
 
@@ -80,23 +79,25 @@ gulp.task('concat', function() {
 
 gulp.task('styles', function() {
   return gulp.src(paths.styles)
-    // hack for rewriting relative URLs to images/fonts in gulp-concat-css
-    // when src in css subfolder (remove '../')
-    // see also (?) https://github.com/mariocasciaro/gulp-concat-css/pull/10
-    .pipe(tap(function (file) {
-      if (path.basename(file.base) === 'css') {
-        file.path = 'css/' + file.relative;
-        file.base = './css';
-      } else {
-        file.path = file.relative;
-        file.base = '.';
+    .pipe(modifyCssUrls({
+      modify(url, filePath) {
+        var distUrl = url;
+        var imageExt = ['.png', '.gif', '.svg'];
+
+        if (imageExt.indexOf(path.extname(url)) !== -1) {
+          distUrl = 'images/' + path.basename(url);
+        } else if (url.indexOf('font') !== -1) {
+          distUrl = 'fonts/' + path.basename(url);
+        }
+
+        return distUrl;
       }
     }))
-    .pipe(concatCss(paths.destName + '.css'))
-    .pipe(postcss([ autoprefixer({ remove: false }) ]))
-    .pipe(minifyCss({
+    .pipe(concat(paths.destName + '.css'))
+    .pipe(cleanCSS({
       rebase: false
     }))
+    .pipe(postcss([ autoprefixer({ remove: false }) ]))
     .pipe(gulp.dest(paths.dest));
 });
 
@@ -131,9 +132,10 @@ gulp.task('watch', function() {
 gulp.task('log', function() {
   //return gulp.src(mainBowerFiles(['**/*.js', '!**/*.min.js']))
   //return gulp.src(mainBowerFiles('**/*.css'))
-  return gulp.src(paths.scripts)
+  //return gulp.src(paths.scripts)
   //return gulp.src(paths.styles)
   //return gulp.src(paths.images)
+  return gulp.src(paths.scripts.concat(paths.styles).concat(paths.images))
     .pipe(gulpDebug());
 
   //return gulp.src(mainBowerFiles({debugging: true}));
