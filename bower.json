@@ -76,6 +76,12 @@
       ],
       "dependencies": null
     },
+    "leaflet.stravasegments": {
+      "main": [
+        "dist/leaflet-triangle-marker.js",
+        "dist/L.StravaSegments.js"
+      ]      
+    },
     "leaflet-control-geocoder": {
       "main": [
         "dist/Control.Geocoder.js",
