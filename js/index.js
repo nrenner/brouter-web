@@ -241,11 +241,12 @@
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
-            new L.Control.StravaSegments(
+            const stravaControl = new L.Control.StravaSegments(
             {
                 stravaToken: BR.keys.strava
             })
             .addTo(map);
+            layersControl.addOverlay(stravaControl.stravaLayer, "Strava segments");
         }
 
         map.addControl(new BR.OpacitySlider({
