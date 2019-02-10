@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var gulpDebug = require('gulp-debug');
-var mainBowerFiles = require('main-bower-files');
+var mainNpmFiles = require('npmfiles');
 var del = require('del');
 var path = require('path');
 var cached = require('gulp-cached');
@@ -25,13 +25,17 @@ var modifyCssUrls = require('gulp-modify-css-urls');
 var debug = false;
 
 var paths = {
-  // see overrides in bower.json
-  scriptsConfig: mainBowerFiles('**/url-search-params/**/*.js'),
-  scripts: mainBowerFiles([
-    '**/*.js',
-    '!**/*.min.js',
-    '!**/url-search-params/**/*.js'
-  ]).concat([
+  // see overrides in package.json
+  scriptsConfig: mainNpmFiles().filter(f => RegExp('url-search-params/.*\\.js', 'i').test(f)),
+  scripts: [
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/tether/dist/js/tether.js',
+    'node_modules/async/lib/async.js'
+  ].concat(mainNpmFiles().filter(f => 
+    RegExp('.*\\.js', 'i').test(f) &&
+    !RegExp('.*\\.min\\.js', 'i').test(f) &&
+    !RegExp('url-search-params/.*\\.js', 'i').test(f)
+  )).concat([
     'js/Browser.js',
     'js/Util.js',
     'js/Map.js',
@@ -40,9 +44,12 @@ var paths = {
     'js/control/*.js',
     'js/index.js'
   ]),
-  styles: mainBowerFiles('**/*.css').concat('css/*.css'),
-  images: mainBowerFiles('**/*.+(png|gif|svg)'),
-  fonts: mainBowerFiles('**/font-awesome/fonts/*'),
+  styles: mainNpmFiles().filter(f => 
+    RegExp('.*\\.css', 'i').test(f) &&
+    !RegExp('.*\\.min\\.css', 'i').test(f)
+  ).concat('css/*.css'),
+  images: mainNpmFiles().filter(f => RegExp('.*.+(png|gif|svg)', 'i').test(f)),
+  fonts: mainNpmFiles().filter(f => RegExp('font-awesome/fonts/.*', 'i').test(f)),
   dest: 'dist',
   destName: 'brouter-web'
 };
@@ -130,15 +137,12 @@ gulp.task('watch', function() {
 // Print paths to console, for manually debugging the gulp build
 // (comment out corresponding line of paths to print)
 gulp.task('log', function() {
-  //return gulp.src(mainBowerFiles(['**/*.js', '!**/*.min.js']))
-  //return gulp.src(mainBowerFiles('**/*.css'))
   //return gulp.src(paths.scripts)
   //return gulp.src(paths.styles)
   //return gulp.src(paths.images)
   return gulp.src(paths.scripts.concat(paths.styles).concat(paths.images))
     .pipe(gulpDebug());
 
-  //return gulp.src(mainBowerFiles({debugging: true}));
 });
 
 gulp.task('inject', function () {
@@ -195,7 +199,7 @@ gulp.task('bump', ['bump:json', 'bump:html']);
 
 gulp.task('bump:json', ['release:init'], function() {
   gutil.log(gutil.colors.green('Bump to '+nextVersion));
-  return(gulp.src(['./package.json', './bower.json'])
+  return(gulp.src(['./package.json'])
   .pipe(bump({version: nextVersion}))
   .pipe(gulp.dest('./')));
 });
@@ -207,7 +211,7 @@ gulp.task('bump:html', ['release:init'], function() {
 });
 
 gulp.task('release:commit', ['bump'], function() {
-  gulp.src(['./index.html', './package.json', './bower.json'])
+  gulp.src(['./index.html', './package.json'])
   .pipe(git.commit('release: '+nextVersion));
 });
 
