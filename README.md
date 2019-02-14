@@ -73,7 +73,7 @@ This is needed for pre-loading the selected profile (unless you allowed local fi
 
 ### Dependencies
 
-Requires [Node and npm](https://nodejs.org/) (or [io.js](https://iojs.org)) and [Gulp](http://gulpjs.com/).
+Requires [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/en/).
 
 ### Install
 
