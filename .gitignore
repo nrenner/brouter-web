@@ -1,4 +1,3 @@
-bower_components/
 node_modules/
 nbproject/
 .idea/
@@ -7,3 +6,4 @@ nbproject/
 /keys.js
 /dist
 brouter-web.*.zip
+yarn-error.log
