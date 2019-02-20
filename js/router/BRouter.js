@@ -282,6 +282,10 @@ L.BRouter = L.Class.extend({
                 }
                 s += this._formatLatLng(vertices[j]);
             }
+            if (polyline.options.nogoWeight) {
+                s += L.BRouter.NUMBER_SEPARATOR;
+                s += polyline.options.nogoWeight;
+            }
             if (i < (nogos.length - 1)) {
                 s += L.BRouter.GROUP_SEPARATOR;
             }
@@ -304,9 +308,15 @@ L.BRouter = L.Class.extend({
                 latlngs = [];
                 for (var j = 0; j < numbers.length - 1;)
                 {
-                    latlngs.push([numbers[j++], numbers[j++]]);
+                    var lng = Number.parseFloat(numbers[j++]);
+                    var lat = Number.parseFloat(numbers[j++]);
+                    latlngs.push([lat, lng]);
                 }
-                nogos.push(L.polyline(latlngs));
+                var nogoWeight;
+                if (j < numbers.length) {
+                    nogoWeight = Number.parseFloat(numbers[j++]);
+                }
+                nogos.push(L.polyline(latlngs, { nogoWeight: nogoWeight }));
             }
         }
         return nogos;
@@ -322,6 +332,10 @@ L.BRouter = L.Class.extend({
                     s += L.BRouter.NUMBER_SEPARATOR;
                 }
                 s += this._formatLatLng(vertices[j]);
+            }
+            if (polygon.options.nogoWeight) {
+                s += L.BRouter.NUMBER_SEPARATOR;
+                s += polygon.options.nogoWeight;
             }
             if (i < (nogos.length - 1)) {
                 s += L.BRouter.GROUP_SEPARATOR;
@@ -345,9 +359,15 @@ L.BRouter = L.Class.extend({
                 latlngs = [];
                 for (var j = 0; j < numbers.length - 1;)
                 {
-                    latlngs.push([numbers[j++], numbers[j++]]);
+                    var lng = Number.parseFloat(numbers[j++]);
+                    var lat = Number.parseFloat(numbers[j++]);
+                    latlngs.push([lat, lng]);
                 }
-                nogos.push(L.polygon(latlngs));
+                var nogoWeight;
+                if (j < numbers.length) {
+                    nogoWeight = Number.parseFloat(numbers[j++]);
+                }
+                nogos.push(L.polygon(latlngs, { nogoWeight: nogoWeight }));
             }
         }
         return nogos;
