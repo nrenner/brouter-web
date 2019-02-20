@@ -114,7 +114,9 @@ BR.NogoAreas = L.Control.extend({
 
     getOptions: function() {
         return {
-            nogos: this.drawnItems.getLayers()
+            nogos: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Circle; }),
+            polygons: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Polygon; }),
+            polylines: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Polyline; }),
         };
     },
 
