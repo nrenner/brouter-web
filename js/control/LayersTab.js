@@ -1,4 +1,6 @@
 BR.LayersTab = L.Control.Layers.extend({
+    previewLayer: null,
+
     addTo: function (map) {
         this._map = map;
         this.onAdd(map);
@@ -13,7 +15,8 @@ BR.LayersTab = L.Control.Layers.extend({
                     for (var i = 0; i < inTree.length; i++) {
                         var layerId = inTree[i];
                         var childNode = { 
-                            'text' : layerIndex[layerId].properties.name
+                            'id': layerId,
+                            'text': layerIndex[layerId].properties.name
                         };
                         outTree.push(childNode);
                     }
@@ -41,7 +44,7 @@ BR.LayersTab = L.Control.Layers.extend({
 
         var structure = {
             'Base layers': {
-                'World-wide international': [
+                'Worldwide international': [
                     'standard',
                     'OpenTopoMap',
                     'stamen-terrain-background',
@@ -49,7 +52,7 @@ BR.LayersTab = L.Control.Layers.extend({
                     'wikimedia-map',
                     'opencylemap'
                 ],
-                'World-wide monolingual': [
+                'Worldwide monolingual': [
                     'osm-mapnik-german_style',
                     'osmfr'
                 ],
@@ -83,14 +86,18 @@ BR.LayersTab = L.Control.Layers.extend({
                 ]
             }
         };
-        var data = toJsTree(structure);
+        var treeData = toJsTree(structure);
+
+        var onSelectNode = L.bind(function (e, data) {
+            //console.log('selected: ', data);
+            console.log('selected: ' + data.node.text);
+            var layerData = layerIndex[data.node.id];
+            this.showLayer(this.createLayer(layerData));
+        }, this);
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
         $('#optional-layers-tree')
-            .on('select_node.jstree', function (e, data) {
-                //console.log('selected: ', data);
-                console.log('selected: ' + data.node.text);
-            })
+            .on('select_node.jstree', onSelectNode)
             .on('check_node.jstree', function (e, data) {
                 //console.log('selected: ', data);
                 console.log('checked: ' + data.node.text);
@@ -99,6 +106,9 @@ BR.LayersTab = L.Control.Layers.extend({
                 //console.log('selected: ', data);
                 console.log('unchecked: ' + data.node.text);
             })
+            .on('ready.jstree', function (e, data) {
+                data.instance.open_all();
+            })
             .jstree({
                 plugins: [ 'checkbox' ],
                 checkbox: {
@@ -106,14 +116,78 @@ BR.LayersTab = L.Control.Layers.extend({
                     tie_selection: false 
                 },
                 core: {
+                    'multiple': false,
                     'themes': {
                         'icons': false,
                         dots : false
                     },
-                    'data' : data
+                    'data' : treeData
                 }
             });
+        this.jstree = $('#optional-layers-tree').jstree(true);
+
         return this;
+    },
+
+    createLayer: function (layerData) {
+        var props = layerData.properties;
+
+        // JOSM:    https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png
+        // Leaflet: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
+        function convertUrlJosm(url) {
+            var regex = /{switch:[^}]*}/;
+            var result = url.replace(regex, '{s}');
+            result = result.replace('{zoom}', '{z}');
+            return result;
+        }
+
+        // JOSM:    https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png
+        // Leaflet: ['a','b','c']
+        function getSubdomains(url) {
+            var result = 'abc';
+            var regex = /{switch:([^}]*)}/;
+            var found = url.match(regex);
+            if (found) {
+                result = found[1].split(',');
+            }
+            return result;
+        }
+
+        var url = convertUrlJosm(props.url);
+
+        var layer = L.tileLayer(url, {
+            maxNativeZoom: props.max_zoom,
+            maxZoom: this._map.getMaxZoom(),
+            subdomains: getSubdomains(props.url),
+            zIndex: this._lastZIndex + 1
+        });
+
+        return layer
+    },
+
+    removeSelectedBaseLayer: function () {
+		for (i = 0; i < this._layers.length; i++) {
+            obj = this._layers[i];
+            if (!obj.overlay && this._map.hasLayer(obj.layer)) {
+                this._map.removeLayer(obj.layer);
+            }
+		}
+    },
+
+    showLayer: function (layer) {
+        this._map.addLayer(layer);
+        if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
+            this._map.removeLayer(this.previewLayer);
+        } else {
+            this.removeSelectedBaseLayer();
+            this._map.once('baselayerchange', function () {
+                if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
+                    this._map.removeLayer(this.previewLayer);
+                }
+                this.jstree.deselect_all();
+            }, this);
+        }
+        this.previewLayer = layer;
     }
 });
 

@@ -63,7 +63,8 @@ BR.Map = {
 
         map = new L.Map('map', {
             zoomControl: false, // add it manually so that we can translate it
-            worldCopyJump: true
+            worldCopyJump: true,
+            maxZoom: maxZoom
         });
         L.control.zoom({
             zoomInTitle: i18next.t('map.zoomInTitle'),
