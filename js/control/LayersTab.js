@@ -88,24 +88,43 @@ BR.LayersTab = L.Control.Layers.extend({
         };
         var treeData = toJsTree(structure);
 
-        var onSelectNode = L.bind(function (e, data) {
-            //console.log('selected: ', data);
-            console.log('selected: ' + data.node.text);
+        var onSelectNode = function (e, data) {
             var layerData = layerIndex[data.node.id];
+
             this.showLayer(this.createLayer(layerData));
-        }, this);
+        };
+
+        var onCheckNode = function (e, data) {
+            var layerData = layerIndex[data.node.id];
+            var layer = this.createLayer(layerData);
+            var name = layerData.properties.name;
+            var overlay = layerData.properties.overlay;
+
+            if (overlay) {
+                this.addOverlay(layer, name);
+            } else {
+                this.addBaseLayer(layer, name);
+            }
+        };
+
+        var onUncheckNode = function (e, data) {
+            var obj = this._getLayerObjByName(data.node.text);
+            if (!obj) return;
+
+            if (this._map.hasLayer(obj.layer)) {
+                this._map.removeLayer(obj.layer);
+                if (!obj.overlay && this._layers.length > 0) {
+                    this._map.addLayer(this._layers[0].layer);
+                }
+            }
+            this.removeLayer(obj.layer);
+        };
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
         $('#optional-layers-tree')
-            .on('select_node.jstree', onSelectNode)
-            .on('check_node.jstree', function (e, data) {
-                //console.log('selected: ', data);
-                console.log('checked: ' + data.node.text);
-            })
-            .on('uncheck_node.jstree', function (e, data) {
-                //console.log('selected: ', data);
-                console.log('unchecked: ' + data.node.text);
-            })
+            .on('select_node.jstree', L.bind(onSelectNode, this))
+            .on('check_node.jstree', L.bind(onCheckNode, this))
+            .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
             .on('ready.jstree', function (e, data) {
                 data.instance.open_all();
             })
@@ -127,6 +146,14 @@ BR.LayersTab = L.Control.Layers.extend({
         this.jstree = $('#optional-layers-tree').jstree(true);
 
         return this;
+    },
+
+    _getLayerObjByName: function (name) {
+        for (var i = 0; i < this._layers.length; i++) {
+			if (this._layers[i] && this._layers[i].name === name) {
+				return this._layers[i];
+			}
+		}
     },
 
     createLayer: function (layerData) {
