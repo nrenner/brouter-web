@@ -21,6 +21,8 @@ var replace = require('gulp-replace');
 var release = require('gulp-github-release');
 var cleanCSS = require('gulp-clean-css');
 var modifyCssUrls = require('gulp-modify-css-urls');
+var sort = require('gulp-sort');
+var scanner = require('i18next-scanner');
 
 var debug = false;
 
@@ -50,6 +52,7 @@ var paths = {
   ).concat('css/*.css'),
   images: mainNpmFiles().filter(f => RegExp('.*.+(png|gif|svg)', 'i').test(f)),
   fonts: mainNpmFiles().filter(f => RegExp('font-awesome/fonts/.*', 'i').test(f)),
+  locales: 'locales/*.json',
   dest: 'dist',
   destName: 'brouter-web'
 };
@@ -118,6 +121,11 @@ gulp.task('fonts', ['clean'], function() {
     .pipe(gulp.dest(paths.dest + '/fonts'));
 });
 
+gulp.task('locales', ['clean'], function() {
+  return gulp.src(paths.locales)
+    .pipe(gulp.dest(paths.dest + '/locales'));
+});
+
 gulp.task('clean', function(cb) {
   del(paths.dest + '/**/*' , cb);
 });
@@ -140,7 +148,8 @@ gulp.task('log', function() {
   //return gulp.src(paths.scripts)
   //return gulp.src(paths.styles)
   //return gulp.src(paths.images)
-  return gulp.src(paths.scripts.concat(paths.styles).concat(paths.images))
+  // return gulp.src(paths.locales)
+  return gulp.src(paths.scripts.concat(paths.styles).concat(paths.images).concat(paths.locales))
     .pipe(gulpDebug());
 
 });
@@ -153,7 +162,7 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts']);
+gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts', 'locales']);
 
 gulp.task('debug', function() {
   debug = true;
@@ -245,3 +254,21 @@ gulp.task('release:publish', ['release:zip'], function() {
 
 gulp.task('release', ['release:init', 'bump', 'release:commit', 'release:tag',
                       'release:push', 'release:zip', 'release:publish']);
+
+gulp.task('i18next', function() {
+  return gulp.src(['index.html', 'locales/keys.js', 'js/**/*.js'])
+    .pipe(sort())
+    .pipe(scanner({
+        lngs: ['en'], // we only generate English version, other languages are handled by transifex via yarn transifex-pull/push
+        removeUnusedKeys: true,
+        sort: true,
+        resource: {
+            // the source path is relative to current working directory
+            loadPath: 'locales/{{lng}}.json',
+            
+            // the destination path is relative to your `gulp.dest()` path
+            savePath: 'locales/{{lng}}.json'
+        }
+    }))
+    .pipe(gulp.dest('.'));
+})

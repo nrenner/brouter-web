@@ -4,7 +4,7 @@ BR.NogoAreas = L.Control.extend({
         MSG_BUTTON_CANCEL: 'Cancel drawing no-go area',
         MSG_CREATE: 'Click and drag to draw circle',
         MSG_DISABLED: 'Click to edit',
-        MSG_ENABLED: '&square; = move / resize, <span class="fa fa-trash-o"></span> = delete,<br>click nogo to quit editing',
+        MSG_ENABLED: '&square; = move / resize, <span class="fa fa-trash-o"></span> = delete,<br>click circle to quit editing',
         STATE_CREATE: 'no-go-create',
         STATE_CANCEL: 'cancel-no-go-create'
     },
@@ -116,9 +116,7 @@ BR.NogoAreas = L.Control.extend({
         return {
             nogos: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Circle; }),
             polygons: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Polygon; }),
-            polylines: this.drawnItems.getLayers().filter(function (e) {
-                return (e instanceof L.Polyline) && !(e instanceof L.Polygon);
-            }),
+            polylines: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Polyline; }),
         };
     },
 
@@ -228,10 +226,7 @@ BR.EditingTooltip = L.Handler.extend({
         // works better with zooming than updating offset to match radius
         layer.openTooltip = function (layer, latlng) {
             if (!latlng && layer instanceof L.Layer) {
-                latlng = L.latLng(
-                    layer.getBounds().getSouth(),
-                    0.5 * (layer.getBounds().getWest() + layer.getBounds().getEast())
-                );
+                latlng = L.latLng(layer.getBounds().getSouth(), layer.getLatLng().lng);
             }
             L.Layer.prototype.openTooltip.call(this, layer, latlng);
         };

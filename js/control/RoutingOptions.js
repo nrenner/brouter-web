@@ -9,7 +9,7 @@ BR.RoutingOptions = L.Evented.extend({
         for (var i = 0; i < profiles.length; i++) {
             var option = document.createElement("option");
             option.value = profiles[i];
-            option.text = profiles[i];
+            option.text = i18next.t("navbar.profile." + profiles[i]);
             profiles_list.appendChild(option);
         }
         // set default value, used as indicator for empty custom profile 

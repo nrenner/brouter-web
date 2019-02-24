@@ -22,7 +22,7 @@ BR.Util = {
     },
 
     getError: function(xhr) {
-        var msg = 'no response from server';
+        var msg = i18next.t('warning.no-response');
         if (xhr.responseText) {
           msg = xhr.responseText;
         } else if (xhr.status || xhr.statusText) {

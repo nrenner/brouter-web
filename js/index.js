@@ -59,7 +59,7 @@
                     routing.draw(false);
                     control.state('activate-draw');
                 },
-                title: 'Stop drawing route (ESC key)'
+                title: i18next.t('map.draw-route-stop')
             }, {
                 stateName: 'activate-draw',
                 icon: 'fa-pencil',
@@ -67,7 +67,7 @@
                     routing.draw(true);
                     control.state('deactivate-draw');
                 },
-                title: 'Draw route (D key)'
+                title: i18next.t('map.draw-route-start')
             }]
         });
 
@@ -76,11 +76,11 @@
             function () {
                 bootbox.prompt({
                     size: 'small',
-                    title: "Delete route?",
+                    title: i18next.t('map.delete-route'),
                     inputType: 'checkbox',
                     inputOptions: [
                         {
-                            text: '&nbsp;&nbsp;also delete all no-go areas',
+                            text: i18next.t('map.delete-nogo-areas'),
                             value: 'nogo'
                         }
                     ],
@@ -96,7 +96,7 @@
                     }
                 });
             },
-            'Clear route'
+            i18next.t('map.clear-route')
         );
 
         function updateRoute(evt) {
@@ -122,6 +122,11 @@
             profile.update(evt.options);
         });
 
+        BR.NogoAreas.MSG_BUTTON = i18next.t("map.nogo.draw");
+        BR.NogoAreas.MSG_BUTTON_CANCEL = i18next.t("map.nogo.cancel");
+        BR.NogoAreas.MSG_CREATE = i18next.t("map.nogo.click-drag");
+        BR.NogoAreas.MSG_DISABLED = i18next.t("map.nogo.edit");
+        BR.NogoAreas.MSG_ENABLED = i18next.t("map.nogo.help");
         nogos = new BR.NogoAreas();
         nogos.on('update', updateRoute);
 
@@ -145,8 +150,7 @@
                         options: routingOptions.getOptions()
                     });
                     if (!saveWarningShown) {
-                        profile.message.showWarning('<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.'
-                            + '<br/>Please save your edits to your local PC.');
+                        profile.message.showWarning(i18next.t('warning.temporary-profile'));
                         saveWarningShown = true;
                     }
                 } else {
@@ -241,12 +245,14 @@
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
-            const stravaControl = new L.Control.StravaSegments(
-            {
+            const stravaControl = L.control.stravaSegments({
+                runningTitle: i18next.t('map.strava-running'),
+                bikingTitle: i18next.t('map.strava-biking'),
+                loadingTitle: i18next.t('map.loading'),
                 stravaToken: BR.keys.strava
             })
             .addTo(map);
-            layersControl.addOverlay(stravaControl.stravaLayer, "Strava segments");
+            layersControl.addOverlay(stravaControl.stravaLayer, i18next.t('map.layer.strava-segments'));
         }
 
         map.addControl(new BR.OpacitySlider({
@@ -352,8 +358,20 @@
                       });
     }
 
-    mapContext = BR.Map.initMap();
-    verifyTouchStyle(mapContext);
-    initApp(mapContext);
+    i18next
+        .use(window.i18nextXHRBackend)
+        .use(window.i18nextBrowserLanguageDetector)
+        .init({
+            fallbackLng: 'en',
+            backend: {
+                loadPath: 'locales/{{lng}}.json',
+            }
+        }, function(err, t) {
+            jqueryI18next.init(i18next, $);
+            $('html').localize();
 
+            mapContext = BR.Map.initMap();
+            verifyTouchStyle(mapContext);
+            initApp(mapContext);
+        });
 })();

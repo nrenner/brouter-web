@@ -45,65 +45,67 @@ BR.Map = {
             maxNativeZoom: 19,
             maxZoom: maxZoom,
             subdomains: ['server', 'services'],
-            attribution: '<a target="_blank" href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">Esri World Imagery</a>'
+            attribution: '<a target="_blank" href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">' + i18next.t('credits.esri-tiles') + '</a>'
         });
 
         var cycling = L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
           maxZoom: maxZoom,
-          attribution: '<a target="_blank" href="http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">Cycling</a>'
+          attribution: '<a target="_blank" href="http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.cycling') + '</a>'
         });
         var hiking = L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
           maxNativeZoom: 18,
           opacity: 0.7,
           maxZoom: maxZoom,
-          attribution: '<a target="_blank" href="http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">Hiking</a>'
+          attribution: '<a target="_blank" href="http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.hiking') + '</a>'
         });
 
         map = new L.Map('map', {
+            zoomControl: false, // add it manually so that we can translate it
             worldCopyJump: true
         });
+        L.control.zoom({
+            zoomInTitle: i18next.t('map.zoomInTitle'),
+            zoomOutTitle: i18next.t('map.zoomOutTitle'),
+        }).addTo(map);
         if (!map.restoreView()) {
             map.setView([50.99, 9.86], 6);
         }
 
         // two attribution lines by adding two controls, prevents ugly wrapping on
         // small screens, better separates static from layer-specific attribution
+        var osmAttribution = $(map.getContainer()).outerWidth() >= 400 ? i18next.t('map.attribution-osm-long') : i18next.t('map.attribution-osm-short');
         map.attributionControl.setPrefix(
-            '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
-            ($(map.getContainer()).outerWidth() >= 400 ? ' contributers' : '') +
-            ' &middot; <a href="" data-toggle="modal" data-target="#credits">Copyright</a>' +
-            ' &middot; <a target="_blank" href="http://brouter.de/privacypolicy.html">Privacy</a>');
+            '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">' + osmAttribution + '</a>' +
+            ' &middot; <a href="" data-toggle="modal" data-target="#credits">' + i18next.t('map.copyright') + '</a>' +
+            ' &middot; <a target="_blank" href="http://brouter.de/privacypolicy.html">' + i18next.t('map.privacy') + '</a>');
 
         new L.Control.PermalinkAttribution().addTo(map);
         map.attributionControl.setPrefix(false);
 
-        var baseLayers = {
-            'OpenStreetMap': osm,
-            'OpenStreetMap.de': osmde,
-            'OpenTopoMap': topo,
-            'OpenCycleMap (Thunderf.)': cycle,
-            'Outdoors (Thunderforest)': outdoors,
-            'Esri World Imagery': esri
-        };
-        var overlays = {
-             'Cycling (Waymarked Trails)': cycling,
-             'Hiking (Waymarked Trails)': hiking
-        };
+        var baseLayers = {}
+        baseLayers[i18next.t('map.layer.osm')] = osm;
+        baseLayers[i18next.t('map.layer.osmde')] = osmde;
+        baseLayers[i18next.t('map.layer.topo')] = topo;
+        baseLayers[i18next.t('map.layer.cycle')] = cycle;
+        baseLayers[i18next.t('map.layer.outdoors')] = outdoors;
+        baseLayers[i18next.t('map.layer.esri')] = esri;
+        var overlays = {}
+        overlays[i18next.t('map.layer.cycling')] = cycling;
+        overlays[i18next.t('map.layer.hiking')] = hiking;
 
         if (BR.keys.bing) {
-            baseLayers['Bing Aerial'] = new BR.BingLayer(BR.keys.bing);
+            baseLayers[i18next.t('map.layer.bing')] = new BR.BingLayer(BR.keys.bing);
         }
 
         if (BR.keys.digitalGlobe) {
             var recent = new L.tileLayer('https://{s}.tiles.mapbox.com/v4/digitalglobe.nal0g75k/{z}/{x}/{y}.png?access_token=' + BR.keys.digitalGlobe, {
                 minZoom: 1,
                 maxZoom: 19,
-                attribution: '&copy; <a href="https://www.digitalglobe.com/platforms/mapsapi">DigitalGlobe</a> ('
-                           + '<a href="https://bit.ly/mapsapiview">Terms of Use</a>)'
+                attribution: i18next.t('credits.digitalglobe-license')
             });
-            baseLayers['DigitalGlobe Recent Imagery'] = recent;
+            baseLayers[i18next.t('map.layer.digitalglobe')] = recent;
         }
 
         if (BR.conf.clearBaseLayers) {
@@ -131,6 +133,9 @@ BR.Map = {
         var secureContext = 'isSecureContext' in window ? isSecureContext : location.protocol === 'https:';
         if (secureContext) {
             L.control.locate({
+                strings: {
+                    title: i18next.t('map.locate-me')
+                },
                 icon: 'fa fa-location-arrow',
                 iconLoading: 'fa fa-spinner fa-pulse',
             }).addTo(map);

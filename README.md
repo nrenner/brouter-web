@@ -16,6 +16,18 @@ http://brouter.de
 General BRouter discussions/questions, support:  
 https://groups.google.com/group/osm-android-bikerouting
 
+## Translating
+
+Translations are managed using the
+[Transifex](https://www.transifex.com/openstreetmap/brouter-web/) platform. After
+signing up, you can go to [BRouter's project
+page](https://www.transifex.com/openstreetmap/brouter-web/dashboard/), select a language and
+click **Translate** to start translating.
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.transifex.com/_/charts/js/openstreetmap/brouter-web/inc_js/brouter-website/"></script>
+<div id="txchart-brouter-web-brouter-website">Loading chart...</div>
+
 ## Installation
 
 As an alternative to the above online version, the standalone server of BRouter can also be run on your local desktop.
