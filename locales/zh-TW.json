@@ -1,171 +1,171 @@
 {
   "about": {
     "bug-reports": "錯誤報告和功能需求：",
-    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site:",
-    "bug-reports-front": "web client / frontend:",
+    "bug-reports-back": "伺服器 / 後端、導航引擎、Android應用程式、設定檔、brouter.de 網站:",
+    "bug-reports-front": "網頁用戶端 / 前端:",
     "contact": "聯絡：",
-    "data": "日期：",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
-    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
-    "support": "General discussions/questions, support:",
+    "data": "資料:",
+    "data-description": "這是一項基於 <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> 提供的服務。它通常會在每週新的 Planet 檔案發布後更新，詳見 <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">資料檔案</a>。",
+    "description": "BRouter 導航引擎線上版。有關離線版 Android 應用程式及更多資訊，請見 <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>。",
+    "details": "用戸端上的<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
+    "support": "一般討論/提問及技術支援:",
     "title": "關於"
   },
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "cycling-hiking-tiles": "Cycling & Hiking tiles",
-    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">Terms of Use</a>)",
-    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
+    "cycling-hiking-tiles": "自行車及遠足圖磚",
+    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">服務使用條款</a>)",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, 來源: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, 以及 GIS 使用者社群",
     "esri-tiles": "Esri World Imagery",
     "map-data": "地圖資料",
-    "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "opencyclemap-outdoors-tiles": "OpenCycleMap & Outdoors tiles",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>",
-    "opentopomap-tiles": "OpenTopoMap tiles",
-    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
+    "nominatim": "搜尋服務由 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>提供",
+    "opencyclemap-outdoors-tiles": "OpenCycleMap 及戸外圖磚",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出",
+    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>釋出",
+    "opentopomap-tiles": "OpenTopoMap 圖磚",
+    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> 釋出",
     "osm-tiles": "OpenStreetMap 圖磚",
     "osmde-tiles": "OpenStreetMap.de 圖磚",
-    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
-    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a>"
+    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> 釋出",
+    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a> 釋出"
   },
   "footer": {
-    "ascend": "Ascend (Plain ascend)",
-    "cost": "Cost (Mean cost factor)",
-    "distance": "Distance",
-    "kilometer": "kilometer",
+    "ascend": "爬升量 (淨爬升)",
+    "cost": "成本 (平均成本係數)",
+    "distance": "距離",
+    "kilometer": "公里",
     "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hour",
+    "kilowatthour": "千瓦時",
     "kilowatthour-abbrev": "kWh",
-    "meter": "meter",
+    "meter": "公尺",
     "meter-abbrev": "m",
-    "minutes": "minutes",
+    "minutes": "分鐘",
     "minutes-abbrev": "min",
-    "total-energy": "Total Energy (per 100km)",
-    "travel-time": "Travel time"
+    "total-energy": "總計能量 (每100km)",
+    "travel-time": "旅程需時"
   },
   "layers": {
-    "add-base": "Add base layer",
-    "add-overlay": "Add overlay",
-    "customize": "Customize layers",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
-    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
-    "remove-selection": "Remove selection"
+    "add-base": "添加底層圖",
+    "add-overlay": "添加疊圖",
+    "customize": "自定義圖層",
+    "placeholder-layer-name": "自定義圖層名稱 (如: OpenStreetMap)",
+    "placeholder-layer-url": "自定義圖層 URL (如: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "移除所選項目"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
-    "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route",
-    "copyright": "Copyright",
-    "cycling": "Cycling",
-    "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
-    "delete-route": "Delete route?",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
-    "hiking": "Hiking",
+    "attribution-osm-long": "OpenStreetMap 貢獻者",
+    "attribution-osm-short": "OpenStreetMap 開放街圖",
+    "clear-route": "清除路線",
+    "copyright": "著作權",
+    "cycling": "自行車",
+    "delete-nogo-areas": "&nbsp;&nbsp;同時刪除所有禁區",
+    "delete-route": "刪除路線？",
+    "draw-route-start": "繪畫路線 (按鍵D)",
+    "draw-route-stop": "停止繪畫路線 (按鍵ESC)",
+    "hiking": "遠足",
     "layer": {
-      "bing": "Bing Aerial",
+      "bing": "Bing 空照圖",
       "cycle": "OpenCycleMap (Thunderf.)",
-      "cycling": "Cycling (Waymarked Trails)",
-      "digitalglobe": "DigitalGlobe Recent Imagery",
-      "esri": "Esri World Imagery",
-      "hiking": "Hiking (Waymarked Trails)",
-      "osm": "OpenStreetMap",
+      "cycling": "自行車 (Waymarked Trails)",
+      "digitalglobe": "DigitalGlobe 最新空照圖",
+      "esri": "Esri 世界影像圖",
+      "hiking": "遠足 (Waymarked Trails)",
+      "osm": "OpenStreetMap 開放街圖",
       "osmde": "OpenStreetMap.de",
-      "outdoors": "Outdoors (Thunderforest)",
-      "strava-segments": "Strava segments",
+      "outdoors": "戸外 (Thunderforest)",
+      "strava-segments": "Strava 區段",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
-    "locate-me": "Show me where I am",
+    "loading": "載入中...",
+    "locate-me": "顯示我的位置",
     "nogo": {
-      "cancel": "Cancel drawing no-go area",
-      "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
-      "edit": "Click to edit",
-      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+      "cancel": "取消繪畫禁區",
+      "click-drag": "點擊並拖曳以畫出圓形",
+      "draw": "繪畫禁區 (圓形)",
+      "edit": "點撃以編輯",
+      "help": "&square; = 移動 / 調整大小， <span class=\"fa fa-trash-o\"></span> = 刪除，<br>點撃圓形以結束編輯"
     },
-    "opacity-slider": "Set transparency of route track and markers",
-    "privacy": "Privacy",
-    "strava-biking": "Show Strava biking segments",
-    "strava-running": "Show Strava running segments",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "opacity-slider": "設定路線軌跡和標記的透明度",
+    "privacy": "隱私權",
+    "strava-biking": "顯示 Strava 自行車區段",
+    "strava-running": "顯示 Strava 跑步區段",
+    "zoomInTitle": "放大",
+    "zoomOutTitle": "縮小"
   },
   "navbar": {
-    "about": "About",
+    "about": "關於",
     "alternative": {
-      "first": "1st alternative",
-      "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+      "first": "第一替代方案",
+      "original": "原始方案",
+      "second": "第二替代方案",
+      "third": "第三替代方案"
     },
     "download": {
-      "csv": "data CSV",
+      "csv": "資料 CSV",
       "geojson": "GeoJSON",
       "gpx": "GPX",
       "kml": "KML",
-      "title": "Download"
+      "title": "下載"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
-      "fastbike": "Fastbike",
-      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike low traffic",
-      "hiking-beta": "Hiking (beta)",
-      "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
-      "trekking": "Trekking",
-      "trekking-ignore-cr": "Trekking (ignore cylce routes)",
-      "trekking-noferries": "Trekking (no ferries)",
-      "trekking-nosteps": "Trekking (no steps)",
-      "trekking-steep": "Trekking steep",
+      "car-eco": "汽車 (經濟型)",
+      "car-fast": "汽車 (速度型)",
+      "car-test": "汽車 (測試中)",
+      "custom": "自訂",
+      "fastbike": "機車",
+      "fastbike-asia-pacific": "機車 (亞太)",
+      "fastbike-lowtraffic": "機車 (低交通流量)",
+      "hiking-beta": "遠足 (Beta測試中)",
+      "moped": "機慢車",
+      "rail": "鐵道",
+      "river": "河道",
+      "safety": "安全",
+      "shortest": "最短",
+      "trekking": "徒步旅行",
+      "trekking-ignore-cr": "徒步旅行 (跳過自行車道)",
+      "trekking-noferries": "徒步旅行 (跳過渡輪)",
+      "trekking-nosteps": "徒步旅行 (跳過階梯)",
+      "trekking-steep": "極限徒步旅行",
       "vm-forum-liegerad-schnell": "vm-forum-liegerad-schnell",
       "vm-forum-velomobil-schnell": "vm-forum-velomobil-schnell"
     }
   },
   "sidebar": {
     "custom-profile": {
-      "title": "Custom profile"
+      "title": "自定義設定檔"
     },
     "data": {
-      "title": "Data"
+      "title": "資料"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "行程"
     },
     "layers": {
-      "custom-layers": "Custom layers",
-      "customize": "Add or remove custom layers",
+      "custom-layers": "自定義圖層",
+      "customize": "新增或移除自定義圖層",
       "table": {
         "URL": "URL",
-        "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type"
+        "empty": "尚未設定自訂圖層。",
+        "name": "名稱",
+        "type": "類型"
       },
-      "title": "Layers"
+      "title": "圖層"
     },
     "profile": {
-      "clear": "Clear",
-      "help": "Help",
-      "placeholder": "Write your custom profile here.",
-      "upload": "Upload"
+      "clear": "清除",
+      "help": "說明",
+      "placeholder": "請在意寫下您的自定義設定檔。",
+      "upload": "上傳"
     }
   },
-  "title": "BRouter web client",
+  "title": "BRouter 網頁用戶端",
   "warning": {
-    "cannot-get-route": "Error getting route URL",
-    "no-response": "no response from server",
-    "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "upload-error": "Upload error: {{error}}"
+    "cannot-get-route": "取得路線URL時發生錯誤",
+    "no-response": "伺服器沒有回應",
+    "no-route-found": "錯誤: 無法就給予的端點建立路線。或者嘗試將它們移近至道路附近？",
+    "profile-error": "設定檔錯誤: 伺服器回傳空值或沒有回應",
+    "temporary-profile": "<strong>注意:</strong> 已上傳的自定義設定檔僅暫存於伺服器之中。<br/>請將您的編輯儲存至本機當中。",
+    "upload-error": "上傳錯誤: {{error}}"
   }
 }
