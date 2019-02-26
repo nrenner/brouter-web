@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+minimum_perc = 1
+lang_map = fr_CA:fr-CA,pt_BR:pt-BR,zh_CN:zh-CN,zh_HK:zh-HK,zh_TW:zh-TW,da_DK:da-DK,sv_SE:sv-SE,kn_IN:kn-IN,nl_NL:nl-NL,en_NL:en-NL,gl_ES:gl-ES
+
+[brouter-web.brouter-website]
+file_filter = locales/<lang>.json
+source_file = locales/en.json
+source_lang = en
+type = JSON

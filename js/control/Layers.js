@@ -25,10 +25,13 @@ BR.Layers = L.Class.extend({
             info: false,
             searching: false,
             paging: false,
+            language: {
+                emptyTable: i18next.t("sidebar.layers.table.empty")
+            },
             columns: [
-            { title: "Name" },
-            { title: "URL" },
-            { title: "Type" }
+                { title: i18next.t("sidebar.layers.table.name") },
+                { title: i18next.t("sidebar.layers.table.URL") },
+                { title: i18next.t("sidebar.layers.table.type") }
             ]
         });
     },

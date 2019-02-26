@@ -125,7 +125,7 @@ L.BRouter = L.Class.extend({
             xhr = new XMLHttpRequest();
 
         if (!url) {
-            return cb(new Error('Error getting route URL'));
+            return cb(new Error(i18next.t('warning.cannot-get-route')));
         }
 
         xhr.open('GET', url, true);
@@ -179,7 +179,7 @@ L.BRouter = L.Class.extend({
         xhr.onload = L.bind(this._handleProfileResponse, this, xhr, cb);
         xhr.onerror = function(evt) {
             var xhr = this;
-            cb('Upload error: ' + xhr.statusText);
+            cb(i18next.t('warning.upload-error', {error: xhr.statusText}));
         };
 
         // send profile text only, as text/plain;charset=UTF-8
@@ -193,7 +193,7 @@ L.BRouter = L.Class.extend({
             response = JSON.parse(xhr.responseText);
             cb(response.error, response.profileid);
         } else {
-            cb('Profile error: no or empty response from server');
+            cb(i18next.t('warning.profile-error'));
         }
     },
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>BRouter web client</title>
+    <title data-i18n="title">BRouter web client</title>
 
     <!-- inject:css -->
     <link rel="stylesheet" href="dist/brouter-web.css" />
@@ -25,29 +25,32 @@
                     <div class="form-group">
                         <select class="selectpicker show-tick" data-width="250px" id="profile-alternative" multiple>
                             <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
-                                <option>Custom</option>
+                                <option data-i18n="navbar.profile.custom">Custom</option>
                             </optgroup>
                             <optgroup label="Alternative" data-max-options="1" data-icon="fa-random" id="alternative">
-                                <option value="0" selected>Original</option>
-                                <option value="1">1st alternative</option>
-                                <option value="2">2nd alternative</option>
-                                <option value="3">3rd alternative</option>
+                                <option data-i18n="navbar.alternative.original" value="0" selected>Original</option>
+                                <option data-i18n="navbar.alternative.first" value="1">1st alternative</option>
+                                <option data-i18n="navbar.alternative.second" value="2">2nd alternative</option>
+                                <option data-i18n="navbar.alternative.third" value="3">3rd alternative</option>
                             </optgroup>
                         </select>
                     </div>
                 </form>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="fa fa-lg fa-cloud-download" aria-hidden="true"></span>Download</a>
+                        <span class="fa fa-lg fa-cloud-download" aria-hidden="true">
+                        </span>
+                        <span data-i18n="navbar.download.title">Download</span>
+                    </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" id="dl-gpx" href="#" disabled>GPX</a>
-                        <a class="dropdown-item" id="dl-kml" href="#" disabled>KML</a>
-                        <a class="dropdown-item" id="dl-geojson" href="#" disabled>GeoJSON</a>
-                        <a class="dropdown-item" id="dl-csv" href="#" disabled>data CSV</a>
+                        <a class="dropdown-item" data-i18n="navbar.download.gpx" id="dl-gpx" href="#" disabled>GPX</a>
+                        <a class="dropdown-item" data-i18n="navbar.download.kml" id="dl-kml" href="#" disabled>KML</a>
+                        <a class="dropdown-item" data-i18n="navbar.download.geojson" id="dl-geojson" href="#" disabled>GeoJSON</a>
+                        <a class="dropdown-item" data-i18n="navbar.download.csv" id="dl-csv" href="#" disabled>data CSV</a>
                     </div>
                 </div>
                 <div class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="modal" data-target="#about"><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span>About</a>
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#about"><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span><span data-i18n="navbar.about">About</span></a>
                 </div>
             </div>
         </div>
@@ -61,51 +64,51 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Credits</h4>
+                    <h4 class="modal-title" data-i18n="credits">Credits</h4>
                 </div>
                 <div class="modal-body">
                     <dl>
-                        <dt>Map data</dt>
-                        <dd>
-                            &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>
-                            under <a target="_blank" href="https://opendatacommons.org/licenses/odbl/">ODbL</a>
+                        <dt data-i18n="credits.map-data">Map data</dt>
+                        <dd data-i18n="[html]credits.openstreetmap">
+                            &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright" >OpenStreetMap contributors</a>
+                            under <a target="_blank" href="https://opendatacommons.org/licenses/odbl/" >ODbL</a>
                         </dd>
-                        <dd>
+                        <dd data-i18n="[html]credits.nominatim">
                             Search by <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>
                         </dd>
-                        <dt>OpenStreetMap tiles</dt>
-                        <dd>
+                        <dt data-i18n="credits.osm-tiles">OpenStreetMap tiles</dt>
+                        <dd data-i18n="[html]credits.osm-license">
                             <a target="_blank" href="https://www.openstreetmap.org/copyright">openstreetmap.org</a> 
                             under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
                         </dd>
-                        <dt>OpenStreetMap.de tiles</dt>
+                        <dt data-i18n="credits.osmde-tiles">OpenStreetMap.de tiles</dt>
                         <dd>
                             <a target="_blank" href="https://openstreetmap.de/karte.html">openstreetmap.de</a>
                         </dd>
-                        <dt>OpenTopoMap tiles</dt>
-                        <dd>
+                        <dt data-i18n="credits.opentopomap-tiles">OpenTopoMap tiles</dt>
+                        <dd data-i18n="[html]credits.opentopomap-license">
                             &copy; <a target="_blank" href="https://opentopomap.org">OpenTopoMap</a>
                             under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>
                             <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>
                         </dd>
-                        <dt>OpenCycleMap & Outdoors tiles</dt>
-                        <dd>
+                        <dt data-i18n="credits.opencyclemap-outdoors-tiles">OpenCycleMap & Outdoors tiles</dt>
+                        <dd data-i18n="[html]credits.thunderforest-license">
                             &copy; <a target="_blank" href="https://www.thunderforest.com">Thunderforest</a>
                             under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
                         </dd>
-                        <dt>Esri World Imagery</dt>
-                        <dd>
+                        <dt data-i18n="credits.esri-tiles">Esri World Imagery</dt>
+                        <dd data-i18n="[html]credits.esri-license">
                             <a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a> 
                             &copy; <a target="_blank" href="https://www.esri.com/">Esri</a>, sources: 
                             Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community
                         </dd>
-                        <dt>Cycling & Hiking tiles</dt>
-                        <dd>
+                        <dt data-i18n="credits.cycling-hiking-tiles">Cycling & Hiking tiles</dt>
+                        <dd data-i18n="[html]credits.waymarked-license">
                             &copy; <a target="_blank" href="https://cycling.waymarkedtrails.org">Waymarked Trails</a>
                             under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>
                         </dd>
-                        <dt>BRouter</dt>
-                        <dd>
+                        <dt data-i18n="credits.brouter">BRouter</dt>
+                        <dd data-i18n="[html]credits.brouter-license">
                             <a target="_blank" href="http://brouter.de/brouter">BRouter</a> &copy; Arndt Brenschede
                         </dd>
                     </dl>
@@ -122,15 +125,15 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Customize layers</h4>
+                    <h4 class="modal-title" data-i18n="layers.customize">Customize layers</h4>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" placeholder="Custom layer name. (ex: OpenStreetMap)"></input>
-                    <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"></input>
+                    <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" data-i18n="[placeholder]layers.placeholder-layer-name"  placeholder="Custom layer name. (ex: OpenStreetMap)"></input>
+                    <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" data-i18n="[placeholder]layers.placeholder-layer-url" placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"></input>
 
-                    <button type="button" id="custom_layers_add_base" class="btn btn-success">Add base layer</button>
-                    <button type="button" id="custom_layers_add_overlay" class="btn btn-success">Add overlay</button>
-                    <button type="button" id="custom_layers_remove" class="btn btn-danger">Remove selection</button>
+                    <button type="button" id="custom_layers_add_base" class="btn btn-success" data-i18n="layers.add-base">Add base layer</button>
+                    <button type="button" id="custom_layers_add_overlay" class="btn btn-success" data-i18n="layers.add-overlay">Add overlay</button>
+                    <button type="button" id="custom_layers_remove" class="btn btn-danger" data-i18n="layers.remove-selection">Remove selection</button>
                     <table id="custom_layers_table"></table>
                 </div>
             </div>
@@ -145,25 +148,25 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">About</h4>
+                    <h4 class="modal-title" data-i18n="about.title">About</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Online service of the BRouter routing engine. For the offline Android app and more information
+                    <p data-i18n="[html]about.description">Online service of the BRouter routing engine. For the offline Android app and more information
                         see <a href="http://brouter.de/" target="_blank">brouter.de</a>.</p>
                     <p>
-                        <i>Contact:</i><br>
+                        <i data-i18n="about.contact">Contact:</i><br>
                         <ul>
-                            <li>General discussions/questions, support:<br>
+                            <li><span data-i18n="about.support">General discussions/questions, support:</span><br>
                                 <a href="https://groups.google.com/group/osm-android-bikerouting" target="_blank">https://groups.google.com/group/osm-android-bikerouting</a>
                             </li>
-                            <li>Bug reports and feature requests:
+                            <li><span data-i18n="about.bug-reports">Bug reports and feature requests:</span>
                                 <ul>
                                     <li>
-                                        server / backend, routing engine, Android app, profiles, brouter.de site:<br>
+                                        <span data-i18n="about.bug-reports-back">server / backend, routing engine, Android app, profiles, brouter.de site:</span><br>
                                         <a href="https://github.com/abrensch/brouter/issues" target="_blank">https://github.com/abrensch/brouter/issues</a>
                                     </li>
                                     <li>
-                                        web client / frontend:<br>
+                                        <span data-i18n="about.bug-reports-front">web client / frontend:</span><br>
                                         <a href="https://github.com/nrenner/brouter-web/issues" target="_blank">https://github.com/nrenner/brouter-web/issues</a>
                                     </li>
                                 </ul>
@@ -171,11 +174,13 @@
                         </ul>
                     </p>
                     <p>
-                        <i>Data:</i><br>
-                        This is based on <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
-                        see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
+                        <i data-i18n="about.data">Data:</i>
+                        <div data-i18n="[html]about.data-description">
+                            This is based on <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
+                            see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
+                        </div>
                     </p>
-                    <p>
+                    <p data-i18n="[html]about.details">
                         <i><a href="http://brouter.de/privacypolicy.html" target="_blank">Privacy Policy</a></i>, 
                         <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i>,
                         <i><a href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a></i> and
@@ -189,7 +194,7 @@
     <div id="content" class="flexcolumn flexgrow">
         <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
             <ul role="tablist">
-                <li><a href="#tab_layers_control" role="tab" title="Layers">
+                <li><a href="#tab_layers_control" role="tab" data-i18n="[title]sidebar.layers.title" title="Layers">
                         <!--
                         https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
                         MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
@@ -201,9 +206,9 @@
                             <polyline points="2 16 12 21 22 16"></polyline>
                         </svg>
                     </a></li>
-                <li hidden><a href="#tab_itinerary" role="tab" title="Itinerary"><i class="fa fa-map-signs"></i></a></li>
-                <li><a href="#tab_profile" role="tab" title="Custom profile"><i class="fa fa-wrench"></i></a></li>
-                <li><a href="#tab_data" role="tab" title="Data"><i class="fa fa-table"></i></a></li> 
+                <li hidden><a href="#tab_itinerary" role="tab" data-i18n="[title]sidebar.itinerary.title" title="Itinerary"><i class="fa fa-map-signs"></i></a></li>
+                <li><a href="#tab_profile" role="tab" data-i18n="[title]sidebar.custom-profile.title" title="Custom profile"><i class="fa fa-wrench"></i></a></li>
+                <li><a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"><i class="fa fa-table"></i></a></li> 
             </ul>
         </div>
         
@@ -216,34 +221,34 @@
 
                 <div class="leaflet-sidebar-content">
                     <div class="leaflet-sidebar-pane" id="tab_layers_control">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>Layers</h1>
+                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span data-i18n="sidebar.layers.title">Layers</span></h1>
                         <div id="layers-control-wrapper"></div>
                         <div class="leaflet-control-layers-separator"></div>
                         <div>
-                            <button type="button" id="custom_layers_button" class="btn btn-sm pull-right" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> Custom layers</button>
+                            <button type="button" id="custom_layers_button" class="btn btn-sm pull-right" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
                         </div>
                     </div>
 
                     <div class="leaflet-sidebar-pane" id="tab_profile">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>Custom profile</h1>
+                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.custom-profile.title">Custom profile</span></h1>
                         <form class="flexcolumn flexgrow">
-                            <textarea class="form-control flexgrow" id="profile_upload" spellcheck="false" wrap="off" placeholder="Write your custom profile here."></textarea>
+                            <textarea class="form-control flexgrow" id="profile_upload" spellcheck="false" wrap="off" data-i18n="[placeholder]sidebar.profile.placeholder" placeholder="Write your custom profile here."></textarea>
                             <div id="profile_message"></div>
                             <div class="form-group" id="profile_buttons">
-                                 <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> Upload</button>
-                                 <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> Clear</button>
-                                 <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> Help</a>
+                                 <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> <span data-i18n="sidebar.profile.upload">Upload</span></button>
+                                 <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> <span data-i18n="sidebar.profile.clear">Clear</span></button>
+                                 <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> <span data-i18n="sidebar.profile.help">Help</span></a>
                             </div>
                         </form>
                     </div>
 
                     <div class="leaflet-sidebar-pane" id="tab_data">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>Data</h1>
+                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.data.title">Data</span></h1>
                         <table id="datatable" class="mini cell-border hover stripe"></table>
                     </div>
 
                     <div class="leaflet-sidebar-pane" id="tab_itinerary">
-                        <h1 class="leaflet-sidebar-header">Itinerary<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span></h1>
+                        <h1 class="leaflet-sidebar-header"><span data-i18n="sidebar.itinerary.title">Itinerary</span><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span></h1>
                         <div id="itinerary" class="flexcolumn flexgrow">
                         </div>
                     </div>
@@ -259,23 +264,23 @@
         <div class="flexrow">
             <ul id="stats">
                 <li>
-                    <div class="text-muted small hidden-sm-down">Distance</div>
-                    <p class="stats-label"><span id="distance">0</span> <abbr title="kilometer">km</abbr></p>
+                    <div class="text-muted small hidden-sm-down" data-i18n="footer.distance">Distance</div>
+                    <p class="stats-label"><span id="distance">0</span> <abbr data-i18n="[title]footer.kilometer;footer.kilometer-abbrev" title="kilometer">km</abbr></p>
                 </li>
                 <li hidden>
-                    <div class="text-muted small hidden-sm-down">Travel time</div>
-                    <p class="stats-label"><span id="totaltime">0</span> <abbr title="minutes">min</abbr></p>
+                    <div class="text-muted small hidden-sm-down" data-i18n="footer.travel-time">Travel time</div>
+                    <p class="stats-label"><span id="totaltime">0</span> <abbr data-i18n="[title]footer.minutes;footer.minutes-abbrev" title="minutes">min</abbr></p>
                 </li>
                 <li hidden>
-                    <div class="text-muted small hidden-sm-down">Total Energy (per 100km)</div>
-                    <p class="stats-label"><span id="totalenergy">0 (0)</span> <abbr title="kilowatt hour">kWh</abbr></p>
+                    <div class="text-muted small hidden-sm-down" data-i18n="footer.total-energy">Total Energy (per 100km)</div>
+                    <p class="stats-label"><span id="totalenergy">0 (0)</span> <abbr data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev" title="kilowatt hour">kWh</abbr></p>
                 </li>
                 <li>
-                    <div class="text-muted small hidden-sm-down">Ascend (Plain ascend)</div>
-                    <p class="stats-label"><span id="ascend">0 (0)</span> <abbr title="meter">m</abbr></p>
+                    <div class="text-muted small hidden-sm-down" data-i18n="footer.ascend">Ascend (Plain ascend)</div>
+                    <p class="stats-label"><span id="ascend">0 (0)</span> <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meter">m</abbr></p>
                 </li>
                 <li>
-                    <div class="text-muted small hidden-sm-down">Cost (Mean cost factor)</div>
+                    <div class="text-muted small hidden-sm-down" data-i18n="footer.cost">Cost (Mean cost factor)</div>
                     <p class="stats-label"><span id="cost">- (-)</span></p>
                 </li>
             </ul>

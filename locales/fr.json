@@ -1,0 +1,171 @@
+{
+  "about": {
+    "bug-reports": "Reporter un problème ou une amélioration :",
+    "bug-reports-back": "serveur, moteur de routage, app Android, profiles, site brouter.de :",
+    "bug-reports-front": "client web :",
+    "contact": "Contact :",
+    "data": "Données :",
+    "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement hebdomadaire, voir <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
+    "description": "Service web pour le moteur de routage BRouter. Pour l'app Android et de plus amples informations, voir <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
+    "support": "Discussions/Questions générales, support :",
+    "title": "À propos"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "cycling-hiking-tiles": "Tuiles pour Vélo & Piéton",
+    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">Conditions d'utilisation</a>)",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources : Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, et la communauté d'utilisateurs GIS",
+    "esri-tiles": "Imagerie mondiale Esri",
+    "map-data": "Données de carte",
+    "nominatim": "Recherche par <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "opencyclemap-outdoors-tiles": "Tuiles OpenCycleMap & Outdoors",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>",
+    "opentopomap-tiles": "Tuiles OpenTopoMap",
+    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
+    "osm-tiles": "Tuiles OpenStreetMap",
+    "osmde-tiles": "Tuiles OpenStreetMap.de",
+    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
+    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a>"
+  },
+  "footer": {
+    "ascend": "Montée (pleine ascension)",
+    "cost": "Coût (facteur coût moyen)",
+    "distance": "Distance",
+    "kilometer": "kilomètre",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowattheure",
+    "kilowatthour-abbrev": "kWh",
+    "meter": "mètre",
+    "meter-abbrev": "m",
+    "minutes": "minutes",
+    "minutes-abbrev": "min",
+    "total-energy": "Énergie totale (pour 100km)",
+    "travel-time": "Temps de trajet"
+  },
+  "layers": {
+    "add-base": "Ajouter un fond de carte ",
+    "add-overlay": "Ajouter un calque superposable",
+    "customize": "Personnaliser les calques",
+    "placeholder-layer-name": "Nom du calque (ex : OpenStreetMap).",
+    "placeholder-layer-url": "URL du calque (ex : https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png).",
+    "remove-selection": "Supprimer la sélection"
+  },
+  "map": {
+    "attribution-osm-long": "Contributeurs OpenStreetMap",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Supprimer l'itinéraire",
+    "copyright": "Copyright",
+    "cycling": "Vélo",
+    "delete-nogo-areas": "&nbsp;&nbsp;supprimer aussi toutes les zones interdites",
+    "delete-route": "Supprimer l'itinéraire ?",
+    "draw-route-start": "Dessiner l'itinéraire (touche D)",
+    "draw-route-stop": "Arrêter de dessiner l'itinéraire (touche ECH)",
+    "hiking": "Randonnée",
+    "layer": {
+      "bing": "Aérienne BING",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Cycling (Sentiers balisés)",
+      "digitalglobe": "Imagerie récente DigitalGlobe",
+      "esri": "Imagerie mondiale Esri",
+      "hiking": "Randonnée (Sentiers balisés)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Plein air (Thunderforest)",
+      "strava-segments": "Segments Strava",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Chargement…",
+    "locate-me": "Où suis-je ?",
+    "nogo": {
+      "cancel": "Annuler la zone interdite",
+      "click-drag": "Cliquer et faire glisser pour dessiner un cercle",
+      "draw": "Dessiner une zone interdite (cercle)",
+      "edit": "Cliquer pour éditer",
+      "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
+    },
+    "opacity-slider": "Définie l'opacity de l'itinéraire et des marqueurs",
+    "privacy": "Vie privée",
+    "strava-biking": "Afficher les segments Strava vélo",
+    "strava-running": "Afficher les segments Strava à pied",
+    "zoomInTitle": "Zoomer",
+    "zoomOutTitle": "Dézoomer"
+  },
+  "navbar": {
+    "about": "À propos",
+    "alternative": {
+      "first": "1ère alternative",
+      "original": "Originale",
+      "second": "2nde alternative",
+      "third": "3ème alternative"
+    },
+    "download": {
+      "csv": "CSV",
+      "geojson": "GeoJSON",
+      "gpx": "GPX",
+      "kml": "KML",
+      "title": "Télécharger"
+    },
+    "profile": {
+      "car-eco": "Voiture (économique)",
+      "car-fast": "Voiture (rapide)",
+      "car-test": "Voiture (test)",
+      "custom": "Personnalisé",
+      "fastbike": "Vélo de route",
+      "fastbike-asia-pacific": "Vélo de route (Asie Pacifique)",
+      "fastbike-lowtraffic": "Vélo de route (faible traffic)",
+      "hiking-beta": "Randonnée (beta)",
+      "moped": "Mobylette",
+      "rail": "Train",
+      "river": "Fluvial",
+      "safety": "Sécurité",
+      "shortest": "Le plus court",
+      "trekking": "Cyclotourisme",
+      "trekking-ignore-cr": "Cycloutourisme (ignore pistes cyclables)",
+      "trekking-noferries": "Cyclotourisme (pas de ferries)",
+      "trekking-nosteps": "Cyclotourisme (pas d'escaliers)",
+      "trekking-steep": "Cyclotourisme escarpé",
+      "vm-forum-liegerad-schnell": "vm-forum-liegerad-schnell",
+      "vm-forum-velomobil-schnell": "vm-forum-velomobil-schnell"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "Profile personnalisé"
+    },
+    "data": {
+      "title": "Données"
+    },
+    "itinerary": {
+      "title": "Itinéraire"
+    },
+    "layers": {
+      "custom-layers": "Calques personels",
+      "customize": "Ajouter ou supprimer des calques",
+      "table": {
+        "URL": "URL",
+        "empty": "Aucun calque personnel trouvé.",
+        "name": "Nom",
+        "type": "Type"
+      },
+      "title": "Calques"
+    },
+    "profile": {
+      "clear": "Nettoyer",
+      "help": "Aide",
+      "placeholder": "Écrivez votre profile personnalisé ici.",
+      "upload": "Envoyer"
+    }
+  },
+  "title": "Client web BRouter",
+  "warning": {
+    "cannot-get-route": "Erreur lors de la réception de l'itinéraire",
+    "no-response": "aucune réponse du serveur",
+    "no-route-found": "Erreur : impossible de trouver un itinéraire correspond. Essayez peut-être de rapprocher les points des routes ?",
+    "profile-error": "Erreur de profile : pas de réponse ou réponse invalide du serveur",
+    "temporary-profile": "<strong>Note :</strong> Les profiles personnalisés téléversés ne sont disponibles que temporairement sur le serveur.<br/>Merci de sauvegarder vorte profile sur votre ordinateur.",
+    "upload-error": "Erreur de téléversement : {{error}}"
+  }
+}

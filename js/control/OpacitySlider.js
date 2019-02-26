@@ -28,7 +28,7 @@ BR.OpacitySlider = L.Control.extend({
         };
 
         $(container).html(input);
-        $(container).attr('title', 'Set transparency of route track and markers');
+        $(container).attr('title', i18next.t('map.opacity-slider'));
 
         input.slider({
             min: 0,
