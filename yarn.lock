@@ -2232,10 +2232,10 @@ leaflet.restoreview@makinacorpus/Leaflet.RestoreView#master:
   version "1.0.0"
   resolved "https://codeload.github.com/makinacorpus/Leaflet.RestoreView/tar.gz/9c99464d19d2f25e146326d86639ff37be9cd5a6"
 
-leaflet.stravasegments@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/leaflet.stravasegments/-/leaflet.stravasegments-2.0.3.tgz#0b8a041528a5afc2764e9b45191f56c9af6dedce"
-  integrity sha512-EsyjIpUQj8BEL/JBD4jXHy1VaqqENRUGmM9EyJhuDCmtJWigu0IT7GY9oyuNVj/JCb6HSocm9qInT1tsiZEn1g==
+leaflet.stravasegments@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/leaflet.stravasegments/-/leaflet.stravasegments-2.1.0.tgz#6c5f0e479b7c6ad365e8131a6a32ea1d027ef8ce"
+  integrity sha512-RSIKwo2aU3kiNSIfbcG3T/hHto24mKeblShE799r8Eeq+a4qGl9ghHJJpalGsYzNEvYpNXlA+s/dDPWOh9p8GQ==
   dependencies:
     "@mapbox/polyline" "^1.0.0"
     font-awesome "4"

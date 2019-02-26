@@ -41,7 +41,7 @@
     "leaflet-triangle-marker": "^1.0.1",
     "leaflet.locatecontrol": "^0.60.0",
     "leaflet.restoreview": "makinacorpus/Leaflet.RestoreView#master",
-    "leaflet.stravasegments": "^2.0.3",
+    "leaflet.stravasegments": "^2.1.0",
     "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
     "seiyria-bootstrap-slider": "seiyria/bootstrap-slider#^9.8.1",
     "tether": "1.4.5",
@@ -151,7 +151,7 @@
       "main": "leaflet.restoreview.js"
     },
     "leaflet.stravasegments": {
-      "main": "index.js"
+      "main": "dist/index.js"
     },
     "font-awesome": {
       "main": [
