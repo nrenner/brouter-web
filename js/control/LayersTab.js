@@ -7,6 +7,8 @@ BR.LayersTab = L.Control.Layers.extend({
 
         var layerIndex = BR.layerIndex;
 
+        this.addLeafletProvidersLayers();
+
         var toJsTree = function(layerTree) {
             var data = [];
 
@@ -47,7 +49,7 @@ BR.LayersTab = L.Control.Layers.extend({
                 'Worldwide international': [
                     'standard',
                     'OpenTopoMap',
-                    'stamen-terrain-background',
+                    'Stamen.Terrain',
                     'HDM_HOT',
                     'wikimedia-map',
                     'opencylemap'
@@ -57,8 +59,10 @@ BR.LayersTab = L.Control.Layers.extend({
                     'osmfr'
                 ],
                 'Europe': [
+                    'MtbMap'
                 ],
                 'Country': [
+                    'OpenStreetMap.CH',
                     'Freemap.sk-Car',
                     'Freemap.sk-Hiking',
                     'Freemap.sk-Cyclo',
@@ -77,6 +81,7 @@ BR.LayersTab = L.Control.Layers.extend({
             },
             'Overlays': {
                 'World-wide': [
+                    'HikeBike.HillShading',
                     'Waymarked_Trails-Hiking',
                     'Waymarked_Trails-Cycling',
                     'Waymarked_Trails-MTB'
@@ -148,6 +153,31 @@ BR.LayersTab = L.Control.Layers.extend({
         return this;
     },
 
+    addLeafletProvidersLayers: function () {
+        var includeList = [
+            'Stamen.Terrain',
+            'MtbMap',
+            'OpenStreetMap.CH',
+            'HikeBike.HillShading'
+        ];
+
+        for (var i = 0; i < includeList.length; i++) {
+            var id = includeList[i];
+            var obj = {
+                geometry: null,
+                properties: {
+                    id: id,
+                    name: id.replace('.', ' '),
+                    datasource: 'leaflet-providers'
+                },
+                type: "Feature"
+            };
+            BR.layerIndex[id] = obj;
+        }
+
+        BR.layerIndex['HikeBike.HillShading'].properties.overlay = true;
+    },
+
     _getLayerObjByName: function (name) {
         for (var i = 0; i < this._layers.length; i++) {
 			if (this._layers[i] && this._layers[i].name === name) {
@@ -158,6 +188,7 @@ BR.LayersTab = L.Control.Layers.extend({
 
     createLayer: function (layerData) {
         var props = layerData.properties;
+        var layer;
 
         // JOSM:    https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png
         // Leaflet: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
@@ -180,14 +211,20 @@ BR.LayersTab = L.Control.Layers.extend({
             return result;
         }
 
-        var url = convertUrlJosm(props.url);
+        if (props.datasource === 'leaflet-providers') {
+            // leaflet-providers
+            layer = L.tileLayer.provider(props.id);
+        } else {
+            // JOSM
+            var url = convertUrlJosm(props.url);
 
-        var layer = L.tileLayer(url, {
-            maxNativeZoom: props.max_zoom,
-            maxZoom: this._map.getMaxZoom(),
-            subdomains: getSubdomains(props.url),
-            zIndex: this._lastZIndex + 1
-        });
+            layer = L.tileLayer(url, {
+                maxNativeZoom: props.max_zoom,
+                maxZoom: this._map.getMaxZoom(),
+                subdomains: getSubdomains(props.url),
+                zIndex: this._lastZIndex + 1
+            });
+        }
 
         return layer
     },

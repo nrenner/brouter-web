@@ -3448,6 +3448,11 @@ leaflet-plugins@~3.0.0:
   resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.0.3.tgz#7c727ac79a37636b245dd1adc64e10c61b425864"
   integrity sha512-J2dfJxrq7ETmciGq01syYmB0zG1Ogzy5FioIFJjJB82jFqxHZJDFUMiPFGJn+gfJnWhv/LobbPQYqHdaJSxR9w==
 
+leaflet-providers@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/leaflet-providers/-/leaflet-providers-1.5.0.tgz#06d598231ef36f8d0566c219cedf18cef2ff80f5"
+  integrity sha512-btncloSyOHrgYNexoz2dRpCl+U9iDQME91RsOWQWNAD9jQUPAkq9mxuTvL/O9VOwrqcEtzhvuHBHIOacJAZDxQ==
+
 leaflet-routing@nrenner/leaflet-routing#dev:
   version "0.1.1"
   resolved "https://codeload.github.com/nrenner/leaflet-routing/tar.gz/bbe5df8af500948251337a7e6c09d14f9fad6d8d"
