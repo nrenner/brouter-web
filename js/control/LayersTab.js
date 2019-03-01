@@ -52,14 +52,22 @@ BR.LayersTab = L.Control.Layers.extend({
                     'Stamen.Terrain',
                     'HDM_HOT',
                     'wikimedia-map',
-                    'opencylemap'
+                    'opencylemap',
+                    "1061", // Thunderforest Outdoors
+                    "1065", // Hike & Bike Map
+                    "1016" // 4UMaps
                 ],
                 'Worldwide monolingual': [
                     'osm-mapnik-german_style',
-                    'osmfr'
+                    'osmfr',
+                    "1023", // Osmapa.pl - Mapa OpenStreetMap Polska
+                    "1021", // kosmosnimki.ru
+                    "1017", // sputnik.ru
+                    "1010" // OpenStreetMap.se (Hydda.Full)
                 ],
                 'Europe': [
-                    'MtbMap'
+                    'MtbMap',
+                    "1069",  // MRI (maps.refuges.info)
                 ],
                 'Country': [
                     'OpenStreetMap.CH',
@@ -168,7 +176,7 @@ BR.LayersTab = L.Control.Layers.extend({
                 properties: {
                     id: id,
                     name: id.replace('.', ' '),
-                    datasource: 'leaflet-providers'
+                    dataSource: 'leaflet-providers'
                 },
                 type: "Feature"
             };
@@ -211,9 +219,18 @@ BR.LayersTab = L.Control.Layers.extend({
             return result;
         }
 
-        if (props.datasource === 'leaflet-providers') {
+        if (props.dataSource === 'leaflet-providers') {
             // leaflet-providers
             layer = L.tileLayer.provider(props.id);
+        } else if (props.dataSource === 'LayersCollection') {
+            layer = L.tileLayer(props.url, {
+                maxNativeZoom: props.maxZoom,
+                maxZoom: this._map.getMaxZoom(),
+                zIndex: this._lastZIndex + 1
+            });
+            if (props.subdomains) {
+                layer.subdomains = props.subdomains;
+            }
         } else {
             // JOSM
             var url = convertUrlJosm(props.url);
