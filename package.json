@@ -17,6 +17,7 @@
   "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, Explorer >= 10, Android >= 4.1, Safari >= 7, iOS >= 7",
   "dependencies": {
     "@mapbox/polyline": "^0.2.0",
+    "@turf/turf": "^5.1.6",
     "async": "~0.9.2",
     "bootbox": "~4.4.0",
     "bootstrap": "4.0.0-alpha.5",

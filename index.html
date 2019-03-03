@@ -49,6 +49,16 @@
                         <a class="dropdown-item" data-i18n="navbar.download.csv" id="dl-csv" href="#" disabled>data CSV</a>
                     </div>
                 </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="fa fa-lg fa-cloud-upload" aria-hidden="true">
+                        </span>
+                        <span data-i18n="navbar.load.title">Load</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" data-i18n="navbar.load.nogos" data-toggle="modal" data-target="#loadNogos" href="#">Nogos</a>
+                    </div>
+                </div>
                 <div class="nav-item">
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#about"><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span><span data-i18n="navbar.about">About</span></a>
                 </div>
@@ -78,7 +88,7 @@
                         </dd>
                         <dt data-i18n="credits.osm-tiles">OpenStreetMap tiles</dt>
                         <dd data-i18n="[html]credits.osm-license">
-                            <a target="_blank" href="https://www.openstreetmap.org/copyright">openstreetmap.org</a> 
+                            <a target="_blank" href="https://www.openstreetmap.org/copyright">openstreetmap.org</a>
                             under <a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>
                         </dd>
                         <dt data-i18n="credits.osmde-tiles">OpenStreetMap.de tiles</dt>
@@ -98,8 +108,8 @@
                         </dd>
                         <dt data-i18n="credits.esri-tiles">Esri World Imagery</dt>
                         <dd data-i18n="[html]credits.esri-license">
-                            <a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a> 
-                            &copy; <a target="_blank" href="https://www.esri.com/">Esri</a>, sources: 
+                            <a target="_blank" href="http://goto.arcgisonline.com/maps/World_Imagery">World Imagery</a>
+                            &copy; <a target="_blank" href="https://www.esri.com/">Esri</a>, sources:
                             Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community
                         </dd>
                         <dt data-i18n="credits.cycling-hiking-tiles">Cycling & Hiking tiles</dt>
@@ -181,11 +191,58 @@
                         </div>
                     </p>
                     <p data-i18n="[html]about.details">
-                        <i><a href="http://brouter.de/privacypolicy.html" target="_blank">Privacy Policy</a></i>, 
+                        <i><a href="http://brouter.de/privacypolicy.html" target="_blank">Privacy Policy</a></i>,
                         <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i>,
                         <i><a href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a></i> and
                         <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i> on the client.
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load nogos modal window -->
+    <div class="modal fade" id="loadNogos" tabindex="-1" role="dialog" aria-labelledby="Load nogos window" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" data-i18n="loadNogos.title">Load nogos</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="nogoError" style="display: none;"></p>
+                    <form>
+                        <fieldset>
+                            <legend data-i18n="loadNogos.source">Source</legend>
+                            <p>
+                                <label for="nogoURL" data-i18n="loadNogos.url">URL: </label>
+                                <input type="text" name="nogoURL" id="nogoURL" /><br/>
+                                or<br/>
+                                <label for="nogoFile" data-i18n="loadNogos.file">File: </label>
+                                <input type="file" name="nogoFile" id="nogoFile" />
+                            </p>
+                        </fieldset>
+                        <fieldset>
+                            <legend data-i18n="loadNogos.defaultProperties">Default properties</legend>
+                            <p>
+                                <label for="nogoWeight" data-i18n="loadNogos.nogoWeight">Nogo weight: </label>
+                                <input type="number" name="nogoWeight" id="nogoWeight" value="-1" />
+                            </p>
+                            <p>
+                                <label for="nogoRadius" data-i18n="loadNogos.nogoRadius">Nogo radius (for points): </label>
+                                <input type="number" name="nogoRadius" id="nogoRadius" value="20" />
+                            </p>
+                            <p>
+                                <label for="nogoBuffer" data-i18n="loadNogos.nogoBuffer">Buffer nogos areas (in meters): </label>
+                                <input type="number" name="nogoBuffer" id="nogoBuffer" value="0" />
+                            </p>
+                        </fieldset>
+                        <p style="margin-top: 1em; text-align: center;">
+                            <input type="submit" data-i18n="[value]loadNogos.load" value="Load" id="submitNogos" />
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
@@ -208,10 +265,10 @@
                     </a></li>
                 <li hidden><a href="#tab_itinerary" role="tab" data-i18n="[title]sidebar.itinerary.title" title="Itinerary"><i class="fa fa-map-signs"></i></a></li>
                 <li><a href="#tab_profile" role="tab" data-i18n="[title]sidebar.custom-profile.title" title="Custom profile"><i class="fa fa-wrench"></i></a></li>
-                <li><a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"><i class="fa fa-table"></i></a></li> 
+                <li><a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"><i class="fa fa-table"></i></a></li>
             </ul>
         </div>
-        
+
         <div class="leaflet-sidebar-flex-row flexgrow">
             <div id="map" class="leaflet-sidebar-map">
                 <div id="message"></div>
