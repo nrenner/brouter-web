@@ -115,20 +115,20 @@
       "custom": "Custom",
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike low traffic",
+      "fastbike-lowtraffic": "Fastbike (low traffic)",
       "hiking-beta": "Hiking (beta)",
       "moped": "Moped",
       "rail": "Rail",
       "river": "River",
       "safety": "Safety",
       "shortest": "Shortest",
-      "trekking": "Trekking",
-      "trekking-ignore-cr": "Trekking (ignore cylce routes)",
-      "trekking-noferries": "Trekking (no ferries)",
-      "trekking-nosteps": "Trekking (no steps)",
-      "trekking-steep": "Trekking steep",
-      "vm-forum-liegerad-schnell": "vm-forum-liegerad-schnell",
-      "vm-forum-velomobil-schnell": "vm-forum-velomobil-schnell"
+      "trekking": "Trekking bike",
+      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
+      "trekking-noferries": "Trekking bike (no ferries)",
+      "trekking-nosteps": "Trekking bike (no steps)",
+      "trekking-steep": "Trekking bike (steep)",
+      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
+      "vm-forum-velomobil-schnell": "Velomobile (fast)"
     }
   },
   "sidebar": {
