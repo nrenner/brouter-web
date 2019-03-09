@@ -1,0 +1,171 @@
+{
+  "about": {
+    "bug-reports": "Hibabejelentés és objektumkérés:",
+    "bug-reports-back": "kiszolgálóoldal / back end, útvonaltervező motor, Android alkalmazás, profilok, brouter.de weboldal:",
+    "bug-reports-front": "weboldali kliens / frontend:",
+    "contact": "Kapcsolat:",
+    "data": "Adatok:",
+    "data-description": "Ennek az alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Általában hetente frissül, amikor az új bolygófájl (Planet file) elérhetővé válik. A dátumok megtalálhatók az <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlokban</a>.",
+    "description": "A BRouter útvonaltervező motor online szolgáltatása. Az Android alkalmazásról és a további információkról a <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a> oldalon olvashat.",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Adatvédelmi irányelvek</a></i> \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">stáblista</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">változásnapló</a></i> és\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">további tájékoztatás</a></i> a kliensről.",
+    "support": "Általános viták/kérdések, támogatás:",
+    "title": "Névjegy"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "cycling-hiking-tiles": "Kerékpáros és túrázós mozaikok",
+    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">felhasználási feltételek</a>)",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Globális légi felvételek</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, források: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP valamint a GIS felhasználói közösség",
+    "esri-tiles": "Esri World Imagery",
+    "map-data": "Térképadatok",
+    "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "opencyclemap-outdoors-tiles": "OpenCycleMap & Outdoors mozaikok",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>",
+    "opentopomap-tiles": "OpenTopoMap tiles",
+    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
+    "osm-tiles": "OpenStreetMap tiles",
+    "osmde-tiles": "OpenStreetMap.de tiles",
+    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
+    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a>"
+  },
+  "footer": {
+    "ascend": "Ascend (Plain ascend)",
+    "cost": "Cost (Mean cost factor)",
+    "distance": "Távolság",
+    "kilometer": "kilométer",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowattóra",
+    "kilowatthour-abbrev": "kWh",
+    "meter": "méter",
+    "meter-abbrev": "m",
+    "minutes": "perc",
+    "minutes-abbrev": "min",
+    "total-energy": "Total Energy (per 100km)",
+    "travel-time": "Travel time"
+  },
+  "layers": {
+    "add-base": "Add base layer",
+    "add-overlay": "Add overlay",
+    "customize": "Customize layers",
+    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
+    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Remove selection"
+  },
+  "map": {
+    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Clear route",
+    "copyright": "Copyright",
+    "cycling": "Cycling",
+    "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
+    "delete-route": "Delete route?",
+    "draw-route-start": "Draw route (D key)",
+    "draw-route-stop": "Stop drawing route (ESC key)",
+    "hiking": "Hiking",
+    "layer": {
+      "bing": "Bing Aerial",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Cycling (Waymarked Trails)",
+      "digitalglobe": "DigitalGlobe Recent Imagery",
+      "esri": "Esri World Imagery",
+      "hiking": "Hiking (Waymarked Trails)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Outdoors (Thunderforest)",
+      "strava-segments": "Strava segments",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Loading…",
+    "locate-me": "Show me where I am",
+    "nogo": {
+      "cancel": "Cancel drawing no-go area",
+      "click-drag": "Click and drag to draw circle",
+      "draw": "Draw no-go area (circle)",
+      "edit": "Click to edit",
+      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+    },
+    "opacity-slider": "Set transparency of route track and markers",
+    "privacy": "Privacy",
+    "strava-biking": "Show Strava biking segments",
+    "strava-running": "Show Strava running segments",
+    "zoomInTitle": "Zoom in",
+    "zoomOutTitle": "Zoom out"
+  },
+  "navbar": {
+    "about": "About",
+    "alternative": {
+      "first": "1st alternative",
+      "original": "Original",
+      "second": "2nd alternative",
+      "third": "3rd alternative"
+    },
+    "download": {
+      "csv": "data CSV",
+      "geojson": "GeoJSON",
+      "gpx": "GPX",
+      "kml": "KML",
+      "title": "Download"
+    },
+    "profile": {
+      "car-eco": "Car (economic)",
+      "car-fast": "Car (fast)",
+      "car-test": "Car (test)",
+      "custom": "Custom",
+      "fastbike": "Fastbike",
+      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
+      "fastbike-lowtraffic": "Fastbike (low traffic)",
+      "hiking-beta": "Hiking (beta)",
+      "moped": "Moped",
+      "rail": "Rail",
+      "river": "River",
+      "safety": "Safety",
+      "shortest": "Shortest",
+      "trekking": "Trekking bike",
+      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
+      "trekking-noferries": "Trekking bike (no ferries)",
+      "trekking-nosteps": "Trekking bike (no steps)",
+      "trekking-steep": "Trekking bike (steep)",
+      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
+      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "Custom profile"
+    },
+    "data": {
+      "title": "Data"
+    },
+    "itinerary": {
+      "title": "Itinerary"
+    },
+    "layers": {
+      "custom-layers": "Custom layers",
+      "customize": "Add or remove custom layers",
+      "table": {
+        "URL": "URL",
+        "empty": "No custom layer configured yet.",
+        "name": "Name",
+        "type": "Type"
+      },
+      "title": "Layers"
+    },
+    "profile": {
+      "clear": "Clear",
+      "help": "Help",
+      "placeholder": "Write your custom profile here.",
+      "upload": "Upload"
+    }
+  },
+  "title": "BRouter web client",
+  "warning": {
+    "cannot-get-route": "Error getting route URL",
+    "no-response": "no response from server",
+    "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
+    "profile-error": "Profile error: no or empty response from server",
+    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
+    "upload-error": "Upload error: {{error}}"
+  }
+}
