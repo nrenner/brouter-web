@@ -364,7 +364,7 @@
         .init({
             fallbackLng: 'en',
             backend: {
-                loadPath: 'locales/{{lng}}.json',
+                loadPath: 'dist/locales/{{lng}}.json',
             }
         }, function(err, t) {
             jqueryI18next.init(i18next, $);
