@@ -9,41 +9,6 @@ BR.LayersTab = L.Control.Layers.extend({
 
         this.addLeafletProvidersLayers();
 
-        var toJsTree = function(layerTree) {
-            var data = [];
-
-            function walkTree(inTree, outTree) {
-                if (Array.isArray(inTree)) {
-                    for (var i = 0; i < inTree.length; i++) {
-                        var layerId = inTree[i];
-                        var childNode = { 
-                            'id': layerId,
-                            'text': layerIndex[layerId].properties.name
-                        };
-                        outTree.push(childNode);
-                    }
-                } else {
-                    for (name in inTree) {
-                        var value = inTree[name];
-                        var children = [];
-                        var rootNode = {
-                            'text': name,
-                            'state': {
-                                'disabled': true
-                            },
-                            'children': children
-                        };
-                        outTree.push(rootNode);
-
-                        walkTree(value, children);
-                    }
-                }
-            }
-            walkTree(structure, data);
-
-            return data;
-        };
-
         var structure = {
             'Base layers': {
                 'Worldwide international': [
@@ -55,7 +20,8 @@ BR.LayersTab = L.Control.Layers.extend({
                     'opencylemap',
                     "1061", // Thunderforest Outdoors
                     "1065", // Hike & Bike Map
-                    "1016" // 4UMaps
+                    "1016", // 4UMaps,
+                    "openmapsurfer"
                 ],
                 'Worldwide monolingual': [
                     'osm-mapnik-german_style',
@@ -70,6 +36,7 @@ BR.LayersTab = L.Control.Layers.extend({
                     "1069",  // MRI (maps.refuges.info)
                 ],
                 'Country': [
+                    'topplus-open',
                     'OpenStreetMap.CH',
                     'Freemap.sk-Car',
                     'Freemap.sk-Hiking',
@@ -92,14 +59,25 @@ BR.LayersTab = L.Control.Layers.extend({
                     'HikeBike.HillShading',
                     'Waymarked_Trails-Hiking',
                     'Waymarked_Trails-Cycling',
-                    'Waymarked_Trails-MTB'
+                    'Waymarked_Trails-MTB',
+                    'mapillary-coverage-raster'
                 ],
                 'Country': [
-                    'hu-hillshade'
+                    'historic-place-contours',
+                    'hu-hillshade', 
+                    {
+                        'PL - Poland': [
+                            'mapaszlakow-cycle',
+                            'mapaszlakow-bike',
+                            'mapaszlakow-hike',
+                            'mapaszlakow-mtb',
+                            'mapaszlakow-incline',
+                        ]
+                    }
                 ]
             }
         };
-        var treeData = toJsTree(structure);
+        var treeData = this.toJsTree(structure);
 
         var onSelectNode = function (e, data) {
             var layerData = layerIndex[data.node.id];
@@ -161,6 +139,57 @@ BR.LayersTab = L.Control.Layers.extend({
         return this;
     },
 
+    toJsTree: function (layerTree) {
+        var data = [];
+        var self = this;
+
+        function walkTree(inTree, outTree) {
+            function walkObject(obj) {
+                for (name in obj) {
+                    var value = obj[name];
+                    var children = [];
+                    var rootNode = {
+                        'text': name,
+                        'state': {
+                            'disabled': true
+                        },
+                        'children': children
+                    };
+                    outTree.push(rootNode);
+
+                    walkTree(value, children);
+                }
+            }
+
+            if (Array.isArray(inTree)) {
+                for (var i = 0; i < inTree.length; i++) {
+                    var entry = inTree[i];
+                    if (typeof entry === 'object') {
+                        walkObject(entry);
+                    } else {
+                        var props = BR.layerIndex[entry].properties;
+                        var url = props.url;
+                        var keyName = self.getKeyName(url);
+
+                        // when key required only add if configured
+                        if (!keyName || keyName && BR.keys[keyName]) {
+                            var childNode = { 
+                                'id': entry,
+                                'text': props.name
+                            };
+                            outTree.push(childNode);
+                        }
+                    }
+                }
+            } else {
+                walkObject(inTree);
+            }
+        }
+        walkTree(layerTree, data);
+
+        return data;
+    },
+
     addLeafletProvidersLayers: function () {
         var includeList = [
             'Stamen.Terrain',
@@ -186,6 +215,23 @@ BR.LayersTab = L.Control.Layers.extend({
         BR.layerIndex['HikeBike.HillShading'].properties.overlay = true;
     },
 
+    // own convention: key placeholder prefixed with 'key_'
+    // e.g. ?api_key={keys_openrouteservice}
+    getKeyName: function (url) {
+        var name = null;
+        var regex = /{keys_([^}]*)}/;
+        var found;
+
+        if (!url) return name;
+        
+        found = url.match(regex);
+        if (found) {
+            name = found[1];
+        }
+
+        return name;
+    },
+
     _getLayerObjByName: function (name) {
         for (var i = 0; i < this._layers.length; i++) {
 			if (this._layers[i] && this._layers[i].name === name) {
@@ -196,14 +242,16 @@ BR.LayersTab = L.Control.Layers.extend({
 
     createLayer: function (layerData) {
         var props = layerData.properties;
+        var url = props.url;
         var layer;
 
         // JOSM:    https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png
         // Leaflet: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png
         function convertUrlJosm(url) {
-            var regex = /{switch:[^}]*}/;
-            var result = url.replace(regex, '{s}');
-            result = result.replace('{zoom}', '{z}');
+            var rxSwitch = /{switch:[^}]*}/;
+            var rxZoom = /{zoom}/g;
+            var result = url.replace(rxSwitch, '{s}');
+            result = result.replace(rxZoom, '{z}');
             return result;
         }
 
@@ -219,28 +267,44 @@ BR.LayersTab = L.Control.Layers.extend({
             return result;
         }
 
+        var options = {
+            maxZoom: this._map.getMaxZoom(),
+            zIndex: this._lastZIndex + 1
+        };
+
+        var keyName = this.getKeyName(url);
+        if (keyName && BR.keys[keyName]) {
+            options['keys_' + keyName] = BR.keys[keyName];
+        }
+
         if (props.dataSource === 'leaflet-providers') {
-            // leaflet-providers
             layer = L.tileLayer.provider(props.id);
         } else if (props.dataSource === 'LayersCollection') {
-            layer = L.tileLayer(props.url, {
+            layer = L.tileLayer(url, L.Util.extend(options, {
+                minZoom: props.minZoom,
                 maxNativeZoom: props.maxZoom,
-                maxZoom: this._map.getMaxZoom(),
-                zIndex: this._lastZIndex + 1
-            });
+            }));
             if (props.subdomains) {
                 layer.subdomains = props.subdomains;
             }
         } else {
             // JOSM
-            var url = convertUrlJosm(props.url);
+            var url = convertUrlJosm(url);
 
-            layer = L.tileLayer(url, {
+            var josmOptions = L.Util.extend(options, {
+                minZoom: props.min_zoom,
                 maxNativeZoom: props.max_zoom,
-                maxZoom: this._map.getMaxZoom(),
-                subdomains: getSubdomains(props.url),
-                zIndex: this._lastZIndex + 1
+                subdomains: getSubdomains(url),
             });
+
+            if (props.type && props.type === 'wms') {
+                layer = L.tileLayer.wms(url, L.Util.extend(josmOptions, {
+                    layers: props.layers,
+                    format: props.format 
+                }));
+            } else {
+                layer = L.tileLayer(url, josmOptions);
+            }
         }
 
         return layer

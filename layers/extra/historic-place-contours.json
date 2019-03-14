@@ -1,0 +1,45 @@
+{
+    "geometry": {
+        "coordinates": [
+            [
+                [
+                    5.45,
+                    45
+                ],
+                [
+                    17,
+                    45
+                ],
+                [
+                    17,
+                    56.27
+                ],
+                [
+                    5.45,
+                    56.27
+                ],
+                [
+                    5.45,
+                    45
+                ]
+            ]
+        ],
+        "type": "Polygon"
+    },
+    "properties": {
+        "attribution": {
+            "required": true,
+            "html": "<a href=\"https://www.eea.europa.eu/data-and-maps/data/eu-dem\" target=\"_blank\" rel=\"noopener\">Produced using Copernicus data and information funded by the European Union - EU-DEM layers</a>, download from <a href=\"http://opendem.info/index.html\" target=\"_blank\">OpenDEM</a>, Data sources <a href=\"https://www2.jpl.nasa.gov/srtm/\" target=\"_blank\">SRTM</a>, <a href=\"https://asterweb.jpl.nasa.gov/gdem.asp\" target=\"_blank\">ASTER GDEM</a>, Tiles from <a href=\"http://www.historic.place/\" target=\"_blank\" rel=\"noopener\">Historic.Place</a>"
+        },
+        "country_code": "DACH",
+        "id": "historic-place-contours",
+        "min_zoom": 12,
+        "max_zoom": 15,
+        "name": "Contours DACH",
+        "overlay": true,
+        "type": "tms",
+        "url": "http://tiles.historic.place/ele/de/{zoom}/{x}/{y}.png",
+        "valid-georeference": true
+    },
+    "type": "Feature"
+}

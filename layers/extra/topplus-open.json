@@ -1,0 +1,42 @@
+{
+    "geometry": {
+        "coordinates": [
+            [
+                [
+                    4.219,
+                    46.317
+                ],
+                [
+                    16.875,
+                    46.317
+                ],
+                [
+                    16.875,
+                    55.776
+                ],
+                [
+                    4.219,
+                    55.776
+                ],
+                [
+                    4.219,
+                    46.317
+                ]
+            ]
+        ],
+        "type": "Polygon"
+    },
+    "properties": {
+        "attribution": {
+            "html": "© <a href=\"http://www.bkg.bund.de\" target=\"_blank\" rel=\"noopener\">Bundesamt für Kartographie und Geodäsie</a> 2018, <a href=\"http://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf\" target=\"_blank\" rel=\"noopener\">Datenquellen</a>"
+        },
+        "id": "topplus-open",
+        "name": "TopPlusOpen",
+        "type": "wms",
+        "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open",
+        "layers": "web",
+        "format": "image/png"
+    },
+    "type": "Feature"
+}
+  

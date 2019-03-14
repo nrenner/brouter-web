@@ -23,6 +23,7 @@ var cleanCSS = require('gulp-clean-css');
 var modifyCssUrls = require('gulp-modify-css-urls');
 var sort = require('gulp-sort');
 var scanner = require('i18next-scanner');
+var jsonConcat = require('gulp-json-concat');
 
 var debug = false;
 
@@ -272,3 +273,11 @@ gulp.task('i18next', function() {
     }))
     .pipe(gulp.dest('.'));
 })
+
+gulp.task('layers', function () {
+  return gulp.src('layers/extra/**/*.json')
+    .pipe(jsonConcat('layers-extra.js', function(data){
+      return Buffer.from('Object.assign(BR.layerIndex, ' + JSON.stringify(data, null, 4) + ');');
+    }))
+    .pipe(gulp.dest('layers'));
+});

@@ -64,6 +64,7 @@
     "gulp-github-release": "^1.2.1",
     "gulp-if": "^2.0.0",
     "gulp-inject": "^1.2.0",
+    "gulp-json-concat": "^0.1.1",
     "gulp-modify-css-urls": "^2.0.0",
     "gulp-postcss": "^7.0.1",
     "gulp-remember": "^0.3.0",
