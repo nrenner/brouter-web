@@ -165,6 +165,7 @@
     "no-response": "no response from server",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
     "profile-error": "Profile error: no or empty response from server",
+    "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
     "upload-error": "Upload error: {{error}}"
   }
