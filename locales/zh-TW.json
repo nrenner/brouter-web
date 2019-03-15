@@ -115,20 +115,20 @@
       "custom": "自訂",
       "fastbike": "機車",
       "fastbike-asia-pacific": "機車 (亞太)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
+      "fastbike-lowtraffic": "機車 (低交通流量)",
       "hiking-beta": "遠足 (Beta測試中)",
       "moped": "機慢車",
       "rail": "鐵道",
       "river": "河道",
       "safety": "安全",
       "shortest": "最短",
-      "trekking": "Trekking bike",
-      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
-      "trekking-noferries": "Trekking bike (no ferries)",
-      "trekking-nosteps": "Trekking bike (no steps)",
-      "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+      "trekking": "登山越野車",
+      "trekking-ignore-cr": "登山越野車 (忽視自行車道)",
+      "trekking-noferries": "登山越野車 (不經過渡輪)",
+      "trekking-nosteps": "登山越野車 (跳過階梯)",
+      "trekking-steep": "登山越野車 (極限)",
+      "vm-forum-liegerad-schnell": "臥式自行車 (速度型)",
+      "vm-forum-velomobil-schnell": "躺車 (速度型)"
     }
   },
   "sidebar": {
