@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp",
     "transifex-push": "gulp i18next && tx push --source",
-    "transifex-pull": "tx pull --all --minimum-perc 1 --force",
+    "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
