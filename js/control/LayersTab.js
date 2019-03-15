@@ -1,5 +1,6 @@
 BR.LayersTab = L.Control.Layers.extend({
     previewLayer: null,
+    saveLayers: [],
 
     addTo: function (map) {
         this._map = map;
@@ -78,11 +79,23 @@ BR.LayersTab = L.Control.Layers.extend({
             }
         };
         var treeData = this.toJsTree(structure);
+        var oldSelected = null;
 
         var onSelectNode = function (e, data) {
             var layerData = layerIndex[data.node.id];
+            var selected = data.selected[0];
 
-            this.showLayer(this.createLayer(layerData));
+            if (selected !== oldSelected) {
+                this.showPreview(this.createLayer(layerData));
+                oldSelected = selected;
+            } else {
+                data.instance.deselect_node(data.node);
+            }
+        };
+
+        var onDeselectNode = function (e, data) {
+            this.hidePreview();
+            oldSelected = null;
         };
 
         var onCheckNode = function (e, data) {
@@ -104,8 +117,8 @@ BR.LayersTab = L.Control.Layers.extend({
 
             if (this._map.hasLayer(obj.layer)) {
                 this._map.removeLayer(obj.layer);
-                if (!obj.overlay && this._layers.length > 0) {
-                    this._map.addLayer(this._layers[0].layer);
+                if (!obj.overlay) {
+                    this.addFirstLayer();
                 }
             }
             this.removeLayer(obj.layer);
@@ -114,6 +127,7 @@ BR.LayersTab = L.Control.Layers.extend({
         L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
         $('#optional-layers-tree')
             .on('select_node.jstree', L.bind(onSelectNode, this))
+            .on('deselect_node.jstree', L.bind(onDeselectNode, this))
             .on('check_node.jstree', L.bind(onCheckNode, this))
             .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
             .on('ready.jstree', function (e, data) {
@@ -232,6 +246,12 @@ BR.LayersTab = L.Control.Layers.extend({
         return name;
     },
 
+    addFirstLayer() {
+        if (this._layers.length > 0) {
+            this._map.addLayer(this._layers[0].layer);
+        }
+    },
+
     _getLayerObjByName: function (name) {
         for (var i = 0; i < this._layers.length; i++) {
 			if (this._layers[i] && this._layers[i].name === name) {
@@ -310,29 +330,74 @@ BR.LayersTab = L.Control.Layers.extend({
         return layer
     },
 
-    removeSelectedBaseLayer: function () {
-		for (i = 0; i < this._layers.length; i++) {
-            obj = this._layers[i];
-            if (!obj.overlay && this._map.hasLayer(obj.layer)) {
+    removeSelectedLayers: function () {
+		for (var i = 0; i < this._layers.length; i++) {
+            var obj = this._layers[i];
+            if (this._map.hasLayer(obj.layer)) {
                 this._map.removeLayer(obj.layer);
+                this.saveLayers.push(obj);
             }
 		}
     },
 
-    showLayer: function (layer) {
-        this._map.addLayer(layer);
+    restoreSelectedLayers: function (overlaysOnly) {
+		for (var i = 0; i < this.saveLayers.length; i++) {
+            var obj = this.saveLayers[i];
+
+            if (!overlaysOnly || (overlaysOnly && obj.overlay)) {
+                var hasLayer = !!this._getLayer(L.Util.stamp(obj.layer));
+                if (hasLayer) {
+                    if (!this._map.hasLayer(obj.layer)) {
+                        this._map.addLayer(obj.layer);
+                    }
+                } else if (!obj.overlay) {
+                    // saved base layer has been removed during preview, select first
+                    this.addFirstLayer();
+                }
+            }
+        }
+        this.saveLayers = [];
+    },
+
+    removePreviewLayer: function () {
         if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
             this._map.removeLayer(this.previewLayer);
-        } else {
-            this.removeSelectedBaseLayer();
-            this._map.once('baselayerchange', function () {
-                if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
-                    this._map.removeLayer(this.previewLayer);
-                }
-                this.jstree.deselect_all();
-            }, this);
+            this.previewLayer = null;
+            return true;
+        }
+        return false;
+    },
+
+    deselectNode: function () {
+        var selected = this.jstree.get_selected();
+        if (selected.length > 0) {
+            this.jstree.deselect_node(selected[0]);
+        }
+    },
+
+    onBaselayerchange: function () {
+        // execute after current input click handler, 
+        // otherwise added overlay checkbox state doesn't update
+        setTimeout(L.Util.bind(function () {
+            this.removePreviewLayer();
+            this.restoreSelectedLayers(true);
+            this.deselectNode();
+        }, this), 0);
+    },
+
+    showPreview: function (layer) {
+        this._map.addLayer(layer);
+        if (!this.removePreviewLayer()) {
+            this.removeSelectedLayers();
+            this._map.once('baselayerchange', this.onBaselayerchange, this);
         }
         this.previewLayer = layer;
+    },
+
+    hidePreview: function (layer) {
+        this._map.off('baselayerchange', this.onBaselayerchange, this);
+        this.removePreviewLayer();
+        this.restoreSelectedLayers();
     }
 });
 
