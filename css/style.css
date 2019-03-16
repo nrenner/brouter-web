@@ -20,7 +20,7 @@ body, #content {
 .dataTables_scroll,
 .dataTables_scrollBody {
     display: flex;
-    
+
     flex-flow: column;
 }
 
@@ -61,7 +61,7 @@ table.dataTable {
 .navbar {
     /* align with leaflet-control */
     padding: .5rem 10px;
-}    
+}
 .navbar-brand {
     float: right;
     margin-left: 1rem;
@@ -278,7 +278,7 @@ https://css-tricks.com/svg-line-animation-works/
 }
 .leaflet-bar .fa {
     font-size: 14px;
-    
+
     /* override fa with Leaflet button height for vertical center */
     line-height: 26px;
 }
@@ -340,7 +340,7 @@ table.dataTable.display tbody tr.even:hover {
     background-color: rgba(255,255,0,0.2);
 }
 
-/* 
+/*
  * No-go areas
  */
 
@@ -384,7 +384,7 @@ table.dataTable.display tbody tr.even:hover {
 .leaflet-sidebar-pane#tab_profile,
 .leaflet-sidebar-pane#tab_data,
 .leaflet-sidebar-pane#tab_itinerary {
-    /* Full height for content with inner scrolling, 
+    /* Full height for content with inner scrolling,
        overrides scroll fix for long content in Firefox */
     height: 100%;
 }
@@ -425,9 +425,27 @@ table.dataTable.display tbody tr.even:hover {
     flex: auto;
     /* override default 300px, behaves like min-height with flex auto */
     height: 0;
-    
+
     border: 1px solid #ddd;
-    
+
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
     line-height: 1.2em;
+}
+
+#uploadNogos fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
+}
+
+#uploadNogos legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
 }
