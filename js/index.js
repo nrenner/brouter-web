@@ -253,6 +253,9 @@
             })
             .addTo(map);
             layersControl.addOverlay(stravaControl.stravaLayer, i18next.t('map.layer.strava-segments'));
+            stravaControl.onError = function(err) {
+                BR.message.showError(i18next.t('warning.strava-error', {error: err && err.message ? err.message : err}));
+            }
         }
 
         map.addControl(new BR.OpacitySlider({
