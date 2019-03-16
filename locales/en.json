@@ -53,6 +53,17 @@
     "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Remove selection"
   },
+  "loadNogos": {
+    "defaultProperties": "Default properties",
+    "file": "File: ",
+    "load": "Load",
+    "nogoBuffer": "Buffer no-go areas (in meters): ",
+    "nogoRadius": "No-go radius (for points): ",
+    "nogoWeight": "No-go weight: ",
+    "source": "Source",
+    "title": "Load no-go areas",
+    "url": "URL: "
+  },
   "map": {
     "attribution-osm-long": "OpenStreetMap contributors",
     "attribution-osm-short": "OpenStreetMap",
@@ -107,6 +118,10 @@
       "gpx": "GPX",
       "kml": "KML",
       "title": "Download"
+    },
+    "load": {
+      "nogos": "No-go areas",
+      "title": "Load"
     },
     "profile": {
       "car-eco": "Car (economic)",
