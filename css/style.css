@@ -432,7 +432,7 @@ table.dataTable.display tbody tr.even:hover {
     line-height: 1.2em;
 }
 
-#uploadNogos fieldset {
+#loadNogos fieldset {
     display: block;
     margin-left: 2px;
     margin-right: 2px;
@@ -443,7 +443,7 @@ table.dataTable.display tbody tr.even:hover {
     border: 2px groove;
 }
 
-#uploadNogos legend {
+#loadNogos legend {
     display: block;
     padding-left: 2px;
     padding-right: 2px;
