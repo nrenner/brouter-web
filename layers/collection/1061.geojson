@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Thunderforest Outdoors",
+    "maxZoom": 22,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://www.thunderforest.com/\" target=\"_blank\">Andy Allan</a>",
+    "id": "1061",
+    "url": "http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,20 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "© waymarkedtrails.org, OpenStreetMap contributors, CC by-SA 3.0",
+      "url": "https://hiking.waymarkedtrails.org/en/help/legal"
+    },
+    "icon": "https://static.waymarkedtrails.org/img/map_hiking.png",
+    "id": "Waymarked_Trails-Hiking",
+    "max_zoom": 17,
+    "name": "Waymarked Trails: Hiking",
+    "overlay": true,
+    "type": "tms",
+    "url": "https://tile.waymarkedtrails.org/hiking/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,19 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Космоснимки",
+    "maxZoom": 18,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://osm.kosmosnimki.ru/\" target=\"_blank\">ScanEx</a>",
+    "id": "1023",
+    "subdomains": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "language": "ru",
+    "url": "http://{s}.tile.osm.kosmosnimki.ru/kosmo/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "4UMaps",
+    "maxZoom": 15,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://www.4umaps.eu/\">4UMaps</a>",
+    "id": "1016",
+    "url": "http://4umaps.eu/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

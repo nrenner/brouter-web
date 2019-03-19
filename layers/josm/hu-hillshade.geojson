@@ -1,0 +1,46 @@
+{
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          15,
+          45
+        ],
+        [
+          24,
+          45
+        ],
+        [
+          24,
+          49
+        ],
+        [
+          15,
+          49
+        ],
+        [
+          15,
+          45
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "SRTM"
+    },
+    "country_code": "HU",
+    "id": "hu-hillshade",
+    "max_zoom": 18,
+    "min_zoom": 0,
+    "name": "Hillshade Hungary",
+    "overlay": true,
+    "type": "tms",
+    "url": "https://{switch:a,b,c}.map.turistautak.hu/tiles/shading/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

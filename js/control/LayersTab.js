@@ -181,17 +181,23 @@ BR.LayersTab = L.Control.Layers.extend({
                     if (typeof entry === 'object') {
                         walkObject(entry);
                     } else {
-                        var props = BR.layerIndex[entry].properties;
-                        var url = props.url;
-                        var keyName = self.getKeyName(url);
+                        var layer = BR.layerIndex[entry];
 
-                        // when key required only add if configured
-                        if (!keyName || keyName && BR.keys[keyName]) {
-                            var childNode = { 
-                                'id': entry,
-                                'text': props.name
-                            };
-                            outTree.push(childNode);
+                        if (layer) {
+                            var props = layer.properties;
+                            var url = props.url;
+                            var keyName = self.getKeyName(url);
+
+                            // when key required only add if configured
+                            if (!keyName || keyName && BR.keys[keyName]) {
+                                var childNode = { 
+                                    'id': entry,
+                                    'text': props.name
+                                };
+                                outTree.push(childNode);
+                            }
+                        } else {
+                            console.error('Layer "' + entry + '" not found');
                         }
                     }
                 }
