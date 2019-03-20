@@ -412,7 +412,11 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 #layers-button-group {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+}
+#tree-button-group {
+    margin-right: 5px;
 }
 
 #optional-layers-tree {

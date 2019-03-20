@@ -8,6 +8,10 @@ BR.LayersTab = L.Control.Layers.extend({
 
         var layerIndex = BR.layerIndex;
 
+        L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
+
+        this.initButtons();
+
         this.addLeafletProvidersLayers();
 
         var structure = {
@@ -124,18 +128,6 @@ BR.LayersTab = L.Control.Layers.extend({
             this.removeLayer(obj.layer);
         };
 
-        L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
-
-        // custom collapse to avoid Bootstrap animation
-        var toggleOptionalLayers = function(e) {
-            var button = this;
-            var div = L.DomUtil.get('optional-layers-tree');
-
-            div.hidden = !div.hidden;
-            button.classList.toggle('active');
-        };
-        L.DomUtil.get('optional_layers_button').onclick = toggleOptionalLayers;
-
         $('#optional-layers-tree')
             .on('select_node.jstree', L.bind(onSelectNode, this))
             .on('deselect_node.jstree', L.bind(onDeselectNode, this))
@@ -162,6 +154,34 @@ BR.LayersTab = L.Control.Layers.extend({
         this.jstree = $('#optional-layers-tree').jstree(true);
 
         return this;
+    },
+
+    initButtons: function () {
+       var expandTree = function (e) {
+            this.jstree.open_all();
+        };
+        var collapseTree = function (e) {
+            this.jstree.close_all();
+        };
+
+        var toggleOptionalLayers = function (e) {
+            var button = L.DomUtil.get('optional_layers_button');
+            var treeButtons = L.DomUtil.get('tree-button-group');
+            var div = L.DomUtil.get('optional-layers-tree');
+
+            div.hidden = !div.hidden;
+            treeButtons.hidden = !treeButtons.hidden;
+            button.classList.toggle('active');
+
+            if (div.hidden) {
+                this.deselectNode();
+            }
+        };
+
+        L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
+        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
+
+        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
     },
 
     toJsTree: function (layerTree) {

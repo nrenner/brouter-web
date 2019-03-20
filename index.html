@@ -282,8 +282,14 @@
                         <div id="layers-control-wrapper"></div>
                         <div class="leaflet-control-layers-separator"></div>
                         <div id="layers-button-group">
-                            <button type="button" id="optional_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.optional" title="Add or remove optional layers"><span class="fa fa-cogs"></span> <span data-i18n="sidebar.layers.optional-layers">More</span></button>
-                            <button type="button" id="custom_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
+                            <div hidden id="tree-button-group">
+                                <button type="button" id="expand_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.expand" title="Expand all"><span class="fa fa-plus-square-o"></span></button>
+                                <button type="button" id="collapse_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.collapse" title="Collapse all"><span class="fa fa-minus-square-o"></span></button>
+                            </div>
+                            <div>
+                                <button type="button" id="optional_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.optional" title="Add or remove optional layers"><span class="fa fa-cogs"></span> <span data-i18n="sidebar.layers.optional-layers">More</span></button>
+                                <button type="button" id="custom_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
+                            </div>
                         </div>
                         <div hidden id="optional-layers-tree"></div>
                     </div>
