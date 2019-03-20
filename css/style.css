@@ -389,6 +389,11 @@ table.dataTable.display tbody tr.even:hover {
     height: 100%;
 }
 
+.leaflet-sidebar-content {
+    /* for optional-layers-tree */
+    overflow-x: auto;
+}
+
 /* layers control as sidebar tab */
 #layers-control-wrapper label,
 #optional-layers-tree {
@@ -404,6 +409,10 @@ table.dataTable.display tbody tr.even:hover {
        Leaflet only | 21      | 20     |
        Bootstrap    | 23      | 22     |*/
     height: 23px;
+}
+
+#layers-button-group {
+    text-align: right;
 }
 
 #optional-layers-tree {

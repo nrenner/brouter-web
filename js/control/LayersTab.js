@@ -125,6 +125,17 @@ BR.LayersTab = L.Control.Layers.extend({
         };
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
+
+        // custom collapse to avoid Bootstrap animation
+        var toggleOptionalLayers = function(e) {
+            var button = this;
+            var div = L.DomUtil.get('optional-layers-tree');
+
+            div.hidden = !div.hidden;
+            button.classList.toggle('active');
+        };
+        L.DomUtil.get('optional_layers_button').onclick = toggleOptionalLayers;
+
         $('#optional-layers-tree')
             .on('select_node.jstree', L.bind(onSelectNode, this))
             .on('deselect_node.jstree', L.bind(onDeselectNode, this))
