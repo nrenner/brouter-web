@@ -74,6 +74,7 @@
     "delete-route": "Delete route?",
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
+    "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
     "layer": {
       "bing": "Bing Aerial",
@@ -81,10 +82,12 @@
       "cycling": "Cycling (Waymarked Trails)",
       "digitalglobe": "DigitalGlobe Recent Imagery",
       "esri": "Esri World Imagery",
+      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Hiking (Waymarked Trails)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
@@ -157,8 +160,12 @@
       "title": "Itinerary"
     },
     "layers": {
+      "collapse": "Collapse all",
       "custom-layers": "Custom layers",
       "customize": "Add or remove custom layers",
+      "expand": "Expand all",
+      "optional": "Add or remove optional layers",
+      "optional-layers": "More",
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",

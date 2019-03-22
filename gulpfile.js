@@ -43,6 +43,7 @@ var paths = {
     'js/Browser.js',
     'js/Util.js',
     'js/Map.js',
+    'js/LayersConfig.js',
     'js/router/BRouter.js',
     'js/plugin/*.js',
     'js/control/*.js',
