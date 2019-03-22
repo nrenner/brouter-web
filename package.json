@@ -7,6 +7,7 @@
     "build": "gulp",
     "transifex-push": "gulp i18next && tx push --source",
     "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
+    "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,12 +32,14 @@
     "i18next-xhr-backend": "^2.0.1",
     "jquery": "3.3.1",
     "jquery-i18next": "^1.2.1",
+    "jstree": "^3.3.7",
     "leaflet": "~1.3.0",
     "leaflet-control-geocoder": "~1.5.8",
     "leaflet-easybutton": "*",
     "leaflet-editable": "^1.1.0",
     "leaflet-elevation": "MrMufflon/Leaflet.Elevation#master",
     "leaflet-plugins": "~3.0.0",
+    "leaflet-providers": "^1.5.0",
     "leaflet-routing": "nrenner/leaflet-routing#dev",
     "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
     "leaflet-triangle-marker": "^1.0.1",
@@ -62,16 +65,18 @@
     "gulp-github-release": "^1.2.1",
     "gulp-if": "^2.0.0",
     "gulp-inject": "^1.2.0",
+    "gulp-json-concat": "^0.1.1",
     "gulp-modify-css-urls": "^2.0.0",
     "gulp-postcss": "^7.0.1",
     "gulp-remember": "^0.3.0",
-    "gulp-rename": "^1.2.0",
+    "gulp-rename": "^1.4.0",
     "gulp-replace": "^0.5.4",
     "gulp-sourcemaps": "^1.5.1",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^4.0.0",
     "i18next-scanner": "^2.9.1",
+    "node-fetch": "^2.3.0",
     "npmfiles": "^0.1.1"
   },
   "overrides": {
@@ -197,6 +202,13 @@
     "jquery-i18next": {
       "main": [
         "dist/umd/jquery-i18next.js"
+      ]
+    },
+    "jstree": {
+      "main": [
+        "dist/jstree.js",
+        "dist/themes/default/style.css",
+        "dist/themes/default/*.png"
       ]
     }
   }

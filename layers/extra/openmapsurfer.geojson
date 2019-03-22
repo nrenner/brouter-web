@@ -1,0 +1,15 @@
+{
+    "geometry": null,
+    "properties": {
+        "attribution": {
+            "html": "<a href=\"https://giscience.uni-hd.de\" target=\"_blank\" rel=\"noopener\">GIScience Research Group</a> @ University of Heidelberg (<a href=\"https://openrouteservice.org/\" target=\"_blank\" rel=\"noopener\">info</a>)"
+        },
+        "id": "openmapsurfer",
+        "max_zoom": 19,
+        "name": "OpenMapSurfer",
+        "type": "tms",
+        "url": "https://api.openrouteservice.org/mapsurfer/{zoom}/{x}/{y}.png?api_key={keys_openrouteservice}"
+    },
+    "type": "Feature"
+}
+  

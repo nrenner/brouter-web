@@ -1,0 +1,20 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "OpenStreetMap.se",
+    "maxZoom": 18,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://openstreetmap.se/\" target=\"_blank\">OpenStreetMap Sweden</a>",
+    "id": "1010",
+    "subdomains": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "url": "http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

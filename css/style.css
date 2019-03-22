@@ -389,11 +389,18 @@ table.dataTable.display tbody tr.even:hover {
     height: 100%;
 }
 
+.leaflet-sidebar-content {
+    /* for optional-layers-tree */
+    overflow-x: auto;
+}
+
 /* layers control as sidebar tab */
-#layers-control-wrapper label {
+#layers-control-wrapper label,
+#optional-layers-tree {
     font-size: 0.9rem;
     line-height: normal;
-
+}
+#layers-control-wrapper label {
     /* override Bootstrap/Reboot label */
     display: block;
     margin-bottom: 0px;
@@ -403,6 +410,19 @@ table.dataTable.display tbody tr.even:hover {
        Bootstrap    | 23      | 22     |*/
     height: 23px;
 }
+
+#layers-button-group {
+    display: flex;
+    justify-content: space-between;
+}
+#tree-button-group {
+    margin-right: 5px;
+}
+
+#optional-layers-tree {
+    margin-top: 5px;
+}
+
 
 /* hide currently unused bottom tabs container because of touch border artefacts */
 .leaflet-sidebar-tabs > ul:last-child {

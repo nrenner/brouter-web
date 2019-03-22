@@ -1,0 +1,20 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "© waymarkedtrails.org, OpenStreetMap contributors, CC by-SA 3.0",
+      "url": "https://cycling.waymarkedtrails.org/en/help/legal"
+    },
+    "icon": "https://static.waymarkedtrails.org/img/map_cycling.png",
+    "id": "Waymarked_Trails-Cycling",
+    "max_zoom": 17,
+    "name": "Waymarked Trails: Cycling",
+    "overlay": true,
+    "type": "tms",
+    "url": "https://tile.waymarkedtrails.org/cycling/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

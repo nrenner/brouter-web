@@ -1,0 +1,14 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Спутник",
+    "maxZoom": 19,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://maps.sputnik.ru/\" target=\"_blank\">Спутник</a>",
+    "id": "1021",
+    "threed": "true",
+    "language": "ru",
+    "url": "http://{s}.tiles.maps.sputnik.ru/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

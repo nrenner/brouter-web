@@ -278,12 +278,22 @@
 
                 <div class="leaflet-sidebar-content">
                     <div class="leaflet-sidebar-pane" id="tab_layers_control">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span data-i18n="sidebar.layers.title">Layers</span></h1>
+                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.layers.title">Layers</span></h1>
                         <div id="layers-control-wrapper"></div>
                         <div class="leaflet-control-layers-separator"></div>
-                        <div>
-                            <button type="button" id="custom_layers_button" class="btn btn-sm pull-right" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
+                        <div id="layers-button-group">
+                            <div hidden id="tree-button-group">
+                                <button type="button" id="expand_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.expand" title="Expand all"><span class="fa fa-plus-square-o"></span></button>
+                                <button type="button" id="collapse_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.collapse" title="Collapse all"><span class="fa fa-minus-square-o"></span></button>
+                            </div>
+                            <!-- empty dummy to keep following buttons right-aligned when previous hidden -->
+                            <div></div>
+                            <div>
+                                <button type="button" id="optional_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.optional" title="Add or remove optional layers"><span class="fa fa-cogs"></span> <span data-i18n="sidebar.layers.optional-layers">More</span></button>
+                                <button type="button" id="custom_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
+                            </div>
                         </div>
+                        <div hidden id="optional-layers-tree"></div>
                     </div>
 
                     <div class="leaflet-sidebar-pane" id="tab_profile">
@@ -358,6 +368,7 @@
     <script src="dist/url-search-params.js"></script>
     <script src="config.js"></script>
     <script src="keys.js"></script>
+    <script src="dist/layers.js"></script>
 
     <!-- "gulp inject" for debugging -->
     <!-- inject:js -->

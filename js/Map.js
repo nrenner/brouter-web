@@ -8,62 +8,10 @@ BR.Map = {
 
         var maxZoom = 19;
 
-        // Layer attribution here only as short link to original site, 
-        // to keep current position use placeholders: {zoom}/{lat}/{lon}
-        // Copyright attribution in index.html #credits
-
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: maxZoom,
-            attribution: '<a target="_blank" href="https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}">OpenStreetMap</a>'
-        });
-
-        var osmde = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-            maxNativeZoom: 19,
-            maxZoom: maxZoom,
-            attribution: '<a target="_blank" href="https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF">OpenStreetMap.de</a>'
-        });
-
-        var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            maxNativeZoom: 17,
-            maxZoom: maxZoom,
-            attribution: '<a target="_blank" href="https://opentopomap.org/#map={zoom}/{lat}/{lon}">OpenTopoMap</a>'
-        });
-
-        var thunderforestAuth = BR.keys.thunderforest ? '?apikey=' + BR.keys.thunderforest : '';
-        var cycle = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + thunderforestAuth, {
-            maxNativeZoom: 18,
-            maxZoom: maxZoom,
-            attribution: '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000">OpenCycleMap</a>'
-        });
-        var outdoors = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' + thunderforestAuth, {
-            maxNativeZoom: 18,
-            maxZoom: maxZoom,
-            attribution: '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=000B0">Outdoors</a>'
-        });
-
-        var esri = L.tileLayer('https://{s}.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            maxNativeZoom: 19,
-            maxZoom: maxZoom,
-            subdomains: ['server', 'services'],
-            attribution: '<a target="_blank" href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">' + i18next.t('credits.esri-tiles') + '</a>'
-        });
-
-        var cycling = L.tileLayer('https://tile.waymarkedtrails.org/cycling/{z}/{x}/{y}.png', {
-          maxNativeZoom: 18,
-          opacity: 0.7,
-          maxZoom: maxZoom,
-          attribution: '<a target="_blank" href="http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.cycling') + '</a>'
-        });
-        var hiking = L.tileLayer('https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png', {
-          maxNativeZoom: 18,
-          opacity: 0.7,
-          maxZoom: maxZoom,
-          attribution: '<a target="_blank" href="http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.hiking') + '</a>'
-        });
-
         map = new L.Map('map', {
             zoomControl: false, // add it manually so that we can translate it
-            worldCopyJump: true
+            worldCopyJump: true,
+            maxZoom: maxZoom
         });
         L.control.zoom({
             zoomInTitle: i18next.t('map.zoomInTitle'),
@@ -84,16 +32,9 @@ BR.Map = {
         new L.Control.PermalinkAttribution().addTo(map);
         map.attributionControl.setPrefix(false);
 
-        var baseLayers = {}
-        baseLayers[i18next.t('map.layer.osm')] = osm;
-        baseLayers[i18next.t('map.layer.osmde')] = osmde;
-        baseLayers[i18next.t('map.layer.topo')] = topo;
-        baseLayers[i18next.t('map.layer.cycle')] = cycle;
-        baseLayers[i18next.t('map.layer.outdoors')] = outdoors;
-        baseLayers[i18next.t('map.layer.esri')] = esri;
-        var overlays = {}
-        overlays[i18next.t('map.layer.cycling')] = cycling;
-        overlays[i18next.t('map.layer.hiking')] = hiking;
+        var layersConfig = BR.layersConfig(map);
+        var baseLayers = layersConfig.getBaseLayers();
+        var overlays = layersConfig.getOverlays();
 
         if (BR.keys.bing) {
             baseLayers[i18next.t('map.layer.bing')] = new BR.BingLayer(BR.keys.bing);
@@ -128,7 +69,7 @@ BR.Map = {
             map.addLayer(defaultLayer);
         }
 
-        layersControl = BR.layersTab(baseLayers, overlays).addTo(map);
+        layersControl = BR.layersTab(layersConfig, baseLayers, overlays).addTo(map);
 
         var secureContext = 'isSecureContext' in window ? isSecureContext : location.protocol === 'https:';
         if (secureContext) {

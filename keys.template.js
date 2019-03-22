@@ -13,7 +13,10 @@
         thunderforest: '',
 
         // Strava API token in case you want to display Strava segments
-        strava: ''
+        strava: '',
+
+        // OpenMapSurfer (OpenRouteService API), https://openrouteservice.org/plans/
+        openrouteservice: ''
     };
 
 })();

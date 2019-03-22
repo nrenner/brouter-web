@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Hike & Bike",
+    "maxZoom": 19,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://hikebikemap.de/\" target=\"_blank\">Colin Marquardt</a>",
+    "id": "1065",
+    "url": "http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

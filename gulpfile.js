@@ -23,6 +23,8 @@ var cleanCSS = require('gulp-clean-css');
 var modifyCssUrls = require('gulp-modify-css-urls');
 var sort = require('gulp-sort');
 var scanner = require('i18next-scanner');
+var jsonConcat = require('gulp-json-concat');
+var rename = require("gulp-rename");
 
 var debug = false;
 
@@ -41,6 +43,7 @@ var paths = {
     'js/Browser.js',
     'js/Util.js',
     'js/Map.js',
+    'js/LayersConfig.js',
     'js/router/BRouter.js',
     'js/plugin/*.js',
     'js/control/*.js',
@@ -53,6 +56,8 @@ var paths = {
   images: mainNpmFiles().filter(f => RegExp('.*.+(png|gif|svg)', 'i').test(f)),
   fonts: mainNpmFiles().filter(f => RegExp('font-awesome/fonts/.*', 'i').test(f)),
   locales: 'locales/*.json',
+  layers: 'layers/**/*.geojson',
+  layersDestName: 'layers.js',
   dest: 'dist',
   destName: 'brouter-web'
 };
@@ -162,7 +167,7 @@ gulp.task('inject', function () {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts', 'locales']);
+gulp.task('default', ['clean', 'scripts_config', 'layers', 'scripts', 'styles', 'images', 'fonts', 'locales']);
 
 gulp.task('debug', function() {
   debug = true;
@@ -272,3 +277,14 @@ gulp.task('i18next', function() {
     }))
     .pipe(gulp.dest('.'));
 })
+
+// Bundles layer files. To download and extract run "yarn layers"
+gulp.task('layers', function () {
+  return gulp.src(paths.layers)
+    // Workaround to get file extension removed from the dictionary key 
+    .pipe(rename({ extname: ".json" }))
+    .pipe(jsonConcat(paths.layersDestName, function(data){
+      return Buffer.from('BR.layerIndex = ' + JSON.stringify(data, null, 2) + ';');
+    }))
+    .pipe(gulp.dest(paths.dest));
+});
