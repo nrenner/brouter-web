@@ -14,7 +14,7 @@ BR.LayersTab = L.Control.Layers.extend({
 
         var layerIndex = BR.layerIndex;
 
-        L.DomUtil.get('layers-control-wrapper').appendChild(this._form);
+        L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
 
         this.initButtons();
 
@@ -74,7 +74,7 @@ BR.LayersTab = L.Control.Layers.extend({
                 ],
                 'Country': [
                     'historic-place-contours',
-                    'hu-hillshade', 
+                    'hu-hillshade',
                     {
                         'PL - Poland': [
                             'mapaszlakow-cycle',
@@ -146,7 +146,7 @@ BR.LayersTab = L.Control.Layers.extend({
                 plugins: [ 'checkbox' ],
                 checkbox: {
                     whole_node: false,
-                    tie_selection: false 
+                    tie_selection: false
                 },
                 core: {
                     'multiple': false,
@@ -214,7 +214,7 @@ BR.LayersTab = L.Control.Layers.extend({
 
             // when key required only add if configured
             if (!keyObj || keyObj && BR.keys[keyObj.name]) {
-                childNode = { 
+                childNode = {
                     'id': id,
                     'text': props.name,
                     'state': {
@@ -333,7 +333,7 @@ BR.LayersTab = L.Control.Layers.extend({
     },
 
     onBaselayerchange: function () {
-        // execute after current input click handler, 
+        // execute after current input click handler,
         // otherwise added overlay checkbox state doesn't update
         setTimeout(L.Util.bind(function () {
             this.removePreviewLayer();
