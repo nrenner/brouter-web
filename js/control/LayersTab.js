@@ -118,6 +118,8 @@ BR.LayersTab = L.Control.Layers.extend({
             } else {
                 this.addBaseLayer(layer, name);
             }
+
+            this.storeDefaultLayers();
         };
 
         var onUncheckNode = function (e, data) {
@@ -132,6 +134,8 @@ BR.LayersTab = L.Control.Layers.extend({
                     this.addFirstLayer();
                 }
             }
+
+            this.storeDefaultLayers();
         };
 
         $('#optional-layers-tree')
@@ -261,6 +265,26 @@ BR.LayersTab = L.Control.Layers.extend({
         walkTree(layerTree, data);
 
         return data;
+    },
+
+    storeDefaultLayers: function () {
+        var baseLayers = [];
+        var overlays = [];
+
+        for (var i = 0; i < this._layers.length; i++) {
+            var obj = this._layers[i];
+            // id set in LayersConfig.createLayer
+            var id = obj.layer.id;
+            if (id) {
+                if (obj.overlay) {
+                    overlays.push(id);
+                } else {
+                    baseLayers.push(id);
+                }
+            }
+        }
+
+        this.layersConfig.storeDefaultLayers(baseLayers, overlays);
     },
 
     addFirstLayer: function () {

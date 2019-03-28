@@ -18,6 +18,29 @@ BR.LayersConfig = L.Class.extend({
         this._addLeafletProvidersLayers();
 
         this._customizeLayers();
+
+        this.loadDefaultLayers();
+    },
+
+    loadDefaultLayers: function() {
+        if (BR.Util.localStorageAvailable()) {
+            var item = localStorage.getItem("map/defaultLayers");
+            if (item) {
+                var defaultLayers = JSON.parse(item);
+                this.defaultBaseLayers = defaultLayers.baseLayers;
+                this.defaultOverlays = defaultLayers.overlays;
+            }
+        }
+    },
+
+    storeDefaultLayers: function (baseLayers, overlays) {
+        if (BR.Util.localStorageAvailable()) {
+            var defaultLayers = {
+                baseLayers: baseLayers,
+                overlays: overlays
+            };
+            localStorage.setItem("map/defaultLayers", JSON.stringify(defaultLayers));
+        }
     },
 
     _addLeafletProvidersLayers: function () {
@@ -229,6 +252,8 @@ BR.LayersConfig = L.Class.extend({
             return this.options.mapUrl;
         }
         layer.getAttribution = getAttribution;
+
+        layer.id = props.id;
 
         return layer;
     }
