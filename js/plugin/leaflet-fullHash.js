@@ -23,7 +23,12 @@
             var zoom = parseInt(mapsArgs[0], 10),
             lat = parseFloat(mapsArgs[1]),
             lon = parseFloat(mapsArgs[2]),
-            layers = decodeURIComponent(mapsArgs[3]).split('-'),
+            layersParam = mapsArgs[3],
+            // legacy support for '-' layer separator
+            layerSeparator = layersParam.indexOf('-') !== -1 ? '-' : this.options.layerSeparator,
+            layers = layersParam.split(layerSeparator).map(function (name) {
+                return decodeURIComponent(name);
+            }),
             additional = args[1];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
@@ -44,26 +49,13 @@
         var center = map.getCenter(),
             zoom = map.getZoom(),
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
-            layers = [];
+            layers = this.getActiveLayers();
 
-        //console.log(this.options);
-        var options = this.options;
-        //Check active layers
-        for(var key in options) {
-            if (options.hasOwnProperty(key)) {
-                if (map.hasLayer(options[key])) {
-                    layers.push(key);
-                };
-            };
-        };
-        if (layers.length == 0) {
-            layers.push(Object.keys(options)[0]);
-        }
         var params = [
             zoom,
             center.lat.toFixed(precision),
             center.lng.toFixed(precision),
-            encodeURIComponent(layers.join("-"))
+            layers.join(this.options.layerSeparator)
         ];
         url = "#map=" + params.join("/");
         if (this.additionalCb != null) {
@@ -76,6 +68,9 @@
     },
 
     L.Hash.prototype = {
+        options: {
+            layerSeparator: ','
+        },
         map: null,
         lastHash: null,
 
@@ -93,6 +88,13 @@
             if (!this.isListening) {
                 this.startListening();
             }
+        },
+
+        getActiveLayers: function () {
+            var objList = this.options.layersControl.getActiveLayers();
+            return objList.map(function (obj) {
+                return encodeURIComponent(obj.name);
+            });
         },
 
         removeFrom: function(map) {
@@ -144,27 +146,22 @@
 
                 this.map.setView(parsed.center, parsed.zoom);
                 var layers = parsed.layers,
-                    options = this.options,
+                    layersControl = this.options.layersControl,
                     that = this;
-                //Add/remove layer
-                this.map.eachLayer(function(layer) {
-                    for (alayer in that.layers) {
-                        if (that.layers[alayer] == layer) {
-                            that.map.removeLayer(layer);
-                            break;
-                        }
-                    }
-                });
+
+                layersControl.removeActiveLayers();
+
                 var added = false;
                 layers.forEach(function(element, index, array) {
-                    if (element in options) {
+                    if (!element) return;
+                    var obj = layersControl.activateLayer(element);
+                    if (obj && !obj.overlay) {
                         added = true;
-                        that.map.addLayer(options[element]);
                     }
                 });
                 if (!added) {
-                    // if we couldn't add layers (custom ones or invalid name), add the default one
-                    this.map.addLayer(options[Object.keys(options)[0]]);
+                    // if we couldn't add layers (removed or invalid name), add the default one
+                    layersControl.activateFirstLayer();
                 }
 
                 if (this.onHashChangeCb != null) {

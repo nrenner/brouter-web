@@ -19,7 +19,6 @@
     function initApp(mapContext) {
         var map = mapContext.map,
             layersControl = mapContext.layersControl,
-            mapLayers = mapContext.layers,
             search,
             router,
             routing,
@@ -311,9 +310,9 @@
             };
         urlHash.onHashChangeCb = onHashChangeCb;
         urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
-        urlHash.layers = mapLayers;
-        urlHash.map = map;
-        urlHash.init(map, mapLayers);
+        urlHash.init(map, {
+            layersControl: layersControl
+        });
 
         routingOptions.on('update', urlHash.onMapMove, urlHash);
         nogos.on('update', urlHash.onMapMove, urlHash);

@@ -1,4 +1,4 @@
-BR.LayersTab = L.Control.Layers.extend({
+BR.LayersTab = BR.ControlLayers.extend({
     previewLayer: null,
     saveLayers: [],
 
@@ -123,7 +123,7 @@ BR.LayersTab = L.Control.Layers.extend({
         };
 
         var onUncheckNode = function (e, data) {
-            var obj = this._getLayerObjByName(data.node.text);
+            var obj = this.getLayer(data.node.text);
             if (!obj) return;
 
             this.removeLayer(obj.layer);
@@ -131,7 +131,7 @@ BR.LayersTab = L.Control.Layers.extend({
             if (this._map.hasLayer(obj.layer)) {
                 this._map.removeLayer(obj.layer);
                 if (!obj.overlay) {
-                    this.addFirstLayer();
+                    this.activateFirstLayer();
                 }
             }
 
@@ -287,41 +287,17 @@ BR.LayersTab = L.Control.Layers.extend({
         this.layersConfig.storeDefaultLayers(baseLayers, overlays);
     },
 
-    addFirstLayer: function () {
-        for (var i = 0; i < this._layers.length; i++) {
-            var obj = this._layers[i];
-            if (!obj.overlay) {
-                this._map.addLayer(obj.layer);
-                break;
-            }
-        }
-    },
-
-    _getLayerObjByName: function (name) {
-        for (var i = 0; i < this._layers.length; i++) {
-			if (this._layers[i] && this._layers[i].name === name) {
-				return this._layers[i];
-			}
-		}
-    },
-
     createLayer: function (layerData) {
         var layer = this.layersConfig.createLayer(layerData);
         layer.options.zIndex = this._lastZIndex + 1;
         return layer;
     },
 
-    removeSelectedLayers: function () {
-		for (var i = 0; i < this._layers.length; i++) {
-            var obj = this._layers[i];
-            if (this._map.hasLayer(obj.layer)) {
-                this._map.removeLayer(obj.layer);
-                this.saveLayers.push(obj);
-            }
-		}
+    saveRemoveActiveLayers: function () {
+		this.saveLayers = this.removeActiveLayers();
     },
 
-    restoreSelectedLayers: function (overlaysOnly) {
+    restoreActiveLayers: function (overlaysOnly) {
 		for (var i = 0; i < this.saveLayers.length; i++) {
             var obj = this.saveLayers[i];
 
@@ -333,7 +309,7 @@ BR.LayersTab = L.Control.Layers.extend({
                     }
                 } else if (!obj.overlay) {
                     // saved base layer has been removed during preview, select first
-                    this.addFirstLayer();
+                    this.activateFirstLayer();
                 }
             }
         }
@@ -361,7 +337,7 @@ BR.LayersTab = L.Control.Layers.extend({
         // otherwise added overlay checkbox state doesn't update
         setTimeout(L.Util.bind(function () {
             this.removePreviewLayer();
-            this.restoreSelectedLayers(true);
+            this.restoreActiveLayers(true);
             this.deselectNode();
         }, this), 0);
     },
@@ -369,7 +345,7 @@ BR.LayersTab = L.Control.Layers.extend({
     showPreview: function (layer) {
         this._map.addLayer(layer);
         if (!this.removePreviewLayer()) {
-            this.removeSelectedLayers();
+            this.saveRemoveActiveLayers();
             this._map.once('baselayerchange', this.onBaselayerchange, this);
         }
         this.previewLayer = layer;
@@ -378,7 +354,7 @@ BR.LayersTab = L.Control.Layers.extend({
     hidePreview: function (layer) {
         this._map.off('baselayerchange', this.onBaselayerchange, this);
         this.removePreviewLayer();
-        this.restoreSelectedLayers();
+        this.restoreActiveLayers();
     }
 });
 

@@ -90,14 +90,9 @@ BR.Map = {
         BR.debug = BR.debug || {};
         BR.debug.map = map;
 
-        var layersAndOverlays = baseLayers;
-        for (var o in overlays) {
-            layersAndOverlays[o] = overlays[o];
-        }
         return {
             map: map,
-            layersControl: layersControl,
-            layers: layersAndOverlays
+            layersControl: layersControl
         };
     }
 
