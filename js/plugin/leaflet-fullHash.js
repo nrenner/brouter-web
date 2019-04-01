@@ -23,12 +23,7 @@
             var zoom = parseInt(mapsArgs[0], 10),
             lat = parseFloat(mapsArgs[1]),
             lon = parseFloat(mapsArgs[2]),
-            layersParam = mapsArgs[3],
-            // legacy support for '-' layer separator
-            layerSeparator = layersParam.indexOf('-') !== -1 ? '-' : this.options.layerSeparator,
-            layers = layersParam.split(layerSeparator).map(function (name) {
-                return decodeURIComponent(name);
-            }),
+            layers = this.parseLayers(mapsArgs[3]),
             additional = args[1];
             if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
                 return false;
@@ -49,13 +44,13 @@
         var center = map.getCenter(),
             zoom = map.getZoom(),
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
-            layers = this.getActiveLayers();
+            layers = this.formatLayers();
 
         var params = [
             zoom,
             center.lat.toFixed(precision),
             center.lng.toFixed(precision),
-            layers.join(this.options.layerSeparator)
+            layers
         ];
         url = "#map=" + params.join("/");
         if (this.additionalCb != null) {
@@ -90,11 +85,41 @@
             }
         },
 
-        getActiveLayers: function () {
-            var objList = this.options.layersControl.getActiveLayers();
-            return objList.map(function (obj) {
-                return encodeURIComponent(obj.name);
+        parseLayers: function (layersParam) {
+            // legacy support for '-' layer separator
+            var layerSeparator = layersParam.indexOf('-') !== -1 ? '-' : this.options.layerSeparator;
+            var layers = layersParam.split(layerSeparator).map(function (layerEncoded) {
+                return decodeURIComponent(layerEncoded);
             });
+            return layers;
+        },
+
+        activateLayers: function (layers) {
+            var layersControl = this.options.layersControl;
+            var added = false;
+
+            layersControl.removeActiveLayers();
+
+            layers.forEach(function(name, index, array) {
+                if (!name) return;
+                var obj = layersControl.activateLayer(name);
+                if (obj && !obj.overlay) {
+                    added = true;
+                }
+            });
+
+            if (!added) {
+                // if we couldn't add layers (removed or invalid name), add the default one
+                layersControl.activateFirstLayer();
+            }
+        },
+
+        formatLayers: function () {
+            var objList = this.options.layersControl.getActiveLayers();
+            var layerList = objList.map(L.bind(function (obj) {
+                return encodeURIComponent(obj.name);
+            }, this));
+            return layerList.join(this.options.layerSeparator)
         },
 
         removeFrom: function(map) {
@@ -145,24 +170,8 @@
                 this.movingMap = true;
 
                 this.map.setView(parsed.center, parsed.zoom);
-                var layers = parsed.layers,
-                    layersControl = this.options.layersControl,
-                    that = this;
 
-                layersControl.removeActiveLayers();
-
-                var added = false;
-                layers.forEach(function(element, index, array) {
-                    if (!element) return;
-                    var obj = layersControl.activateLayer(element);
-                    if (obj && !obj.overlay) {
-                        added = true;
-                    }
-                });
-                if (!added) {
-                    // if we couldn't add layers (removed or invalid name), add the default one
-                    layersControl.activateFirstLayer();
-                }
+                this.activateLayers(parsed.layers);
 
                 if (this.onHashChangeCb != null) {
                     this.onHashChangeCb(parsed.additional);
