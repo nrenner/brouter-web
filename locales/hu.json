@@ -1,13 +1,13 @@
 {
   "about": {
-    "bug-reports": "Hibabejelentés és objektumkérés:",
+    "bug-reports": "Hibák és kérések bejelentése:",
     "bug-reports-back": "kiszolgálóoldal / back end, útvonaltervező motor, Android alkalmazás, profilok, brouter.de weboldal:",
     "bug-reports-front": "weboldali kliens / frontend:",
     "contact": "Kapcsolat:",
     "data": "Adatok:",
-    "data-description": "Ennek az alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Általában hetente frissül, amikor az új bolygófájl (Planet file) elérhetővé válik. A dátumok megtalálhatók az <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlokban</a>.",
-    "description": "A BRouter útvonaltervező motor online szolgáltatása. Az Android alkalmazásról és a további információkról a <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a> oldalon olvashat.",
-    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Adatvédelmi irányelvek</a></i> \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">stáblista</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">változásnapló</a></i> és\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">további tájékoztatás</a></i> a kliensről.",
+    "data-description": "Az adatok alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Az oldal általában hetente frissül, amikor az új bolygófájl (Planet fájl) elérhetővé válik. A dátumok megtalálhatók az <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlokban</a>.",
+    "description": "Ez itt a BRouter útvonaltervező motor online szolgáltatása. Az Android alkalmazásról és a további információkról a <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a> oldalon olvashat.",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Adatvédelmi irányelvek</a></i> \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">stáblista</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">változásnapló</a></i> és\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">további tájékoztatás</a></i> a kliensen.",
     "support": "Általános viták/kérdések, támogatás:",
     "title": "Névjegy"
   },
@@ -21,18 +21,18 @@
     "map-data": "Térképadatok",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "opencyclemap-outdoors-tiles": "OpenCycleMap & Outdoors mozaikok",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>",
-    "opentopomap-tiles": "OpenTopoMap tiles",
-    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
-    "osm-tiles": "OpenStreetMap tiles",
-    "osmde-tiles": "OpenStreetMap.de tiles",
-    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
-    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> under <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a>"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
+    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> és <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a> licenc alapján",
+    "opentopomap-tiles": "OpenTopoMap mozaikok",
+    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> licenc alapján",
+    "osm-tiles": "OpenStreetMap mozaikok",
+    "osmde-tiles": "OpenStreetMap.de mozaikok",
+    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> licenc alapján",
+    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a> licenc alapján"
   },
   "footer": {
-    "ascend": "Ascend (Plain ascend)",
-    "cost": "Cost (Mean cost factor)",
+    "ascend": "Összes emelkedés (végpontok közötti szintkülönbség)",
+    "cost": "Ráfordítás (közepes ráfordítástényező)",
     "distance": "Távolság",
     "kilometer": "kilométer",
     "kilometer-abbrev": "km",
@@ -42,130 +42,153 @@
     "meter-abbrev": "m",
     "minutes": "perc",
     "minutes-abbrev": "min",
-    "total-energy": "Total Energy (per 100km)",
-    "travel-time": "Travel time"
+    "total-energy": "Teljes energiafelhasználás (100 km-enként)",
+    "travel-time": "Utazási idő"
   },
   "layers": {
-    "add-base": "Add base layer",
-    "add-overlay": "Add overlay",
-    "customize": "Customize layers",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
-    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
-    "remove-selection": "Remove selection"
+    "add-base": "Alapréteg hozzáadása",
+    "add-overlay": "Rátétréteg hozzáadása",
+    "customize": "Rétegek személyre szabása",
+    "placeholder-layer-name": "Egyedi rétegnév (pl. OpenStreetMap)",
+    "placeholder-layer-url": "Egyedi réteg URL-je (pl. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Kijelölés eltávolítása"
+  },
+  "loadNogos": {
+    "defaultProperties": "Alapértelmezett tulajdonságok",
+    "file": "Fájl:",
+    "load": "Betöltés",
+    "nogoBuffer": "Elkerülendő területek körüli távolság (méter)",
+    "nogoRadius": "Elkerülendő pontok körüli sugár:",
+    "nogoWeight": "Elkerülés súlyozása:",
+    "source": "Forrás",
+    "title": "Elkerülendő területek betöltése",
+    "url": "URL:"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-long": "OpenStreetMap közreműködők",
     "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route",
-    "copyright": "Copyright",
-    "cycling": "Cycling",
-    "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
-    "delete-route": "Delete route?",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
-    "hiking": "Hiking",
+    "clear-route": "Útvonal törlése",
+    "copyright": "Szerzői jogok",
+    "cycling": "Kerékpározás",
+    "delete-nogo-areas": "&nbsp;&nbsp;törlődjenek az elkerülendő területek is",
+    "delete-route": "Útvonal törlése?",
+    "draw-route-start": "Útvonal rajzolása (D billentyű)",
+    "draw-route-stop": "Útvonal rajzolásának megszakítása (ESC billentyű)",
+    "hikebike-hillshading": "Domborzatárnyékolás",
+    "hiking": "Túrázás",
     "layer": {
       "bing": "Bing Aerial",
-      "cycle": "OpenCycleMap (Thunderf.)",
-      "cycling": "Cycling (Waymarked Trails)",
+      "cycle": "OpenCycleMap (Thunderfores)",
+      "cycling": "Kerékpározás (Waymarked Trails)",
       "digitalglobe": "DigitalGlobe Recent Imagery",
       "esri": "Esri World Imagery",
-      "hiking": "Hiking (Waymarked Trails)",
+      "hikebike-hillshading": "Domborzatárnyékolás (Hike & Bike Map)",
+      "hiking": "Túrázás (Waymarked Trails)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
-      "strava-segments": "Strava segments",
+      "stamen-terrain": "Terep (Stamen)",
+      "strava-segments": "Strava útvonalszakaszok",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
-    "locate-me": "Show me where I am",
+    "loading": "Betöltés…",
+    "locate-me": "Mutassa a térképen, hol vagyok",
     "nogo": {
-      "cancel": "Cancel drawing no-go area",
-      "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
-      "edit": "Click to edit",
-      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+      "cancel": "Elkerülendő terület rajzolásának megszakítása",
+      "click-drag": "Kör rajzolása kattintással és húzással",
+      "draw": "Elkerülendő terület rajzolása (kör)",
+      "edit": "Szerkesztés kattintással",
+      "help": "&square; = áthelyezés / átméretezés, <span class=\"fa fa-trash-o\"></span> = törlés,<br>a szerkesztés befejezéséhez kattintson a körre"
     },
-    "opacity-slider": "Set transparency of route track and markers",
-    "privacy": "Privacy",
-    "strava-biking": "Show Strava biking segments",
-    "strava-running": "Show Strava running segments",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "opacity-slider": "Nyomvonal és jelölők átlátszóságának beállítása",
+    "privacy": "Adatvédelem",
+    "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
+    "strava-running": "Strava futó útvonalszakaszok megjelenítése",
+    "zoomInTitle": "Nagyítás",
+    "zoomOutTitle": "Kicsinyítés"
   },
   "navbar": {
-    "about": "About",
+    "about": "Névjegy",
     "alternative": {
-      "first": "1st alternative",
-      "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+      "first": "1. alternatíva",
+      "original": "Eredeti",
+      "second": "2. alternatíva",
+      "third": "3. alternatíva"
     },
     "download": {
-      "csv": "data CSV",
+      "csv": "CSV adatfájl",
       "geojson": "GeoJSON",
       "gpx": "GPX",
       "kml": "KML",
-      "title": "Download"
+      "title": "Letöltés"
+    },
+    "load": {
+      "nogos": "Elkerülendő területek",
+      "title": "Betöltés"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
-      "fastbike": "Fastbike",
-      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
-      "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
-      "trekking": "Trekking bike",
-      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
-      "trekking-noferries": "Trekking bike (no ferries)",
-      "trekking-nosteps": "Trekking bike (no steps)",
-      "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+      "car-eco": "Személyautó (gazdaságos)",
+      "car-fast": "Személyautó (gyors)",
+      "car-test": "Személyautó (teszt)",
+      "custom": "Egyedi",
+      "fastbike": "Versenykerékpár",
+      "fastbike-asia-pacific": "Versenykerékpár (ázsiai-csendes-óceáni térség)",
+      "fastbike-lowtraffic": "Versenykerékpár (kis forgalom)",
+      "hiking-beta": "Túrázás (béta)",
+      "moped": "Robogó",
+      "rail": "Vasút",
+      "river": "Hajózás",
+      "safety": "Biztonság",
+      "shortest": "Legrövidebb",
+      "trekking": "Túrakerékpár",
+      "trekking-ignore-cr": "Túrakerékpár (kerékpárutak figyelmen kívül hagyása)",
+      "trekking-noferries": "Túrakerékpár (komp nélkül)",
+      "trekking-nosteps": "Túrakerékpár (lépcső nélkül)",
+      "trekking-steep": "Túrakerékpár (meredek)",
+      "vm-forum-liegerad-schnell": "Rekumbens kerékpár (gyors)",
+      "vm-forum-velomobil-schnell": "Velomobil (aerodinamikus kerékpár, gyors)"
     }
   },
   "sidebar": {
     "custom-profile": {
-      "title": "Custom profile"
+      "title": "Egyedi profil"
     },
     "data": {
-      "title": "Data"
+      "title": "Adatok"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Útiterv"
     },
     "layers": {
-      "custom-layers": "Custom layers",
-      "customize": "Add or remove custom layers",
+      "collapse": "Minden összecsukása",
+      "custom-layers": "Egyedi rétegek",
+      "customize": "Egyedi rétegek hozzáadása vagy eltávolítása",
+      "expand": "Minden kibontása",
+      "optional": "Rétegek hozzáadása vagy eltávolítása",
+      "optional-layers": "Több",
       "table": {
         "URL": "URL",
-        "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type"
+        "empty": "Még nincs beállítva egyedi réteg",
+        "name": "Név",
+        "type": "Típus"
       },
-      "title": "Layers"
+      "title": "Rétegek"
     },
     "profile": {
-      "clear": "Clear",
-      "help": "Help",
-      "placeholder": "Write your custom profile here.",
-      "upload": "Upload"
+      "clear": "Törlés",
+      "help": "Súgó",
+      "placeholder": "Ide írhatja egyedi profilját",
+      "upload": "Feltöltés"
     }
   },
-  "title": "BRouter web client",
+  "title": "BRouter webkliens",
   "warning": {
-    "cannot-get-route": "Error getting route URL",
-    "no-response": "no response from server",
-    "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "upload-error": "Upload error: {{error}}"
+    "cannot-get-route": "Hiba történt az útvonal URL-jének beolvasásakor",
+    "no-response": "a kiszolgáló nem válaszol",
+    "no-route-found": "Hiba: az adott pontokhoz nem sikerül útvonalat találni. Esetleg próbálja meg közelebb tenni őket az utakhoz.",
+    "profile-error": "Profilhiba: a kiszolgáló nem válaszol vagy üres választ küld",
+    "strava-error": "Hiba történt a Strava útvonalszakaszok lekérésénél: {{error}}",
+    "temporary-profile": "<strong>Figyelem:</strong> A kiszolgáló csak ideiglenesen gyorsítótárazza a feltöltött egyedi profilokat.<br/>Kérjük, szerkesztéseit mentse el saját számítógépére.",
+    "upload-error": "Feltöltési hiba: {{error}}"
   }
 }

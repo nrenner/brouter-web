@@ -53,6 +53,17 @@
     "placeholder-layer-url": "自定義圖層 URL (如: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "移除所選項目"
   },
+  "loadNogos": {
+    "defaultProperties": "Default properties",
+    "file": "File: ",
+    "load": "Load",
+    "nogoBuffer": "Buffer no-go areas (in meters): ",
+    "nogoRadius": "No-go radius (for points): ",
+    "nogoWeight": "No-go weight: ",
+    "source": "Source",
+    "title": "Load no-go areas",
+    "url": "URL: "
+  },
   "map": {
     "attribution-osm-long": "OpenStreetMap 貢獻者",
     "attribution-osm-short": "OpenStreetMap 開放街圖",
@@ -63,6 +74,7 @@
     "delete-route": "刪除路線？",
     "draw-route-start": "繪畫路線 (按鍵D)",
     "draw-route-stop": "停止繪畫路線 (按鍵ESC)",
+    "hikebike-hillshading": "Hillshading",
     "hiking": "遠足",
     "layer": {
       "bing": "Bing 空照圖",
@@ -70,10 +82,12 @@
       "cycling": "自行車 (Waymarked Trails)",
       "digitalglobe": "DigitalGlobe 最新空照圖",
       "esri": "Esri 世界影像圖",
+      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "遠足 (Waymarked Trails)",
       "osm": "OpenStreetMap 開放街圖",
       "osmde": "OpenStreetMap.de",
       "outdoors": "戸外 (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava 區段",
       "topo": "OpenTopoMap"
     },
@@ -107,6 +121,10 @@
       "gpx": "GPX",
       "kml": "KML",
       "title": "下載"
+    },
+    "load": {
+      "nogos": "No-go areas",
+      "title": "Load"
     },
     "profile": {
       "car-eco": "汽車 (經濟型)",
@@ -142,8 +160,12 @@
       "title": "行程"
     },
     "layers": {
+      "collapse": "Collapse all",
       "custom-layers": "自定義圖層",
       "customize": "新增或移除自定義圖層",
+      "expand": "Expand all",
+      "optional": "Add or remove optional layers",
+      "optional-layers": "More",
       "table": {
         "URL": "URL",
         "empty": "尚未設定自訂圖層。",
@@ -165,6 +187,7 @@
     "no-response": "伺服器沒有回應",
     "no-route-found": "錯誤: 無法就給予的端點建立路線。或者嘗試將它們移近至道路附近？",
     "profile-error": "設定檔錯誤: 伺服器回傳空值或沒有回應",
+    "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>注意:</strong> 已上傳的自定義設定檔僅暫存於伺服器之中。<br/>請將您的編輯儲存至本機當中。",
     "upload-error": "上傳錯誤: {{error}}"
   }

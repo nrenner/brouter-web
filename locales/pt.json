@@ -53,6 +53,17 @@
     "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Remove selection"
   },
+  "loadNogos": {
+    "defaultProperties": "Default properties",
+    "file": "File: ",
+    "load": "Load",
+    "nogoBuffer": "Buffer no-go areas (in meters): ",
+    "nogoRadius": "No-go radius (for points): ",
+    "nogoWeight": "No-go weight: ",
+    "source": "Source",
+    "title": "Load no-go areas",
+    "url": "URL: "
+  },
   "map": {
     "attribution-osm-long": "OpenStreetMap contributors",
     "attribution-osm-short": "OpenStreetMap",
@@ -63,6 +74,7 @@
     "delete-route": "Delete route?",
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
+    "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
     "layer": {
       "bing": "Bing Aerial",
@@ -70,10 +82,12 @@
       "cycling": "Cycling (Waymarked Trails)",
       "digitalglobe": "DigitalGlobe Recent Imagery",
       "esri": "Esri World Imagery",
+      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Hiking (Waymarked Trails)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
@@ -107,6 +121,10 @@
       "gpx": "GPX",
       "kml": "KML",
       "title": "Download"
+    },
+    "load": {
+      "nogos": "No-go areas",
+      "title": "Load"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -142,8 +160,12 @@
       "title": "Itinerary"
     },
     "layers": {
+      "collapse": "Collapse all",
       "custom-layers": "Custom layers",
       "customize": "Add or remove custom layers",
+      "expand": "Expand all",
+      "optional": "Add or remove optional layers",
+      "optional-layers": "More",
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",
@@ -165,6 +187,7 @@
     "no-response": "no response from server",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
     "profile-error": "Profile error: no or empty response from server",
+    "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
     "upload-error": "Upload error: {{error}}"
   }

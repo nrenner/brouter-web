@@ -53,6 +53,17 @@
     "placeholder-layer-url": "URL du calque (p. ex. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png).",
     "remove-selection": "Supprimer la sélection"
   },
+  "loadNogos": {
+    "defaultProperties": "Propriétés par défaut",
+    "file": "Fichier :",
+    "load": "Charger",
+    "nogoBuffer": "Tampon des zones interdites (en mètres) :",
+    "nogoRadius": "Rayon des zones interdites (pour les points) :",
+    "nogoWeight": "Poids des zones interdites :",
+    "source": "Source",
+    "title": "Charger les zones interdites",
+    "url": "URL :"
+  },
   "map": {
     "attribution-osm-long": "Contributeurs OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
@@ -63,6 +74,7 @@
     "delete-route": "Supprimer l'itinéraire ?",
     "draw-route-start": "Dessiner l'itinéraire (touche D)",
     "draw-route-stop": "Arrêter de dessiner l'itinéraire (touche ECH)",
+    "hikebike-hillshading": "Relief avec ombre",
     "hiking": "Randonnée",
     "layer": {
       "bing": "Imagerie aérienne BING",
@@ -70,10 +82,12 @@
       "cycling": "Cycling (Sentiers balisés)",
       "digitalglobe": "Imagerie récente DigitalGlobe",
       "esri": "Imagerie mondiale Esri",
+      "hikebike-hillshading": "Relief avec ombre (carte randonnée et vélo)",
       "hiking": "Randonnée (Sentiers balisés)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Extérieur (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Segments Strava",
       "topo": "OpenTopoMap"
     },
@@ -107,6 +121,10 @@
       "gpx": "GPX",
       "kml": "KML",
       "title": "Télécharger"
+    },
+    "load": {
+      "nogos": "Zones interdites",
+      "title": "Charger"
     },
     "profile": {
       "car-eco": "Voiture (économique)",
@@ -142,8 +160,12 @@
       "title": "Itinéraire"
     },
     "layers": {
+      "collapse": "Tout réduire",
       "custom-layers": "Calques personels",
       "customize": "Ajouter ou supprimer des calques",
+      "expand": "Tout ouvrir",
+      "optional": "Ajouter ou supprimer des calques optionnels",
+      "optional-layers": "Plus",
       "table": {
         "URL": "URL",
         "empty": "Aucun calque personnel trouvé.",
@@ -165,6 +187,7 @@
     "no-response": "aucune réponse du serveur",
     "no-route-found": "Erreur : impossible de trouver un itinéraire correspondant aux points donnés. Essayez peut-être de rapprocher les points des routes ?",
     "profile-error": "Erreur de profil : pas de réponse ou réponse invalide du serveur",
+    "strava-error": "Impossible d'afficher les segments Strava : {{error}}",
     "temporary-profile": "<strong>Note :</strong> Les profils personnalisés téléversés ne sont disponibles que temporairement sur le serveur.<br/>Merci de sauvegarder votre profil sur votre ordinateur.",
     "upload-error": "Erreur d'envoi : {{error}}"
   }

@@ -53,6 +53,17 @@
     "placeholder-layer-url": "angepasste Ebenen-URL (Bsp: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Auswahl entfernen"
   },
+  "loadNogos": {
+    "defaultProperties": "Default properties",
+    "file": "File: ",
+    "load": "Load",
+    "nogoBuffer": "Buffer no-go areas (in meters): ",
+    "nogoRadius": "No-go radius (for points): ",
+    "nogoWeight": "No-go weight: ",
+    "source": "Source",
+    "title": "Load no-go areas",
+    "url": "URL: "
+  },
   "map": {
     "attribution-osm-long": "OpenStreetMap Mitarbeiter",
     "attribution-osm-short": "OpenStreetMap",
@@ -63,6 +74,7 @@
     "delete-route": "Route löschen?",
     "draw-route-start": "Route anzeigen (D Taste)",
     "draw-route-stop": "Stoppen der Routenanzeige (ESC Taste)",
+    "hikebike-hillshading": "Hillshading",
     "hiking": "Wandern",
     "layer": {
       "bing": "Bing Luftbild",
@@ -70,10 +82,12 @@
       "cycling": "Radfahren (markierte Routen)",
       "digitalglobe": "DigitalGlobe neueste Bilder",
       "esri": "Esri Weltbilder",
+      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Wandern (markierte Routen)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoor (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava Segmente",
       "topo": "OpenTopoMap"
     },
@@ -107,6 +121,10 @@
       "gpx": "GPX",
       "kml": "KML",
       "title": "Download"
+    },
+    "load": {
+      "nogos": "No-go areas",
+      "title": "Load"
     },
     "profile": {
       "car-eco": "Auto (ökonomisch)",
@@ -142,8 +160,12 @@
       "title": "Reiseroute"
     },
     "layers": {
+      "collapse": "Collapse all",
       "custom-layers": "Benutzerdefinierte Ebenen",
       "customize": "Benutzerdefinierte Ebenen hinzufügen oder entfernen",
+      "expand": "Expand all",
+      "optional": "Add or remove optional layers",
+      "optional-layers": "More",
       "table": {
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
@@ -165,6 +187,7 @@
     "no-response": "Keine Antwort vom Server",
     "no-route-found": "Fehler: kann für angegebene Punkte keine Route finden. Vielleicht die Punkte näher an Straßen verschieben?",
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
+    "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   }
