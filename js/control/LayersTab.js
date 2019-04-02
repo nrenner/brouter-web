@@ -293,6 +293,28 @@ BR.LayersTab = BR.ControlLayers.extend({
         return layer;
     },
 
+    getLayerById: function (id) {
+        for (var i = 0; i < this._layers.length; i++) {
+            var obj = this._layers[i];
+            if (obj.layer.id === id) {
+                return obj;
+            }
+        }
+
+        return null;
+    },
+
+    getLayerByLegacyName: function (legacyName) {
+        var obj = null;
+        var id = this.layersConfig.legacyNameToIdMap[legacyName];
+
+        if (id) {
+            obj = this.getLayerById(id);
+        }
+
+        return obj;
+    },
+
     saveRemoveActiveLayers: function () {
 		this.saveLayers = this.removeActiveLayers();
     },

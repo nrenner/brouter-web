@@ -33,18 +33,17 @@ BR.ControlLayers = L.Control.Layers.extend({
 
     getLayer: function (name) {
         for (var i = 0; i < this._layers.length; i++) {
-			if (this._layers[i] && this._layers[i].name === name) {
-				return this._layers[i];
-			}
-		}
+            var obj = this._layers[i];
+            if (obj.name === name) {
+                return obj;
+            }
+        }
+
+        return null;
     },
 
-    activateLayer: function (name) {
-        var obj = this.getLayer(name);
-        if (obj) {
-            this._map.addLayer(obj.layer);
-        }
-        return obj;
+    activateLayer: function (layer) {
+        this._map.addLayer(layer);
     },
 
     activateFirstLayer: function () {

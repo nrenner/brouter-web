@@ -85,12 +85,42 @@
             }
         },
 
+        _parseLayers: function (layersParam, layerSeparator) {
+            var layers = layersParam.split(layerSeparator).map(L.bind(function (layerEncoded) {
+                var obj = null;
+                var layerString = decodeURIComponent(layerEncoded);
+
+                if (layerString) {
+                    obj = this._getLayerFromString(layerString);
+                }
+
+                return obj;
+            }, this));
+
+            return layers;
+        },
+
         parseLayers: function (layersParam) {
-            // legacy support for '-' layer separator
-            var layerSeparator = layersParam.indexOf('-') !== -1 ? '-' : this.options.layerSeparator;
-            var layers = layersParam.split(layerSeparator).map(function (layerEncoded) {
-                return decodeURIComponent(layerEncoded);
-            });
+            var countFoundLayers = function (count, obj) {
+                if (obj) {
+                    count++;
+                }
+                return count;
+            };
+
+            var layers = this._parseLayers(layersParam, this.options.layerSeparator);
+            var found = layers.reduce(countFoundLayers, 0);
+
+            if (found < layers.length) {
+                // legacy support for name instead of id and '-' layer separator
+                var layersLegacy = this._parseLayers(layersParam, '-');
+                var foundLegacy = layersLegacy.reduce(countFoundLayers, 0);
+
+                if (foundLegacy > found) {
+                    layers = layersLegacy;
+                }
+            }
+
             return layers;
         },
 
@@ -100,13 +130,14 @@
 
             layersControl.removeActiveLayers();
 
-            layers.forEach(function(name, index, array) {
-                if (!name) return;
-                var obj = layersControl.activateLayer(name);
-                if (obj && !obj.overlay) {
-                    added = true;
+            layers.forEach(L.bind(function(obj, index, array) {
+                if (obj) {
+                    layersControl.activateLayer(obj.layer);
+                    if (obj && !obj.overlay) {
+                        added = true;
+                    }
                 }
-            });
+            }, this));
 
             if (!added) {
                 // if we couldn't add layers (removed or invalid name), add the default one
@@ -117,9 +148,31 @@
         formatLayers: function () {
             var objList = this.options.layersControl.getActiveLayers();
             var layerList = objList.map(L.bind(function (obj) {
-                return encodeURIComponent(obj.name);
+                return encodeURIComponent(this._toLayerString(obj));
             }, this));
+
             return layerList.join(this.options.layerSeparator)
+        },
+
+        _toLayerString: function (obj) {
+            return obj.layer.id ? obj.layer.id : obj.name;
+        },
+
+        _getLayerFromString: function (layerString) {
+            var layersControl = this.options.layersControl;
+            var obj = layersControl.getLayerById(layerString);
+
+            if (!obj) {
+                // fallback to name for custom and config layers
+                obj = layersControl.getLayer(layerString);
+
+                if (!obj) {
+                    // legacy layer name support
+                    obj = layersControl.getLayerByLegacyName(layerString);
+                }
+            }
+
+            return obj;
         },
 
         removeFrom: function(map) {
