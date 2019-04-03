@@ -289,7 +289,11 @@ BR.LayersTab = BR.ControlLayers.extend({
 
     createLayer: function (layerData) {
         var layer = this.layersConfig.createLayer(layerData);
-        layer.options.zIndex = this._lastZIndex + 1;
+        var overlay = layerData.properties.overlay;
+
+        // preview z-index, like in BR.ControlLayers._addLayer
+        layer.options.zIndex = overlay ? this._lastZIndex + 1 : 0;
+
         return layer;
     },
 

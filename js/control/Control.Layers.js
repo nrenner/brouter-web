@@ -79,6 +79,21 @@ BR.ControlLayers = L.Control.Layers.extend({
         var obj = baseLayers[index];
 
         this.activateLayer(obj.layer);
+    },
+
+    _addLayer: function (layer, name, overlay) {
+        L.Control.Layers.prototype._addLayer.call(this, layer, name, overlay);
+
+        // override z-index assignment to fix that base layers added later
+        // are on top of overlays; set all base layers to 0
+		if (this.options.autoZIndex && layer.setZIndex) {
+            if (!overlay) {
+                // undo increase in super method
+                this._lastZIndex--;
+
+                layer.setZIndex(0);
+            }
+		}
     }
 
 });
