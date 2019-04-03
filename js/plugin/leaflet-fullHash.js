@@ -141,7 +141,7 @@
 
             if (!added) {
                 // if we couldn't add layers (removed or invalid name), add the default one
-                layersControl.activateFirstLayer();
+                layersControl.activateDefaultBaseLayer();
             }
         },
 

@@ -315,6 +315,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
+    activateDefaultBaseLayer: function () {
+        var index = BR.conf.defaultBaseLayerIndex || 0;
+        var activeBaseLayer = this.getActiveBaseLayer();
+        if (!activeBaseLayer) {
+            this.activateBaseLayerIndex(index);
+        }
+    },
+
     saveRemoveActiveLayers: function () {
 		this.saveLayers = this.removeActiveLayers();
     },

@@ -63,11 +63,6 @@ BR.Map = {
                 overlays[i] = L.tileLayer(BR.conf.overlays[i]);
             }
         }
-        // after applying custom base layer configurations, add configured base layer to map
-        var defaultLayer = baseLayers[Object.keys(baseLayers)[BR.conf.defaultBaseLayerIndex || 0]];
-        if (defaultLayer) {
-            map.addLayer(defaultLayer);
-        }
 
         layersControl = BR.layersTab(layersConfig, baseLayers, overlays).addTo(map);
 

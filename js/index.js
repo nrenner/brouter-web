@@ -314,6 +314,12 @@
             layersControl: layersControl
         });
 
+        // activate configured default base layer or first if no hash,
+        // only after hash init, by using the same delay
+        setTimeout(function () {
+            layersControl.activateDefaultBaseLayer();
+        }, urlHash.changeDefer);
+
         routingOptions.on('update', urlHash.onMapMove, urlHash);
         nogos.on('update', urlHash.onMapMove, urlHash);
         // waypoint add, move, delete (but last)

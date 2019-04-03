@@ -17,6 +17,18 @@ BR.ControlLayers = L.Control.Layers.extend({
         return result;
     },
 
+    getActiveBaseLayer: function () {
+        var activeLayers = this.getActiveLayers();
+        for (var i = 0; i < activeLayers.length; i++) {
+            var obj = activeLayers[i];
+            if (!obj.overlay) {
+                return obj;
+            }
+        }
+
+        return null;
+    },
+
     removeActiveLayers: function () {
         var removed = [];
 
@@ -42,6 +54,12 @@ BR.ControlLayers = L.Control.Layers.extend({
         return null;
     },
 
+    getBaseLayers: function () {
+        return this._layers.filter(function (obj) {
+            return !obj.overlay;
+        });
+    },
+
     activateLayer: function (layer) {
         this._map.addLayer(layer);
     },
@@ -54,6 +72,13 @@ BR.ControlLayers = L.Control.Layers.extend({
                 break;
             }
         }
+    },
+
+    activateBaseLayerIndex: function (index) {
+        var baseLayers = this.getBaseLayers();
+        var obj = baseLayers[index];
+
+        this.activateLayer(obj.layer);
     }
 
 });
