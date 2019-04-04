@@ -255,6 +255,14 @@
             stravaControl.onError = function(err) {
                 BR.message.showError(i18next.t('warning.strava-error', {error: err && err.message ? err.message : err}));
             }
+
+            // hide strava buttons when layer is inactive
+            var toggleStravaControl = function () {
+                var stravaBar = stravaControl.runningButton.button.parentElement;
+                stravaBar.hidden = !stravaBar.hidden;
+            };
+            toggleStravaControl();
+            stravaControl.stravaLayer.on('add remove', toggleStravaControl);
         }
 
         map.addControl(new BR.OpacitySlider({
