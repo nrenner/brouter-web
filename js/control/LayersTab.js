@@ -19,8 +19,8 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.initButtons();
 
         var structure = {
-            'Base layers': {
-                'Worldwide international': [
+            'base-layers': {
+                'worldwide-international': [
                     'standard',
                     'OpenTopoMap',
                     'Stamen.Terrain',
@@ -34,49 +34,63 @@ BR.LayersTab = BR.ControlLayers.extend({
                     '1016', // 4UMaps,
                     'openmapsurfer'
                 ],
-                'Worldwide monolingual': [
+                'worldwide-monolingual': [
                     'osm-mapnik-german_style',
                     'osmfr',
-                    '1023', // Osmapa.pl - Mapa OpenStreetMap Polska
-                    '1021', // kosmosnimki.ru
-                    '1017' // sputnik.ru
+                    '1017',  // Osmapa.pl - Mapa OpenStreetMap Polska
+                    '1023', // kosmosnimki.ru
+                    '1021' // sputnik.ru
                 ],
-                'Europe': [
+                'europe': [
                     'MtbMap',
                     '1069'  // MRI (maps.refuges.info)
                 ],
-                'Country': [
-                    'topplus-open',
-                    'OpenStreetMap.CH',
-                    'Freemap.sk-Car',
-                    'Freemap.sk-Hiking',
-                    'Freemap.sk-Cyclo',
-                    'OpenStreetMap-turistautak',
-                    'Israel_Hiking',
-                    'Israel_MTB',
-                    'osmbe',
-                    'osmbe-fr',
-                    'osmbe-nl',
+                'europe-monolingual': [
                     'osmfr-basque',
                     'osmfr-breton',
-                    'osmfr-occitan',
+                    'osmfr-occitan'
+                ],
+                'country': [
+                    {
+                        'BE': [
+                            'osmbe',
+                            'osmbe-fr',
+                            'osmbe-nl',
+                        ]
+                    },
+                    'OpenStreetMap.CH',
+                    'topplus-open',
+                    'OpenStreetMap-turistautak',
+                    {
+                        'IL': [
+                            'Israel_Hiking',
+                            'Israel_MTB',
+                        ]
+                    },
                     'mtbmap-no',
+                    {
+                        'SK': [
+                            'Freemap.sk-Car',
+                            'Freemap.sk-Hiking',
+                            'Freemap.sk-Cyclo',
+                        ]
+                    },
                     'osm-cambodia_laos_thailand_vietnam-bilingual'
                 ]
             },
-            'Overlays': {
-                'World-wide': [
+            'overlays': {
+                'worldwide': [
                     'HikeBike.HillShading',
-                    'Waymarked_Trails-Hiking',
                     'Waymarked_Trails-Cycling',
+                    'Waymarked_Trails-Hiking',
                     'Waymarked_Trails-MTB',
                     'mapillary-coverage-raster'
                 ],
-                'Country': [
+                'country': [
                     'historic-place-contours',
                     'hu-hillshade',
                     {
-                        'PL - Poland': [
+                        'PL': [
                             'mapaszlakow-cycle',
                             'mapaszlakow-bike',
                             'mapaszlakow-hike',
@@ -123,7 +137,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         };
 
         var onUncheckNode = function (e, data) {
-            var obj = this.getLayer(data.node.text);
+            var obj = this.getLayerById(data.node.id);
             if (!obj) return;
 
             this.removeLayer(obj.layer);
@@ -195,22 +209,34 @@ BR.LayersTab = BR.ControlLayers.extend({
     },
 
     toJsTree: function (layerTree) {
-        var data = [];
+        var data = {
+            children: []
+        };
         var self = this;
 
         function createRootNode(name) {
-            var children = [];
             var rootNode = {
-                'text': name,
+                'text': i18next.t('sidebar.layers.category.' + name, name),
                 'state': {
                     'disabled': true
                 },
-                'children': children
+                'children': []
             };
             return rootNode;
         }
 
-        function createNode(id, layerData) {
+        function getText(props, parent) {
+            var text = '';
+            var code = props.country_code || props.language_code;
+            if (code && parent.text !== code) {
+                text += '<span class="tree-code">' + code + '</span>';
+            }
+            text += props.name;
+
+            return text;
+        }
+
+        function createNode(id, layerData, parent) {
             var props = layerData.properties;
             var url = props.url;
             var keyObj = self.layersConfig.getKeyName(url);
@@ -220,7 +246,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             if (!keyObj || keyObj && BR.keys[keyObj.name]) {
                 childNode = {
                     'id': id,
-                    'text': props.name,
+                    'text': getText(props, parent),
                     'state': {
                         'checked': self.layersConfig.isDefaultLayer(id, props.overlay)
                     }
@@ -235,8 +261,8 @@ BR.LayersTab = BR.ControlLayers.extend({
                     var value = obj[name];
                     var rootNode = createRootNode(name)
 
-                    outTree.push(rootNode);
-                    walkTree(value, rootNode.children);
+                    outTree.children.push(rootNode);
+                    walkTree(value, rootNode);
                 }
             }
 
@@ -249,9 +275,9 @@ BR.LayersTab = BR.ControlLayers.extend({
                         var layer = BR.layerIndex[entry];
 
                         if (layer) {
-                            var childNode = createNode(entry, layer);
+                            var childNode = createNode(entry, layer, outTree);
                             if (childNode) {
-                                outTree.push(childNode);
+                                outTree.children.push(childNode);
                             }
                         } else {
                             console.error('Layer "' + entry + '" not found');
@@ -264,7 +290,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
         walkTree(layerTree, data);
 
-        return data;
+        return data.children;
     },
 
     storeDefaultLayers: function () {

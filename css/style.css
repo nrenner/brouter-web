@@ -423,6 +423,12 @@ table.dataTable.display tbody tr.even:hover {
     margin-top: 5px;
 }
 
+.tree-code {
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    margin-right: 7px;
+    color: #666; /* like root nodes, jstree-disabled */
+}
+
 
 /* hide currently unused bottom tabs container because of touch border artefacts */
 .leaflet-sidebar-tabs > ul:last-child {

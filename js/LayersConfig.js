@@ -83,46 +83,103 @@ BR.LayersConfig = L.Class.extend({
 
         BR.layerIndex['HikeBike.HillShading'].properties.overlay = true;
 
+        var propertyOverrides = {
+            'standard': {
+                'name': i18next.t('map.layer.osm'),
+                'mapUrl': 'https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}'
+            },
+            'osm-mapnik-german_style': {
+                'name': i18next.t('map.layer.osmde'),
+                'language_code': 'de',
+                'mapUrl': 'https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF'
+            },
+            'OpenTopoMap': {
+                'name': i18next.t('map.layer.topo'),
+                'mapUrl': 'https://opentopomap.org/#map={zoom}/{lat}/{lon}'
+            },
+            'Stamen.Terrain': {
+                'name': i18next.t('map.layer.stamen-terrain'),
+                'mapUrl': 'http://maps.stamen.com/#terrain/{zoom}/{lat}/{lon}'
+            },
+            'opencylemap': {
+                'name': i18next.t('map.layer.cycle'),
+                'nameShort': 'OpenCycleMap',
+                'mapUrl': 'https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000'
+            },
+            '1061': {
+                'name': i18next.t('map.layer.outdoors'),
+                'nameShort': 'Outdoors',
+                'mapUrl': 'https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=000B0'
+            },
+            'Esri.WorldImagery': {
+                'name': i18next.t('map.layer.esri'),
+                'nameShort': i18next.t('credits.esri-tiles'),
+                'mapUrl': 'http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9'
+            },
+            'HikeBike.HillShading': {
+                'name': i18next.t('map.layer.hikebike-hillshading'),
+                'nameShort': i18next.t('map.hikebike-hillshading'),
+                'mapUrl': 'http://hikebikemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layer=HikeBikeMap'
+            },
+            'Waymarked_Trails-Cycling': {
+                'name': i18next.t('map.layer.cycling'),
+                'nameShort': i18next.t('map.cycling'),
+                'mapUrl': 'http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
+            },
+            'Waymarked_Trails-Hiking': {
+                'name': i18next.t('map.layer.hiking'),
+                'nameShort': i18next.t('map.hiking'),
+                'mapUrl': 'http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
+            },
+            'OpenStreetMap.CH': {
+                'country_code': 'CH'
+            },
+            'topplus-open': {
+                'country_code': 'DE'
+            },
+            'osm-cambodia_laos_thailand_vietnam-bilingual': {
+                'country_code': 'TH+'
+            },
+            'osmfr': {
+                'language_code': 'fr'
+            },
+            // kosmosnimki.ru
+            '1023': {
+                'language_code': 'ru'
+            },
+            // sputnik.ru
+            '1021': {
+                'language_code': 'ru'
+            },
+            // Osmapa.pl - Mapa OpenStreetMap Polska
+            '1017': {
+                'language_code': 'pl'
+            },
+            'osmfr-basque': {
+                'language_code': 'eu'
+            },
+            'osmfr-breton': {
+                'language_code': 'br'
+            },
+            'osmfr-occitan': {
+                'language_code': 'oc'
+            }
+        };
 
-        function setProperty(layerId, key, value) {
-            var layer = BR.layerIndex[layerId];
+        for (id in propertyOverrides) {
+            var layer = BR.layerIndex[id];
+
             if (layer) {
-                layer.properties[key] = value;
+                var properties = propertyOverrides[id];
+
+                for (key in properties) {
+                    var value = properties[key];
+                    layer.properties[key] = value;
+                }
             } else {
-                console.error('Layer not found: ' + layerId);
+                console.error('Layer not found: ' + id);
             }
         }
-        function setMapUrl(layerId, url) {
-            setProperty(layerId, 'mapUrl', url);
-        }
-        function setName(layerId, url) {
-            setProperty(layerId, 'name', url);
-        }
-
-        // Layer attribution here only as short link to original site,
-        // to keep current position use placeholders: {zoom}/{lat}/{lon}
-        // Copyright attribution in index.html #credits
-        setMapUrl('standard', '<a target="_blank" href="https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}">OpenStreetMap</a>');
-        setMapUrl('osm-mapnik-german_style', '<a target="_blank" href="https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF">OpenStreetMap.de</a>');
-        setMapUrl('OpenTopoMap', '<a target="_blank" href="https://opentopomap.org/#map={zoom}/{lat}/{lon}">OpenTopoMap</a>');
-        setMapUrl('Stamen.Terrain', '<a target="_blank" href="http://maps.stamen.com/#terrain/{zoom}/{lat}/{lon}">' + i18next.t('map.layer.stamen-terrain') + '</a>');
-        setMapUrl('opencylemap', '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000">OpenCycleMap</a>');
-        setMapUrl('1061', '<a target="_blank" href="https://www.opencyclemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=000B0">Outdoors</a>');
-        setMapUrl('Esri.WorldImagery', '<a target="_blank" href="http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9">' + i18next.t('credits.esri-tiles') + '</a>');
-        setMapUrl('HikeBike.HillShading', '<a target="_blank" href="http://hikebikemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layer=HikeBikeMap">' + i18next.t('map.hikebike-hillshading') + '</a>');
-        setMapUrl('Waymarked_Trails-Cycling', '<a target="_blank" href="http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.cycling') + '</a>');
-        setMapUrl('Waymarked_Trails-Hiking', '<a target="_blank" href="http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}">' + i18next.t('map.hiking') + '</a>');
-
-        setName('standard', i18next.t('map.layer.osm'));
-        setName('osm-mapnik-german_style', i18next.t('map.layer.osmde'));
-        setName('OpenTopoMap', i18next.t('map.layer.topo'));
-        setName('Stamen.Terrain', i18next.t('map.layer.stamen-terrain'));
-        setName('opencylemap', i18next.t('map.layer.cycle'));
-        setName('1061', i18next.t('map.layer.outdoors'));
-        setName('Esri.WorldImagery', i18next.t('map.layer.esri'));
-        setName('HikeBike.HillShading', i18next.t('map.layer.hikebike-hillshading'));
-        setName('Waymarked_Trails-Cycling', i18next.t('map.layer.cycling'));
-        setName('Waymarked_Trails-Hiking', i18next.t('map.layer.hiking'));
     },
 
     isDefaultLayer: function(id, overlay) {
@@ -212,9 +269,11 @@ BR.LayersConfig = L.Class.extend({
 
 
         var options = {
-            maxZoom: this._map.getMaxZoom(),
-            mapUrl: props.mapUrl
+            maxZoom: this._map.getMaxZoom()
         };
+        if (props.mapUrl) {
+            options.mapLink = '<a target="_blank" href="' + props.mapUrl + '">' + (props.nameShort || props.name) + '</a>';
+        }
 
         var keyObj = this.getKeyName(url);
         if (keyObj && BR.keys[keyObj.name]) {
@@ -257,8 +316,11 @@ BR.LayersConfig = L.Class.extend({
             }
         }
 
+        // Layer attribution here only as short link to original site,
+        // to keep current position use placeholders: {zoom}/{lat}/{lon}
+        // Copyright attribution in index.html #credits
         var getAttribution = function () {
-            return this.options.mapUrl;
+            return this.options.mapLink;
         }
         layer.getAttribution = getAttribution;
 
