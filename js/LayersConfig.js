@@ -413,12 +413,13 @@ BR.LayersConfig = L.Class.extend({
             }
         } else {
             // JOSM
-            var url = convertUrlJosm(url);
+            var josmUrl = url;
+            var url = convertUrlJosm(josmUrl);
 
             var josmOptions = L.Util.extend(options, {
                 minZoom: props.min_zoom,
                 maxNativeZoom: props.max_zoom,
-                subdomains: getSubdomains(url),
+                subdomains: getSubdomains(josmUrl),
             });
 
             if (props.type && props.type === 'wms') {
