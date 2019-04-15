@@ -160,6 +160,16 @@
       "title": "Itinéraire"
     },
     "layers": {
+      "category": {
+        "base-layers": "Fonds de carte",
+        "country": "Pays",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingue",
+        "overlays": "Calques superposables",
+        "worldwide": "Mondial",
+        "worldwide-international": "Mondial international",
+        "worldwide-monolingual": "Mondial monolingue"
+      },
       "collapse": "Tout réduire",
       "custom-layers": "Calques personels",
       "customize": "Ajouter ou supprimer des calques",

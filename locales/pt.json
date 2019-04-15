@@ -160,6 +160,16 @@
       "title": "Itinerary"
     },
     "layers": {
+      "category": {
+        "base-layers": "Base layers",
+        "country": "Country",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingual",
+        "overlays": "Overlays",
+        "worldwide": "Worldwide",
+        "worldwide-international": "Worldwide international",
+        "worldwide-monolingual": "Worldwide monolingual"
+      },
       "collapse": "Collapse all",
       "custom-layers": "Custom layers",
       "customize": "Add or remove custom layers",

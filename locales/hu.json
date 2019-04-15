@@ -160,6 +160,16 @@
       "title": "Útiterv"
     },
     "layers": {
+      "category": {
+        "base-layers": "Base layers",
+        "country": "Country",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingual",
+        "overlays": "Overlays",
+        "worldwide": "Worldwide",
+        "worldwide-international": "Worldwide international",
+        "worldwide-monolingual": "Worldwide monolingual"
+      },
       "collapse": "Minden összecsukása",
       "custom-layers": "Egyedi rétegek",
       "customize": "Egyedi rétegek hozzáadása vagy eltávolítása",

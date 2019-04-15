@@ -14,7 +14,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "cycling-hiking-tiles": "Fahrrad- und Wander tiles",
+    "cycling-hiking-tiles": "Fahrrad- und Wander-Kacheln",
     "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">Terms of Use</a>)",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, Quellen: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP und die GIS Benutzergemeinschaft",
     "esri-tiles": "Esri World Imagery",
@@ -60,9 +60,9 @@
     "nogoBuffer": "Buffer no-go areas (in meters): ",
     "nogoRadius": "No-go radius (for points): ",
     "nogoWeight": "No-go weight: ",
-    "source": "Source",
+    "source": "Quelle",
     "title": "Load no-go areas",
-    "url": "URL: "
+    "url": "URL:"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap Mitarbeiter",
@@ -73,7 +73,7 @@
     "delete-nogo-areas": "&nbsp;&nbsp;auch alle no-go areas löschen",
     "delete-route": "Route löschen?",
     "draw-route-start": "Route anzeigen (D Taste)",
-    "draw-route-stop": "Stoppen der Routenanzeige (ESC Taste)",
+    "draw-route-stop": "Route entfernen (ESC Taste)",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Wandern",
     "layer": {
@@ -91,12 +91,12 @@
       "strava-segments": "Strava Segmente",
       "topo": "OpenTopoMap"
     },
-    "loading": "Laden ...",
+    "loading": "Lade...",
     "locate-me": "Zeige meinen Standort",
     "nogo": {
-      "cancel": "Anzeigen der no-go area abbrechen",
-      "click-drag": "Klicken und ziehen zum Zeichnen eines Kreises",
-      "draw": "no-go area zeichnen (Kreis)",
+      "cancel": "No-Go-Areas löschen",
+      "click-drag": "klicken und ziehen zum Zeichnen eines Kreises",
+      "draw": "No-Go-Area zeichnen (Kreis)",
       "edit": "Klicken zum Bearbeiten",
       "help": "&square; = Bewegen / Größe anpassen, <span class=\"fa fa-trash-o\"></span> = Löschen,<br>Kreis anklicken um Bearbeiten zu beenden"
     },
@@ -127,19 +127,19 @@
       "title": "Load"
     },
     "profile": {
-      "car-eco": "Auto (ökonomisch)",
+      "car-eco": "Auto (effizient)",
       "car-fast": "Auto (schnell)",
       "car-test": "Auto (Test)",
       "custom": "Benutzerdefiniert",
-      "fastbike": "schnelles Rad",
-      "fastbike-asia-pacific": "schnelles Rad (Asien Pazifik)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
+      "fastbike": "Fahrrad (schnell)",
+      "fastbike-asia-pacific": "Fahrrad (schnell, Asien Pazifik)",
+      "fastbike-lowtraffic": "Fahrrad (schnell, Routen mit wenig Verkehr)",
       "hiking-beta": "Wandern (beta)",
       "moped": "Moped",
-      "rail": "Zug",
+      "rail": "Eisenbahn",
       "river": "Fluss",
-      "safety": "Sicherste",
-      "shortest": "Kürzeste",
+      "safety": "Sicherste Route",
+      "shortest": "Kürzeste Route",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
@@ -160,6 +160,16 @@
       "title": "Reiseroute"
     },
     "layers": {
+      "category": {
+        "base-layers": "Base layers",
+        "country": "Country",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingual",
+        "overlays": "Overlays",
+        "worldwide": "Worldwide",
+        "worldwide-international": "Worldwide international",
+        "worldwide-monolingual": "Worldwide monolingual"
+      },
       "collapse": "Collapse all",
       "custom-layers": "Benutzerdefinierte Ebenen",
       "customize": "Benutzerdefinierte Ebenen hinzufügen oder entfernen",
