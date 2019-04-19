@@ -86,19 +86,27 @@ BR.LayersConfig = L.Class.extend({
         var propertyOverrides = {
             'standard': {
                 'name': i18next.t('map.layer.osm'),
+                'attribution': {
+                    'html': '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">openstreetmap.org</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a>'
+                },
                 'mapUrl': 'https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}'
             },
             'OpenTopoMap': {
                 'name': i18next.t('map.layer.topo'),
+                'attribution': {
+                    'html': '&copy; <a target="_blank" href="https://opentopomap.org/about#verwendung">OpenTopoMap</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a>; <a target="_blank" href="http://viewfinderpanoramas.org">SRTM</a>'
+                },
                 'mapUrl': 'https://opentopomap.org/#map={zoom}/{lat}/{lon}'
             },
             'Stamen.Terrain': {
                 'name': i18next.t('map.layer.stamen-terrain'),
+                'attribution': '&copy; <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
                 'mapUrl': 'http://maps.stamen.com/#terrain/{zoom}/{lat}/{lon}'
             },
             'Esri.WorldImagery': {
                 'name': i18next.t('map.layer.esri'),
                 'nameShort': i18next.t('credits.esri-tiles'),
+                'attribution': i18next.t('credits.esri-license'),
                 'mapUrl': 'http://www.arcgis.com/home/item.html?id=10df2279f9684e4a9f6a7f08febac2a9'
             },
             'wikimedia-map': {
@@ -136,6 +144,9 @@ BR.LayersConfig = L.Class.extend({
             'osm-mapnik-german_style': {
                 'name': i18next.t('map.layer.osmde'),
                 'language_code': 'de',
+                'attribution': {
+                    'html': '&copy; <a target="_blank" href="https://openstreetmap.de/karte.html">openstreetmap.de</a>'
+                },
                 'mapUrl': 'https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF'
             },
             'osmfr': {
@@ -232,16 +243,23 @@ BR.LayersConfig = L.Class.extend({
             'HikeBike.HillShading': {
                 'name': i18next.t('map.layer.hikebike-hillshading'),
                 'nameShort': i18next.t('map.hikebike-hillshading'),
+                'attribution': '&copy; <a target="_blank" href="http://hikebikemap.org">hikebikemap.org</a>; SRTM3 v2 (<a target="_blank" href="http://www2.jpl.nasa.gov/srtm/">NASA</a>)',
                 'mapUrl': 'http://hikebikemap.org/?zoom={zoom}&lat={lat}&lon={lon}&layer=HikeBikeMap'
             },
             'Waymarked_Trails-Cycling': {
                 'name': i18next.t('map.layer.cycling'),
                 'nameShort': i18next.t('map.cycling'),
+                'attribution': {
+                    'html': '&copy; <a target="_blank" href="https://cycling.waymarkedtrails.org/en/help/legal">waymarkedtrails.org</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>'
+                },
                 'mapUrl': 'http://cycling.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
             },
             'Waymarked_Trails-Hiking': {
                 'name': i18next.t('map.layer.hiking'),
                 'nameShort': i18next.t('map.hiking'),
+                'attribution': {
+                    'html': '&copy; <a target="_blank" href="https://hiking.waymarkedtrails.org/en/help/legal">waymarkedtrails.org</a>, <a target="_blank" href="https://creativecommons.org/licenses/by-sa/3.0/de/deed.en">CC-BY-SA 3.0 DE</a>'
+                },
                 'mapUrl': 'http://hiking.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
             },
             'Waymarked_Trails-MTB': {
@@ -382,12 +400,35 @@ BR.LayersConfig = L.Class.extend({
             return result;
         }
 
+        function convertAttributionJosm(props) {
+            var result = '';
+            var attr = props.attribution;
+
+            if (attr) {
+                if (attr.html) {
+                    result = attr.html;
+                } else if (attr.url && attr.text) {
+                    result = '<a href="' + attr.url + '" target="_blank" rel="noopener">' + attr.text + '</a>';
+                } else if (attr.text) {
+                    result = attr.text;
+                }
+            }
+            if (!result) {
+                console.warn('No attribution: ' + props.id);
+            }
+
+            return result;
+        }
+
 
         var options = {
             maxZoom: this._map.getMaxZoom()
         };
         if (props.mapUrl) {
             options.mapLink = '<a target="_blank" href="' + props.mapUrl + '">' + (props.nameShort || props.name) + '</a>';
+        }
+        if (props.attribution) {
+            options.attribution = props.attribution;
         }
 
         var keyObj = this.getKeyName(url);
@@ -406,7 +447,7 @@ BR.LayersConfig = L.Class.extend({
         } else if (props.dataSource === 'LayersCollection') {
             layer = L.tileLayer(url, L.Util.extend(options, {
                 minZoom: props.minZoom,
-                maxNativeZoom: props.maxZoom,
+                maxNativeZoom: props.maxZoom
             }));
             if (props.subdomains) {
                 layer.subdomains = props.subdomains;
@@ -420,6 +461,7 @@ BR.LayersConfig = L.Class.extend({
                 minZoom: props.min_zoom,
                 maxNativeZoom: props.max_zoom,
                 subdomains: getSubdomains(josmUrl),
+                attribution: convertAttributionJosm(props)
             });
 
             if (props.type && props.type === 'wms') {

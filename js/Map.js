@@ -29,6 +29,10 @@ BR.Map = {
             ' &middot; <a href="" data-toggle="modal" data-target="#credits">' + i18next.t('map.copyright') + '</a>' +
             ' &middot; <a target="_blank" href="http://brouter.de/privacypolicy.html">' + i18next.t('map.privacy') + '</a>');
 
+        $('#credits').on('show.bs.modal', function (event) {
+            BR.Map._renderLayerCredits(layersControl._layers);
+        });
+
         new L.Control.PermalinkAttribution().addTo(map);
         map.attributionControl.setPrefix(false);
 
@@ -44,7 +48,7 @@ BR.Map = {
             var recent = new L.tileLayer('https://{s}.tiles.mapbox.com/v4/digitalglobe.nal0g75k/{z}/{x}/{y}.png?access_token=' + BR.keys.digitalGlobe, {
                 minZoom: 1,
                 maxZoom: 19,
-                attribution: i18next.t('credits.digitalglobe-license')
+                attribution: '&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">Terms of Use</a>)'
             });
             baseLayers[i18next.t('map.layer.digitalglobe')] = recent;
         }
@@ -89,6 +93,27 @@ BR.Map = {
             map: map,
             layersControl: layersControl
         };
-    }
+    },
 
+    _renderLayerCredits: function (layers) {
+        var dl = document.getElementById('credits-maps');
+        var i, obj, dt, dd, attribution;
+
+        L.DomUtil.empty(dl);
+
+        for (i = 0; i < layers.length; i++) {
+            obj = layers[i];
+            attribution = obj.layer.options.attribution;
+
+            if (attribution) {
+                dt = document.createElement('dt');
+                dt.innerHTML = obj.name;
+                dd = document.createElement('dd');
+                dd.innerHTML = obj.layer.options.attribution;
+
+                dl.appendChild(dt);
+                dl.appendChild(dd);
+            }
+        }
+    }
 };
