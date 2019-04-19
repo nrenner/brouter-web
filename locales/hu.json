@@ -14,21 +14,12 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "cycling-hiking-tiles": "Kerékpáros és túrázós mozaikok",
-    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">felhasználási feltételek</a>)",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Globális légi felvételek</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, források: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP valamint a GIS felhasználói közösség",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Térképadatok",
+    "map-tiles": "Map tiles",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "opencyclemap-outdoors-tiles": "OpenCycleMap & Outdoors mozaikok",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
-    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> és <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a> licenc alapján",
-    "opentopomap-tiles": "OpenTopoMap mozaikok",
-    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> licenc alapján",
-    "osm-tiles": "OpenStreetMap mozaikok",
-    "osmde-tiles": "OpenStreetMap.de mozaikok",
-    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> licenc alapján",
-    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a>, <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a> licenc alapján"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint"
   },
   "footer": {
     "ascend": "Összes emelkedés (végpontok közötti szintkülönbség)",

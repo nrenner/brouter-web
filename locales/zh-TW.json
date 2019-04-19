@@ -14,21 +14,12 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "cycling-hiking-tiles": "自行車及遠足圖磚",
-    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">服務使用條款</a>)",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, 來源: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, 以及 GIS 使用者社群",
     "esri-tiles": "Esri World Imagery",
     "map-data": "地圖資料",
+    "map-tiles": "Map tiles",
     "nominatim": "搜尋服務由 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>提供",
-    "opencyclemap-outdoors-tiles": "OpenCycleMap 及戸外圖磚",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出",
-    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>釋出",
-    "opentopomap-tiles": "OpenTopoMap 圖磚",
-    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> 釋出",
-    "osm-tiles": "OpenStreetMap 圖磚",
-    "osmde-tiles": "OpenStreetMap.de 圖磚",
-    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a> 釋出",
-    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> 基於 <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a> 釋出"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出"
   },
   "footer": {
     "ascend": "爬升量 (淨爬升)",

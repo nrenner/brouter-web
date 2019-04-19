@@ -14,21 +14,12 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "cycling-hiking-tiles": "Tuiles pour Vélo & Piéton",
-    "digitalglobe-license": "&copy; <a href=\"https://www.digitalglobe.com/platforms/mapsapi\">DigitalGlobe</a> (<a href=\"https://bit.ly/mapsapiview\">Conditions d'utilisation</a>)",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources : Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, et la communauté d'utilisateurs GIS",
     "esri-tiles": "Imagerie mondiale Esri",
     "map-data": "Données de carte",
+    "map-tiles": "Map tiles",
     "nominatim": "Recherche par <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "opencyclemap-outdoors-tiles": "Tuiles OpenCycleMap & Outdoors",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "opentopomap-license": "&copy; <a target=\"_blank\" href=\"https://opentopomap.org\">OpenTopoMap</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a> <a target=\"_blank\" href=\"http://viewfinderpanoramas.org\">SRTM</a>",
-    "opentopomap-tiles": "Tuiles OpenTopoMap",
-    "osm-license": "<a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\">openstreetmap.org</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
-    "osm-tiles": "Tuiles OpenStreetMap",
-    "osmde-tiles": "Tuiles OpenStreetMap.de",
-    "thunderforest-license": "&copy; <a target=\"_blank\" href=\"https://www.thunderforest.com\">Thunderforest</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA 2.0</a>",
-    "waymarked-license": "&copy; <a target=\"_blank\" href=\"https://cycling.waymarkedtrails.org\">Waymarked Trails</a> sous <a target=\"_blank\" href=\"https://creativecommons.org/licenses/by-sa/3.0/de/deed.en\">CC-BY-SA 3.0 DE</a>"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
   "footer": {
     "ascend": "Montée (pleine ascension)",
