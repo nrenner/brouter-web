@@ -1,5 +1,6 @@
 BR.LayersTab = BR.ControlLayers.extend({
     previewLayer: null,
+    previewBounds: null,
     saveLayers: [],
 
 	initialize: function (layersConfig, baseLayers, overlays, options) {
@@ -109,7 +110,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             var selected = data.selected[0];
 
             if (selected !== oldSelected) {
-                this.showPreview(this.createLayer(layerData));
+                this.showPreview(layerData);
                 oldSelected = selected;
             } else {
                 data.instance.deselect_node(data.node);
@@ -385,6 +386,27 @@ BR.LayersTab = BR.ControlLayers.extend({
         return false;
     },
 
+    showPreviewBounds: function (layerData) {
+        if (layerData.geometry) {
+            this.previewBounds = L.geoJson(layerData.geometry, {
+                // fill/mask outside of bounds polygon with Leaflet.snogylop
+                invert: true,
+                // reduce unmasked areas appearing due to clipping while panning and zooming out
+                renderer: L.svg({ padding: 1 }),
+                color: '#333',
+                fillOpacity: 0.4,
+                weight: 2
+            }).addTo(this._map);
+        }
+    },
+
+    removePreviewBounds: function () {
+        if (this.previewBounds && this._map.hasLayer(this.previewBounds)) {
+            this._map.removeLayer(this.previewBounds);
+            this.previewBounds = null;
+        }
+    },
+
     deselectNode: function () {
         var selected = this.jstree.get_selected();
         if (selected.length > 0) {
@@ -396,23 +418,29 @@ BR.LayersTab = BR.ControlLayers.extend({
         // execute after current input click handler,
         // otherwise added overlay checkbox state doesn't update
         setTimeout(L.Util.bind(function () {
+            this.removePreviewBounds();
             this.removePreviewLayer();
             this.restoreActiveLayers(true);
             this.deselectNode();
         }, this), 0);
     },
 
-    showPreview: function (layer) {
+    showPreview: function (layerData) {
+        var layer = this.createLayer(layerData);
         this._map.addLayer(layer);
+        this.removePreviewBounds();
         if (!this.removePreviewLayer()) {
             this.saveRemoveActiveLayers();
             this._map.once('baselayerchange', this.onBaselayerchange, this);
         }
         this.previewLayer = layer;
+
+        this.showPreviewBounds(layerData);
     },
 
     hidePreview: function (layer) {
         this._map.off('baselayerchange', this.onBaselayerchange, this);
+        this.removePreviewBounds();
         this.removePreviewLayer();
         this.restoreActiveLayers();
     }

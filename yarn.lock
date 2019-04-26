@@ -3516,6 +3516,11 @@ leaflet.restoreview@makinacorpus/Leaflet.RestoreView#master:
   version "1.0.0"
   resolved "https://codeload.github.com/makinacorpus/Leaflet.RestoreView/tar.gz/9c99464d19d2f25e146326d86639ff37be9cd5a6"
 
+leaflet.snogylop@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet.snogylop/-/leaflet.snogylop-0.4.0.tgz#bc373432edc1da63a8efbcc5a681d398deebd0d3"
+  integrity sha512-kpjBM3dWBdLyBEUJc1u+2HVYEJifVGnsrOGSeHGChxLP1In/GShmOSgbkHD6uXcK+y9w58SOsEtK+K7/bwEHCg==
+
 leaflet.stravasegments@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/leaflet.stravasegments/-/leaflet.stravasegments-2.3.2.tgz#4086e8a5f0ea7dd256edbcb7d2ca7ab1deabc669"
