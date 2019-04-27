@@ -170,47 +170,57 @@ BR.LayersConfig = L.Class.extend({
                 'mapUrl': 'http://maps.sputnik.ru/?lat={lat}&lng={lon}&zoom={zoom}'
             },
             'MtbMap': {
-                'mapUrl': 'http://mtbmap.cz/#zoom={zoom}&lat={lat}&lon={lon}'
+                'mapUrl': 'http://mtbmap.cz/#zoom={zoom}&lat={lat}&lon={lon}',
+                'worldTiles': true // -z12
             },
             // MRI (maps.refuges.info)
             '1069': {
                 'nameShort': 'Refuges.info',
-                'mapUrl': 'http://maps.refuges.info/?zoom={zoom}&lat={lat}&lon={lon}&layers=B'
+                'mapUrl': 'http://maps.refuges.info/?zoom={zoom}&lat={lat}&lon={lon}&layers=B',
+                'worldTiles': true
             },
             'osmfr-basque': {
                 'language_code': 'eu',
                 'nameShort': 'OSM Basque',
-                'mapUrl': 'http://tile.openstreetmap.fr/?layers=00000000BFFFFFF&zoom={zoom}&lat={lat}&lon={lon}'
+                'mapUrl': 'http://tile.openstreetmap.fr/?layers=00000000BFFFFFF&zoom={zoom}&lat={lat}&lon={lon}',
+                'worldTiles': true
             },
             'osmfr-breton': {
                 'language_code': 'br',
                 'nameShort': 'OSM Breton',
-                'mapUrl': 'https://kartenn.openstreetmap.bzh/#map={zoom}/{lat}/{lon}'
+                'mapUrl': 'https://kartenn.openstreetmap.bzh/#map={zoom}/{lat}/{lon}',
+                'worldTiles': true
             },
             'osmfr-occitan': {
                 'language_code': 'oc',
                 'nameShort': 'OSM Occitan',
-                'mapUrl': 'http://tile.openstreetmap.fr/?layers=0000000B0FFFFFF&zoom={zoom}&lat={lat}&lon={lon}'
+                'mapUrl': 'http://tile.openstreetmap.fr/?layers=0000000B0FFFFFF&zoom={zoom}&lat={lat}&lon={lon}',
+                'worldTiles': true
             },
             'osmbe': {
                 'nameShort': 'OSM Belgium',
-                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}'
+                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}',
+                'worldTiles': true // -z7
             },
             'osmbe-fr': {
                 'nameShort': 'OSM Belgium (fr)',
-                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}'
+                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}',
+                'worldTiles': true // -z7
             },
             'osmbe-nl': {
                 'nameShort': 'OSM Belgium (nl)',
-                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}'
+                'mapUrl': 'https://tile.osm.be/#map={zoom}/{lat}/{lon}',
+                'worldTiles': true // -z7
             },
             'OpenStreetMap.CH': {
                 'country_code': 'CH',
-                'mapUrl': 'https://osm.ch/#{zoom}/{lat}/{lon}'
+                'mapUrl': 'https://osm.ch/#{zoom}/{lat}/{lon}',
+                'worldTiles': true
             },
             'topplus-open': {
                 'country_code': 'DE',
-                'mapUrl': 'http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_user_id=0&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=41'
+                'mapUrl': 'http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_user_id=0&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=41',
+                'worldTiles': true // World -z9, Europe -z14
             },
 
             'OpenStreetMap-turistautak': {
@@ -238,7 +248,8 @@ BR.LayersConfig = L.Class.extend({
             'osm-cambodia_laos_thailand_vietnam-bilingual': {
                 'country_code': 'TH+',
                 'nameShort': 'Thaimap',
-                'mapUrl': 'http://thaimap.osm-tools.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=BT'
+                'mapUrl': 'http://thaimap.osm-tools.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=BT',
+                'worldTiles': true
             },
             'HikeBike.HillShading': {
                 'name': i18next.t('map.layer.hikebike-hillshading'),
@@ -1871,7 +1882,8 @@ BR.LayersConfig = L.Class.extend({
 
 
         var options = {
-            maxZoom: this._map.getMaxZoom()
+            maxZoom: this._map.getMaxZoom(),
+            bounds: layerData.geometry && !props.worldTiles ? L.geoJson(layerData.geometry).getBounds() : null
         };
         if (props.mapUrl) {
             options.mapLink = '<a target="_blank" href="' + props.mapUrl + '">' + (props.nameShort || props.name) + '</a>';
