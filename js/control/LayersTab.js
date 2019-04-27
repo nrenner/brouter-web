@@ -13,96 +13,45 @@ BR.LayersTab = BR.ControlLayers.extend({
         this._map = map;
         this.onAdd(map);
 
-        var layerIndex = BR.layerIndex;
-
         L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
 
         this.initButtons();
+        this.initJsTree();
 
-        var structure = {
-            'base-layers': {
-                'worldwide-international': [
-                    'standard',
-                    'OpenTopoMap',
-                    'Stamen.Terrain',
-                    'Esri.WorldImagery',
-                    'wikimedia-map',
-                    'HDM_HOT',
-                    '1010', // OpenStreetMap.se (Hydda.Full)
-                    'opencylemap',
-                    '1061', // Thunderforest Outdoors
-                    '1065', // Hike & Bike Map
-                    '1016', // 4UMaps,
-                    'openmapsurfer'
-                ],
-                'worldwide-monolingual': [
-                    'osm-mapnik-german_style',
-                    'osmfr',
-                    '1017',  // Osmapa.pl - Mapa OpenStreetMap Polska
-                    '1023', // kosmosnimki.ru
-                    '1021' // sputnik.ru
-                ],
-                'europe': [
-                    'MtbMap',
-                    '1069'  // MRI (maps.refuges.info)
-                ],
-                'europe-monolingual': [
-                    'osmfr-basque',
-                    'osmfr-breton',
-                    'osmfr-occitan'
-                ],
-                'country': [
-                    {
-                        'BE': [
-                            'osmbe',
-                            'osmbe-fr',
-                            'osmbe-nl',
-                        ]
-                    },
-                    'OpenStreetMap.CH',
-                    'topplus-open',
-                    'OpenStreetMap-turistautak',
-                    {
-                        'IL': [
-                            'Israel_Hiking',
-                            'Israel_MTB',
-                        ]
-                    },
-                    'mtbmap-no',
-                    {
-                        'SK': [
-                            'Freemap.sk-Car',
-                            'Freemap.sk-Hiking',
-                            'Freemap.sk-Cyclo',
-                        ]
-                    },
-                    'osm-cambodia_laos_thailand_vietnam-bilingual'
-                ]
-            },
-            'overlays': {
-                'worldwide': [
-                    'HikeBike.HillShading',
-                    'Waymarked_Trails-Cycling',
-                    'Waymarked_Trails-Hiking',
-                    'Waymarked_Trails-MTB',
-                    'mapillary-coverage-raster'
-                ],
-                'country': [
-                    'historic-place-contours',
-                    'hu-hillshade',
-                    {
-                        'PL': [
-                            'mapaszlakow-cycle',
-                            'mapaszlakow-bike',
-                            'mapaszlakow-hike',
-                            'mapaszlakow-mtb',
-                            'mapaszlakow-incline'
-                        ]
-                    }
-                ]
+        return this;
+    },
+
+    initButtons: function () {
+       var expandTree = function (e) {
+            this.jstree.open_all();
+        };
+        var collapseTree = function (e) {
+            this.jstree.close_all();
+        };
+
+        var toggleOptionalLayers = function (e) {
+            var button = L.DomUtil.get('optional_layers_button');
+            var treeButtons = L.DomUtil.get('tree-button-group');
+            var div = L.DomUtil.get('optional-layers-tree');
+
+            div.hidden = !div.hidden;
+            treeButtons.hidden = !treeButtons.hidden;
+            button.classList.toggle('active');
+
+            if (div.hidden) {
+                this.deselectNode();
             }
         };
-        var treeData = this.toJsTree(structure);
+
+        L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
+        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
+
+        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
+    },
+
+    initJsTree: function () {
+        var layerIndex = BR.layerIndex;
+        var treeData = this.toJsTree(BR.confLayers.tree);
         var oldSelected = null;
 
         var onSelectNode = function (e, data) {
@@ -177,36 +126,6 @@ BR.LayersTab = BR.ControlLayers.extend({
                 }
             });
         this.jstree = $('#optional-layers-tree').jstree(true);
-
-        return this;
-    },
-
-    initButtons: function () {
-       var expandTree = function (e) {
-            this.jstree.open_all();
-        };
-        var collapseTree = function (e) {
-            this.jstree.close_all();
-        };
-
-        var toggleOptionalLayers = function (e) {
-            var button = L.DomUtil.get('optional_layers_button');
-            var treeButtons = L.DomUtil.get('tree-button-group');
-            var div = L.DomUtil.get('optional-layers-tree');
-
-            div.hidden = !div.hidden;
-            treeButtons.hidden = !treeButtons.hidden;
-            button.classList.toggle('active');
-
-            if (div.hidden) {
-                this.deselectNode();
-            }
-        };
-
-        L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
-        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
-
-        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
     },
 
     toJsTree: function (layerTree) {

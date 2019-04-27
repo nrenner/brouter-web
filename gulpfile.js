@@ -58,6 +58,13 @@ var paths = {
   locales: 'locales/*.json',
   layers: 'layers/**/*.geojson',
   layersDestName: 'layers.js',
+  layersConfig: [
+    'layers/config/config.js',
+    'layers/config/tree.js',
+    'layers/config/overrides.js',
+    'layers/config/geometry.js'
+  ],
+  layersConfigDestName: 'layersConf.js',
   dest: 'dist',
   destName: 'brouter-web'
 };
@@ -145,6 +152,7 @@ gulp.task('watch', function() {
     }
   });
   gulp.watch(paths.styles, ['styles']);
+  gulp.watch(paths.layersConfig, ['layers_config']);
 });
 
 // Print paths to console, for manually debugging the gulp build
@@ -278,8 +286,14 @@ gulp.task('i18next', function() {
     .pipe(gulp.dest('.'));
 })
 
+gulp.task('layers_config', function () {
+  return gulp.src(paths.layersConfig)
+  .pipe(concat(paths.layersConfigDestName))
+  .pipe(gulp.dest(paths.dest));
+});
+
 // Bundles layer files. To download and extract run "yarn layers"
-gulp.task('layers', function () {
+gulp.task('layers', ['layers_config'], function () {
   return gulp.src(paths.layers)
     // Workaround to get file extension removed from the dictionary key
     .pipe(rename({ extname: ".json" }))
