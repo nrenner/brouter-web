@@ -35,7 +35,7 @@ var paths = {
     'node_modules/jquery/dist/jquery.js',
     'node_modules/tether/dist/js/tether.js',
     'node_modules/async/lib/async.js'
-  ].concat(mainNpmFiles().filter(f => 
+  ].concat(mainNpmFiles().filter(f =>
     RegExp('.*\\.js', 'i').test(f) &&
     !RegExp('.*\\.min\\.js', 'i').test(f) &&
     !RegExp('url-search-params/.*\\.js', 'i').test(f)
@@ -49,7 +49,7 @@ var paths = {
     'js/control/*.js',
     'js/index.js'
   ]),
-  styles: mainNpmFiles().filter(f => 
+  styles: mainNpmFiles().filter(f =>
     RegExp('.*\\.css', 'i').test(f) &&
     !RegExp('.*\\.min\\.css', 'i').test(f)
   ).concat('css/*.css'),
@@ -270,7 +270,7 @@ gulp.task('i18next', function() {
         resource: {
             // the source path is relative to current working directory
             loadPath: 'locales/{{lng}}.json',
-            
+
             // the destination path is relative to your `gulp.dest()` path
             savePath: 'locales/{{lng}}.json'
         }
@@ -281,7 +281,7 @@ gulp.task('i18next', function() {
 // Bundles layer files. To download and extract run "yarn layers"
 gulp.task('layers', function () {
   return gulp.src(paths.layers)
-    // Workaround to get file extension removed from the dictionary key 
+    // Workaround to get file extension removed from the dictionary key
     .pipe(rename({ extname: ".json" }))
     .pipe(jsonConcat(paths.layersDestName, function(data){
       return Buffer.from('BR.layerIndex = ' + JSON.stringify(data, null, 2) + ';');
