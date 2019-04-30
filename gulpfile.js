@@ -298,7 +298,10 @@ gulp.task('layers', ['layers_config'], function () {
     // Workaround to get file extension removed from the dictionary key
     .pipe(rename({ extname: ".json" }))
     .pipe(jsonConcat(paths.layersDestName, function(data){
-      return Buffer.from('BR.layerIndex = ' + JSON.stringify(data, null, 2) + ';');
+      var header = '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n'
+        + '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n'
+        + '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
+      return Buffer.from(header + 'BR.layerIndex = ' + JSON.stringify(data, null, 2) + ';');
     }))
     .pipe(gulp.dest(paths.dest));
 });
