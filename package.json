@@ -48,9 +48,11 @@
     "leaflet.snogylop": "^0.4.0",
     "leaflet.stravasegments": "2.3.2",
     "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
+    "promise-polyfill": "^8.1.0",
     "seiyria-bootstrap-slider": "seiyria/bootstrap-slider#^9.8.1",
     "tether": "1.4.5",
-    "url-search-params": "~0.5.0"
+    "url-search-params": "~0.5.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -210,6 +212,11 @@
         "dist/jstree.js",
         "dist/themes/default/style.css",
         "dist/themes/default/*.png"
+      ]
+    },
+    "promise-polyfill": {
+      "main": [
+        "dist/polyfill.js"
       ]
     }
   }
