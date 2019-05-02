@@ -30,7 +30,7 @@
     "i18next": "^15.0.4",
     "i18next-browser-languagedetector": "^3.0.1",
     "i18next-xhr-backend": "^2.0.1",
-    "jquery": "3.3.1",
+    "jquery": "3.4.1",
     "jquery-i18next": "^1.2.1",
     "jstree": "^3.3.7",
     "leaflet": "~1.4.0",
