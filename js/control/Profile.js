@@ -3,7 +3,9 @@ BR.Profile = L.Evented.extend({
 
     initialize: function () {
         var textArea = L.DomUtil.get('profile_upload');
-        this.editor = CodeMirror.fromTextArea(textArea, {});
+        this.editor = CodeMirror.fromTextArea(textArea, {
+            lineNumbers: true
+        });
 
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
@@ -76,7 +78,7 @@ BR.Profile = L.Evented.extend({
             }
         });
     },
-    
+
     _setValue: function(profileText) {
         this.editor.setValue(profileText);
         this.editor.markClean();
