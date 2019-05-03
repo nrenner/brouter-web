@@ -72,10 +72,7 @@ BR.confLayers.tree = {
             {
                 'PL': [
                     'mapaszlakow-cycle',
-                    'mapaszlakow-bike',
-                    'mapaszlakow-hike',
-                    'mapaszlakow-mtb',
-                    'mapaszlakow-incline'
+                    'mapaszlakow-bike'
                 ]
             }
         ]
