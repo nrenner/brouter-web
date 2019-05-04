@@ -1,6 +1,32 @@
 BRouter-Web Changelog
 =====================
 
+## 0.8.0 (2019-05-04)
+
+See also [milestone 0.8.0](https://github.com/nrenner/brouter-web/milestone/6?closed=1)
+
+### New Features
+
+* Optional layers tree ([#146](https://github.com/nrenner/brouter-web/issues/146))
+* Let user upload GeoJSON file of nogos - by [@Phyks](https://github.com/Phyks) ([#161](https://github.com/nrenner/brouter-web/pull/161))
+* Translations: make website localizable (i18n) - by [@bagage](https://github.com/bagage) ([#63](https://github.com/nrenner/brouter-web/issues/63))
+* Fix polygon edition - by [@Phyks](https://github.com/Phyks) ([#158](https://github.com/nrenner/brouter-web/pull/158))
+* Render polygons from URL hash and pass it to BRouter server - by [@Phyks](https://github.com/Phyks) ([#157](https://github.com/nrenner/brouter-web/pull/157))
+* Start support of nogos polylines/polygons - by [@Phyks](https://github.com/Phyks) ([#148](https://github.com/nrenner/brouter-web/pull/148))
+
+### Improvements
+
+* Show line numbers in profile editor to help locating error message line ([81f2c08](https://github.com/nrenner/brouter-web/commit/81f2c0863f2569fa9079e5c96f4c9b09ef4c26e2))
+* Hide StravaSegments control when layer is not active ([eaba5a0](https://github.com/nrenner/brouter-web/commit/eaba5a08217fd026fb7f83ec7beb7c1f1fdc2d69))
+* Show strava error + update translations - by [@bagage](https://github.com/bagage) ([#163](https://github.com/nrenner/brouter-web/pull/163))
+* Replace Bower with Yarn/npm - by [@bagage](https://github.com/bagage) ([#116](https://github.com/nrenner/brouter-web/issues/116))
+* Add strava layer in overlays - by [@bagage](https://github.com/bagage) ([#152](https://github.com/nrenner/brouter-web/pull/152))
+* Fix release script - by [@bagage](https://github.com/bagage) ([#150](https://github.com/nrenner/brouter-web/pull/150))
+
+### Bugfixes
+
+* Overlays hidden under custom layer ([#143](https://github.com/nrenner/brouter-web/issues/143))
+
 ## 0.7.0 (2018-10-10)
 
 See also [milestone 0.7.0](https://github.com/nrenner/brouter-web/milestone/4?closed=1)
