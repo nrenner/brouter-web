@@ -5,7 +5,7 @@
     "bug-reports-front": "Web-Client / Frontend:",
     "contact": "Kontakt:",
     "data": "Daten:",
-    "data-description": "Dies basiert auf <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Es wird normalerweise einmal pro Woche aktualisiert, wenn ein neues Planet-File verfügbar ist. Siehe Datum von<a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+    "data-description": "Dies basiert auf <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Es wird normalerweise einmal pro Woche aktualisiert, wenn ein neues Planet-File verfügbar ist. Siehe Datum der <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">Datendateien</a>.",
     "description": "Online-Service der BRouter Routing Engine. Für die Offline-Android-App und weitere Informationen siehe <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Datenschutz-Bestimmungen</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Änderungsprotokoll</a></i> und\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">weitere Infos</a></i> zum Client.",
     "support": "Generelle Diskussionen/Fragen, Support:",
@@ -17,7 +17,7 @@
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, Quellen: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP und die GIS Benutzergemeinschaft",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Kartendaten",
-    "map-tiles": "Map tiles",
+    "map-tiles": "Kartendarstellung",
     "nominatim": "Suchen mit <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> unter <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
@@ -45,18 +45,18 @@
     "remove-selection": "Auswahl entfernen"
   },
   "loadNogos": {
-    "defaultProperties": "Default properties",
-    "file": "File: ",
-    "load": "Load",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius (for points): ",
-    "nogoWeight": "No-go weight: ",
+    "defaultProperties": "Standardeigenschaften",
+    "file": "Datei:",
+    "load": "Laden",
+    "nogoBuffer": "Puffer um No-go-Areas (in Metern):",
+    "nogoRadius": "No-go Radius (für Punkte):",
+    "nogoWeight": "No-go Gewicht:",
     "source": "Quelle",
-    "title": "Load no-go areas",
+    "title": "No-go-Areas laden",
     "url": "URL:"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap Mitarbeiter",
+    "attribution-osm-long": "OpenStreetMap-Mitwirkende",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Route löschen",
     "copyright": "Copyright",
@@ -65,7 +65,7 @@
     "delete-route": "Route löschen?",
     "draw-route-start": "Route anzeigen (D Taste)",
     "draw-route-stop": "Route entfernen (ESC Taste)",
-    "hikebike-hillshading": "Hillshading",
+    "hikebike-hillshading": "Höhenschummerung",
     "hiking": "Wandern",
     "layer": {
       "bing": "Bing Luftbild",
@@ -73,7 +73,7 @@
       "cycling": "Radfahren (markierte Routen)",
       "digitalglobe": "DigitalGlobe neueste Bilder",
       "esri": "Esri Weltbilder",
-      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
+      "hikebike-hillshading": "Höhenschummerung (Hike & Bike Map)",
       "hiking": "Wandern (markierte Routen)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
@@ -114,8 +114,8 @@
       "title": "Download"
     },
     "load": {
-      "nogos": "No-go areas",
-      "title": "Load"
+      "nogos": "No-go-Areas",
+      "title": "Laden"
     },
     "profile": {
       "car-eco": "Auto (effizient)",
@@ -131,13 +131,13 @@
       "river": "Fluss",
       "safety": "Sicherste Route",
       "shortest": "Kürzeste Route",
-      "trekking": "Trekking bike",
-      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
-      "trekking-noferries": "Trekking bike (no ferries)",
-      "trekking-nosteps": "Trekking bike (no steps)",
-      "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+      "trekking": "Trekkingrad",
+      "trekking-ignore-cr": "Trekkingrad (ignoriere Radrouten)",
+      "trekking-noferries": "Trekkingrad (keine Fähren)",
+      "trekking-nosteps": "Trekkingrad (keine Treppen)",
+      "trekking-steep": "Trekkingrad (steil)",
+      "vm-forum-liegerad-schnell": "Liegerad (schnell)",
+      "vm-forum-velomobil-schnell": "Velomobil (schnell)"
     }
   },
   "sidebar": {
@@ -152,28 +152,28 @@
     },
     "layers": {
       "category": {
-        "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
-        "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
+        "base-layers": "Grundkarten",
+        "country": "Land",
+        "europe": "Europa",
+        "europe-monolingual": "Europa einsprachig",
+        "overlays": "Überlagerungen",
+        "worldwide": "Weltweit",
+        "worldwide-international": "Weltweit international",
+        "worldwide-monolingual": "Weltweit einsprachig"
       },
-      "collapse": "Collapse all",
+      "collapse": "Alle zusammenklappen",
       "custom-layers": "Benutzerdefinierte Ebenen",
       "customize": "Benutzerdefinierte Ebenen hinzufügen oder entfernen",
-      "expand": "Expand all",
-      "optional": "Add or remove optional layers",
-      "optional-layers": "More",
+      "expand": "Alle ausklappen",
+      "optional": "Optionale Ebenen hinzufügen oder entfernen",
+      "optional-layers": "Mehr",
       "table": {
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
         "name": "Name",
         "type": "Type"
       },
-      "title": "Ebene"
+      "title": "Ebenen"
     },
     "profile": {
       "clear": "Löschen",
@@ -188,7 +188,7 @@
     "no-response": "Keine Antwort vom Server",
     "no-route-found": "Fehler: kann für angegebene Punkte keine Route finden. Vielleicht die Punkte näher an Straßen verschieben?",
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
-    "strava-error": "Error getting Strava segments: {{error}}",
+    "strava-error": "Fehler beim Laden der Strava Segmente: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   }
