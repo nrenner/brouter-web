@@ -212,8 +212,8 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'Cycleways PL',
             'mapUrl': 'http://mapaszlakow.eu/#{zoom}/{lat}/{lon}'
         },
-        'mapaszlakow-bike': {
-            'nameShort': 'Bicycle PL',
+        'mapaszlakow-routes': {
+            'nameShort': 'Routes PL',
             'mapUrl': 'http://mapaszlakow.eu/#{zoom}/{lat}/{lon}'
         }
     };

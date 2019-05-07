@@ -400,10 +400,10 @@
             "url": "http://mapaszlakow.eu/"
         },
         "country_code": "PL",
-        "id": "mapaszlakow-bike",
+        "id": "mapaszlakow-routes",
         "max_zoom": 16,
         "min_zoom": 6,
-        "name": "Bicycle (Mapa Szlaków)",
+        "name": "Routes (Mapa Szlaków)",
         "overlay": true,
         "type": "tms",
         "url": "http://mapaszlakow.eu/b{zoom}/{zoom}/{x}/{y}.png"
