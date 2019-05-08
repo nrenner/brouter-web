@@ -233,7 +233,7 @@ gulp.task('bump:html', ['release:init'], function() {
 });
 
 gulp.task('release:commit', ['bump'], function() {
-  gulp.src(['./index.html', './package.json'])
+  return gulp.src(['./index.html', './package.json'])
   .pipe(git.commit('release: '+nextVersion));
 });
 
