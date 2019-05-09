@@ -1,14 +1,14 @@
 {
   "about": {
     "bug-reports": "Rapporter un problème ou une amélioration :",
-    "bug-reports-back": "serveur, moteur de routage, appli Android, profils, site brouter.de :",
-    "bug-reports-front": "client web :",
+    "bug-reports-back": "serveur, moteur de routage, appli Android, profils, site brouter.de ;",
+    "bug-reports-front": "client web.",
     "contact": "Contact :",
     "data": "Données :",
     "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement hebdomadaire, voir <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
     "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
-    "support": "Discussions/Questions générales, support :",
+    "support": "Discussions/Questions générales, support ;",
     "title": "À propos"
   },
   "credits": {

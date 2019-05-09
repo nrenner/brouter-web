@@ -1,14 +1,14 @@
 {
   "about": {
     "bug-reports": "錯誤報告和功能需求：",
-    "bug-reports-back": "伺服器 / 後端、導航引擎、Android應用程式、設定檔、brouter.de 網站:",
-    "bug-reports-front": "網頁用戶端 / 前端:",
+    "bug-reports-back": "伺服器 / 後端、導航引擎、Android應用程式、設定檔、brouter.de 網站",
+    "bug-reports-front": "網頁用戶端 / 前端.",
     "contact": "聯絡：",
     "data": "資料:",
     "data-description": "這是一項基於 <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> 提供的服務。它通常會在每週新的 Planet 檔案發布後更新，詳見 <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">資料檔案</a>。",
     "description": "BRouter 導航引擎線上版。有關離線版 Android 應用程式及更多資訊，請見 <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>。",
     "details": "用戸端上的<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
-    "support": "一般討論/提問及技術支援:",
+    "support": "一般討論/提問及技術支援",
     "title": "關於"
   },
   "credits": {
