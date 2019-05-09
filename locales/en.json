@@ -1,14 +1,14 @@
 {
   "about": {
     "bug-reports": "Bug reports and feature requests:",
-    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site:",
-    "bug-reports-front": "web client / frontend:",
+    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
+    "bug-reports-front": "web client / frontend.",
     "contact": "Contact:",
     "data": "Data:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
+    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
-    "support": "General discussions/questions, support:",
+    "support": "General discussions/questions, support",
     "title": "About"
   },
   "credits": {
@@ -60,27 +60,14 @@
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route",
     "copyright": "Copyright",
-    "cycling": "Cycling",
     "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
     "delete-route": "Delete route?",
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
-    "hikebike-hillshading": "Hillshading",
-    "hiking": "Hiking",
     "layer": {
       "bing": "Bing Aerial",
-      "cycle": "OpenCycleMap (Thunderf.)",
-      "cycling": "Cycling (Waymarked Trails)",
       "digitalglobe": "DigitalGlobe Recent Imagery",
-      "esri": "Esri World Imagery",
-      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
-      "hiking": "Hiking (Waymarked Trails)",
-      "osm": "OpenStreetMap",
-      "osmde": "OpenStreetMap.de",
-      "outdoors": "Outdoors (Thunderforest)",
-      "stamen-terrain": "Terrain (Stamen)",
-      "strava-segments": "Strava segments",
-      "topo": "OpenTopoMap"
+      "strava-segments": "Strava segments"
     },
     "loading": "Loading…",
     "locate-me": "Show me where I am",
