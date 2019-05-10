@@ -258,6 +258,7 @@
 
         var onHashChangeCb = function(url) {
             var url2params = function (s) {
+                s = s.replace(/;/g, '|');
                 var p = {};
                 var sep = '&';
                 if (s.search('&amp;') !== -1)
@@ -296,6 +297,7 @@
         urlHash = new L.Hash(null, null);
         urlHash.additionalCb = function() {
                 var url = router.getUrl(routing.getWaypoints(), null).substr('brouter?'.length+1);
+                url = url.replace(/\|/g, ';');
                 return url.length > 0 ? '&' + url : null;
             };
         urlHash.onHashChangeCb = onHashChangeCb;
