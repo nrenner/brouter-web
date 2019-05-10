@@ -269,7 +269,7 @@ gulp.task('release', ['release:init', 'bump', 'release:commit', 'release:tag',
                       'release:push', 'release:zip', 'release:publish']);
 
 gulp.task('i18next', function() {
-  return gulp.src(['index.html', 'locales/keys.js', 'js/**/*.js'])
+  return gulp.src(['index.html', 'locales/keys.js', 'layers/config/overrides.js', 'js/**/*.js'])
     .pipe(sort())
     .pipe(scanner({
         lngs: ['en'], // we only generate English version, other languages are handled by transifex via yarn transifex-pull/push
