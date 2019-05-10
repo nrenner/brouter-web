@@ -415,9 +415,7 @@
 
                 var geoJSON = L.geoJson(turf.featureCollection(cleanedGeoJSONFeatures), {
                     onEachFeature: function (feature, layer) {
-                        if (!feature.properties.nogoWeight) {
-                            feature.properties.nogoWeight = nogoWeight;
-                        }
+                        layer.options.nogoWeight = feature.properties.nogoWeight || nogoWeight;
                     }
                 });
                 var nogosPoints = geoJSON.getLayers().filter(function (e) {

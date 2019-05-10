@@ -234,7 +234,8 @@ L.BRouter = L.Class.extend({
             s += this._formatLatLng(circle.getLatLng());
             s += L.BRouter.NUMBER_SEPARATOR;
             s += Math.round(circle.getRadius());
-            if (circle.options.nogoWeight) {
+            // -1 is default nogo exclusion, it should not be passed as a URL parameter.
+            if (circle.options.nogoWeight !== null && circle.options.nogoWeight !== -1) {
                 s += L.BRouter.NUMBER_SEPARATOR;
                 s += circle.options.nogoWeight;
             }
@@ -282,7 +283,8 @@ L.BRouter = L.Class.extend({
                 }
                 s += this._formatLatLng(vertices[j]);
             }
-            if (polyline.options.nogoWeight) {
+            // -1 is default nogo exclusion, it should not be passed as a URL parameter.
+            if (polyline.options.nogoWeight !== null && polyline.options.nogoWeight !== -1) {
                 s += L.BRouter.NUMBER_SEPARATOR;
                 s += polyline.options.nogoWeight;
             }
@@ -333,7 +335,8 @@ L.BRouter = L.Class.extend({
                 }
                 s += this._formatLatLng(vertices[j]);
             }
-            if (polygon.options.nogoWeight) {
+            // -1 is default nogo exclusion, it should not be passed as a URL parameter.
+            if (polygon.options.nogoWeight !== null && polygon.options.nogoWeight !== -1) {
                 s += L.BRouter.NUMBER_SEPARATOR;
                 s += polygon.options.nogoWeight;
             }
@@ -376,9 +379,9 @@ L.BRouter = L.Class.extend({
     // formats L.LatLng object as lng,lat string
     _formatLatLng: function(latLng) {
         var s = '';
-        s += L.Util.formatNum(latLng.lng, L.BRouter.PRECISION);
+        s += L.Util.formatNum(latLng.lng || latLng[1], L.BRouter.PRECISION);
         s += L.BRouter.NUMBER_SEPARATOR;
-        s += L.Util.formatNum(latLng.lat, L.BRouter.PRECISION);
+        s += L.Util.formatNum(latLng.lat || latLng[0], L.BRouter.PRECISION);
         return s;
     }
 });
