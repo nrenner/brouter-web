@@ -22,7 +22,7 @@
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
   "footer": {
-    "ascend": "Montée (pleine ascension)",
+    "ascend": "Dénivelé cumulé (dénivelé global)",
     "cost": "Coût (facteur coût moyen)",
     "distance": "Distance",
     "kilometer": "kilomètre",
