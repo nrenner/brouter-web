@@ -93,6 +93,7 @@
     },
     "opacity-slider": "Set transparency of route track and markers",
     "privacy": "Privacy",
+    "reverse-route": "Reverse route",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "zoomInTitle": "Zoom in",

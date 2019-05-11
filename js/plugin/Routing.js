@@ -299,4 +299,11 @@ BR.Routing = L.Routing.extend({
   ,isDrawing: function () {
       return this._draw._enabled;
   }
+
+  ,reverse: function() {
+    var waypoints = this.getWaypoints();
+    waypoints.reverse();
+    this.clear();
+    this.setWaypoints(waypoints);
+  }
 });

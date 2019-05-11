@@ -35,6 +35,7 @@
             deleteButton,
             drawToolbar,
             urlHash,
+            reverseRoute,
             saveWarningShown = false;
 
         // By default bootstrap-select use glyphicons
@@ -69,6 +70,14 @@
                 title: i18next.t('map.draw-route-start')
             }]
         });
+
+        reverseRouteButton = L.easyButton(
+            'fa-random',
+            function () {
+                routing.reverse();
+            },
+            i18next.t('map.reverse-route')
+        );
 
         deleteButton = L.easyButton(
             'fa-trash-o',
@@ -227,7 +236,7 @@
 
         routing.addTo(map);
         elevation.addBelow(map);
-
+        
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
@@ -240,7 +249,7 @@
         }
 
         nogos.addTo(map);
-        drawToolbar = L.easyBar([drawButton, nogos.getButton(), deleteButton]).addTo(map);
+        drawToolbar = L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deleteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
