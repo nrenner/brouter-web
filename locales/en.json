@@ -61,6 +61,7 @@
     "clear-route": "Clear route",
     "copyright": "Copyright",
     "cycling": "Cycling",
+    "delete-last-point": "Delete last point",
     "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
     "delete-route": "Delete route?",
     "draw-route-start": "Draw route (D key)",

@@ -32,7 +32,7 @@
             trackMessages,
             sidebar,
             drawButton,
-            deleteButton,
+            deleteRouteButton,
             drawToolbar,
             urlHash,
             reverseRoute,
@@ -79,7 +79,15 @@
             i18next.t('map.reverse-route')
         );
 
-        deleteButton = L.easyButton(
+        deletePointButton = L.easyButton(
+            'fa-undo',
+            function () {
+                routing.removeWaypoint(routing.getLast());
+            },
+            i18next.t('map.delete-last-point')
+        );
+
+        deleteRouteButton = L.easyButton(
             'fa-trash-o',
             function () {
                 bootbox.prompt({
@@ -249,7 +257,7 @@
         }
 
         nogos.addTo(map);
-        drawToolbar = L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deleteButton]).addTo(map);
+        drawToolbar = L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deletePointButton, deleteRouteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
