@@ -3485,9 +3485,9 @@ leaflet-editable@^1.1.0:
   resolved "https://registry.yarnpkg.com/leaflet-editable/-/leaflet-editable-1.2.0.tgz#a3a01001764ba58ea923381ee6a1c814708a0b84"
   integrity sha512-wG11JwpL8zqIbypTop6xCRGagMuWw68ihYu4uqrqc5Ep0wnEJeyob7NB2Rt5t74Oih4rwJ3OfwaGbzdowOGfYQ==
 
-leaflet-elevation@MrMufflon/Leaflet.Elevation#master:
+leaflet-elevation@opoto/Leaflet.Elevation#master:
   version "0.0.4"
-  resolved "https://codeload.github.com/MrMufflon/Leaflet.Elevation/tar.gz/05d24f4659e5d109d372c869a355ad2a900d7e79"
+  resolved "https://codeload.github.com/opoto/Leaflet.Elevation/tar.gz/d3a7bcbef62261138417792900d63c3091c73dbe"
 
 leaflet-plugins@~3.0.0:
   version "3.0.3"
