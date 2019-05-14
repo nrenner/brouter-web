@@ -80,7 +80,7 @@
         );
 
         deletePointButton = L.easyButton(
-            'fa-undo',
+            '<span class="fa-stack fa-lg"><i class="fa fa-map-marker fa-align-left fa-stack-1x"></i><i class="fa fa-long-arrow-left fa-stack-1x"></i></span>',
             function () {
                 routing.removeWaypoint(routing.getLast());
             },
