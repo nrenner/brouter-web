@@ -32,9 +32,10 @@
             trackMessages,
             sidebar,
             drawButton,
-            deleteButton,
+            deleteRouteButton,
             drawToolbar,
             urlHash,
+            reverseRoute,
             saveWarningShown = false;
 
         // By default bootstrap-select use glyphicons
@@ -70,7 +71,23 @@
             }]
         });
 
-        deleteButton = L.easyButton(
+        reverseRouteButton = L.easyButton(
+            'fa-random',
+            function () {
+                routing.reverse();
+            },
+            i18next.t('map.reverse-route')
+        );
+
+        deletePointButton = L.easyButton(
+            '<span class="fa-stack fa-lg"><i class="fa fa-map-marker fa-align-left fa-stack-1x"></i><i class="fa fa-long-arrow-left fa-stack-1x"></i></span>',
+            function () {
+                routing.removeWaypoint(routing.getLast());
+            },
+            i18next.t('map.delete-last-point')
+        );
+
+        deleteRouteButton = L.easyButton(
             'fa-trash-o',
             function () {
                 bootbox.prompt({
@@ -227,7 +244,7 @@
 
         routing.addTo(map);
         elevation.addBelow(map);
-
+        
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
@@ -240,7 +257,7 @@
         }
 
         nogos.addTo(map);
-        drawToolbar = L.easyBar([drawButton, nogos.getButton(), deleteButton]).addTo(map);
+        drawToolbar = L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deletePointButton, deleteRouteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
