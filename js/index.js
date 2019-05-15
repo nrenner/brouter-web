@@ -80,9 +80,9 @@
         );
 
         deletePointButton = L.easyButton(
-            '<span class="fa-stack fa-lg"><i class="fa fa-map-marker fa-align-left fa-stack-1x"></i><i class="fa fa-long-arrow-left fa-stack-1x"></i></span>',
+            '<span><i class="fa fa-caret-left"></i><i class="fa fa-map-marker" style="margin-left: 1px; color: gray;"></i></span>',
             function () {
-                routing.removeWaypoint(routing.getLast());
+                routing.removeWaypoint(routing.getLast(), function(err, data) {});
             },
             i18next.t('map.delete-last-point')
         );
