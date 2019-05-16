@@ -1,346 +1,926 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
 
-    <title data-i18n="title">BRouter web client</title>
+        <title data-i18n="title">BRouter web client</title>
 
-    <!-- inject:css -->
-    <link rel="stylesheet" href="dist/brouter-web.css" />
-    <!-- endinject -->
-</head>
-<body class="flexcolumn">
-    <nav class="navbar navbar-full navbar-dark bg-inverse">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#" data-toggle="modal" data-target="#about">BRouter-Web <sup class="version">0.8.0</sup></a>
-            <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-controls="collapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
-            <div class="nav navbar-nav">
-                <form class="nav-item form-inline">
-                    <div class="form-group">
-                        <select class="selectpicker show-tick" data-width="250px" id="profile-alternative" multiple>
-                            <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
-                                <option data-i18n="navbar.profile.custom">Custom</option>
-                            </optgroup>
-                            <optgroup label="Alternative" data-max-options="1" data-icon="fa-random" id="alternative">
-                                <option data-i18n="navbar.alternative.original" value="0" selected>Original</option>
-                                <option data-i18n="navbar.alternative.first" value="1">1st alternative</option>
-                                <option data-i18n="navbar.alternative.second" value="2">2nd alternative</option>
-                                <option data-i18n="navbar.alternative.third" value="3">3rd alternative</option>
-                            </optgroup>
-                        </select>
+        <!-- inject:css -->
+        <link rel="stylesheet" href="dist/brouter-web.css" />
+        <!-- endinject -->
+    </head>
+    <body class="flexcolumn">
+        <nav class="navbar navbar-full navbar-dark bg-inverse">
+            <div class="navbar-header">
+                <a
+                    class="navbar-brand"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#about"
+                    >BRouter-Web <sup class="version">0.8.0</sup></a
+                >
+                <button
+                    class="navbar-toggler hidden-md-up"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapsingNavbar"
+                    aria-controls="collapsingNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="fa fa-bars"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
+                <div class="nav navbar-nav">
+                    <form class="nav-item form-inline">
+                        <div class="form-group">
+                            <select
+                                class="selectpicker show-tick"
+                                data-width="250px"
+                                id="profile-alternative"
+                                multiple
+                            >
+                                <optgroup
+                                    label="Profile"
+                                    data-max-options="1"
+                                    data-icon="fa-bicycle"
+                                    id="profile"
+                                >
+                                    <option data-i18n="navbar.profile.custom"
+                                        >Custom</option
+                                    >
+                                </optgroup>
+                                <optgroup
+                                    label="Alternative"
+                                    data-max-options="1"
+                                    data-icon="fa-random"
+                                    id="alternative"
+                                >
+                                    <option
+                                        data-i18n="navbar.alternative.original"
+                                        value="0"
+                                        selected
+                                        >Original</option
+                                    >
+                                    <option
+                                        data-i18n="navbar.alternative.first"
+                                        value="1"
+                                        >1st alternative</option
+                                    >
+                                    <option
+                                        data-i18n="navbar.alternative.second"
+                                        value="2"
+                                        >2nd alternative</option
+                                    >
+                                    <option
+                                        data-i18n="navbar.alternative.third"
+                                        value="3"
+                                        >3rd alternative</option
+                                    >
+                                </optgroup>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href=""
+                            data-toggle="dropdown"
+                            href="#"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <span
+                                class="fa fa-lg fa-cloud-download"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <span data-i18n="navbar.download.title"
+                                >Download</span
+                            >
+                        </a>
+                        <div class="dropdown-menu">
+                            <a
+                                class="dropdown-item"
+                                data-i18n="navbar.download.gpx"
+                                id="dl-gpx"
+                                href="#"
+                                disabled
+                                >GPX</a
+                            >
+                            <a
+                                class="dropdown-item"
+                                data-i18n="navbar.download.kml"
+                                id="dl-kml"
+                                href="#"
+                                disabled
+                                >KML</a
+                            >
+                            <a
+                                class="dropdown-item"
+                                data-i18n="navbar.download.geojson"
+                                id="dl-geojson"
+                                href="#"
+                                disabled
+                                >GeoJSON</a
+                            >
+                            <a
+                                class="dropdown-item"
+                                data-i18n="navbar.download.csv"
+                                id="dl-csv"
+                                href="#"
+                                disabled
+                                >data CSV</a
+                            >
+                        </div>
                     </div>
-                </form>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="fa fa-lg fa-cloud-download" aria-hidden="true">
-                        </span>
-                        <span data-i18n="navbar.download.title">Download</span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" data-i18n="navbar.download.gpx" id="dl-gpx" href="#" disabled>GPX</a>
-                        <a class="dropdown-item" data-i18n="navbar.download.kml" id="dl-kml" href="#" disabled>KML</a>
-                        <a class="dropdown-item" data-i18n="navbar.download.geojson" id="dl-geojson" href="#" disabled>GeoJSON</a>
-                        <a class="dropdown-item" data-i18n="navbar.download.csv" id="dl-csv" href="#" disabled>data CSV</a>
+                    <div class="nav-item dropdown">
+                        <a
+                            class="nav-link dropdown-toggle"
+                            href=""
+                            data-toggle="dropdown"
+                            href="#"
+                            role="button"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                        >
+                            <span
+                                class="fa fa-lg fa-cloud-upload"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <span data-i18n="navbar.load.title">Load</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a
+                                class="dropdown-item"
+                                data-i18n="navbar.load.nogos"
+                                data-toggle="modal"
+                                data-target="#loadNogos"
+                                href="#"
+                                >No-go areas</a
+                            >
+                        </div>
+                    </div>
+                    <div class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="#"
+                            data-toggle="modal"
+                            data-target="#about"
+                            ><span
+                                class="fa fa-lg fa-info-circle"
+                                aria-hidden="true"
+                            ></span
+                            ><span data-i18n="navbar.about">About</span></a
+                        >
                     </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="fa fa-lg fa-cloud-upload" aria-hidden="true">
-                        </span>
-                        <span data-i18n="navbar.load.title">Load</span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" data-i18n="navbar.load.nogos" data-toggle="modal" data-target="#loadNogos" href="#">No-go areas</a>
+            </div>
+        </nav>
+
+        <!-- Credits modal window -->
+        <div
+            class="modal fade"
+            id="credits"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="Credits window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-i18n="credits">Credits</h4>
                     </div>
-                </div>
-                <div class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="modal" data-target="#about"><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span><span data-i18n="navbar.about">About</span></a>
+                    <div class="modal-body">
+                        <dl>
+                            <dt data-i18n="credits.brouter">BRouter</dt>
+                            <dd data-i18n="[html]credits.brouter-license">
+                                <a
+                                    target="_blank"
+                                    href="http://brouter.de/brouter"
+                                    >BRouter</a
+                                >
+                                &copy; Arndt Brenschede
+                            </dd>
+                            <dt data-i18n="credits.map-data">Map data</dt>
+                            <dd data-i18n="[html]credits.openstreetmap">
+                                &copy;
+                                <a
+                                    target="_blank"
+                                    href="https://www.openstreetmap.org/copyright"
+                                    >OpenStreetMap contributors</a
+                                >
+                                under
+                                <a
+                                    target="_blank"
+                                    href="https://opendatacommons.org/licenses/odbl/"
+                                    >ODbL</a
+                                >
+                            </dd>
+                            <dd data-i18n="[html]credits.nominatim">
+                                Search by
+                                <a
+                                    href="https://wiki.openstreetmap.org/wiki/Nominatim"
+                                    target="_blank"
+                                    >Nominatim</a
+                                >
+                            </dd>
+                        </dl>
+                        <h5 data-i18n="credits.map-tiles">Map tiles</h5>
+                        <dl id="credits-maps"></dl>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
 
-    <!-- Credits modal window -->
-    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="Credits window" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" data-i18n="credits">Credits</h4>
-                </div>
-                <div class="modal-body">
-                    <dl>
-                        <dt data-i18n="credits.brouter">BRouter</dt>
-                        <dd data-i18n="[html]credits.brouter-license">
-                            <a target="_blank" href="http://brouter.de/brouter">BRouter</a> &copy; Arndt Brenschede
-                        </dd>
-                        <dt data-i18n="credits.map-data">Map data</dt>
-                        <dd data-i18n="[html]credits.openstreetmap">
-                            &copy; <a target="_blank" href="https://www.openstreetmap.org/copyright" >OpenStreetMap contributors</a>
-                            under <a target="_blank" href="https://opendatacommons.org/licenses/odbl/" >ODbL</a>
-                        </dd>
-                        <dd data-i18n="[html]credits.nominatim">
-                            Search by <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>
-                        </dd>
-                    </dl>
-                    <h5 data-i18n="credits.map-tiles">Map tiles</h5>
-                    <dl id="credits-maps"></dl>
+        <!-- Layers modal window -->
+        <div
+            class="modal fade"
+            id="custom_layers"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="Layers window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-i18n="layers.customize">
+                            Customize layers
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="layer_name"
+                            spellcheck="true"
+                            wrap="off"
+                            data-i18n="[placeholder]layers.placeholder-layer-name"
+                            placeholder="Custom layer name. (ex: OpenStreetMap)"
+                        />
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="layer_url"
+                            spellcheck="false"
+                            wrap="off"
+                            data-i18n="[placeholder]layers.placeholder-layer-url"
+                            placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"
+                        />
+
+                        <button
+                            type="button"
+                            id="custom_layers_add_base"
+                            class="btn btn-success"
+                            data-i18n="layers.add-base"
+                        >
+                            Add base layer
+                        </button>
+                        <button
+                            type="button"
+                            id="custom_layers_add_overlay"
+                            class="btn btn-success"
+                            data-i18n="layers.add-overlay"
+                        >
+                            Add overlay
+                        </button>
+                        <button
+                            type="button"
+                            id="custom_layers_remove"
+                            class="btn btn-danger"
+                            data-i18n="layers.remove-selection"
+                        >
+                            Remove selection
+                        </button>
+                        <table id="custom_layers_table"></table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Layers modal window -->
-    <div class="modal fade" id="custom_layers" tabindex="-1" role="dialog" aria-labelledby="Layers window" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" data-i18n="layers.customize">Customize layers</h4>
-                </div>
-                <div class="modal-body">
-                    <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" data-i18n="[placeholder]layers.placeholder-layer-name"  placeholder="Custom layer name. (ex: OpenStreetMap)"></input>
-                    <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" data-i18n="[placeholder]layers.placeholder-layer-url" placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"></input>
+        <!-- About modal window -->
+        <div
+            class="modal fade"
+            id="about"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="About window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-i18n="about.title">
+                            About
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="[html]about.description">
+                            Online service of the BRouter routing engine. For
+                            the offline Android app and more information see
+                            <a href="http://brouter.de/" target="_blank"
+                                >brouter.de</a
+                            >.
+                        </p>
+                        <p><i data-i18n="about.contact">Contact:</i><br /></p>
 
-                    <button type="button" id="custom_layers_add_base" class="btn btn-success" data-i18n="layers.add-base">Add base layer</button>
-                    <button type="button" id="custom_layers_add_overlay" class="btn btn-success" data-i18n="layers.add-overlay">Add overlay</button>
-                    <button type="button" id="custom_layers_remove" class="btn btn-danger" data-i18n="layers.remove-selection">Remove selection</button>
-                    <table id="custom_layers_table"></table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- About modal window -->
-    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="About window" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" data-i18n="about.title">About</h4>
-                </div>
-                <div class="modal-body">
-                    <p data-i18n="[html]about.description">Online service of the BRouter routing engine. For the offline Android app and more information
-                        see <a href="http://brouter.de/" target="_blank">brouter.de</a>.</p>
-                    <p>
-                        <i data-i18n="about.contact">Contact:</i><br>
                         <ul>
-                            <li><a href="https://groups.google.com/group/osm-android-bikerouting" target="_blank"><span data-i18n="about.support">General discussions/questions, support</span></a></li>
-                            <li><span data-i18n="about.bug-reports">Bug reports and feature requests:</span>
+                            <li>
+                                <a
+                                    href="https://groups.google.com/group/osm-android-bikerouting"
+                                    target="_blank"
+                                    ><span data-i18n="about.support"
+                                        >General discussions/questions,
+                                        support</span
+                                    ></a
+                                >
+                            </li>
+                            <li>
+                                <span data-i18n="about.bug-reports"
+                                    >Bug reports and feature requests:</span
+                                >
                                 <ul>
-                                    <li><a href="https://github.com/abrensch/brouter/issues" target="_blank">
-                                        <span data-i18n="about.bug-reports-back">server/backend, routing engine, Android app, profiles, brouter.de site</span>
-                                    </a></li>
-                                    <li><a href="https://github.com/nrenner/brouter-web/issues" target="_blank">
-                                        <span data-i18n="about.bug-reports-front">web client/frontend.</span>
-                                    </a></li>
+                                    <li>
+                                        <a
+                                            href="https://github.com/abrensch/brouter/issues"
+                                            target="_blank"
+                                        >
+                                            <span
+                                                data-i18n="about.bug-reports-back"
+                                                >server/backend, routing engine,
+                                                Android app, profiles,
+                                                brouter.de site</span
+                                            >
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="https://github.com/nrenner/brouter-web/issues"
+                                            target="_blank"
+                                        >
+                                            <span
+                                                data-i18n="about.bug-reports-front"
+                                                >web client/frontend.</span
+                                            >
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
-                    </p>
-                    <p>
-                        <i data-i18n="about.data">Data:</i>
-                        <div data-i18n="[html]about.data-description">
-                            This is based on <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available,
-                            see dates of <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
-                        </div>
-                    </p>
-                    <p data-i18n="[html]about.details">
-                        <i><a href="http://brouter.de/privacypolicy.html" target="_blank">Privacy Policy</a></i>,
-                        <i><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank">Credits</a></i>,
-                        <i><a href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md" target="_blank">Changelog</a></i> and
-                        <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i> on the client.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Load nogos modal window -->
-    <div class="modal fade" id="loadNogos" tabindex="-1" role="dialog" aria-labelledby="Load nogos window" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" data-i18n="loadNogos.title">Load no-go areas</h4>
-                </div>
-                <div class="modal-body">
-                    <p id="nogoError" style="display: none;"></p>
-                    <form>
-                        <fieldset>
-                            <legend data-i18n="loadNogos.source">Source</legend>
-                            <p>
-                                <label for="nogoURL" data-i18n="loadNogos.url">URL: </label>
-                                <input type="text" name="nogoURL" id="nogoURL" /><br/>
-                                or<br/>
-                                <label for="nogoFile" data-i18n="loadNogos.file">File: </label>
-                                <input type="file" name="nogoFile" id="nogoFile" />
-                            </p>
-                        </fieldset>
-                        <fieldset>
-                            <legend data-i18n="loadNogos.defaultProperties">Default properties</legend>
-                            <p>
-                                <label for="nogoWeight" data-i18n="loadNogos.nogoWeight">No-go weight: </label>
-                                <input type="number" name="nogoWeight" id="nogoWeight" value="-1" />
-                            </p>
-                            <p>
-                                <label for="nogoRadius" data-i18n="loadNogos.nogoRadius">No-go radius (for points): </label>
-                                <input type="number" name="nogoRadius" id="nogoRadius" value="20" />
-                            </p>
-                            <p>
-                                <label for="nogoBuffer" data-i18n="loadNogos.nogoBuffer">Buffer no-go areas (in meters): </label>
-                                <input type="number" name="nogoBuffer" id="nogoBuffer" value="0" />
-                            </p>
-                        </fieldset>
-                        <p style="margin-top: 1em; text-align: center;">
-                            <input type="submit" data-i18n="[value]loadNogos.load" value="Load" id="submitNogos" />
+                        <p>
+                            <i data-i18n="about.data">Data:</i>
                         </p>
-                    </form>
+
+                        <div data-i18n="[html]about.data-description">
+                            This is based on
+                            <a
+                                href="https://www.openstreetmap.org"
+                                target="_blank"
+                                >OpenStreetMap</a
+                            >. It is usually updated once a week when a new
+                            Planet file is available, see dates of
+                            <a
+                                href="http://brouter.de/brouter/segments4/"
+                                target="_blank"
+                                >data files</a
+                            >.
+                        </div>
+                        <p data-i18n="[html]about.details">
+                            <i
+                                ><a
+                                    href="http://brouter.de/privacypolicy.html"
+                                    target="_blank"
+                                    >Privacy Policy</a
+                                ></i
+                            >,
+                            <i
+                                ><a
+                                    href="https://github.com/nrenner/brouter-web#credits-and-licenses"
+                                    target="_blank"
+                                    >Credits</a
+                                ></i
+                            >,
+                            <i
+                                ><a
+                                    href="https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md"
+                                    target="_blank"
+                                    >Changelog</a
+                                ></i
+                            >
+                            and
+                            <i
+                                ><a
+                                    href="https://github.com/nrenner/brouter-web#readme"
+                                    target="_blank"
+                                    >more info</a
+                                ></i
+                            >
+                            on the client.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="content" class="flexcolumn flexgrow">
-        <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
-            <ul role="tablist">
-                <li><a href="#tab_layers_control" role="tab" data-i18n="[title]sidebar.layers.title" title="Layers">
-                        <!--
+        <!-- Load nogos modal window -->
+        <div
+            class="modal fade"
+            id="loadNogos"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="Load nogos window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-i18n="loadNogos.title">
+                            Load no-go areas
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="nogoError" style="display: none;"></p>
+                        <form>
+                            <fieldset>
+                                <legend data-i18n="loadNogos.source">
+                                    Source
+                                </legend>
+                                <p>
+                                    <label
+                                        for="nogoURL"
+                                        data-i18n="loadNogos.url"
+                                        >URL:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="nogoURL"
+                                        id="nogoURL"
+                                    /><br />
+                                    or<br />
+                                    <label
+                                        for="nogoFile"
+                                        data-i18n="loadNogos.file"
+                                        >File:
+                                    </label>
+                                    <input
+                                        type="file"
+                                        name="nogoFile"
+                                        id="nogoFile"
+                                    />
+                                </p>
+                            </fieldset>
+                            <fieldset>
+                                <legend data-i18n="loadNogos.defaultProperties">
+                                    Default properties
+                                </legend>
+                                <p>
+                                    <label
+                                        for="nogoWeight"
+                                        data-i18n="loadNogos.nogoWeight"
+                                        >No-go weight:
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="nogoWeight"
+                                        id="nogoWeight"
+                                        value="-1"
+                                    />
+                                </p>
+                                <p>
+                                    <label
+                                        for="nogoRadius"
+                                        data-i18n="loadNogos.nogoRadius"
+                                        >No-go radius (for points):
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="nogoRadius"
+                                        id="nogoRadius"
+                                        value="20"
+                                    />
+                                </p>
+                                <p>
+                                    <label
+                                        for="nogoBuffer"
+                                        data-i18n="loadNogos.nogoBuffer"
+                                        >Buffer no-go areas (in meters):
+                                    </label>
+                                    <input
+                                        type="number"
+                                        name="nogoBuffer"
+                                        id="nogoBuffer"
+                                        value="0"
+                                    />
+                                </p>
+                            </fieldset>
+                            <p style="margin-top: 1em; text-align: center;">
+                                <input
+                                    type="submit"
+                                    data-i18n="[value]loadNogos.load"
+                                    value="Load"
+                                    id="submitNogos"
+                                />
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content" class="flexcolumn flexgrow">
+            <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
+                <ul role="tablist">
+                    <li>
+                        <a
+                            href="#tab_layers_control"
+                            role="tab"
+                            data-i18n="[title]sidebar.layers.title"
+                            title="Layers"
+                        >
+                            <!--
                         https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
                         MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
                         modifications: line gap -0.5, stroke-width +0.2
                         -->
-                        <svg class="fa" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon style="fill: currentColor" points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 11.5 12 16.5 22 11.5"></polyline>
-                            <polyline points="2 16 12 21 22 16"></polyline>
-                        </svg>
-                    </a></li>
-                <li hidden><a href="#tab_itinerary" role="tab" data-i18n="[title]sidebar.itinerary.title" title="Itinerary"><i class="fa fa-map-signs"></i></a></li>
-                <li><a href="#tab_profile" role="tab" data-i18n="[title]sidebar.custom-profile.title" title="Custom profile"><i class="fa fa-wrench"></i></a></li>
-                <li><a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"><i class="fa fa-table"></i></a></li>
-            </ul>
-        </div>
-
-        <div class="leaflet-sidebar-flex-row flexgrow">
-            <div id="map" class="leaflet-sidebar-map">
-                <div id="message"></div>
+                            <svg
+                                class="fa"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <polygon
+                                    style="fill: currentColor"
+                                    points="12 2 2 7 12 12 22 7 12 2"
+                                ></polygon>
+                                <polyline
+                                    points="2 11.5 12 16.5 22 11.5"
+                                ></polyline>
+                                <polyline points="2 16 12 21 22 16"></polyline>
+                            </svg>
+                        </a>
+                    </li>
+                    <li hidden>
+                        <a
+                            href="#tab_itinerary"
+                            role="tab"
+                            data-i18n="[title]sidebar.itinerary.title"
+                            title="Itinerary"
+                            ><i class="fa fa-map-signs"></i
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="#tab_profile"
+                            role="tab"
+                            data-i18n="[title]sidebar.custom-profile.title"
+                            title="Custom profile"
+                            ><i class="fa fa-wrench"></i
+                        ></a>
+                    </li>
+                    <li>
+                        <a
+                            href="#tab_data"
+                            role="tab"
+                            data-i18n="[title]sidebar.data.title"
+                            title="Data"
+                            ><i class="fa fa-table"></i
+                        ></a>
+                    </li>
+                </ul>
             </div>
 
-            <div id="sidebar" class="leaflet-sidebar collapsed">
+            <div class="leaflet-sidebar-flex-row flexgrow">
+                <div id="map" class="leaflet-sidebar-map">
+                    <div id="message"></div>
+                </div>
 
-                <div class="leaflet-sidebar-content">
-                    <div class="leaflet-sidebar-pane" id="tab_layers_control">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.layers.title">Layers</span></h1>
-                        <div id="layers-control-wrapper"></div>
-                        <div class="leaflet-control-layers-separator"></div>
-                        <div id="layers-button-group">
-                            <div hidden id="tree-button-group">
-                                <button type="button" id="expand_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.expand" title="Expand all"><span class="fa fa-plus-square-o"></span></button>
-                                <button type="button" id="collapse_tree_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.collapse" title="Collapse all"><span class="fa fa-minus-square-o"></span></button>
+                <div id="sidebar" class="leaflet-sidebar collapsed">
+                    <div class="leaflet-sidebar-content">
+                        <div
+                            class="leaflet-sidebar-pane"
+                            id="tab_layers_control"
+                        >
+                            <h1 class="leaflet-sidebar-header">
+                                <span class="leaflet-sidebar-close"
+                                    ><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.layers.title"
+                                    >Layers</span
+                                >
+                            </h1>
+                            <div id="layers-control-wrapper"></div>
+                            <div class="leaflet-control-layers-separator"></div>
+                            <div id="layers-button-group">
+                                <div hidden id="tree-button-group">
+                                    <button
+                                        type="button"
+                                        id="expand_tree_button"
+                                        class="btn btn-sm"
+                                        data-i18n="[title]sidebar.layers.expand"
+                                        title="Expand all"
+                                    >
+                                        <span
+                                            class="fa fa-plus-square-o"
+                                        ></span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id="collapse_tree_button"
+                                        class="btn btn-sm"
+                                        data-i18n="[title]sidebar.layers.collapse"
+                                        title="Collapse all"
+                                    >
+                                        <span
+                                            class="fa fa-minus-square-o"
+                                        ></span>
+                                    </button>
+                                </div>
+                                <!-- empty dummy to keep following buttons right-aligned when previous hidden -->
+                                <div></div>
+                                <div>
+                                    <button
+                                        type="button"
+                                        id="optional_layers_button"
+                                        class="btn btn-sm"
+                                        data-i18n="[title]sidebar.layers.optional"
+                                        title="Add or remove optional layers"
+                                    >
+                                        <span class="fa fa-cogs"></span>
+                                        <span
+                                            data-i18n="sidebar.layers.optional-layers"
+                                            >More</span
+                                        >
+                                    </button>
+                                    <button
+                                        type="button"
+                                        id="custom_layers_button"
+                                        class="btn btn-sm"
+                                        data-i18n="[title]sidebar.layers.customize"
+                                        title="Add or remove custom layers"
+                                    >
+                                        <span class="fa fa-plus-square"></span>
+                                        <span
+                                            data-i18n="sidebar.layers.custom-layers"
+                                            >Custom layers</span
+                                        >
+                                    </button>
+                                </div>
                             </div>
-                            <!-- empty dummy to keep following buttons right-aligned when previous hidden -->
-                            <div></div>
-                            <div>
-                                <button type="button" id="optional_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.optional" title="Add or remove optional layers"><span class="fa fa-cogs"></span> <span data-i18n="sidebar.layers.optional-layers">More</span></button>
-                                <button type="button" id="custom_layers_button" class="btn btn-sm" data-i18n="[title]sidebar.layers.customize" title="Add or remove custom layers"><span class="fa fa-plus-square"></span> <span data-i18n="sidebar.layers.custom-layers">Custom layers</span></button>
-                            </div>
+                            <div hidden id="optional-layers-tree"></div>
                         </div>
-                        <div hidden id="optional-layers-tree"></div>
-                    </div>
 
-                    <div class="leaflet-sidebar-pane" id="tab_profile">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.custom-profile.title">Custom profile</span></h1>
-                        <form class="flexcolumn flexgrow">
-                            <textarea class="form-control flexgrow" id="profile_upload" spellcheck="false" wrap="off" data-i18n="[placeholder]sidebar.profile.placeholder" placeholder="Write your custom profile here."></textarea>
-                            <div id="profile_message"></div>
-                            <div class="form-group" id="profile_buttons">
-                                 <button id="upload" type="button" class="btn btn-sm" data-uploading-text="Uploading…"><span class="fa fa-cloud-upload"></span> <span data-i18n="sidebar.profile.upload">Upload</span></button>
-                                 <button id="clear" type="button" class="btn btn-sm"><span class="fa fa-eraser"></span> <span data-i18n="sidebar.profile.clear">Clear</span></button>
-                                 <a href="http://brouter.de/brouter/costfunctions.html" target="_blank" class="btn btn-sm btn-info pull-right"><span class="fa fa-question"></span> <span data-i18n="sidebar.profile.help">Help</span></a>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="leaflet-sidebar-pane" id="tab_profile">
+                            <h1 class="leaflet-sidebar-header">
+                                <span class="leaflet-sidebar-close"
+                                    ><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.custom-profile.title"
+                                    >Custom profile</span
+                                >
+                            </h1>
+                            <form class="flexcolumn flexgrow">
+                                <textarea
+                                    class="form-control flexgrow"
+                                    id="profile_upload"
+                                    spellcheck="false"
+                                    wrap="off"
+                                    data-i18n="[placeholder]sidebar.profile.placeholder"
+                                    placeholder="Write your custom profile here."
+                                ></textarea>
+                                <div id="profile_message"></div>
+                                <div class="form-group" id="profile_buttons">
+                                    <button
+                                        id="upload"
+                                        type="button"
+                                        class="btn btn-sm"
+                                        data-uploading-text="Uploading…"
+                                    >
+                                        <span class="fa fa-cloud-upload"></span>
+                                        <span data-i18n="sidebar.profile.upload"
+                                            >Upload</span
+                                        >
+                                    </button>
+                                    <button
+                                        id="clear"
+                                        type="button"
+                                        class="btn btn-sm"
+                                    >
+                                        <span class="fa fa-eraser"></span>
+                                        <span data-i18n="sidebar.profile.clear"
+                                            >Clear</span
+                                        >
+                                    </button>
+                                    <a
+                                        href="http://brouter.de/brouter/costfunctions.html"
+                                        target="_blank"
+                                        class="btn btn-sm btn-info pull-right"
+                                        ><span class="fa fa-question"></span>
+                                        <span data-i18n="sidebar.profile.help"
+                                            >Help</span
+                                        ></a
+                                    >
+                                </div>
+                            </form>
+                        </div>
 
-                    <div class="leaflet-sidebar-pane" id="tab_data">
-                        <h1 class="leaflet-sidebar-header"><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span><span data-i18n="sidebar.data.title">Data</span></h1>
-                        <table id="datatable" class="mini cell-border hover stripe"></table>
-                    </div>
+                        <div class="leaflet-sidebar-pane" id="tab_data">
+                            <h1 class="leaflet-sidebar-header">
+                                <span class="leaflet-sidebar-close"
+                                    ><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.data.title"
+                                    >Data</span
+                                >
+                            </h1>
+                            <table
+                                id="datatable"
+                                class="mini cell-border hover stripe"
+                            ></table>
+                        </div>
 
-                    <div class="leaflet-sidebar-pane" id="tab_itinerary">
-                        <h1 class="leaflet-sidebar-header"><span data-i18n="sidebar.itinerary.title">Itinerary</span><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span></h1>
-                        <div id="itinerary" class="flexcolumn flexgrow">
+                        <div class="leaflet-sidebar-pane" id="tab_itinerary">
+                            <h1 class="leaflet-sidebar-header">
+                                <span data-i18n="sidebar.itinerary.title"
+                                    >Itinerary</span
+                                ><span class="leaflet-sidebar-close"
+                                    ><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i
+                                ></span>
+                            </h1>
+                            <div
+                                id="itinerary"
+                                class="flexcolumn flexgrow"
+                            ></div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="collapse" id="elevation-chart"></div>
+        <div class="collapse" id="elevation-chart"></div>
 
-    <footer>
-        <div class="flexrow">
-            <ul id="stats">
-                <li>
-                    <div class="text-muted small hidden-sm-down" data-i18n="footer.distance">Distance</div>
-                    <p class="stats-label"><span id="distance">0</span> <abbr data-i18n="[title]footer.kilometer;footer.kilometer-abbrev" title="kilometer">km</abbr></p>
-                </li>
-                <li hidden>
-                    <div class="text-muted small hidden-sm-down" data-i18n="footer.travel-time">Travel time</div>
-                    <p class="stats-label"><span id="totaltime">0</span> <abbr data-i18n="[title]footer.minutes;footer.minutes-abbrev" title="minutes">min</abbr></p>
-                </li>
-                <li hidden>
-                    <div class="text-muted small hidden-sm-down" data-i18n="footer.total-energy">Total Energy (per 100km)</div>
-                    <p class="stats-label"><span id="totalenergy">0 (0)</span> <abbr data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev" title="kilowatt hour">kWh</abbr></p>
-                </li>
-                <li>
-                    <div class="text-muted small hidden-sm-down" data-i18n="footer.ascend">Ascend (Plain ascend)</div>
-                    <p class="stats-label"><span id="ascend">0 (0)</span> <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meter">m</abbr></p>
-                </li>
-                <li>
-                    <div class="text-muted small hidden-sm-down" data-i18n="footer.cost">Cost (Mean cost factor)</div>
-                    <p class="stats-label"><span id="cost">- (-)</span></p>
-                </li>
-            </ul>
+        <footer>
+            <div class="flexrow">
+                <ul id="stats">
+                    <li>
+                        <div
+                            class="text-muted small hidden-sm-down"
+                            data-i18n="footer.distance"
+                        >
+                            Distance
+                        </div>
+                        <p class="stats-label">
+                            <span id="distance">0</span>
+                            <abbr
+                                data-i18n="[title]footer.kilometer;footer.kilometer-abbrev"
+                                title="kilometer"
+                                >km</abbr
+                            >
+                        </p>
+                    </li>
+                    <li hidden>
+                        <div
+                            class="text-muted small hidden-sm-down"
+                            data-i18n="footer.travel-time"
+                        >
+                            Travel time
+                        </div>
+                        <p class="stats-label">
+                            <span id="totaltime">0</span>
+                            <abbr
+                                data-i18n="[title]footer.minutes;footer.minutes-abbrev"
+                                title="minutes"
+                                >min</abbr
+                            >
+                        </p>
+                    </li>
+                    <li hidden>
+                        <div
+                            class="text-muted small hidden-sm-down"
+                            data-i18n="footer.total-energy"
+                        >
+                            Total Energy (per 100km)
+                        </div>
+                        <p class="stats-label">
+                            <span id="totalenergy">0 (0)</span>
+                            <abbr
+                                data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
+                                title="kilowatt hour"
+                                >kWh</abbr
+                            >
+                        </p>
+                    </li>
+                    <li>
+                        <div
+                            class="text-muted small hidden-sm-down"
+                            data-i18n="footer.ascend"
+                        >
+                            Ascend (Plain ascend)
+                        </div>
+                        <p class="stats-label">
+                            <span id="ascend">0 (0)</span>
+                            <abbr
+                                data-i18n="[title]footer.meter;footer.meter-abbrev"
+                                title="meter"
+                                >m</abbr
+                            >
+                        </p>
+                    </li>
+                    <li>
+                        <div
+                            class="text-muted small hidden-sm-down"
+                            data-i18n="footer.cost"
+                        >
+                            Cost (Mean cost factor)
+                        </div>
+                        <p class="stats-label"><span id="cost">- (-)</span></p>
+                    </li>
+                </ul>
 
-            <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#elevation-chart" aria-controls="elevation-chart" id="elevation-btn" aria-expanded="false" aria-label="Toggle elevation chart">
-                <span class="fa fa-area-chart"></span>
-            </button>
-        </div>
-    </footer>
+                <button
+                    class="btn btn-secondary btn-sm"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#elevation-chart"
+                    aria-controls="elevation-chart"
+                    id="elevation-btn"
+                    aria-expanded="false"
+                    aria-label="Toggle elevation chart"
+                >
+                    <span class="fa fa-area-chart"></span>
+                </button>
+            </div>
+        </footer>
 
-    <script>
-        // global package prefix for BRouter web application
-        BR = {};
+        <script>
+            // global package prefix for BRouter web application
+            BR = {};
 
-        console.log('\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n');
-    </script>
+            console.log(
+                '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'
+            );
+        </script>
 
-    <script src="dist/url-search-params.js"></script>
-    <script src="config.js"></script>
-    <script src="keys.js"></script>
-    <script src="dist/layers.js"></script>
-    <script src="dist/layersConf.js"></script>
+        <script src="dist/url-search-params.js"></script>
+        <script src="config.js"></script>
+        <script src="keys.js"></script>
+        <script src="dist/layers.js"></script>
+        <script src="dist/layersConf.js"></script>
 
-    <!-- "gulp inject" for debugging -->
-    <!-- inject:js -->
-    <script src="dist/brouter-web.js"></script>
-    <!-- endinject -->
-  </body>
+        <!-- "gulp inject" for debugging -->
+        <!-- inject:js -->
+        <script src="dist/brouter-web.js"></script>
+        <!-- endinject -->
+    </body>
 </html>

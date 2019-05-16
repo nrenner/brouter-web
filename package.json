@@ -1,223 +1,232 @@
 {
-  "name": "brouter-web",
-  "version": "0.8.0",
-  "description": "Web client for BRouter",
-  "main": "js/index.js",
-  "scripts": {
-    "build": "gulp",
-    "transifex-push": "gulp i18next && tx push --source",
-    "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
-    "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nrenner/brouter-web.git"
-  },
-  "license": "MIT",
-  "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, Explorer >= 10, Android >= 4.1, Safari >= 7, iOS >= 7",
-  "dependencies": {
-    "@mapbox/polyline": "^0.2.0",
-    "@turf/turf": "^5.1.6",
-    "async": "~0.9.2",
-    "bootbox": "~4.4.0",
-    "bootstrap": "4.0.0-alpha.5",
-    "bootstrap-select": "hugdx/bootstrap-select#patch-1",
-    "codemirror": "^5.35.0",
-    "d3": "~3.5.5",
-    "datatables": "~1.10.16",
-    "font-awesome": "^4.7.0",
-    "i18next": "^15.0.4",
-    "i18next-browser-languagedetector": "^3.0.1",
-    "i18next-xhr-backend": "^2.0.1",
-    "jquery": "3.4.1",
-    "jquery-i18next": "^1.2.1",
-    "jstree": "^3.3.7",
-    "leaflet": "~1.4.0",
-    "leaflet-control-geocoder": "~1.5.8",
-    "leaflet-easybutton": "*",
-    "leaflet-editable": "^1.1.0",
-    "leaflet-elevation": "opoto/Leaflet.Elevation#master",
-    "leaflet-plugins": "~3.0.0",
-    "leaflet-providers": "^1.5.0",
-    "leaflet-routing": "nrenner/leaflet-routing#dev",
-    "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
-    "leaflet-triangle-marker": "^1.0.1",
-    "leaflet.locatecontrol": "^0.60.0",
-    "leaflet.restoreview": "makinacorpus/Leaflet.RestoreView#master",
-    "leaflet.snogylop": "^0.4.0",
-    "leaflet.stravasegments": "2.3.2",
-    "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
-    "promise-polyfill": "^8.1.0",
-    "seiyria-bootstrap-slider": "seiyria/bootstrap-slider#^9.8.1",
-    "tether": "1.4.5",
-    "url-search-params": "~0.5.0",
-    "whatwg-fetch": "^3.0.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^8.1.0",
-    "del": "^1.1.1",
-    "gulp": "^3.8.11",
-    "gulp-bump": "^2.7.0",
-    "gulp-cached": "^1.0.4",
-    "gulp-clean-css": "^4.0.0",
-    "gulp-concat": "^2.5.2",
-    "gulp-confirm": "^1.0.6",
-    "gulp-debug": "^2.0.1",
-    "gulp-git": "^2.2.0",
-    "gulp-github-release": "^1.2.1",
-    "gulp-if": "^2.0.0",
-    "gulp-inject": "^1.2.0",
-    "gulp-json-concat": "^0.1.1",
-    "gulp-modify-css-urls": "^2.0.0",
-    "gulp-postcss": "^7.0.1",
-    "gulp-remember": "^0.3.0",
-    "gulp-rename": "^1.4.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-sourcemaps": "^1.5.1",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "^3.0.7",
-    "gulp-zip": "^4.0.0",
-    "i18next-scanner": "^2.9.1",
-    "node-fetch": "^2.3.0",
-    "npmfiles": "^0.1.1"
-  },
-  "overrides": {
-    "leaflet": {
-      "main": [
-        "dist/leaflet-src.js",
-        "dist/leaflet.css",
-        "dist/images/*.png"
-      ]
+    "name": "brouter-web",
+    "version": "0.8.0",
+    "description": "Web client for BRouter",
+    "main": "js/index.js",
+    "scripts": {
+        "build": "gulp",
+        "transifex-push": "gulp i18next && tx push --source",
+        "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
+        "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prettier": "prettier --write '**/*'"
     },
-    "leaflet-plugins": {
-      "main": [
-        "layer/tile/Bing.js"
-      ]
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --bail"
+        }
     },
-    "leaflet-routing": {
-      "main": [
-        "src/utils/LineUtil.Snapping.js",
-        "src/utils/Marker.Snapping.js",
-        "src/L.Routing.js",
-        "src/L.Routing.Draw.js",
-        "src/L.Routing.Edit.js"
-      ]
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nrenner/brouter-web.git"
     },
-    "leaflet-sidebar-v2": {
-      "main": [
-        "js/leaflet-sidebar.js",
-        "css/leaflet-sidebar.css"
-      ]
+    "license": "MIT",
+    "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, Explorer >= 10, Android >= 4.1, Safari >= 7, iOS >= 7",
+    "dependencies": {
+        "@mapbox/polyline": "^0.2.0",
+        "@turf/turf": "^5.1.6",
+        "async": "~0.9.2",
+        "bootbox": "~4.4.0",
+        "bootstrap": "4.0.0-alpha.5",
+        "bootstrap-select": "hugdx/bootstrap-select#patch-1",
+        "codemirror": "^5.35.0",
+        "d3": "~3.5.5",
+        "datatables": "~1.10.16",
+        "font-awesome": "^4.7.0",
+        "i18next": "^15.0.4",
+        "i18next-browser-languagedetector": "^3.0.1",
+        "i18next-xhr-backend": "^2.0.1",
+        "jquery": "3.4.1",
+        "jquery-i18next": "^1.2.1",
+        "jstree": "^3.3.7",
+        "leaflet": "~1.4.0",
+        "leaflet-control-geocoder": "~1.5.8",
+        "leaflet-easybutton": "*",
+        "leaflet-editable": "^1.1.0",
+        "leaflet-elevation": "opoto/Leaflet.Elevation#master",
+        "leaflet-plugins": "~3.0.0",
+        "leaflet-providers": "^1.5.0",
+        "leaflet-routing": "nrenner/leaflet-routing#dev",
+        "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
+        "leaflet-triangle-marker": "^1.0.1",
+        "leaflet.locatecontrol": "^0.60.0",
+        "leaflet.restoreview": "makinacorpus/Leaflet.RestoreView#master",
+        "leaflet.snogylop": "^0.4.0",
+        "leaflet.stravasegments": "2.3.2",
+        "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
+        "promise-polyfill": "^8.1.0",
+        "seiyria-bootstrap-slider": "seiyria/bootstrap-slider#^9.8.1",
+        "tether": "1.4.5",
+        "url-search-params": "~0.5.0",
+        "whatwg-fetch": "^3.0.0"
     },
-    "leaflet-easybutton": {
-      "main": [
-        "src/easy-button.js",
-        "src/easy-button.css"
-      ]
+    "devDependencies": {
+        "autoprefixer": "^8.1.0",
+        "del": "^1.1.1",
+        "gulp": "^3.8.11",
+        "gulp-bump": "^2.7.0",
+        "gulp-cached": "^1.0.4",
+        "gulp-clean-css": "^4.0.0",
+        "gulp-concat": "^2.5.2",
+        "gulp-confirm": "^1.0.6",
+        "gulp-debug": "^2.0.1",
+        "gulp-git": "^2.2.0",
+        "gulp-github-release": "^1.2.1",
+        "gulp-if": "^2.0.0",
+        "gulp-inject": "^1.2.0",
+        "gulp-json-concat": "^0.1.1",
+        "gulp-modify-css-urls": "^2.0.0",
+        "gulp-postcss": "^7.0.1",
+        "gulp-remember": "^0.3.0",
+        "gulp-rename": "^1.4.0",
+        "gulp-replace": "^0.5.4",
+        "gulp-sourcemaps": "^1.5.1",
+        "gulp-uglify": "^1.1.0",
+        "gulp-util": "^3.0.7",
+        "gulp-zip": "^4.0.0",
+        "husky": "^2.3.0",
+        "i18next-scanner": "^2.9.1",
+        "node-fetch": "^2.3.0",
+        "npmfiles": "^0.1.1",
+        "prettier": "^1.17.1",
+        "pretty-quick": "^1.10.0"
     },
-    "bootstrap-select": {
-      "main": [
-        "js/bootstrap-select.js",
-        "dist/css/bootstrap-select.css"
-      ]
-    },
-    "datatables": {
-      "main": [
-        "media/**"
-      ]
-    },
-    "codemirror": {
-      "main": [
-        "lib/**"
-      ]
-    },
-    "bootstrap": {
-      "main": [
-        "dist/js/bootstrap.js",
-        "dist/css/bootstrap.css"
-      ]
-    },
-    "leaflet-elevation": {
-      "main": [
-        "dist/leaflet.elevation-0.0.4.src.js",
-        "dist/leaflet.elevation-0.0.4.css",
-        "dist/images/*.png"
-      ],
-      "dependencies": null
-    },
-    "leaflet-control-geocoder": {
-      "main": [
-        "dist/Control.Geocoder.js",
-        "dist/Control.Geocoder.css",
-        "images/*.+(png|gif)"
-      ]
-    },
-    "url-search-params": {
-      "main": "build/url-search-params.js"
-    },
-    "Leaflet.RestoreView": {
-      "main": "leaflet.restoreview.js"
-    },
-    "leaflet.stravasegments": {
-      "main": "dist/index.js"
-    },
-    "font-awesome": {
-      "main": [
-        "css/font-awesome.css",
-        "fonts/*"
-      ]
-    },
-    "leaflet.locatecontrol": {
-      "main": [
-        "src/L.Control.Locate.js",
-        "dist/L.Control.Locate.css"
-      ]
-    },
-    "seiyria-bootstrap-slider": {
-      "main": [
-        "dist/bootstrap-slider.js",
-        "dist/css/bootstrap-slider.css"
-      ],
-      "dependencies": {
-        "jquery": "*",
-        "bootstrap": "*"
-      }
-    },
-    "mapbbcode": {
-      "main": "src/controls/PermalinkAttribution.js"
-    },
-    "i18next": {
-      "main": [
-        "dist/umd/i18next.js"
-      ]
-    },
-    "i18next-xhr-backend": {
-      "main": [
-        "dist/umd/i18nextXHRBackend.js"
-      ]
-    },
-    "i18next-browser-languagedetector": {
-      "main": [
-        "dist/umd/i18nextBrowserLanguageDetector.js"
-      ]
-    },
-    "jquery-i18next": {
-      "main": [
-        "dist/umd/jquery-i18next.js"
-      ]
-    },
-    "jstree": {
-      "main": [
-        "dist/jstree.js",
-        "dist/themes/default/style.css",
-        "dist/themes/default/*.png"
-      ]
-    },
-    "promise-polyfill": {
-      "main": [
-        "dist/polyfill.js"
-      ]
+    "overrides": {
+        "leaflet": {
+            "main": [
+                "dist/leaflet-src.js",
+                "dist/leaflet.css",
+                "dist/images/*.png"
+            ]
+        },
+        "leaflet-plugins": {
+            "main": [
+                "layer/tile/Bing.js"
+            ]
+        },
+        "leaflet-routing": {
+            "main": [
+                "src/utils/LineUtil.Snapping.js",
+                "src/utils/Marker.Snapping.js",
+                "src/L.Routing.js",
+                "src/L.Routing.Draw.js",
+                "src/L.Routing.Edit.js"
+            ]
+        },
+        "leaflet-sidebar-v2": {
+            "main": [
+                "js/leaflet-sidebar.js",
+                "css/leaflet-sidebar.css"
+            ]
+        },
+        "leaflet-easybutton": {
+            "main": [
+                "src/easy-button.js",
+                "src/easy-button.css"
+            ]
+        },
+        "bootstrap-select": {
+            "main": [
+                "js/bootstrap-select.js",
+                "dist/css/bootstrap-select.css"
+            ]
+        },
+        "datatables": {
+            "main": [
+                "media/**"
+            ]
+        },
+        "codemirror": {
+            "main": [
+                "lib/**"
+            ]
+        },
+        "bootstrap": {
+            "main": [
+                "dist/js/bootstrap.js",
+                "dist/css/bootstrap.css"
+            ]
+        },
+        "leaflet-elevation": {
+            "main": [
+                "dist/leaflet.elevation-0.0.4.src.js",
+                "dist/leaflet.elevation-0.0.4.css",
+                "dist/images/*.png"
+            ],
+            "dependencies": null
+        },
+        "leaflet-control-geocoder": {
+            "main": [
+                "dist/Control.Geocoder.js",
+                "dist/Control.Geocoder.css",
+                "images/*.+(png|gif)"
+            ]
+        },
+        "url-search-params": {
+            "main": "build/url-search-params.js"
+        },
+        "Leaflet.RestoreView": {
+            "main": "leaflet.restoreview.js"
+        },
+        "leaflet.stravasegments": {
+            "main": "dist/index.js"
+        },
+        "font-awesome": {
+            "main": [
+                "css/font-awesome.css",
+                "fonts/*"
+            ]
+        },
+        "leaflet.locatecontrol": {
+            "main": [
+                "src/L.Control.Locate.js",
+                "dist/L.Control.Locate.css"
+            ]
+        },
+        "seiyria-bootstrap-slider": {
+            "main": [
+                "dist/bootstrap-slider.js",
+                "dist/css/bootstrap-slider.css"
+            ],
+            "dependencies": {
+                "jquery": "*",
+                "bootstrap": "*"
+            }
+        },
+        "mapbbcode": {
+            "main": "src/controls/PermalinkAttribution.js"
+        },
+        "i18next": {
+            "main": [
+                "dist/umd/i18next.js"
+            ]
+        },
+        "i18next-xhr-backend": {
+            "main": [
+                "dist/umd/i18nextXHRBackend.js"
+            ]
+        },
+        "i18next-browser-languagedetector": {
+            "main": [
+                "dist/umd/i18nextBrowserLanguageDetector.js"
+            ]
+        },
+        "jquery-i18next": {
+            "main": [
+                "dist/umd/jquery-i18next.js"
+            ]
+        },
+        "jstree": {
+            "main": [
+                "dist/jstree.js",
+                "dist/themes/default/style.css",
+                "dist/themes/default/*.png"
+            ]
+        },
+        "promise-polyfill": {
+            "main": [
+                "dist/polyfill.js"
+            ]
+        }
     }
-  }
 }

@@ -3,7 +3,9 @@
 var brouterCgi = (function() {
     // http://h2096617.stratoserver.net/cgi-bin/brouter.sh?coords=13.404681_52.520185_13.340278_52.512356_trekking_0
     //var URL_TEMPLATE = '/cgi-bin/proxy.cgi?url=' + 'http://h2096617.stratoserver.net/cgi-bin/brouter.sh?coords={fromLng}_{fromLat}_{toLng}_{toLat}_{profile}_{alt}';
-    var URL_TEMPLATE = '/proxy.php?url=' + 'cgi-bin/brouter.sh?coords={fromLng}_{fromLat}_{toLng}_{toLat}_{profile}_{alt}';
+    var URL_TEMPLATE =
+        '/proxy.php?url=' +
+        'cgi-bin/brouter.sh?coords={fromLng}_{fromLat}_{toLng}_{toLat}_{profile}_{alt}';
     var PRECISION = 6;
 
     function getUrl(polyline) {
@@ -21,9 +23,8 @@ var brouterCgi = (function() {
         //return 'test/test.gpx';
         return url;
     }
-    
+
     return {
         getUrl: getUrl
-    }
-
+    };
 })();

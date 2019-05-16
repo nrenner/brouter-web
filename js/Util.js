@@ -1,5 +1,4 @@
 BR.Util = {
-
     get: function(url, cb) {
         var xhr = new XMLHttpRequest();
 
@@ -16,7 +15,7 @@ BR.Util = {
         };
         try {
             xhr.send();
-        } catch(e) {
+        } catch (e) {
             cb(e);
         }
     },
@@ -24,9 +23,9 @@ BR.Util = {
     getError: function(xhr) {
         var msg = i18next.t('warning.no-response');
         if (xhr.responseText) {
-          msg = xhr.responseText;
+            msg = xhr.responseText;
         } else if (xhr.status || xhr.statusText) {
-          msg = xhr.status + ': ' + xhr.statusText;
+            msg = xhr.status + ': ' + xhr.statusText;
         }
         return new Error(msg);
     },
@@ -46,8 +45,7 @@ BR.Util = {
             storage.setItem(x, x);
             storage.removeItem(x);
             return true;
-        }
-        catch(e) {
+        } catch (e) {
             return false;
         }
     }

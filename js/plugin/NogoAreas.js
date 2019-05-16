@@ -4,7 +4,8 @@ BR.NogoAreas = L.Control.extend({
         MSG_BUTTON_CANCEL: 'Cancel drawing no-go area',
         MSG_CREATE: 'Click and drag to draw circle',
         MSG_DISABLED: 'Click to edit',
-        MSG_ENABLED: '&square; = move / resize, <span class="fa fa-trash-o"></span> = delete,<br>click nogo to quit editing',
+        MSG_ENABLED:
+            '&square; = move / resize, <span class="fa fa-trash-o"></span> = delete,<br>click nogo to quit editing',
         STATE_CREATE: 'no-go-create',
         STATE_CANCEL: 'cancel-no-go-create'
     },
@@ -19,17 +20,17 @@ BR.NogoAreas = L.Control.extend({
     },
 
     editStyle: {
- 				color: '#fe57a1',
-				opacity: 0.6,
-				dashArray: '10, 10',
-				fillOpacity: 0.1
+        color: '#fe57a1',
+        opacity: 0.6,
+        dashArray: '10, 10',
+        fillOpacity: 0.1
     },
 
-    initialize: function () {
+    initialize: function() {
         this._wasRouteDrawing = false;
     },
 
-    onAdd: function (map) {
+    onAdd: function(map) {
         var self = this;
 
         this.drawnItems = new L.FeatureGroup().addTo(map);
@@ -38,55 +39,77 @@ BR.NogoAreas = L.Control.extend({
             e.layer.toggleEdit();
         });
 
-        var editTools = this.editTools = map.editTools = new L.Editable(map, {
+        var editTools = (this.editTools = map.editTools = new L.Editable(map, {
             circleEditorClass: BR.DeletableCircleEditor,
             // FeatureGroup instead of LayerGroup to propagate events to members
             editLayer: new L.FeatureGroup().addTo(map),
             featuresLayer: this.drawnItems
-        });
+        }));
 
         this.button = L.easyButton({
-            states: [{
-                stateName: BR.NogoAreas.STATE_CREATE,
-                icon: 'fa-ban',
-                title: BR.NogoAreas.MSG_BUTTON,
-                onClick: function (control) {
-                    // initial radius of 0 to detect click, see DeletableCircleEditor.onDrawingMouseUp
-                    var opts = L.extend({radius: 0}, self.style);
-                    editTools.startCircle(null, opts);
+            states: [
+                {
+                    stateName: BR.NogoAreas.STATE_CREATE,
+                    icon: 'fa-ban',
+                    title: BR.NogoAreas.MSG_BUTTON,
+                    onClick: function(control) {
+                        // initial radius of 0 to detect click, see DeletableCircleEditor.onDrawingMouseUp
+                        var opts = L.extend({ radius: 0 }, self.style);
+                        editTools.startCircle(null, opts);
 
-                    control.state('cancel-no-go-create');
+                        control.state('cancel-no-go-create');
+                    }
+                },
+                {
+                    stateName: BR.NogoAreas.STATE_CANCEL,
+                    icon: 'fa-ban active',
+                    title: BR.NogoAreas.MSG_BUTTON_CANCEL,
+                    onClick: function(control) {
+                        editTools.stopDrawing();
+                        control.state('no-go-create');
+                    }
                 }
-            }, {
-                stateName: BR.NogoAreas.STATE_CANCEL,
-                icon: 'fa-ban active',
-                title: BR.NogoAreas.MSG_BUTTON_CANCEL,
-                onClick: function (control) {
-                    editTools.stopDrawing();
-                    control.state('no-go-create');
-                }
-            }]
+            ]
         });
 
-        this.editTools.on('editable:drawing:end', function (e) {
-            self.button.state(BR.NogoAreas.STATE_CREATE);
+        this.editTools.on(
+            'editable:drawing:end',
+            function(e) {
+                self.button.state(BR.NogoAreas.STATE_CREATE);
 
-            setTimeout(L.bind(function () {
-                // turn editing off after create; async to still fire 'editable:vertex:dragend'
-                e.layer.disableEdit();
-            }, this), 0);
-        }, this);
+                setTimeout(
+                    L.bind(function() {
+                        // turn editing off after create; async to still fire 'editable:vertex:dragend'
+                        e.layer.disableEdit();
+                    }, this),
+                    0
+                );
+            },
+            this
+        );
 
-        this.editTools.on('editable:vertex:dragend editable:deleted', function (e) {
-            this._fireUpdate();
-        }, this);
+        this.editTools.on(
+            'editable:vertex:dragend editable:deleted',
+            function(e) {
+                this._fireUpdate();
+            },
+            this
+        );
 
-        this.editTools.on('editable:enable', function (e) {
-           e.layer.setStyle(this.editStyle);
-        }, this);
-        this.editTools.on('editable:disable', function (e) {
-           e.layer.setStyle(this.style);
-        }, this);
+        this.editTools.on(
+            'editable:enable',
+            function(e) {
+                e.layer.setStyle(this.editStyle);
+            },
+            this
+        );
+        this.editTools.on(
+            'editable:disable',
+            function(e) {
+                e.layer.setStyle(this.style);
+            },
+            this
+        );
 
         this.tooltip = new BR.EditingTooltip(map, editTools, this.button);
         this.tooltip.enable();
@@ -97,28 +120,40 @@ BR.NogoAreas = L.Control.extend({
 
     // prevent route waypoint added after circle create (map click after up)
     preventRoutePointOnCreate: function(routing) {
-        this.editTools.on('editable:drawing:start', function (e) {
-            this._wasRouteDrawing = routing.isDrawing();
-            routing.draw(false);
-        }, this);
+        this.editTools.on(
+            'editable:drawing:start',
+            function(e) {
+                this._wasRouteDrawing = routing.isDrawing();
+                routing.draw(false);
+            },
+            this
+        );
 
         // after create
-        this.editTools.on('editable:drawing:end', function (e) {
-            if (this._wasRouteDrawing) {
-                setTimeout(function () {
-                    routing.draw(true);
-                }, 0);
-            }
-        }, this);
+        this.editTools.on(
+            'editable:drawing:end',
+            function(e) {
+                if (this._wasRouteDrawing) {
+                    setTimeout(function() {
+                        routing.draw(true);
+                    }, 0);
+                }
+            },
+            this
+        );
     },
 
     getOptions: function() {
         return {
-            nogos: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Circle; }),
-            polygons: this.drawnItems.getLayers().filter(function (e) { return e instanceof L.Polygon; }),
-            polylines: this.drawnItems.getLayers().filter(function (e) {
-                return (e instanceof L.Polyline) && !(e instanceof L.Polygon);
+            nogos: this.drawnItems.getLayers().filter(function(e) {
+                return e instanceof L.Circle;
             }),
+            polygons: this.drawnItems.getLayers().filter(function(e) {
+                return e instanceof L.Polygon;
+            }),
+            polylines: this.drawnItems.getLayers().filter(function(e) {
+                return e instanceof L.Polyline && !(e instanceof L.Polygon);
+            })
         };
     },
 
@@ -147,17 +182,17 @@ BR.NogoAreas = L.Control.extend({
         }
     },
 
-    _clear: function () {
+    _clear: function() {
         this.drawnItems.clearLayers();
     },
 
-    clear: function () {
+    clear: function() {
         this._clear();
         this._fireUpdate();
     },
 
-    _fireUpdate: function () {
-        this.fire('update', {options: this.getOptions()});
+    _fireUpdate: function() {
+        this.fire('update', { options: this.getOptions() });
     },
 
     getFeatureGroup: function() {
@@ -175,27 +210,32 @@ BR.NogoAreas = L.Control.extend({
 
 BR.NogoAreas.include(L.Evented.prototype);
 
-
-L.Editable.prototype.createVertexIcon = function (options) {
-    return BR.Browser.touch ? new L.Editable.TouchVertexIcon(options) : new L.Editable.VertexIcon(options);
+L.Editable.prototype.createVertexIcon = function(options) {
+    return BR.Browser.touch
+        ? new L.Editable.TouchVertexIcon(options)
+        : new L.Editable.VertexIcon(options);
 };
-
 
 BR.EditingTooltip = L.Handler.extend({
     options: {
         closeTimeout: 2000
     },
 
-    initialize: function (map, editTools, button) {
+    initialize: function(map, editTools, button) {
         this.map = map;
         this.editTools = editTools;
         this.button = button;
     },
 
-    addHooks: function () {
+    addHooks: function() {
         // hack: listen to EasyButton click (instead of editable:drawing:start),
         // to get mouse position from event for initial tooltip location
-        L.DomEvent.addListener(this.button.button, 'click', this._addCreate, this);
+        L.DomEvent.addListener(
+            this.button.button,
+            'click',
+            this._addCreate,
+            this
+        );
 
         this.editTools.featuresLayer.on('layeradd', this._bind, this);
 
@@ -204,8 +244,13 @@ BR.EditingTooltip = L.Handler.extend({
         this.editTools.on('editable:disable', this._disable, this);
     },
 
-    removeHooks: function () {
-        L.DomEvent.removeListener(this.button.button, 'click', this._addCreate, this);
+    removeHooks: function() {
+        L.DomEvent.removeListener(
+            this.button.button,
+            'click',
+            this._addCreate,
+            this
+        );
 
         this.editTools.featuresLayer.off('layeradd', this._bind, this);
 
@@ -214,7 +259,7 @@ BR.EditingTooltip = L.Handler.extend({
         this.editTools.off('editable:disable', this._disable, this);
     },
 
-    _bind: function (e) {
+    _bind: function(e) {
         // Position tooltip at bottom of circle, less distracting than
         // sticky with cursor or at center.
 
@@ -226,18 +271,20 @@ BR.EditingTooltip = L.Handler.extend({
 
         // Override to set position to south instead of center (circle latlng);
         // works better with zooming than updating offset to match radius
-        layer.openTooltip = function (layer, latlng) {
+        layer.openTooltip = function(layer, latlng) {
             if (!latlng && layer instanceof L.Layer) {
                 latlng = L.latLng(
                     layer.getBounds().getSouth(),
-                    0.5 * (layer.getBounds().getWest() + layer.getBounds().getEast())
+                    0.5 *
+                        (layer.getBounds().getWest() +
+                            layer.getBounds().getEast())
                 );
             }
             L.Layer.prototype.openTooltip.call(this, layer, latlng);
         };
     },
 
-    _addCreate: function (e) {
+    _addCreate: function(e) {
         // button cancel
         if (!this.editTools.drawing()) return;
 
@@ -255,28 +302,32 @@ BR.EditingTooltip = L.Handler.extend({
         tooltip._tooltip = tooltip;
 
         // simulate sticky feature (follow mouse) for map tooltip without layer
-        var onOffMove = function (e) {
-            var onOff = (e.type === 'tooltipclose') ? 'off' : 'on';
+        var onOffMove = function(e) {
+            var onOff = e.type === 'tooltipclose' ? 'off' : 'on';
             this._map[onOff]('mousemove', this._moveTooltip, this);
-        }
+        };
         this.map.on('tooltipopen', onOffMove, tooltip);
         this.map.on('tooltipclose', onOffMove, tooltip);
 
-        var onTooltipRemove = function (e) {
+        var onTooltipRemove = function(e) {
             this.map.off('tooltipopen', onOffMove, e.tooltip);
             this.map.off('tooltipclose', onOffMove, e.tooltip);
             this.map.off('tooltipclose', onTooltipRemove, this);
             e.tooltip._tooltip = null;
-        }
+        };
         this.map.on('tooltipclose', onTooltipRemove, this);
 
         tooltip.setTooltipContent(BR.NogoAreas.MSG_CREATE);
         this.map.openTooltip(tooltip, initialLatLng);
 
-        var closeTooltip = function () {
+        var closeTooltip = function() {
             this.map.closeTooltip(tooltip);
         };
-        this.editTools.once('editable:editing editable:drawing:cancel', closeTooltip, this);
+        this.editTools.once(
+            'editable:editing editable:drawing:cancel',
+            closeTooltip,
+            this
+        );
 
         if (BR.Browser.touch) {
             // can't move with cursor on touch devices, so show at start pos for a few seconds
@@ -285,51 +336,58 @@ BR.EditingTooltip = L.Handler.extend({
     },
 
     _setCloseTimeout: function(layer) {
-        var timeoutId = setTimeout(function () {
-           layer.closeTooltip();
+        var timeoutId = setTimeout(function() {
+            layer.closeTooltip();
         }, this.options.closeTimeout);
 
         // prevent timer to close tooltip that changed in the meantime
-        layer.once('tooltipopen', function (e) {
-           clearTimeout(timeoutId);
+        layer.once('tooltipopen', function(e) {
+            clearTimeout(timeoutId);
         });
     },
 
-    _postCreate: function () {
+    _postCreate: function() {
         // editing is disabled by another handler, tooltip won't stay open before
-        this.editTools.once('editable:disable', function (e) {
-
-            // show for a few seconds, as mouse often not hovering circle after create
-            e.layer.openTooltip(e.layer);
-            this._setCloseTimeout(e.layer);
-        }, this);
+        this.editTools.once(
+            'editable:disable',
+            function(e) {
+                // show for a few seconds, as mouse often not hovering circle after create
+                e.layer.openTooltip(e.layer);
+                this._setCloseTimeout(e.layer);
+            },
+            this
+        );
     },
 
-    _enable: function (e) {
+    _enable: function(e) {
         e.layer.setTooltipContent(BR.NogoAreas.MSG_ENABLED);
 
-        this.editTools.once('editable:editing', function(e) {
-            e.layer.closeTooltip();
-        }, this);
+        this.editTools.once(
+            'editable:editing',
+            function(e) {
+                e.layer.closeTooltip();
+            },
+            this
+        );
     },
 
-    _disable: function (e) {
+    _disable: function(e) {
         e.layer.setTooltipContent(BR.NogoAreas.MSG_DISABLED);
         this._setCloseTimeout(e.layer);
     }
 });
 
-
 BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
-
-    _computeDeleteLatLng: function () {
+    _computeDeleteLatLng: function() {
         // While circle is not added to the map, _radius is not set.
-        var delta = (this.feature._radius || this.feature._mRadius) * Math.cos(Math.PI / 4),
+        var delta =
+                (this.feature._radius || this.feature._mRadius) *
+                Math.cos(Math.PI / 4),
             point = this.map.project(this.feature._latlng);
         return this.map.unproject([point.x - delta, point.y - delta]);
     },
 
-    _updateDeleteLatLng: function () {
+    _updateDeleteLatLng: function() {
         this._deleteLatLng.update(this._computeDeleteLatLng());
         this._deleteLatLng.__vertex.update();
     },
@@ -350,15 +408,20 @@ BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
         this.fireAndForward('editable:deleted');
     },
 
-    initialize: function (map, feature, options) {
-        L.Editable.CircleEditor.prototype.initialize.call(this, map, feature, options);
+    initialize: function(map, feature, options) {
+        L.Editable.CircleEditor.prototype.initialize.call(
+            this,
+            map,
+            feature,
+            options
+        );
         this._deleteLatLng = this._computeDeleteLatLng();
 
         // FeatureGroup instead of LayerGroup to propagate events to members
         this.editLayer = new L.FeatureGroup();
     },
 
-    addHooks: function () {
+    addHooks: function() {
         L.Editable.CircleEditor.prototype.addHooks.call(this);
         if (this.feature) {
             this._addDeleteMarker();
@@ -366,12 +429,12 @@ BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
         return this;
     },
 
-    reset: function () {
+    reset: function() {
         L.Editable.CircleEditor.prototype.reset.call(this);
         this._addDeleteMarker();
     },
 
-    onDrawingMouseDown: function (e) {
+    onDrawingMouseDown: function(e) {
         this._deleteLatLng.update(e.latlng);
         L.Editable.CircleEditor.prototype.onDrawingMouseDown.call(this, e);
     },
@@ -379,7 +442,7 @@ BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
     // override to cancel/remove created circle when added by click instead of drag, because:
     // - without resize, edit handles stacked on top of each other
     // - makes event handling more complicated (editable:vertex:dragend not called)
-    onDrawingMouseUp: function (e) {
+    onDrawingMouseUp: function(e) {
         if (this.feature.getRadius() > 0) {
             this.commitDrawing(e);
         } else {
@@ -390,25 +453,24 @@ BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
         L.Editable.PathEditor.prototype.onDrawingMouseUp.call(this, e);
     },
 
-    onVertexMarkerDrag: function (e) {
+    onVertexMarkerDrag: function(e) {
         this._updateDeleteLatLng();
         L.Editable.CircleEditor.prototype.onVertexMarkerDrag.call(this, e);
     }
-
 });
 
-
 BR.DeleteMarker = L.Marker.extend({
-
     options: {
         draggable: false,
         icon: L.divIcon({
-            iconSize: BR.Browser.touch ? new L.Point(24, 24) : new L.Point(16, 16),
+            iconSize: BR.Browser.touch
+                ? new L.Point(24, 24)
+                : new L.Point(16, 16),
             className: 'leaflet-div-icon fa fa-trash-o nogo-delete-marker'
         })
     },
 
-    initialize: function (latlng, editor, options) {
+    initialize: function(latlng, editor, options) {
         // derived from L.Editable.VertexMarker.initialize
 
         // We don't use this._latlng, because on drag Leaflet replace it while
@@ -425,18 +487,18 @@ BR.DeleteMarker = L.Marker.extend({
         this.setZIndexOffset(editor.tools._lastZIndex);
     },
 
-    onAdd: function (map) {
+    onAdd: function(map) {
         L.Marker.prototype.onAdd.call(this, map);
         this.on('click', this.onClick);
     },
 
-    onRemove: function (map) {
+    onRemove: function(map) {
         delete this.latlng.__vertex;
         this.off('click', this.onClick);
         L.Marker.prototype.onRemove.call(this, map);
     },
 
-    onClick: function (e) {
+    onClick: function(e) {
         this.editor.delete();
     }
 });
