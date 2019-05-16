@@ -78,7 +78,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
-      "stamen-terrain": "Terep (Stamen)",
+      "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava útvonalszakaszok",
       "topo": "OpenTopoMap"
     },
@@ -152,14 +152,14 @@
     },
     "layers": {
       "category": {
-        "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
-        "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
+        "base-layers": "Alaprétegek",
+        "country": "Ország",
+        "europe": "Európa",
+        "europe-monolingual": "Európa (egynyelvű)",
+        "overlays": "Rátétrétegek",
+        "worldwide": "Világ",
+        "worldwide-international": "Világ (nemzetközi)",
+        "worldwide-monolingual": "Világ (egynyelvű)"
       },
       "collapse": "Minden összecsukása",
       "custom-layers": "Egyedi rétegek",
