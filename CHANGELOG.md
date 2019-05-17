@@ -1,6 +1,26 @@
 BRouter-Web Changelog
 =====================
 
+## 0.9.0 (2019-05-18)
+
+See also [milestone 0.9.0](https://github.com/nrenner/brouter-web/milestone/8?closed=1)
+
+### New Features
+
+- Add delete last point button - by [@bagage](https://github.com/bagage) ([#33](https://github.com/nrenner/brouter-web/issues/33))
+- Add reverse route button - by [@bagage](https://github.com/bagage) ([#54](https://github.com/nrenner/brouter-web/issues/54))
+
+### Improvements
+
+- Improve about dialog texts - by [@bagage](https://github.com/bagage) ([#176](https://github.com/nrenner/brouter-web/pull/176))
+- Replace | with ; in URL - by [@bagage](https://github.com/bagage) ([#109](https://github.com/nrenner/brouter-web/issues/109))
+
+### Bugfixes
+
+- Ignore missing elevation points in elevation chart - by [@bagage](https://github.com/bagage) ([#147](https://github.com/nrenner/brouter-web/issues/147))
+- Fix loading nogos with weight - by [@Phyks](https://github.com/Phyks) ([#174](https://github.com/nrenner/brouter-web/issues/174))
+- Fix wrong version under tag ([#140](https://github.com/nrenner/brouter-web/issues/140))
+
 ## 0.8.0 (2019-05-04)
 
 See also [milestone 0.8.0](https://github.com/nrenner/brouter-web/milestone/6?closed=1)
