@@ -3,13 +3,18 @@ BR.LayersTab = BR.ControlLayers.extend({
     previewBounds: null,
     saveLayers: [],
 
-	initialize: function (layersConfig, baseLayers, overlays, options) {
-        L.Control.Layers.prototype.initialize.call(this, baseLayers, overlays, options);
+    initialize: function(layersConfig, baseLayers, overlays, options) {
+        L.Control.Layers.prototype.initialize.call(
+            this,
+            baseLayers,
+            overlays,
+            options
+        );
 
         this.layersConfig = layersConfig;
     },
 
-    addTo: function (map) {
+    addTo: function(map) {
         this._map = map;
         this.onAdd(map);
 
@@ -21,15 +26,15 @@ BR.LayersTab = BR.ControlLayers.extend({
         return this;
     },
 
-    initButtons: function () {
-       var expandTree = function (e) {
+    initButtons: function() {
+        var expandTree = function(e) {
             this.jstree.open_all();
         };
-        var collapseTree = function (e) {
+        var collapseTree = function(e) {
             this.jstree.close_all();
         };
 
-        var toggleOptionalLayers = function (e) {
+        var toggleOptionalLayers = function(e) {
             var button = L.DomUtil.get('optional_layers_button');
             var treeButtons = L.DomUtil.get('tree-button-group');
             var div = L.DomUtil.get('optional-layers-tree');
@@ -44,17 +49,23 @@ BR.LayersTab = BR.ControlLayers.extend({
         };
 
         L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
-        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
+        L.DomUtil.get('collapse_tree_button').onclick = L.bind(
+            collapseTree,
+            this
+        );
 
-        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
+        L.DomUtil.get('optional_layers_button').onclick = L.bind(
+            toggleOptionalLayers,
+            this
+        );
     },
 
-    initJsTree: function () {
+    initJsTree: function() {
         var layerIndex = BR.layerIndex;
         var treeData = this.toJsTree(BR.confLayers.tree);
         var oldSelected = null;
 
-        var onSelectNode = function (e, data) {
+        var onSelectNode = function(e, data) {
             var layerData = layerIndex[data.node.id];
             var selected = data.selected[0];
 
@@ -66,12 +77,12 @@ BR.LayersTab = BR.ControlLayers.extend({
             }
         };
 
-        var onDeselectNode = function (e, data) {
+        var onDeselectNode = function(e, data) {
             this.hidePreview();
             oldSelected = null;
         };
 
-        var onCheckNode = function (e, data) {
+        var onCheckNode = function(e, data) {
             var layerData = layerIndex[data.node.id];
             var layer = this.createLayer(layerData);
             var name = layerData.properties.name;
@@ -86,7 +97,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             this.storeDefaultLayers();
         };
 
-        var onUncheckNode = function (e, data) {
+        var onUncheckNode = function(e, data) {
             var obj = this.getLayerById(data.node.id);
             if (!obj) return;
 
@@ -107,28 +118,28 @@ BR.LayersTab = BR.ControlLayers.extend({
             .on('deselect_node.jstree', L.bind(onDeselectNode, this))
             .on('check_node.jstree', L.bind(onCheckNode, this))
             .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
-            .on('ready.jstree', function (e, data) {
+            .on('ready.jstree', function(e, data) {
                 data.instance.open_all();
             })
             .jstree({
-                plugins: [ 'checkbox' ],
+                plugins: ['checkbox'],
                 checkbox: {
                     whole_node: false,
                     tie_selection: false
                 },
                 core: {
-                    'multiple': false,
-                    'themes': {
-                        'icons': false,
-                        dots : false
+                    multiple: false,
+                    themes: {
+                        icons: false,
+                        dots: false
                     },
-                    'data' : treeData
+                    data: treeData
                 }
             });
         this.jstree = $('#optional-layers-tree').jstree(true);
     },
 
-    toJsTree: function (layerTree) {
+    toJsTree: function(layerTree) {
         var data = {
             children: []
         };
@@ -136,11 +147,11 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         function createRootNode(name) {
             var rootNode = {
-                'text': i18next.t('sidebar.layers.category.' + name, name),
-                'state': {
-                    'disabled': true
+                text: i18next.t('sidebar.layers.category.' + name, name),
+                state: {
+                    disabled: true
                 },
-                'children': []
+                children: []
             };
             return rootNode;
         }
@@ -163,12 +174,15 @@ BR.LayersTab = BR.ControlLayers.extend({
             var childNode = null;
 
             // when key required only add if configured
-            if (!keyObj || keyObj && BR.keys[keyObj.name]) {
+            if (!keyObj || (keyObj && BR.keys[keyObj.name])) {
                 childNode = {
-                    'id': id,
-                    'text': getText(props, parent),
-                    'state': {
-                        'checked': self.layersConfig.isDefaultLayer(id, props.overlay)
+                    id: id,
+                    text: getText(props, parent),
+                    state: {
+                        checked: self.layersConfig.isDefaultLayer(
+                            id,
+                            props.overlay
+                        )
                     }
                 };
             }
@@ -179,7 +193,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             function walkObject(obj) {
                 for (name in obj) {
                     var value = obj[name];
-                    var rootNode = createRootNode(name)
+                    var rootNode = createRootNode(name);
 
                     outTree.children.push(rootNode);
                     walkTree(value, rootNode);
@@ -213,7 +227,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return data.children;
     },
 
-    storeDefaultLayers: function () {
+    storeDefaultLayers: function() {
         var baseLayers = [];
         var overlays = [];
 
@@ -233,7 +247,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.layersConfig.storeDefaultLayers(baseLayers, overlays);
     },
 
-    createLayer: function (layerData) {
+    createLayer: function(layerData) {
         var layer = this.layersConfig.createLayer(layerData);
         var overlay = layerData.properties.overlay;
 
@@ -243,7 +257,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return layer;
     },
 
-    getLayerById: function (id) {
+    getLayerById: function(id) {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (obj.layer.id === id) {
@@ -254,7 +268,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return null;
     },
 
-    getLayerByLegacyName: function (legacyName) {
+    getLayerByLegacyName: function(legacyName) {
         var obj = null;
         var id = this.layersConfig.legacyNameToIdMap[legacyName];
 
@@ -265,7 +279,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
-    activateDefaultBaseLayer: function () {
+    activateDefaultBaseLayer: function() {
         var index = BR.conf.defaultBaseLayerIndex || 0;
         var activeBaseLayer = this.getActiveBaseLayer();
         if (!activeBaseLayer) {
@@ -273,12 +287,12 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    saveRemoveActiveLayers: function () {
-		this.saveLayers = this.removeActiveLayers();
+    saveRemoveActiveLayers: function() {
+        this.saveLayers = this.removeActiveLayers();
     },
 
-    restoreActiveLayers: function (overlaysOnly) {
-		for (var i = 0; i < this.saveLayers.length; i++) {
+    restoreActiveLayers: function(overlaysOnly) {
+        for (var i = 0; i < this.saveLayers.length; i++) {
             var obj = this.saveLayers[i];
 
             if (!overlaysOnly || (overlaysOnly && obj.overlay)) {
@@ -296,7 +310,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.saveLayers = [];
     },
 
-    removePreviewLayer: function () {
+    removePreviewLayer: function() {
         if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
             this._map.removeLayer(this.previewLayer);
             this.previewLayer = null;
@@ -305,7 +319,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return false;
     },
 
-    showPreviewBounds: function (layerData) {
+    showPreviewBounds: function(layerData) {
         if (layerData.geometry) {
             this.previewBounds = L.geoJson(layerData.geometry, {
                 // fill/mask outside of bounds polygon with Leaflet.snogylop
@@ -319,32 +333,35 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    removePreviewBounds: function () {
+    removePreviewBounds: function() {
         if (this.previewBounds && this._map.hasLayer(this.previewBounds)) {
             this._map.removeLayer(this.previewBounds);
             this.previewBounds = null;
         }
     },
 
-    deselectNode: function () {
+    deselectNode: function() {
         var selected = this.jstree.get_selected();
         if (selected.length > 0) {
             this.jstree.deselect_node(selected[0]);
         }
     },
 
-    onBaselayerchange: function () {
+    onBaselayerchange: function() {
         // execute after current input click handler,
         // otherwise added overlay checkbox state doesn't update
-        setTimeout(L.Util.bind(function () {
-            this.removePreviewBounds();
-            this.removePreviewLayer();
-            this.restoreActiveLayers(true);
-            this.deselectNode();
-        }, this), 0);
+        setTimeout(
+            L.Util.bind(function() {
+                this.removePreviewBounds();
+                this.removePreviewLayer();
+                this.restoreActiveLayers(true);
+                this.deselectNode();
+            }, this),
+            0
+        );
     },
 
-    showPreview: function (layerData) {
+    showPreview: function(layerData) {
         var layer = this.createLayer(layerData);
         this._map.addLayer(layer);
         this.removePreviewBounds();
@@ -357,7 +374,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.showPreviewBounds(layerData);
     },
 
-    hidePreview: function (layer) {
+    hidePreview: function(layer) {
         this._map.off('baselayerchange', this.onBaselayerchange, this);
         this.removePreviewBounds();
         this.removePreviewLayer();
@@ -365,6 +382,6 @@ BR.LayersTab = BR.ControlLayers.extend({
     }
 });
 
-BR.layersTab = function (baseLayers, overlays, options) {
-	return new BR.LayersTab(baseLayers, overlays, options);
+BR.layersTab = function(baseLayers, overlays, options) {
+    return new BR.LayersTab(baseLayers, overlays, options);
 };

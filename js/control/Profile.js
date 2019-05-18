@@ -1,7 +1,7 @@
 BR.Profile = L.Evented.extend({
     cache: {},
 
-    initialize: function () {
+    initialize: function() {
         var textArea = L.DomUtil.get('profile_upload');
         this.editor = CodeMirror.fromTextArea(textArea, {
             lineNumbers: true
@@ -19,7 +19,7 @@ BR.Profile = L.Evented.extend({
         var button = evt.target || evt.srcElement;
 
         evt.preventDefault();
-        this._setValue("");
+        this._setValue('');
 
         this.fire('clear');
         button.blur();
@@ -35,19 +35,30 @@ BR.Profile = L.Evented.extend({
         if (profileName && BR.conf.profilesUrl && (empty || clean)) {
             if (!(profileName in this.cache)) {
                 profileUrl = BR.conf.profilesUrl + profileName + '.brf';
-                BR.Util.get(profileUrl, L.bind(function(err, profileText) {
-                    if (err) {
-                        console.warn('Error getting profile from "' + profileUrl + '": ' + err);
-                        return;
-                    }
+                BR.Util.get(
+                    profileUrl,
+                    L.bind(function(err, profileText) {
+                        if (err) {
+                            console.warn(
+                                'Error getting profile from "' +
+                                    profileUrl +
+                                    '": ' +
+                                    err
+                            );
+                            return;
+                        }
 
-                    this.cache[profileName] = profileText;
+                        this.cache[profileName] = profileText;
 
-                    // don't set when option has changed while loading
-                    if (!this.profileName || this.profileName === profileName) {
-                        this._setValue(profileText);
-                    }
-                }, this));
+                        // don't set when option has changed while loading
+                        if (
+                            !this.profileName ||
+                            this.profileName === profileName
+                        ) {
+                            this._setValue(profileText);
+                        }
+                    }, this)
+                );
             } else {
                 this._setValue(this.cache[profileName]);
             }
@@ -72,7 +83,7 @@ BR.Profile = L.Evented.extend({
 
         this.fire('update', {
             profileText: profile,
-            callback: function () {
+            callback: function() {
                 $(button).button('reset');
                 $(button).blur();
             }

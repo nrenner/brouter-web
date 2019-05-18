@@ -1,5 +1,4 @@
 (function() {
-
     // COPYING: Please get your own API keys from the sites listed below
 
     BR.keys = {
@@ -18,5 +17,4 @@
         // OpenMapSurfer (OpenRouteService API), https://openrouteservice.org/plans/
         openrouteservice: ''
     };
-
 })();
