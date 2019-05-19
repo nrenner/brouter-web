@@ -520,14 +520,25 @@
                                     />
                                 </p>
                             </fieldset>
-                            <p style="margin-top: 1em; text-align: center;">
-                                <input
-                                    type="submit"
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-i18n="[value]modal.close"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
                                     data-i18n="[value]loadNogos.load"
-                                    value="Load"
                                     id="submitNogos"
-                                />
-                            </p>
+                                >
+                                    Load
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
