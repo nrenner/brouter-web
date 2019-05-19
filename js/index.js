@@ -33,7 +33,7 @@
             stats,
             itinerary,
             elevation,
-            download,
+            exportRoute,
             profile,
             trackMessages,
             sidebar,
@@ -164,7 +164,7 @@
         } else {
             stats = new BR.TrackStats();
         }
-        download = new BR.Download();
+        exportRoute = new BR.Export(router);
         elevation = new BR.Elevation();
 
         profile = new BR.Profile();
@@ -240,8 +240,7 @@
             var track = routing.toPolyline(),
                 segments = routing.getSegments(),
                 latLngs = routing.getWaypoints(),
-                segmentsLayer = routing._segments,
-                urls = {};
+                segmentsLayer = routing._segments;
 
             elevation.update(track, segmentsLayer);
             if (BR.conf.transit) {
@@ -251,14 +250,7 @@
             }
             trackMessages.update(track, segments);
 
-            if (latLngs.length > 1) {
-                urls.gpx = router.getUrl(latLngs, 'gpx');
-                urls.kml = router.getUrl(latLngs, 'kml');
-                urls.geojson = router.getUrl(latLngs, 'geojson');
-                urls.csv = router.getUrl(latLngs, 'csv');
-            }
-
-            download.update(urls);
+            exportRoute.update(latLngs);
         }
 
         routing.addTo(map);

@@ -89,9 +89,10 @@
                     </form>
                     <div class="nav-item dropdown">
                         <a
-                            class="nav-link dropdown-toggle"
-                            href=""
-                            data-toggle="dropdown"
+                            class="nav-link"
+                            data-toggle="modal"
+                            data-target="#export"
+                            id="exportButton"
                             href="#"
                             role="button"
                             aria-haspopup="true"
@@ -102,44 +103,8 @@
                                 aria-hidden="true"
                             >
                             </span>
-                            <span data-i18n="navbar.download.title"
-                                >Download</span
-                            >
+                            <span data-i18n="navbar.export">Export</span>
                         </a>
-                        <div class="dropdown-menu">
-                            <a
-                                class="dropdown-item"
-                                data-i18n="navbar.download.gpx"
-                                id="dl-gpx"
-                                href="#"
-                                disabled
-                                >GPX</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                data-i18n="navbar.download.kml"
-                                id="dl-kml"
-                                href="#"
-                                disabled
-                                >KML</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                data-i18n="navbar.download.geojson"
-                                id="dl-geojson"
-                                href="#"
-                                disabled
-                                >GeoJSON</a
-                            >
-                            <a
-                                class="dropdown-item"
-                                data-i18n="navbar.download.csv"
-                                id="dl-csv"
-                                href="#"
-                                disabled
-                                >data CSV</a
-                            >
-                        </div>
                     </div>
                     <div class="nav-item dropdown">
                         <a
@@ -563,6 +528,147 @@
                                     id="submitNogos"
                                 />
                             </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export modal window -->
+        <div
+            class="modal fade"
+            id="export"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="Export route window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" data-i18n="export.title">
+                            Export route
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="export">
+                            <div class="form-group row">
+                                <label
+                                    class="col-form-label col-sm-2"
+                                    data-i18n="export.trackname"
+                                    >Name</label
+                                >
+                                <div class="col-sm-10">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="trackname"
+                                    />
+                                </div>
+                            </div>
+                            <fieldset class="form-group row">
+                                <legend
+                                    class="col-form-legend col-sm-2"
+                                    data-i18n="export.format"
+                                >
+                                    Format
+                                </legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input
+                                                class="form-check-input"
+                                                id="format-gpx"
+                                                type="radio"
+                                                name="format"
+                                                value="gpx"
+                                                checked
+                                            />
+                                            <span data-i18n="export.format_gpx"
+                                                >GPX</span
+                                            >
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label
+                                            class="form-check-label"
+                                            for="format-kml"
+                                        >
+                                            <input
+                                                class="form-check-input"
+                                                id="format-kml"
+                                                type="radio"
+                                                name="format"
+                                                value="kml"
+                                            />
+                                            <span data-i18n="export.format_kml"
+                                                >KML</span
+                                            >
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label
+                                            class="form-check-label"
+                                            for="format-geojson"
+                                        >
+                                            <input
+                                                class="form-check-input"
+                                                id="format-geojson"
+                                                type="radio"
+                                                name="format"
+                                                value="geojson"
+                                            />
+                                            <span
+                                                data-i18n="export.format_geojson"
+                                                >GeoJSON</span
+                                            >
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label
+                                            class="form-check-label"
+                                            for="format-csv"
+                                        >
+                                            <input
+                                                class="form-check-input"
+                                                id="format-csv"
+                                                type="radio"
+                                                name="format"
+                                                value="csv"
+                                            />
+                                            <span data-i18n="export.format_csv"
+                                                >CSV</span
+                                            >
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-i18n="[value]modal.close"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-i18n="[value]export.title"
+                                    id="submitExport"
+                                >
+                                    Export route
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
