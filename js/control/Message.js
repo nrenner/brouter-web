@@ -23,7 +23,7 @@ BR.Message = L.Class.extend({
         ele.innerHTML =
             '<div class="alert ' +
             alertClass +
-            ' alert-dismissible fade in" role="alert">' +
+            ' alert-dismissible fade show" role="alert">' +
             '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
             '    <span aria-hidden="true">&times;</span>' +
             '  </button>' +
