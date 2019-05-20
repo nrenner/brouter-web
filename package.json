@@ -13,7 +13,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --bail"
+            "pre-commit": "pretty-quick --bail",
+            "pre-push": "gulp"
         }
     },
     "repository": {
