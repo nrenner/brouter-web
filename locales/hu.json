@@ -21,6 +21,17 @@
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint"
   },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Export route",
+    "trackname": "Name"
+  },
   "footer": {
     "ascend": "Összes emelkedés (végpontok közötti szintkülönbség)",
     "cost": "Ráfordítás (közepes ráfordítástényező)",
@@ -100,6 +111,9 @@
     "zoomInTitle": "Nagyítás",
     "zoomOutTitle": "Kicsinyítés"
   },
+  "modal": {
+    "close": "Close"
+  },
   "navbar": {
     "about": "Névjegy",
     "alternative": {
@@ -108,13 +122,7 @@
       "second": "2. alternatíva",
       "third": "3. alternatíva"
     },
-    "download": {
-      "csv": "CSV adatfájl",
-      "geojson": "GeoJSON",
-      "gpx": "GPX",
-      "kml": "KML",
-      "title": "Letöltés"
-    },
+    "export": "Export",
     "load": {
       "nogos": "Elkerülendő területek",
       "title": "Betöltés"

@@ -21,6 +21,17 @@
     "nominatim": "Recherche par <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
+    "route-loop": "{{from}} ({{distance}} km)",
+    "title": "Exporter l'itinéraire",
+    "trackname": "Nom"
+  },
   "footer": {
     "ascend": "Dénivelé cumulé (dénivelé global)",
     "cost": "Coût (facteur coût moyen)",
@@ -61,7 +72,7 @@
     "clear-route": "Supprimer l'itinéraire",
     "copyright": "Copyright",
     "cycling": "Vélo",
-    "delete-last-point": "Delete last point",
+    "delete-last-point": "Supprimer le dernier point",
     "delete-nogo-areas": "&nbsp;&nbsp;supprimer aussi toutes les zones interdites",
     "delete-route": "Supprimer l'itinéraire ?",
     "draw-route-start": "Dessiner l'itinéraire (touche D)",
@@ -94,11 +105,14 @@
     },
     "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
     "privacy": "Vie privée",
-    "reverse-route": "Reverse route",
+    "reverse-route": "Inverse l'itinéraire",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
     "zoomInTitle": "Zoomer",
     "zoomOutTitle": "Dézoomer"
+  },
+  "modal": {
+    "close": "Fermer"
   },
   "navbar": {
     "about": "À propos",
@@ -108,13 +122,7 @@
       "second": "2nde alternative",
       "third": "3ème alternative"
     },
-    "download": {
-      "csv": "CSV",
-      "geojson": "GeoJSON",
-      "gpx": "GPX",
-      "kml": "KML",
-      "title": "Télécharger"
-    },
+    "export": "Exporter",
     "load": {
       "nogos": "Zones interdites",
       "title": "Charger"
