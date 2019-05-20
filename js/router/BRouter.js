@@ -40,7 +40,6 @@ L.BRouter = L.Class.extend({
 
     getUrlParams: function(latLngs, format) {
         params = {};
-
         if (this._getLonLatsString(latLngs) != null)
             params.lonlats = this._getLonLatsString(latLngs);
 
@@ -269,6 +268,7 @@ L.BRouter = L.Class.extend({
             // -1 is default nogo exclusion, it should not be passed as a URL parameter.
             if (
                 circle.options.nogoWeight !== null &&
+                circle.options.nogoWeight !== undefined &&
                 circle.options.nogoWeight !== -1
             ) {
                 s += L.BRouter.NUMBER_SEPARATOR;
