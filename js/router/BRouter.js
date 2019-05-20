@@ -132,7 +132,11 @@ L.BRouter = L.Class.extend({
         if (urlParams.format != null)
             args.push(L.Util.template('format={format}', urlParams));
         if (trackname)
-            args.push(L.Util.template('trackname={trackname}', { trackname }));
+            args.push(
+                L.Util.template('trackname={trackname}', {
+                    trackname: trackname
+                })
+            );
 
         var prepend_host = format != null;
 
