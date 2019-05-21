@@ -27,9 +27,9 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
-    "route-loop": "{{from}} ({{distance}}km)",
-    "title": "Export route",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
+    "route-loop": "{{from}} ({{distance}} km)",
+    "title": "Route exportieren",
     "trackname": "Name"
   },
   "footer": {
@@ -112,7 +112,7 @@
     "zoomOutTitle": "Herauszoomen"
   },
   "modal": {
-    "close": "Close"
+    "close": "Schließen"
   },
   "navbar": {
     "about": "Über",
