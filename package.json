@@ -150,7 +150,7 @@
         },
         "leaflet-elevation": {
             "main": [
-                "dist/leaflet.elevation-0.0.4.src.js",
+                "src/L.Control.Elevation.js",
                 "dist/leaflet.elevation-0.0.4.css",
                 "dist/images/*.png"
             ],
