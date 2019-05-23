@@ -66,8 +66,8 @@ BR.Export = L.Class.extend({
                             trackname.value = null;
                         } else if (from === to) {
                             trackname.value = i18next.t('export.route-loop', {
-                                from: from,
-                                distance: distance
+                                from,
+                                distance
                             });
                         } else {
                             trackname.value = i18next.t(
