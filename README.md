@@ -7,14 +7,19 @@ Instances:
 -   [brouter.de/brouter-web](http://brouter.de/brouter-web/) _(provided by [@abrensch](https://github.com/abrensch))_
 -   [brouter.damsy.net](http://brouter.damsy.net) _(provided by [@bagage](https://github.com/bagage))_
 
-This repository is only about the frontend. For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
+**This repository is only about the frontend**.
+For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
 https://github.com/abrensch/brouter
 
 More information:  
 http://brouter.de
 
-General BRouter discussions/questions, support:  
-https://groups.google.com/group/osm-android-bikerouting
+## Contact
+
+General BRouter discussions/questions, support:
+
+-   [`#brouter` on IRC OFTC](https://webchat.oftc.net/?channels=#brouter). You can also use [Riot](https://riot.im/app/#/room/#_oftc_#brouter:matrix.org).
+-   [Google Group](https://groups.google.com/group/osm-android-bikerouting)
 
 ## Translating
 
@@ -31,7 +36,7 @@ As an alternative to the above online version, the standalone server of BRouter 
 ### Install BRouter (server with routing engine)
 
 1.  download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
-    e.g. for Linux (replace `~/opt/` with your preferred install dir and `1_4_11` with latest version):
+    e.g. for Linux (replace `~/opt/` with your preferred install directory and `1_4_11` with latest version):
 
             mkdir ~/opt/brouter
             cd ~/opt/brouter
@@ -39,7 +44,7 @@ As an alternative to the above online version, the standalone server of BRouter 
             unzip brouter_1_4_11.zip
             chmod +x ./standalone/server.sh
 
-2.  download one or more [data file(s)](http://brouter.de/brouter/segments4/) (rd5) into `segments4` dir
+2.  download one or more [data file(s)](http://brouter.de/brouter/segments4/) (rd5) into `segments4` directory
 
 ### Install BRouter-Web (client)
 
