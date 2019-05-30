@@ -20,7 +20,7 @@ const includeList = [
     "Freemap.sk-Car",
     "Freemap.sk-Hiking",
     "Freemap.sk-Cyclo",
-    "opencylemap",
+    "opencyclemap",
     "standard",
     "HDM_HOT",
     "osmfr",

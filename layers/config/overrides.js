@@ -36,7 +36,7 @@ BR.confLayers.getPropertyOverrides = function() {
         '1010': {
             'mapUrl': 'https://maps.openstreetmap.se/#{zoom}/{lat}/{lon}'
         },
-        'opencylemap': {
+        'opencyclemap': {
             'name': i18next.t('map.layer.cycle'),
             'nameShort': 'OpenCycleMap',
             // add Thunderforest API key variable

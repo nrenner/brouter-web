@@ -8,7 +8,7 @@ BR.confLayers.tree = {
             'wikimedia-map',
             'HDM_HOT',
             '1010', // OpenStreetMap.se (Hydda.Full)
-            'opencylemap',
+            'opencyclemap',
             '1061', // Thunderforest Outdoors
             '1065', // Hike & Bike Map
             '1016', // 4UMaps,
