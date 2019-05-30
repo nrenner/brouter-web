@@ -23,7 +23,9 @@ BR.Export = L.Class.extend({
 
     _export: function() {
         var exportForm = document.forms['export'];
-        var format = exportForm['format'].value;
+        var format =
+            exportForm['format'].value ||
+            $('#export-format input:radio:checked').val();
         var name = encodeURIComponent(exportForm['trackname'].value);
 
         var uri = this.router.getUrl(this.latLngs, format, name);
