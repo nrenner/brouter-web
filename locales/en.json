@@ -33,8 +33,10 @@
     "trackname": "Name"
   },
   "footer": {
-    "ascend": "Ascend | Plain ascend",
-    "cost": "Cost | Mean cost factor",
+    "ascend": "Ascend",
+    "plain-ascend": "Plain ascend",
+    "cost": "Cost",
+    "mean-cost-factor": "Mean cost factor",
     "distance": "Distance",
     "kilometer": "kilometers",
     "kilometer-abbrev": "km",
@@ -44,7 +46,8 @@
     "meter-abbrev": "m",
     "minutes": "minutes",
     "minutes-abbrev": "min",
-    "total-energy": "Total Energy | Energy per 100 km",
+    "total-energy": "Total Energy",
+    "energy-per-100km": "Energy per 100 km",
     "travel-time": "Travel time"
   },
   "layers": {
