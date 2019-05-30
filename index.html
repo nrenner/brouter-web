@@ -927,10 +927,10 @@
                             Distance
                         </div>
                         <p class="stats-label">
-                            <span id="distance">0</span>
+                            <span id="distance">-</span>
                             <abbr
                                 data-i18n="[title]footer.kilometer;footer.kilometer-abbrev"
-                                title="kilometer"
+                                title="kilometers"
                                 >km</abbr
                             >
                         </p>
@@ -943,7 +943,7 @@
                             Travel time
                         </div>
                         <p class="stats-label">
-                            <span id="totaltime">0</span>
+                            <span id="totaltime">-</span>
                             <abbr
                                 data-i18n="[title]footer.minutes;footer.minutes-abbrev"
                                 title="minutes"
@@ -956,13 +956,19 @@
                             class="text-muted small hidden-sm-down"
                             data-i18n="footer.total-energy"
                         >
-                            Total Energy (per 100km)
+                            Total Energy | Energy per 100 km
                         </div>
                         <p class="stats-label">
-                            <span id="totalenergy">0 (0)</span>
+                            <span id="totalenergy">-</span>
                             <abbr
                                 data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
-                                title="kilowatt hour"
+                                title="kilowatt hours"
+                                >kWh</abbr
+                            >
+                            | <span id="meanenergy">-</span>
+                            <abbr
+                                data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
+                                title="kilowatt hours"
                                 >kWh</abbr
                             >
                         </p>
@@ -972,13 +978,19 @@
                             class="text-muted small hidden-sm-down"
                             data-i18n="footer.ascend"
                         >
-                            Ascend (Plain ascend)
+                            Ascend | Plain ascend
                         </div>
                         <p class="stats-label">
-                            <span id="ascend">0 (0)</span>
+                            <span id="ascend">-</span>
                             <abbr
                                 data-i18n="[title]footer.meter;footer.meter-abbrev"
-                                title="meter"
+                                title="meters"
+                                >m</abbr
+                            >
+                            | <span id="plainascend">-</span>
+                            <abbr
+                                data-i18n="[title]footer.meter;footer.meter-abbrev"
+                                title="meters"
                                 >m</abbr
                             >
                         </p>
@@ -988,9 +1000,12 @@
                             class="text-muted small hidden-sm-down"
                             data-i18n="footer.cost"
                         >
-                            Cost (Mean cost factor)
+                            Cost | Mean cost factor
                         </div>
-                        <p class="stats-label"><span id="cost">- (-)</span></p>
+                        <p class="stats-label">
+                            <span id="cost">-</span> |
+                            <span id="meancostfactor">-</span>
+                        </p>
                     </li>
                 </ul>
 
