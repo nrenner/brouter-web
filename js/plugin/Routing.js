@@ -333,8 +333,15 @@ BR.Routing = L.Routing.extend({
         return segments;
     },
 
-    // add 'esc' to disable drawing
     _keyupListener: function(e) {
+        // Suppress shortcut handling when a text input field is focussed
+        if (
+            document.activeElement.type == 'text' ||
+            document.activeElement.type == 'textarea'
+        ) {
+            return;
+        }
+        // add 'esc' to disable drawing
         if (e.keyCode === 27) {
             this._draw.disable();
         } else {
