@@ -44,8 +44,8 @@
     "kilowatthour-abbrev": "kWh",
     "meter": "meters",
     "meter-abbrev": "m",
-    "minutes": "minutes",
-    "minutes-abbrev": "min",
+    "hours": "hours",
+    "hours-abbrev": "h",
     "total-energy": "Total Energy",
     "energy-per-100km": "Energy per 100 km",
     "travel-time": "Travel time"
