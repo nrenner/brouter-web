@@ -484,3 +484,9 @@ table.dataTable.display tbody tr.even:hover {
     padding-right: 2px;
     border: none;
 }
+
+.nav-link.disabled {
+    /* by default, even if disabled, modals are opened by disabled nav-link 
+    so we ignore pointer events in this situation to avoid that*/
+    pointer-events: none;
+}
