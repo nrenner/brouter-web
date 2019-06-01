@@ -927,10 +927,10 @@
                             Distance
                         </div>
                         <p class="stats-label">
-                            <span id="distance">0</span>
+                            <span id="distance">-</span>
                             <abbr
                                 data-i18n="[title]footer.kilometer;footer.kilometer-abbrev"
-                                title="kilometer"
+                                title="kilometers"
                                 >km</abbr
                             >
                         </p>
@@ -943,54 +943,72 @@
                             Travel time
                         </div>
                         <p class="stats-label">
-                            <span id="totaltime">0</span>
+                            <span id="totaltime">-</span>
                             <abbr
-                                data-i18n="[title]footer.minutes;footer.minutes-abbrev"
-                                title="minutes"
-                                >min</abbr
+                                data-i18n="[title]footer.hours;footer.hours-abbrev"
+                                title="hours"
+                                >h</abbr
                             >
                         </p>
                     </li>
                     <li hidden>
-                        <div
-                            class="text-muted small hidden-sm-down"
-                            data-i18n="footer.total-energy"
-                        >
-                            Total Energy (per 100km)
+                        <div class="text-muted small hidden-sm-down">
+                            <span data-i18n="footer.total-energy"
+                                >Total Energy</span
+                            >
+                            |
+                            <span data-i18n="footer.energy-per-100km"
+                                >Energy per 100 km</span
+                            >
                         </div>
                         <p class="stats-label">
-                            <span id="totalenergy">0 (0)</span>
+                            <span id="totalenergy">-</span>
                             <abbr
                                 data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
-                                title="kilowatt hour"
+                                title="kilowatt hours"
+                                >kWh</abbr
+                            >
+                            | <span id="meanenergy">-</span>
+                            <abbr
+                                data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
+                                title="kilowatt hours"
                                 >kWh</abbr
                             >
                         </p>
                     </li>
                     <li>
-                        <div
-                            class="text-muted small hidden-sm-down"
-                            data-i18n="footer.ascend"
-                        >
-                            Ascend (Plain ascend)
+                        <div class="text-muted small hidden-sm-down">
+                            <span data-i18n="footer.ascend">Ascend</span> |
+                            <span data-i18n="footer.plain-ascend"
+                                >Plain ascend</span
+                            >
                         </div>
                         <p class="stats-label">
-                            <span id="ascend">0 (0)</span>
+                            <span id="ascend">-</span>
                             <abbr
                                 data-i18n="[title]footer.meter;footer.meter-abbrev"
-                                title="meter"
+                                title="meters"
+                                >m</abbr
+                            >
+                            | <span id="plainascend">-</span>
+                            <abbr
+                                data-i18n="[title]footer.meter;footer.meter-abbrev"
+                                title="meters"
                                 >m</abbr
                             >
                         </p>
                     </li>
                     <li>
-                        <div
-                            class="text-muted small hidden-sm-down"
-                            data-i18n="footer.cost"
-                        >
-                            Cost (Mean cost factor)
+                        <div class="text-muted small hidden-sm-down">
+                            <span data-i18n="footer.cost">Cost</span> |
+                            <span data-i18n="footer.mean-cost-factor"
+                                >Mean cost factor</span
+                            >
                         </div>
-                        <p class="stats-label"><span id="cost">- (-)</span></p>
+                        <p class="stats-label">
+                            <span id="cost">-</span> |
+                            <span id="meancostfactor">-</span>
+                        </p>
                     </li>
                 </ul>
 
