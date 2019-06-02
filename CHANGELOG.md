@@ -1,5 +1,37 @@
 # BRouter-Web Changelog
 
+## 0.10.2 (2019-06-02)
+
+See also [milestone 0.10.2](https://github.com/nrenner/brouter-web/milestone/10?closed=1)
+
+### New Features
+
+-   Polish formatting and behaviour of track statistics bar - by [@rkflx](https://github.com/rkflx) ([#200](https://github.com/nrenner/brouter-web/pull/200))
+
+### Bugfixes
+
+-   Fix unintentional shortcut activations when typing text - by [@rkflx](https://github.com/rkflx) ([#198](https://github.com/nrenner/brouter-web/pull/198))
+-   Fix export button translation - by [@bagage](https://github.com/bagage) ([#195](https://github.com/nrenner/brouter-web/issues/195))
+-   Fix downloads in Microsoft Edge - by [@bagage](https://github.com/bagage) ([#193](https://github.com/nrenner/brouter-web/issues/193))
+
+## 0.10.1 (2019-05-22)
+
+### Bugfixes
+
+-   Really ignore missing elevation points in elevation chart - by [@bagage](https://github.com/bagage)/[@nrenner](https://github.com/nrenner) ([#147](https://github.com/nrenner/brouter-web/issues/147))
+
+## 0.10.0 (2019-05-21)
+
+See also [milestone 0.10.0](https://github.com/nrenner/brouter-web/milestone/9?closed=1)
+
+### New Features
+
+-   Export dialog with input field for file name and track title (replaces Download dropdown) - by [@bagage](https://github.com/bagage) ([#96](https://github.com/nrenner/brouter-web/issues/96))
+
+### Bugfixes
+
+-   Fix broken nogo's - by [@bagage](https://github.com/bagage)/[@nrenner](https://github.com/nrenner) ([#183](https://github.com/nrenner/brouter-web/issues/183))
+
 ## 0.9.0 (2019-05-18)
 
 See also [milestone 0.9.0](https://github.com/nrenner/brouter-web/milestone/8?closed=1)
