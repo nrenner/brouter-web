@@ -33,18 +33,21 @@
     "trackname": "Name"
   },
   "footer": {
-    "ascend": "Aufsteigend (einfach aufsteigend)",
-    "cost": "Kosten (durchschnittlicher Kostenfaktor)",
+    "ascend": "Aufsteigend",
+    "cost": "Kosten",
     "distance": "Entfernung",
+    "energy-per-100km": "Energie pro 100 km",
+    "hours": "Stunden",
+    "hours-abbrev": "h",
     "kilometer": "Kilometer",
     "kilometer-abbrev": "km",
     "kilowatthour": "Kilowattstunden",
     "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "durchschnittlicher Kostenfaktor",
     "meter": "Meter",
     "meter-abbrev": "m",
-    "minutes": "Minuten",
-    "minutes-abbrev": "min",
-    "total-energy": "Gesamtenergie (pro 100 km)",
+    "plain-ascend": "einfach aufsteigend",
+    "total-energy": "Gesamtenergie",
     "travel-time": "Reisezeit"
   },
   "layers": {
