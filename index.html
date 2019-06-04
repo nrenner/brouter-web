@@ -15,30 +15,28 @@
         <!-- endinject -->
     </head>
     <body class="flexcolumn">
-        <nav class="navbar navbar-full navbar-dark bg-inverse">
-            <div class="navbar-header">
-                <a
-                    class="navbar-brand"
-                    href="#"
-                    data-toggle="modal"
-                    data-target="#about"
-                    >BRouter-Web <sup class="version">0.10.2</sup></a
-                >
-                <button
-                    class="navbar-toggler hidden-md-up"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapsingNavbar"
-                    aria-controls="collapsingNavbar"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span class="fa fa-bars"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
-                <div class="nav navbar-nav">
-                    <form class="nav-item form-inline">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#collapsingNavbar"
+                aria-controls="collapsingNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="fa fa-bars"></span>
+            </button>
+            <a
+                class="navbar-brand order-md-last"
+                href="#"
+                data-toggle="modal"
+                data-target="#about"
+                >BRouter-Web <sup class="version">0.10.2</sup></a
+            >
+            <div class="collapse navbar-collapse" id="collapsingNavbar">
+                <div class="navbar-nav">
+                    <form class="form-inline">
                         <div class="form-group">
                             <select
                                 class="selectpicker show-tick"
@@ -53,8 +51,8 @@
                                     id="profile"
                                 >
                                     <option data-i18n="navbar.profile.custom"
-                                        >Custom</option
-                                    >
+                                        >Custom
+                                    </option>
                                 </optgroup>
                                 <optgroup
                                     label="Alternative"
@@ -66,23 +64,23 @@
                                         data-i18n="navbar.alternative.original"
                                         value="0"
                                         selected
-                                        >Original</option
-                                    >
+                                        >Original
+                                    </option>
                                     <option
                                         data-i18n="navbar.alternative.first"
                                         value="1"
-                                        >1st alternative</option
-                                    >
+                                        >1st alternative
+                                    </option>
                                     <option
                                         data-i18n="navbar.alternative.second"
                                         value="2"
-                                        >2nd alternative</option
-                                    >
+                                        >2nd alternative
+                                    </option>
                                     <option
                                         data-i18n="navbar.alternative.third"
                                         value="3"
-                                        >3rd alternative</option
-                                    >
+                                        >3rd alternative
+                                    </option>
                                 </optgroup>
                             </select>
                         </div>
@@ -113,6 +111,7 @@
                             data-toggle="dropdown"
                             href="#"
                             role="button"
+                            id="navbarLoadDropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
@@ -123,7 +122,10 @@
                             </span>
                             <span data-i18n="navbar.load.title">Load</span>
                         </a>
-                        <div class="dropdown-menu">
+                        <div
+                            class="dropdown-menu"
+                            aria-labelledby="navbarLoadDropdown"
+                        >
                             <a
                                 class="dropdown-item"
                                 data-i18n="navbar.load.nogos"
@@ -163,6 +165,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="credits">Credits</h4>
                         <button
                             type="button"
                             class="close"
@@ -171,7 +174,6 @@
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" data-i18n="credits">Credits</h4>
                     </div>
                     <div class="modal-body">
                         <dl>
@@ -227,6 +229,9 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="layers.customize">
+                            Customize layers
+                        </h4>
                         <button
                             type="button"
                             class="close"
@@ -235,9 +240,6 @@
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" data-i18n="layers.customize">
-                            Customize layers
-                        </h4>
                     </div>
                     <div class="modal-body">
                         <input
@@ -301,6 +303,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="about.title">
+                            About
+                        </h4>
                         <button
                             type="button"
                             class="close"
@@ -309,9 +314,6 @@
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" data-i18n="about.title">
-                            About
-                        </h4>
                     </div>
                     <div class="modal-body">
                         <p data-i18n="[html]about.description">
@@ -433,6 +435,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="loadNogos.title">
+                            Load no-go areas
+                        </h4>
                         <button
                             type="button"
                             class="close"
@@ -441,9 +446,6 @@
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" data-i18n="loadNogos.title">
-                            Load no-go areas
-                        </h4>
                     </div>
                     <div class="modal-body">
                         <p id="nogoError" style="display: none;"></p>
@@ -520,14 +522,25 @@
                                     />
                                 </p>
                             </fieldset>
-                            <p style="margin-top: 1em; text-align: center;">
-                                <input
-                                    type="submit"
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-i18n="[value]modal.close"
+                                    data-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
                                     data-i18n="[value]loadNogos.load"
-                                    value="Load"
                                     id="submitNogos"
-                                />
-                            </p>
+                                >
+                                    Load
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -546,6 +559,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="export.title">
+                            Export route
+                        </h4>
                         <button
                             type="button"
                             class="close"
@@ -554,9 +570,6 @@
                         >
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" data-i18n="export.title">
-                            Export route
-                        </h4>
                     </div>
                     <div class="modal-body">
                         <form name="export">
@@ -574,80 +587,85 @@
                                     />
                                 </div>
                             </div>
-                            <fieldset id="export-format" class="form-group row">
-                                <legend
-                                    class="col-form-legend col-sm-2"
-                                    data-i18n="export.format"
-                                >
-                                    Format
-                                </legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input
-                                                class="form-check-input"
-                                                id="format-gpx"
-                                                type="radio"
-                                                name="format"
-                                                value="gpx"
-                                                checked
-                                            />
-                                            <span data-i18n="export.format_gpx"
-                                                >GPX</span
+                            <fieldset id="export-format" class="form-group">
+                                <div class="row">
+                                    <legend
+                                        class="col-form-label col-sm-2"
+                                        data-i18n="export.format"
+                                    >
+                                        Format
+                                    </legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input
+                                                    class="form-check-input"
+                                                    id="format-gpx"
+                                                    type="radio"
+                                                    name="format"
+                                                    value="gpx"
+                                                    checked
+                                                />
+                                                <span
+                                                    data-i18n="export.format_gpx"
+                                                    >GPX</span
+                                                >
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label
+                                                class="form-check-label"
+                                                for="format-kml"
                                             >
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label
-                                            class="form-check-label"
-                                            for="format-kml"
-                                        >
-                                            <input
-                                                class="form-check-input"
-                                                id="format-kml"
-                                                type="radio"
-                                                name="format"
-                                                value="kml"
-                                            />
-                                            <span data-i18n="export.format_kml"
-                                                >KML</span
+                                                <input
+                                                    class="form-check-input"
+                                                    id="format-kml"
+                                                    type="radio"
+                                                    name="format"
+                                                    value="kml"
+                                                />
+                                                <span
+                                                    data-i18n="export.format_kml"
+                                                    >KML</span
+                                                >
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label
+                                                class="form-check-label"
+                                                for="format-geojson"
                                             >
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label
-                                            class="form-check-label"
-                                            for="format-geojson"
-                                        >
-                                            <input
-                                                class="form-check-input"
-                                                id="format-geojson"
-                                                type="radio"
-                                                name="format"
-                                                value="geojson"
-                                            />
-                                            <span
-                                                data-i18n="export.format_geojson"
-                                                >GeoJSON</span
+                                                <input
+                                                    class="form-check-input"
+                                                    id="format-geojson"
+                                                    type="radio"
+                                                    name="format"
+                                                    value="geojson"
+                                                />
+                                                <span
+                                                    data-i18n="export.format_geojson"
+                                                    >GeoJSON</span
+                                                >
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label
+                                                class="form-check-label"
+                                                for="format-csv"
                                             >
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label
-                                            class="form-check-label"
-                                            for="format-csv"
-                                        >
-                                            <input
-                                                class="form-check-input"
-                                                id="format-csv"
-                                                type="radio"
-                                                name="format"
-                                                value="csv"
-                                            />
-                                            <span data-i18n="export.format_csv"
-                                                >CSV</span
-                                            >
-                                        </label>
+                                                <input
+                                                    class="form-check-input"
+                                                    id="format-csv"
+                                                    type="radio"
+                                                    name="format"
+                                                    value="csv"
+                                                />
+                                                <span
+                                                    data-i18n="export.format_csv"
+                                                    >CSV</span
+                                                >
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -686,10 +704,10 @@
                             title="Layers"
                         >
                             <!--
-                        https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
-                        MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
-                        modifications: line gap -0.5, stroke-width +0.2
-                        -->
+                https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
+                MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
+                modifications: line gap -0.5, stroke-width +0.2
+                -->
                             <svg
                                 class="fa"
                                 width="1em"
@@ -769,7 +787,7 @@
                                     <button
                                         type="button"
                                         id="expand_tree_button"
-                                        class="btn btn-sm"
+                                        class="btn btn-light btn-sm"
                                         data-i18n="[title]sidebar.layers.expand"
                                         title="Expand all"
                                     >
@@ -780,7 +798,7 @@
                                     <button
                                         type="button"
                                         id="collapse_tree_button"
-                                        class="btn btn-sm"
+                                        class="btn btn-light btn-sm"
                                         data-i18n="[title]sidebar.layers.collapse"
                                         title="Collapse all"
                                     >
@@ -795,7 +813,7 @@
                                     <button
                                         type="button"
                                         id="optional_layers_button"
-                                        class="btn btn-sm"
+                                        class="btn btn-light btn-sm"
                                         data-i18n="[title]sidebar.layers.optional"
                                         title="Add or remove optional layers"
                                     >
@@ -808,7 +826,7 @@
                                     <button
                                         type="button"
                                         id="custom_layers_button"
-                                        class="btn btn-sm"
+                                        class="btn btn-light btn-sm"
                                         data-i18n="[title]sidebar.layers.customize"
                                         title="Add or remove custom layers"
                                     >
@@ -847,7 +865,7 @@
                                     <button
                                         id="upload"
                                         type="button"
-                                        class="btn btn-sm"
+                                        class="btn btn-primary btn-sm"
                                         data-uploading-text="Uploading…"
                                     >
                                         <span class="fa fa-cloud-upload"></span>
@@ -858,7 +876,7 @@
                                     <button
                                         id="clear"
                                         type="button"
-                                        class="btn btn-sm"
+                                        class="btn btn-secondary btn-sm"
                                     >
                                         <span class="fa fa-eraser"></span>
                                         <span data-i18n="sidebar.profile.clear"
@@ -868,7 +886,7 @@
                                     <a
                                         href="http://brouter.de/brouter/costfunctions.html"
                                         target="_blank"
-                                        class="btn btn-sm btn-info pull-right"
+                                        class="btn btn-info btn-sm pull-right"
                                         ><span class="fa fa-question"></span>
                                         <span data-i18n="sidebar.profile.help"
                                             >Help</span
@@ -921,7 +939,7 @@
                 <ul id="stats">
                     <li>
                         <div
-                            class="text-muted small hidden-sm-down"
+                            class="text-muted small d-none d-sm-block"
                             data-i18n="footer.distance"
                         >
                             Distance
@@ -937,7 +955,7 @@
                     </li>
                     <li hidden>
                         <div
-                            class="text-muted small hidden-sm-down"
+                            class="text-muted small d-none d-sm-block"
                             data-i18n="footer.travel-time"
                         >
                             Travel time
@@ -952,7 +970,7 @@
                         </p>
                     </li>
                     <li hidden>
-                        <div class="text-muted small hidden-sm-down">
+                        <div class="text-muted small d-none d-sm-block">
                             <span data-i18n="footer.total-energy"
                                 >Total Energy</span
                             >
@@ -977,7 +995,7 @@
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small hidden-sm-down">
+                        <div class="text-muted small d-none d-sm-block">
                             <span data-i18n="footer.ascend">Ascend</span> |
                             <span data-i18n="footer.plain-ascend"
                                 >Plain ascend</span
@@ -999,7 +1017,7 @@
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small hidden-sm-down">
+                        <div class="text-muted small d-none d-sm-block">
                             <span data-i18n="footer.cost">Cost</span> |
                             <span data-i18n="footer.mean-cost-factor"
                                 >Mean cost factor</span
@@ -1013,7 +1031,7 @@
                 </ul>
 
                 <button
-                    class="btn btn-secondary btn-sm"
+                    class="btn btn-outline-secondary btn-sm"
                     type="button"
                     data-toggle="collapse"
                     data-target="#elevation-chart"

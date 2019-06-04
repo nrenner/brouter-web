@@ -1561,24 +1561,23 @@ bl@~0.9.4:
   dependencies:
     readable-stream "~1.0.26"
 
-bootbox@~4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-4.4.0.tgz#ff7f898fb87d4527e547feb64158f88450d1a0c9"
-  integrity sha1-/3+Jj7h9RSflR/62QVj4hFDRoMk=
-
-bootstrap-select@hugdx/bootstrap-select#patch-1:
-  version "1.11.2"
-  resolved "https://codeload.github.com/hugdx/bootstrap-select/tar.gz/6556cfeadd7bc6653e04c3377c7918fc7e8dc627"
+bootbox@~5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-5.1.3.tgz#700b4b2619077402a86d163210671a15425eb4cd"
+  integrity sha512-bXNPIkFv3Dcgcdg9jj32F8RBWhRyF8hKDtZ8LY15Bk5WQ1+JzpPCi1qh5rwqI4Jjl/8AWLB44z/H7dFJz4Ql2A==
   dependencies:
-    jquery ">=1.8"
+    bootstrap ">=3.0.0"
+    jquery ">=1.9.1"
 
-bootstrap@4.0.0-alpha.5:
-  version "4.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.5.tgz#a126b648c3bd2f52b8fad4bbc5e2d0ad2abf7064"
-  integrity sha1-oSa2SMO9L1K4+tS7xeLQrSq/cGQ=
-  dependencies:
-    jquery "1.9.1 - 3"
-    tether "^1.3.7"
+bootstrap-select@1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.13.0.tgz#f31d0a23fc6070fd5b17b841bf1ca115ce54775b"
+  integrity sha1-8x0KI/xgcP1bF7hBvxyhFc5Ud1s=
+
+bootstrap@4.3.1, bootstrap@>=3.0.0:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
+  integrity sha512-rXqOmH1VilAt2DyPzluTi2blhk17bO7ef+zLLPlWvG494pDxcM234pJ8wTc/6R40UWizAIIMgxjvxZg5kmsbag==
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"
@@ -3509,15 +3508,15 @@ jquery-i18next@^1.2.1:
   resolved "https://registry.yarnpkg.com/jquery-i18next/-/jquery-i18next-1.2.1.tgz#3e4ac5e46632fac21640529f1aa7b68e54f227e8"
   integrity sha512-UNcw3rgxoKjGEg4w23FEn2h3OlPJU7rPzsgDuXDBZktIzeiVbJohs9Cv9hj8oP8KNfBRKOoErL/OVxg2FaAR4g==
 
-"jquery@1.9.1 - 3", jquery@>=1.7, jquery@>=1.8, jquery@>=1.9.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
-
 jquery@3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
+jquery@>=1.7, jquery@>=1.9.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
 js-yaml@^3.13.1:
   version "3.13.1"
@@ -5450,7 +5449,7 @@ ternary-stream@^2.0.1:
     merge-stream "^1.0.0"
     through2 "^2.0.1"
 
-tether@1.4.5, tether@^1.3.7:
+tether@1.4.5:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.5.tgz#8efd7b35572767ba502259ba9b1cc167fcf6f2c1"
   integrity sha512-fysT1Gug2wbRi7a6waeu39yVDwiNtvwj5m9eRD+qZDSHKNghLo6KqP/U3yM2ap6TNUL2skjXGJaJJTJqoC31vw==
