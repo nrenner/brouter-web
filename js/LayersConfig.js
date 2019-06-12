@@ -76,6 +76,8 @@ BR.LayersConfig = L.Class.extend({
 
         BR.layerIndex['OpenStreetMap.CH'].geometry =
             BR.confLayers.switzerlandPadded;
+
+        BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
     },
 
     isDefaultLayer: function(id, overlay) {

@@ -73,11 +73,6 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'OSM French',
             'mapUrl': 'http://tile.openstreetmap.fr/?layers=B00000000FFFFFF&zoom={zoom}&lat={lat}&lon={lon}'
         },
-        // Osmapa.pl - Mapa OpenStreetMap Polska
-        '1017': {
-            'language_code': 'pl',
-            'mapUrl': 'http://osmapa.pl/#lat={lat}&lon={lon}&z={zoom}&m=os'
-        },
         // kosmosnimki.ru
         '1023': {
             'language_code': 'ru',
@@ -154,6 +149,13 @@ BR.confLayers.getPropertyOverrides = function() {
         },
         'mtbmap-no': {
             'mapUrl': 'https://mtbmap.no/#{zoom}/{lat}/{lon}'
+        },
+        // Osmapa.pl - Mapa OpenStreetMap Polska
+        '1017': {
+            "country_code": "PL",
+            'language_code': 'pl',
+            'mapUrl': 'http://osmapa.pl/#lat={lat}&lon={lon}&z={zoom}&m=os',
+            'worldTiles': true // -z13
         },
         'Freemap.sk-Car': {
             'mapUrl': 'https://www.freemap.sk/?map={zoom}/{lat}/{lon}&layers=A'

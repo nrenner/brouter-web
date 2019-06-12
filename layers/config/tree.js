@@ -17,7 +17,6 @@ BR.confLayers.tree = {
         'worldwide-monolingual': [
             'osm-mapnik-german_style',
             'osmfr',
-            '1017',  // Osmapa.pl - Mapa OpenStreetMap Polska
             '1023', // kosmosnimki.ru
             '1021' // sputnik.ru
         ],
@@ -48,6 +47,7 @@ BR.confLayers.tree = {
                 ]
             },
             'mtbmap-no',
+            '1017',  // Osmapa.pl - Mapa OpenStreetMap Polska
             {
                 'SK': [
                     'Freemap.sk-Car',

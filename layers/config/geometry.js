@@ -1443,3 +1443,33 @@ BR.confLayers.switzerlandPadded = {
         ]
     ]
 };
+
+// osmapa.pl (1017): manually derived from z9-z11, no worldwide tiles >z13, 
+// but unclear because of general issues at z14+z15 as of 06/2019
+BR.confLayers.osmapaPl = {
+    "type": "Polygon",
+    "coordinates": [
+        [
+            [
+                25,
+                47
+            ],
+            [
+                25,
+                56
+            ],
+            [
+                13.5,
+                56
+            ],
+            [
+                13.5,
+                47
+            ],
+            [
+                25,
+                47
+            ]
+        ]
+    ]
+};
