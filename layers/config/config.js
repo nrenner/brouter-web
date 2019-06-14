@@ -2,10 +2,16 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
-    'osm-mapnik-german_style',
     'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'
+];
+
+// worldwide monolingual layers to add as default when browser language matches
+BR.confLayers.languageDefaultLayers = [
+    'osm-mapnik-german_style',
+    'osmfr',
+    '1021' // sputnik.ru
 ];
 
 BR.confLayers.defaultOverlays =  [
