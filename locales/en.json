@@ -3,6 +3,7 @@
     "bug-reports": "Bug reports and feature requests:",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
+    "chat": "Chat with users and developers",
     "contact": "Contact:",
     "data": "Data:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
