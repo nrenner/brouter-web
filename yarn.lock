@@ -3642,10 +3642,12 @@ lead@^1.0.0:
   dependencies:
     flush-write-stream "^1.0.2"
 
-leaflet-control-geocoder@~1.5.8:
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/leaflet-control-geocoder/-/leaflet-control-geocoder-1.5.8.tgz#c52dfbb9be5f6388d683346acb49bf017fd5b6a8"
-  integrity sha512-RS7SjP6M2aombxfUu0EwZxsyxZajp71eU3m9pU0pIeJccy719bwbbh9UG5N752IWaQwoz6/Z4cPZ6NpVXVugSA==
+leaflet-control-geocoder@1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/leaflet-control-geocoder/-/leaflet-control-geocoder-1.8.2.tgz#8a91d66c676d9e2bde2dd6207bb5d7f8ef0cd263"
+  integrity sha512-ULqCRm9CTAsY9XEtRgnD50UaQkQV8M8p2pnl789FyrX5aGiHndEc/1VYP/hnthKOKb6ShfWD/l41MbSlr6j86A==
+  optionalDependencies:
+    open-location-code "^1.0.0"
 
 leaflet-easybutton@*, leaflet-easybutton@^2.3.0:
   version "2.4.0"
@@ -4298,6 +4300,11 @@ onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
   integrity sha1-ofeDj4MUxRbwXs78vEzP4EtO14k=
+
+open-location-code@^1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/open-location-code/-/open-location-code-1.0.3.tgz#5ea1a34ee5221c6cafa04392e1bd906fd7488f7e"
+  integrity sha1-XqGjTuUiHGyvoEOS4b2Qb9dIj34=
 
 orchestrator@^0.3.0:
   version "0.3.8"

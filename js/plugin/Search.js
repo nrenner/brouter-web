@@ -1,7 +1,10 @@
 BR.Search = L.Control.Geocoder.extend({
     options: {
-        geocoder: new L.Control.Geocoder.Nominatim({
-            serviceUrl: 'https://nominatim.openstreetmap.org/'
+        geocoder: new L.Control.Geocoder.LatLng({
+            next: new L.Control.Geocoder.Nominatim({
+                serviceUrl: 'https://nominatim.openstreetmap.org/'
+            }),
+            sizeInMeters: 800
         }),
         position: 'topleft'
     },
