@@ -36,7 +36,8 @@ var paths = {
     scripts: [
         'node_modules/jquery/dist/jquery.js',
         'node_modules/tether/dist/js/tether.js',
-        'node_modules/async/lib/async.js'
+        'node_modules/async/lib/async.js',
+        'node_modules/leaflet/dist/leaflet-src.js'
     ]
         .concat(
             mainNpmFiles().filter(
