@@ -42,7 +42,7 @@
         "jquery-i18next": "^1.2.1",
         "jstree": "^3.3.7",
         "leaflet": "~1.4.0",
-        "leaflet-control-geocoder": "~1.5.8",
+        "leaflet-control-geocoder": "1.8.2",
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
         "leaflet-elevation": "opoto/Leaflet.Elevation#master",
