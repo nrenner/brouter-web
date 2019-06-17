@@ -3,6 +3,7 @@
     "bug-reports": "Hibák és kérések bejelentése:",
     "bug-reports-back": "kiszolgálóoldal / back end, útvonaltervező motor, Android alkalmazás, profilok, brouter.de weboldal",
     "bug-reports-front": "weboldali kliens / frontend.",
+    "chat": "Chat with users and developers",
     "contact": "Kapcsolat:",
     "data": "Adatok:",
     "data-description": "Az adatok alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Az oldal általában hetente frissül, amikor az új bolygófájl (Planet fájl) elérhetővé válik. A dátumok megtalálhatók az <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlokban</a>.",
@@ -22,32 +23,32 @@
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint"
   },
   "export": {
-    "format": "Format",
+    "format": "Formátum",
     "format_csv": "CSV",
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
-    "route-loop": "{{from}} ({{distance}}km)",
-    "title": "Export route",
-    "trackname": "Name"
+    "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
+    "route-loop": "{{from}} ({{distance}} km)",
+    "title": "Útvonal exportálása",
+    "trackname": "Név"
   },
   "footer": {
-    "ascend": "Ascend",
-    "cost": "Cost",
+    "ascend": "Összes szintkülönbség",
+    "cost": "Ráfordítás",
     "distance": "Távolság",
-    "energy-per-100km": "Energy per 100 km",
-    "hours": "hours",
+    "energy-per-100km": "Energia / 100 km",
+    "hours": "óra",
     "hours-abbrev": "h",
-    "kilometer": "kilometers",
+    "kilometer": "kilométer",
     "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
+    "kilowatthour": "kilowattóra",
     "kilowatthour-abbrev": "kWh",
-    "mean-cost-factor": "Mean cost factor",
-    "meter": "meters",
+    "mean-cost-factor": "Közepes ráfordítástényező",
+    "meter": "méter",
     "meter-abbrev": "m",
-    "plain-ascend": "Plain ascend",
-    "total-energy": "Total Energy",
+    "plain-ascend": "Végpontok közötti szintkülönbség",
+    "total-energy": "Teljes energiafelhasználás",
     "travel-time": "Utazási idő"
   },
   "layers": {
@@ -75,7 +76,7 @@
     "clear-route": "Útvonal törlése",
     "copyright": "Szerzői jogok",
     "cycling": "Kerékpározás",
-    "delete-last-point": "Delete last point",
+    "delete-last-point": "Utolsó pont törlése",
     "delete-nogo-areas": "&nbsp;&nbsp;törlődjenek az elkerülendő területek is",
     "delete-route": "Útvonal törlése?",
     "draw-route-start": "Útvonal rajzolása (D billentyű)",
@@ -108,14 +109,14 @@
     },
     "opacity-slider": "Nyomvonal és jelölők átlátszóságának beállítása",
     "privacy": "Adatvédelem",
-    "reverse-route": "Reverse route",
+    "reverse-route": "Útvonal megfordítása",
     "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
     "strava-running": "Strava futó útvonalszakaszok megjelenítése",
     "zoomInTitle": "Nagyítás",
     "zoomOutTitle": "Kicsinyítés"
   },
   "modal": {
-    "close": "Close"
+    "close": "Bezárás"
   },
   "navbar": {
     "about": "Névjegy",
@@ -125,7 +126,7 @@
       "second": "2. alternatíva",
       "third": "3. alternatíva"
     },
-    "export": "Export",
+    "export": "Exportálás",
     "load": {
       "nogos": "Elkerülendő területek",
       "title": "Betöltés"

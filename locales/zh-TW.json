@@ -3,6 +3,7 @@
     "bug-reports": "錯誤報告和功能需求：",
     "bug-reports-back": "伺服器 / 後端、導航引擎、Android應用程式、設定檔、brouter.de 網站",
     "bug-reports-front": "網頁用戶端 / 前端.",
+    "chat": "Chat with users and developers",
     "contact": "聯絡：",
     "data": "資料:",
     "data-description": "這是一項基於 <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> 提供的服務。它通常會在每週新的 Planet 檔案發布後更新，詳見 <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">資料檔案</a>。",
