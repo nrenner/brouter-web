@@ -92,7 +92,9 @@
                         var layerString = decodeURIComponent(layerEncoded);
 
                         if (layerString) {
-                            obj = this._getLayerFromString(layerString);
+                            obj = this.options.layersControl.getLayerFromString(
+                                layerString
+                            );
                         }
 
                         return obj;
@@ -138,7 +140,7 @@
                 layers.forEach(
                     L.bind(function(obj, index, array) {
                         if (obj) {
-                            layersControl.activateLayer(obj.layer);
+                            layersControl.activateLayer(obj);
                             if (obj && !obj.overlay) {
                                 added = true;
                             }
@@ -156,32 +158,13 @@
                 var objList = this.options.layersControl.getActiveLayers();
                 var layerList = objList.map(
                     L.bind(function(obj) {
-                        return encodeURIComponent(this._toLayerString(obj));
+                        return encodeURIComponent(
+                            this.options.layersControl.toLayerString(obj)
+                        );
                     }, this)
                 );
 
                 return layerList.join(this.options.layerSeparator);
-            },
-
-            _toLayerString: function(obj) {
-                return obj.layer.id ? obj.layer.id : obj.name;
-            },
-
-            _getLayerFromString: function(layerString) {
-                var layersControl = this.options.layersControl;
-                var obj = layersControl.getLayerById(layerString);
-
-                if (!obj) {
-                    // fallback to name for custom and config layers
-                    obj = layersControl.getLayer(layerString);
-
-                    if (!obj) {
-                        // legacy layer name support
-                        obj = layersControl.getLayerByLegacyName(layerString);
-                    }
-                }
-
-                return obj;
             },
 
             removeFrom: function(map) {

@@ -26,6 +26,26 @@ BR.LayersTab = BR.ControlLayers.extend({
         return this;
     },
 
+    onAdd: function(map) {
+        BR.ControlLayers.prototype.onAdd.call(this, map);
+
+        map.on(
+            'baselayerchange overlayadd overlayremove',
+            this.storeActiveLayers,
+            this
+        );
+    },
+
+    onRemove: function(map) {
+        BR.ControlLayers.prototype.onRemove.call(this, map);
+
+        map.off(
+            'baselayerchange overlayadd overlayremove',
+            this.storeActiveLayers,
+            this
+        );
+    },
+
     initButtons: function() {
         var expandTree = function(e) {
             this.jstree.open_all();
@@ -298,9 +318,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             if (!overlaysOnly || (overlaysOnly && obj.overlay)) {
                 var hasLayer = !!this._getLayer(L.Util.stamp(obj.layer));
                 if (hasLayer) {
-                    if (!this._map.hasLayer(obj.layer)) {
-                        this._map.addLayer(obj.layer);
-                    }
+                    this.activateLayer(obj);
                 } else if (!obj.overlay) {
                     // saved base layer has been removed during preview, select first
                     this.activateFirstLayer();
@@ -379,6 +397,59 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.removePreviewBounds();
         this.removePreviewLayer();
         this.restoreActiveLayers();
+    },
+
+    toLayerString: function(obj) {
+        return obj.layer.id ? obj.layer.id : obj.name;
+    },
+
+    getLayerFromString: function(layerString) {
+        var obj = this.getLayerById(layerString);
+
+        if (!obj) {
+            // fallback to name for custom and config layers
+            obj = this.getLayer(layerString);
+
+            if (!obj) {
+                // legacy layer name support
+                obj = this.getLayerByLegacyName(layerString);
+            }
+        }
+
+        return obj;
+    },
+
+    storeActiveLayers: function() {
+        if (BR.Util.localStorageAvailable()) {
+            var objList = this.getActiveLayers();
+            var idList = objList.map(
+                L.bind(function(obj) {
+                    return this.toLayerString(obj);
+                }, this)
+            );
+            var str = JSON.stringify(idList);
+
+            localStorage.setItem('map/activeLayers', str);
+        }
+    },
+
+    loadActiveLayers: function() {
+        if (BR.Util.localStorageAvailable()) {
+            var item = localStorage.getItem('map/activeLayers');
+
+            if (item) {
+                var idList = JSON.parse(item);
+
+                for (var i = 0; i < idList.length; i++) {
+                    var id = idList[i];
+                    var obj = this.getLayerFromString(id);
+
+                    if (obj) {
+                        this.activateLayer(obj);
+                    }
+                }
+            }
+        }
     }
 });
 

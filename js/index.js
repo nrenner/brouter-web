@@ -292,6 +292,12 @@
         router.setOptions(routingOptions.getOptions());
         profile.update(routingOptions.getOptions());
 
+        // restore active layers from local storage when called without hash
+        // (check before hash plugin init)
+        if (!location.hash) {
+            layersControl.loadActiveLayers();
+        }
+
         var onHashChangeCb = function(url) {
             var url2params = function(s) {
                 s = s.replace(/;/g, '|');

@@ -59,15 +59,17 @@ BR.ControlLayers = L.Control.Layers.extend({
         });
     },
 
-    activateLayer: function(layer) {
-        this._map.addLayer(layer);
+    activateLayer: function(obj) {
+        if (!this._map.hasLayer(obj.layer)) {
+            this._map.addLayer(obj.layer);
+        }
     },
 
     activateFirstLayer: function() {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (!obj.overlay) {
-                this._map.addLayer(obj.layer);
+                this.activateLayer(obj);
                 break;
             }
         }
@@ -77,7 +79,7 @@ BR.ControlLayers = L.Control.Layers.extend({
         var baseLayers = this.getBaseLayers();
         var obj = baseLayers[index];
 
-        this.activateLayer(obj.layer);
+        this.activateLayer(obj);
     },
 
     _addLayer: function(layer, name, overlay) {
