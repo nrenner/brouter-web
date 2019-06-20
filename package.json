@@ -63,7 +63,7 @@
     "devDependencies": {
         "autoprefixer": "^8.1.0",
         "del": "^1.1.1",
-        "gulp": "^3.8.11",
+        "gulp": "^4.0.2",
         "gulp-bump": "^2.7.0",
         "gulp-cached": "^1.0.4",
         "gulp-clean-css": "^4.0.0",

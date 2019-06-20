@@ -84,11 +84,18 @@ var paths = {
     destName: 'brouter-web'
 };
 
-// libs that require loading before config.js
-gulp.task('scripts_config', ['clean'], function() {
-    // just copy for now
-    return gulp.src(paths.scriptsConfig).pipe(gulp.dest(paths.dest));
+gulp.task('clean', function(cb) {
+    del(paths.dest + '/**/*', cb);
 });
+
+// libs that require loading before config.js
+gulp.task(
+    'scripts_config',
+    gulp.series('clean', function() {
+        // just copy for now
+        return gulp.src(paths.scriptsConfig).pipe(gulp.dest(paths.dest));
+    })
+);
 
 gulp.task('scripts', function() {
     if (debug) gutil.log(gutil.colors.yellow('Running in Debug mode'));
@@ -142,20 +149,16 @@ gulp.task('styles', function() {
         .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('images', ['clean'], function() {
+gulp.task('images', function() {
     return gulp.src(paths.images).pipe(gulp.dest(paths.dest + '/images'));
 });
 
-gulp.task('fonts', ['clean'], function() {
+gulp.task('fonts', function() {
     return gulp.src(paths.fonts).pipe(gulp.dest(paths.dest + '/fonts'));
 });
 
-gulp.task('locales', ['clean'], function() {
+gulp.task('locales', function() {
     return gulp.src(paths.locales).pipe(gulp.dest(paths.dest + '/locales'));
-});
-
-gulp.task('clean', function(cb) {
-    del(paths.dest + '/**/*', cb);
 });
 
 gulp.task('watch', function() {
@@ -199,17 +202,6 @@ gulp.task('inject', function() {
         .pipe(inject(sources, { relative: true }))
         .pipe(gulp.dest('.'));
 });
-
-gulp.task('default', [
-    'clean',
-    'scripts_config',
-    'layers',
-    'scripts',
-    'styles',
-    'images',
-    'fonts',
-    'locales'
-]);
 
 gulp.task('debug', function() {
     debug = true;
@@ -259,78 +251,60 @@ gulp.task('release:init', function() {
     return;
 });
 
-gulp.task('bump', ['bump:json', 'bump:html']);
+gulp.task(
+    'bump:json',
+    gulp.series('release:init', function() {
+        gutil.log(gutil.colors.green('Bump to ' + nextVersion));
+        return gulp
+            .src(['./package.json'])
+            .pipe(bump({ version: nextVersion }))
+            .pipe(gulp.dest('./'));
+    })
+);
 
-gulp.task('bump:json', ['release:init'], function() {
-    gutil.log(gutil.colors.green('Bump to ' + nextVersion));
-    return gulp
-        .src(['./package.json'])
-        .pipe(bump({ version: nextVersion }))
-        .pipe(gulp.dest('./'));
-});
-
-gulp.task('bump:html', ['release:init'], function() {
-    return gulp
-        .src('./index.html')
-        .pipe(
-            replace(
-                /<sup class="version">(.*)<\/sup>/,
-                '<sup class="version">' + nextVersion + '</sup>'
+gulp.task(
+    'bump:html',
+    gulp.series('release:init', function() {
+        return gulp
+            .src('./index.html')
+            .pipe(
+                replace(
+                    /<sup class="version">(.*)<\/sup>/,
+                    '<sup class="version">' + nextVersion + '</sup>'
+                )
             )
-        )
-        .pipe(gulp.dest('.'));
-});
+            .pipe(gulp.dest('.'));
+    })
+);
 
-gulp.task('release:commit', ['bump'], function() {
-    return gulp
-        .src(['./index.html', './package.json'])
-        .pipe(git.commit('release: ' + nextVersion));
-});
+gulp.task('bump', gulp.series('bump:json', 'bump:html'));
 
-gulp.task('release:tag', ['release:commit'], function() {
-    return git.tag(nextVersion, '', function(err) {
-        if (err) throw err;
-    });
-});
-
-gulp.task('release:push', ['release:tag'], function() {
-    git.push('origin', 'master', { args: '--tags' }, function(err) {
-        if (err) throw err;
-    });
-});
-
-gulp.task('release:zip', ['release:tag', 'default'], function() {
-    gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
-    return gulp
-        .src(
-            ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
-            {
-                base: '.'
-            }
-        )
-        .pipe(zip('brouter-web.' + nextVersion + '.zip'))
-        .pipe(gulp.dest('.'));
-});
-
-gulp.task('release:publish', ['release:zip'], function() {
-    gulp.src('./brouter-web.' + nextVersion + '.zip').pipe(
-        release({
-            tag: nextVersion,
-            token: ghToken,
-            manifest: pkg
-        })
-    );
-});
-
-gulp.task('release', [
-    'release:init',
-    'bump',
+gulp.task(
     'release:commit',
+    gulp.series('bump', function() {
+        return gulp
+            .src(['./index.html', './package.json'])
+            .pipe(git.commit('release: ' + nextVersion));
+    })
+);
+
+gulp.task(
     'release:tag',
+    gulp.series('release:commit', function() {
+        return git.tag(nextVersion, '', function(err) {
+            if (err) throw err;
+        });
+    })
+);
+
+gulp.task(
     'release:push',
-    'release:zip',
-    'release:publish'
-]);
+    gulp.series('release:tag', function() {
+        git.push('origin', 'master', { args: '--tags' }, function(err) {
+            if (err) throw err;
+        });
+    })
+);
 
 gulp.task('i18next', function() {
     return gulp
@@ -366,26 +340,92 @@ gulp.task('layers_config', function() {
 });
 
 // Bundles layer files. To download and extract run "yarn layers"
-gulp.task('layers', ['layers_config'], function() {
-    return (
-        gulp
-            .src(paths.layers)
-            // Workaround to get file extension removed from the dictionary key
-            .pipe(rename({ extname: '.json' }))
-            .pipe(
-                jsonConcat(paths.layersDestName, function(data) {
-                    var header =
-                        '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
-                        '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
-                        '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
-                    return Buffer.from(
-                        header +
-                            'BR.layerIndex = ' +
-                            JSON.stringify(data, null, 2) +
-                            ';'
-                    );
-                })
+gulp.task(
+    'layers',
+    gulp.series('layers_config', function() {
+        return (
+            gulp
+                .src(paths.layers)
+                // Workaround to get file extension removed from the dictionary key
+                .pipe(rename({ extname: '.json' }))
+                .pipe(
+                    jsonConcat(paths.layersDestName, function(data) {
+                        var header =
+                            '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
+                            '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
+                            '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
+                        return Buffer.from(
+                            header +
+                                'BR.layerIndex = ' +
+                                JSON.stringify(data, null, 2) +
+                                ';'
+                        );
+                    })
+                )
+                .pipe(gulp.dest(paths.dest))
+        );
+    })
+);
+
+gulp.task(
+    'default',
+    gulp.series(
+        'clean',
+        'scripts_config',
+        'layers',
+        'scripts',
+        'styles',
+        'images',
+        'fonts',
+        'locales'
+    )
+);
+
+gulp.task(
+    'release:zip',
+    gulp.series('release:tag', 'default', function() {
+        gutil.log(
+            gutil.colors.green('Build brouter-web.' + nextVersion + '.zip')
+        );
+        return gulp
+            .src(
+                [
+                    'dist/**',
+                    'index.html',
+                    'config.template.js',
+                    'keys.template.js'
+                ],
+                {
+                    base: '.'
+                }
             )
-            .pipe(gulp.dest(paths.dest))
-    );
-});
+            .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+            .pipe(gulp.dest('.'));
+    })
+);
+
+gulp.task(
+    'release:publish',
+    gulp.series('release:zip', function() {
+        gulp.src('./brouter-web.' + nextVersion + '.zip').pipe(
+            release({
+                tag: nextVersion,
+                token: ghToken,
+                manifest: pkg
+            })
+        );
+    })
+);
+
+gulp.task(
+    'release',
+    gulp.series(
+        'release:init',
+        'bump',
+        'release:commit',
+        'release:tag',
+        'release:push',
+        'release:zip',
+        'release:publish'
+    )
+);
