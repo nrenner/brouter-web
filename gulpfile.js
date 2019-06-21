@@ -163,15 +163,15 @@ gulp.task('locales', function() {
 
 gulp.task('watch', function() {
     debug = true;
-    var watcher = gulp.watch(paths.scripts, ['scripts']);
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts'));
     watcher.on('change', function(event) {
         if (event.type === 'deleted') {
             delete cached.caches.scripts[event.path];
             remember.forget('scripts', event.path);
         }
     });
-    gulp.watch(paths.styles, ['styles']);
-    gulp.watch(paths.layersConfig, ['layers_config']);
+    gulp.watch(paths.styles, gulp.series('styles'));
+    gulp.watch(paths.layersConfig, gulp.series('layers_config'));
 });
 
 // Print paths to console, for manually debugging the gulp build
@@ -201,11 +201,6 @@ gulp.task('inject', function() {
     return target
         .pipe(inject(sources, { relative: true }))
         .pipe(gulp.dest('.'));
-});
-
-gulp.task('debug', function() {
-    debug = true;
-    gulp.start('default');
 });
 
 var pkg = require('./package.json');
@@ -379,6 +374,14 @@ gulp.task(
         'fonts',
         'locales'
     )
+);
+
+gulp.task(
+    'debug',
+    gulp.series(function(done) {
+        debug = true;
+        done();
+    }, 'default')
 );
 
 gulp.task(
