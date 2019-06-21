@@ -9,7 +9,8 @@
         "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
         "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
         "test": "gulp",
-        "prettier": "prettier --write '**/*'"
+        "prettier": "prettier --write '**/*'",
+        "watch": "gulp && gulp watch"
     },
     "husky": {
         "hooks": {
