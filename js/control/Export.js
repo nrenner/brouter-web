@@ -49,7 +49,6 @@ BR.Export = L.Class.extend({
             null
         );
         var link = document.createElement('a');
-        link.download = name + '.' + format;
         link.href = uri;
         link.dispatchEvent(evt);
     },
