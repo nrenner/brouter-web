@@ -135,7 +135,13 @@ BR.LayersConfig = L.Class.extend({
             var layerData = BR.layerIndex[layerId];
 
             if (layerData) {
-                layers[layerData.properties.name] = this.createLayer(layerData);
+                // when key required only add if configured
+                var keyObj = this.getKeyName(layerData.properties.url);
+                if (!keyObj || (keyObj && BR.keys[keyObj.name])) {
+                    layers[layerData.properties.name] = this.createLayer(
+                        layerData
+                    );
+                }
             } else {
                 console.error('Layer not found: ' + layerId);
             }
