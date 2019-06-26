@@ -119,6 +119,20 @@ footer {
     margin-bottom: 0;
 }
 
+input#trackname:invalid,
+input#trackname:focus:invalid {
+    border-color: orange;
+}
+:not(output):-moz-ui-invalid:not(:focus),
+:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
+    box-shadow: none;
+}
+
+.validation-warning {
+    color: orange;
+    font-size: small;
+}
+
 /*
  * elevation diagram
  */

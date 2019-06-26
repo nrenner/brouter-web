@@ -4,6 +4,24 @@ BR.Export = L.Class.extend({
     initialize: function(router) {
         this.router = router;
         this.exportButton = $('#exportButton');
+        var trackname = (this.trackname = document.getElementById('trackname'));
+        this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
+
+        if (this.tracknameAllowedChars) {
+            this.tracknameMessage = document.getElementById(
+                'trackname-message'
+            );
+            var patternRegex = new RegExp(
+                '[' + this.tracknameAllowedChars + ']+'
+            );
+
+            // warn about special characters getting removed by server quick fix (#194)
+            trackname.pattern = patternRegex.toString().slice(1, -1);
+            trackname.addEventListener(
+                'input',
+                L.bind(this._validationMessage, this)
+            );
+        }
 
         this.exportButton.on('click', L.bind(this._generateTrackname, this));
         L.DomUtil.get('submitExport').onclick = L.bind(this._export, this);
@@ -53,8 +71,25 @@ BR.Export = L.Class.extend({
         link.dispatchEvent(evt);
     },
 
+    _validationMessage: function() {
+        var trackname = this.trackname;
+        var replaceRegex = new RegExp(
+            '[^' + this.tracknameAllowedChars + ']',
+            'g'
+        );
+
+        if (trackname.validity.patternMismatch) {
+            var replaced = trackname.value.replace(replaceRegex, '');
+            var patternStr = this.tracknameAllowedChars.replace(/\\/g, '');
+            this.tracknameMessage.textContent =
+                '[' + patternStr + '] --> ' + replaced;
+        } else {
+            this.tracknameMessage.textContent = '';
+        }
+    },
+
     _generateTrackname: function() {
-        var trackname = document.getElementById('trackname');
+        var trackname = this.trackname;
         this._getCityAtPosition(
             this.latLngs[0],
             L.bind(function(from) {
@@ -63,6 +98,9 @@ BR.Export = L.Class.extend({
                     L.bind(function(to) {
                         var distance = document.getElementById('distance')
                             .innerHTML;
+                        if (this.tracknameAllowedChars) {
+                            distance = distance.replace(',', '.'); // temp. fix (#202)
+                        }
                         if (!from || !to) {
                             trackname.value = null;
                         } else if (from === to) {
@@ -75,6 +113,14 @@ BR.Export = L.Class.extend({
                                 'export.route-from-to',
                                 { from: from, to: to, distance: distance }
                             );
+                        }
+
+                        if (this.tracknameAllowedChars) {
+                            // temp. fix: replace and remove characters that will get removed by server quick fix (#194)
+                            trackname.value = trackname.value
+                                .replace(/[>)]/g, '')
+                                .replace(/ \(/g, ' - ');
+                            this._validationMessage();
                         }
                     }, this)
                 );
