@@ -3,7 +3,7 @@
     "bug-reports": "Zgłaszanie błędów i nowych funkcji:",
     "bug-reports-back": "serwer / aplikacja, silnik wyznaczania tras, aplikacja na Androida, profile, strona brouter.de",
     "bug-reports-front": "klient przeglądarkowy / interfejs.",
-    "chat": "Chat with users and developers",
+    "chat": "Czat z użytkownikami i twórcami",
     "contact": "Kontakt:",
     "data": "Dane:",
     "data-description": "Bazujemy na <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Aktualizacje są zazwyczaj raz w tygodniu, kiedy są dostępne nowe pliki Planet, więc sprawdź daty <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
