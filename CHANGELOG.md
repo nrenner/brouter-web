@@ -1,5 +1,25 @@
 # BRouter-Web Changelog
 
+## 0.10.3 (2019-06-27)
+
+See also [milestone 0.10.3](https://github.com/nrenner/brouter-web/milestone/11?closed=1)
+
+### Bugfixes
+
+-   Warn when special characters in export name will get removed ([#194](https://github.com/nrenner/brouter-web/issues/194), [#202](https://github.com/nrenner/brouter-web/issues/202))
+-   Fix %-encoded export file name in Microsoft Edge ([#201](https://github.com/nrenner/brouter-web/issues/201))
+-   Fix error when no elevation data above 60° north, causing empty stats and disabled export, by implementing own missing data handling for elevation diagram ([#203](https://github.com/nrenner/brouter-web/issues/203))
+
+### Improvements
+
+-   Reduce tile.openstreetmap.org usage ([#205](https://github.com/nrenner/brouter-web/issues/205))
+    -   use a worldwide monolingual layer (de, fr, ru) as default when matching the browser language
+    -   remember the last selected layers (like map view), so it doesn't load the default layer next time
+    -   default zoom level 5 instead of 6, which seems to be cached longer
+-   Upgrade Gulp (build tool) to version 4.0.2 - by [@Phyks](https://github.com/Phyks) ([#209](https://github.com/nrenner/brouter-web/pull/209))
+-   Upgrade leaflet geocoder to properly parse lat/lng - by [@bagage](https://github.com/bagage) ([#134](https://github.com/nrenner/brouter-web/issues/134))
+-   Upgrade to latest Bootstrap (front-end framework) - by [@bagage](https://github.com/bagage) ([#186](https://github.com/nrenner/brouter-web/pull/186))
+
 ## 0.10.2 (2019-06-02)
 
 See also [milestone 0.10.2](https://github.com/nrenner/brouter-web/milestone/10?closed=1)
