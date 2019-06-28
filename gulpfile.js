@@ -89,13 +89,10 @@ gulp.task('clean', function(cb) {
 });
 
 // libs that require loading before config.js
-gulp.task(
-    'scripts_config',
-    gulp.series('clean', function() {
-        // just copy for now
-        return gulp.src(paths.scriptsConfig).pipe(gulp.dest(paths.dest));
-    })
-);
+gulp.task('scripts_config', function() {
+    // just copy for now
+    return gulp.src(paths.scriptsConfig).pipe(gulp.dest(paths.dest));
+});
 
 gulp.task('scripts', function() {
     if (debug) gutil.log(gutil.colors.yellow('Running in Debug mode'));
@@ -208,98 +205,75 @@ var tags = { patch: 'patch', minor: 'minor', major: 'major' };
 var nextVersion;
 var ghToken;
 
-gulp.task('release:init', function() {
+gulp.task('release:init', function(cb) {
     var tag = gutil.env.tag;
     if (!tag) {
-        gutil.log(gutil.colors.red('--tag is required'));
-        process.exit(1);
+        return cb(new Error('--tag is required'));
     }
     if (['major', 'minor', 'patch'].indexOf(tag) < 0) {
-        gutil.log(gutil.colors.red('--tag must be major, minor or patch'));
-        process.exit(2);
+        return cb(new Error('--tag must be major, minor or patch'));
     }
     ghToken = gutil.env.token;
     if (!ghToken) {
-        gutil.log(
-            gutil.colors.red(
-                '--token is required (github personnal access token)'
-            )
+        return cb(
+            new Error('--token is required (github personnal access token')
         );
-        process.exit(3);
     }
     if (ghToken.length != 40) {
-        gutil.log(gutil.colors.red('--token length must be 40'));
-        process.exit(4);
+        return cb(new Error('--token length must be 40'));
     }
+
+    nextVersion = semver.inc(pkg.version, tag);
+
     git.status({ args: '--porcelain', quiet: true }, function(err, stdout) {
-        if (err) throw err;
+        if (err) return cb(err);
         if (stdout.length > 0) {
-            gutil.log(
-                gutil.colors.red(
+            return cb(
+                new Error(
                     'Repository is not clean. Please commit or stash your pending modification'
                 )
             );
-            process.exit(5);
         }
+
+        cb();
     });
-    nextVersion = semver.inc(pkg.version, tag);
-    return;
 });
 
-gulp.task(
-    'bump:json',
-    gulp.series('release:init', function() {
-        gutil.log(gutil.colors.green('Bump to ' + nextVersion));
-        return gulp
-            .src(['./package.json'])
-            .pipe(bump({ version: nextVersion }))
-            .pipe(gulp.dest('./'));
-    })
-);
+gulp.task('bump:json', function() {
+    gutil.log(gutil.colors.green('Bump to ' + nextVersion));
+    return gulp
+        .src(['./package.json'])
+        .pipe(bump({ version: nextVersion }))
+        .pipe(gulp.dest('./'));
+});
 
-gulp.task(
-    'bump:html',
-    gulp.series('release:init', function() {
-        return gulp
-            .src('./index.html')
-            .pipe(
-                replace(
-                    /<sup class="version">(.*)<\/sup>/,
-                    '<sup class="version">' + nextVersion + '</sup>'
-                )
+gulp.task('bump:html', function() {
+    return gulp
+        .src('./index.html')
+        .pipe(
+            replace(
+                /<sup class="version">(.*)<\/sup>/,
+                '<sup class="version">' + nextVersion + '</sup>'
             )
-            .pipe(gulp.dest('.'));
-    })
-);
+        )
+        .pipe(gulp.dest('.'));
+});
 
 gulp.task('bump', gulp.series('bump:json', 'bump:html'));
 
-gulp.task(
-    'release:commit',
-    gulp.series('bump', function() {
-        return gulp
-            .src(['./index.html', './package.json'])
-            .pipe(git.commit('release: ' + nextVersion));
-    })
-);
+gulp.task('release:commit', function() {
+    return gulp
+        .src(['./index.html', './package.json'])
+        .pipe(git.commit('release: ' + nextVersion));
+});
 
-gulp.task(
-    'release:tag',
-    gulp.series('release:commit', function() {
-        return git.tag(nextVersion, '', function(err) {
-            if (err) throw err;
-        });
-    })
-);
+gulp.task('release:tag', function(cb) {
+    return git.tag(nextVersion, '', cb);
+});
 
-gulp.task(
-    'release:push',
-    gulp.series('release:tag', function() {
-        git.push('origin', 'master', { args: '--tags' }, function(err) {
-            if (err) throw err;
-        });
-    })
-);
+gulp.task('release:push', function(cb) {
+    git.push('origin', 'master', { args: '--tags' }, cb);
+});
 
 gulp.task('i18next', function() {
     return gulp
@@ -335,38 +309,36 @@ gulp.task('layers_config', function() {
 });
 
 // Bundles layer files. To download and extract run "yarn layers"
-gulp.task(
-    'layers',
-    gulp.series('layers_config', function() {
-        return (
-            gulp
-                .src(paths.layers)
-                // Workaround to get file extension removed from the dictionary key
-                .pipe(rename({ extname: '.json' }))
-                .pipe(
-                    jsonConcat(paths.layersDestName, function(data) {
-                        var header =
-                            '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
-                            '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
-                            '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
-                        return Buffer.from(
-                            header +
-                                'BR.layerIndex = ' +
-                                JSON.stringify(data, null, 2) +
-                                ';'
-                        );
-                    })
-                )
-                .pipe(gulp.dest(paths.dest))
-        );
-    })
-);
+gulp.task('layers', function() {
+    return (
+        gulp
+            .src(paths.layers)
+            // Workaround to get file extension removed from the dictionary key
+            .pipe(rename({ extname: '.json' }))
+            .pipe(
+                jsonConcat(paths.layersDestName, function(data) {
+                    var header =
+                        '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
+                        '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
+                        '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
+                    return Buffer.from(
+                        header +
+                            'BR.layerIndex = ' +
+                            JSON.stringify(data, null, 2) +
+                            ';'
+                    );
+                })
+            )
+            .pipe(gulp.dest(paths.dest))
+    );
+});
 
 gulp.task(
     'default',
     gulp.series(
         'clean',
         'scripts_config',
+        'layers_config',
         'layers',
         'scripts',
         'styles',
@@ -378,47 +350,34 @@ gulp.task(
 
 gulp.task(
     'debug',
-    gulp.series(function(done) {
+    gulp.series(function(cb) {
         debug = true;
-        done();
+        cb();
     }, 'default')
 );
 
-gulp.task(
-    'release:zip',
-    gulp.series('release:tag', 'default', function() {
-        gutil.log(
-            gutil.colors.green('Build brouter-web.' + nextVersion + '.zip')
-        );
-        return gulp
-            .src(
-                [
-                    'dist/**',
-                    'index.html',
-                    'config.template.js',
-                    'keys.template.js'
-                ],
-                {
-                    base: '.'
-                }
-            )
-            .pipe(zip('brouter-web.' + nextVersion + '.zip'))
-            .pipe(gulp.dest('.'));
-    })
-);
+gulp.task('release:zip', function() {
+    gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
+    return gulp
+        .src(
+            ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
+            {
+                base: '.'
+            }
+        )
+        .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+        .pipe(gulp.dest('.'));
+});
 
-gulp.task(
-    'release:publish',
-    gulp.series('release:zip', function() {
-        gulp.src('./brouter-web.' + nextVersion + '.zip').pipe(
-            release({
-                tag: nextVersion,
-                token: ghToken,
-                manifest: pkg
-            })
-        );
-    })
-);
+gulp.task('release:publish', function() {
+    return gulp.src('./brouter-web.' + nextVersion + '.zip').pipe(
+        release({
+            tag: nextVersion,
+            token: ghToken,
+            manifest: pkg
+        })
+    );
+});
 
 gulp.task(
     'release',
@@ -428,6 +387,7 @@ gulp.task(
         'release:commit',
         'release:tag',
         'release:push',
+        'default',
         'release:zip',
         'release:publish'
     )
