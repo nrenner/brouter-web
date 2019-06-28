@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "ÖPNV Karte",
+    "maxZoom": 18,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://öpnvkarte.de/\" target=\"_blank\">ÖPNV Karte</a>",
+    "id": "1059",
+    "url": "http://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

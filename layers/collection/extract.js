@@ -13,7 +13,8 @@ var includeList = [
     "1017", // sputnik.ru
     "1023", // Osmapa.pl - Mapa OpenStreetMap Polska
     "1010", // OpenStreetMap.se (Hydda.Full)
-    "1069"  // MRI (maps.refuges.info)
+    "1069", // MRI (maps.refuges.info),
+    "1059"  // ÖPNV Karte
 ];
 
 function extract(constantsJs) {

@@ -12,7 +12,8 @@ BR.confLayers.tree = {
             '1061', // Thunderforest Outdoors
             '1065', // Hike & Bike Map
             '1016', // 4UMaps,
-            'openmapsurfer'
+            'openmapsurfer',
+            '1059'  // ÖPNV Karte
         ],
         'worldwide-monolingual': [
             'osm-mapnik-german_style',
@@ -64,7 +65,8 @@ BR.confLayers.tree = {
             'Waymarked_Trails-Cycling',
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',
-            'mapillary-coverage-raster'
+            'mapillary-coverage-raster',
+            'openpt_map'
         ],
         'country': [
             'historic-place-contours',

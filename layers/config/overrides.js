@@ -60,6 +60,12 @@ BR.confLayers.getPropertyOverrides = function() {
         'openmapsurfer': {
             'mapUrl': 'https://maps.openrouteservice.org/directions?n1={lat}&n2={lon}&n3={zoom}&b=0&c=0&k1=en-US&k2=km'
         },
+        // ÖPNV Karte
+        '1059': {
+            'name': 'Public transport (ÖPNVKarte)',
+            'nameShort': 'ÖPNVKarte',
+            'mapUrl': 'http://öpnvkarte.de/#{lon};{lat};{zoom}'
+        },
         'osm-mapnik-german_style': {
             'name': i18next.t('map.layer.osmde'),
             'language_code': 'de',
@@ -202,6 +208,10 @@ BR.confLayers.getPropertyOverrides = function() {
         'mapillary-coverage-raster': {
             'nameShort': 'Mapillary',
             'mapUrl': 'https://www.mapillary.com/app/?lat={lat}&lng={lon}&z={zoom}&menu=false'
+        },
+        'openpt_map': {
+            'nameShort': 'openptmap',
+            'mapUrl': 'http://openptmap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000TFT'
         },
         'historic-place-contours': {
             'mapUrl': 'http://gk.historic.place/historische_objekte/?zoom={zoom}&lat={lat}&lon={lon}&pid=GhHaSaHe'
