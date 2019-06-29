@@ -245,7 +245,7 @@ https://css-tricks.com/svg-line-animation-works/
 }
 
 /* invert track and selection styles to get partial gradient for "selection" */
-.slider.slider-vertical .slider-track {
+.slider .slider-track {
     width: 8px;
     margin-left: 1px;
     background-image: linear-gradient(to right, #f0f0f0 0%, #e9e9e9 100%);
@@ -253,8 +253,8 @@ https://css-tricks.com/svg-line-animation-works/
         inset 1px 0px 1px rgba(230, 230, 230, 1);
 }
 
-.control-slider:hover .slider-track,
-.control-slider:active .slider-track {
+.control-slider:hover #route .slider-track,
+.control-slider:active #route .slider-track {
     background-image: linear-gradient(to bottom, magenta 0%, white 100%);
 }
 
@@ -267,6 +267,11 @@ https://css-tricks.com/svg-line-animation-works/
 .slider.slider-vertical .slider-tick,
 .slider.slider-vertical .slider-handle {
     cursor: ns-resize;
+}
+
+.slider .slider-tick,
+.slider .slider-handle {
+    cursor: ew-resize;
     box-sizing: border-box;
     background: none;
     outline: none;
@@ -312,6 +317,10 @@ button.btn {
 .leaflet-touch .leaflet-bar .fa {
     font-size: 16px;
     line-height: 30px;
+}
+
+#leaflet-control-layers-overlays-opacity-slider .leaflet-bar {
+    box-shadow: none;
 }
 
 /* smaller tab height */
@@ -505,7 +514,7 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 .nav-link.disabled {
-    /* by default, even if disabled, modals are opened by disabled nav-link 
+    /* by default, even if disabled, modals are opened by disabled nav-link
     so we ignore pointer events in this situation to avoid that*/
     pointer-events: none;
 }
