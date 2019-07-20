@@ -137,12 +137,7 @@ L.BRouter = L.Class.extend({
                     trackname: trackname
                 })
             );
-        if (exportWaypoints)
-            args.push(
-                L.Util.template('exportWaypoints={exportWaypoints}', {
-                    exportWaypoints: +exportWaypoints
-                })
-            );
+        if (exportWaypoints) args.push('exportWaypoints=1');
 
         var prepend_host = format != null;
 

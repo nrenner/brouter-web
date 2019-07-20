@@ -45,13 +45,13 @@ BR.Export = L.Class.extend({
             exportForm['format'].value ||
             $('#export-format input:radio:checked').val();
         var name = encodeURIComponent(exportForm['trackname'].value);
-        var exportWaypoints = exportForm['export-waypoints'].checked;
+        var includeWaypoints = exportForm['include-waypoints'].checked;
 
         var uri = this.router.getUrl(
             this.latLngs,
             format,
             name,
-            exportWaypoints
+            includeWaypoints
         );
 
         var evt = document.createEvent('MouseEvents');
