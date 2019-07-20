@@ -56,12 +56,6 @@ BR.TrackStats = L.Class.extend({
         $('#totaltime').html(formattedTime);
         $('#totalenergy').html(formattedEnergy);
         $('#meanenergy').html(meanEnergy);
-        document.getElementById(
-            'totaltime'
-        ).parentElement.parentElement.hidden = !stats.totalTime;
-        document.getElementById(
-            'totalenergy'
-        ).parentElement.parentElement.hidden = !stats.totalEnergy;
     },
 
     calcStats: function(polyline, segments) {

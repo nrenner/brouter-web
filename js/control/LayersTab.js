@@ -20,6 +20,7 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
 
+        this.initOpacitySlider(map);
         this.initButtons();
         this.initJsTree();
 
@@ -44,6 +45,31 @@ BR.LayersTab = BR.ControlLayers.extend({
             this.storeActiveLayers,
             this
         );
+    },
+
+    initOpacitySlider: function(map) {
+        var self = this;
+        var overlayOpacitySlider = new BR.OpacitySlider({
+            id: 'overlay',
+            reversed: false,
+            orientation: 'horizontal',
+            defaultValue: 1,
+            title: i18next.t('layers.opacity-slider'),
+            callback: function(opacity) {
+                for (var i = 0; i < self._layers.length; i++) {
+                    if (
+                        !self._layers[i].overlay ||
+                        !map.hasLayer(self._layers[i].layer)
+                    ) {
+                        continue;
+                    }
+                    self._layers[i].layer.setOpacity(opacity);
+                }
+            }
+        }).onAdd(map);
+        L.DomUtil.get(
+            'leaflet-control-layers-overlays-opacity-slider'
+        ).appendChild(overlayOpacitySlider);
     },
 
     initButtons: function() {

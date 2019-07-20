@@ -1,16 +1,23 @@
 BR.OpacitySlider = L.Control.extend({
     options: {
+        id: '',
         position: 'topleft',
+        reversed: true,
+        orientation: 'vertical',
+        defaultValue: BR.conf.defaultOpacity,
+        title: i18next.t('map.opacity-slider'),
         callback: function(opacity) {}
     },
 
     onAdd: function(map) {
         var container = L.DomUtil.create('div', 'leaflet-bar control-slider'),
-            input = $('<input id="slider" type="text"/>'),
+            input = $(
+                '<input id="slider-' + this.options.id + '" type="text"/>'
+            ),
             item = BR.Util.localStorageAvailable()
-                ? localStorage.opacitySliderValue
+                ? localStorage['opacitySliderValue' + this.options.id]
                 : null,
-            value = item ? parseInt(item) : BR.conf.defaultOpacity * 100,
+            value = item ? parseInt(item) : this.options.defaultValue * 100,
             minOpacity = (BR.conf.minOpacity || 0) * 100;
 
         if (value < minOpacity) {
@@ -34,17 +41,18 @@ BR.OpacitySlider = L.Control.extend({
         };
 
         $(container).html(input);
-        $(container).attr('title', i18next.t('map.opacity-slider'));
+        $(container).attr('title', this.options.title);
 
         input
             .slider({
+                id: this.options.id,
                 min: 0,
                 max: 100,
                 step: 1,
                 value: value,
-                orientation: 'vertical',
-                reversed: true,
-                selection: 'before', // inverted, serves as track style, see css
+                orientation: this.options.orientation,
+                reversed: this.options.reversed,
+                selection: this.options.reversed ? 'before' : 'after', // inverted, serves as track style, see css
                 tooltip: 'hide'
             })
             .on('slideStart', function(evt) {
@@ -54,9 +62,11 @@ BR.OpacitySlider = L.Control.extend({
             .on('slide slideStop', { self: this }, function(evt) {
                 evt.data.self.options.callback(evt.value / 100);
             })
-            .on('slideStop', function(evt) {
+            .on('slideStop', { self: this }, function(evt) {
                 if (BR.Util.localStorageAvailable()) {
-                    localStorage.opacitySliderValue = evt.value;
+                    localStorage[
+                        'opacitySliderValue' + evt.data.self.options.id
+                    ] = evt.value;
                 }
 
                 L.DomUtil.enableTextSelection();

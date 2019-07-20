@@ -283,6 +283,7 @@
 
         map.addControl(
             new BR.OpacitySlider({
+                id: 'route',
                 callback: L.bind(routing.setOpacity, routing)
             })
         );
