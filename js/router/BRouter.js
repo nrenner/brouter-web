@@ -111,7 +111,7 @@ L.BRouter = L.Class.extend({
         return opts;
     },
 
-    getUrl: function(latLngs, format, trackname) {
+    getUrl: function(latLngs, format, trackname, exportWaypoints) {
         var urlParams = this.getUrlParams(latLngs, format);
 
         var args = [];
@@ -137,6 +137,7 @@ L.BRouter = L.Class.extend({
                     trackname: trackname
                 })
             );
+        if (exportWaypoints) args.push('exportWaypoints=1');
 
         var prepend_host = format != null;
 
