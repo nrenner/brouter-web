@@ -1,19 +1,19 @@
-BR.OpacitySlider = L.Control.extend({
+BR.OpacitySlider = L.Class.extend({
     options: {
         id: '',
-        position: 'topleft',
         reversed: true,
         orientation: 'vertical',
         defaultValue: BR.conf.defaultOpacity,
-        title: i18next.t('map.opacity-slider'),
+        title: '',
         callback: function(opacity) {}
     },
 
-    onAdd: function(map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar control-slider'),
-            input = $(
+    initialize: function(options) {
+        L.setOptions(this, options);
+
+        var input = (this.input = $(
                 '<input id="slider-' + this.options.id + '" type="text"/>'
-            ),
+            )),
             item = BR.Util.localStorageAvailable()
                 ? localStorage['opacitySliderValue' + this.options.id]
                 : null,
@@ -23,25 +23,6 @@ BR.OpacitySlider = L.Control.extend({
         if (value < minOpacity) {
             value = minOpacity;
         }
-
-        // prevent also dragging map in Chrome
-        L.DomEvent.disableClickPropagation(container);
-
-        var stopClickAfterSlide = function(evt) {
-            L.DomEvent.stop(evt);
-            removeStopClickListeners();
-        };
-        var removeStopClickListeners = function() {
-            document.removeEventListener('click', stopClickAfterSlide, true);
-            document.removeEventListener(
-                'mousedown',
-                removeStopClickListeners,
-                true
-            );
-        };
-
-        $(container).html(input);
-        $(container).attr('title', this.options.title);
 
         input
             .slider({
@@ -55,10 +36,6 @@ BR.OpacitySlider = L.Control.extend({
                 selection: this.options.reversed ? 'before' : 'after', // inverted, serves as track style, see css
                 tooltip: 'hide'
             })
-            .on('slideStart', function(evt) {
-                // dragging beyond slider control selects zoom control +/- text in Firefox
-                L.DomUtil.disableTextSelection();
-            })
             .on('slide slideStop', { self: this }, function(evt) {
                 evt.data.self.options.callback(evt.value / 100);
             })
@@ -68,24 +45,14 @@ BR.OpacitySlider = L.Control.extend({
                         'opacitySliderValue' + evt.data.self.options.id
                     ] = evt.value;
                 }
-
-                L.DomUtil.enableTextSelection();
-
-                // When dragging outside slider and over map, click event after mouseup
-                // adds marker when active on Chromium. So disable click (not needed)
-                // once after sliding.
-                document.addEventListener('click', stopClickAfterSlide, true);
-                // Firefox does not fire click event in this case, so make sure stop listener
-                // is always removed on next mousedown.
-                document.addEventListener(
-                    'mousedown',
-                    removeStopClickListeners,
-                    true
-                );
             });
 
-        this.options.callback(value / 100);
+        this.getElement().title = this.options.title;
 
-        return container;
+        this.options.callback(value / 100);
+    },
+
+    getElement: function() {
+        return this.input.slider('getElement');
     }
 });

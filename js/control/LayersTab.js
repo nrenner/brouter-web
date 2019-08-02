@@ -66,10 +66,10 @@ BR.LayersTab = BR.ControlLayers.extend({
                     self._layers[i].layer.setOpacity(opacity);
                 }
             }
-        }).onAdd(map);
+        });
         L.DomUtil.get(
             'leaflet-control-layers-overlays-opacity-slider'
-        ).appendChild(overlayOpacitySlider);
+        ).appendChild(overlayOpacitySlider.getElement());
     },
 
     initButtons: function() {

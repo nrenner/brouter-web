@@ -282,8 +282,9 @@
         }
 
         map.addControl(
-            new BR.OpacitySlider({
+            new BR.OpacitySliderControl({
                 id: 'route',
+                title: i18next.t('map.opacity-slider'),
                 callback: L.bind(routing.setOpacity, routing)
             })
         );
