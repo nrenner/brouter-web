@@ -1,5 +1,4 @@
 (function() {
-
     var hostname = window.location.hostname;
     var params = new URLSearchParams(window.location.search.slice(1));
 
@@ -13,13 +12,13 @@
     //BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
     if (hostname === 'brouter.de' ) {
-
         // online service (brouter.de) configuration
 
         BR.conf.profiles = [
             'trekking',
             'fastbike',
-            'car-test',
+            'car-eco',
+            'car-fast',
             'safety',
             'shortest',
             'trekking-ignore-cr',
@@ -38,17 +37,20 @@
 
         BR.conf.host = 'http://brouter.de:443';
         BR.conf.profilesUrl = 'http://brouter.de/brouter/profiles2/';
-
     } else {
-
         // desktop configuration
 
         BR.conf.profiles = [
             'trekking',
             'fastbike',
+            'car-eco',
+            'car-fast',
             'shortest',
             'moped',
-            'car-test'
+            'vm-forum-liegerad-schnell',
+            'vm-forum-velomobil-schnell',
+            'fastbike-lowtraffic',
+            'fastbike-asia-pacific'
         ];
 
         BR.conf.host = 'http://0.0.0.0:17777';
@@ -72,6 +74,9 @@
         // e.g. for offline tiles with https://github.com/develar/mapsforge-tile-server
         //'Mapsforge Tile Server': 'http://localhost:6090/{z}/{x}/{y}.png'
     };
+
+    // Base layer to show on start, as position number in the layer switcher, starting from 0, default is first
+    BR.conf.defaultBaseLayerIndex = 0;
 
     // Initial route line transparency (0-1, overridden by stored slider setting)
     BR.conf.defaultOpacity = 0.67;
@@ -105,7 +110,6 @@
 
     // transit (intermodal routing) demo config
     if (BR.conf.transit) {
-
         BR.conf.profiles = [
             '../im/bike',
             '../im/foot',
@@ -117,6 +121,8 @@
             'moped',
             'car-test'
         ];
-
     }
+
+    // regex needs to be in sync with server, see ServerHandler.getTrackName()
+    BR.conf.tracknameAllowedChars = 'a-zA-Z0-9 \\._\\-';
 })();

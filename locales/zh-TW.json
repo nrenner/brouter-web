@@ -1,0 +1,209 @@
+{
+  "about": {
+    "bug-reports": "錯誤報告和功能需求：",
+    "bug-reports-back": "伺服器 / 後端、導航引擎、Android應用程式、設定檔、brouter.de 網站",
+    "bug-reports-front": "網頁用戶端 / 前端.",
+    "chat": "Chat with users and developers",
+    "contact": "聯絡：",
+    "data": "資料:",
+    "data-description": "這是一項基於 <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> 提供的服務。它通常會在每週新的 Planet 檔案發布後更新，詳見 <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">資料檔案</a>。",
+    "description": "BRouter 導航引擎線上版。有關離線版 Android 應用程式及更多資訊，請見 <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>。",
+    "details": "用戸端上的<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
+    "support": "一般討論/提問及技術支援",
+    "title": "關於"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, 來源: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, 以及 GIS 使用者社群",
+    "esri-tiles": "Esri World Imagery",
+    "map-data": "地圖資料",
+    "map-tiles": "Map tiles",
+    "nominatim": "搜尋服務由 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>提供",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出"
+  },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Export route",
+    "trackname": "Name"
+  },
+  "footer": {
+    "ascend": "Ascend",
+    "cost": "Cost",
+    "distance": "距離",
+    "energy-per-100km": "Energy per 100 km",
+    "hours": "hours",
+    "hours-abbrev": "h",
+    "kilometer": "kilometers",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowatt hours",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Mean cost factor",
+    "meter": "meters",
+    "meter-abbrev": "m",
+    "plain-ascend": "Plain ascend",
+    "total-energy": "Total Energy",
+    "travel-time": "旅程需時"
+  },
+  "layers": {
+    "add-base": "添加底層圖",
+    "add-overlay": "添加疊圖",
+    "customize": "自定義圖層",
+    "placeholder-layer-name": "自定義圖層名稱 (如: OpenStreetMap)",
+    "placeholder-layer-url": "自定義圖層 URL (如: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "移除所選項目"
+  },
+  "loadNogos": {
+    "defaultProperties": "Default properties",
+    "file": "File: ",
+    "load": "Load",
+    "nogoBuffer": "Buffer no-go areas (in meters): ",
+    "nogoRadius": "No-go radius (for points): ",
+    "nogoWeight": "No-go weight: ",
+    "source": "Source",
+    "title": "Load no-go areas",
+    "url": "URL: "
+  },
+  "map": {
+    "attribution-osm-long": "OpenStreetMap 貢獻者",
+    "attribution-osm-short": "OpenStreetMap 開放街圖",
+    "clear-route": "清除路線",
+    "copyright": "著作權",
+    "cycling": "自行車",
+    "delete-last-point": "Delete last point",
+    "delete-nogo-areas": "&nbsp;&nbsp;同時刪除所有禁區",
+    "delete-route": "刪除路線？",
+    "draw-route-start": "繪畫路線 (按鍵D)",
+    "draw-route-stop": "停止繪畫路線 (按鍵ESC)",
+    "hikebike-hillshading": "Hillshading",
+    "hiking": "遠足",
+    "layer": {
+      "bing": "Bing 空照圖",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "自行車 (Waymarked Trails)",
+      "digitalglobe": "DigitalGlobe 最新空照圖",
+      "esri": "Esri 世界影像圖",
+      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
+      "hiking": "遠足 (Waymarked Trails)",
+      "osm": "OpenStreetMap 開放街圖",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "戸外 (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
+      "strava-segments": "Strava 區段",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "載入中...",
+    "locate-me": "顯示我的位置",
+    "nogo": {
+      "cancel": "取消繪畫禁區",
+      "click-drag": "點擊並拖曳以畫出圓形",
+      "draw": "繪畫禁區 (圓形)",
+      "edit": "點撃以編輯",
+      "help": "&square; = 移動 / 調整大小， <span class=\"fa fa-trash-o\"></span> = 刪除，<br>點撃圓形以結束編輯"
+    },
+    "opacity-slider": "設定路線軌跡和標記的透明度",
+    "privacy": "隱私權",
+    "reverse-route": "Reverse route",
+    "strava-biking": "顯示 Strava 自行車區段",
+    "strava-running": "顯示 Strava 跑步區段",
+    "zoomInTitle": "放大",
+    "zoomOutTitle": "縮小"
+  },
+  "modal": {
+    "close": "Close"
+  },
+  "navbar": {
+    "about": "關於",
+    "alternative": {
+      "first": "第一替代方案",
+      "original": "原始方案",
+      "second": "第二替代方案",
+      "third": "第三替代方案"
+    },
+    "export": "Export",
+    "load": {
+      "nogos": "No-go areas",
+      "title": "Load"
+    },
+    "profile": {
+      "car-eco": "汽車 (經濟型)",
+      "car-fast": "汽車 (速度型)",
+      "car-test": "汽車 (測試中)",
+      "custom": "自訂",
+      "fastbike": "機車",
+      "fastbike-asia-pacific": "機車 (亞太)",
+      "fastbike-lowtraffic": "機車 (低交通流量)",
+      "hiking-beta": "遠足 (Beta測試中)",
+      "moped": "機慢車",
+      "rail": "鐵道",
+      "river": "河道",
+      "safety": "安全",
+      "shortest": "最短",
+      "trekking": "登山越野車",
+      "trekking-ignore-cr": "登山越野車 (忽視自行車道)",
+      "trekking-noferries": "登山越野車 (不經過渡輪)",
+      "trekking-nosteps": "登山越野車 (跳過階梯)",
+      "trekking-steep": "登山越野車 (極限)",
+      "vm-forum-liegerad-schnell": "臥式自行車 (速度型)",
+      "vm-forum-velomobil-schnell": "躺車 (速度型)"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "自定義設定檔"
+    },
+    "data": {
+      "title": "資料"
+    },
+    "itinerary": {
+      "title": "行程"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Base layers",
+        "country": "Country",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingual",
+        "overlays": "Overlays",
+        "worldwide": "Worldwide",
+        "worldwide-international": "Worldwide international",
+        "worldwide-monolingual": "Worldwide monolingual"
+      },
+      "collapse": "Collapse all",
+      "custom-layers": "自定義圖層",
+      "customize": "新增或移除自定義圖層",
+      "expand": "Expand all",
+      "optional": "Add or remove optional layers",
+      "optional-layers": "More",
+      "table": {
+        "URL": "URL",
+        "empty": "尚未設定自訂圖層。",
+        "name": "名稱",
+        "type": "類型"
+      },
+      "title": "圖層"
+    },
+    "profile": {
+      "clear": "清除",
+      "help": "說明",
+      "placeholder": "請在意寫下您的自定義設定檔。",
+      "upload": "上傳"
+    }
+  },
+  "title": "BRouter 網頁用戶端",
+  "warning": {
+    "cannot-get-route": "取得路線URL時發生錯誤",
+    "no-response": "伺服器沒有回應",
+    "no-route-found": "錯誤: 無法就給予的端點建立路線。或者嘗試將它們移近至道路附近？",
+    "profile-error": "設定檔錯誤: 伺服器回傳空值或沒有回應",
+    "strava-error": "Error getting Strava segments: {{error}}",
+    "temporary-profile": "<strong>注意:</strong> 已上傳的自定義設定檔僅暫存於伺服器之中。<br/>請將您的編輯儲存至本機當中。",
+    "upload-error": "上傳錯誤: {{error}}"
+  }
+}

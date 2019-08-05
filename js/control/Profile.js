@@ -1,11 +1,15 @@
-BR.Profile = L.Class.extend({
+BR.Profile = L.Evented.extend({
     cache: {},
 
-    initialize: function () {
+    initialize: function() {
+        var textArea = L.DomUtil.get('profile_upload');
+        this.editor = CodeMirror.fromTextArea(textArea, {
+            lineNumbers: true
+        });
+
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
-        this.ele = L.DomUtil.get('profile_upload');
-        autosize(this.ele);
+
         this.message = new BR.Message('profile_message', {
             alert: true
         });
@@ -15,9 +19,7 @@ BR.Profile = L.Class.extend({
         var button = evt.target || evt.srcElement;
 
         evt.preventDefault();
-        this.ele.value = null;
-        this.ele.defaultValue = null;
-        autosize.update(this.ele);
+        this._setValue('');
 
         this.fire('clear');
         button.blur();
@@ -26,39 +28,54 @@ BR.Profile = L.Class.extend({
     update: function(options) {
         var profileName = options.profile,
             profileUrl,
-            ele = this.ele,
-            dirty = ele.defaultValue !== ele.value;
+            empty = !this.editor.getValue(),
+            clean = this.editor.isClean();
 
         this.profileName = profileName;
-        if (profileName && BR.conf.profilesUrl && (!ele.value || !dirty)) {
+        if (profileName && BR.conf.profilesUrl && (empty || clean)) {
             if (!(profileName in this.cache)) {
                 profileUrl = BR.conf.profilesUrl + profileName + '.brf';
-                BR.Util.get(profileUrl, L.bind(function(err, profileText) {
-                    if (err) {
-                        console.warn('Error getting profile from "' + profileUrl + '": ' + err);
-                        return;
-                    }
+                BR.Util.get(
+                    profileUrl,
+                    L.bind(function(err, profileText) {
+                        if (err) {
+                            console.warn(
+                                'Error getting profile from "' +
+                                    profileUrl +
+                                    '": ' +
+                                    err
+                            );
+                            return;
+                        }
 
-                    this.cache[profileName] = profileText;
+                        this.cache[profileName] = profileText;
 
-                    // don't set when option has changed while loading
-                    if (!this.profileName || this.profileName === profileName) {
-                        ele.value = profileText;
-                        ele.defaultValue = ele.value;
-                        autosize.update(this.ele);
-                    }
-                }, this));
+                        // don't set when option has changed while loading
+                        if (
+                            !this.profileName ||
+                            this.profileName === profileName
+                        ) {
+                            this._setValue(profileText);
+                        }
+                    }, this)
+                );
             } else {
-                ele.value = this.cache[profileName];
-                ele.defaultValue = ele.value;
-                autosize.update(this.ele);
+                this._setValue(this.cache[profileName]);
             }
         }
     },
 
+    show: function() {
+        this.editor.refresh();
+    },
+
+    onResize: function() {
+        this.editor.refresh();
+    },
+
     _upload: function(evt) {
         var button = evt.target || evt.srcElement,
-            profile = this.ele.value;
+            profile = this.editor.getValue();
 
         this.message.hide();
         $(button).button('uploading');
@@ -66,12 +83,15 @@ BR.Profile = L.Class.extend({
 
         this.fire('update', {
             profileText: profile,
-            callback: function () {
+            callback: function() {
                 $(button).button('reset');
                 $(button).blur();
             }
         });
+    },
+
+    _setValue: function(profileText) {
+        this.editor.setValue(profileText);
+        this.editor.markClean();
     }
 });
-
-BR.Profile.include(L.Mixin.Events);

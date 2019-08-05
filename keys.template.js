@@ -1,5 +1,4 @@
 (function() {
-
     // COPYING: Please get your own API keys from the sites listed below
 
     BR.keys = {
@@ -10,7 +9,12 @@
         digitalGlobe: '',
 
         // Thunderforest, https://thunderforest.com/pricing/
-        thunderforest: ''
-    };
+        thunderforest: '',
 
+        // Strava API token in case you want to display Strava segments
+        strava: '',
+
+        // OpenMapSurfer (OpenRouteService API), https://openrouteservice.org/plans/
+        openrouteservice: ''
+    };
 })();

@@ -1,16 +1,12 @@
 BR.Search = L.Control.Geocoder.extend({
     options: {
-        geocoder: new L.Control.Geocoder.Nominatim({
-            serviceUrl: 'https://nominatim.openstreetmap.org/'
+        geocoder: new L.Control.Geocoder.LatLng({
+            next: new L.Control.Geocoder.Nominatim({
+                serviceUrl: 'https://nominatim.openstreetmap.org/'
+            }),
+            sizeInMeters: 800
         }),
         position: 'topleft'
-    },
-
-    onAdd: function (map) {
-        map.attributionControl.addAttribution(
-            'search by <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>');
-
-        return L.Control.Geocoder.prototype.onAdd.call(this, map);
     },
 
     markGeocode: function(result) {

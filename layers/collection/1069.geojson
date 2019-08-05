@@ -1,0 +1,13 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Refuges.info hiking",
+    "maxZoom": 18,
+    "attribution": "Map data: &copy; <a href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap</a> contributors, under ODbL | Tiles: &copy; <a href=\"http://maps.refuges.info/\" target=\"_blank\">sly</a>",
+    "id": "1069",
+    "old": "true",
+    "url": "http://maps.refuges.info/hiking/{z}/{x}/{y}.png",
+    "dataSource": "LayersCollection"
+  },
+  "type": "Feature"
+}

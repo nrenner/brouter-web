@@ -1,48 +1,83 @@
-html, body, #map {
+html,
+body,
+#map {
     height: 100%;
 }
 
 /* This is important so that bootstrap-select list goes over leaflet buttons
 Since the list is in navbar and leaflet buttons within map, we create a
 stacking context on their common ancestor */
-body, #content {
+body,
+#content {
     position: relative;
     z-index: 1;
 }
 
-.flexcolumn {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
+#content {
+    overflow: hidden;
+}
+
+.flexcolumn,
+.leaflet-sidebar-pane.active,
+.dataTables_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody {
     display: flex;
 
     flex-flow: column;
 }
 
 .flexrow {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
 
     flex-direction: row;
 }
 
-#content {
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
+.flexgrow {
     flex: 1;
 }
 
+/* 'auto' (1 1 auto) instead of '1' (1 1 0) needed for DataTables tab in Firefox */
+.dataTables_wrapper,
+.dataTables_scroll,
+.dataTables_scrollBody,
+table.dataTable {
+    flex: auto;
+}
+
+/* wrap toolbar controls */
+.leaflet-top.leaflet-left {
+    bottom: 0;
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* bottom underneath top controls when overlapping */
+.leaflet-bottom {
+    z-index: 999;
+}
+
+.navbar {
+    /* align with leaflet-control */
+    padding: 0.5rem 10px;
+}
+.nav-link .fa {
+    margin-right: 0.2em;
+}
+.navbar-dark .navbar-toggler {
+    background-image: none;
+}
+
+/* disabled style for "Custom" option, but not for selected items */
+.bootstrap-select.btn-group .dropdown-menu li.disabled:not(.selected) a {
+    color: #777;
+}
+
 footer {
-    -webkit-box-flex: none;
-    -moz-box-flex: none;
-    -webkit-flex: none;
-    -ms-flex: none;
     flex: none;
 
     background-color: #f7f7f9;
@@ -52,39 +87,76 @@ footer {
     flex-grow: 1;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 #stats li {
     margin: 0 1rem;
+    display: inline-block;
+}
+@media (max-width: 767px) {
+    #stats li {
+        margin: 0 0.5rem;
+    }
+    #stats {
+        padding-top: 0.4em;
+    }
+    p.stats-label {
+        margin-bottom: 0.4em;
+    }
 }
 
-#elevation-chart {
-    height: 175px;
-    font-size: 80%;
+.stats-label {
+    word-break: break-all;
+    font-weight: bold;
+}
+.stats-label abbr[title],
+#distance {
+    text-decoration: none;
+    border-bottom: 1px dotted #818a91;
 }
 
 .form-group {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
-.bootstrap-select.btn-group:not(.input-group-btn),
-.bootstrap-select.btn-group[class*="col-"] {
-    margin-left: 10px;
+input#trackname:invalid,
+input#trackname:focus:invalid {
+    border-color: orange;
+}
+:not(output):-moz-ui-invalid:not(:focus),
+:not(output):-moz-ui-invalid:-moz-focusring:not(:focus) {
+    box-shadow: none;
 }
 
+.validation-warning {
+    color: orange;
+    font-size: small;
+}
 
-.axis path,
-.axis line {
-    stroke: #818a91;
-    fill: none;
+/*
+ * elevation diagram
+ */
+
+.steelblue-theme.leaflet-control.elevation .background {
+    display: block;
+    font-size: 80%;
+    border-radius: 0;
+}
+
+/* diagram colors lighter, less dominant */
+.steelblue-theme.leaflet-control.elevation .background {
+    background-color: rgba(105, 155, 196, 0.2);
+}
+.steelblue-theme.leaflet-control.elevation .axis path,
+.steelblue-theme.leaflet-control.elevation .axis line {
+    stroke: #8398aa;
     shape-rendering: crispEdges;
 }
-
-.axis text {
-    fill: #818a91;
+.steelblue-theme.leaflet-control.elevation .axis text {
+    fill: #8398aa;
 }
-
-.area {
-    fill: rgba(129, 138, 145, 0.45);
+.steelblue-theme.leaflet-control.elevation .area {
+    fill: #699bc4;
 }
 
 #elevation-btn {
@@ -96,24 +168,48 @@ footer {
     cursor: crosshair;
 }
 
+#map {
+    /* center error message horizontally */
+    display: flex;
+    justify-content: center;
+
+    /* map click/drag selects text in controls in Firefox because of display flex */
+    -moz-user-select: none;
+}
+.leaflet-control-container,
+#message .alert {
+    -moz-user-select: text;
+}
 #message {
     position: absolute;
-    left: 446px; /* 400 + 10 + 26 + 10 */
-    top: 0px;
-    margin-top: 10px;
+    margin: 10px 46px; /* 10 + 26 + 10 */
     z-index: 3000;
+    font-size: 1rem;
+    cursor: auto;
+}
+
+#profile_buttons {
+    padding-top: 4px;
 }
 
 /* track messages (data tab) */
-#tab_data, #profile_upload {
+#tab_data,
+.CodeMirror {
     font-size: x-small;
+}
+
+/* transit demo */
+#itinerary pre {
+    font-size: small;
+    /* turn off bootstrap 'break-word' */
+    word-wrap: normal;
+    margin: 0;
 }
 
 /* dashed line animation, derived from Chris Coyier and others
 https://css-tricks.com/svg-line-animation-works/
 */
 .loading-trailer {
-    -webkit-animation: dash 0.4s linear infinite;
     animation: dash 0.4s linear infinite;
 }
 @-webkit-keyframes dash {
@@ -140,12 +236,19 @@ https://css-tricks.com/svg-line-animation-works/
 .control-slider {
     background: #fff;
     border-radius: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+}
+
+.slider#overlay {
+    display: block;
 }
 
 .slider.slider-vertical {
     height: 80px;
+    margin: 10px 0;
+}
+.slider.slider-horizontal {
+    width: 180px;
+    margin: 0 10px;
 }
 
 /* invert track and selection styles to get partial gradient for "selection" */
@@ -153,16 +256,22 @@ https://css-tricks.com/svg-line-animation-works/
     width: 8px;
     margin-left: 1px;
     background-image: linear-gradient(to right, #f0f0f0 0%, #e9e9e9 100%);
-    box-shadow: inset -1px -0px 1px rgba(55, 55, 55, 0.3), inset 1px 0px 1px rgba(230, 230, 230, 1);
+    box-shadow: inset -1px -0px 1px rgba(55, 55, 55, 0.3),
+        inset 1px 0px 1px rgba(230, 230, 230, 1);
+}
+.slider.slider-horizontal .slider-track {
+    background-image: linear-gradient(to bottom, #f0f0f0 0%, #e9e9e9 100%);
+    box-shadow: inset -0px -1px 1px rgba(55, 55, 55, 0.3),
+        inset 0px 1px 1px rgba(230, 230, 230, 1);
 }
 
-.control-slider:hover .slider-track,
-.control-slider:active .slider-track {
+.control-slider:hover #route .slider-track,
+.control-slider:active #route .slider-track {
     background-image: linear-gradient(to bottom, magenta 0%, white 100%);
 }
 
 .slider-selection {
-    background-color: #C6C6C6;
+    background-color: #c6c6c6;
     background-image: none;
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
@@ -170,27 +279,56 @@ https://css-tricks.com/svg-line-animation-works/
 .slider.slider-vertical .slider-tick,
 .slider.slider-vertical .slider-handle {
     cursor: ns-resize;
+}
+
+.slider .slider-tick,
+.slider .slider-handle {
+    cursor: ew-resize;
     box-sizing: border-box;
     background: none;
     outline: none;
 
-    /* bootstrap .btn-default */
-    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    /* bootstrap .btn-secondary */
+    background-image: linear-gradient(to bottom, #fff 0, #e0e0e0 100%);
     background-repeat: repeat-x;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 1px 1px rgba(0, 0, 0, 0.075);
     border: 1px solid #adadad;
 }
 
-/* activated Font Awesome icon and Bootstrap button
-(for EasyButton add ' active' to icon class property) */
-.fa.active, .btn.active, .btn.active:hover, .btn.active:focus {
+/* activated Font Awesome icon (for EasyButton add ' active' to icon class property) */
+.fa.active {
     /* use same color as leaflet-locatecontrol */
-    color: #2074B6;
+    color: #2074b6;
+}
+/* Bootstrap button */
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary.active,
+.btn-secondary:hover,
+.btn-outline-secondary:not(:disabled):not(.disabled).active,
+.btn-outline-secondary:hover {
+    /* use same color as leaflet-locatecontrol */
+    color: #2074b6;
+    background-color: #e6e6e6;
 }
 
-.stats-label {
-    word-break: break-all;
-    font-weight: bold;
+button.btn {
+    box-shadow: none !important;
+}
+
+.leaflet-bar button {
+    /* override button for horizontal fa center in Firefox */
+    padding: 0;
+}
+.leaflet-bar .fa {
+    font-size: 14px;
+
+    /* override fa with Leaflet button height for vertical center */
+    line-height: 26px;
+}
+.leaflet-touch .leaflet-bar .fa {
+    font-size: 16px;
+    line-height: 30px;
 }
 
 /* smaller tab height */
@@ -198,9 +336,28 @@ https://css-tricks.com/svg-line-animation-works/
     padding: 2px 15px;
 }
 
+#profile_message .alert {
+    margin-top: 3px;
+}
+
+.alert {
+    margin-bottom: 0px;
+    padding-left: 35px;
+}
+.alert span.fa {
+    position: relative;
+    left: -23px;
+    margin-right: -1em;
+}
+
 /*
 * DataTables
 */
+
+table.dataTable {
+    /* avoid getting centered and header misaligned with flex row (sidebar) */
+    margin: 0;
+}
 
 table.dataTable.mini thead th,
 table.dataTable.mini thead td {
@@ -224,5 +381,147 @@ table.dataTable.hover tbody tr.even:hover,
 table.dataTable.display tbody tr:hover,
 table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
-    background-color: rgba(255,255,0,0.2);
+    background-color: rgba(255, 255, 0, 0.2);
+}
+
+/*
+ * No-go areas
+ */
+
+.nogo-delete-marker {
+    text-align: center;
+    line-height: 15px;
+    font-size: 11px;
+    border-radius: 8px;
+}
+.leaflet-touch .nogo-delete-marker {
+    border-radius: 12px;
+    line-height: 24px;
+}
+
+/* tooltip */
+
+.editing-tooltip,
+.editing-tooltip-create {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* for direction arrows that inherit */
+    border-color: rgba(0, 0, 0, 0.7);
+    /* no border but still set a color for direction arrows */
+    border-width: 0px;
+}
+.editing-tooltip-create {
+    /* no (invisible) direction arrow for cursor tooltip */
+    border-color: transparent;
+}
+.leaflet-tooltip-bottom:before {
+    border-bottom-color: inherit;
+}
+.leaflet-tooltip-right:before {
+    border-right-color: inherit;
+}
+
+/*
+ * leaflet-sidebar-v2
+ */
+
+.leaflet-sidebar-pane#tab_profile,
+.leaflet-sidebar-pane#tab_data,
+.leaflet-sidebar-pane#tab_itinerary {
+    /* Full height for content with inner scrolling,
+       overrides scroll fix for long content in Firefox */
+    height: 100%;
+}
+
+.leaflet-sidebar-content {
+    /* for optional-layers-tree */
+    overflow-x: auto;
+}
+
+/* layers control as sidebar tab */
+#tab_layers_control {
+    font-size: 0.9rem;
+    line-height: normal;
+}
+#layers-control-wrapper label {
+    /* override Bootstrap/Reboot label */
+    display: block;
+    margin-bottom: 0px;
+    /* normalize label height
+                    | Firefox | Chrome |
+       Leaflet only | 21      | 20     |
+       Bootstrap    | 23      | 22     |*/
+    height: 23px;
+}
+
+#layers-button-group {
+    display: flex;
+    justify-content: space-between;
+}
+#tree-button-group {
+    margin-right: 5px;
+}
+
+#optional-layers-tree {
+    margin-top: 5px;
+}
+
+.tree-code {
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+        monospace;
+    margin-right: 7px;
+    color: #666; /* like root nodes, jstree-disabled */
+}
+
+/* hide currently unused bottom tabs container because of touch border artefacts */
+.leaflet-sidebar-tabs > ul:last-child {
+    display: none;
+}
+
+/* layers svg icon not properly centered */
+.leaflet-sidebar-tabs > ul > li > a[href='#tab_layers_control'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+ * CodeMirror
+ */
+
+.CodeMirror {
+    /* auto instead of 1 to avoid overflow to content height in Firefox */
+    flex: auto;
+    /* override default 300px, behaves like min-height with flex auto */
+    height: 0;
+
+    border: 1px solid #ddd;
+
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
+        monospace;
+    line-height: 1.2em;
+}
+
+#loadNogos fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
+}
+
+#loadNogos legend {
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
+}
+
+.nav-link.disabled {
+    /* by default, even if disabled, modals are opened by disabled nav-link
+    so we ignore pointer events in this situation to avoid that*/
+    pointer-events: none;
 }

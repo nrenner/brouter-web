@@ -1,0 +1,209 @@
+{
+  "about": {
+    "bug-reports": "Hibák és kérések bejelentése:",
+    "bug-reports-back": "kiszolgálóoldal / back end, útvonaltervező motor, Android alkalmazás, profilok, brouter.de weboldal",
+    "bug-reports-front": "weboldali kliens / frontend.",
+    "chat": "Chat with users and developers",
+    "contact": "Kapcsolat:",
+    "data": "Adatok:",
+    "data-description": "Az adatok alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Az oldal általában hetente frissül, amikor az új bolygófájl (Planet fájl) elérhetővé válik. A dátumok megtalálhatók az <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlokban</a>.",
+    "description": "Ez itt a BRouter útvonaltervező motor online szolgáltatása. Az Android alkalmazásról és a további információkról a <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a> oldalon olvashat.",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Adatvédelmi irányelvek</a></i> \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">stáblista</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">változásnapló</a></i> és\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">további tájékoztatás</a></i> a kliensen.",
+    "support": "Általános viták/kérdések, támogatás",
+    "title": "Névjegy"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Globális légi felvételek</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, források: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP valamint a GIS felhasználói közösség",
+    "esri-tiles": "Esri World Imagery",
+    "map-data": "Térképadatok",
+    "map-tiles": "Map tiles",
+    "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint"
+  },
+  "export": {
+    "format": "Formátum",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
+    "route-loop": "{{from}} ({{distance}} km)",
+    "title": "Útvonal exportálása",
+    "trackname": "Név"
+  },
+  "footer": {
+    "ascend": "Összes szintkülönbség",
+    "cost": "Ráfordítás",
+    "distance": "Távolság",
+    "energy-per-100km": "Energia / 100 km",
+    "hours": "óra",
+    "hours-abbrev": "h",
+    "kilometer": "kilométer",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowattóra",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Közepes ráfordítástényező",
+    "meter": "méter",
+    "meter-abbrev": "m",
+    "plain-ascend": "Végpontok közötti szintkülönbség",
+    "total-energy": "Teljes energiafelhasználás",
+    "travel-time": "Utazási idő"
+  },
+  "layers": {
+    "add-base": "Alapréteg hozzáadása",
+    "add-overlay": "Rátétréteg hozzáadása",
+    "customize": "Rétegek személyre szabása",
+    "placeholder-layer-name": "Egyedi rétegnév (pl. OpenStreetMap)",
+    "placeholder-layer-url": "Egyedi réteg URL-je (pl. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Kijelölés eltávolítása"
+  },
+  "loadNogos": {
+    "defaultProperties": "Alapértelmezett tulajdonságok",
+    "file": "Fájl:",
+    "load": "Betöltés",
+    "nogoBuffer": "Elkerülendő területek körüli távolság (méter)",
+    "nogoRadius": "Elkerülendő pontok körüli sugár:",
+    "nogoWeight": "Elkerülés súlyozása:",
+    "source": "Forrás",
+    "title": "Elkerülendő területek betöltése",
+    "url": "URL:"
+  },
+  "map": {
+    "attribution-osm-long": "OpenStreetMap közreműködők",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Útvonal törlése",
+    "copyright": "Szerzői jogok",
+    "cycling": "Kerékpározás",
+    "delete-last-point": "Utolsó pont törlése",
+    "delete-nogo-areas": "&nbsp;&nbsp;törlődjenek az elkerülendő területek is",
+    "delete-route": "Útvonal törlése?",
+    "draw-route-start": "Útvonal rajzolása (D billentyű)",
+    "draw-route-stop": "Útvonal rajzolásának megszakítása (ESC billentyű)",
+    "hikebike-hillshading": "Domborzatárnyékolás",
+    "hiking": "Túrázás",
+    "layer": {
+      "bing": "Bing Aerial",
+      "cycle": "OpenCycleMap (Thunderfores)",
+      "cycling": "Kerékpározás (Waymarked Trails)",
+      "digitalglobe": "DigitalGlobe Recent Imagery",
+      "esri": "Esri World Imagery",
+      "hikebike-hillshading": "Domborzatárnyékolás (Hike & Bike Map)",
+      "hiking": "Túrázás (Waymarked Trails)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Outdoors (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
+      "strava-segments": "Strava útvonalszakaszok",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Betöltés…",
+    "locate-me": "Mutassa a térképen, hol vagyok",
+    "nogo": {
+      "cancel": "Elkerülendő terület rajzolásának megszakítása",
+      "click-drag": "Kör rajzolása kattintással és húzással",
+      "draw": "Elkerülendő terület rajzolása (kör)",
+      "edit": "Szerkesztés kattintással",
+      "help": "&square; = áthelyezés / átméretezés, <span class=\"fa fa-trash-o\"></span> = törlés,<br>a szerkesztés befejezéséhez kattintson a körre"
+    },
+    "opacity-slider": "Nyomvonal és jelölők átlátszóságának beállítása",
+    "privacy": "Adatvédelem",
+    "reverse-route": "Útvonal megfordítása",
+    "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
+    "strava-running": "Strava futó útvonalszakaszok megjelenítése",
+    "zoomInTitle": "Nagyítás",
+    "zoomOutTitle": "Kicsinyítés"
+  },
+  "modal": {
+    "close": "Bezárás"
+  },
+  "navbar": {
+    "about": "Névjegy",
+    "alternative": {
+      "first": "1. alternatíva",
+      "original": "Eredeti",
+      "second": "2. alternatíva",
+      "third": "3. alternatíva"
+    },
+    "export": "Exportálás",
+    "load": {
+      "nogos": "Elkerülendő területek",
+      "title": "Betöltés"
+    },
+    "profile": {
+      "car-eco": "Személyautó (gazdaságos)",
+      "car-fast": "Személyautó (gyors)",
+      "car-test": "Személyautó (teszt)",
+      "custom": "Egyedi",
+      "fastbike": "Versenykerékpár",
+      "fastbike-asia-pacific": "Versenykerékpár (ázsiai-csendes-óceáni térség)",
+      "fastbike-lowtraffic": "Versenykerékpár (kis forgalom)",
+      "hiking-beta": "Túrázás (béta)",
+      "moped": "Robogó",
+      "rail": "Vasút",
+      "river": "Hajózás",
+      "safety": "Biztonság",
+      "shortest": "Legrövidebb",
+      "trekking": "Túrakerékpár",
+      "trekking-ignore-cr": "Túrakerékpár (kerékpárutak figyelmen kívül hagyása)",
+      "trekking-noferries": "Túrakerékpár (komp nélkül)",
+      "trekking-nosteps": "Túrakerékpár (lépcső nélkül)",
+      "trekking-steep": "Túrakerékpár (meredek)",
+      "vm-forum-liegerad-schnell": "Rekumbens kerékpár (gyors)",
+      "vm-forum-velomobil-schnell": "Velomobil (aerodinamikus kerékpár, gyors)"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "Egyedi profil"
+    },
+    "data": {
+      "title": "Adatok"
+    },
+    "itinerary": {
+      "title": "Útiterv"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Alaprétegek",
+        "country": "Ország",
+        "europe": "Európa",
+        "europe-monolingual": "Európa (egynyelvű)",
+        "overlays": "Rátétrétegek",
+        "worldwide": "Világ",
+        "worldwide-international": "Világ (nemzetközi)",
+        "worldwide-monolingual": "Világ (egynyelvű)"
+      },
+      "collapse": "Minden összecsukása",
+      "custom-layers": "Egyedi rétegek",
+      "customize": "Egyedi rétegek hozzáadása vagy eltávolítása",
+      "expand": "Minden kibontása",
+      "optional": "Rétegek hozzáadása vagy eltávolítása",
+      "optional-layers": "Több",
+      "table": {
+        "URL": "URL",
+        "empty": "Még nincs beállítva egyedi réteg",
+        "name": "Név",
+        "type": "Típus"
+      },
+      "title": "Rétegek"
+    },
+    "profile": {
+      "clear": "Törlés",
+      "help": "Súgó",
+      "placeholder": "Ide írhatja egyedi profilját",
+      "upload": "Feltöltés"
+    }
+  },
+  "title": "BRouter webkliens",
+  "warning": {
+    "cannot-get-route": "Hiba történt az útvonal URL-jének beolvasásakor",
+    "no-response": "a kiszolgáló nem válaszol",
+    "no-route-found": "Hiba: az adott pontokhoz nem sikerül útvonalat találni. Esetleg próbálja meg közelebb tenni őket az utakhoz.",
+    "profile-error": "Profilhiba: a kiszolgáló nem válaszol vagy üres választ küld",
+    "strava-error": "Hiba történt a Strava útvonalszakaszok lekérésénél: {{error}}",
+    "temporary-profile": "<strong>Figyelem:</strong> A kiszolgáló csak ideiglenesen gyorsítótárazza a feltöltött egyedi profilokat.<br/>Kérjük, szerkesztéseit mentse el saját számítógépére.",
+    "upload-error": "Feltöltési hiba: {{error}}"
+  }
+}

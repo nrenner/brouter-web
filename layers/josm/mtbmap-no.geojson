@@ -1,0 +1,134 @@
+{
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          31.904253,
+          70.4368136
+        ],
+        [
+          28.4765186,
+          71.3289643
+        ],
+        [
+          23.6865015,
+          71.2514263
+        ],
+        [
+          16.8090601,
+          70.0730823
+        ],
+        [
+          11.1620655,
+          67.5253903
+        ],
+        [
+          9.975542,
+          64.811576
+        ],
+        [
+          4.2187061,
+          62.1449966
+        ],
+        [
+          4.3725367,
+          59.1871966
+        ],
+        [
+          6.1743055,
+          57.8915032
+        ],
+        [
+          7.932118,
+          57.7393554
+        ],
+        [
+          10.777577,
+          58.8649103
+        ],
+        [
+          11.7224012,
+          58.762509
+        ],
+        [
+          12.722157,
+          60.1141506
+        ],
+        [
+          13.0517469,
+          61.3493518
+        ],
+        [
+          12.5243921,
+          63.6169922
+        ],
+        [
+          14.2382593,
+          63.9856094
+        ],
+        [
+          15.1171656,
+          65.9016624
+        ],
+        [
+          18.6987085,
+          68.3749083
+        ],
+        [
+          20.0610132,
+          68.2612583
+        ],
+        [
+          21.0058375,
+          68.7841518
+        ],
+        [
+          25.2465601,
+          68.3506025
+        ],
+        [
+          26.9384546,
+          69.8472011
+        ],
+        [
+          28.7621851,
+          69.6112133
+        ],
+        [
+          28.5864039,
+          68.8556004
+        ],
+        [
+          31.069314,
+          69.5191547
+        ],
+        [
+          31.904253,
+          70.4368136
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "© MTBmap.no",
+      "url": "https://www.mtbmap.no/"
+    },
+    "country_code": "NO",
+    "description": "Norwegian mountain biking map from OSM (max zoom 14-16, varies per region)",
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAyVBMVEUAAAAAAAAAAAAAAABHcEwAAAAAAAAAAAAAAAAAAAAAAAAGBgYAAAAAAAD///8DAwMKCgrX19d3d3fe3t4fHx/4+PikpKQGBgbb29vIyMizs7MlJSXExMQQEBA2NjYNDQ2pqam6urr+/v4UFBS8vLzg4OCMjIxvb297e3vLy8taWlqXl5fs7Oz7+/vn5+c7OzvQ0NDT09MxMTFFRUWTk5O/v7/k5OReXl6urq5iYmJLS0uGhoZOTk7y8vJpaWmcnJyDg4N/f3+bm5thW7HyAAAADXRSTlM9D3VaADJrd4BEKIEG/oGXoQAAAP1JREFUKM9tkIdywyAMhmmb0WVhjLcd2/HK3jvdff+HKjQ1kNr/HYdOH5J+hG463QbdtdCtJtXDImyje5nP5oaIkQLiKcwCxzH+A30PAAXpg30NdPJmMcLPWAXxINLwMAUuy7yewfT6YtgWJJ6ugmPoXDxH2BxiCTKAd1GJzQo4+bS/7ClN/wAeARB1WAV8loelXwczKHAZ+rgGtim4Zq1VSSkZr+Ar21Ga6xJsw1hbz9fwSdj6DCJBwR+d2O5CnhgtKvBE+R2sUv+DB/ZAVFA+dTLZRC7/kBsIcN6fFt8u65d4m7OXKK6CY1j+mjns8oO029Ea9Yie0UOD2q0frM8mZOHCEDcAAAAASUVORK5CYII=",
+    "id": "mtbmap-no",
+    "max_zoom": 14,
+    "min_zoom": 3,
+    "name": "MTBmap.no",
+    "tile-size": "512",
+    "tile_size": 512,
+    "type": "tms",
+    "url": "https://mtbmap.no/tiles/osm/mtbmap/{zoom}/{x}/{y}.jpg",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

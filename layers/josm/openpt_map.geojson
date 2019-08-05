@@ -1,0 +1,21 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "© OpenStreetMap contributors, CC-BY-SA",
+      "url": "http://openptmap.de/"
+    },
+    "icon": "http://openptmap.de/favicon_pt.png",
+    "id": "openpt_map",
+    "max_zoom": 17,
+    "min_zoom": 4,
+    "name": "OpenPT Map (overlay)",
+    "overlay": true,
+    "type": "tms",
+    "url": "http://openptmap.de/tiles/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

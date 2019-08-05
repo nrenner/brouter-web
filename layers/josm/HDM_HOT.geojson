@@ -1,0 +1,19 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "© OpenStreetMap contributors, tiles courtesy of Humanitarian OpenStreetMap Team",
+      "url": "https://www.hotosm.org/"
+    },
+    "icon": "https://wiki.openstreetmap.org/w/images/thumb/c/c9/Hot_logo.svg/300px-Hot_logo.svg.png",
+    "id": "HDM_HOT",
+    "max_zoom": 20,
+    "name": "HDM (Humanitarian OpenStreetMap Team)",
+    "type": "tms",
+    "url": "https://{switch:a,b,c}.tile.openstreetmap.fr/hot/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

@@ -1,7 +1,5 @@
 BR.TrackMessages = L.Class.extend({
-
     options: {
-        heading: 'Segment data',
         edgeStyle: {
             color: 'yellow',
             opacity: 0.8,
@@ -13,31 +11,31 @@ BR.TrackMessages = L.Class.extend({
     active: false,
 
     columnOptions: {
-        'Longitude': { visible: false },
-        'Latitude': { visible: false },
-        'Elevation': { title: 'elev.', className: 'dt-body-right' },
-        'Distance': { title: 'dist.', className: 'dt-body-right' },
-        'CostPerKm': { title: '$/km', className: 'dt-body-right' },
-        'ElevCost': { title: 'elev$', className: 'dt-body-right' },
-        'TurnCost': { title: 'turn$', className: 'dt-body-right' },
-        'NodeCost': { title: 'node$', className: 'dt-body-right' },
-        'InitialCost': { title: 'initial$', className: 'dt-body-right' }
+        Longitude: { visible: false },
+        Latitude: { visible: false },
+        Elevation: { title: 'elev.', className: 'dt-body-right' },
+        Distance: { title: 'dist.', className: 'dt-body-right' },
+        CostPerKm: { title: '$/km', className: 'dt-body-right' },
+        ElevCost: { title: 'elev$', className: 'dt-body-right' },
+        TurnCost: { title: 'turn$', className: 'dt-body-right' },
+        NodeCost: { title: 'node$', className: 'dt-body-right' },
+        InitialCost: { title: 'initial$', className: 'dt-body-right' }
     },
 
-    initialize: function (options) {
+    initialize: function(map, options) {
         L.setOptions(this, options);
+        this._map = map;
 
         var table = document.getElementById('datatable');
         this.tableClassName = table.className;
         this.tableParent = table.parentElement;
     },
 
-    onAdd: function (map) {
-        this._map = map;
-    },
-
-    update: function (polyline, segments) {
-        var i, messages, columns, headings,
+    update: function(polyline, segments) {
+        var i,
+            messages,
+            columns,
+            headings,
             data = [];
 
         if (!this.active) {
@@ -54,7 +52,7 @@ BR.TrackMessages = L.Class.extend({
         this._destroyTable();
 
         if (data.length === 0) {
-           return;
+            return;
         }
 
         headings = messages[0];
@@ -67,13 +65,19 @@ BR.TrackMessages = L.Class.extend({
             paging: false,
             searching: false,
             info: false,
+            // flexbox workaround: without scrollY height Firefox extends to content height
+            // (^= minimum height with flexbox?)
+            scrollY: 50,
             scrollX: true,
             order: []
         });
 
         // highlight track segment (graph edge) on row hover
         this._setEdges(polyline, segments);
-        $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
+        $('#datatable tbody tr').hover(
+            L.bind(this._handleHover, this),
+            L.bind(this._handleHoverOut, this)
+        );
     },
 
     show: function() {
@@ -88,9 +92,11 @@ BR.TrackMessages = L.Class.extend({
     _destroyTable: function() {
         var ele;
 
-        if ($.fn.DataTable.isDataTable('#datatable') ) {
+        if ($.fn.DataTable.isDataTable('#datatable')) {
             // destroy option too slow on update, really remove elements with destroy method
-            $('#datatable').DataTable().destroy(true);
+            $('#datatable')
+                .DataTable()
+                .destroy(true);
 
             // recreate original table element, destroy removes all
             ele = document.createElement('table');
@@ -144,7 +150,14 @@ BR.TrackMessages = L.Class.extend({
     },
 
     _setEdges: function(polyline, segments) {
-        var messages, segLatLngs, length, si, mi, latLng, i, segIndex,
+        var messages,
+            segLatLngs,
+            length,
+            si,
+            mi,
+            latLng,
+            i,
+            segIndex,
             baseIndex = 0;
 
         // track latLngs index for end node of edge
@@ -185,7 +198,10 @@ BR.TrackMessages = L.Class.extend({
             endIndex = this._edges[row.index()],
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
-        this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
+        this._selectedEdge = L.polyline(
+            edgeLatLngs,
+            this.options.edgeStyle
+        ).addTo(this._map);
     },
 
     _handleHoverOut: function(evt) {
@@ -193,5 +209,3 @@ BR.TrackMessages = L.Class.extend({
         this._selectedEdge = null;
     }
 });
-
-BR.TrackMessages.include(L.Mixin.Events);

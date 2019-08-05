@@ -1,0 +1,209 @@
+{
+  "about": {
+    "bug-reports": "Zgłaszanie błędów i nowych funkcji:",
+    "bug-reports-back": "serwer / aplikacja, silnik wyznaczania tras, aplikacja na Androida, profile, strona brouter.de",
+    "bug-reports-front": "klient przeglądarkowy / interfejs.",
+    "chat": "Czat z użytkownikami i twórcami",
+    "contact": "Kontakt:",
+    "data": "Dane:",
+    "data-description": "Bazujemy na <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Aktualizacje są zazwyczaj raz w tygodniu, kiedy są dostępne nowe pliki Planet, więc sprawdź daty <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
+    "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
+    "support": "Ogólna dyskusja/pytania, wsparcie",
+    "title": "Informacje"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, źródła: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP oraz Społeczność Użytkowników GIS",
+    "esri-tiles": "Obrazowanie świata Esri",
+    "map-data": "Dane mapy",
+    "map-tiles": "Kafelki mapy",
+    "nominatim": "Wyszukaj przez <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Współtwórcy OpenStreetMap</a> na licencji <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+  },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Eksportuj trasę",
+    "trackname": "Nazwa"
+  },
+  "footer": {
+    "ascend": "Przewyższenie",
+    "cost": "Koszt",
+    "distance": "Odległość",
+    "energy-per-100km": "Energia na 100 km",
+    "hours": "godzin",
+    "hours-abbrev": "godz.",
+    "kilometer": "kilometrów",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowatogodziny",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Średni współczynnik kosztów",
+    "meter": "metrów",
+    "meter-abbrev": "m",
+    "plain-ascend": "Różnica wysokości",
+    "total-energy": "Całkowita energia",
+    "travel-time": "Czas podróży"
+  },
+  "layers": {
+    "add-base": "Dodaj warstwę bazową",
+    "add-overlay": "Dodaj nakładkę",
+    "customize": "Dostosuj warstwy",
+    "placeholder-layer-name": "Własna nazwa warstwy. (np. OpenStreetMap)",
+    "placeholder-layer-url": "URL niestandardowej warstwy. (np: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Usuń zaznaczenie"
+  },
+  "loadNogos": {
+    "defaultProperties": "Domyślne właściwości",
+    "file": "Plik:",
+    "load": "Wczytaj",
+    "nogoBuffer": "Bufor stref no-go (w metrach):",
+    "nogoRadius": "Promień no-go (dla punktów):",
+    "nogoWeight": "Waga no-go:",
+    "source": "Źródło",
+    "title": "Wczytaj strefy no-go",
+    "url": "URL: "
+  },
+  "map": {
+    "attribution-osm-long": "Współtwórcy OpenStreetMap",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Wyczyść trasę",
+    "copyright": "Prawa autorskie",
+    "cycling": "Kolarstwo",
+    "delete-last-point": "Usuń ostatni punkt",
+    "delete-nogo-areas": "&nbsp;&nbsp;usunie również wszystkie strefy no-go",
+    "delete-route": "Usunąć trasę?",
+    "draw-route-start": "Rysuj trasę (klawisz D)",
+    "draw-route-stop": "Przestań rysować trasę (klawisz Esc)",
+    "hikebike-hillshading": "Cieniowanie",
+    "hiking": "Wspinaczka",
+    "layer": {
+      "bing": "Zdjęcia lotnicze Bing",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Jazda na rowerze (oznaczone szlaki)",
+      "digitalglobe": "Najnowsze obrazowanie DigitalGlobe",
+      "esri": "Obrazowanie świata Esri",
+      "hikebike-hillshading": "Cieniowanie (Mapa wspinaczkowo-rowerowa)",
+      "hiking": "Wspinaczka (oznaczone szlaki)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Na zewnątrz (Thunderforest)",
+      "stamen-terrain": "Teren (Stamen)",
+      "strava-segments": "Segmenty Strava",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Wczytywanie…",
+    "locate-me": "Pokaż mi gdzie jestem",
+    "nogo": {
+      "cancel": "Anuluj rysowanie strefy no-go",
+      "click-drag": "Kliknij i przeciągnij, aby narysować okrąg",
+      "draw": "Rysuj strefę no-go (okrąg)",
+      "edit": "Kliknij, aby edytować",
+      "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
+    },
+    "opacity-slider": "Ustaw przezroczystość trasy i znaczników",
+    "privacy": "Prywatność",
+    "reverse-route": "Odwróć trasę",
+    "strava-biking": "Pokaż rowerowe segmenty Strava ",
+    "strava-running": "Pokaż biegowe segmenty Strava",
+    "zoomInTitle": "Przybliż",
+    "zoomOutTitle": "Oddal"
+  },
+  "modal": {
+    "close": "Zamknij"
+  },
+  "navbar": {
+    "about": "Informacje",
+    "alternative": {
+      "first": "Alternatywa nr 1",
+      "original": "Pierwotna",
+      "second": "Alternatywa nr 2",
+      "third": "Alternatywa nr 3"
+    },
+    "export": "Eksportuj",
+    "load": {
+      "nogos": "Stefy no-go",
+      "title": "Wczytaj"
+    },
+    "profile": {
+      "car-eco": "Samochód (ekonomicznie)",
+      "car-fast": "Samochód (szybko)",
+      "car-test": "Samochód (testowo)",
+      "custom": "Własne",
+      "fastbike": "Rower szosowy",
+      "fastbike-asia-pacific": "Rower szosowy (Azja Pacyfik)",
+      "fastbike-lowtraffic": "Rower szosowy (mały ruch)",
+      "hiking-beta": "Wspinaczka (beta)",
+      "moped": "Motorower",
+      "rail": "Kolej",
+      "river": "Rzeka",
+      "safety": "Bezpieczeństwo",
+      "shortest": "Najkrótsza",
+      "trekking": "Rower trekkingowy",
+      "trekking-ignore-cr": "Rower trekkingowy (ignoruj trasy rowerowe)",
+      "trekking-noferries": "Rower trekkingowy (bez promów)",
+      "trekking-nosteps": "Rower trekkingowy (bez schodów)",
+      "trekking-steep": "Rower trekkingowy (stromo)",
+      "vm-forum-liegerad-schnell": "Rower poziomy (szosowy)",
+      "vm-forum-velomobil-schnell": "Velomobile (szosowy)"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "Własny profil"
+    },
+    "data": {
+      "title": "Dane"
+    },
+    "itinerary": {
+      "title": "Plan podróży"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Warstwy bazowe",
+        "country": "Kraj",
+        "europe": "Europa",
+        "europe-monolingual": "Europa jeden język",
+        "overlays": "Nakładki",
+        "worldwide": "Cały świat",
+        "worldwide-international": "Świat wielojęzyczny",
+        "worldwide-monolingual": "Świat jeden język"
+      },
+      "collapse": "Zwiń wszystkie",
+      "custom-layers": "Własne warstwy",
+      "customize": "Dodaj lub usuń niestandardowe warstwy",
+      "expand": "Rozwiń wszystkie",
+      "optional": "Dodaj lub usuń opcjonalne warstwy",
+      "optional-layers": "Więcej",
+      "table": {
+        "URL": "URL",
+        "empty": "Nie skonfigurowano jeszcze niestandardowych warstw.",
+        "name": "Nazwa",
+        "type": "Rodzaj"
+      },
+      "title": "Warstwy"
+    },
+    "profile": {
+      "clear": "Wyczyść",
+      "help": "Pomoc",
+      "placeholder": "Zapisz tutaj swój własny profil.",
+      "upload": "Prześlij"
+    }
+  },
+  "title": "Klient przeglądarkowy BRouter",
+  "warning": {
+    "cannot-get-route": "Błąd pobierania URL trasy",
+    "no-response": "brak odpowiedzi z serwera",
+    "no-route-found": "Błąd: nie można znaleźć trasy dla zadanych punktów. Spróbuj przesunąć je bliżej dróg.",
+    "profile-error": "Błąd profilu: brak lub pusta odpowiedź z serwera",
+    "strava-error": "Błąd pobierania segmentów Strava: {{error}}",
+    "temporary-profile": "<strong>Uwaga:</strong> Przesłane własne profile są zapisywane na serwerze tylko tymczasowo.<br/>Zapisz zmiany na swoim komputerze.",
+    "upload-error": "Błąd przesyłania: {{error}}"
+  }
+}

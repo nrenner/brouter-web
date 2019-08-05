@@ -1,0 +1,10 @@
+LICENSE
+dist/
+*.zip
+yarn.lock
+.idea
+.gitignore
+.prettierignore
+.tx/
+layers/
+locales/*.json

@@ -1,13 +1,12 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var concatCss = require('gulp-concat-css');
-var minifyCss = require('gulp-minify-css');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var gulpDebug = require('gulp-debug');
-var mainBowerFiles = require('main-bower-files');
+var mainNpmFiles = require('npmfiles');
 var del = require('del');
-var tap = require('gulp-tap');
 var path = require('path');
 var cached = require('gulp-cached');
 var remember = require('gulp-remember');
@@ -20,219 +19,376 @@ var semver = require('semver');
 var git = require('gulp-git');
 var replace = require('gulp-replace');
 var release = require('gulp-github-release');
+var cleanCSS = require('gulp-clean-css');
+var modifyCssUrls = require('gulp-modify-css-urls');
+var sort = require('gulp-sort');
+var scanner = require('i18next-scanner');
+var jsonConcat = require('gulp-json-concat');
+var rename = require('gulp-rename');
 
 var debug = false;
 
 var paths = {
-  // see overrides in bower.json
-  scriptsConfig: mainBowerFiles('**/url-search-params/**/*.js'),
-  scripts: mainBowerFiles([
-    '**/*.js',
-    '!**/*.min.js',
-    '!**/url-search-params/**/*.js'
-  ]).concat([
-    'js/Browser.js',
-    'js/Util.js',
-    'js/Map.js',
-    'js/router/BRouter.js',
-    'js/plugin/*.js',
-    'js/control/*.js',
-    'js/index.js'
-  ]),
-  styles: mainBowerFiles('**/*.css').concat('css/*.css'),
-  images: mainBowerFiles('**/*.+(png|gif|svg)'),
-  fonts: mainBowerFiles('**/font-awesome/fonts/*'),
-  dest: 'dist',
-  destName: 'brouter-web'
+    // see overrides in package.json
+    scriptsConfig: mainNpmFiles().filter(f =>
+        RegExp('url-search-params/.*\\.js', 'i').test(f)
+    ),
+    scripts: [
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/tether/dist/js/tether.js',
+        'node_modules/async/lib/async.js',
+        'node_modules/leaflet/dist/leaflet-src.js'
+    ]
+        .concat(
+            mainNpmFiles().filter(
+                f =>
+                    RegExp('.*\\.js', 'i').test(f) &&
+                    !RegExp('.*\\.min\\.js', 'i').test(f) &&
+                    !RegExp('url-search-params/.*\\.js', 'i').test(f)
+            )
+        )
+        .concat([
+            'js/Browser.js',
+            'js/Util.js',
+            'js/Map.js',
+            'js/LayersConfig.js',
+            'js/router/BRouter.js',
+            'js/plugin/*.js',
+            'js/control/*.js',
+            'js/index.js'
+        ]),
+    styles: mainNpmFiles()
+        .filter(
+            f =>
+                RegExp('.*\\.css', 'i').test(f) &&
+                !RegExp('.*\\.min\\.css', 'i').test(f)
+        )
+        .concat('css/*.css'),
+    images: mainNpmFiles().filter(f =>
+        RegExp('.*.+(png|gif|svg)', 'i').test(f)
+    ),
+    fonts: mainNpmFiles().filter(f =>
+        RegExp('font-awesome/fonts/.*', 'i').test(f)
+    ),
+    locales: 'locales/*.json',
+    layers: 'layers/**/*.geojson',
+    layersDestName: 'layers.js',
+    layersConfig: [
+        'layers/config/config.js',
+        'layers/config/tree.js',
+        'layers/config/overrides.js',
+        'layers/config/geometry.js'
+    ],
+    layersConfigDestName: 'layersConf.js',
+    dest: 'dist',
+    destName: 'brouter-web'
 };
 
+gulp.task('clean', function(cb) {
+    del(paths.dest + '/**/*', cb);
+});
+
 // libs that require loading before config.js
-gulp.task('scripts_config', ['clean'], function() {
-  // just copy for now
-  return gulp.src(paths.scriptsConfig)
-    .pipe(gulp.dest(paths.dest));
+gulp.task('scripts_config', function() {
+    // just copy for now
+    return gulp.src(paths.scriptsConfig).pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('scripts', function() {
-  if (debug)
-    gutil.log( gutil.colors.yellow('Running in Debug mode') );
-  else
-    gutil.log( gutil.colors.green('Running in Release mode') );
+    if (debug) gutil.log(gutil.colors.yellow('Running in Debug mode'));
+    else gutil.log(gutil.colors.green('Running in Release mode'));
 
-  return gulp.src(paths.scripts, { base: '.' })
-    .pipe(sourcemaps.init())
-      .pipe(cached('scripts'))
-      .pipe(gulpif(!debug, uglify()))
-      .pipe(remember('scripts'))
-      .pipe(concat(paths.destName + '.js'))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.dest));
+    return gulp
+        .src(paths.scripts, { base: '.' })
+        .pipe(sourcemaps.init())
+        .pipe(cached('scripts'))
+        .pipe(gulpif(!debug, uglify()))
+        .pipe(remember('scripts'))
+        .pipe(concat(paths.destName + '.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(paths.dest));
 });
 
 // separate, fallback task for debugging (switch manually in index.html)
 gulp.task('concat', function() {
-  return gulp.src(paths.scripts)
-    .pipe(concat(paths.destName + '.src.js'))
-    .pipe(gulp.dest(paths.dest));
+    return gulp
+        .src(paths.scripts)
+        .pipe(concat(paths.destName + '.src.js'))
+        .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('styles', function() {
-  return gulp.src(paths.styles)
-    // hack for rewriting relative URLs to images/fonts in gulp-concat-css
-    // when src in css subfolder (remove '../')
-    // see also (?) https://github.com/mariocasciaro/gulp-concat-css/pull/10
-    .pipe(tap(function (file) {
-      if (path.basename(file.base) === 'css') {
-        file.path = 'css/' + file.relative;
-        file.base = './css';
-      } else {
-        file.path = file.relative;
-        file.base = '.';
-      }
-    }))
-    .pipe(concatCss(paths.destName + '.css'))
-    .pipe(minifyCss({
-      rebase: false
-    }))
-    .pipe(gulp.dest(paths.dest));
+    return gulp
+        .src(paths.styles)
+        .pipe(
+            modifyCssUrls({
+                modify(url, filePath) {
+                    var distUrl = url;
+                    var imageExt = ['.png', '.gif', '.svg'];
+
+                    if (imageExt.indexOf(path.extname(url)) !== -1) {
+                        distUrl = 'images/' + path.basename(url);
+                    } else if (url.indexOf('font') !== -1) {
+                        distUrl = 'fonts/' + path.basename(url);
+                    }
+
+                    return distUrl;
+                }
+            })
+        )
+        .pipe(concat(paths.destName + '.css'))
+        .pipe(
+            cleanCSS({
+                rebase: false
+            })
+        )
+        .pipe(postcss([autoprefixer({ remove: false })]))
+        .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('images', ['clean'], function() {
-  return gulp.src(paths.images)
-    .pipe(gulp.dest(paths.dest + '/images'));
+gulp.task('images', function() {
+    return gulp.src(paths.images).pipe(gulp.dest(paths.dest + '/images'));
 });
 
-gulp.task('fonts', ['clean'], function() {
-  return gulp.src(paths.fonts)
-    .pipe(gulp.dest(paths.dest + '/fonts'));
+gulp.task('fonts', function() {
+    return gulp.src(paths.fonts).pipe(gulp.dest(paths.dest + '/fonts'));
 });
 
-gulp.task('clean', function(cb) {
-  del(paths.dest + '/**/*' , cb);
+gulp.task('locales', function() {
+    return gulp.src(paths.locales).pipe(gulp.dest(paths.dest + '/locales'));
 });
 
 gulp.task('watch', function() {
-  debug = true;
-  var watcher = gulp.watch(paths.scripts, ['scripts']);
-  watcher.on('change', function (event) {
-    if (event.type === 'deleted') {
-      delete cached.caches.scripts[event.path];
-      remember.forget('scripts', event.path);
-    }
-  });
-  gulp.watch(paths.styles, ['styles']);
+    debug = true;
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts'));
+    watcher.on('change', function(event) {
+        if (event.type === 'deleted') {
+            delete cached.caches.scripts[event.path];
+            remember.forget('scripts', event.path);
+        }
+    });
+    gulp.watch(paths.styles, gulp.series('styles'));
+    gulp.watch(paths.layersConfig, gulp.series('layers_config'));
 });
 
 // Print paths to console, for manually debugging the gulp build
 // (comment out corresponding line of paths to print)
 gulp.task('log', function() {
-  //return gulp.src(mainBowerFiles(['**/*.js', '!**/*.min.js']))
-  //return gulp.src(mainBowerFiles('**/*.css'))
-  return gulp.src(paths.scripts)
-  //return gulp.src(paths.styles)
-  //return gulp.src(paths.images)
-    .pipe(gulpDebug());
-
-  //return gulp.src(mainBowerFiles({debugging: true}));
+    //return gulp.src(paths.scripts)
+    //return gulp.src(paths.styles)
+    //return gulp.src(paths.images)
+    // return gulp.src(paths.locales)
+    return gulp
+        .src(
+            paths.scripts
+                .concat(paths.styles)
+                .concat(paths.images)
+                .concat(paths.locales)
+        )
+        .pipe(gulpDebug());
 });
 
-gulp.task('inject', function () {
-  var target = gulp.src('index.html');
-  var sources =  gulp.src(paths.scripts, { base: '.', read: false });
+gulp.task('inject', function() {
+    var target = gulp.src('index.html');
+    var sources = gulp.src(paths.scripts.concat(paths.styles), {
+        base: '.',
+        read: false
+    });
 
-  return target.pipe(inject(sources, { relative: true }))
-    .pipe(gulp.dest('.'));
-});
-
-gulp.task('default', ['clean', 'scripts_config', 'scripts', 'styles', 'images', 'fonts']);
-
-gulp.task('debug', function() {
-  debug = true;
-  gulp.start('default');
+    return target
+        .pipe(inject(sources, { relative: true }))
+        .pipe(gulp.dest('.'));
 });
 
 var pkg = require('./package.json');
-var tags = {patch: 'patch', minor: 'minor', major: 'major'};
+var tags = { patch: 'patch', minor: 'minor', major: 'major' };
 var nextVersion;
 var ghToken;
 
-gulp.task('release:init', function() {
-  var tag = gutil.env.tag;
-  if (!tag) {
-    gutil.log(gutil.colors.red('--tag is required'));
-    process.exit(1);
-  }
-  if (['major', 'minor', 'patch'].indexOf(tag) < 0) {
-    gutil.log(gutil.colors.red('--tag must be major, minor or patch'));
-    process.exit(2);
-  }
-  ghToken = gutil.env.token;
-  if (!ghToken) {
-    gutil.log(gutil.colors.red('--token is required (github personnal access token)'));
-    process.exit(3);
-  }
-  if (ghToken.length != 40) {
-    gutil.log(gutil.colors.red('--token length must be 40'));
-    process.exit(4);
-  }
-  git.status({args: '--porcelain', quiet: true}, function(err, stdout) {
-    if (err) throw err;
-    if (stdout.length > 0) {
-      gutil.log(gutil.colors.red('Repository is not clean. Please commit or stash your pending modification'));
-      process.exit(5);
+gulp.task('release:init', function(cb) {
+    var tag = gutil.env.tag;
+    if (!tag) {
+        return cb(new Error('--tag is required'));
     }
-  });
-  nextVersion = semver.inc(pkg.version, tag);
-  return;
+    if (['major', 'minor', 'patch'].indexOf(tag) < 0) {
+        return cb(new Error('--tag must be major, minor or patch'));
+    }
+    ghToken = gutil.env.token;
+    if (!ghToken) {
+        return cb(
+            new Error('--token is required (github personnal access token')
+        );
+    }
+    if (ghToken.length != 40) {
+        return cb(new Error('--token length must be 40'));
+    }
+
+    nextVersion = semver.inc(pkg.version, tag);
+
+    git.status({ args: '--porcelain', quiet: true }, function(err, stdout) {
+        if (err) return cb(err);
+        if (stdout.length > 0) {
+            return cb(
+                new Error(
+                    'Repository is not clean. Please commit or stash your pending modification'
+                )
+            );
+        }
+
+        cb();
+    });
 });
 
-gulp.task('bump', ['bump:json', 'bump:html']);
-
-gulp.task('bump:json', ['release:init'], function() {
-  gutil.log(gutil.colors.green('Bump to '+nextVersion));
-  return(gulp.src(['./package.json', './bower.json'])
-  .pipe(bump({version: nextVersion}))
-  .pipe(gulp.dest('./')));
+gulp.task('bump:json', function() {
+    gutil.log(gutil.colors.green('Bump to ' + nextVersion));
+    return gulp
+        .src(['./package.json'])
+        .pipe(bump({ version: nextVersion }))
+        .pipe(gulp.dest('./'));
 });
 
-gulp.task('bump:html', ['release:init'], function() {
-  return(gulp.src('./index.html')
-  .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">'+nextVersion+'</sup>'))
-  .pipe(gulp.dest('.')));
+gulp.task('bump:html', function() {
+    return gulp
+        .src('./index.html')
+        .pipe(
+            replace(
+                /<sup class="version">(.*)<\/sup>/,
+                '<sup class="version">' + nextVersion + '</sup>'
+            )
+        )
+        .pipe(gulp.dest('.'));
 });
 
-gulp.task('release:commit', ['bump'], function() {
-  gulp.src(['./index.html', './package.json', './bower.json'])
-  .pipe(git.commit('release: '+nextVersion));
+gulp.task('bump', gulp.series('bump:json', 'bump:html'));
+
+gulp.task('release:commit', function() {
+    return gulp
+        .src(['./index.html', './package.json'])
+        .pipe(git.commit('release: ' + nextVersion));
 });
 
-gulp.task('release:tag', ['release:commit'], function() {
-  return(git.tag(nextVersion, '', function(err) {
-    if (err) throw err;
-  }));
+gulp.task('release:tag', function(cb) {
+    return git.tag(nextVersion, '', cb);
 });
 
-gulp.task('release:push', ['release:tag'], function() {
-  git.push('origin', 'master', {args: '--tags'}, function(err) {
-    if (err) throw err;
-  });
+gulp.task('release:push', function(cb) {
+    git.push('origin', 'master', { args: '--tags' }, cb);
 });
 
-gulp.task('release:zip', ['release:tag', 'default'], function() {
-  gutil.log(gutil.colors.green('Build brouter-web.'+nextVersion+'.zip'));
-  return(gulp.src(['dist/**', 'index.html', 'config.template.js', 'keys.template.js'], {'base': '.'})
-  .pipe(zip('brouter-web.'+nextVersion+'.zip'))
-  .pipe(gulp.dest('.')));
+gulp.task('i18next', function() {
+    return gulp
+        .src([
+            'index.html',
+            'locales/keys.js',
+            'layers/config/overrides.js',
+            'js/**/*.js'
+        ])
+        .pipe(sort())
+        .pipe(
+            scanner({
+                lngs: ['en'], // we only generate English version, other languages are handled by transifex via yarn transifex-pull/push
+                removeUnusedKeys: true,
+                sort: true,
+                resource: {
+                    // the source path is relative to current working directory
+                    loadPath: 'locales/{{lng}}.json',
+
+                    // the destination path is relative to your `gulp.dest()` path
+                    savePath: 'locales/{{lng}}.json'
+                }
+            })
+        )
+        .pipe(gulp.dest('.'));
 });
 
-gulp.task('release:publish', ['release:zip'], function() {
-  gulp.src('./brouter-web.'+nextVersion+'.zip')
-  .pipe(release({
-    tag: nextVersion,
-    token: ghToken,
-    manifeste: pkg,
-  }))
+gulp.task('layers_config', function() {
+    return gulp
+        .src(paths.layersConfig)
+        .pipe(concat(paths.layersConfigDestName))
+        .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('release', ['release:init', 'bump', 'release:commit', 'release:tag',
-                      'release:push', 'release:zip', 'release:publish']);
+// Bundles layer files. To download and extract run "yarn layers"
+gulp.task('layers', function() {
+    return (
+        gulp
+            .src(paths.layers)
+            // Workaround to get file extension removed from the dictionary key
+            .pipe(rename({ extname: '.json' }))
+            .pipe(
+                jsonConcat(paths.layersDestName, function(data) {
+                    var header =
+                        '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
+                        '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
+                        '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
+                    return Buffer.from(
+                        header +
+                            'BR.layerIndex = ' +
+                            JSON.stringify(data, null, 2) +
+                            ';'
+                    );
+                })
+            )
+            .pipe(gulp.dest(paths.dest))
+    );
+});
+
+gulp.task(
+    'default',
+    gulp.series(
+        'clean',
+        'scripts_config',
+        'layers_config',
+        'layers',
+        'scripts',
+        'styles',
+        'images',
+        'fonts',
+        'locales'
+    )
+);
+
+gulp.task(
+    'debug',
+    gulp.series(function(cb) {
+        debug = true;
+        cb();
+    }, 'default')
+);
+
+gulp.task('release:zip', function() {
+    gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
+    return gulp
+        .src(
+            ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
+            {
+                base: '.'
+            }
+        )
+        .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+        .pipe(gulp.dest('.'));
+});
+
+gulp.task('release:publish', function() {
+    return gulp.src('./brouter-web.' + nextVersion + '.zip').pipe(
+        release({
+            tag: nextVersion,
+            token: ghToken,
+            manifest: pkg
+        })
+    );
+});
+
+gulp.task(
+    'release',
+    gulp.series(
+        'release:init',
+        'bump',
+        'release:commit',
+        'release:tag',
+        'release:push',
+        'default',
+        'release:zip',
+        'release:publish'
+    )
+);

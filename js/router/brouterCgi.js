@@ -21,9 +21,8 @@ var brouterCgi = (function() {
         //return 'test/test.gpx';
         return url;
     }
-    
+
     return {
         getUrl: getUrl
-    }
-
+    };
 })();

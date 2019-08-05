@@ -1,0 +1,209 @@
+{
+  "about": {
+    "bug-reports": "Rapporter un problème ou une amélioration :",
+    "bug-reports-back": "serveur, moteur de routage, appli Android, profils, site brouter.de ;",
+    "bug-reports-front": "client web.",
+    "chat": "Discuter avec d'autres utilisateurs et développeurs",
+    "contact": "Contact :",
+    "data": "Données :",
+    "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement hebdomadaire, voir <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
+    "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>.",
+    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
+    "support": "Discussions/Questions générales, support ;",
+    "title": "À propos"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources : Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, et la communauté d'utilisateurs GIS",
+    "esri-tiles": "Imagerie mondiale Esri",
+    "map-data": "Données de carte",
+    "map-tiles": "Tuiles de carte",
+    "nominatim": "Recherche par <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+  },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
+    "route-loop": "{{from}} ({{distance}} km)",
+    "title": "Exporter l'itinéraire",
+    "trackname": "Nom"
+  },
+  "footer": {
+    "ascend": "Dénivelé cumulé",
+    "cost": "Coût",
+    "distance": "Distance",
+    "energy-per-100km": "pour 100km",
+    "hours": "heures",
+    "hours-abbrev": "h",
+    "kilometer": "kilomètres",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowattheures",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Facteur coût moyen",
+    "meter": "mètres",
+    "meter-abbrev": "m",
+    "plain-ascend": "global",
+    "total-energy": "Énergie totale",
+    "travel-time": "Temps de trajet"
+  },
+  "layers": {
+    "add-base": "Ajouter un fond de carte ",
+    "add-overlay": "Ajouter un calque superposable",
+    "customize": "Personnaliser les calques",
+    "placeholder-layer-name": "Nom du calque (p. ex. OpenStreetMap).",
+    "placeholder-layer-url": "URL du calque (p. ex. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png).",
+    "remove-selection": "Supprimer la sélection"
+  },
+  "loadNogos": {
+    "defaultProperties": "Propriétés par défaut",
+    "file": "Fichier :",
+    "load": "Charger",
+    "nogoBuffer": "Tampon des zones interdites (en mètres) :",
+    "nogoRadius": "Rayon des zones interdites (pour les points) :",
+    "nogoWeight": "Poids des zones interdites :",
+    "source": "Source",
+    "title": "Charger les zones interdites",
+    "url": "URL :"
+  },
+  "map": {
+    "attribution-osm-long": "Contributeurs OpenStreetMap",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Supprimer l'itinéraire",
+    "copyright": "Copyright",
+    "cycling": "Vélo",
+    "delete-last-point": "Supprimer le dernier point",
+    "delete-nogo-areas": "&nbsp;&nbsp;supprimer aussi toutes les zones interdites",
+    "delete-route": "Supprimer l'itinéraire ?",
+    "draw-route-start": "Dessiner l'itinéraire (touche D)",
+    "draw-route-stop": "Arrêter de dessiner l'itinéraire (touche ECH)",
+    "hikebike-hillshading": "Relief avec ombre",
+    "hiking": "Randonnée",
+    "layer": {
+      "bing": "Imagerie aérienne BING",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Cycling (Sentiers balisés)",
+      "digitalglobe": "Imagerie récente DigitalGlobe",
+      "esri": "Imagerie mondiale Esri",
+      "hikebike-hillshading": "Relief avec ombre (carte randonnée et vélo)",
+      "hiking": "Randonnée (Sentiers balisés)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Extérieur (Thunderforest)",
+      "stamen-terrain": "Terrain (Stamen)",
+      "strava-segments": "Segments Strava",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Chargement…",
+    "locate-me": "Où suis-je ?",
+    "nogo": {
+      "cancel": "Annuler la zone interdite",
+      "click-drag": "Cliquer et faire glisser pour dessiner un cercle",
+      "draw": "Dessiner une zone interdite (cercle)",
+      "edit": "Cliquer pour éditer",
+      "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
+    },
+    "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
+    "privacy": "Vie privée",
+    "reverse-route": "Inverse l'itinéraire",
+    "strava-biking": "Afficher les segments Strava vélo",
+    "strava-running": "Afficher les segments Strava à pied",
+    "zoomInTitle": "Zoomer",
+    "zoomOutTitle": "Dézoomer"
+  },
+  "modal": {
+    "close": "Fermer"
+  },
+  "navbar": {
+    "about": "À propos",
+    "alternative": {
+      "first": "1ère alternative",
+      "original": "Originale",
+      "second": "2nde alternative",
+      "third": "3ème alternative"
+    },
+    "export": "Exporter",
+    "load": {
+      "nogos": "Zones interdites",
+      "title": "Charger"
+    },
+    "profile": {
+      "car-eco": "Voiture (économique)",
+      "car-fast": "Voiture (rapide)",
+      "car-test": "Voiture (test)",
+      "custom": "Personnalisé",
+      "fastbike": "Vélo de route",
+      "fastbike-asia-pacific": "Vélo de route (Asie Pacifique)",
+      "fastbike-lowtraffic": "Vélo de route (faible traffic)",
+      "hiking-beta": "Randonnée (beta)",
+      "moped": "Mobylette",
+      "rail": "Train",
+      "river": "Fluvial",
+      "safety": "Sécurité",
+      "shortest": "Le plus court",
+      "trekking": "Cyclotourisme",
+      "trekking-ignore-cr": "Cycloutourisme (ignore pistes cyclables)",
+      "trekking-noferries": "Cyclotourisme (pas de ferries)",
+      "trekking-nosteps": "Cyclotourisme (pas d'escaliers)",
+      "trekking-steep": "Cyclotourisme (escarpé)",
+      "vm-forum-liegerad-schnell": "Vélo couché (rapide)",
+      "vm-forum-velomobil-schnell": "Vélomobile (rapide)"
+    }
+  },
+  "sidebar": {
+    "custom-profile": {
+      "title": "Profil personnalisé"
+    },
+    "data": {
+      "title": "Données"
+    },
+    "itinerary": {
+      "title": "Itinéraire"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Fonds de carte",
+        "country": "Pays",
+        "europe": "Europe",
+        "europe-monolingual": "Europe monolingue",
+        "overlays": "Calques superposables",
+        "worldwide": "Mondial",
+        "worldwide-international": "Mondial international",
+        "worldwide-monolingual": "Mondial monolingue"
+      },
+      "collapse": "Tout réduire",
+      "custom-layers": "Calques personels",
+      "customize": "Ajouter ou supprimer des calques",
+      "expand": "Tout ouvrir",
+      "optional": "Ajouter ou supprimer des calques optionnels",
+      "optional-layers": "Plus",
+      "table": {
+        "URL": "URL",
+        "empty": "Aucun calque personnel trouvé.",
+        "name": "Nom",
+        "type": "Type"
+      },
+      "title": "Calques"
+    },
+    "profile": {
+      "clear": "Nettoyer",
+      "help": "Aide",
+      "placeholder": "Saisissez votre profil personnalisé ici.",
+      "upload": "Envoyer"
+    }
+  },
+  "title": "Client web BRouter",
+  "warning": {
+    "cannot-get-route": "Erreur lors de la réception de l'itinéraire",
+    "no-response": "aucune réponse du serveur",
+    "no-route-found": "Erreur : impossible de trouver un itinéraire correspondant aux points donnés. Essayez peut-être de rapprocher les points des routes ?",
+    "profile-error": "Erreur de profil : pas de réponse ou réponse invalide du serveur",
+    "strava-error": "Impossible d'afficher les segments Strava : {{error}}",
+    "temporary-profile": "<strong>Note :</strong> Les profils personnalisés téléversés ne sont disponibles que temporairement sur le serveur.<br/>Merci de sauvegarder votre profil sur votre ordinateur.",
+    "upload-error": "Erreur d'envoi : {{error}}"
+  }
+}

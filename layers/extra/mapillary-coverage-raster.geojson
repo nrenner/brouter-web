@@ -1,0 +1,17 @@
+{
+    "geometry": null,
+    "properties": {
+        "attribution": {
+            "text": "Mapillary, CC BY",
+            "url": "https://www.mapillary.com"
+        },
+        "id": "mapillary-coverage-raster",
+        "max_zoom": 17,
+        "name": "Mapillary Coverage",
+        "overlay": true,
+        "type": "tms",
+        "url": "https://d6a1v2w10ny40.cloudfront.net/v0.1/{z}/{x}/{y}.png"
+    },
+    "type": "Feature"
+}
+  
