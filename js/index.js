@@ -34,7 +34,6 @@
             deleteRouteButton,
             drawToolbar,
             urlHash,
-            reverseRoute,
             saveWarningShown = false;
 
         // By default bootstrap-select use glyphicons
@@ -73,7 +72,7 @@
             ]
         });
 
-        reverseRouteButton = L.easyButton(
+        var reverseRouteButton = L.easyButton(
             'fa-random',
             function() {
                 routing.reverse();
@@ -81,7 +80,7 @@
             i18next.t('map.reverse-route')
         );
 
-        deletePointButton = L.easyButton(
+        var deletePointButton = L.easyButton(
             '<span><i class="fa fa-caret-left"></i><i class="fa fa-map-marker" style="margin-left: 1px; color: gray;"></i></span>',
             function() {
                 routing.removeWaypoint(routing.getLast(), function(err, data) {});
@@ -258,7 +257,7 @@
         }
 
         nogos.addTo(map);
-        drawToolbar = L.easyBar([
+        L.easyBar([
             drawButton,
             reverseRouteButton,
             nogos.getButton(),
