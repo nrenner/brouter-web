@@ -38,7 +38,7 @@ L.BRouter = L.Class.extend({
         L.setOptions(this, options);
     },
 
-    getUrlParams: function(latLngs, format) {
+    getUrlParams: function(latLngs, pois, format) {
         params = {};
         if (this._getLonLatsString(latLngs) != null) params.lonlats = this._getLonLatsString(latLngs);
 
@@ -52,6 +52,8 @@ L.BRouter = L.Class.extend({
             params.polygons = this._getNogosPolygonsString(this.options.polygons);
 
         if (this.options.profile != null) params.profile = this.options.profile;
+
+        if (pois && this._getLonLatsNameString(pois) != null) params.pois = this._getLonLatsNameString(pois);
 
         params.alternativeidx = this.options.alternative;
 
@@ -91,15 +93,18 @@ L.BRouter = L.Class.extend({
         if (params.profile) {
             opts.profile = params.profile;
         }
+        if (params.pois) {
+            opts.pois = this._parseLonLatNames(params.pois);
+        }
         return opts;
     },
 
-    getUrl: function(latLngs, format, trackname, exportWaypoints) {
-        var urlParams = this.getUrlParams(latLngs, format);
-
+    getUrl: function(latLngs, pois, format, trackname, exportWaypoints) {
+        var urlParams = this.getUrlParams(latLngs, pois, format);
         var args = [];
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
+        if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
         if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
         if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
         if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
@@ -120,7 +125,7 @@ L.BRouter = L.Class.extend({
     },
 
     getRoute: function(latLngs, cb) {
-        var url = this.getUrl(latLngs, 'geojson'),
+        var url = this.getUrl(latLngs, null, 'geojson'),
             xhr = new XMLHttpRequest();
 
         if (!url) {
@@ -229,6 +234,39 @@ L.BRouter = L.Class.extend({
         }
 
         return lonlats;
+    },
+
+    _getLonLatsNameString: function(latLngNames) {
+        var s = '';
+        for (var i = 0; i < latLngNames.length; i++) {
+            s += this._formatLatLng(latLngNames[i].latlng);
+            s += L.BRouter.NUMBER_SEPARATOR;
+            s += encodeURIComponent(latLngNames[i].name);
+
+            if (i < latLngNames.length - 1) {
+                s += L.BRouter.GROUP_SEPARATOR;
+            }
+        }
+        return s;
+    },
+
+    _parseLonLatNames: function(s) {
+        var groups,
+            part,
+            lonlatnames = [];
+
+        if (!s) {
+            return lonlatnames;
+        }
+
+        groups = s.split(L.BRouter.GROUP_SEPARATOR);
+        for (var i = 0; i < groups.length; i++) {
+            // lng,lat,name
+            part = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+            lonlatnames.push({ latlng: L.latLng(part[1], part[0]), name: decodeURIComponent(part[2]) });
+        }
+
+        return lonlatnames;
     },
 
     _getNogosString: function(nogos) {

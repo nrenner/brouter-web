@@ -1,8 +1,9 @@
 BR.Export = L.Class.extend({
     latLngs: [],
 
-    initialize: function(router) {
+    initialize: function(router, pois) {
         this.router = router;
+        this.pois = pois;
         this.exportButton = $('#exportButton');
         var trackname = (this.trackname = document.getElementById('trackname'));
         this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
@@ -38,7 +39,7 @@ BR.Export = L.Class.extend({
         var name = encodeURIComponent(exportForm['trackname'].value);
         var includeWaypoints = exportForm['include-waypoints'].checked;
 
-        var uri = this.router.getUrl(this.latLngs, format, name, includeWaypoints);
+        var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), format, name, includeWaypoints);
 
         var evt = document.createEvent('MouseEvents');
         evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);

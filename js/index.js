@@ -32,7 +32,7 @@
             sidebar,
             drawButton,
             deleteRouteButton,
-            drawToolbar,
+            pois,
             urlHash,
             saveWarningShown = false;
 
@@ -93,7 +93,7 @@
             function() {
                 bootbox.prompt({
                     size: 'small',
-                    title: i18next.t('map.delete-route-nogos'),
+                    title: i18next.t('map.clear-route'),
                     inputType: 'checkbox',
                     inputOptions: [
                         {
@@ -103,6 +103,10 @@
                         {
                             text: i18next.t('map.delete-nogo-areas'),
                             value: 'nogo'
+                        },
+                        {
+                            text: i18next.t('map.delete-pois'),
+                            value: 'pois'
                         }
                     ],
                     value: ['route'],
@@ -114,13 +118,16 @@
                             if (result.indexOf('nogo') !== -1) {
                                 nogos.clear();
                             }
+                            if (result.indexOf('pois') !== -1) {
+                                pois.clear();
+                            }
                             onUpdate();
                             urlHash.onMapMove();
                         }
                     }
                 });
             },
-            i18next.t('map.delete-route-nogos')
+            i18next.t('map.clear-route')
         );
 
         function updateRoute(evt) {
@@ -160,7 +167,6 @@
         } else {
             stats = new BR.TrackStats();
         }
-        exportRoute = new BR.Export(router);
         elevation = new BR.Elevation();
 
         profile = new BR.Profile();
@@ -205,6 +211,12 @@
             styles: BR.conf.routingStyles
         });
 
+        pois = new BR.PoiMarkers({
+            routing: routing
+        });
+
+        exportRoute = new BR.Export(router, pois);
+
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
             search.clear();
             onUpdate(evt && evt.err);
@@ -245,6 +257,8 @@
         routing.addTo(map);
         elevation.addBelow(map);
 
+        pois.addTo(map);
+
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
@@ -257,13 +271,7 @@
         }
 
         nogos.addTo(map);
-        L.easyBar([
-            drawButton,
-            reverseRouteButton,
-            nogos.getButton(),
-            deletePointButton,
-            deleteRouteButton
-        ]).addTo(map);
+        L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deletePointButton, deleteRouteButton]).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
@@ -304,6 +312,7 @@
                 return p;
             };
             if (url == null) return;
+
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
             routingOptions.setOptions(opts);
@@ -314,6 +323,10 @@
                 routing.draw(false);
                 routing.clear();
                 routing.setWaypoints(opts.lonlats);
+            }
+
+            if (opts.pois) {
+                pois.setMarkers(opts.pois);
             }
         };
 
@@ -327,9 +340,13 @@
 
         // do not initialize immediately
         urlHash = new L.Hash(null, null);
+        // this callback is used to append anything in URL after L.Hash wrote #map=zoom/lat/lng/layer
         urlHash.additionalCb = function() {
-            var url = router.getUrl(routing.getWaypoints(), null).substr('brouter?'.length + 1);
+            var url = router.getUrl(routing.getWaypoints(), pois.getMarkers(), null).substr('brouter?'.length + 1);
+
+            // by default brouter use | as separator. To make URL more human-readable, we remplace them with ; for users
             url = url.replace(/\|/g, ';');
+
             return url.length > 0 ? '&' + url : null;
         };
         urlHash.onHashChangeCb = onHashChangeCb;
@@ -346,6 +363,7 @@
 
         routingOptions.on('update', urlHash.onMapMove, urlHash);
         nogos.on('update', urlHash.onMapMove, urlHash);
+        pois.on('update', urlHash.onMapMove, urlHash);
         // waypoint add, move, delete (but last)
         routing.on('routing:routeWaypointEnd', urlHash.onMapMove, urlHash);
         // delete last waypoint
@@ -393,6 +411,8 @@
                 }
             });
     }
+
+    L.AwesomeMarkers.Icon.prototype.options.prefix = 'fa';
 
     i18next
         .use(window.i18nextXHRBackend)

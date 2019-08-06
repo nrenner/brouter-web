@@ -7,3 +7,4 @@ nbproject/
 /dist
 brouter-web.*.zip
 yarn-error.log
+package-lock.json
