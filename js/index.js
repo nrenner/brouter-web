@@ -425,30 +425,37 @@
                     reader.onload = function() {
                         resolve(reader.result);
                     };
+                    reader.onerror = function() {
+                        $('#nogoError').text(
+                            'Cannot read file: ' + reader.error.message
+                        );
+                        $('#nogoError').css('display', 'block');
+                    };
+
                     reader.readAsText(nogoFile);
                 }).then(function(response) {
                     return JSON.parse(response);
                 });
             } else {
-                $('#nogoError').text('Error: Missing file or URL.');
+                $('#nogoError').text('Missing file or URL.');
                 $('#nogoError').css('display', 'block');
                 return false;
             }
             var nogoWeight = parseFloat($('#nogoWeight').val());
             if (isNaN(nogoWeight)) {
-                $('#nogoError').text('Error: Missing default nogo weight.');
+                $('#nogoError').text('Missing default nogo weight.');
                 $('#nogoError').css('display', 'block');
                 return false;
             }
             var nogoRadius = parseFloat($('#nogoRadius').val());
             if (isNaN(nogoRadius) || nogoRadius < 0) {
-                $('#nogoError').text('Error: Invalid default nogo radius.');
+                $('#nogoError').text('Invalid default nogo radius.');
                 $('#nogoError').css('display', 'block');
                 return false;
             }
             var nogoBuffer = parseFloat($('#nogoBuffer').val());
             if (isNaN(nogoBuffer)) {
-                $('#nogoError').text('Error: Invalid nogo buffering radius.');
+                $('#nogoError').text('Invalid nogo buffering radius.');
                 $('#nogoError').css('display', 'block');
                 return false;
             }
@@ -470,6 +477,14 @@
                         cleanedGeoJSONFeatures.push(maybeBufferedFeature);
                     }
                 });
+
+                if (cleanedGeoJSONFeatures.length === 0) {
+                    $('#nogoError').text(
+                        'No valid area found in provided input.'
+                    );
+                    $('#nogoError').css('display', 'block');
+                    return false;
+                }
 
                 var geoJSON = L.geoJson(
                     turf.featureCollection(cleanedGeoJSONFeatures),
