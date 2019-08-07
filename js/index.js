@@ -463,7 +463,7 @@
             geoJSONPromise.then(function(response) {
                 // Iterate on features in order to discard features without geometry
                 var cleanedGeoJSONFeatures = [];
-                turf.featureEach(response, function(feature) {
+                turf.flattenEach(response, function(feature) {
                     if (turf.getGeom(feature)) {
                         var maybeBufferedFeature = feature;
                         // Eventually buffer GeoJSON
