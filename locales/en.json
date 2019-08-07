@@ -61,7 +61,7 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File: ",
+    "file": "File (.geojson): ",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters): ",
     "nogoRadius": "No-go radius (for points): ",
