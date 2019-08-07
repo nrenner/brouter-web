@@ -39,22 +39,14 @@ BR.Profile = L.Evented.extend({
                     profileUrl,
                     L.bind(function(err, profileText) {
                         if (err) {
-                            console.warn(
-                                'Error getting profile from "' +
-                                    profileUrl +
-                                    '": ' +
-                                    err
-                            );
+                            console.warn('Error getting profile from "' + profileUrl + '": ' + err);
                             return;
                         }
 
                         this.cache[profileName] = profileText;
 
                         // don't set when option has changed while loading
-                        if (
-                            !this.profileName ||
-                            this.profileName === profileName
-                        ) {
+                        if (!this.profileName || this.profileName === profileName) {
                             this._setValue(profileText);
                         }
                     }, this)

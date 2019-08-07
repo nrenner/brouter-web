@@ -1,9 +1,6 @@
 BR.RoutingOptions = L.Evented.extend({
     initialize: function() {
-        $('#profile-alternative').on(
-            'changed.bs.select',
-            this._getChangeHandler()
-        );
+        $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
         // build option list from config
         var profiles = BR.conf.profiles;
@@ -55,12 +52,8 @@ BR.RoutingOptions = L.Evented.extend({
 
     setOptions: function(options) {
         var values = [
-            options.profile
-                ? options.profile
-                : $('#profile option:selected').val(),
-            options.alternative
-                ? options.alternative
-                : $('#alternative option:selected').val()
+            options.profile ? options.profile : $('#profile option:selected').val(),
+            options.alternative ? options.alternative : $('#alternative option:selected').val()
         ];
         $('.selectpicker').selectpicker('val', values);
         this.refreshUI();

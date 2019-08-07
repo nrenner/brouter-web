@@ -46,18 +46,9 @@ BR.Layers = L.Class.extend({
         for (var l in overlays) this._layers[l] = [overlays[l], true];
         for (var l in baseLayers) this._layers[l] = [baseLayers[l], false];
 
-        L.DomUtil.get('custom_layers_add_base').onclick = L.bind(
-            this._addBaseLayer,
-            this
-        );
-        L.DomUtil.get('custom_layers_add_overlay').onclick = L.bind(
-            this._addOverlay,
-            this
-        );
-        L.DomUtil.get('custom_layers_remove').onclick = L.bind(
-            this._remove,
-            this
-        );
+        L.DomUtil.get('custom_layers_add_base').onclick = L.bind(this._addBaseLayer, this);
+        L.DomUtil.get('custom_layers_add_overlay').onclick = L.bind(this._addOverlay, this);
+        L.DomUtil.get('custom_layers_remove').onclick = L.bind(this._remove, this);
 
         this._loadLayers();
         this._loadTable();
@@ -95,8 +86,7 @@ BR.Layers = L.Class.extend({
     _addFromInput: function(isOverlay) {
         var layer_name = L.DomUtil.get('layer_name').value;
         var layer_url = L.DomUtil.get('layer_url').value;
-        if (layer_name.length > 0 && layer_url.length > 0)
-            this._addLayer(layer_name, layer_url, isOverlay);
+        if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layer_name, layer_url, isOverlay);
     },
 
     _addBaseLayer: function(evt) {

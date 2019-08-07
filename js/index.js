@@ -10,15 +10,8 @@
     function verifyTouchStyle(mapContext) {
         // revert touch style (large icons) when touch screen detection is available and negative
         // see https://github.com/nrenner/brouter-web/issues/69
-        if (
-            L.Browser.touch &&
-            BR.Browser.touchScreenDetectable &&
-            !BR.Browser.touchScreen
-        ) {
-            L.DomUtil.removeClass(
-                mapContext.map.getContainer(),
-                'leaflet-touch'
-            );
+        if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
+            L.DomUtil.removeClass(mapContext.map.getContainer(), 'leaflet-touch');
         }
     }
 
@@ -91,10 +84,7 @@
         deletePointButton = L.easyButton(
             '<span><i class="fa fa-caret-left"></i><i class="fa fa-map-marker" style="margin-left: 1px; color: gray;"></i></span>',
             function() {
-                routing.removeWaypoint(routing.getLast(), function(
-                    err,
-                    data
-                ) {});
+                routing.removeWaypoint(routing.getLast(), function(err, data) {});
             },
             i18next.t('map.delete-last-point')
         );
@@ -171,19 +161,14 @@
         profile.on('update', function(evt) {
             BR.message.hide();
             var profileId = routingOptions.getCustomProfile();
-            router.uploadProfile(profileId, evt.profileText, function(
-                err,
-                profileId
-            ) {
+            router.uploadProfile(profileId, evt.profileText, function(err, profileId) {
                 if (!err) {
                     routingOptions.setCustomProfile(profileId, true);
                     updateRoute({
                         options: routingOptions.getOptions()
                     });
                     if (!saveWarningShown) {
-                        profile.message.showWarning(
-                            i18next.t('warning.temporary-profile')
-                        );
+                        profile.message.showWarning(i18next.t('warning.temporary-profile'));
                         saveWarningShown = true;
                     }
                 } else {
@@ -214,9 +199,7 @@
             styles: BR.conf.routingStyles
         });
 
-        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(
-            evt
-        ) {
+        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
             search.clear();
             onUpdate(evt && evt.err);
         });
@@ -339,9 +322,7 @@
         // do not initialize immediately
         urlHash = new L.Hash(null, null);
         urlHash.additionalCb = function() {
-            var url = router
-                .getUrl(routing.getWaypoints(), null)
-                .substr('brouter?'.length + 1);
+            var url = router.getUrl(routing.getWaypoints(), null).substr('brouter?'.length + 1);
             url = url.replace(/\|/g, ';');
             return url.length > 0 ? '&' + url : null;
         };
@@ -401,11 +382,7 @@
             .on('hidden.bs.collapse', onHide)
             .on('shown.bs.collapse', onShow)
             .each(function() {
-                if (
-                    this.id &&
-                    BR.Util.localStorageAvailable() &&
-                    localStorage[this.id] === 'true'
-                ) {
+                if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
                     $(this).collapse('show');
                 }
             });

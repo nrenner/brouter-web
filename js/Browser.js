@@ -6,9 +6,7 @@
                 result = navigator.maxTouchPoints > 0;
             } else if (
                 window.matchMedia &&
-                window.matchMedia(
-                    '(any-pointer:coarse),(any-pointer:fine),(any-pointer:none)'
-                ).matches
+                window.matchMedia('(any-pointer:coarse),(any-pointer:fine),(any-pointer:none)').matches
             ) {
                 result = window.matchMedia('(any-pointer:coarse)').matches;
             } else if ('msMaxTouchPoints' in navigator) {

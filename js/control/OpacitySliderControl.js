@@ -13,10 +13,7 @@ BR.OpacitySliderControl = L.Control.extend({
         if (BR.Util.localStorageAvailable()) {
             var value = localStorage.getItem('opacitySliderValue');
             if (value !== null) {
-                localStorage.setItem(
-                    'opacitySliderValue' + this.options.id,
-                    value
-                );
+                localStorage.setItem('opacitySliderValue' + this.options.id, value);
                 localStorage.removeItem('opacitySliderValue');
             }
         }
@@ -31,11 +28,7 @@ BR.OpacitySliderControl = L.Control.extend({
 
         var removeStopClickListeners = function() {
             document.removeEventListener('click', stopClickAfterSlide, true);
-            document.removeEventListener(
-                'mousedown',
-                removeStopClickListeners,
-                true
-            );
+            document.removeEventListener('mousedown', removeStopClickListeners, true);
         };
 
         slider.input
@@ -52,11 +45,7 @@ BR.OpacitySliderControl = L.Control.extend({
                 document.addEventListener('click', stopClickAfterSlide, true);
                 // Firefox does not fire click event in this case, so make sure stop listener
                 // is always removed on next mousedown.
-                document.addEventListener(
-                    'mousedown',
-                    removeStopClickListeners,
-                    true
-                );
+                document.addEventListener('mousedown', removeStopClickListeners, true);
             });
 
         return container;

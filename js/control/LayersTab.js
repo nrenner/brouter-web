@@ -4,12 +4,7 @@ BR.LayersTab = BR.ControlLayers.extend({
     saveLayers: [],
 
     initialize: function(layersConfig, baseLayers, overlays, options) {
-        L.Control.Layers.prototype.initialize.call(
-            this,
-            baseLayers,
-            overlays,
-            options
-        );
+        L.Control.Layers.prototype.initialize.call(this, baseLayers, overlays, options);
 
         this.layersConfig = layersConfig;
     },
@@ -30,21 +25,13 @@ BR.LayersTab = BR.ControlLayers.extend({
     onAdd: function(map) {
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
-        map.on(
-            'baselayerchange overlayadd overlayremove',
-            this.storeActiveLayers,
-            this
-        );
+        map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
     },
 
     onRemove: function(map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
-        map.off(
-            'baselayerchange overlayadd overlayremove',
-            this.storeActiveLayers,
-            this
-        );
+        map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
     },
 
     initOpacitySlider: function(map) {
@@ -57,19 +44,14 @@ BR.LayersTab = BR.ControlLayers.extend({
             title: i18next.t('layers.opacity-slider'),
             callback: function(opacity) {
                 for (var i = 0; i < self._layers.length; i++) {
-                    if (
-                        !self._layers[i].overlay ||
-                        !map.hasLayer(self._layers[i].layer)
-                    ) {
+                    if (!self._layers[i].overlay || !map.hasLayer(self._layers[i].layer)) {
                         continue;
                     }
                     self._layers[i].layer.setOpacity(opacity);
                 }
             }
         });
-        L.DomUtil.get(
-            'leaflet-control-layers-overlays-opacity-slider'
-        ).appendChild(overlayOpacitySlider.getElement());
+        L.DomUtil.get('leaflet-control-layers-overlays-opacity-slider').appendChild(overlayOpacitySlider.getElement());
     },
 
     initButtons: function() {
@@ -95,15 +77,9 @@ BR.LayersTab = BR.ControlLayers.extend({
         };
 
         L.DomUtil.get('expand_tree_button').onclick = L.bind(expandTree, this);
-        L.DomUtil.get('collapse_tree_button').onclick = L.bind(
-            collapseTree,
-            this
-        );
+        L.DomUtil.get('collapse_tree_button').onclick = L.bind(collapseTree, this);
 
-        L.DomUtil.get('optional_layers_button').onclick = L.bind(
-            toggleOptionalLayers,
-            this
-        );
+        L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
     },
 
     initJsTree: function() {
@@ -225,10 +201,7 @@ BR.LayersTab = BR.ControlLayers.extend({
                     id: id,
                     text: getText(props, parent),
                     state: {
-                        checked: self.layersConfig.isDefaultLayer(
-                            id,
-                            props.overlay
-                        )
+                        checked: self.layersConfig.isDefaultLayer(id, props.overlay)
                     }
                 };
             }

@@ -94,11 +94,7 @@ BR.Routing = L.Routing.extend({
 
             // intercept listener: only re-show draw trailer after marker hover
             // when edit is not active (i.e. wasn't also supended)
-            this._parent.off(
-                'waypoint:mouseout',
-                this._catchWaypointEvent,
-                this
-            );
+            this._parent.off('waypoint:mouseout', this._catchWaypointEvent, this);
             this.on(
                 'waypoint:mouseout',
                 function(e) {
@@ -134,12 +130,7 @@ BR.Routing = L.Routing.extend({
             this._map.off('mouseout', hide, this);
             this._map.off('mouseover', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
-            L.DomEvent.off(
-                this._map._controlContainer,
-                'mouseover',
-                hide,
-                this
-            );
+            L.DomEvent.off(this._map._controlContainer, 'mouseover', hide, this);
         });
 
         // Call show after deleting last waypoint, but hide trailer.
@@ -159,11 +150,7 @@ BR.Routing = L.Routing.extend({
         );
 
         // keys not working when map container does not have focus, use document instead
-        L.DomEvent.removeListener(
-            this._container,
-            'keyup',
-            this._keyupListener
-        );
+        L.DomEvent.removeListener(this._container, 'keyup', this._keyupListener);
         L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
 
         // enable drawing mode
@@ -173,10 +160,7 @@ BR.Routing = L.Routing.extend({
     },
 
     _addSegmentCasing: function(e) {
-        var casing = L.polyline(
-            e.layer.getLatLngs(),
-            this.options.styles.trackCasing
-        );
+        var casing = L.polyline(e.layer.getLatLngs(), this.options.styles.trackCasing);
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
         this._segments.bringToFront();
@@ -335,10 +319,7 @@ BR.Routing = L.Routing.extend({
 
     _keyupListener: function(e) {
         // Suppress shortcut handling when a text input field is focussed
-        if (
-            document.activeElement.type == 'text' ||
-            document.activeElement.type == 'textarea'
-        ) {
+        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
             return;
         }
         // add 'esc' to disable drawing

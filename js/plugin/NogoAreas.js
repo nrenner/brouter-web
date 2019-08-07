@@ -143,9 +143,7 @@ BR.NogoAreas = L.Control.extend({
                     resolve(reader.result);
                 };
                 reader.onerror = function() {
-                    self.displayUploadError(
-                        'Could not load file: ' + reader.error.message
-                    );
+                    self.displayUploadError('Could not load file: ' + reader.error.message);
                 };
 
                 reader.readAsText(nogoFile);
@@ -184,32 +182,22 @@ BR.NogoAreas = L.Control.extend({
                     var maybeBufferedFeature = feature;
                     // Eventually buffer GeoJSON
                     if (nogoBuffer !== 0) {
-                        maybeBufferedFeature = turf.buffer(
-                            maybeBufferedFeature,
-                            nogoBuffer,
-                            { units: 'meters' }
-                        );
+                        maybeBufferedFeature = turf.buffer(maybeBufferedFeature, nogoBuffer, { units: 'meters' });
                     }
                     cleanedGeoJSONFeatures.push(maybeBufferedFeature);
                 }
             });
 
             if (cleanedGeoJSONFeatures.length === 0) {
-                self.displayUploadError(
-                    'No valid area found in provided input.'
-                );
+                self.displayUploadError('No valid area found in provided input.');
                 return false;
             }
 
-            var geoJSON = L.geoJson(
-                turf.featureCollection(cleanedGeoJSONFeatures),
-                {
-                    onEachFeature: function(feature, layer) {
-                        layer.options.nogoWeight =
-                            feature.properties.nogoWeight || nogoWeight;
-                    }
+            var geoJSON = L.geoJson(turf.featureCollection(cleanedGeoJSONFeatures), {
+                onEachFeature: function(feature, layer) {
+                    layer.options.nogoWeight = feature.properties.nogoWeight || nogoWeight;
                 }
-            );
+            });
             var nogosPoints = geoJSON.getLayers().filter(function(e) {
                 return e.feature.geometry.type === 'Point';
             });
@@ -332,9 +320,7 @@ BR.NogoAreas = L.Control.extend({
 BR.NogoAreas.include(L.Evented.prototype);
 
 L.Editable.prototype.createVertexIcon = function(options) {
-    return BR.Browser.touch
-        ? new L.Editable.TouchVertexIcon(options)
-        : new L.Editable.VertexIcon(options);
+    return BR.Browser.touch ? new L.Editable.TouchVertexIcon(options) : new L.Editable.VertexIcon(options);
 };
 
 BR.EditingTooltip = L.Handler.extend({
@@ -351,12 +337,7 @@ BR.EditingTooltip = L.Handler.extend({
     addHooks: function() {
         // hack: listen to EasyButton click (instead of editable:drawing:start),
         // to get mouse position from event for initial tooltip location
-        L.DomEvent.addListener(
-            this.button.button,
-            'click',
-            this._addCreate,
-            this
-        );
+        L.DomEvent.addListener(this.button.button, 'click', this._addCreate, this);
 
         this.editTools.featuresLayer.on('layeradd', this._bind, this);
 
@@ -366,12 +347,7 @@ BR.EditingTooltip = L.Handler.extend({
     },
 
     removeHooks: function() {
-        L.DomEvent.removeListener(
-            this.button.button,
-            'click',
-            this._addCreate,
-            this
-        );
+        L.DomEvent.removeListener(this.button.button, 'click', this._addCreate, this);
 
         this.editTools.featuresLayer.off('layeradd', this._bind, this);
 
@@ -396,9 +372,7 @@ BR.EditingTooltip = L.Handler.extend({
             if (!latlng && layer instanceof L.Layer) {
                 latlng = L.latLng(
                     layer.getBounds().getSouth(),
-                    0.5 *
-                        (layer.getBounds().getWest() +
-                            layer.getBounds().getEast())
+                    0.5 * (layer.getBounds().getWest() + layer.getBounds().getEast())
                 );
             }
             L.Layer.prototype.openTooltip.call(this, layer, latlng);
@@ -444,11 +418,7 @@ BR.EditingTooltip = L.Handler.extend({
         var closeTooltip = function() {
             this.map.closeTooltip(tooltip);
         };
-        this.editTools.once(
-            'editable:editing editable:drawing:cancel',
-            closeTooltip,
-            this
-        );
+        this.editTools.once('editable:editing editable:drawing:cancel', closeTooltip, this);
 
         if (BR.Browser.touch) {
             // can't move with cursor on touch devices, so show at start pos for a few seconds
@@ -501,9 +471,7 @@ BR.EditingTooltip = L.Handler.extend({
 BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
     _computeDeleteLatLng: function() {
         // While circle is not added to the map, _radius is not set.
-        var delta =
-                (this.feature._radius || this.feature._mRadius) *
-                Math.cos(Math.PI / 4),
+        var delta = (this.feature._radius || this.feature._mRadius) * Math.cos(Math.PI / 4),
             point = this.map.project(this.feature._latlng);
         return this.map.unproject([point.x - delta, point.y - delta]);
     },
@@ -530,12 +498,7 @@ BR.DeletableCircleEditor = L.Editable.CircleEditor.extend({
     },
 
     initialize: function(map, feature, options) {
-        L.Editable.CircleEditor.prototype.initialize.call(
-            this,
-            map,
-            feature,
-            options
-        );
+        L.Editable.CircleEditor.prototype.initialize.call(this, map, feature, options);
         this._deleteLatLng = this._computeDeleteLatLng();
 
         // FeatureGroup instead of LayerGroup to propagate events to members
@@ -584,9 +547,7 @@ BR.DeleteMarker = L.Marker.extend({
     options: {
         draggable: false,
         icon: L.divIcon({
-            iconSize: BR.Browser.touch
-                ? new L.Point(24, 24)
-                : new L.Point(16, 16),
+            iconSize: BR.Browser.touch ? new L.Point(24, 24) : new L.Point(16, 16),
             className: 'leaflet-div-icon fa fa-trash-o nogo-delete-marker'
         })
     },

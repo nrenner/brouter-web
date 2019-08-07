@@ -15,33 +15,19 @@ BR.Elevation = L.Control.Elevation.extend({
 
         // revert registering touch events when touch screen detection is available and negative
         // see https://github.com/MrMufflon/Leaflet.Elevation/issues/67
-        if (
-            L.Browser.touch &&
-            BR.Browser.touchScreenDetectable &&
-            !BR.Browser.touchScreen
-        ) {
+        if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
             this._background
                 .on('touchmove.drag', null)
                 .on('touchstart.drag', null)
                 .on('touchstart.focus', null);
-            L.DomEvent.off(
-                this._container,
-                'touchend',
-                this._dragEndHandler,
-                this
-            );
+            L.DomEvent.off(this._container, 'touchend', this._dragEndHandler, this);
 
             this._background
                 .on('mousemove.focus', this._mousemoveHandler.bind(this))
                 .on('mouseout.focus', this._mouseoutHandler.bind(this))
                 .on('mousedown.drag', this._dragStartHandler.bind(this))
                 .on('mousemove.drag', this._dragHandler.bind(this));
-            L.DomEvent.on(
-                this._container,
-                'mouseup',
-                this._dragEndHandler,
-                this
-            );
+            L.DomEvent.on(this._container, 'mouseup', this._dragEndHandler, this);
         }
 
         return container;
@@ -61,10 +47,7 @@ BR.Elevation = L.Control.Elevation.extend({
         }
         this.addTo(map);
         // move elevation graph outside of the map
-        setParent(
-            this.getContainer(),
-            document.getElementById('elevation-chart')
-        );
+        setParent(this.getContainer(), document.getElementById('elevation-chart'));
     },
 
     update: function(track, layer) {

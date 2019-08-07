@@ -1,9 +1,7 @@
 (function(window) {
     var HAS_HASHCHANGE = (function() {
         var doc_mode = window.documentMode;
-        return (
-            'onhashchange' in window && (doc_mode === undefined || doc_mode > 7)
-        );
+        return 'onhashchange' in window && (doc_mode === undefined || doc_mode > 7);
     })();
 
     L.Hash = function(map, options) {
@@ -47,12 +45,7 @@
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
             layers = this.formatLayers();
 
-        var params = [
-            zoom,
-            center.lat.toFixed(precision),
-            center.lng.toFixed(precision),
-            layers
-        ];
+        var params = [zoom, center.lat.toFixed(precision), center.lng.toFixed(precision), layers];
         url = '#map=' + params.join('/');
         if (this.additionalCb != null) {
             var additional = this.additionalCb();
@@ -92,9 +85,7 @@
                         var layerString = decodeURIComponent(layerEncoded);
 
                         if (layerString) {
-                            obj = this.options.layersControl.getLayerFromString(
-                                layerString
-                            );
+                            obj = this.options.layersControl.getLayerFromString(layerString);
                         }
 
                         return obj;
@@ -112,10 +103,7 @@
                     return count;
                 };
 
-                var layers = this._parseLayers(
-                    layersParam,
-                    this.options.layerSeparator
-                );
+                var layers = this._parseLayers(layersParam, this.options.layerSeparator);
                 var found = layers.reduce(countFoundLayers, 0);
 
                 if (found < layers.length) {
@@ -158,9 +146,7 @@
                 var objList = this.options.layersControl.getActiveLayers();
                 var layerList = objList.map(
                     L.bind(function(obj) {
-                        return encodeURIComponent(
-                            this.options.layersControl.toLayerString(obj)
-                        );
+                        return encodeURIComponent(this.options.layersControl.toLayerString(obj));
                     }, this)
                 );
 
@@ -246,41 +232,22 @@
             isListening: false,
             hashChangeInterval: null,
             startListening: function() {
-                this.map.on(
-                    'moveend layeradd layerremove',
-                    this.onMapMove,
-                    this
-                );
+                this.map.on('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
-                    L.DomEvent.addListener(
-                        window,
-                        'hashchange',
-                        this.onHashChange
-                    );
+                    L.DomEvent.addListener(window, 'hashchange', this.onHashChange);
                 } else {
                     clearInterval(this.hashChangeInterval);
-                    this.hashChangeInterval = setInterval(
-                        this.onHashChange,
-                        50
-                    );
+                    this.hashChangeInterval = setInterval(this.onHashChange, 50);
                 }
                 this.isListening = true;
             },
 
             stopListening: function() {
-                this.map.off(
-                    'moveend layeradd layerremove',
-                    this.onMapMove,
-                    this
-                );
+                this.map.off('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
-                    L.DomEvent.removeListener(
-                        window,
-                        'hashchange',
-                        this.onHashChange
-                    );
+                    L.DomEvent.removeListener(window, 'hashchange', this.onHashChange);
                 } else {
                     clearInterval(this.hashChangeInterval);
                 }
