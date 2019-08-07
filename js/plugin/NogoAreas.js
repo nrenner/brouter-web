@@ -120,6 +120,11 @@ BR.NogoAreas = L.Control.extend({
         return L.DomUtil.create('div');
     },
 
+    displayUploadError: function(message) {
+        $('#nogoError').text(message ? message : '');
+        $('#nogoError').css('display', message ? 'block' : 'none');
+    },
+
     uploadNogos: function() {
         var self = this;
 
@@ -138,10 +143,9 @@ BR.NogoAreas = L.Control.extend({
                     resolve(reader.result);
                 };
                 reader.onerror = function() {
-                    $('#nogoError').text(
+                    self.displayUploadError(
                         'Could not load file: ' + reader.error.message
                     );
-                    $('#nogoError').css('display', 'block');
                 };
 
                 reader.readAsText(nogoFile);
@@ -149,26 +153,26 @@ BR.NogoAreas = L.Control.extend({
                 return JSON.parse(response);
             });
         } else {
-            $('#nogoError').text('Missing file or URL.');
-            $('#nogoError').css('display', 'block');
+            // FIXME: use form validator instead
+            self.displayUploadError('Missing file or URL.');
             return false;
         }
         var nogoWeight = parseFloat($('#nogoWeight').val());
         if (isNaN(nogoWeight)) {
-            $('#nogoError').text('Missing default nogo weight.');
-            $('#nogoError').css('display', 'block');
+            // FIXME: use form validator instead
+            self.displayUploadError('Missing default nogo weight.');
             return false;
         }
         var nogoRadius = parseFloat($('#nogoRadius').val());
         if (isNaN(nogoRadius) || nogoRadius < 0) {
-            $('#nogoError').text('Invalid default nogo radius.');
-            $('#nogoError').css('display', 'block');
+            // FIXME: use form validator instead
+            self.displayUploadError('Invalid default nogo radius.');
             return false;
         }
         var nogoBuffer = parseFloat($('#nogoBuffer').val());
         if (isNaN(nogoBuffer)) {
-            $('#nogoError').text('Invalid nogo buffering radius.');
-            $('#nogoError').css('display', 'block');
+            // FIXME: use form validator instead
+            self.displayUploadError('Invalid nogo buffering radius.');
             return false;
         }
 
@@ -179,7 +183,7 @@ BR.NogoAreas = L.Control.extend({
                 if (turf.getGeom(feature)) {
                     var maybeBufferedFeature = feature;
                     // Eventually buffer GeoJSON
-                    if (nogoBuffer != 0) {
+                    if (nogoBuffer !== 0) {
                         maybeBufferedFeature = turf.buffer(
                             maybeBufferedFeature,
                             nogoBuffer,
@@ -191,8 +195,9 @@ BR.NogoAreas = L.Control.extend({
             });
 
             if (cleanedGeoJSONFeatures.length === 0) {
-                $('#nogoError').text('No valid area found in provided input.');
-                $('#nogoError').css('display', 'block');
+                self.displayUploadError(
+                    'No valid area found in provided input.'
+                );
                 return false;
             }
 
@@ -228,8 +233,7 @@ BR.NogoAreas = L.Control.extend({
                 })
             });
             self._fireUpdate();
-            $('#nogoError').text('');
-            $('#nogoError').css('display', 'none');
+            self.displayUploadError(undefined);
             $('#loadNogos').modal('hide');
         });
         return false;
