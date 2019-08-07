@@ -14,36 +14,19 @@ BR.TrackStats = L.Class.extend({
         }
 
         var stats = this.calcStats(polyline, segments),
-            length1 = L.Util.formatNum(
-                stats.trackLength / 1000,
-                1
-            ).toLocaleString(),
-            length3 = L.Util.formatNum(
-                stats.trackLength / 1000,
-                3
-            ).toLocaleString(),
+            length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
+            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(),
             formattedAscend = stats.filteredAscend.toLocaleString(),
             formattedPlainAscend = stats.plainAscend.toLocaleString(),
             formattedCost = stats.cost.toLocaleString(),
             meanCostFactor = stats.trackLength
-                ? L.Util.formatNum(
-                      stats.cost / stats.trackLength,
-                      2
-                  ).toLocaleString()
+                ? L.Util.formatNum(stats.cost / stats.trackLength, 2).toLocaleString()
                 : '0',
             formattedTime =
-                Math.trunc(stats.totalTime / 3600) +
-                ':' +
-                ('0' + Math.trunc((stats.totalTime % 3600) / 60)).slice(-2),
-            formattedEnergy = L.Util.formatNum(
-                stats.totalEnergy / 3600000,
-                2
-            ).toLocaleString(),
+                Math.trunc(stats.totalTime / 3600) + ':' + ('0' + Math.trunc((stats.totalTime % 3600) / 60)).slice(-2),
+            formattedEnergy = L.Util.formatNum(stats.totalEnergy / 3600000, 2).toLocaleString(),
             meanEnergy = stats.trackLength
-                ? L.Util.formatNum(
-                      stats.totalEnergy / 36 / stats.trackLength,
-                      2
-                  ).toLocaleString()
+                ? L.Util.formatNum(stats.totalEnergy / 36 / stats.trackLength, 2).toLocaleString()
                 : '0';
 
         $('#distance').html(length1);

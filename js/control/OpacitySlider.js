@@ -11,12 +11,8 @@ BR.OpacitySlider = L.Class.extend({
     initialize: function(options) {
         L.setOptions(this, options);
 
-        var input = (this.input = $(
-                '<input id="slider-' + this.options.id + '" type="text"/>'
-            )),
-            item = BR.Util.localStorageAvailable()
-                ? localStorage['opacitySliderValue' + this.options.id]
-                : null,
+        var input = (this.input = $('<input id="slider-' + this.options.id + '" type="text"/>')),
+            item = BR.Util.localStorageAvailable() ? localStorage['opacitySliderValue' + this.options.id] : null,
             value = item ? parseInt(item) : this.options.defaultValue * 100,
             minOpacity = (BR.conf.minOpacity || 0) * 100;
 
@@ -41,9 +37,7 @@ BR.OpacitySlider = L.Class.extend({
             })
             .on('slideStop', { self: this }, function(evt) {
                 if (BR.Util.localStorageAvailable()) {
-                    localStorage[
-                        'opacitySliderValue' + evt.data.self.options.id
-                    ] = evt.value;
+                    localStorage['opacitySliderValue' + evt.data.self.options.id] = evt.value;
                 }
             });
 

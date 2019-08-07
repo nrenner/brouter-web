@@ -74,10 +74,7 @@ BR.TrackMessages = L.Class.extend({
 
         // highlight track segment (graph edge) on row hover
         this._setEdges(polyline, segments);
-        $('#datatable tbody tr').hover(
-            L.bind(this._handleHover, this),
-            L.bind(this._handleHoverOut, this)
-        );
+        $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
     },
 
     show: function() {
@@ -198,10 +195,7 @@ BR.TrackMessages = L.Class.extend({
             endIndex = this._edges[row.index()],
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
-        this._selectedEdge = L.polyline(
-            edgeLatLngs,
-            this.options.edgeStyle
-        ).addTo(this._map);
+        this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
     },
 
     _handleHoverOut: function(evt) {

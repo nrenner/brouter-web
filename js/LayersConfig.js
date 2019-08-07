@@ -29,10 +29,7 @@ BR.LayersConfig = L.Class.extend({
                 baseLayers: baseLayers,
                 overlays: overlays
             };
-            localStorage.setItem(
-                'map/defaultLayers',
-                JSON.stringify(defaultLayers)
-            );
+            localStorage.setItem('map/defaultLayers', JSON.stringify(defaultLayers));
         }
     },
 
@@ -75,8 +72,7 @@ BR.LayersConfig = L.Class.extend({
         BR.layerIndex['MtbMap'].geometry = BR.confLayers.europeGeofabrik;
         BR.layerIndex['1069'].geometry = BR.confLayers.europeGeofabrik;
 
-        BR.layerIndex['OpenStreetMap.CH'].geometry =
-            BR.confLayers.switzerlandPadded;
+        BR.layerIndex['OpenStreetMap.CH'].geometry = BR.confLayers.switzerlandPadded;
 
         BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
     },
@@ -138,9 +134,7 @@ BR.LayersConfig = L.Class.extend({
                 // when key required only add if configured
                 var keyObj = this.getKeyName(layerData.properties.url);
                 if (!keyObj || (keyObj && BR.keys[keyObj.name])) {
-                    layers[layerData.properties.name] = this.createLayer(
-                        layerData
-                    );
+                    layers[layerData.properties.name] = this.createLayer(layerData);
                 }
             } else {
                 console.error('Layer not found: ' + layerId);
@@ -208,12 +202,7 @@ BR.LayersConfig = L.Class.extend({
                 if (attr.html) {
                     result = attr.html;
                 } else if (attr.url && attr.text) {
-                    result =
-                        '<a href="' +
-                        attr.url +
-                        '" target="_blank" rel="noopener">' +
-                        attr.text +
-                        '</a>';
+                    result = '<a href="' + attr.url + '" target="_blank" rel="noopener">' + attr.text + '</a>';
                 } else if (attr.text) {
                     result = attr.text;
                 }
@@ -227,18 +216,11 @@ BR.LayersConfig = L.Class.extend({
 
         var options = {
             maxZoom: this._map.getMaxZoom(),
-            bounds:
-                layerData.geometry && !props.worldTiles
-                    ? L.geoJson(layerData.geometry).getBounds()
-                    : null
+            bounds: layerData.geometry && !props.worldTiles ? L.geoJson(layerData.geometry).getBounds() : null
         };
         if (props.mapUrl) {
             options.mapLink =
-                '<a target="_blank" href="' +
-                props.mapUrl +
-                '">' +
-                (props.nameShort || props.name) +
-                '</a>';
+                '<a target="_blank" href="' + props.mapUrl + '">' + (props.nameShort || props.name) + '</a>';
         }
         if (props.attribution) {
             options.attribution = props.attribution;

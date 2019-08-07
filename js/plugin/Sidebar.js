@@ -36,11 +36,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
         this._rememberTabState();
 
-        if (
-            L.Browser.touch &&
-            BR.Browser.touchScreenDetectable &&
-            !BR.Browser.touchScreen
-        ) {
+        if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
             L.DomUtil.removeClass(this._container, 'leaflet-touch');
             L.DomUtil.removeClass(this._tabContainer, 'leaflet-touch');
         }

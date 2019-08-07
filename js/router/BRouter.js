@@ -40,30 +40,16 @@ L.BRouter = L.Class.extend({
 
     getUrlParams: function(latLngs, format) {
         params = {};
-        if (this._getLonLatsString(latLngs) != null)
-            params.lonlats = this._getLonLatsString(latLngs);
+        if (this._getLonLatsString(latLngs) != null) params.lonlats = this._getLonLatsString(latLngs);
 
-        if (
-            this.options.nogos &&
-            this._getNogosString(this.options.nogos).length > 0
-        )
+        if (this.options.nogos && this._getNogosString(this.options.nogos).length > 0)
             params.nogos = this._getNogosString(this.options.nogos);
 
-        if (
-            this.options.polylines &&
-            this._getNogosPolylinesString(this.options.polylines).length > 0
-        )
-            params.polylines = this._getNogosPolylinesString(
-                this.options.polylines
-            );
+        if (this.options.polylines && this._getNogosPolylinesString(this.options.polylines).length > 0)
+            params.polylines = this._getNogosPolylinesString(this.options.polylines);
 
-        if (
-            this.options.polygons &&
-            this._getNogosPolygonsString(this.options.polygons).length > 0
-        )
-            params.polygons = this._getNogosPolygonsString(
-                this.options.polygons
-            );
+        if (this.options.polygons && this._getNogosPolygonsString(this.options.polygons).length > 0)
+            params.polygons = this._getNogosPolygonsString(this.options.polygons);
 
         if (this.options.profile != null) params.profile = this.options.profile;
 
@@ -77,10 +63,7 @@ L.BRouter = L.Class.extend({
             if (params.alternativeidx == 0) delete params.alternativeidx;
 
             // don't add custom profile, as these are only stored temporarily
-            if (
-                params.profile &&
-                params.profile.substring(0, 7) === 'custom_'
-            ) {
+            if (params.profile && params.profile.substring(0, 7) === 'custom_') {
                 delete params.profile;
             }
         }
@@ -117,20 +100,12 @@ L.BRouter = L.Class.extend({
         var args = [];
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
-        if (urlParams.nogos != null)
-            args.push(L.Util.template('nogos={nogos}', urlParams));
-        if (urlParams.polylines != null)
-            args.push(L.Util.template('polylines={polylines}', urlParams));
-        if (urlParams.polygons != null)
-            args.push(L.Util.template('polygons={polygons}', urlParams));
-        if (urlParams.profile != null)
-            args.push(L.Util.template('profile={profile}', urlParams));
-        if (urlParams.alternativeidx != null)
-            args.push(
-                L.Util.template('alternativeidx={alternativeidx}', urlParams)
-            );
-        if (urlParams.format != null)
-            args.push(L.Util.template('format={format}', urlParams));
+        if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
+        if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
+        if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
+        if (urlParams.profile != null) args.push(L.Util.template('profile={profile}', urlParams));
+        if (urlParams.alternativeidx != null) args.push(L.Util.template('alternativeidx={alternativeidx}', urlParams));
+        if (urlParams.format != null) args.push(L.Util.template('format={format}', urlParams));
         if (trackname)
             args.push(
                 L.Util.template('trackname={trackname}', {
@@ -141,9 +116,7 @@ L.BRouter = L.Class.extend({
 
         var prepend_host = format != null;
 
-        return (
-            (prepend_host ? BR.conf.host : '') + '/brouter?' + args.join('&')
-        );
+        return (prepend_host ? BR.conf.host : '') + '/brouter?' + args.join('&');
     },
 
     getRoute: function(latLngs, cb) {
@@ -174,8 +147,7 @@ L.BRouter = L.Class.extend({
             xhr.status === 200 &&
             xhr.responseText &&
             // application error when not GeoJSON format (text/plain for errors)
-            xhr.getResponseHeader('Content-Type').split(';')[0] ===
-                'application/vnd.geo+json'
+            xhr.getResponseHeader('Content-Type').split(';')[0] === 'application/vnd.geo+json'
         ) {
             // leaflet.spin
             //gpxLayer.fire('data:loaded');
@@ -221,11 +193,7 @@ L.BRouter = L.Class.extend({
     _handleProfileResponse: function(xhr, cb) {
         var response;
 
-        if (
-            xhr.status === 200 &&
-            xhr.responseText &&
-            xhr.responseText.length > 0
-        ) {
+        if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
             response = JSON.parse(xhr.responseText);
             cb(response.error, response.profileid);
         } else {

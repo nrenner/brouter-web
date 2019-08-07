@@ -12,10 +12,7 @@ BR.Message = L.Class.extend({
 
     _show: function(msg, type) {
         var ele = L.DomUtil.get(this.id),
-            iconClass =
-                type === 'warning'
-                    ? 'fa-exclamation-triangle'
-                    : 'fa-times-circle',
+            iconClass = type === 'warning' ? 'fa-exclamation-triangle' : 'fa-times-circle',
             alertClass = type === 'warning' ? 'alert-warning' : 'alert-danger';
 
         L.DomEvent.disableClickPropagation(ele);

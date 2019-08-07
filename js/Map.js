@@ -52,9 +52,7 @@ BR.Map = {
         var overlays = layersConfig.getOverlays();
 
         if (BR.keys.bing) {
-            baseLayers[i18next.t('map.layer.bing')] = new BR.BingLayer(
-                BR.keys.bing
-            );
+            baseLayers[i18next.t('map.layer.bing')] = new BR.BingLayer(BR.keys.bing);
         }
 
         if (BR.keys.digitalGlobe) {
@@ -86,14 +84,9 @@ BR.Map = {
             }
         }
 
-        layersControl = BR.layersTab(layersConfig, baseLayers, overlays).addTo(
-            map
-        );
+        layersControl = BR.layersTab(layersConfig, baseLayers, overlays).addTo(map);
 
-        var secureContext =
-            'isSecureContext' in window
-                ? isSecureContext
-                : location.protocol === 'https:';
+        var secureContext = 'isSecureContext' in window ? isSecureContext : location.protocol === 'https:';
         if (secureContext) {
             L.control
                 .locate({

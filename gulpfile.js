@@ -30,9 +30,7 @@ var debug = false;
 
 var paths = {
     // see overrides in package.json
-    scriptsConfig: mainNpmFiles().filter(f =>
-        RegExp('url-search-params/.*\\.js', 'i').test(f)
-    ),
+    scriptsConfig: mainNpmFiles().filter(f => RegExp('url-search-params/.*\\.js', 'i').test(f)),
     scripts: [
         'node_modules/jquery/dist/jquery.js',
         'node_modules/tether/dist/js/tether.js',
@@ -58,18 +56,10 @@ var paths = {
             'js/index.js'
         ]),
     styles: mainNpmFiles()
-        .filter(
-            f =>
-                RegExp('.*\\.css', 'i').test(f) &&
-                !RegExp('.*\\.min\\.css', 'i').test(f)
-        )
+        .filter(f => RegExp('.*\\.css', 'i').test(f) && !RegExp('.*\\.min\\.css', 'i').test(f))
         .concat('css/*.css'),
-    images: mainNpmFiles().filter(f =>
-        RegExp('.*.+(png|gif|svg)', 'i').test(f)
-    ),
-    fonts: mainNpmFiles().filter(f =>
-        RegExp('font-awesome/fonts/.*', 'i').test(f)
-    ),
+    images: mainNpmFiles().filter(f => RegExp('.*.+(png|gif|svg)', 'i').test(f)),
+    fonts: mainNpmFiles().filter(f => RegExp('font-awesome/fonts/.*', 'i').test(f)),
     locales: 'locales/*.json',
     layers: 'layers/**/*.geojson',
     layersDestName: 'layers.js',
@@ -195,9 +185,7 @@ gulp.task('inject', function() {
         read: false
     });
 
-    return target
-        .pipe(inject(sources, { relative: true }))
-        .pipe(gulp.dest('.'));
+    return target.pipe(inject(sources, { relative: true })).pipe(gulp.dest('.'));
 });
 
 var pkg = require('./package.json');
@@ -215,9 +203,7 @@ gulp.task('release:init', function(cb) {
     }
     ghToken = gutil.env.token;
     if (!ghToken) {
-        return cb(
-            new Error('--token is required (github personnal access token')
-        );
+        return cb(new Error('--token is required (github personnal access token'));
     }
     if (ghToken.length != 40) {
         return cb(new Error('--token length must be 40'));
@@ -228,11 +214,7 @@ gulp.task('release:init', function(cb) {
     git.status({ args: '--porcelain', quiet: true }, function(err, stdout) {
         if (err) return cb(err);
         if (stdout.length > 0) {
-            return cb(
-                new Error(
-                    'Repository is not clean. Please commit or stash your pending modification'
-                )
-            );
+            return cb(new Error('Repository is not clean. Please commit or stash your pending modification'));
         }
 
         cb();
@@ -250,21 +232,14 @@ gulp.task('bump:json', function() {
 gulp.task('bump:html', function() {
     return gulp
         .src('./index.html')
-        .pipe(
-            replace(
-                /<sup class="version">(.*)<\/sup>/,
-                '<sup class="version">' + nextVersion + '</sup>'
-            )
-        )
+        .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + nextVersion + '</sup>'))
         .pipe(gulp.dest('.'));
 });
 
 gulp.task('bump', gulp.series('bump:json', 'bump:html'));
 
 gulp.task('release:commit', function() {
-    return gulp
-        .src(['./index.html', './package.json'])
-        .pipe(git.commit('release: ' + nextVersion));
+    return gulp.src(['./index.html', './package.json']).pipe(git.commit('release: ' + nextVersion));
 });
 
 gulp.task('release:tag', function(cb) {
@@ -277,12 +252,7 @@ gulp.task('release:push', function(cb) {
 
 gulp.task('i18next', function() {
     return gulp
-        .src([
-            'index.html',
-            'locales/keys.js',
-            'layers/config/overrides.js',
-            'js/**/*.js'
-        ])
+        .src(['index.html', 'locales/keys.js', 'layers/config/overrides.js', 'js/**/*.js'])
         .pipe(sort())
         .pipe(
             scanner({
@@ -321,12 +291,7 @@ gulp.task('layers', function() {
                         '// Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),\n' +
                         '// except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),\n' +
                         '// see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation\n';
-                    return Buffer.from(
-                        header +
-                            'BR.layerIndex = ' +
-                            JSON.stringify(data, null, 2) +
-                            ';'
-                    );
+                    return Buffer.from(header + 'BR.layerIndex = ' + JSON.stringify(data, null, 2) + ';');
                 })
             )
             .pipe(gulp.dest(paths.dest))
@@ -335,17 +300,7 @@ gulp.task('layers', function() {
 
 gulp.task(
     'default',
-    gulp.series(
-        'clean',
-        'scripts_config',
-        'layers_config',
-        'layers',
-        'scripts',
-        'styles',
-        'images',
-        'fonts',
-        'locales'
-    )
+    gulp.series('clean', 'scripts_config', 'layers_config', 'layers', 'scripts', 'styles', 'images', 'fonts', 'locales')
 );
 
 gulp.task(
@@ -359,12 +314,9 @@ gulp.task(
 gulp.task('release:zip', function() {
     gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
     return gulp
-        .src(
-            ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
-            {
-                base: '.'
-            }
-        )
+        .src(['dist/**', 'index.html', 'config.template.js', 'keys.template.js'], {
+            base: '.'
+        })
         .pipe(zip('brouter-web.' + nextVersion + '.zip'))
         .pipe(gulp.dest('.'));
 });

@@ -3,10 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <title data-i18n="title">BRouter web client</title>
 
@@ -27,32 +24,16 @@
             >
                 <span class="fa fa-bars"></span>
             </button>
-            <a
-                class="navbar-brand order-md-last"
-                href="#"
-                data-toggle="modal"
-                data-target="#about"
+            <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
                 >BRouter-Web <sup class="version">0.10.3</sup></a
             >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
                     <form class="form-inline">
                         <div class="form-group">
-                            <select
-                                class="selectpicker show-tick"
-                                data-width="250px"
-                                id="profile-alternative"
-                                multiple
-                            >
-                                <optgroup
-                                    label="Profile"
-                                    data-max-options="1"
-                                    data-icon="fa-bicycle"
-                                    id="profile"
-                                >
-                                    <option data-i18n="navbar.profile.custom"
-                                        >Custom
-                                    </option>
+                            <select class="selectpicker show-tick" data-width="250px" id="profile-alternative" multiple>
+                                <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
+                                    <option data-i18n="navbar.profile.custom">Custom </option>
                                 </optgroup>
                                 <optgroup
                                     label="Alternative"
@@ -60,27 +41,12 @@
                                     data-icon="fa-random"
                                     id="alternative"
                                 >
-                                    <option
-                                        data-i18n="navbar.alternative.original"
-                                        value="0"
-                                        selected
+                                    <option data-i18n="navbar.alternative.original" value="0" selected
                                         >Original
                                     </option>
-                                    <option
-                                        data-i18n="navbar.alternative.first"
-                                        value="1"
-                                        >1st alternative
-                                    </option>
-                                    <option
-                                        data-i18n="navbar.alternative.second"
-                                        value="2"
-                                        >2nd alternative
-                                    </option>
-                                    <option
-                                        data-i18n="navbar.alternative.third"
-                                        value="3"
-                                        >3rd alternative
-                                    </option>
+                                    <option data-i18n="navbar.alternative.first" value="1">1st alternative </option>
+                                    <option data-i18n="navbar.alternative.second" value="2">2nd alternative </option>
+                                    <option data-i18n="navbar.alternative.third" value="3">3rd alternative </option>
                                 </optgroup>
                             </select>
                         </div>
@@ -96,11 +62,7 @@
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            <span
-                                class="fa fa-lg fa-cloud-download"
-                                aria-hidden="true"
-                            >
-                            </span>
+                            <span class="fa fa-lg fa-cloud-download" aria-hidden="true"> </span>
                             <span data-i18n="navbar.export">Export</span>
                         </a>
                     </div>
@@ -115,17 +77,10 @@
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            <span
-                                class="fa fa-lg fa-cloud-upload"
-                                aria-hidden="true"
-                            >
-                            </span>
+                            <span class="fa fa-lg fa-cloud-upload" aria-hidden="true"> </span>
                             <span data-i18n="navbar.load.title">Load</span>
                         </a>
-                        <div
-                            class="dropdown-menu"
-                            aria-labelledby="navbarLoadDropdown"
-                        >
+                        <div class="dropdown-menu" aria-labelledby="navbarLoadDropdown">
                             <a
                                 class="dropdown-item"
                                 data-i18n="navbar.load.nogos"
@@ -137,15 +92,8 @@
                         </div>
                     </div>
                     <div class="nav-item">
-                        <a
-                            class="nav-link"
-                            href="#"
-                            data-toggle="modal"
-                            data-target="#about"
-                            ><span
-                                class="fa fa-lg fa-info-circle"
-                                aria-hidden="true"
-                            ></span
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#about"
+                            ><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span
                             ><span data-i18n="navbar.about">About</span></a
                         >
                     </div>
@@ -166,12 +114,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="credits">Credits</h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -179,35 +122,21 @@
                         <dl>
                             <dt data-i18n="credits.brouter">BRouter</dt>
                             <dd data-i18n="[html]credits.brouter-license">
-                                <a
-                                    target="_blank"
-                                    href="http://brouter.de/brouter"
-                                    >BRouter</a
-                                >
+                                <a target="_blank" href="http://brouter.de/brouter">BRouter</a>
                                 &copy; Arndt Brenschede
                             </dd>
                             <dt data-i18n="credits.map-data">Map data</dt>
                             <dd data-i18n="[html]credits.openstreetmap">
                                 &copy;
-                                <a
-                                    target="_blank"
-                                    href="https://www.openstreetmap.org/copyright"
+                                <a target="_blank" href="https://www.openstreetmap.org/copyright"
                                     >OpenStreetMap contributors</a
                                 >
                                 under
-                                <a
-                                    target="_blank"
-                                    href="https://opendatacommons.org/licenses/odbl/"
-                                    >ODbL</a
-                                >
+                                <a target="_blank" href="https://opendatacommons.org/licenses/odbl/">ODbL</a>
                             </dd>
                             <dd data-i18n="[html]credits.nominatim">
                                 Search by
-                                <a
-                                    href="https://wiki.openstreetmap.org/wiki/Nominatim"
-                                    target="_blank"
-                                    >Nominatim</a
-                                >
+                                <a href="https://wiki.openstreetmap.org/wiki/Nominatim" target="_blank">Nominatim</a>
                             </dd>
                         </dl>
                         <h5 data-i18n="credits.map-tiles">Map tiles</h5>
@@ -232,12 +161,7 @@
                         <h4 class="modal-title" data-i18n="layers.customize">
                             Customize layers
                         </h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -306,72 +230,43 @@
                         <h4 class="modal-title" data-i18n="about.title">
                             About
                         </h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p data-i18n="[html]about.description">
-                            Online service of the BRouter routing engine. For
-                            the offline Android app and more information see
-                            <a href="http://brouter.de/" target="_blank"
-                                >brouter.de</a
-                            >.
+                            Online service of the BRouter routing engine. For the offline Android app and more
+                            information see
+                            <a href="http://brouter.de/" target="_blank">brouter.de</a>.
                         </p>
                         <p><i data-i18n="about.contact">Contact:</i><br /></p>
 
                         <ul>
                             <li>
-                                <a
-                                    href="https://groups.google.com/group/osm-android-bikerouting"
-                                    target="_blank"
-                                    ><span data-i18n="about.support"
-                                        >General discussions/questions,
-                                        support</span
-                                    ></a
+                                <a href="https://groups.google.com/group/osm-android-bikerouting" target="_blank"
+                                    ><span data-i18n="about.support">General discussions/questions, support</span></a
                                 >
                             </li>
                             <li>
-                                <a
-                                    href="https://webchat.oftc.net/?channels=#brouter"
-                                    target="_blank"
-                                    ><span data-i18n="about.chat"
-                                        >Chat with users and developers</span
-                                    ></a
+                                <a href="https://webchat.oftc.net/?channels=#brouter" target="_blank"
+                                    ><span data-i18n="about.chat">Chat with users and developers</span></a
                                 >
                             </li>
                             <li>
-                                <span data-i18n="about.bug-reports"
-                                    >Bug reports and feature requests:</span
-                                >
+                                <span data-i18n="about.bug-reports">Bug reports and feature requests:</span>
                                 <ul>
                                     <li>
-                                        <a
-                                            href="https://github.com/abrensch/brouter/issues"
-                                            target="_blank"
-                                        >
-                                            <span
-                                                data-i18n="about.bug-reports-back"
-                                                >server/backend, routing engine,
-                                                Android app, profiles,
-                                                brouter.de site</span
+                                        <a href="https://github.com/abrensch/brouter/issues" target="_blank">
+                                            <span data-i18n="about.bug-reports-back"
+                                                >server/backend, routing engine, Android app, profiles, brouter.de
+                                                site</span
                                             >
                                         </a>
                                     </li>
                                     <li>
-                                        <a
-                                            href="https://github.com/nrenner/brouter-web/issues"
-                                            target="_blank"
-                                        >
-                                            <span
-                                                data-i18n="about.bug-reports-front"
-                                                >web client/frontend.</span
-                                            >
+                                        <a href="https://github.com/nrenner/brouter-web/issues" target="_blank">
+                                            <span data-i18n="about.bug-reports-front">web client/frontend.</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -383,30 +278,15 @@
 
                         <div data-i18n="[html]about.data-description">
                             This is based on
-                            <a
-                                href="https://www.openstreetmap.org"
-                                target="_blank"
-                                >OpenStreetMap</a
-                            >. It is usually updated once a week when a new
-                            Planet file is available, see dates of
-                            <a
-                                href="http://brouter.de/brouter/segments4/"
-                                target="_blank"
-                                >data files</a
-                            >.
+                            <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>. It is usually
+                            updated once a week when a new Planet file is available, see dates of
+                            <a href="http://brouter.de/brouter/segments4/" target="_blank">data files</a>.
                         </div>
                         <p data-i18n="[html]about.details">
-                            <i
-                                ><a
-                                    href="http://brouter.de/privacypolicy.html"
-                                    target="_blank"
-                                    >Privacy Policy</a
-                                ></i
+                            <i><a href="http://brouter.de/privacypolicy.html" target="_blank">Privacy Policy</a></i
                             >,
                             <i
-                                ><a
-                                    href="https://github.com/nrenner/brouter-web#credits-and-licenses"
-                                    target="_blank"
+                                ><a href="https://github.com/nrenner/brouter-web#credits-and-licenses" target="_blank"
                                     >Credits</a
                                 ></i
                             >,
@@ -418,13 +298,7 @@
                                 ></i
                             >
                             and
-                            <i
-                                ><a
-                                    href="https://github.com/nrenner/brouter-web#readme"
-                                    target="_blank"
-                                    >more info</a
-                                ></i
-                            >
+                            <i><a href="https://github.com/nrenner/brouter-web#readme" target="_blank">more info</a></i>
                             on the client.
                         </p>
                     </div>
@@ -447,49 +321,23 @@
                         <h4 class="modal-title" data-i18n="loadNogos.title">
                             Load no-go areas
                         </h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p
-                            id="nogoError"
-                            class="invalid-feedback"
-                            style="display: none;"
-                        ></p>
+                        <p id="nogoError" class="invalid-feedback" style="display: none;"></p>
                         <form>
                             <fieldset>
                                 <legend data-i18n="loadNogos.source">
                                     Source
                                 </legend>
                                 <p>
-                                    <label
-                                        for="nogoURL"
-                                        data-i18n="loadNogos.url"
-                                        >URL:
-                                    </label>
-                                    <input
-                                        type="text"
-                                        name="nogoURL"
-                                        id="nogoURL"
-                                    /><br />
+                                    <label for="nogoURL" data-i18n="loadNogos.url">URL: </label>
+                                    <input type="text" name="nogoURL" id="nogoURL" /><br />
                                     or<br />
-                                    <label
-                                        for="nogoFile"
-                                        data-i18n="loadNogos.file"
-                                        >File (.geojson):
-                                    </label>
-                                    <input
-                                        type="file"
-                                        accept=".geojson"
-                                        name="nogoFile"
-                                        id="nogoFile"
-                                    />
+                                    <label for="nogoFile" data-i18n="loadNogos.file">File (.geojson): </label>
+                                    <input type="file" accept=".geojson" name="nogoFile" id="nogoFile" />
                                 </p>
                             </fieldset>
                             <fieldset>
@@ -497,46 +345,22 @@
                                     Default properties
                                 </legend>
                                 <p>
-                                    <label
-                                        for="nogoWeight"
-                                        data-i18n="loadNogos.nogoWeight"
+                                    <label for="nogoWeight" data-i18n="loadNogos.nogoWeight"
                                         >No-go weight (-1 means impassable):
                                     </label>
-                                    <input
-                                        type="number"
-                                        name="nogoWeight"
-                                        id="nogoWeight"
-                                        value="-1"
-                                        min="-1"
-                                    />
+                                    <input type="number" name="nogoWeight" id="nogoWeight" value="-1" min="-1" />
                                 </p>
                                 <p>
-                                    <label
-                                        for="nogoRadius"
-                                        data-i18n="loadNogos.nogoRadius"
+                                    <label for="nogoRadius" data-i18n="loadNogos.nogoRadius"
                                         >No-go radius for points (in meters):
                                     </label>
-                                    <input
-                                        type="number"
-                                        name="nogoRadius"
-                                        id="nogoRadius"
-                                        value="20"
-                                        min="0"
-                                    />
+                                    <input type="number" name="nogoRadius" id="nogoRadius" value="20" min="0" />
                                 </p>
                                 <p>
-                                    <label
-                                        for="nogoBuffer"
-                                        data-i18n="loadNogos.nogoBuffer"
+                                    <label for="nogoBuffer" data-i18n="loadNogos.nogoBuffer"
                                         >Buffer no-go areas (in meters):
                                     </label>
-                                    <input
-                                        type="number"
-                                        name="nogoBuffer"
-                                        id="nogoBuffer"
-                                        value="0"
-                                        min="0"
-                                    />
+                                    <input type="number" name="nogoBuffer" id="nogoBuffer" value="0" min="0" />
                                 </p>
                             </fieldset>
                             <div class="modal-footer">
@@ -579,41 +403,22 @@
                         <h4 class="modal-title" data-i18n="export.title">
                             Export route
                         </h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form name="export">
                             <div class="form-group row">
-                                <label
-                                    class="col-form-label col-sm-2"
-                                    data-i18n="export.trackname"
-                                    >Name</label
-                                >
+                                <label class="col-form-label col-sm-2" data-i18n="export.trackname">Name</label>
                                 <div class="col-sm-10">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="trackname"
-                                    />
-                                    <span
-                                        id="trackname-message"
-                                        class="validation-warning"
-                                    ></span>
+                                    <input type="text" class="form-control" id="trackname" />
+                                    <span id="trackname-message" class="validation-warning"></span>
                                 </div>
                             </div>
                             <fieldset id="export-format" class="form-group">
                                 <div class="row">
-                                    <legend
-                                        class="col-form-label col-sm-2"
-                                        data-i18n="export.format"
-                                    >
+                                    <legend class="col-form-label col-sm-2" data-i18n="export.format">
                                         Format
                                     </legend>
                                     <div class="col-sm-10">
@@ -627,17 +432,11 @@
                                                     value="gpx"
                                                     checked
                                                 />
-                                                <span
-                                                    data-i18n="export.format_gpx"
-                                                    >GPX</span
-                                                >
+                                                <span data-i18n="export.format_gpx">GPX</span>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <label
-                                                class="form-check-label"
-                                                for="format-kml"
-                                            >
+                                            <label class="form-check-label" for="format-kml">
                                                 <input
                                                     class="form-check-input"
                                                     id="format-kml"
@@ -645,17 +444,11 @@
                                                     name="format"
                                                     value="kml"
                                                 />
-                                                <span
-                                                    data-i18n="export.format_kml"
-                                                    >KML</span
-                                                >
+                                                <span data-i18n="export.format_kml">KML</span>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <label
-                                                class="form-check-label"
-                                                for="format-geojson"
-                                            >
+                                            <label class="form-check-label" for="format-geojson">
                                                 <input
                                                     class="form-check-input"
                                                     id="format-geojson"
@@ -663,17 +456,11 @@
                                                     name="format"
                                                     value="geojson"
                                                 />
-                                                <span
-                                                    data-i18n="export.format_geojson"
-                                                    >GeoJSON</span
-                                                >
+                                                <span data-i18n="export.format_geojson">GeoJSON</span>
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <label
-                                                class="form-check-label"
-                                                for="format-csv"
-                                            >
+                                            <label class="form-check-label" for="format-csv">
                                                 <input
                                                     class="form-check-input"
                                                     id="format-csv"
@@ -681,10 +468,7 @@
                                                     name="format"
                                                     value="csv"
                                                 />
-                                                <span
-                                                    data-i18n="export.format_csv"
-                                                    >CSV</span
-                                                >
+                                                <span data-i18n="export.format_csv">CSV</span>
                                             </label>
                                         </div>
                                     </div>
@@ -692,10 +476,7 @@
                             </fieldset>
                             <fieldset id="export-includes" class="form-group">
                                 <div class="row">
-                                    <legend
-                                        class="col-form-label col-sm-2"
-                                        data-i18n="export.include"
-                                    >
+                                    <legend class="col-form-label col-sm-2" data-i18n="export.include">
                                         Include
                                     </legend>
                                     <div class="col-sm-10">
@@ -707,10 +488,7 @@
                                                     type="checkbox"
                                                     name="include-waypoints"
                                                 />
-                                                <span
-                                                    data-i18n="export.include_waypoints"
-                                                    >Waypoints</span
-                                                >
+                                                <span data-i18n="export.include_waypoints">Waypoints</span>
                                             </label>
                                         </div>
                                     </div>
@@ -744,12 +522,7 @@
             <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
                 <ul role="tablist">
                     <li>
-                        <a
-                            href="#tab_layers_control"
-                            role="tab"
-                            data-i18n="[title]sidebar.layers.title"
-                            title="Layers"
-                        >
+                        <a href="#tab_layers_control" role="tab" data-i18n="[title]sidebar.layers.title" title="Layers">
                             <!--
                 https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
                 MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
@@ -766,23 +539,14 @@
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             >
-                                <polygon
-                                    style="fill: currentColor"
-                                    points="12 2 2 7 12 12 22 7 12 2"
-                                ></polygon>
-                                <polyline
-                                    points="2 11.5 12 16.5 22 11.5"
-                                ></polyline>
+                                <polygon style="fill: currentColor" points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 11.5 12 16.5 22 11.5"></polyline>
                                 <polyline points="2 16 12 21 22 16"></polyline>
                             </svg>
                         </a>
                     </li>
                     <li hidden>
-                        <a
-                            href="#tab_itinerary"
-                            role="tab"
-                            data-i18n="[title]sidebar.itinerary.title"
-                            title="Itinerary"
+                        <a href="#tab_itinerary" role="tab" data-i18n="[title]sidebar.itinerary.title" title="Itinerary"
                             ><i class="fa fa-map-signs"></i
                         ></a>
                     </li>
@@ -796,11 +560,7 @@
                         ></a>
                     </li>
                     <li>
-                        <a
-                            href="#tab_data"
-                            role="tab"
-                            data-i18n="[title]sidebar.data.title"
-                            title="Data"
+                        <a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"
                             ><i class="fa fa-table"></i
                         ></a>
                     </li>
@@ -814,18 +574,11 @@
 
                 <div id="sidebar" class="leaflet-sidebar collapsed">
                     <div class="leaflet-sidebar-content">
-                        <div
-                            class="leaflet-sidebar-pane"
-                            id="tab_layers_control"
-                        >
+                        <div class="leaflet-sidebar-pane" id="tab_layers_control">
                             <h1 class="leaflet-sidebar-header">
-                                <span class="leaflet-sidebar-close"
-                                    ><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"
-                                    ><i class="fa fa-expand"></i></span
-                                ><span data-i18n="sidebar.layers.title"
-                                    >Layers</span
-                                >
+                                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.layers.title">Layers</span>
                             </h1>
                             <div id="layers-control-wrapper"></div>
                             <div class="leaflet-control-layers-separator"></div>
@@ -846,9 +599,7 @@
                                         data-i18n="[title]sidebar.layers.expand"
                                         title="Expand all"
                                     >
-                                        <span
-                                            class="fa fa-plus-square-o"
-                                        ></span>
+                                        <span class="fa fa-plus-square-o"></span>
                                     </button>
                                     <button
                                         type="button"
@@ -857,9 +608,7 @@
                                         data-i18n="[title]sidebar.layers.collapse"
                                         title="Collapse all"
                                     >
-                                        <span
-                                            class="fa fa-minus-square-o"
-                                        ></span>
+                                        <span class="fa fa-minus-square-o"></span>
                                     </button>
                                 </div>
                                 <!-- empty dummy to keep following buttons right-aligned when previous hidden -->
@@ -873,10 +622,7 @@
                                         title="Add or remove optional layers"
                                     >
                                         <span class="fa fa-cogs"></span>
-                                        <span
-                                            data-i18n="sidebar.layers.optional-layers"
-                                            >More</span
-                                        >
+                                        <span data-i18n="sidebar.layers.optional-layers">More</span>
                                     </button>
                                     <button
                                         type="button"
@@ -886,10 +632,7 @@
                                         title="Add or remove custom layers"
                                     >
                                         <span class="fa fa-plus-square"></span>
-                                        <span
-                                            data-i18n="sidebar.layers.custom-layers"
-                                            >Custom layers</span
-                                        >
+                                        <span data-i18n="sidebar.layers.custom-layers">Custom layers</span>
                                     </button>
                                 </div>
                             </div>
@@ -898,13 +641,9 @@
 
                         <div class="leaflet-sidebar-pane" id="tab_profile">
                             <h1 class="leaflet-sidebar-header">
-                                <span class="leaflet-sidebar-close"
-                                    ><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"
-                                    ><i class="fa fa-expand"></i></span
-                                ><span data-i18n="sidebar.custom-profile.title"
-                                    >Custom profile</span
-                                >
+                                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.custom-profile.title">Custom profile</span>
                             </h1>
                             <form class="flexcolumn flexgrow">
                                 <textarea
@@ -924,28 +663,18 @@
                                         data-uploading-text="Uploading…"
                                     >
                                         <span class="fa fa-cloud-upload"></span>
-                                        <span data-i18n="sidebar.profile.upload"
-                                            >Upload</span
-                                        >
+                                        <span data-i18n="sidebar.profile.upload">Upload</span>
                                     </button>
-                                    <button
-                                        id="clear"
-                                        type="button"
-                                        class="btn btn-secondary btn-sm"
-                                    >
+                                    <button id="clear" type="button" class="btn btn-secondary btn-sm">
                                         <span class="fa fa-eraser"></span>
-                                        <span data-i18n="sidebar.profile.clear"
-                                            >Clear</span
-                                        >
+                                        <span data-i18n="sidebar.profile.clear">Clear</span>
                                     </button>
                                     <a
                                         href="http://brouter.de/brouter/costfunctions.html"
                                         target="_blank"
                                         class="btn btn-info btn-sm pull-right"
                                         ><span class="fa fa-question"></span>
-                                        <span data-i18n="sidebar.profile.help"
-                                            >Help</span
-                                        ></a
+                                        <span data-i18n="sidebar.profile.help">Help</span></a
                                     >
                                 </div>
                             </form>
@@ -953,34 +682,20 @@
 
                         <div class="leaflet-sidebar-pane" id="tab_data">
                             <h1 class="leaflet-sidebar-header">
-                                <span class="leaflet-sidebar-close"
-                                    ><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"
-                                    ><i class="fa fa-expand"></i></span
-                                ><span data-i18n="sidebar.data.title"
-                                    >Data</span
-                                >
+                                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
+                                ><span data-i18n="sidebar.data.title">Data</span>
                             </h1>
-                            <table
-                                id="datatable"
-                                class="mini cell-border hover stripe"
-                            ></table>
+                            <table id="datatable" class="mini cell-border hover stripe"></table>
                         </div>
 
                         <div class="leaflet-sidebar-pane" id="tab_itinerary">
                             <h1 class="leaflet-sidebar-header">
-                                <span data-i18n="sidebar.itinerary.title"
-                                    >Itinerary</span
-                                ><span class="leaflet-sidebar-close"
-                                    ><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"
-                                    ><i class="fa fa-expand"></i
-                                ></span>
+                                <span data-i18n="sidebar.itinerary.title">Itinerary</span
+                                ><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
+                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>
                             </h1>
-                            <div
-                                id="itinerary"
-                                class="flexcolumn flexgrow"
-                            ></div>
+                            <div id="itinerary" class="flexcolumn flexgrow"></div>
                         </div>
                     </div>
                 </div>
@@ -993,46 +708,30 @@
             <div class="flexrow">
                 <ul id="stats">
                     <li>
-                        <div
-                            class="text-muted small d-none d-sm-block"
-                            data-i18n="footer.distance"
-                        >
+                        <div class="text-muted small d-none d-sm-block" data-i18n="footer.distance">
                             Distance
                         </div>
                         <p class="stats-label">
                             <span id="distance">-</span>
-                            <abbr
-                                data-i18n="[title]footer.kilometer;footer.kilometer-abbrev"
-                                title="kilometers"
+                            <abbr data-i18n="[title]footer.kilometer;footer.kilometer-abbrev" title="kilometers"
                                 >km</abbr
                             >
                         </p>
                     </li>
                     <li>
-                        <div
-                            class="text-muted small d-none d-sm-block"
-                            data-i18n="footer.travel-time"
-                        >
+                        <div class="text-muted small d-none d-sm-block" data-i18n="footer.travel-time">
                             Travel time
                         </div>
                         <p class="stats-label">
                             <span id="totaltime">-</span>
-                            <abbr
-                                data-i18n="[title]footer.hours;footer.hours-abbrev"
-                                title="hours"
-                                >h</abbr
-                            >
+                            <abbr data-i18n="[title]footer.hours;footer.hours-abbrev" title="hours">h</abbr>
                         </p>
                     </li>
                     <li>
                         <div class="text-muted small d-none d-sm-block">
-                            <span data-i18n="footer.total-energy"
-                                >Total Energy</span
-                            >
+                            <span data-i18n="footer.total-energy">Total Energy</span>
                             |
-                            <span data-i18n="footer.energy-per-100km"
-                                >Energy per 100 km</span
-                            >
+                            <span data-i18n="footer.energy-per-100km">Energy per 100 km</span>
                         </div>
                         <p class="stats-label">
                             <span id="totalenergy">-</span>
@@ -1052,31 +751,19 @@
                     <li>
                         <div class="text-muted small d-none d-sm-block">
                             <span data-i18n="footer.ascend">Ascend</span> |
-                            <span data-i18n="footer.plain-ascend"
-                                >Plain ascend</span
-                            >
+                            <span data-i18n="footer.plain-ascend">Plain ascend</span>
                         </div>
                         <p class="stats-label">
                             <span id="ascend">-</span>
-                            <abbr
-                                data-i18n="[title]footer.meter;footer.meter-abbrev"
-                                title="meters"
-                                >m</abbr
-                            >
+                            <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meters">m</abbr>
                             | <span id="plainascend">-</span>
-                            <abbr
-                                data-i18n="[title]footer.meter;footer.meter-abbrev"
-                                title="meters"
-                                >m</abbr
-                            >
+                            <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meters">m</abbr>
                         </p>
                     </li>
                     <li>
                         <div class="text-muted small d-none d-sm-block">
                             <span data-i18n="footer.cost">Cost</span> |
-                            <span data-i18n="footer.mean-cost-factor"
-                                >Mean cost factor</span
-                            >
+                            <span data-i18n="footer.mean-cost-factor">Mean cost factor</span>
                         </div>
                         <p class="stats-label">
                             <span id="cost">-</span> |
