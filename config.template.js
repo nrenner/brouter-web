@@ -11,7 +11,7 @@
     // TODO not included in permalink (better replace permalink with hash plugin)
     //BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
-    if (hostname === 'brouter.de' ) {
+    if (hostname === 'brouter.de') {
         // online service (brouter.de) configuration
 
         BR.conf.profiles = [

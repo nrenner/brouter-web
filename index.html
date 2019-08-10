@@ -457,7 +457,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p id="nogoError" style="display: none;"></p>
+                        <p
+                            id="nogoError"
+                            class="invalid-feedback"
+                            style="display: none;"
+                        ></p>
                         <form>
                             <fieldset>
                                 <legend data-i18n="loadNogos.source">
@@ -478,10 +482,11 @@
                                     <label
                                         for="nogoFile"
                                         data-i18n="loadNogos.file"
-                                        >File:
+                                        >File (.geojson):
                                     </label>
                                     <input
                                         type="file"
+                                        accept=".geojson"
                                         name="nogoFile"
                                         id="nogoFile"
                                     />
@@ -495,26 +500,28 @@
                                     <label
                                         for="nogoWeight"
                                         data-i18n="loadNogos.nogoWeight"
-                                        >No-go weight:
+                                        >No-go weight (-1 means impassable):
                                     </label>
                                     <input
                                         type="number"
                                         name="nogoWeight"
                                         id="nogoWeight"
                                         value="-1"
+                                        min="-1"
                                     />
                                 </p>
                                 <p>
                                     <label
                                         for="nogoRadius"
                                         data-i18n="loadNogos.nogoRadius"
-                                        >No-go radius (for points):
+                                        >No-go radius for points (in meters):
                                     </label>
                                     <input
                                         type="number"
                                         name="nogoRadius"
                                         id="nogoRadius"
                                         value="20"
+                                        min="0"
                                     />
                                 </p>
                                 <p>
@@ -528,6 +535,7 @@
                                         name="nogoBuffer"
                                         id="nogoBuffer"
                                         value="0"
+                                        min="0"
                                     />
                                 </p>
                             </fieldset>

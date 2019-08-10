@@ -33,6 +33,8 @@ BR.NogoAreas = L.Control.extend({
     onAdd: function(map) {
         var self = this;
 
+        $('#submitNogos').on('click', L.bind(this.uploadNogos, this));
+
         this.drawnItems = new L.FeatureGroup().addTo(map);
         this.drawnItems.on('click', function(e) {
             L.DomEvent.stop(e);
@@ -116,6 +118,125 @@ BR.NogoAreas = L.Control.extend({
 
         // dummy, no own representation, delegating to EasyButton
         return L.DomUtil.create('div');
+    },
+
+    displayUploadError: function(message) {
+        $('#nogoError').text(message ? message : '');
+        $('#nogoError').css('display', message ? 'block' : 'none');
+    },
+
+    uploadNogos: function() {
+        var self = this;
+
+        var geoJSONPromise;
+        var nogoURL = $('#nogoURL').val();
+        var nogoFile = $('#nogoFile')[0].files[0];
+        if (nogoURL) {
+            // TODO: Handle {{bbox}}
+            geoJSONPromise = fetch(nogoURL).then(function(response) {
+                response.json();
+            });
+        } else if (nogoFile) {
+            geoJSONPromise = new Promise(function(resolve, reject) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    resolve(reader.result);
+                };
+                reader.onerror = function() {
+                    self.displayUploadError(
+                        'Could not load file: ' + reader.error.message
+                    );
+                };
+
+                reader.readAsText(nogoFile);
+            }).then(function(response) {
+                return JSON.parse(response);
+            });
+        } else {
+            // FIXME: use form validator instead
+            self.displayUploadError('Missing file or URL.');
+            return false;
+        }
+        var nogoWeight = parseFloat($('#nogoWeight').val());
+        if (isNaN(nogoWeight)) {
+            // FIXME: use form validator instead
+            self.displayUploadError('Missing default nogo weight.');
+            return false;
+        }
+        var nogoRadius = parseFloat($('#nogoRadius').val());
+        if (isNaN(nogoRadius) || nogoRadius < 0) {
+            // FIXME: use form validator instead
+            self.displayUploadError('Invalid default nogo radius.');
+            return false;
+        }
+        var nogoBuffer = parseFloat($('#nogoBuffer').val());
+        if (isNaN(nogoBuffer)) {
+            // FIXME: use form validator instead
+            self.displayUploadError('Invalid nogo buffering radius.');
+            return false;
+        }
+
+        geoJSONPromise.then(function(response) {
+            // Iterate on features in order to discard features without geometry
+            var cleanedGeoJSONFeatures = [];
+            turf.flattenEach(response, function(feature) {
+                if (turf.getGeom(feature)) {
+                    var maybeBufferedFeature = feature;
+                    // Eventually buffer GeoJSON
+                    if (nogoBuffer !== 0) {
+                        maybeBufferedFeature = turf.buffer(
+                            maybeBufferedFeature,
+                            nogoBuffer,
+                            { units: 'meters' }
+                        );
+                    }
+                    cleanedGeoJSONFeatures.push(maybeBufferedFeature);
+                }
+            });
+
+            if (cleanedGeoJSONFeatures.length === 0) {
+                self.displayUploadError(
+                    'No valid area found in provided input.'
+                );
+                return false;
+            }
+
+            var geoJSON = L.geoJson(
+                turf.featureCollection(cleanedGeoJSONFeatures),
+                {
+                    onEachFeature: function(feature, layer) {
+                        layer.options.nogoWeight =
+                            feature.properties.nogoWeight || nogoWeight;
+                    }
+                }
+            );
+            var nogosPoints = geoJSON.getLayers().filter(function(e) {
+                return e.feature.geometry.type === 'Point';
+            });
+            nogosPoints = nogosPoints.map(function(item) {
+                var radius = item.feature.properties.radius || nogoRadius;
+                if (radius > 0) {
+                    return L.circle(item.getLatLng(), { radius: radius });
+                }
+                return null;
+            });
+            nogosPoints = nogosPoints.filter(function(e) {
+                return e;
+            });
+            self.setOptions({
+                nogos: nogosPoints,
+                polygons: geoJSON.getLayers().filter(function(e) {
+                    return e.feature.geometry.type === 'Polygon';
+                }),
+                polylines: geoJSON.getLayers().filter(function(e) {
+                    return e.feature.geometry.type === 'LineString';
+                })
+            });
+            self._fireUpdate();
+            self.displayUploadError(undefined);
+            $('#loadNogos').modal('hide');
+        });
+        return false;
     },
 
     // prevent route waypoint added after circle create (map click after up)

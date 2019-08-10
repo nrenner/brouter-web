@@ -61,11 +61,11 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File: ",
+    "file": "File (.geojson): ",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius (for points): ",
-    "nogoWeight": "No-go weight: ",
+    "nogoRadius": "No-go radius for points (in meters): ",
+    "nogoWeight": "No-go weight (-1 means impassable): ",
     "source": "Source",
     "title": "Load no-go areas",
     "url": "URL: "
