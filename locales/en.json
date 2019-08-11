@@ -1,209 +1,213 @@
 {
-  "about": {
-    "bug-reports": "Bug reports and feature requests:",
-    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
-    "bug-reports-front": "web client / frontend.",
-    "chat": "Chat with users and developers",
-    "contact": "Contact:",
-    "data": "Data:",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
-    "support": "General discussions/questions, support",
-    "title": "About"
-  },
-  "credits": {
-    "brouter": "BRouter",
-    "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
-    "esri-tiles": "Esri World Imagery",
-    "map-data": "Map data",
-    "map-tiles": "Map tiles",
-    "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
-  },
-  "export": {
-    "format": "Format",
-    "format_csv": "CSV",
-    "format_geojson": "GeoJSON",
-    "format_gpx": "GPX",
-    "format_kml": "KML",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
-    "route-loop": "{{from}} ({{distance}}km)",
-    "title": "Export route",
-    "trackname": "Name"
-  },
-  "footer": {
-    "ascend": "Ascend",
-    "cost": "Cost",
-    "distance": "Distance",
-    "energy-per-100km": "Energy per 100 km",
-    "hours": "hours",
-    "hours-abbrev": "h",
-    "kilometer": "kilometers",
-    "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
-    "kilowatthour-abbrev": "kWh",
-    "mean-cost-factor": "Mean cost factor",
-    "meter": "meters",
-    "meter-abbrev": "m",
-    "plain-ascend": "Plain ascend",
-    "total-energy": "Total Energy",
-    "travel-time": "Travel time"
-  },
-  "layers": {
-    "add-base": "Add base layer",
-    "add-overlay": "Add overlay",
-    "customize": "Customize layers",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
-    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
-    "remove-selection": "Remove selection"
-  },
-  "loadNogos": {
-    "defaultProperties": "Default properties",
-    "file": "File (.geojson): ",
-    "load": "Load",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go weight (-1 means impassable): ",
-    "source": "Source",
-    "title": "Load no-go areas",
-    "url": "URL: "
-  },
-  "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
-    "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route",
-    "copyright": "Copyright",
-    "cycling": "Cycling",
-    "delete-last-point": "Delete last point",
-    "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
-    "delete-route": "Delete route?",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
-    "hikebike-hillshading": "Hillshading",
-    "hiking": "Hiking",
-    "layer": {
-      "bing": "Bing Aerial",
-      "cycle": "OpenCycleMap (Thunderf.)",
-      "cycling": "Cycling (Waymarked Trails)",
-      "digitalglobe": "DigitalGlobe Recent Imagery",
-      "esri": "Esri World Imagery",
-      "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
-      "hiking": "Hiking (Waymarked Trails)",
-      "osm": "OpenStreetMap",
-      "osmde": "OpenStreetMap.de",
-      "outdoors": "Outdoors (Thunderforest)",
-      "stamen-terrain": "Terrain (Stamen)",
-      "strava-segments": "Strava segments",
-      "topo": "OpenTopoMap"
+    "about": {
+        "bug-reports": "Bug reports and feature requests:",
+        "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
+        "bug-reports-front": "web client / frontend.",
+        "chat": "Chat with users and developers",
+        "contact": "Contact:",
+        "data": "Data:",
+        "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"http://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+        "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"http://brouter.de/\" target=\"_blank\">brouter.de</a>",
+        "details": "<i><a href=\"http://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
+        "support": "General discussions/questions, support",
+        "title": "About"
     },
-    "loading": "Loading…",
-    "locate-me": "Show me where I am",
-    "nogo": {
-      "cancel": "Cancel drawing no-go area",
-      "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
-      "edit": "Click to edit",
-      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+    "credits": {
+        "brouter": "BRouter",
+        "brouter-license": "<a target=\"_blank\" href=\"http://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+        "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
+        "esri-tiles": "Esri World Imagery",
+        "map-data": "Map data",
+        "map-tiles": "Map tiles",
+        "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+        "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
     },
-    "opacity-slider": "Set transparency of route track and markers",
-    "privacy": "Privacy",
-    "reverse-route": "Reverse route",
-    "strava-biking": "Show Strava biking segments",
-    "strava-running": "Show Strava running segments",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
-  },
-  "modal": {
-    "close": "Close"
-  },
-  "navbar": {
-    "about": "About",
-    "alternative": {
-      "first": "1st alternative",
-      "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+    "export": {
+        "format": "Format",
+        "format_csv": "CSV",
+        "format_geojson": "GeoJSON",
+        "format_gpx": "GPX",
+        "format_kml": "KML",
+        "include": "Include",
+        "include_waypoints": "Waypoints",
+        "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+        "route-loop": "{{from}} ({{distance}}km)",
+        "title": "Export route",
+        "trackname": "Name"
     },
-    "export": "Export",
-    "load": {
-      "nogos": "No-go areas",
-      "title": "Load"
-    },
-    "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
-      "fastbike": "Fastbike",
-      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
-      "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
-      "trekking": "Trekking bike",
-      "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
-      "trekking-noferries": "Trekking bike (no ferries)",
-      "trekking-nosteps": "Trekking bike (no steps)",
-      "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
-    }
-  },
-  "sidebar": {
-    "custom-profile": {
-      "title": "Custom profile"
-    },
-    "data": {
-      "title": "Data"
-    },
-    "itinerary": {
-      "title": "Itinerary"
+    "footer": {
+        "ascend": "Ascend",
+        "cost": "Cost",
+        "distance": "Distance",
+        "energy-per-100km": "Energy per 100 km",
+        "hours": "hours",
+        "hours-abbrev": "h",
+        "kilometer": "kilometers",
+        "kilometer-abbrev": "km",
+        "kilowatthour": "kilowatt hours",
+        "kilowatthour-abbrev": "kWh",
+        "mean-cost-factor": "Mean cost factor",
+        "meter": "meters",
+        "meter-abbrev": "m",
+        "plain-ascend": "Plain ascend",
+        "total-energy": "Total Energy",
+        "travel-time": "Travel time"
     },
     "layers": {
-      "category": {
-        "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
-        "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
-      },
-      "collapse": "Collapse all",
-      "custom-layers": "Custom layers",
-      "customize": "Add or remove custom layers",
-      "expand": "Expand all",
-      "optional": "Add or remove optional layers",
-      "optional-layers": "More",
-      "table": {
-        "URL": "URL",
-        "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type"
-      },
-      "title": "Layers"
+        "add-base": "Add base layer",
+        "add-overlay": "Add overlay",
+        "customize": "Customize layers",
+        "opacity-slider": "Opacity slider",
+        "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
+        "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+        "remove-selection": "Remove selection"
     },
-    "profile": {
-      "clear": "Clear",
-      "help": "Help",
-      "placeholder": "Write your custom profile here.",
-      "upload": "Upload"
+    "loadNogos": {
+        "defaultProperties": "Default properties",
+        "file": "File (.geojson): ",
+        "load": "Load",
+        "nogoBuffer": "Buffer no-go areas (in meters): ",
+        "nogoRadius": "No-go radius for points (in meters): ",
+        "nogoWeight": "No-go weight (-1 means impassable): ",
+        "source": "Source",
+        "title": "Load no-go areas",
+        "url": "URL: "
+    },
+    "map": {
+        "attribution-osm-long": "OpenStreetMap contributors",
+        "attribution-osm-short": "OpenStreetMap",
+        "clear-route": "Clear route",
+        "copyright": "Copyright",
+        "cycling": "Cycling",
+        "delete-last-point": "Delete last point",
+        "delete-nogo-areas": "&nbsp;&nbsp;also delete all no-go areas",
+        "delete-route": "Delete route?",
+        "draw-route-start": "Draw route (D key)",
+        "draw-route-stop": "Stop drawing route (ESC key)",
+        "hikebike-hillshading": "Hillshading",
+        "hiking": "Hiking",
+        "layer": {
+            "bing": "Bing Aerial",
+            "cycle": "OpenCycleMap (Thunderf.)",
+            "cycling": "Cycling (Waymarked Trails)",
+            "digitalglobe": "DigitalGlobe Recent Imagery",
+            "esri": "Esri World Imagery",
+            "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
+            "hiking": "Hiking (Waymarked Trails)",
+            "osm": "OpenStreetMap",
+            "osmde": "OpenStreetMap.de",
+            "outdoors": "Outdoors (Thunderforest)",
+            "stamen-terrain": "Terrain (Stamen)",
+            "strava-segments": "Strava segments",
+            "topo": "OpenTopoMap"
+        },
+        "loading": "Loading…",
+        "locate-me": "Show me where I am",
+        "nogo": {
+            "cancel": "Cancel drawing no-go area",
+            "click-drag": "Click and drag to draw circle",
+            "draw": "Draw no-go area (circle)",
+            "edit": "Click to edit",
+            "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+        },
+        "opacity-slider": "Set transparency of route track and markers",
+        "privacy": "Privacy",
+        "reverse-route": "Reverse route",
+        "strava-biking": "Show Strava biking segments",
+        "strava-running": "Show Strava running segments",
+        "zoomInTitle": "Zoom in",
+        "zoomOutTitle": "Zoom out"
+    },
+    "modal": {
+        "close": "Close"
+    },
+    "navbar": {
+        "about": "About",
+        "alternative": {
+            "first": "1st alternative",
+            "original": "Original",
+            "second": "2nd alternative",
+            "third": "3rd alternative"
+        },
+        "export": "Export",
+        "load": {
+            "nogos": "No-go areas",
+            "title": "Load"
+        },
+        "profile": {
+            "car-eco": "Car (economic)",
+            "car-fast": "Car (fast)",
+            "car-test": "Car (test)",
+            "custom": "Custom",
+            "fastbike": "Fastbike",
+            "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
+            "fastbike-lowtraffic": "Fastbike (low traffic)",
+            "hiking-beta": "Hiking (beta)",
+            "moped": "Moped",
+            "rail": "Rail",
+            "river": "River",
+            "safety": "Safety",
+            "shortest": "Shortest",
+            "trekking": "Trekking bike",
+            "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
+            "trekking-noferries": "Trekking bike (no ferries)",
+            "trekking-nosteps": "Trekking bike (no steps)",
+            "trekking-steep": "Trekking bike (steep)",
+            "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
+            "vm-forum-velomobil-schnell": "Velomobile (fast)"
+        }
+    },
+    "sidebar": {
+        "custom-profile": {
+            "title": "Custom profile"
+        },
+        "data": {
+            "title": "Data"
+        },
+        "itinerary": {
+            "title": "Itinerary"
+        },
+        "layers": {
+            "category": {
+                "base-layers": "Base layers",
+                "country": "Country",
+                "europe": "Europe",
+                "europe-monolingual": "Europe monolingual",
+                "overlays": "Overlays",
+                "worldwide": "Worldwide",
+                "worldwide-international": "Worldwide international",
+                "worldwide-monolingual": "Worldwide monolingual"
+            },
+            "collapse": "Collapse all",
+            "custom-layers": "Custom layers",
+            "customize": "Add or remove custom layers",
+            "expand": "Expand all",
+            "optional": "Add or remove optional layers",
+            "optional-layers": "More",
+            "overlay-opacity": "Overlay transparency",
+            "table": {
+                "URL": "URL",
+                "empty": "No custom layer configured yet.",
+                "name": "Name",
+                "type": "Type"
+            },
+            "title": "Layers"
+        },
+        "profile": {
+            "clear": "Clear",
+            "help": "Help",
+            "placeholder": "Write your custom profile here.",
+            "upload": "Upload"
+        }
+    },
+    "title": "BRouter web client",
+    "warning": {
+        "cannot-get-route": "Error getting route URL",
+        "no-response": "no response from server",
+        "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
+        "profile-error": "Profile error: no or empty response from server",
+        "strava-error": "Error getting Strava segments: {{error}}",
+        "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
+        "upload-error": "Upload error: {{error}}"
     }
-  },
-  "title": "BRouter web client",
-  "warning": {
-    "cannot-get-route": "Error getting route URL",
-    "no-response": "no response from server",
-    "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
-    "strava-error": "Error getting Strava segments: {{error}}",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "upload-error": "Upload error: {{error}}"
-  }
 }
