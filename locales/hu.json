@@ -28,6 +28,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
+    "include": "Include",
+    "include_waypoints": "Waypoints",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
     "title": "Útvonal exportálása",
@@ -55,17 +57,18 @@
     "add-base": "Alapréteg hozzáadása",
     "add-overlay": "Rátétréteg hozzáadása",
     "customize": "Rétegek személyre szabása",
+    "opacity-slider": "Opacity slider",
     "placeholder-layer-name": "Egyedi rétegnév (pl. OpenStreetMap)",
     "placeholder-layer-url": "Egyedi réteg URL-je (pl. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Kijelölés eltávolítása"
   },
   "loadNogos": {
     "defaultProperties": "Alapértelmezett tulajdonságok",
-    "file": "Fájl:",
+    "file": "File (.geojson): ",
     "load": "Betöltés",
     "nogoBuffer": "Elkerülendő területek körüli távolság (méter)",
-    "nogoRadius": "Elkerülendő pontok körüli sugár:",
-    "nogoWeight": "Elkerülés súlyozása:",
+    "nogoRadius": "No-go radius for points (in meters): ",
+    "nogoWeight": "No-go weight (-1 means impassable): ",
     "source": "Forrás",
     "title": "Elkerülendő területek betöltése",
     "url": "URL:"
@@ -181,6 +184,7 @@
       "expand": "Minden kibontása",
       "optional": "Rétegek hozzáadása vagy eltávolítása",
       "optional-layers": "Több",
+      "overlay-opacity": "Overlay transparency",
       "table": {
         "URL": "URL",
         "empty": "Még nincs beállítva egyedi réteg",

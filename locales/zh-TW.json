@@ -28,6 +28,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
+    "include": "Include",
+    "include_waypoints": "Waypoints",
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
@@ -55,17 +57,18 @@
     "add-base": "添加底層圖",
     "add-overlay": "添加疊圖",
     "customize": "自定義圖層",
+    "opacity-slider": "Opacity slider",
     "placeholder-layer-name": "自定義圖層名稱 (如: OpenStreetMap)",
     "placeholder-layer-url": "自定義圖層 URL (如: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "移除所選項目"
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File: ",
+    "file": "File (.geojson): ",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius (for points): ",
-    "nogoWeight": "No-go weight: ",
+    "nogoRadius": "No-go radius for points (in meters): ",
+    "nogoWeight": "No-go weight (-1 means impassable): ",
     "source": "Source",
     "title": "Load no-go areas",
     "url": "URL: "
@@ -181,6 +184,7 @@
       "expand": "Expand all",
       "optional": "Add or remove optional layers",
       "optional-layers": "More",
+      "overlay-opacity": "Overlay transparency",
       "table": {
         "URL": "URL",
         "empty": "尚未設定自訂圖層。",

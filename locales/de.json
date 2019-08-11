@@ -28,6 +28,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
+    "include": "Include",
+    "include_waypoints": "Waypoints",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
     "title": "Route exportieren",
@@ -55,17 +57,18 @@
     "add-base": "Basisebene hinzufügen",
     "add-overlay": "Overlay hinzufügen",
     "customize": "Ebenen anpassen",
+    "opacity-slider": "Opacity slider",
     "placeholder-layer-name": "angepasster Ebenenname (Bsp: OpenStreetMap)",
     "placeholder-layer-url": "angepasste Ebenen-URL (Bsp: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Auswahl entfernen"
   },
   "loadNogos": {
     "defaultProperties": "Standardeigenschaften",
-    "file": "Datei:",
+    "file": "File (.geojson): ",
     "load": "Laden",
     "nogoBuffer": "Puffer um No-go-Areas (in Metern):",
-    "nogoRadius": "No-go Radius (für Punkte):",
-    "nogoWeight": "No-go Gewicht:",
+    "nogoRadius": "No-go radius for points (in meters): ",
+    "nogoWeight": "No-go weight (-1 means impassable): ",
     "source": "Quelle",
     "title": "No-go-Areas laden",
     "url": "URL:"
@@ -181,6 +184,7 @@
       "expand": "Alle ausklappen",
       "optional": "Optionale Ebenen hinzufügen oder entfernen",
       "optional-layers": "Mehr",
+      "overlay-opacity": "Overlay transparency",
       "table": {
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",

@@ -28,6 +28,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
+    "include": "Inclure",
+    "include_waypoints": "Points de passage",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
     "title": "Exporter l'itinéraire",
@@ -55,17 +57,18 @@
     "add-base": "Ajouter un fond de carte ",
     "add-overlay": "Ajouter un calque superposable",
     "customize": "Personnaliser les calques",
+    "opacity-slider": "Curseur d'opacité",
     "placeholder-layer-name": "Nom du calque (p. ex. OpenStreetMap).",
     "placeholder-layer-url": "URL du calque (p. ex. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png).",
     "remove-selection": "Supprimer la sélection"
   },
   "loadNogos": {
     "defaultProperties": "Propriétés par défaut",
-    "file": "Fichier :",
+    "file": "Fichier (.geojson)",
     "load": "Charger",
     "nogoBuffer": "Tampon des zones interdites (en mètres) :",
-    "nogoRadius": "Rayon des zones interdites (pour les points) :",
-    "nogoWeight": "Poids des zones interdites :",
+    "nogoRadius": "Rayon des zones interdites pour les points (en mètres) :",
+    "nogoWeight": "Poids des zones interdites (-1 signifie infranchissable)",
     "source": "Source",
     "title": "Charger les zones interdites",
     "url": "URL :"
@@ -181,6 +184,7 @@
       "expand": "Tout ouvrir",
       "optional": "Ajouter ou supprimer des calques optionnels",
       "optional-layers": "Plus",
+      "overlay-opacity": "Transparence de la surcouche",
       "table": {
         "URL": "URL",
         "empty": "Aucun calque personnel trouvé.",
