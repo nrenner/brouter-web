@@ -1,8 +1,10 @@
-FROM alpine as build
-RUN apk add --no-cache curl unzip
-RUN curl -L `curl -s https://api.github.com/repos/nrenner/brouter-web/releases/latest | grep browser_download_url | cut -d '"' -f 4` -o brouter-web.zip
+FROM node:8-alpine as build
+RUN apk add --no-cache git
 RUN mkdir /tmp/brouter-web
-RUN unzip -d /tmp/brouter-web brouter-web.zip
+WORKDIR /tmp/brouter-web
+COPY . .
+RUN yarn install
+RUN yarn run build
 
 FROM nginx:alpine
 COPY --from=build /tmp/brouter-web/index.html /usr/share/nginx/html
