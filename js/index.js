@@ -94,18 +94,25 @@
             function() {
                 bootbox.prompt({
                     size: 'small',
-                    title: i18next.t('map.delete-route'),
+                    title: i18next.t('map.delete-route-nogos'),
                     inputType: 'checkbox',
                     inputOptions: [
+                        {
+                            text: i18next.t('map.delete-route'),
+                            value: 'route'
+                        },
                         {
                             text: i18next.t('map.delete-nogo-areas'),
                             value: 'nogo'
                         }
                     ],
+                    value: ['route'],
                     callback: function(result) {
                         if (result !== null) {
-                            routing.clear();
-                            if (result.length > 0 && result[0] === 'nogo') {
+                            if (result.indexOf('route') !== -1) {
+                                routing.clear();
+                            }
+                            if (result.indexOf('nogo') !== -1) {
                                 nogos.clear();
                             }
                             onUpdate();
@@ -114,7 +121,7 @@
                     }
                 });
             },
-            i18next.t('map.clear-route')
+            i18next.t('map.delete-route-nogos')
         );
 
         function updateRoute(evt) {
