@@ -390,22 +390,16 @@ L.BRouter = L.Class.extend({
     _getNogosPolylinesString: function (nogos) {
         var s = '';
         for (var i = 0, polyline, vertices; i < nogos.length; i++) {
-            polyline = nogos[i];
-            vertices = polyline.getLatLngs();
-            for (var j = 0; j < vertices.length; j++) {
-                if (j > 0) {
-                    s += L.BRouter.NUMBER_SEPARATOR;
-                }
-                s += this._formatLatLng(vertices[j]);
-            }
+            polylineItem = nogos[i];
+            s += polyline.encode(polylineItem.toGeoJSON().geometry.coordinates[0]);
             // -1 is default nogo exclusion, it should not be passed as a URL parameter.
             if (
-                polyline.options.nogoWeight !== undefined &&
-                polyline.options.nogoWeight !== null &&
-                polyline.options.nogoWeight !== -1
+                polylineItem.options.nogoWeight !== undefined &&
+                polylineItem.options.nogoWeight !== null &&
+                polylineItem.options.nogoWeight !== -1
             ) {
                 s += L.BRouter.NUMBER_SEPARATOR;
-                s += polyline.options.nogoWeight;
+                s += polylineItem.options.nogoWeight;
             }
             if (i < nogos.length - 1) {
                 s += L.BRouter.GROUP_SEPARATOR;
@@ -423,16 +417,11 @@ L.BRouter = L.Class.extend({
         groups = s.split(L.BRouter.GROUP_SEPARATOR);
         for (var i = 0; i < groups.length; i++) {
             numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
-            if (numbers.length > 1) {
-                latlngs = [];
-                for (var j = 0; j < numbers.length - 1; ) {
-                    var lng = Number.parseFloat(numbers[j++]);
-                    var lat = Number.parseFloat(numbers[j++]);
-                    latlngs.push([lat, lng]);
-                }
+            if (numbers) {
+                latlngs = polyline.decode(numbers[0]);
                 var nogoWeight;
-                if (j < numbers.length) {
-                    nogoWeight = Number.parseFloat(numbers[j++]);
+                if (numbers.length > 1) {
+                    nogoWeight = Number.parseFloat(numbers[1]);
                 }
                 var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
                 nogos.push(L.polyline(latlngs, options));
@@ -445,13 +434,7 @@ L.BRouter = L.Class.extend({
         var s = '';
         for (var i = 0, polygon, vertices; i < nogos.length; i++) {
             polygon = nogos[i];
-            vertices = polygon.getLatLngs()[0];
-            for (var j = 0; j < vertices.length; j++) {
-                if (j > 0) {
-                    s += L.BRouter.NUMBER_SEPARATOR;
-                }
-                s += this._formatLatLng(vertices[j]);
-            }
+            s += polyline.encode(polygon.toGeoJSON().geometry.coordinates[0]);
             // -1 is default nogo exclusion, it should not be passed as a URL parameter.
             if (
                 polygon.options.nogoWeight !== undefined &&
@@ -477,16 +460,11 @@ L.BRouter = L.Class.extend({
         groups = s.split(L.BRouter.GROUP_SEPARATOR);
         for (var i = 0; i < groups.length; i++) {
             numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
-            if (numbers.length > 1) {
-                latlngs = [];
-                for (var j = 0; j < numbers.length - 1; ) {
-                    var lng = Number.parseFloat(numbers[j++]);
-                    var lat = Number.parseFloat(numbers[j++]);
-                    latlngs.push([lat, lng]);
-                }
+            if (numbers) {
+                latlngs = polyline.decode(numbers[0]);
                 var nogoWeight;
-                if (j < numbers.length) {
-                    nogoWeight = Number.parseFloat(numbers[j++]);
+                if (numbers.length > 1) {
+                    nogoWeight = Number.parseFloat(numbers[1]);
                 }
                 nogos.push(L.polygon(latlngs, { nogoWeight: nogoWeight }));
             }
