@@ -83,6 +83,52 @@ BR.Profile = L.Evented.extend({
     },
 
     _setValue: function(profileText) {
+        var global = profileText.split('---context:').filter(function(e) {
+            return e.startsWith('global');
+        });
+        if (global) {
+            global = global[0].split('\n').slice(1);
+            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*(#.*)?$/;
+            var params = {};
+            global.forEach(function(item) {
+                var match = item.match(assignRegex);
+                if (match) {
+                    if (match[2] == 'true') {
+                        match[2] = 1;
+                    } else if (match[2] == 'false') {
+                        match[2] = 0;
+                    } else {
+                        match[2] = Number.parseFloat(match[2]);
+                    }
+                    if (Number.isNaN(match[2])) {
+                        return;
+                    }
+                    params[match[1]] = {
+                        comment: match[3] ? match[3].replace(/^#\s+|\s+$/g, '') : null,
+                        value: match[2]
+                    };
+                }
+            });
+        }
+        var paramsSection = L.DomUtil.get('profile_params');
+        paramsSection.innerHTML = '';
+        Object.keys(params).forEach(function(param) {
+            var p = document.createElement('p');
+            var label = document.createElement('label');
+            label.innerHTML = param;
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.value = params[param].value;
+            p.appendChild(label);
+            label.appendChild(input);
+            paramsSection.appendChild(label);
+            if (params[param].comment) {
+                var p = document.createElement('p');
+                p.innerHTML = params[param].comment;
+                paramsSection.append(p);
+            }
+        });
+
         this.editor.setValue(profileText);
         this.editor.markClean();
     }
