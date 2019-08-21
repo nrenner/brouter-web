@@ -7,6 +7,11 @@ BR.Profile = L.Evented.extend({
             lineNumbers: true
         });
 
+        var that = this;
+        L.DomUtil.get('profile_advanced').addEventListener('click', function() {
+            that._toggleAdvanced();
+        });
+
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
 
@@ -88,24 +93,27 @@ BR.Profile = L.Evented.extend({
         });
         if (global) {
             global = global[0].split('\n').slice(1);
-            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*(#.*)?$/;
+            // Comment is mandatory
+            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*(.*)\s*$/;
             var params = {};
             global.forEach(function(item) {
                 var match = item.match(assignRegex);
+                var value;
                 if (match) {
-                    if (match[2] == 'true') {
-                        match[2] = 1;
-                    } else if (match[2] == 'false') {
-                        match[2] = 0;
+                    if (match[2] == 'true' || match[2] == 'false') {
+                        paramType = 'checkbox';
+                        value = match[2] == 'true';
                     } else {
-                        match[2] = Number.parseFloat(match[2]);
-                    }
-                    if (Number.isNaN(match[2])) {
-                        return;
+                        value = Number.parseFloat(match[2]);
+                        if (Number.isNaN(value)) {
+                            return;
+                        }
+                        paramType = 'number';
                     }
                     params[match[1]] = {
-                        comment: match[3] ? match[3].replace(/^#\s+|\s+$/g, '') : null,
-                        value: match[2]
+                        comment: match[3],
+                        type: paramType,
+                        value: value
                     };
                 }
             });
@@ -113,23 +121,32 @@ BR.Profile = L.Evented.extend({
         var paramsSection = L.DomUtil.get('profile_params');
         paramsSection.innerHTML = '';
         Object.keys(params).forEach(function(param) {
-            var p = document.createElement('p');
+            var div = document.createElement('div');
             var label = document.createElement('label');
-            label.innerHTML = param;
             var input = document.createElement('input');
-            input.type = 'text';
-            input.value = params[param].value;
-            p.appendChild(label);
-            label.appendChild(input);
-            paramsSection.appendChild(label);
-            if (params[param].comment) {
-                var p = document.createElement('p');
-                p.innerHTML = params[param].comment;
-                paramsSection.append(p);
+            input.type = params[param].type;
+            if (input.type == 'checkbox') {
+                input.checked = params[param].value;
+                label.appendChild(input);
+                label.append(' ' + param);
+            } else {
+                input.value = params[param].value;
+                label.append(param + ' ');
+                label.appendChild(input);
             }
+            div.appendChild(label);
+            var small = document.createElement('small');
+            small.innerHTML = ' (' + params[param].comment + ')';
+            div.appendChild(small);
+            paramsSection.appendChild(div);
         });
 
         this.editor.setValue(profileText);
         this.editor.markClean();
+    },
+
+    _toggleAdvanced: function() {
+        L.DomUtil.get('profile_params_container').style.display = 'none';
+        L.DomUtil.get('profile_editor').style.display = 'flex';
     }
 });

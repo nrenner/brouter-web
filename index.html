@@ -646,37 +646,61 @@
                                 ><span data-i18n="sidebar.custom-profile.title">Custom profile</span>
                             </h1>
                             <form class="flexcolumn flexgrow">
-                                <div id="profile_params"></div>
-                                <textarea
-                                    class="form-control flexgrow"
-                                    id="profile_upload"
-                                    spellcheck="false"
-                                    wrap="off"
-                                    data-i18n="[placeholder]sidebar.profile.placeholder"
-                                    placeholder="Write your custom profile here."
-                                ></textarea>
-                                <div id="profile_message"></div>
-                                <div class="form-group" id="profile_buttons">
-                                    <button
-                                        id="upload"
-                                        type="button"
-                                        class="btn btn-primary btn-sm"
-                                        data-uploading-text="Uploading…"
-                                    >
-                                        <span class="fa fa-cloud-upload"></span>
-                                        <span data-i18n="sidebar.profile.upload">Upload</span>
-                                    </button>
-                                    <button id="clear" type="button" class="btn btn-secondary btn-sm">
-                                        <span class="fa fa-eraser"></span>
-                                        <span data-i18n="sidebar.profile.clear">Clear</span>
-                                    </button>
-                                    <a
-                                        href="https://brouter.de/brouter/costfunctions.html"
-                                        target="_blank"
-                                        class="btn btn-info btn-sm pull-right"
-                                        ><span class="fa fa-question"></span>
-                                        <span data-i18n="sidebar.profile.help">Help</span></a
-                                    >
+                                <div id="profile_params_container">
+                                    <div id="profile_params"></div>
+                                    <div class="form-group" id="profile_buttons">
+                                        <button
+                                            id="upload"
+                                            type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-uploading-text="Uploading…"
+                                        >
+                                            <span class="fa fa-cloud-upload"></span>
+                                            <span data-i18n="sidebar.profile.upload">Upload</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            class="btn btn-info btn-sm pull-right"
+                                            id="profile_advanced"
+                                        >
+                                            <span data-i18n="sidebar.profile.switch_advanced"
+                                                >Switch to advanced editor</span
+                                            >
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="profile_editor" class="flexcolumn flexgrow">
+                                    <textarea
+                                        class="form-control flexgrow"
+                                        id="profile_upload"
+                                        spellcheck="false"
+                                        wrap="off"
+                                        data-i18n="[placeholder]sidebar.profile.placeholder"
+                                        placeholder="Write your custom profile here."
+                                    ></textarea>
+                                    <div id="profile_message"></div>
+                                    <div class="form-group" id="profile_buttons">
+                                        <button
+                                            id="upload"
+                                            type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-uploading-text="Uploading…"
+                                        >
+                                            <span class="fa fa-cloud-upload"></span>
+                                            <span data-i18n="sidebar.profile.upload">Upload</span>
+                                        </button>
+                                        <button id="clear" type="button" class="btn btn-secondary btn-sm">
+                                            <span class="fa fa-eraser"></span>
+                                            <span data-i18n="sidebar.profile.clear">Clear</span>
+                                        </button>
+                                        <a
+                                            href="https://brouter.de/brouter/costfunctions.html"
+                                            target="_blank"
+                                            class="btn btn-info btn-sm pull-right"
+                                            ><span class="fa fa-question"></span>
+                                            <span data-i18n="sidebar.profile.help">Help</span></a
+                                        >
+                                    </div>
                                 </div>
                             </form>
                         </div>

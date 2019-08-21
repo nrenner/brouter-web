@@ -188,6 +188,10 @@ input#trackname:focus:invalid {
     cursor: auto;
 }
 
+#profile_editor {
+    display: none;
+}
+
 #profile_buttons {
     padding-top: 4px;
 }
