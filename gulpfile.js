@@ -25,6 +25,9 @@ var sort = require('gulp-sort');
 var scanner = require('i18next-scanner');
 var jsonConcat = require('gulp-json-concat');
 var rename = require('gulp-rename');
+var browserSync = require('browser-sync');
+
+const server = browserSync.create();
 
 var debug = false;
 
@@ -148,17 +151,37 @@ gulp.task('locales', function() {
     return gulp.src(paths.locales).pipe(gulp.dest(paths.dest + '/locales'));
 });
 
+gulp.task('serve', function() {
+    server.init({
+        server: {
+            baseDir: './'
+        }
+    });
+});
+
+gulp.task('reload', function(done) {
+    server.reload();
+    done();
+});
+
 gulp.task('watch', function() {
     debug = true;
-    var watcher = gulp.watch(paths.scripts, gulp.series('scripts'));
+    var watcher = gulp.watch(paths.scripts, gulp.series('scripts', 'reload'));
     watcher.on('change', function(event) {
         if (event.type === 'deleted') {
             delete cached.caches.scripts[event.path];
             remember.forget('scripts', event.path);
         }
     });
-    gulp.watch(paths.styles, gulp.series('styles'));
-    gulp.watch(paths.layersConfig, gulp.series('layers_config'));
+    gulp.watch(paths.styles, gulp.series('styles', 'reload'));
+    gulp.watch(paths.layersConfig, gulp.series('layers_config', 'reload'));
+    gulp.watch(
+        ['./index.html']
+            .concat(paths.images)
+            .concat(paths.fonts)
+            .concat(paths.locales),
+        gulp.series('reload')
+    );
 });
 
 // Print paths to console, for manually debugging the gulp build

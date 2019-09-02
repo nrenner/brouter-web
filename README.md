@@ -100,7 +100,7 @@ Requires [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/en/).
 
 ### Develop
 
-    yarn build watch
+    yarn serve
 
 ## License
 
