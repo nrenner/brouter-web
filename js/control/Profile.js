@@ -159,10 +159,19 @@ BR.Profile = L.Evented.extend({
                 return;
             }
             label.appendChild(input);
-            label.append(' ' + param);
+            var name = i18next.exists('profileParameters.' + param + '.name')
+                ? i18next.t('profileParameters.' + param + '.name')
+                : param;
+            label.append(' ' + name);
+
             div.appendChild(label);
+
             var small = document.createElement('small');
-            small.innerHTML = ' (' + params[param].description.replace(/^\s+|\s+$/g, '') + ')';
+            var description = i18next.exists('profileParameters.' + param + '.description')
+                ? i18next.t('profileParameters.' + param + '.description')
+                : params[param].description.replace(/^\s+|\s+$/g, '');
+            small.innerHTML = ' (' + description + ')';
+
             div.appendChild(small);
             paramsSection.appendChild(div);
         });
