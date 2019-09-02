@@ -10,7 +10,7 @@
         "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
         "test": "gulp",
         "prettier": "prettier --write '**/*'",
-        "watch": "gulp && gulp watch"
+        "serve": "gulp debug && gulp serve watch"
     },
     "husky": {
         "hooks": {
@@ -63,6 +63,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^8.1.0",
+        "browser-sync": "^2.26.7",
         "del": "^1.1.1",
         "gulp": "^4.0.2",
         "gulp-bump": "^2.7.0",
