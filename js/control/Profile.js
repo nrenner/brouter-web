@@ -92,26 +92,48 @@ BR.Profile = L.Evented.extend({
             return e.startsWith('global');
         });
         if (global) {
+            // Remove ---context:global line
             global = global[0].split('\n').slice(1);
+
             // Comment is mandatory
-            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*(.*)\s*$/;
+            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
             var params = {};
             global.forEach(function(item) {
                 var match = item.match(assignRegex);
                 var value;
                 if (match) {
-                    if (match[2] == 'true' || match[2] == 'false') {
-                        paramType = 'checkbox';
-                        value = match[2] == 'true';
-                    } else {
-                        value = Number.parseFloat(match[2]);
+                    var name = match[1];
+                    var value = match[2];
+                    var description = match[5];
+
+                    // Find out type
+                    var paramType = match[6];
+                    if (paramType.match(/\[.*\]/)) {
+                        console.log('TODO: ' + paramType); // TODO
+                        return;
+                    }
+
+                    // Type is missing, let's try to induce it from value
+                    if (!paramType) {
+                        if (value == 'true' || value == 'false') {
+                            paramType = 'boolean';
+                        } else {
+                            paramType = 'number';
+                        }
+                    }
+
+                    // Sanitize value according to type
+                    if (paramType == 'boolean') {
+                        value = value == 'true';
+                    } else if (paramType == 'number') {
+                        value = Number.parseFloat(value);
                         if (Number.isNaN(value)) {
                             return;
                         }
-                        paramType = 'number';
                     }
-                    params[match[1]] = {
-                        comment: match[3],
+
+                    params[name] = {
+                        description: description,
                         type: paramType,
                         value: value
                     };
@@ -124,19 +146,23 @@ BR.Profile = L.Evented.extend({
             var div = document.createElement('div');
             var label = document.createElement('label');
             var input = document.createElement('input');
-            input.type = params[param].type;
-            if (input.type == 'checkbox') {
-                input.checked = params[param].value;
-                label.appendChild(input);
-                label.append(' ' + param);
-            } else {
+
+            var paramType = params[param].type;
+            if (paramType == 'number') {
+                input.type = 'number';
                 input.value = params[param].value;
-                label.append(param + ' ');
-                label.appendChild(input);
+            } else if (paramType == 'boolean') {
+                input.type = 'checkbox';
+                input.checked = params[param].value;
+            } else {
+                // Unknown parameter type, skip it
+                return;
             }
+            label.appendChild(input);
+            label.append(' ' + param);
             div.appendChild(label);
             var small = document.createElement('small');
-            small.innerHTML = ' (' + params[param].comment + ')';
+            small.innerHTML = ' (' + params[param].description.replace(/^\s+|\s+$/g, '') + ')';
             div.appendChild(small);
             paramsSection.appendChild(div);
         });
