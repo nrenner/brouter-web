@@ -4,15 +4,15 @@ Web client (by [@nrenner](https://github.com/nrenner) and [contributors](https:/
 
 Instances:
 
--   [brouter.de/brouter-web](http://brouter.de/brouter-web/) _(provided by [@abrensch](https://github.com/abrensch))_
--   [brouter.damsy.net](http://brouter.damsy.net) _(provided by [@bagage](https://github.com/bagage))_
+-   [brouter.de/brouter-web](https://brouter.de/brouter-web/) _(provided by [@abrensch](https://github.com/abrensch))_
+-   [brouter.damsy.net](https://brouter.damsy.net) _(provided by [@bagage](https://github.com/bagage))_
 
 **This repository is only about the frontend**.
-For the server/backend, BRouter routing engine, Android app, profiles, brouter.de site, see:  
+For the server/backend, BRouter routing engine, Android app, profiles, [brouter.de](https://brouter.de) site, see:  
 https://github.com/abrensch/brouter
 
 More information:  
-http://brouter.de
+https://brouter.de
 
 ## Contact
 
@@ -35,16 +35,16 @@ As an alternative to the above online version, the standalone server of BRouter 
 
 ### Install BRouter (server with routing engine)
 
-1.  download and unzip latest [BRouter revision](http://brouter.de/brouter/revisions.html)  
+1.  download and unzip latest [BRouter revision](https://brouter.de/brouter/revisions.html)  
     e.g. for Linux (replace `~/opt/` with your preferred install directory and `1_4_11` with latest version):
 
             mkdir ~/opt/brouter
             cd ~/opt/brouter
-            wget http://brouter.de/brouter_bin/brouter_1_4_11.zip
+            wget https://brouter.de/brouter_bin/brouter_1_4_11.zip
             unzip brouter_1_4_11.zip
             chmod +x ./standalone/server.sh
 
-2.  download one or more [data file(s)](http://brouter.de/brouter/segments4/) (rd5) into `segments4` directory
+2.  download one or more [data file(s)](https://brouter.de/brouter/segments4/) (rd5) into `segments4` directory
 
 ### Install BRouter-Web (client)
 
@@ -77,7 +77,7 @@ As an alternative to the above online version, the standalone server of BRouter 
 
 1.  start BRouter server in the `standalone` directory with `./server.sh` or `server.cmd` (Windows)
 2.  serve the `brouter` directory for BRouter-Web  
-    This is needed for pre-loading the selected profile (unless you allowed local file access in the Browser). Depending on your setup (see [How to run things locally](https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally)), start a web server in the `brouter` directory, e.g.:
+    This is needed for pre-loading the selected profile (unless you allowed local file access in the Browser). Depending on your setup (see [How to run things locally](https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally)), start a web server in the `brouter` directory, e.g.:
 
             python -m SimpleHTTPServer
 
@@ -110,7 +110,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
 
 -   [BRouter](https://github.com/abrensch/brouter) (not included)  
     by abrensch; [GNU General Public License, version 3.0 (GPLv3)](https://github.com/abrensch/brouter/blob/master/LICENSE)
--   [Leaflet](http://leafletjs.com/)  
+-   [Leaflet](https://leafletjs.com/)  
     Copyright (c) 2010-2014, Vladimir Agafonkin; Copyright (c) 2010-2011, CloudMade; [2-clause BSD License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 -   [leaflet-routing](https://github.com/Turistforeningen/leaflet-routing)  
     Copyright (c) 2013, Turistforeningen, Hans Kristian Flaatten. All rights reserved. [2-clause BSD License](https://github.com/Turistforeningen/leaflet-routing/blob/gh-pages/LICENSE)
@@ -142,7 +142,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2012 Makina Corpus, [MIT License](https://github.com/makinacorpus/Leaflet.RestoreView/blob/master/LICENSE)
 -   [Leaflet.Locate](https://github.com/domoritz/leaflet-locatecontrol)  
     Copyright (c) 2014 Dominik Moritz, [MIT License](https://github.com/domoritz/leaflet-locatecontrol/blob/gh-pages/LICENSE)
--   [Font Awesome](http://fontawesome.io/license/)  
+-   [Font Awesome](https://fontawesome.com/v4.7.0/license/)  
     by Dave Gandy; [SIL OFL 1.1](https://scripts.sil.org/OFL) (Font), MIT License (Code), CC BY 3.0 (Documentation)
 -   [url-search-params](https://github.com/WebReflection/url-search-params)  
     Copyright (C) 2015-2017 Andrea Giammarchi - @WebReflection; [MIT License](https://github.com/WebReflection/url-search-params/blob/master/LICENSE.txt)

@@ -35,7 +35,7 @@ BR.Map = {
                 ' &middot; <a href="" data-toggle="modal" data-target="#credits">' +
                 i18next.t('map.copyright') +
                 '</a>' +
-                ' &middot; <a target="_blank" href="http://brouter.de/privacypolicy.html">' +
+                ' &middot; <a target="_blank" href="https://brouter.de/privacypolicy.html">' +
                 i18next.t('map.privacy') +
                 '</a>'
         );
