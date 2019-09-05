@@ -196,6 +196,7 @@
     "profile": {
       "clear": "Clear",
       "help": "Help",
+      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
       "placeholder": "Write your custom profile here.",
       "save": "Save",
       "switch_advanced": "Switch to advanced editor",

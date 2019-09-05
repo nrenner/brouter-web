@@ -190,6 +190,11 @@ BR.Profile = L.Evented.extend({
         }
         var paramsSection = L.DomUtil.get('profile_params');
         paramsSection.innerHTML = '';
+
+        if (!Object.keys(params).length) {
+            paramsSection.append(i18next.t('sidebar.profile.no_easy_configuration_warning'));
+        }
+
         Object.keys(params).forEach(function(param) {
             var div = document.createElement('div');
             var label = document.createElement('label');
