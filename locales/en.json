@@ -158,8 +158,8 @@
     }
   },
   "sidebar": {
-    "custom-profile": {
-      "title": "Custom profile"
+    "customize-profile": {
+      "title": "Customize profile"
     },
     "data": {
       "title": "Data"
@@ -197,6 +197,9 @@
       "clear": "Clear",
       "help": "Help",
       "placeholder": "Write your custom profile here.",
+      "save": "Save",
+      "switch_advanced": "Switch to advanced editor",
+      "switch_basic": "Switch to basic editor",
       "upload": "Upload"
     }
   },

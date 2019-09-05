@@ -554,8 +554,8 @@
                         <a
                             href="#tab_profile"
                             role="tab"
-                            data-i18n="[title]sidebar.custom-profile.title"
-                            title="Custom profile"
+                            data-i18n="[title]sidebar.customize-profile.title"
+                            title="Customize profile"
                             ><i class="fa fa-wrench"></i
                         ></a>
                     </li>
@@ -643,29 +643,21 @@
                             <h1 class="leaflet-sidebar-header">
                                 <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
                                 ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
-                                ><span data-i18n="sidebar.custom-profile.title">Custom profile</span>
+                                ><span data-i18n="sidebar.customize-profile.title">Customize profile</span>
                             </h1>
                             <form class="flexcolumn flexgrow">
                                 <div id="profile_params_container">
                                     <div id="profile_params"></div>
                                     <div class="form-group" id="profile_buttons">
-                                        <button
-                                            id="upload"
-                                            type="button"
-                                            class="btn btn-primary btn-sm"
-                                            data-uploading-text="Uploading…"
-                                        >
-                                            <span class="fa fa-cloud-upload"></span>
-                                            <span data-i18n="sidebar.profile.upload">Upload</span>
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="btn btn-info btn-sm pull-right"
-                                            id="profile_advanced"
-                                        >
+                                        <button type="button" class="btn btn-info btn-sm" id="profile_advanced">
                                             <span data-i18n="sidebar.profile.switch_advanced"
                                                 >Switch to advanced editor</span
                                             >
+                                        </button>
+
+                                        <button id="save" type="button" class="btn btn-primary btn-sm pull-right">
+                                            <span class="fa fa-cloud-upload"></span>
+                                            <span data-i18n="sidebar.profile.save">Save</span>
                                         </button>
                                     </div>
                                 </div>
@@ -700,6 +692,10 @@
                                             ><span class="fa fa-question"></span>
                                             <span data-i18n="sidebar.profile.help">Help</span></a
                                         >
+
+                                        <button type="button" class="btn btn-info btn-sm" id="profile_basic">
+                                            <span data-i18n="sidebar.profile.switch_basic">Switch to basic editor</span>
+                                        </button>
                                     </div>
                                 </div>
                             </form>

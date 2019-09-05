@@ -11,7 +11,11 @@ BR.Profile = L.Evented.extend({
         L.DomUtil.get('profile_advanced').addEventListener('click', function() {
             that._toggleAdvanced();
         });
+        L.DomUtil.get('profile_basic').addEventListener('click', function() {
+            that._toggleAdvanced();
+        });
 
+        L.DomUtil.get('save').onclick = L.bind(this._save, this);
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
 
@@ -87,7 +91,41 @@ BR.Profile = L.Evented.extend({
         });
     },
 
+    _save: function(evt) {
+        var profileText = this.cache[this.profileName];
+        document.querySelectorAll('#profile_params input, #profile_params select').forEach(function(input) {
+            var name = input.name;
+            var value;
+            if (input.type == 'checkbox') {
+                value = input.checked;
+            } else {
+                value = input.value;
+            }
+
+            var re = new RegExp(
+                '(assign\\s*' +
+                    name +
+                    '\\s*=?\\s*)([\\w.]*)(\\s*#\\s*%(.*)%\\s*(\\|\\s*(.*)\\s*\\|\\s*(.*)\\s*)?[\\r\\n])'
+            );
+            profileText = profileText.replace(re, function(match, p1, p2, p3) {
+                return p1 + value + p3;
+            });
+        });
+        this.fire('update', {
+            profileText: profileText,
+            callback: function() {}
+        });
+    },
+
     _setValue: function(profileText) {
+        if (L.DomUtil.get('profile_editor').style.display == 'flex') {
+            // Set value of the full editor and exit
+            this.editor.setValue(profileText);
+            this.editor.markClean();
+            return;
+        }
+
+        // Otherwise, create user friendly form
         var global = profileText.split('---context:').filter(function(e) {
             return e.startsWith('global');
         });
@@ -108,9 +146,18 @@ BR.Profile = L.Evented.extend({
 
                     // Find out type
                     var paramType = match[6];
+                    var paramValues = {};
                     if (paramType.match(/\[.*\]/)) {
-                        console.log('TODO: ' + paramType); // TODO
-                        return;
+                        paramType
+                            .slice(1, -1)
+                            .split(',')
+                            .forEach(function(option) {
+                                var splitOption = option.split('=');
+                                var value = (splitOption[0] || '').replace(/^\s+|\s+$/g, '');
+                                var description = (splitOption[1] || '').replace(/^\s+|\s+$/g, '');
+                                paramValues[value] = description;
+                            });
+                        paramType = 'select';
                     }
 
                     // Type is missing, let's try to induce it from value
@@ -135,7 +182,8 @@ BR.Profile = L.Evented.extend({
                     params[name] = {
                         description: description,
                         type: paramType,
-                        value: value
+                        value: value,
+                        possible_values: paramValues
                     };
                 }
             });
@@ -145,43 +193,74 @@ BR.Profile = L.Evented.extend({
         Object.keys(params).forEach(function(param) {
             var div = document.createElement('div');
             var label = document.createElement('label');
-            var input = document.createElement('input');
 
             var paramType = params[param].type;
-            if (paramType == 'number') {
-                input.type = 'number';
-                input.value = params[param].value;
-            } else if (paramType == 'boolean') {
-                input.type = 'checkbox';
-                input.checked = params[param].value;
-            } else {
-                // Unknown parameter type, skip it
-                return;
-            }
-            label.appendChild(input);
-            var name = i18next.exists('profileParameters.' + param + '.name')
+            var paramName = i18next.exists('profileParameters.' + param + '.name')
                 ? i18next.t('profileParameters.' + param + '.name')
                 : param;
-            label.append(' ' + name);
+            if (paramType == 'select') {
+                var select = document.createElement('select');
+                select.name = paramName;
+                select.className = 'form-control';
+                label.htmlFor = select.id = 'customize-profile-' + paramName;
 
-            div.appendChild(label);
+                var paramValues = params[param].possible_values;
+                Object.keys(paramValues).forEach(function(paramValue) {
+                    var option = document.createElement('option');
+                    option.value = paramValue;
+                    option.append(paramValues[paramValue]);
+                    select.appendChild(option);
+                });
 
-            var small = document.createElement('small');
+                label.append(paramName);
+                div.appendChild(label);
+                div.appendChild(select);
+            } else {
+                var input = document.createElement('input');
+                input.name = paramName;
+                label.htmlFor = input.id = 'customize-profile-' + paramName;
+                if (paramType == 'number') {
+                    input.type = 'number';
+                    input.value = params[param].value;
+                    input.className = 'form-control';
+
+                    label.append(paramName);
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    div.className = 'form-group';
+                } else if (paramType == 'boolean') {
+                    input.type = 'checkbox';
+                    input.checked = params[param].value;
+
+                    div.appendChild(input);
+                    label.append(paramName);
+                    div.appendChild(label);
+                } else {
+                    // Unknown parameter type, skip it
+                    return;
+                }
+            }
+
+            var helpBlock = document.createElement('p');
             var description = i18next.exists('profileParameters.' + param + '.description')
                 ? i18next.t('profileParameters.' + param + '.description')
                 : params[param].description.replace(/^\s+|\s+$/g, '');
-            small.innerHTML = ' (' + description + ')';
+            helpBlock.innerHTML = description;
+            helpBlock.className = 'help-block';
 
-            div.appendChild(small);
+            div.appendChild(helpBlock);
             paramsSection.appendChild(div);
         });
-
-        this.editor.setValue(profileText);
-        this.editor.markClean();
     },
 
     _toggleAdvanced: function() {
-        L.DomUtil.get('profile_params_container').style.display = 'none';
-        L.DomUtil.get('profile_editor').style.display = 'flex';
+        if (L.DomUtil.get('profile_editor').style.display == 'flex') {
+            L.DomUtil.get('profile_params_container').style.display = 'initial';
+            L.DomUtil.get('profile_editor').style.display = 'none';
+        } else {
+            L.DomUtil.get('profile_params_container').style.display = 'none';
+            L.DomUtil.get('profile_editor').style.display = 'flex';
+        }
+        this._setValue(this.cache[this.profileName]);
     }
 });
