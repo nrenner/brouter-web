@@ -1,29 +1,29 @@
 {
   "about": {
-    "bug-reports": "Relatórios de erros e pedidos de novas funcionalidades:",
+    "bug-reports": "Bug reports and feature requests:",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
-    "chat": "Chat with users and developers",
-    "contact": "Contacto:",
-    "data": "Dados:",
+    "chat": "Чат с пользователями и разработчиками",
+    "contact": "Contact:",
+    "data": "Данные:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated once a week when a new Planet file is available, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
+    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
-    "title": "Sobre"
+    "title": "О сервисе"
   },
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
-    "map-data": "Dados do mapa",
+    "map-data": "Данные карты",
     "map-tiles": "Map tiles",
     "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
   "export": {
-    "format": "Format",
+    "format": "Формат",
     "format_csv": "CSV",
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
@@ -38,17 +38,17 @@
   "footer": {
     "ascend": "Ascend",
     "cost": "Cost",
-    "distance": "Distance",
+    "distance": "Расстояние",
     "energy-per-100km": "Energy per 100 km",
     "hours": "hours",
     "hours-abbrev": "h",
-    "kilometer": "kilometers",
-    "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
-    "kilowatthour-abbrev": "kWh",
+    "kilometer": "километров",
+    "kilometer-abbrev": "км",
+    "kilowatthour": "киловатт-часы",
+    "kilowatthour-abbrev": "кВт⋅ч",
     "mean-cost-factor": "Mean cost factor",
-    "meter": "meters",
-    "meter-abbrev": "m",
+    "meter": "метры",
+    "meter-abbrev": "м",
     "plain-ascend": "Plain ascend",
     "total-energy": "Total Energy",
     "travel-time": "Travel time"
@@ -74,13 +74,13 @@
     "url": "URL: "
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-long": "Участники OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
     "copyright": "Copyright",
     "cycling": "Cycling",
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
-    "delete-route": "Delete route",
+    "delete-route": "Удалить маршрут",
     "delete-route-nogos": "Delete route and nogos",
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
@@ -101,7 +101,7 @@
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
+    "loading": "Загрузка...",
     "locate-me": "Show me where I am",
     "nogo": {
       "cancel": "Cancel drawing no-go area",
@@ -119,7 +119,7 @@
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"
+    "close": "Закрыть"
   },
   "navbar": {
     "about": "About",
@@ -129,7 +129,7 @@
       "second": "2nd alternative",
       "third": "3rd alternative"
     },
-    "export": "Export",
+    "export": "Экспорт",
     "load": {
       "nogos": "No-go areas",
       "title": "Load"
@@ -145,7 +145,7 @@
       "hiking-beta": "Hiking (beta)",
       "moped": "Moped",
       "rail": "Rail",
-      "river": "River",
+      "river": "Река",
       "safety": "Safety",
       "shortest": "Shortest",
       "trekking": "Trekking bike",
@@ -162,16 +162,16 @@
       "title": "Custom profile"
     },
     "data": {
-      "title": "Data"
+      "title": "Данные"
     },
     "itinerary": {
       "title": "Itinerary"
     },
     "layers": {
       "category": {
-        "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
+        "base-layers": "Базовые слои",
+        "country": "Страна",
+        "europe": "Европа",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
         "worldwide": "Worldwide",
@@ -181,21 +181,21 @@
       "collapse": "Collapse all",
       "custom-layers": "Custom layers",
       "customize": "Add or remove custom layers",
-      "expand": "Expand all",
-      "optional": "Add or remove optional layers",
-      "optional-layers": "More",
+      "expand": "Развернуть все",
+      "optional": "Добавить или удалить дополнительные слои",
+      "optional-layers": "Ещё",
       "overlay-opacity": "Overlay transparency",
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type"
+        "name": "Название",
+        "type": "Тип"
       },
-      "title": "Layers"
+      "title": "Слои"
     },
     "profile": {
       "clear": "Clear",
-      "help": "Help",
+      "help": "Справка",
       "placeholder": "Write your custom profile here.",
       "upload": "Upload"
     }
@@ -203,7 +203,7 @@
   "title": "BRouter web client",
   "warning": {
     "cannot-get-route": "Error getting route URL",
-    "no-response": "no response from server",
+    "no-response": "сервер не отвечает",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
     "profile-error": "Profile error: no or empty response from server",
     "strava-error": "Error getting Strava segments: {{error}}",
