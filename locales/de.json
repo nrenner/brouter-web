@@ -132,7 +132,8 @@
     "export": "Export",
     "load": {
       "nogos": "No-go-Areas",
-      "title": "Laden"
+      "title": "Laden",
+      "tracks": "Touren"
     },
     "profile": {
       "car-eco": "Auto (effizient)",
@@ -208,6 +209,7 @@
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
     "strava-error": "Fehler beim Laden der Strava Segmente: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
+    "tracks-load-error'": "Fehler beim Laden der Touren: {{error}}",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   }
 }

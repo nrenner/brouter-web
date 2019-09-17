@@ -271,6 +271,8 @@
             BR.stravaSegments(map, layersControl);
         }
 
+        BR.tracksLoader(map, layersControl);
+
         map.addControl(
             new BR.OpacitySliderControl({
                 id: 'route',
