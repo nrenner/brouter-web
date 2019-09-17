@@ -2,18 +2,18 @@ BR.tracksLoader = function(map, layersControl) {
     TracksLoader = L.Control.FileLayerLoad.extend({
         options: {
             layer: L.geoJson,
-            layerOptions: {style: {color:'blue'}},
+            layerOptions: { style: { color: 'blue' } },
             addToMap: false,
             // File size limit in kb (default: 1024) ?
-            fileSizeLimit: 1024,
+            fileSizeLimit: 1024
         },
 
-        _initContainer: function () {
+        _initContainer: function() {
             var thisLoader = this.loader;
-    
+
             var fileInput;
             var container = L.DomUtil.get('navbarLoadTracksContainer');
-    
+
             // Create an invisible file input
             fileInput = L.DomUtil.create('input', 'hidden', container);
             fileInput.type = 'file';
@@ -25,15 +25,19 @@ BR.tracksLoader = function(map, layersControl) {
             }
             fileInput.style.display = 'none';
             // Load on file change
-            fileInput.addEventListener('change', function () {
-                thisLoader.loadMultiple(this.files);
-                // reset so that the user can upload the same file again if they want to
-                this.value = '';
-            }, false);
-    
+            fileInput.addEventListener(
+                'change',
+                function() {
+                    thisLoader.loadMultiple(this.files);
+                    // reset so that the user can upload the same file again if they want to
+                    this.value = '';
+                },
+                false
+            );
+
             var link = L.DomUtil.get('navbarLoadTracks');
             L.DomEvent.disableClickPropagation(link);
-            L.DomEvent.on(link, 'click', function (e) {
+            L.DomEvent.on(link, 'click', function(e) {
                 fileInput.click();
                 e.preventDefault();
             });
@@ -44,13 +48,13 @@ BR.tracksLoader = function(map, layersControl) {
     var tracksLoaderControl = new TracksLoader();
     tracksLoaderControl.addTo(map);
 
-    tracksLoaderControl.loader.on('data:loaded', function (event) {
+    tracksLoaderControl.loader.on('data:loaded', function(event) {
         var layer = event.layer;
         layersControl.addOverlay(layer, event.filename);
         layer.addTo(map);
     });
 
-    tracksLoaderControl.loader.on('data:error', function (event) {
+    tracksLoaderControl.loader.on('data:error', function(event) {
         var err = event.error;
         BR.message.showError(
             i18next.t('warning.tracks-load-error', {
