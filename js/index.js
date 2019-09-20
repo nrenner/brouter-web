@@ -15,6 +15,28 @@
         }
     }
 
+    function displayWelcomePopup(map, search) {
+        if (BR.Util.localStorageAvailable()) {
+            var alreadyShown = localStorage.getItem('welcomePopupFub') == 1;
+            var isActive = new Date() < new Date(2019, 11, 1);
+            if (!alreadyShown && isActive) {
+                var nominatim = search.options.geocoder.options.next;
+                nominatim.reverse(map.getCenter(), map.getZoom(), function(result) {
+                    if (result && result[0] && result[0].name.indexOf('France') !== -1) {
+                        bootbox.confirm({
+                            title: 'Parlons vélo - enquête usagers',
+                            message:
+                                'Le Baromètre <i>Parlons vélo</i> des villes cyclables 2019 est en ligne. Du 9 septembre au 30 novembre, répondez massivement à l’enquête nationale de la FUB sur la cyclabilité des villes françaises.<br>Pour participer à l\'enquête, <a href="https://barometre.parlons-velo.fr/" target="_blank">cliquez ici.</a>',
+                            callback: function(result) {
+                                if (result) localStorage.setItem('welcomePopupFub', 1);
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
     function initApp(mapContext) {
         var map = mapContext.map,
             layersControl = mapContext.layersControl,
@@ -393,6 +415,8 @@
                     $(this).collapse('show');
                 }
             });
+
+        displayWelcomePopup(map, search);
     }
 
     i18next
