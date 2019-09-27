@@ -91,7 +91,7 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _save: function(evt) {
+    _buildCustomProfile: function() {
         var profileText = this.cache[this.profileName];
         document.querySelectorAll('#profile_params input, #profile_params select').forEach(function(input) {
             var name = input.name;
@@ -111,6 +111,11 @@ BR.Profile = L.Evented.extend({
                 return p1 + value + p3;
             });
         });
+        return profileText;
+    },
+
+    _save: function(evt) {
+        var profileText = this._buildCustomProfile();
         this.fire('update', {
             profileText: profileText,
             callback: function() {}
@@ -262,10 +267,11 @@ BR.Profile = L.Evented.extend({
         if (L.DomUtil.get('profile_editor').style.display == 'flex') {
             L.DomUtil.get('profile_params_container').style.display = 'initial';
             L.DomUtil.get('profile_editor').style.display = 'none';
+            this._setValue(this.editor.getValue());
         } else {
             L.DomUtil.get('profile_params_container').style.display = 'none';
             L.DomUtil.get('profile_editor').style.display = 'flex';
+            this._setValue(this._buildCustomProfile());
         }
-        this._setValue(this.cache[this.profileName]);
     }
 });
