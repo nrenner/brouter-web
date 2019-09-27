@@ -196,6 +196,7 @@ BR.TrackMessages = L.Class.extend({
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
         this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
+        this._map.panTo(this._selectedEdge.getBounds().getCenter());
     },
 
     _handleHoverOut: function(evt) {
