@@ -97,6 +97,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoor (Thunderforest)",
+      "route-quality": "Routenqualitätscodierung",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava Segmente",
       "topo": "OpenTopoMap"
@@ -113,6 +114,9 @@
     "opacity-slider": "Transparenz von Route und Markern anpassen",
     "privacy": "Datenschutz",
     "reverse-route": "Route umkehren",
+    "route-quality-altitude": "Höhencodierung",
+    "route-quality-cost": "Kostencodierung",
+    "route-quality-incline": "Steigungscodierung",
     "strava-biking": "Zeige Strava Radfahrsegmente",
     "strava-running": "Zeige Strava Läufersegmente",
     "zoomInTitle": "Hineinzoomen",

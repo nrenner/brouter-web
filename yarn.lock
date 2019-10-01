@@ -4453,6 +4453,11 @@ leaflet-filelayer@^1.2.0:
   resolved "https://registry.yarnpkg.com/leaflet-filelayer/-/leaflet-filelayer-1.2.0.tgz#9f822e68a06072b0b0a8f328ba9419ba96bbccb1"
   integrity sha512-H3HrOOM9bpkrRUacdnWISV0MKZXLBYsX24H4XV+55QbcGCvd9In6oPzANEnhsokHAwNWd9qP6GfiHEFCfn+qkA==
 
+leaflet-hotline@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet-hotline/-/leaflet-hotline-0.4.0.tgz#e01069836a9d2e2c78b1fa1db2013bd03c8ff8d9"
+  integrity sha1-4BBpg2qdLix4sfodsgE70DyP+Nk=
+
 leaflet-plugins@~3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.0.3.tgz#7c727ac79a37636b245dd1adc64e10c61b425864"

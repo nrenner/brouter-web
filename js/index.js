@@ -199,6 +199,8 @@
             requestUpdate: requestUpdate
         });
 
+        routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
+
         routing = new BR.Routing({
             routing: {
                 router: L.bind(router.getRouteSegment, router)
@@ -233,6 +235,7 @@
                 segmentsLayer = routing._segments;
 
             elevation.update(track, segmentsLayer);
+            routingPathQuality.update(track, segmentsLayer);
             if (BR.conf.transit) {
                 itinerary.update(track, segments);
             } else {
@@ -244,6 +247,7 @@
         }
 
         routing.addTo(map);
+        routingPathQuality.addTo(map);
         elevation.addBelow(map);
 
         sidebar = BR.sidebar({
