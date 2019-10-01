@@ -1,5 +1,7 @@
 BR.RoutingPathQuality = L.Control.extend({
-    initialize: function(map, layersControl) {
+    initialize: function(map, layersControl, options) {
+        L.setOptions(this, options);
+
         // hotline uses canvas and cannot be moved in front of the svg, so we create another pane
         map.createPane('routingQualityPane');
         map.getPane('routingQualityPane').style.zIndex = 450;
@@ -10,38 +12,6 @@ BR.RoutingPathQuality = L.Control.extend({
         layersControl.addOverlay(this._routingSegments, i18next.t('map.layer.route-quality'));
 
         this.providers = {
-            cost: {
-                title: i18next.t('map.route-quality-cost'),
-                icon: 'fa-usd',
-                provider: new HotlineProvider({
-                    hotlineOptions: {
-                        renderer: renderer
-                    },
-                    valueFunction: function(latLng) {
-                        let feature = latLng.feature;
-                        return (
-                            feature.cost.perKm +
-                            feature.cost.elev +
-                            feature.cost.turn +
-                            feature.cost.node +
-                            feature.cost.initial
-                        );
-                    }
-                })
-            },
-            altitude: {
-                title: i18next.t('map.route-quality-altitude'),
-                icon: 'fa-area-chart',
-                provider: new HotlineProvider({
-                    hotlineOptions: {
-                        renderer: renderer
-                    },
-                    valueFunction: function(latLng) {
-                        feature = latLng.feature;
-                        return latLng.alt;
-                    }
-                })
-            },
             incline: {
                 title: i18next.t('map.route-quality-incline'),
                 icon: 'fa-line-chart',
@@ -65,9 +35,41 @@ BR.RoutingPathQuality = L.Control.extend({
                         return (Math.atan(deltaAltitude / distance) * 180) / Math.PI;
                     }
                 })
+            },
+            altitude: {
+                title: i18next.t('map.route-quality-altitude'),
+                icon: 'fa-area-chart',
+                provider: new HotlineProvider({
+                    hotlineOptions: {
+                        renderer: renderer
+                    },
+                    valueFunction: function(latLng) {
+                        feature = latLng.feature;
+                        return latLng.alt;
+                    }
+                })
+            },
+            cost: {
+                title: i18next.t('map.route-quality-cost'),
+                icon: 'fa-usd',
+                provider: new HotlineProvider({
+                    hotlineOptions: {
+                        renderer: renderer
+                    },
+                    valueFunction: function(latLng) {
+                        let feature = latLng.feature;
+                        return (
+                            feature.cost.perKm +
+                            feature.cost.elev +
+                            feature.cost.turn +
+                            feature.cost.node +
+                            feature.cost.initial
+                        );
+                    }
+                })
             }
         };
-        this.selectedProvider = this.options.initialProvider || 'cost';
+        this.selectedProvider = this.options.initialProvider || 'incline';
     },
 
     onAdd: function(map) {
