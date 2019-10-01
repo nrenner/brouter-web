@@ -2,7 +2,7 @@ BR.tracksLoader = function(map, layersControl) {
     TracksLoader = L.Control.FileLayerLoad.extend({
         options: {
             layer: L.geoJson,
-            layerOptions: { style: { color: 'blue' } },
+            layerOptions: { style: { color: 'blue' }, interactive: false },
             addToMap: false,
             // File size limit in kb (default: 1024) ?
             fileSizeLimit: 1024
