@@ -371,7 +371,7 @@ BR.Routing = L.Routing.extend({
         this._removeDistanceMarkers();
 
         if (this._map) {
-            let distanceMarkersOpts = this.options.distanceMarkers || {};
+            var distanceMarkersOpts = this.options.distanceMarkers || {};
             this._distanceMarkers = new L.DistanceMarkers(this.toPolyline(), this._map, distanceMarkersOpts);
             this._map.addLayer(this._distanceMarkers);
         }

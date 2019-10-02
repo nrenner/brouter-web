@@ -110,7 +110,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
             l = keys.length;
 
         for (i = 0; i < l; ++i) {
-            let zoomLayer = this._zoomLayers[keys[i]];
+            var zoomLayer = this._zoomLayers[keys[i]];
             zoomLayer.eachLayer(function(layer) {
                 layer.setOpacity(opacity);
             });
@@ -118,8 +118,8 @@ L.DistanceMarkers = L.LayerGroup.extend({
     },
 
     _minimumZoomLevelForItem: function(item, showAllLevel) {
-        var zoom = showAllLevel;
-        var i = item;
+        var zoom = showAllLevel,
+            i = item;
         while (i > 0 && i % 2 === 0) {
             --zoom;
             i = Math.floor(i / 2);
