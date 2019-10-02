@@ -49,9 +49,9 @@ BR.tracksLoader = function(map, layersControl, routing) {
     tracksLoaderControl.addTo(map);
 
     tracksLoaderControl.loader.on('data:loaded', function(event) {
-        var eventLayer = event.layer;
-        let routingMarkers = [];
-        for (let layerIdx = 0; layerIdx < eventLayer.getLayers().length; layerIdx++) {
+        var eventLayer = event.layer,
+            routingMarkers = [];
+        for (var layerIdx = 0; layerIdx < eventLayer.getLayers().length; layerIdx++) {
             const layer = eventLayer.getLayers()[layerIdx];
             if (layer.feature && layer.feature.properties && layer.feature.properties.type) {
                 const layerType = layer.feature.properties.type;
