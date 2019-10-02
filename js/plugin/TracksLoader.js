@@ -1,4 +1,4 @@
-BR.tracksLoader = function(map, layersControl) {
+BR.tracksLoader = function(map, layersControl, routing) {
     TracksLoader = L.Control.FileLayerLoad.extend({
         options: {
             layer: L.geoJson,
@@ -49,9 +49,29 @@ BR.tracksLoader = function(map, layersControl) {
     tracksLoaderControl.addTo(map);
 
     tracksLoaderControl.loader.on('data:loaded', function(event) {
-        var layer = event.layer;
-        layersControl.addOverlay(layer, event.filename);
-        layer.addTo(map);
+        var eventLayer = event.layer;
+        let routingMarkers = [];
+        for (let layerIdx = 0; layerIdx < eventLayer.getLayers().length; layerIdx++) {
+            const layer = eventLayer.getLayers()[layerIdx];
+            if (layer.feature && layer.feature.properties && layer.feature.properties.type) {
+                const layerType = layer.feature.properties.type;
+                if (layerType === 'from' || layerType === 'via' || layerType === 'to') {
+                    routingMarkers.push(layer.getLatLng());
+                }
+            }
+        }
+        if (routingMarkers.length > 0) {
+            routing.setWaypoints(routingMarkers, function(event) {
+                var err = event.error;
+                BR.message.showError(
+                    i18next.t('warning.tracks-load-error', {
+                        error: err && err.message ? err.message : err
+                    })
+                );
+            });
+        }
+        layersControl.addOverlay(eventLayer, event.filename);
+        eventLayer.addTo(map);
     });
 
     tracksLoaderControl.loader.on('data:error', function(event) {
