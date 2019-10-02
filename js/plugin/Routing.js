@@ -245,6 +245,7 @@ BR.Routing = L.Routing.extend({
         this._waypoints._last = null;
         this._waypoints.clearLayers();
         this._segments.clearLayers();
+        this._removeDistanceMarkers();
 
         if (drawEnabled) {
             this.draw(true);
