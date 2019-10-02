@@ -4430,6 +4430,13 @@ leaflet-elevation@nrenner/Leaflet.Elevation#dev:
   version "0.0.4"
   resolved "https://codeload.github.com/nrenner/Leaflet.Elevation/tar.gz/9ae6a3caef5f01abb3e55e05376df2e0046f7449"
 
+leaflet-geometryutil@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.9.1.tgz#1dd379d7923a8a625266181c1983910a8e8dfc02"
+  integrity sha512-DKYLzFBsEcmZSl1fXLM+Pd+7t5IHmY6Ps7XeSnWL1ngr1qxQfcVzhkJT9gxfZrmFWiL96c23xQ0aLcHocV2tVA==
+  dependencies:
+    leaflet ">=0.7.0"
+
 leaflet-plugins@~3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.0.3.tgz#7c727ac79a37636b245dd1adc64e10c61b425864"
@@ -4473,6 +4480,11 @@ leaflet.stravasegments@2.3.2:
     leaflet "^1.3.4"
     leaflet-easybutton "^2.3.0"
     leaflet-triangle-marker "^1.0.1"
+
+leaflet@>=0.7.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.5.1.tgz#9afb9d963d66c870066b1342e7a06f92840f46bf"
+  integrity sha512-ekM9KAeG99tYisNBg0IzEywAlp0hYI5XRipsqRXyRTeuU8jcuntilpp+eFf5gaE0xubc9RuSNIVtByEKwqFV0w==
 
 leaflet@^1.0.1, leaflet@^1.3.4, leaflet@~1.4.0:
   version "1.4.0"

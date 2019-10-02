@@ -180,3 +180,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-2016 GitHub, Inc.; [MIT License](https://github.com/github/fetch/blob/master/LICENSE)
 -   [Promise Polyfill](https://github.com/taylorhakes/promise-polyfill)  
     Copyright (c) 2014 Taylor Hakes, Copyright (c) 2014 Forbes Lindesay; [MIT License](https://github.com/taylorhakes/promise-polyfill/blob/master/LICENSE)
+-   [Leaflet.GeometryUtil](https://github.com/makinacorpus/Leaflet.GeometryUtil)  
+    Copyright (c) 2013, Makina Corpus; [BSD 3-Clause License](https://github.com/makinacorpus/Leaflet.GeometryUtil/blob/master/LICENSE)
+-   [leaflet-distance-markers](https://github.com/adoroszlai/leaflet-distance-markers)  
+    Copyright (c) 2014- Doroszlai Attila, 2016- Phil Whitehurst; [MIT License](https://github.com/adoroszlai/leaflet-distance-markers/blob/master/LICENSE.md)
