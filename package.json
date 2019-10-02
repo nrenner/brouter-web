@@ -10,7 +10,7 @@
         "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
         "test": "gulp",
         "prettier": "prettier --write '**/*'",
-        "serve": "gulp debug && gulp serve watch"
+        "serve": "gulp serve watch"
     },
     "husky": {
         "hooks": {
