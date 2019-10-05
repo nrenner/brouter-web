@@ -52,9 +52,9 @@ BR.tracksLoader = function(map, layersControl, routing) {
         var eventLayer = event.layer,
             routingMarkers = [];
         for (var layerIdx = 0; layerIdx < eventLayer.getLayers().length; layerIdx++) {
-            const layer = eventLayer.getLayers()[layerIdx];
+            var layer = eventLayer.getLayers()[layerIdx];
             if (layer.feature && layer.feature.properties && layer.feature.properties.type) {
-                const layerType = layer.feature.properties.type;
+                var layerType = layer.feature.properties.type;
                 if (layerType === 'from' || layerType === 'via' || layerType === 'to') {
                     routingMarkers.push(layer.getLatLng());
                 }
