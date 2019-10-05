@@ -151,14 +151,6 @@ gulp.task('locales', function() {
     return gulp.src(paths.locales).pipe(gulp.dest(paths.dest + '/locales'));
 });
 
-gulp.task('serve', function() {
-    server.init({
-        server: {
-            baseDir: './'
-        }
-    });
-});
-
 gulp.task('reload', function(done) {
     server.reload();
     done();
@@ -334,6 +326,17 @@ gulp.task(
     }, 'default')
 );
 
+gulp.task(
+    'serve',
+    gulp.series('debug', function(cb) {
+        server.init({
+            server: {
+                baseDir: './'
+            }
+        });
+        cb();
+    })
+);
 gulp.task('release:zip', function() {
     gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
     return gulp
