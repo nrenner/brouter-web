@@ -10,7 +10,7 @@ BR.confLayers.defaultBaseLayers = [
 // worldwide monolingual layers to add as default when browser language matches
 BR.confLayers.languageDefaultLayers = [
     'osm-mapnik-german_style',
-    'osmfr',
+    'cyclosm',
     '1021' // sputnik.ru
 ];
 

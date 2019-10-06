@@ -227,6 +227,11 @@ BR.confLayers.getPropertyOverrides = function() {
         'mapaszlakow-routes': {
             'nameShort': 'Routes PL',
             'mapUrl': 'http://mapaszlakow.eu/#{zoom}/{lat}/{lon}'
-        }
+        },
+        'cyclosm': {
+            'language_code': 'fr',
+            'nameShort': 'CyclOSM',
+            'mapUrl': 'https://dev.{s}.tile.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png'
+        },
     };
 };
