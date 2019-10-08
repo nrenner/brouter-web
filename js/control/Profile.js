@@ -40,8 +40,8 @@ BR.Profile = L.Evented.extend({
             empty = !this.editor.getValue(),
             clean = this.editor.isClean();
 
-        this.profileName = profileName;
         if (profileName && BR.conf.profilesUrl && (empty || clean)) {
+            this.profileName = profileName;
             if (!(profileName in this.cache)) {
                 profileUrl = BR.conf.profilesUrl + profileName + '.brf';
                 BR.Util.get(
