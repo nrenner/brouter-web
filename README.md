@@ -180,3 +180,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-2016 GitHub, Inc.; [MIT License](https://github.com/github/fetch/blob/master/LICENSE)
 -   [Promise Polyfill](https://github.com/taylorhakes/promise-polyfill)  
     Copyright (c) 2014 Taylor Hakes, Copyright (c) 2014 Forbes Lindesay; [MIT License](https://github.com/taylorhakes/promise-polyfill/blob/master/LICENSE)
+-   [Leaflet.FileLayer](https://github.com/makinacorpus/Leaflet.FileLayer)  
+    Copyright (c) 2012 Makina Corpus; [MIT License](https://github.com/makinacorpus/Leaflet.FileLayer/blob/master/LICENSE)
+-   [togeojson](https://github.com/mapbox/togeojson)  
+    Copyright (c) 2016 Mapbox All rights reserved.; [2-clause BSD License](https://github.com/mapbox/togeojson/blob/master/LICENSE)
