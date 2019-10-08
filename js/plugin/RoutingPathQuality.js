@@ -15,7 +15,7 @@ BR.RoutingPathQuality = L.Control.extend({
             incline: {
                 title: i18next.t('map.route-quality-incline'),
                 icon: 'fa-line-chart',
-                provider: new HotlineProvider({
+                provider: new HotLineQualityProvider({
                     hotlineOptions: {
                         min: -15,
                         max: 15,
@@ -27,7 +27,7 @@ BR.RoutingPathQuality = L.Control.extend({
                         renderer: renderer
                     },
                     valueFunction: function(latLng, prevLatLng) {
-                        var deltaAltitude = latLng.alt - prevLatLng.alt, // in m
+                        const deltaAltitude = latLng.alt - prevLatLng.alt, // in m
                             distance = prevLatLng.distanceTo(latLng); // in m
                         if (distance === 0) {
                             return 0;
@@ -39,12 +39,11 @@ BR.RoutingPathQuality = L.Control.extend({
             altitude: {
                 title: i18next.t('map.route-quality-altitude'),
                 icon: 'fa-area-chart',
-                provider: new HotlineProvider({
+                provider: new HotLineQualityProvider({
                     hotlineOptions: {
                         renderer: renderer
                     },
                     valueFunction: function(latLng) {
-                        feature = latLng.feature;
                         return latLng.alt;
                     }
                 })
@@ -52,12 +51,12 @@ BR.RoutingPathQuality = L.Control.extend({
             cost: {
                 title: i18next.t('map.route-quality-cost'),
                 icon: 'fa-usd',
-                provider: new HotlineProvider({
+                provider: new HotLineQualityProvider({
                     hotlineOptions: {
                         renderer: renderer
                     },
                     valueFunction: function(latLng) {
-                        let feature = latLng.feature;
+                        const feature = latLng.feature;
                         return (
                             feature.cost.perKm +
                             feature.cost.elev +
@@ -77,14 +76,14 @@ BR.RoutingPathQuality = L.Control.extend({
         this._map = map;
         this._routingSegments.addTo(map);
 
-        let states = [];
-        var i,
+        var states = [],
+            i,
             keys = Object.keys(this.providers),
             l = keys.length;
 
         for (i = 0; i < l; ++i) {
-            let provider = this.providers[keys[i]];
-            let nextState = keys[(i + 1) % l];
+            const provider = this.providers[keys[i]];
+            const nextState = keys[(i + 1) % l];
             states.push({
                 stateName: keys[i],
                 icon: provider.icon,
@@ -119,56 +118,56 @@ BR.RoutingPathQuality = L.Control.extend({
 
     _update: function(segments) {
         this._routingSegments.clearLayers();
-        let layers = this.providers[this.selectedProvider].provider.computeLayers(segments);
+        const layers = this.providers[this.selectedProvider].provider.computeLayers(segments);
         if (layers) {
-            for (let i = 0; i < layers.length; i++) {
+            for (var i = 0; i < layers.length; i++) {
                 this._routingSegments.addLayer(layers[i]);
             }
         }
     }
 });
 
-class HotlineProvider {
-    constructor(options) {
+var HotLineQualityProvider = L.Class.extend({
+    initialize: function(options) {
         this.hotlineOptions = options.hotlineOptions;
         this.valueFunction = options.valueFunction;
-    }
+    },
 
-    computeLayers(segments) {
-        let layers = [];
+    computeLayers: function(segments) {
+        var layers = [];
         if (segments) {
-            let segmentLatLngs = [];
-            for (let i = 0; segments && i < segments.length; i++) {
-                let segment = segments[i];
+            var segmentLatLngs = [];
+            for (var i = 0; segments && i < segments.length; i++) {
+                const segment = segments[i];
                 segmentLatLngs.push(this._computeLatLngVals(segment));
             }
-            let flatLines = segmentLatLngs.flat();
+            const flatLines = segmentLatLngs.flat();
 
             if (flatLines.length > 0) {
-                let hotlineOptions = Object.assign(new Object(), this.hotlineOptions);
+                const hotlineOptions = Object.assign(new Object(), this.hotlineOptions);
                 if (!hotlineOptions.min && !hotlineOptions.max) {
-                    let minMax = this._calcMinMaxValues(flatLines);
+                    const minMax = this._calcMinMaxValues(flatLines);
                     hotlineOptions.min = minMax.min;
                     hotlineOptions.max = minMax.max;
                 }
 
-                for (let i = 0; i < segmentLatLngs.length; i++) {
+                for (var i = 0; i < segmentLatLngs.length; i++) {
                     const line = segmentLatLngs[i];
-                    let hotline = L.hotline(line, hotlineOptions);
+                    const hotline = L.hotline(line, hotlineOptions);
                     layers.push(hotline);
                 }
             }
         }
         return layers;
-    }
+    },
 
-    _computeLatLngVals(segment) {
-        let latLngVals = [],
+    _computeLatLngVals: function(segment) {
+        var latLngVals = [],
             segmentLatLngs = segment.getLatLngs(),
             segmentLength = segmentLatLngs.length;
 
-        for (let i = 0; i < segmentLength; i++) {
-            var val = this.valueFunction.call(
+        for (var i = 0; i < segmentLength; i++) {
+            const val = this.valueFunction.call(
                 this,
                 segmentLatLngs[i],
                 segmentLatLngs[Math.max(i - 1, 0)],
@@ -178,17 +177,17 @@ class HotlineProvider {
             latLngVals.push(this._convertToArray(segmentLatLngs[i], val));
         }
         return latLngVals;
-    }
+    },
 
-    _convertToArray(latLng, val) {
+    _convertToArray: function(latLng, val) {
         return [latLng.lat, latLng.lng, val];
-    }
+    },
 
-    _calcMinMaxValues(lines) {
-        let min = lines[0][2],
+    _calcMinMaxValues: function(lines) {
+        var min = lines[0][2],
             max = min;
-        for (let i = 1; lines && i < lines.length; i++) {
-            let line = lines[i];
+        for (var i = 1; lines && i < lines.length; i++) {
+            const line = lines[i];
             max = Math.max(max, line[2]);
             min = Math.min(min, line[2]);
         }
@@ -200,4 +199,4 @@ class HotlineProvider {
             max: max
         };
     }
-}
+});
