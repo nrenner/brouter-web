@@ -82,11 +82,15 @@ BR.Profile = L.Evented.extend({
         $(button).button('uploading');
         evt.preventDefault();
 
+        var that = this;
         this.fire('update', {
             profileText: profile,
-            callback: function() {
+            callback: function(err, profileId, profileText) {
                 $(button).button('reset');
                 $(button).blur();
+                if (!err) {
+                    that.cache[profileId] = profileText;
+                }
             }
         });
     },
@@ -116,9 +120,14 @@ BR.Profile = L.Evented.extend({
 
     _save: function(evt) {
         var profileText = this._buildCustomProfile();
+        var that = this;
         this.fire('update', {
             profileText: profileText,
-            callback: function() {}
+            callback: function(err, profileId, profileText) {
+                if (!err) {
+                    that.cache[profileId] = profileText;
+                }
+            }
         });
     },
 
