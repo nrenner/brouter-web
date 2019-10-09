@@ -165,6 +165,7 @@ gulp.task('watch', function() {
             remember.forget('scripts', event.path);
         }
     });
+    gulp.watch(paths.locales, gulp.series('locales', 'reload'));
     gulp.watch(paths.styles, gulp.series('styles', 'reload'));
     gulp.watch(paths.layersConfig, gulp.series('layers_config', 'reload'));
     gulp.watch(
