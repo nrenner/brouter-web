@@ -47,7 +47,11 @@ BR.LayersTab = BR.ControlLayers.extend({
                     if (!self._layers[i].overlay || !map.hasLayer(self._layers[i].layer)) {
                         continue;
                     }
-                    self._layers[i].layer.setOpacity(opacity);
+                    if (self._layers[i].layer.setOpacity) {
+                        self._layers[i].layer.setOpacity(opacity);
+                    } else {
+                        self._layers[i].layer.setStyle({ opacity: opacity });
+                    }
                 }
             }
         });
