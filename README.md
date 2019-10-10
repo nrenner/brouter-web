@@ -184,3 +184,5 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2012 Makina Corpus; [MIT License](https://github.com/makinacorpus/Leaflet.FileLayer/blob/master/LICENSE)
 -   [togeojson](https://github.com/mapbox/togeojson)  
     Copyright (c) 2016 Mapbox All rights reserved.; [2-clause BSD License](https://github.com/mapbox/togeojson/blob/master/LICENSE)
+-   [Leaflet.hotline](https://github.com/iosphere/Leaflet.hotline)  
+    Copyright (c) 2015, iosphere GmbH, Jonas Coch; [Leaflet.hotline](https://github.com/iosphere/Leaflet.hotline/blob/master/LICENSE)

@@ -154,7 +154,7 @@ L.BRouter = L.Class.extend({
 
             try {
                 geojson = JSON.parse(xhr.responseText);
-                layer = L.geoJSON(geojson).getLayers()[0];
+                layer = this._assignFeatures(L.geoJSON(geojson).getLayers()[0]);
 
                 return cb(null, layer);
             } catch (e) {
@@ -188,6 +188,55 @@ L.BRouter = L.Class.extend({
 
         // send profile text only, as text/plain;charset=UTF-8
         xhr.send(profileText);
+    },
+
+    _assignFeatures: function(segment) {
+        if (segment.feature.properties.messages) {
+            const featureMessages = segment.feature.properties.messages,
+                segmentLatLngs = segment.getLatLngs(),
+                segmentLength = segmentLatLngs.length;
+            var featureSegmentIndex = 0;
+
+            for (var mi = 1; mi < featureMessages.length; mi++) {
+                const featureLatLng = this._getFeatureLatLng(featureMessages[mi]);
+
+                for (var fi = featureSegmentIndex; fi < segmentLength; fi++) {
+                    const segmentLatLng = segmentLatLngs[fi],
+                        featureMessage = featureMessages[mi];
+
+                    segmentLatLng.feature = this._getFeature(featureMessage);
+                    segmentLatLng.message = featureMessage;
+
+                    if (featureLatLng.equals(segmentLatLngs[fi])) {
+                        featureSegmentIndex = fi + 1;
+                        break;
+                    }
+                }
+            }
+        }
+        return segment;
+    },
+
+    _getFeature: function(featureMessage) {
+        //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
+        return {
+            cost: {
+                perKm: parseInt(featureMessage[4]),
+                elev: parseInt(featureMessage[5]),
+                turn: parseInt(featureMessage[6]),
+                node: parseInt(featureMessage[7]),
+                initial: parseInt(featureMessage[8])
+            },
+            wayTags: featureMessage[9],
+            nodeTags: featureMessage[10]
+        };
+    },
+
+    _getFeatureLatLng: function(message) {
+        var lon = message[0] / 1000000,
+            lat = message[1] / 1000000;
+
+        return L.latLng(lat, lon);
     },
 
     _handleProfileResponse: function(xhr, cb) {

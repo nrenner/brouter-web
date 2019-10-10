@@ -48,6 +48,7 @@
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
         "leaflet-elevation": "nrenner/Leaflet.Elevation#dev",
+        "leaflet-hotline": "^0.4.0",
         "leaflet-filelayer": "^1.2.0",
         "leaflet-plugins": "~3.0.0",
         "leaflet-providers": "^1.5.0",
