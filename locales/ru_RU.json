@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "Участники OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Clear route data",
     "copyright": "Copyright",
     "cycling": "Cycling",
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
+    "delete-pois": "Delete all points of interest",
     "delete-route": "Удалить маршрут",
-    "delete-route-nogos": "Delete route and nogos",
+    "draw-poi-start": "Draw points of interest (P key)",
+    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
+    "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
     "layer": {
@@ -97,6 +101,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
+      "route-quality": "Route quality coding",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
@@ -113,6 +118,9 @@
     "opacity-slider": "Set transparency of route track and markers",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
+    "route-quality-altitude": "Altitude coding",
+    "route-quality-cost": "Cost coding",
+    "route-quality-incline": "Incline coding",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "zoomInTitle": "Zoom in",
@@ -132,7 +140,8 @@
     "export": "Экспорт",
     "load": {
       "nogos": "No-go areas",
-      "title": "Load"
+      "title": "Load",
+      "tracks": "Tracks"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -208,6 +217,7 @@
     "profile-error": "Profile error: no or empty response from server",
     "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
+    "tracks-load-error": "Error loading tracks: {{error}}",
     "upload-error": "Upload error: {{error}}"
   }
 }

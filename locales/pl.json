@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "Współtwórcy OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Clear route data",
     "copyright": "Prawa autorskie",
     "cycling": "Kolarstwo",
     "delete-last-point": "Usuń ostatni punkt",
     "delete-nogo-areas": "Usuń wszystkie strefy no-go",
+    "delete-pois": "Delete all points of interest",
     "delete-route": "Usunąć trasę?",
-    "delete-route-nogos": "Usuń trasę i strefy no-go",
+    "draw-poi-start": "Draw points of interest (P key)",
+    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
     "draw-route-start": "Rysuj trasę (klawisz D)",
     "draw-route-stop": "Przestań rysować trasę (klawisz Esc)",
+    "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Cieniowanie",
     "hiking": "Wspinaczka",
     "layer": {
@@ -97,6 +101,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Na zewnątrz (Thunderforest)",
+      "route-quality": "Route quality coding",
       "stamen-terrain": "Teren (Stamen)",
       "strava-segments": "Segmenty Strava",
       "topo": "OpenTopoMap"
@@ -113,6 +118,9 @@
     "opacity-slider": "Ustaw przezroczystość trasy i znaczników",
     "privacy": "Prywatność",
     "reverse-route": "Odwróć trasę",
+    "route-quality-altitude": "Altitude coding",
+    "route-quality-cost": "Cost coding",
+    "route-quality-incline": "Incline coding",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
     "zoomInTitle": "Przybliż",
@@ -132,7 +140,8 @@
     "export": "Eksportuj",
     "load": {
       "nogos": "Stefy no-go",
-      "title": "Wczytaj"
+      "title": "Wczytaj",
+      "tracks": "Tracks"
     },
     "profile": {
       "car-eco": "Samochód (ekonomicznie)",
@@ -208,6 +217,7 @@
     "profile-error": "Błąd profilu: brak lub pusta odpowiedź z serwera",
     "strava-error": "Błąd pobierania segmentów Strava: {{error}}",
     "temporary-profile": "<strong>Uwaga:</strong> Przesłane własne profile są zapisywane na serwerze tylko tymczasowo.<br/>Zapisz zmiany na swoim komputerze.",
+    "tracks-load-error": "Error loading tracks: {{error}}",
     "upload-error": "Błąd przesyłania: {{error}}"
   }
 }

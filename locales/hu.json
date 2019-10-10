@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "OpenStreetMap közreműködők",
     "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Clear route data",
     "copyright": "Szerzői jogok",
     "cycling": "Kerékpározás",
     "delete-last-point": "Utolsó pont törlése",
     "delete-nogo-areas": "Minden elkerülendő terület törlése",
+    "delete-pois": "Delete all points of interest",
     "delete-route": "Útvonal törlése",
-    "delete-route-nogos": "Útvonal és elkerülendő területek törlése",
+    "draw-poi-start": "Draw points of interest (P key)",
+    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
     "draw-route-start": "Útvonal rajzolása (D billentyű)",
     "draw-route-stop": "Útvonal rajzolásának megszakítása (ESC billentyű)",
+    "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Domborzatárnyékolás",
     "hiking": "Túrázás",
     "layer": {
@@ -97,6 +101,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
+      "route-quality": "Route quality coding",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava útvonalszakaszok",
       "topo": "OpenTopoMap"
@@ -113,6 +118,9 @@
     "opacity-slider": "Nyomvonal és jelölők átlátszóságának beállítása",
     "privacy": "Adatvédelem",
     "reverse-route": "Útvonal megfordítása",
+    "route-quality-altitude": "Altitude coding",
+    "route-quality-cost": "Cost coding",
+    "route-quality-incline": "Incline coding",
     "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
     "strava-running": "Strava futó útvonalszakaszok megjelenítése",
     "zoomInTitle": "Nagyítás",
@@ -132,7 +140,8 @@
     "export": "Exportálás",
     "load": {
       "nogos": "Elkerülendő területek",
-      "title": "Betöltés"
+      "title": "Betöltés",
+      "tracks": "Tracks"
     },
     "profile": {
       "car-eco": "Személyautó (gazdaságos)",
@@ -208,6 +217,7 @@
     "profile-error": "Profilhiba: a kiszolgáló nem válaszol vagy üres választ küld",
     "strava-error": "Hiba történt a Strava útvonalszakaszok lekérésénél: {{error}}",
     "temporary-profile": "<strong>Figyelem:</strong> A kiszolgáló csak ideiglenesen gyorsítótárazza a feltöltött egyedi profilokat.<br/>Kérjük, szerkesztéseit mentse el saját számítógépére.",
+    "tracks-load-error": "Error loading tracks: {{error}}",
     "upload-error": "Feltöltési hiba: {{error}}"
   }
 }

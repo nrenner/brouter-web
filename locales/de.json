@@ -28,8 +28,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Include",
-    "include_waypoints": "Waypoints",
+    "include": "Einbeziehen",
+    "include_waypoints": "Wegpunkte",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
     "title": "Route exportieren",
@@ -57,18 +57,18 @@
     "add-base": "Basisebene hinzufügen",
     "add-overlay": "Overlay hinzufügen",
     "customize": "Ebenen anpassen",
-    "opacity-slider": "Opacity slider",
+    "opacity-slider": "Regler für Deckkraft",
     "placeholder-layer-name": "angepasster Ebenenname (Bsp: OpenStreetMap)",
     "placeholder-layer-url": "angepasste Ebenen-URL (Bsp: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Auswahl entfernen"
   },
   "loadNogos": {
     "defaultProperties": "Standardeigenschaften",
-    "file": "File (.geojson): ",
+    "file": "Datei (.geojson):",
     "load": "Laden",
     "nogoBuffer": "Puffer um No-go-Areas (in Metern):",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go weight (-1 means impassable): ",
+    "nogoRadius": "No-go Radius für Punkte (in Meter):",
+    "nogoWeight": "No-go Gewichtung (-1 bedeutet unpassierbar):",
     "source": "Quelle",
     "title": "No-go-Areas laden",
     "url": "URL:"
@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "OpenStreetMap-Mitwirkende",
     "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Clear route data",
     "copyright": "Copyright",
     "cycling": "Radfahren",
     "delete-last-point": "Letzten Punkt löschen",
-    "delete-nogo-areas": "Delete all no-go areas",
-    "delete-route": "Delete route",
-    "delete-route-nogos": "Delete route and nogos",
+    "delete-nogo-areas": "Lösche alle No-go Areas",
+    "delete-pois": "Delete all points of interest",
+    "delete-route": "Lösche Route",
+    "draw-poi-start": "Draw points of interest (P key)",
+    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
     "draw-route-start": "Route anzeigen (D Taste)",
     "draw-route-stop": "Route entfernen (ESC Taste)",
+    "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Höhenschummerung",
     "hiking": "Wandern",
     "layer": {
@@ -189,7 +193,7 @@
       "expand": "Alle ausklappen",
       "optional": "Optionale Ebenen hinzufügen oder entfernen",
       "optional-layers": "Mehr",
-      "overlay-opacity": "Overlay transparency",
+      "overlay-opacity": "Transparenz der Überlagerung",
       "table": {
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
@@ -213,7 +217,7 @@
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
     "strava-error": "Fehler beim Laden der Strava Segmente: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
-    "tracks-load-error'": "Fehler beim Laden der Touren: {{error}}",
+    "tracks-load-error": "Fehler beim Laden der Touren: {{error}}",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   }
 }

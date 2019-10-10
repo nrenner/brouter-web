@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "OpenStreetMap 貢獻者",
     "attribution-osm-short": "OpenStreetMap 開放街圖",
+    "clear-route": "Clear route data",
     "copyright": "著作權",
     "cycling": "自行車",
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
+    "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
-    "delete-route-nogos": "Delete route and nogos",
+    "draw-poi-start": "Draw points of interest (P key)",
+    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
     "draw-route-start": "繪畫路線 (按鍵D)",
     "draw-route-stop": "停止繪畫路線 (按鍵ESC)",
+    "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Hillshading",
     "hiking": "遠足",
     "layer": {
@@ -97,6 +101,7 @@
       "osm": "OpenStreetMap 開放街圖",
       "osmde": "OpenStreetMap.de",
       "outdoors": "戸外 (Thunderforest)",
+      "route-quality": "Route quality coding",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava 區段",
       "topo": "OpenTopoMap"
@@ -113,6 +118,9 @@
     "opacity-slider": "設定路線軌跡和標記的透明度",
     "privacy": "隱私權",
     "reverse-route": "Reverse route",
+    "route-quality-altitude": "Altitude coding",
+    "route-quality-cost": "Cost coding",
+    "route-quality-incline": "Incline coding",
     "strava-biking": "顯示 Strava 自行車區段",
     "strava-running": "顯示 Strava 跑步區段",
     "zoomInTitle": "放大",
@@ -132,7 +140,8 @@
     "export": "Export",
     "load": {
       "nogos": "No-go areas",
-      "title": "Load"
+      "title": "Load",
+      "tracks": "Tracks"
     },
     "profile": {
       "car-eco": "汽車 (經濟型)",
@@ -208,6 +217,7 @@
     "profile-error": "設定檔錯誤: 伺服器回傳空值或沒有回應",
     "strava-error": "Error getting Strava segments: {{error}}",
     "temporary-profile": "<strong>注意:</strong> 已上傳的自定義設定檔僅暫存於伺服器之中。<br/>請將您的編輯儲存至本機當中。",
+    "tracks-load-error": "Error loading tracks: {{error}}",
     "upload-error": "上傳錯誤: {{error}}"
   }
 }

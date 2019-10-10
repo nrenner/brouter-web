@@ -76,14 +76,18 @@
   "map": {
     "attribution-osm-long": "Contributeurs OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Supprimer les données saisies",
     "copyright": "Copyright",
     "cycling": "Vélo",
     "delete-last-point": "Supprimer le dernier point",
     "delete-nogo-areas": "Supprimer toutes les zones interdites",
+    "delete-pois": "Supprimer tous les points d'intérêt ",
     "delete-route": "Supprimer l'itinéraire",
-    "delete-route-nogos": "Supprimer la route et les zones interdites",
+    "draw-poi-start": "Ajouter des points d'intérêt (touche P)",
+    "draw-poi-stop": "Stopper l'ajout de points d'intérêt (touche ECH)",
     "draw-route-start": "Dessiner l'itinéraire (touche D)",
     "draw-route-stop": "Arrêter de dessiner l'itinéraire (touche ECH)",
+    "enter-poi-name": "Saisir le nom du point d'intérêt",
     "hikebike-hillshading": "Relief avec ombre",
     "hiking": "Randonnée",
     "layer": {
@@ -97,6 +101,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Extérieur (Thunderforest)",
+      "route-quality": "Chiffrage de la qualité de route",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Segments Strava",
       "topo": "OpenTopoMap"
@@ -113,6 +118,9 @@
     "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
     "privacy": "Vie privée",
     "reverse-route": "Inverse l'itinéraire",
+    "route-quality-altitude": "Chiffrage de l'altitude",
+    "route-quality-cost": "Chiffrage du coût",
+    "route-quality-incline": "Chiffrage d'inclinaison",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
     "zoomInTitle": "Zoomer",
@@ -132,7 +140,8 @@
     "export": "Exporter",
     "load": {
       "nogos": "Zones interdites",
-      "title": "Charger"
+      "title": "Charger",
+      "tracks": "Traces"
     },
     "profile": {
       "car-eco": "Voiture (économique)",
@@ -149,7 +158,7 @@
       "safety": "Sécurité",
       "shortest": "Le plus court",
       "trekking": "Cyclotourisme",
-      "trekking-ignore-cr": "Cycloutourisme (ignore pistes cyclables)",
+      "trekking-ignore-cr": "Cycloutourisme (ignore véloroutes)",
       "trekking-noferries": "Cyclotourisme (pas de ferries)",
       "trekking-nosteps": "Cyclotourisme (pas d'escaliers)",
       "trekking-steep": "Cyclotourisme (escarpé)",
@@ -208,6 +217,7 @@
     "profile-error": "Erreur de profil : pas de réponse ou réponse invalide du serveur",
     "strava-error": "Impossible d'afficher les segments Strava : {{error}}",
     "temporary-profile": "<strong>Note :</strong> Les profils personnalisés téléversés ne sont disponibles que temporairement sur le serveur.<br/>Merci de sauvegarder votre profil sur votre ordinateur.",
+    "tracks-load-error": "Impossible de charger les traces : {{error}}",
     "upload-error": "Erreur d'envoi : {{error}}"
   }
 }
