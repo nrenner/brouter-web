@@ -4488,6 +4488,11 @@ leaflet-triangle-marker@^1.0.1:
   resolved "https://registry.yarnpkg.com/leaflet-triangle-marker/-/leaflet-triangle-marker-1.0.1.tgz#0775ee4903c6c0b71b20023dfb295dfc026bc23d"
   integrity sha512-nK2Wtp5tUPwg9STrE78oKLQJvcDZTMU5i+4la1zhHZKZcjoTl9oVVd0f6keMx+wN70IiHsoDkHCFzIiVcCs9eQ==
 
+leaflet.awesome-markers@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/leaflet.awesome-markers/-/leaflet.awesome-markers-2.0.5.tgz#b7b0210d87e2566359bf478c1ab3ab07c7246f30"
+  integrity sha512-Ne/xDjkGyaujwNVVkv2tyXQUV0ZW7gZ0Mo0FuQY4jp2qWrvXi0hwDBvmZyF/8YOvybyMabTMM/mFWCTd1jZIQA==
+
 leaflet.locatecontrol@^0.60.0:
   version "0.60.0"
   resolved "https://registry.yarnpkg.com/leaflet.locatecontrol/-/leaflet.locatecontrol-0.60.0.tgz#fc7be657ca9b7e8b8ba7263e52b0bb902b7cd965"

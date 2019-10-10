@@ -167,6 +167,9 @@ input#trackname:focus:invalid {
 .routing-draw-enabled {
     cursor: crosshair;
 }
+.pois-draw-enabled {
+    cursor: cell;
+}
 
 #map {
     /* center error message horizontally */
