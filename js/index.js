@@ -247,7 +247,7 @@
         }
 
         routing.addTo(map);
-        routingPathQuality.addTo(map);
+
         elevation.addBelow(map);
 
         sidebar = BR.sidebar({
@@ -276,6 +276,8 @@
         }
 
         BR.tracksLoader(map, layersControl, routing);
+
+        routingPathQuality.addTo(map);
 
         map.addControl(
             new BR.OpacitySliderControl({
