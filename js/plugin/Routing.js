@@ -17,7 +17,14 @@ BR.Routing = L.Routing.extend({
             opacity: 1
         },
         snapping: null,
-        zIndexOffset: -2000
+        zIndexOffset: -2000,
+        distanceMarkers: {
+            iconSize: 20,
+            offset: 5000,
+            textFunction: function(distance) {
+                return distance / 1000;
+            }
+        }
     },
 
     onAdd: function(map) {
@@ -29,6 +36,14 @@ BR.Routing = L.Routing.extend({
         this._segments.on('layerremove', this._removeSegmentCasing, this);
 
         this._waypoints.on('layeradd', this._setMarkerOpacity, this);
+
+        this.on('routing:routeWaypointStart routing:rerouteAllSegmentsStart', function(evt) {
+            this._removeDistanceMarkers();
+        });
+
+        this.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd', function(evt) {
+            this._updateDistanceMarkers(evt);
+        });
 
         // turn line mouse marker off while over waypoint marker
         this.on(
@@ -191,6 +206,10 @@ BR.Routing = L.Routing.extend({
         this._waypoints.eachLayer(function(marker) {
             marker.setOpacity(opacity);
         });
+
+        if (this._distanceMarkers) {
+            this._distanceMarkers.setOpacity(opacity);
+        }
     },
 
     _setMarkerOpacity: function(e) {
@@ -226,6 +245,7 @@ BR.Routing = L.Routing.extend({
         this._waypoints._last = null;
         this._waypoints.clearLayers();
         this._segments.clearLayers();
+        this._removeDistanceMarkers();
 
         if (drawEnabled) {
             this.draw(true);
@@ -339,5 +359,21 @@ BR.Routing = L.Routing.extend({
         waypoints.reverse();
         this.clear();
         this.setWaypoints(waypoints);
+    },
+
+    _removeDistanceMarkers: function() {
+        if (this._map && this._distanceMarkers) {
+            this._map.removeLayer(this._distanceMarkers);
+        }
+    },
+
+    _updateDistanceMarkers: function(e) {
+        this._removeDistanceMarkers();
+
+        if (this._map) {
+            var distanceMarkersOpts = this.options.distanceMarkers || {};
+            this._distanceMarkers = new L.DistanceMarkers(this.toPolyline(), this._map, distanceMarkersOpts);
+            this._map.addLayer(this._distanceMarkers);
+        }
     }
 });
