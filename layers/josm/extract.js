@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 const outDir = __dirname;
 
 const includeList = [
+    "cyclosm",
     "osmbe",
     "osmbe-fr",
     "osmbe-nl",
