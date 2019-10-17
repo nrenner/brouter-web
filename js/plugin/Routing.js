@@ -8,11 +8,9 @@ BR.Routing = L.Routing.extend({
     options: {
         position: 'topright',
         icons: {
-            /* not implemented yet
-            start: new L.Icon.Default({iconUrl: 'bower_components/leaflet-gpx/pin-icon-start.png'}),
-            end: new L.Icon.Default(),
-            normal: new L.Icon.Default()
-            */
+            start: L.AwesomeMarkers.icon({ icon: 'play', markerColor: 'green' }),
+            normal: L.AwesomeMarkers.icon({ icon: 'circle', markerColor: 'blue' }),
+            end: L.AwesomeMarkers.icon({ icon: 'stop', markerColor: 'red' }),
             draw: false,
             opacity: 1
         },
