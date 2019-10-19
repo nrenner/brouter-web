@@ -4477,7 +4477,7 @@ leaflet-providers@^1.5.0:
 
 leaflet-routing@nrenner/leaflet-routing#dev:
   version "0.1.1"
-  resolved "https://codeload.github.com/nrenner/leaflet-routing/tar.gz/84bb47a88d2b8366e9cdb46835e8620d2678d089"
+  resolved "https://codeload.github.com/nrenner/leaflet-routing/tar.gz/c51a266a1df355fbb9c273dd752f0005374f10e5"
 
 leaflet-sidebar-v2@nrenner/leaflet-sidebar-v2#dev:
   version "3.0.2"
