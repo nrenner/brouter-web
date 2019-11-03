@@ -137,11 +137,13 @@ var HotLineQualityProvider = L.Class.extend({
         var layers = [];
         if (segments) {
             var segmentLatLngs = [];
+            var flatLines = [];
             for (var i = 0; segments && i < segments.length; i++) {
                 var segment = segments[i];
-                segmentLatLngs.push(this._computeLatLngVals(segment));
+                var vals = this._computeLatLngVals(segment);
+                segmentLatLngs.push(vals);
+                Array.prototype.push.apply(flatLines, vals);
             }
-            var flatLines = segmentLatLngs.flat();
 
             if (flatLines.length > 0) {
                 var hotlineOptions = {
