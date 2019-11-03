@@ -1,7 +1,6 @@
 (function() {
     var hostname = window.location.hostname;
     var origin = window.location.protocol + '//' + hostname + (window.location.port ? ':' + window.location.port : '');
-    var params = new URLSearchParams(window.location.search.slice(1));
 
     BR.conf = {};
 
@@ -10,6 +9,7 @@
     // or as query parameter (index.html?transit=true#zoom=...)
     // (uses search/query (?) not hash (#) params, as config only executed once at load)
     // TODO not included in permalink (better replace permalink with hash plugin)
+    //var params = new URLSearchParams(window.location.search.slice(1));
     //BR.conf.transit = params.has('transit') && (params.get('transit') === 'true');
 
     if (hostname.endsWith('brouter.de')) {
