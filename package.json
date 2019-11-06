@@ -9,12 +9,13 @@
         "transifex-pull": "tx pull --all --minimum-perc 1 --force && (git add locales/*.json && git commit locales/*.json -m 'Update translations' || true)",
         "layers": "node layers/josm/extract.js && node layers/collection/extract.js",
         "test": "gulp",
+        "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
         "serve": "gulp serve watch"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "pretty-quick --bail"
+            "pre-commit": "pretty-quick --bail && yarn lint"
         }
     },
     "repository": {
@@ -22,7 +23,16 @@
         "url": "https://github.com/nrenner/brouter-web.git"
     },
     "license": "MIT",
-    "browserslist": "> 0.5%, last 2 versions, Firefox ESR, not dead, Explorer >= 10, Android >= 4.1, Safari >= 7, iOS >= 7",
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead",
+        "Explorer >= 10",
+        "Android >= 4.1",
+        "Safari >= 7",
+        "iOS >= 7"
+    ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
         "@mapbox/polyline": "^0.2.0",
@@ -70,6 +80,8 @@
         "autoprefixer": "^8.1.0",
         "browser-sync": "^2.26.7",
         "del": "^1.1.1",
+        "eslint": "^6.6.0",
+        "eslint-plugin-compat": "^3.3.0",
         "gulp": "^4.0.2",
         "gulp-bump": "^2.7.0",
         "gulp-cached": "^1.0.4",

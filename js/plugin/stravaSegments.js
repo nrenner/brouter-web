@@ -1,5 +1,5 @@
 BR.stravaSegments = function(map, layersControl) {
-    const stravaControl = L.control
+    var stravaControl = L.control
         .stravaSegments({
             runningTitle: i18next.t('map.strava-running'),
             bikingTitle: i18next.t('map.strava-biking'),

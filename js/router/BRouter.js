@@ -197,16 +197,16 @@ L.BRouter = L.Class.extend({
 
     _assignFeatures: function(segment) {
         if (segment.feature.properties.messages) {
-            const featureMessages = segment.feature.properties.messages,
+            var featureMessages = segment.feature.properties.messages,
                 segmentLatLngs = segment.getLatLngs(),
                 segmentLength = segmentLatLngs.length;
             var featureSegmentIndex = 0;
 
             for (var mi = 1; mi < featureMessages.length; mi++) {
-                const featureLatLng = this._getFeatureLatLng(featureMessages[mi]);
+                var featureLatLng = this._getFeatureLatLng(featureMessages[mi]);
 
                 for (var fi = featureSegmentIndex; fi < segmentLength; fi++) {
-                    const segmentLatLng = segmentLatLngs[fi],
+                    var segmentLatLng = segmentLatLngs[fi],
                         featureMessage = featureMessages[mi];
 
                     segmentLatLng.feature = this._getFeature(featureMessage);
