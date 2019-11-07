@@ -88,10 +88,12 @@ BR.RoutingPathQuality = L.Control.extend({
                 stateName: keys[i],
                 icon: provider.icon,
                 title: provider.title,
-                onClick: function(btn) {
-                    btn.state(nextState);
-                    self.setProvider(nextState);
-                }
+                onClick: (function(state) {
+                    return function(btn) {
+                        btn.state(state);
+                        self.setProvider(state);
+                    };
+                })(nextState)
             });
         }
 
@@ -146,12 +148,7 @@ var HotLineQualityProvider = L.Class.extend({
             }
 
             if (flatLines.length > 0) {
-                var hotlineOptions = {
-                    min: this.hotlineOptions.min,
-                    max: this.hotlineOptions.max,
-                    palette: this.hotlineOptions.palette,
-                    renderer: this.hotlineOptions.renderer
-                };
+                var hotlineOptions = L.extend({}, this.hotlineOptions);
                 if (!hotlineOptions.min && !hotlineOptions.max) {
                     var minMax = this._calcMinMaxValues(flatLines);
                     hotlineOptions.min = minMax.min;
