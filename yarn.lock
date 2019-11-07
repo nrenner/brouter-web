@@ -1819,13 +1819,14 @@ blob@0.0.5:
   resolved "https://registry.yarnpkg.com/blob/-/blob-0.0.5.tgz#d680eeef25f8cd91ad533f5b01eed48e64caf683"
   integrity sha512-gaqbzQPqOoamawKg0LGVd7SzLgXS+JH61oWprSLH+P+abTczqJbhTR8CmJ2u9/bUYNmHTGJx/UEmn6doAvvuig==
 
-bootbox@~5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-5.1.3.tgz#700b4b2619077402a86d163210671a15425eb4cd"
-  integrity sha512-bXNPIkFv3Dcgcdg9jj32F8RBWhRyF8hKDtZ8LY15Bk5WQ1+JzpPCi1qh5rwqI4Jjl/8AWLB44z/H7dFJz4Ql2A==
+bootbox@~5.3.4:
+  version "5.3.4"
+  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-5.3.4.tgz#03064346c79c019708500dab679341645bb10952"
+  integrity sha512-odUj3HCaIfaSltAyfCRuPavruQKvpluTihyCbJ1bvRdAi7P2/bEbcjWMkTSonaHC+QjnrQfO1Px6863fJ13//A==
   dependencies:
     bootstrap ">=3.0.0"
-    jquery ">=1.9.1"
+    jquery ">=1.12.0"
+    popper.js ">=1.12.9"
 
 bootstrap-select@1.13.0:
   version "1.13.0"
@@ -2533,7 +2534,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-datatables@~1.10.16:
+datatables@~1.10.18:
   version "1.10.18"
   resolved "https://registry.yarnpkg.com/datatables/-/datatables-1.10.18.tgz#fee16e82aa70b17c5faf1a6954ac68f404f33a70"
   integrity sha512-ntatMgS9NN6UMpwbmO+QkYJuKlVeMA2Mi0Gu/QxyIh+dW7ZjLSDhPT2tWlzjpIWEkDYgieDzS9Nu7bdQCW0sbQ==
@@ -4645,15 +4646,10 @@ jquery-i18next@^1.2.1:
   resolved "https://registry.yarnpkg.com/jquery-i18next/-/jquery-i18next-1.2.1.tgz#3e4ac5e46632fac21640529f1aa7b68e54f227e8"
   integrity sha512-UNcw3rgxoKjGEg4w23FEn2h3OlPJU7rPzsgDuXDBZktIzeiVbJohs9Cv9hj8oP8KNfBRKOoErL/OVxg2FaAR4g==
 
-jquery@3.4.1:
+jquery@3.4.1, jquery@>=1.12.0, jquery@>=1.7, jquery@>=1.9.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
-
-jquery@>=1.7, jquery@>=1.9.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -4723,10 +4719,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-jstree@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/jstree/-/jstree-3.3.7.tgz#41df485d66148836ac389603a3e12f4574b06251"
-  integrity sha512-yzzalO1TbZ4HdPezO43LesGI4Wv2sB0Nl+4GfwO0YYvehGws5qtTAhlBISxfur9phMLwCtf9GjHlRx2ZLXyRnw==
+jstree@^3.3.8:
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/jstree/-/jstree-3.3.8.tgz#8d0f506028d65e5207efa7b78e6541cbe35622c1"
+  integrity sha512-0/nhGxVLSGfGQyVg+q59ocqSEKWRDKHoA8wNrcOIvlzCCw19tzvcMNGJ19hf+U0b7fycABowkny7fQPcLgUwwA==
   dependencies:
     jquery ">=1.9.1"
 
@@ -5995,6 +5991,11 @@ point-in-polygon@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/point-in-polygon/-/point-in-polygon-1.0.1.tgz#d59b64e8fee41c49458aac82b56718c5957b2af7"
   integrity sha1-1Ztk6P7kHElFiqyCtWcYxZV7Kvc=
+
+popper.js@>=1.12.9:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
+  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
 
 portscanner@2.1.1:
   version "2.1.1"
