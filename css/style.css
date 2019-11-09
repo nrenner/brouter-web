@@ -191,6 +191,10 @@ input#trackname:focus:invalid {
     cursor: auto;
 }
 
+#profile_editor {
+    display: none;
+}
+
 #profile_buttons {
     padding-top: 4px;
 }
@@ -425,12 +429,35 @@ table.dataTable.display tbody tr.even:hover {
  * leaflet-sidebar-v2
  */
 
-.leaflet-sidebar-pane#tab_profile,
 .leaflet-sidebar-pane#tab_data,
 .leaflet-sidebar-pane#tab_itinerary {
     /* Full height for content with inner scrolling,
        overrides scroll fix for long content in Firefox */
     height: 100%;
+}
+
+.leaflet-sidebar-pane#tab_profile {
+    min-height: 100%;
+}
+
+.leaflet-sidebar-pane#tab_profile .form-group {
+    margin-bottom: 5px;
+}
+
+.leaflet-sidebar-pane#tab_profile label {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.leaflet-sidebar-pane#tab_profile input[type='checkbox'] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.leaflet-sidebar-pane#tab_profile .help-block {
+    display: block;
+    color: #737373;
+    margin-bottom: 0.5rem;
 }
 
 .leaflet-sidebar-content {
