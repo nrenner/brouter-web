@@ -191,8 +191,9 @@ input#trackname:focus:invalid {
     cursor: auto;
 }
 
-#profile_editor {
-    display: none;
+/* Override Bootstrap tabs that set `display` from `none` to `block` when activating */
+.tab-content > #profile_editor.active {
+    display: flex;
 }
 
 #profile_buttons {
@@ -440,7 +441,7 @@ table.dataTable.display tbody tr.even:hover {
     min-height: 100%;
 }
 
-.leaflet-sidebar-pane#tab_profile .form-group {
+#profile_params_container .form-group {
     margin-bottom: 5px;
 }
 

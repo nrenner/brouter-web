@@ -7,13 +7,12 @@ BR.Profile = L.Evented.extend({
             lineNumbers: true
         });
 
-        var that = this;
-        L.DomUtil.get('profile_advanced').addEventListener('click', function() {
-            that._toggleAdvanced();
-        });
-        L.DomUtil.get('profile_basic').addEventListener('click', function() {
-            that._toggleAdvanced();
-        });
+        $('#profileEditorTabs a[data-toggle="tab"]').on(
+            'shown.bs.tab',
+            L.bind(function(e) {
+                this._activateSecondaryTab();
+            }, this)
+        );
 
         L.DomUtil.get('save').onclick = L.bind(this._save, this);
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
@@ -131,8 +130,8 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _setValue: function(profileText) {
-        if (L.DomUtil.get('profile_editor').style.display == 'flex') {
+    _setValue: function(profileText, profileEditorActivated) {
+        if (L.DomUtil.get('profile_editor').classList.contains('active')) {
             // Set value of the full editor and exit
             this.editor.setValue(profileText);
             this.editor.markClean();
@@ -272,14 +271,10 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _toggleAdvanced: function() {
-        if (L.DomUtil.get('profile_editor').style.display == 'flex') {
-            L.DomUtil.get('profile_params_container').style.display = 'initial';
-            L.DomUtil.get('profile_editor').style.display = 'none';
+    _activateSecondaryTab: function() {
+        if (L.DomUtil.get('profile_params_container').classList.contains('active')) {
             this._setValue(this.editor.getValue());
         } else {
-            L.DomUtil.get('profile_params_container').style.display = 'none';
-            L.DomUtil.get('profile_editor').style.display = 'flex';
             this._setValue(this._buildCustomProfile());
         }
     }
