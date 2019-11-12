@@ -209,8 +209,7 @@
       "help": "Help",
       "no_easy_configuration_warning": "No easy configuration is available for this profile.",
       "placeholder": "Write your custom profile here.",
-      "save": "Save",
-      "upload": "Upload"
+      "apply": "Apply"
     }
   },
   "title": "BRouter web client",
