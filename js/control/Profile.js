@@ -78,14 +78,12 @@ BR.Profile = L.Evented.extend({
             profile = this.editor.getValue();
 
         this.message.hide();
-        $(button).button('uploading');
         evt.preventDefault();
 
         var that = this;
         this.fire('update', {
             profileText: profile,
             callback: function(err, profileId, profileText) {
-                $(button).button('reset');
                 $(button).blur();
                 if (!err) {
                     that.cache[profileId] = profileText;
