@@ -1,5 +1,6 @@
 BR.Profile = L.Evented.extend({
     cache: {},
+    saveWarningShown: false,
 
     initialize: function() {
         var textArea = L.DomUtil.get('profile_upload');
@@ -80,15 +81,19 @@ BR.Profile = L.Evented.extend({
         this.message.hide();
         evt.preventDefault();
 
-        var that = this;
         this.fire('update', {
             profileText: profile,
-            callback: function(err, profileId, profileText) {
+            callback: L.bind(function(err, profileId, profileText) {
                 $(button).blur();
                 if (!err) {
-                    that.cache[profileId] = profileText;
+                    this.cache[profileId] = profileText;
+
+                    if (!this.saveWarningShown) {
+                        this.message.showWarning(i18next.t('warning.temporary-profile'));
+                        this.saveWarningShown = true;
+                    }
                 }
-            }
+            }, this)
         });
     },
 

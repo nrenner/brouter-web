@@ -33,8 +33,7 @@
             drawButton,
             deleteRouteButton,
             pois,
-            urlHash,
-            saveWarningShown = false;
+            urlHash;
 
         // By default bootstrap-select use glyphicons
         $('.selectpicker').selectpicker({
@@ -179,10 +178,6 @@
                     updateRoute({
                         options: routingOptions.getOptions()
                     });
-                    if (!saveWarningShown) {
-                        profile.message.showWarning(i18next.t('warning.temporary-profile'));
-                        saveWarningShown = true;
-                    }
                 } else {
                     profile.message.showError(err);
                     if (profileId) {
