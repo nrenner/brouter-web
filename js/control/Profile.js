@@ -217,7 +217,7 @@ BR.Profile = L.Evented.extend({
             if (paramType == 'select') {
                 var select = document.createElement('select');
                 select.name = paramName;
-                select.className = 'form-control';
+                select.className = 'form-control form-control-sm';
                 label.htmlFor = select.id = 'customize-profile-' + paramName;
 
                 var paramValues = params[param].possible_values;
@@ -238,7 +238,7 @@ BR.Profile = L.Evented.extend({
                 if (paramType == 'number') {
                     input.type = 'number';
                     input.value = params[param].value;
-                    input.className = 'form-control';
+                    input.className = 'form-control form-control-sm';
 
                     label.append(paramName);
                     div.appendChild(label);
