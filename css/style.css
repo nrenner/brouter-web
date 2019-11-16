@@ -191,8 +191,9 @@ input#trackname:focus:invalid {
     cursor: auto;
 }
 
-#profile_editor {
-    display: none;
+/* Override Bootstrap tabs that set `display` from `none` to `block` when activating */
+#profileEditorTabsContent.tab-content > .active {
+    display: flex;
 }
 
 #profile_buttons {
@@ -429,6 +430,7 @@ table.dataTable.display tbody tr.even:hover {
  * leaflet-sidebar-v2
  */
 
+.leaflet-sidebar-pane#tab_profile,
 .leaflet-sidebar-pane#tab_data,
 .leaflet-sidebar-pane#tab_itinerary {
     /* Full height for content with inner scrolling,
@@ -436,12 +438,17 @@ table.dataTable.display tbody tr.even:hover {
     height: 100%;
 }
 
-.leaflet-sidebar-pane#tab_profile {
-    min-height: 100%;
+#profile_params,
+.CodeMirror {
+    /* auto instead of 1 to avoid overflow to content height in Firefox */
+    flex: auto;
+    /* override default 300px, behaves like min-height with flex auto */
+    height: 0;
 }
 
-.leaflet-sidebar-pane#tab_profile .form-group {
-    margin-bottom: 5px;
+#profile_params {
+    overflow-y: scroll;
+    padding-right: 5px;
 }
 
 .leaflet-sidebar-pane#tab_profile label {
@@ -466,7 +473,8 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 /* layers control as sidebar tab */
-#tab_layers_control {
+#tab_layers_control,
+#profile_params {
     font-size: 0.9rem;
     line-height: normal;
 }
@@ -516,11 +524,6 @@ table.dataTable.display tbody tr.even:hover {
  */
 
 .CodeMirror {
-    /* auto instead of 1 to avoid overflow to content height in Firefox */
-    flex: auto;
-    /* override default 300px, behaves like min-height with flex auto */
-    height: 0;
-
     border: 1px solid #ddd;
 
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
