@@ -117,6 +117,7 @@
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
     "opacity-slider": "Set transparency of route track and markers",
+    "preview": "Preview",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
     "route-quality-altitude": "Altitude coding",

@@ -186,9 +186,19 @@ input#trackname:focus:invalid {
 #message {
     position: absolute;
     margin: 10px 46px; /* 10 + 26 + 10 */
-    z-index: 3000;
+    z-index: 3001;
     font-size: 1rem;
     cursor: auto;
+}
+#preview {
+    position: absolute;
+    top: 10px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    z-index: 3000;
+    font-size: 1.5rem;
+    background-color: rgba(0, 116, 217, 0.6);
+    color: white;
 }
 
 /* Override Bootstrap tabs that set `display` from `none` to `block` when activating */
@@ -463,8 +473,10 @@ table.dataTable.display tbody tr.even:hover {
 
 .leaflet-sidebar-pane#tab_profile .help-block {
     display: block;
-    color: #737373;
     margin-bottom: 0.5rem;
+}
+.help-block {
+    color: #737373;
 }
 
 .leaflet-sidebar-content {
@@ -497,14 +509,80 @@ table.dataTable.display tbody tr.even:hover {
     margin-right: 5px;
 }
 
-#optional-layers-tree {
+#optional-layers {
     margin-top: 5px;
+}
+#optional-layers .help-block {
+    font-style: italic;
+    margin-bottom: 0.3rem;
 }
 
 .tree-code {
     font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
     margin-right: 7px;
     color: #666; /* like root nodes, jstree-disabled */
+}
+
+/* icon tooltips as hints and feedback for add/remove and preview actions of optional layer tree nodes */
+
+.jstree-default .jstree-anchor {
+    position: relative;
+}
+
+.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-default .jstree-hovered:not(.jstree-disabled)::after,
+.jstree-default .jstree-clicked:not(.jstree-disabled)::after,
+.jstree-anchor.added::before,
+.jstree-anchor.removed::before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-size: 14px;
+    color: #bbb;
+    position: absolute;
+}
+
+.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-anchor.added::before,
+.jstree-anchor.removed::before {
+    left: -15px;
+}
+.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-anchor.added::before {
+    content: '\f067'; /* fa-plus */
+}
+.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
+.jstree-anchor.removed::before {
+    content: '\f068'; /* fa-minus */
+}
+.jstree-anchor.added::before,
+.jstree-anchor.removed::before {
+    animation: addremove 1s;
+}
+@keyframes addremove {
+    30% {
+        color: #0074d9;
+        font-weight: bold;
+    }
+    70% {
+        color: #0074d9;
+        font-weight: bold;
+    }
+}
+
+.jstree-default .jstree-hovered:not(.jstree-disabled)::after,
+.jstree-default .jstree-clicked:not(.jstree-disabled)::after {
+    content: '\f06e'; /* fa-eye */
+    right: -17px;
+}
+.jstree-default .jstree-clicked:not(.jstree-disabled)::after {
+    color: #0074d9;
+}
+
+.jstree-default .jstree-disabled > .jstree-icon {
+    opacity: 0.5;
+    cursor: default;
 }
 
 /* hide currently unused bottom tabs container because of touch border artefacts */
