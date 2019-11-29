@@ -8,7 +8,11 @@ L.BRouter = L.Class.extend({
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
         GROUP_SEPARATOR: '|',
-        ABORTED_ERROR: 'aborted'
+        ABORTED_ERROR: 'aborted',
+        CUSTOM_PREFIX: 'custom_',
+        isCustomProfile: function(profileName) {
+            return profileName && profileName.substring(0, 7) === L.BRouter.CUSTOM_PREFIX;
+        }
     },
 
     options: {},
@@ -65,7 +69,7 @@ L.BRouter = L.Class.extend({
             if (params.alternativeidx == 0) delete params.alternativeidx;
 
             // don't add custom profile, as these are only stored temporarily
-            if (params.profile && params.profile.substring(0, 7) === 'custom_') {
+            if (params.profile && L.BRouter.isCustomProfile(params.profile)) {
                 delete params.profile;
             }
         }

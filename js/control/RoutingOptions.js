@@ -58,11 +58,9 @@ BR.RoutingOptions = L.Evented.extend({
         $('.selectpicker').selectpicker('val', values);
         this.refreshUI();
 
-        if (options.profile) {
-            // profile got not selected = not in option values -> custom profile passed with permalink
-            if (L.DomUtil.get('profile').value != options.profile) {
-                this.setCustomProfile(options.profile, true);
-            }
+        if (options.profile && L.BRouter.isCustomProfile(options.profile)) {
+            // custom profile passed with permalink
+            this.setCustomProfile(options.profile, true);
         }
     },
 
