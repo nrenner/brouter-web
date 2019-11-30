@@ -80,6 +80,7 @@ BR.TrackMessages = L.Class.extend({
         // highlight track segment (graph edge) on row hover
         this._setEdges(polyline, segments);
         $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
+        $('#datatable tbody').on('click', 'tr', L.bind(this._toggleSelected, this));
     },
 
     show: function() {
@@ -192,23 +193,49 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _handleHover: function(evt) {
-        var tr = $(evt.currentTarget),
-            row = this._table.row(tr),
+    _getRowEdge: function(tr) {
+        var row = this._table.row($(tr)),
             trackLatLngs = this._track.getLatLngs(),
             startIndex = row.index() > 0 ? this._edges[row.index() - 1] : 0,
             endIndex = this._edges[row.index()],
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
-        this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
-        if (this.options.syncMap) {
-            this._map.panTo(this._selectedEdge.getBounds().getCenter());
+        return L.polyline(edgeLatLngs, this.options.edgeStyle);
+    },
+
+    _handleHover: function(evt) {
+        var tr = evt.currentTarget;
+
+        this._hoveredEdge = this._getRowEdge(tr).addTo(this._map);
+        if (this.options.syncMap && !this._selectedEdge) {
+            this._map.panTo(this._hoveredEdge.getBounds().getCenter());
         }
     },
 
     _handleHoverOut: function(evt) {
-        this._map.removeLayer(this._selectedEdge);
-        this._selectedEdge = null;
+        this._map.removeLayer(this._hoveredEdge);
+        this._hoveredEdge = null;
+    },
+
+    _toggleSelected: function(evt) {
+        var tr = evt.currentTarget;
+
+        if (tr.classList.toggle('selected')) {
+            if (this._selectedEdge) {
+                // no multi-select, remove selection of other row
+                // (simpler to implement and to use?)
+                this._map.removeLayer(this._selectedEdge);
+                this._selectedRow.classList.remove('selected');
+            }
+            this._selectedEdge = this._getRowEdge(tr).addTo(this._map);
+            this._selectedRow = tr;
+
+            this._map.panTo(this._selectedEdge.getCenter());
+        } else {
+            this._map.removeLayer(this._selectedEdge);
+            this._selectedEdge = null;
+            this._selectedRow = null;
+        }
     },
 
     _toggleSyncMap: function(evt) {
