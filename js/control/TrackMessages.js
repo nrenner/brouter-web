@@ -208,7 +208,7 @@ BR.TrackMessages = L.Class.extend({
 
         this._hoveredEdge = this._getRowEdge(tr).addTo(this._map);
         if (this.options.syncMap && !this._selectedEdge) {
-            this._map.panTo(this._hoveredEdge.getBounds().getCenter());
+            this._map.panTo(this._hoveredEdge.getCenter());
         }
     },
 
