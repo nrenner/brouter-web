@@ -519,6 +519,19 @@ table.dataTable.display tbody tr.even:hover {
     justify-content: center;
 }
 
+/* corresponding to leaflet-sidebar-expand/-close in leaflet-sidebar-v2 */
+.sync-map {
+    float: right;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+}
+.sync-map.active {
+    color: #0074d9;
+}
+
 /*
  * CodeMirror
  */

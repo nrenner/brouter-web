@@ -172,6 +172,7 @@
       "title": "Customize profile"
     },
     "data": {
+      "sync-map": "Synchronize map",
       "title": "Data"
     },
     "itinerary": {

@@ -4,7 +4,9 @@ BR.TrackMessages = L.Class.extend({
             color: 'yellow',
             opacity: 0.8,
             weight: 8
-        }
+        },
+        // center hovered edge (way segment) on map
+        syncMap: true
     },
 
     // true when tab is shown, false when hidden
@@ -29,6 +31,9 @@ BR.TrackMessages = L.Class.extend({
         var table = document.getElementById('datatable');
         this.tableClassName = table.className;
         this.tableParent = table.parentElement;
+
+        var syncButton = document.getElementById('data-sync-map');
+        L.DomEvent.on(syncButton, 'click', this._toggleSyncMap, this);
     },
 
     update: function(polyline, segments) {
@@ -196,11 +201,20 @@ BR.TrackMessages = L.Class.extend({
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
         this._selectedEdge = L.polyline(edgeLatLngs, this.options.edgeStyle).addTo(this._map);
-        this._map.panTo(this._selectedEdge.getBounds().getCenter());
+        if (this.options.syncMap) {
+            this._map.panTo(this._selectedEdge.getBounds().getCenter());
+        }
     },
 
     _handleHoverOut: function(evt) {
         this._map.removeLayer(this._selectedEdge);
         this._selectedEdge = null;
+    },
+
+    _toggleSyncMap: function(evt) {
+        var button = evt.currentTarget;
+
+        button.classList.toggle('active');
+        this.options.syncMap = !this.options.syncMap;
     }
 });
