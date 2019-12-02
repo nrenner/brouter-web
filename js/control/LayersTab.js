@@ -195,14 +195,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
 
         function getText(props, parent) {
-            var text = '';
+            var text = '<span class="tree-text">';
             var code = props.country_code || props.language_code;
             if (code && parent.text !== code) {
                 text += '<span class="tree-code">' + code + '</span>';
             }
             text += props.name;
 
-            return text;
+            return text + '</span>';
         }
 
         function createNode(id, layerData, parent) {

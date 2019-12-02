@@ -518,7 +518,10 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 .tree-code {
-    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    /* fix increased element height
+       http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
+    */
+    font-family: monospace, monospace;
     margin-right: 7px;
     color: #666; /* like root nodes, jstree-disabled */
 }
@@ -526,15 +529,30 @@ table.dataTable.display tbody tr.even:hover {
 /* icon tooltips as hints and feedback for add/remove and preview actions of optional layer tree nodes */
 
 .jstree-default .jstree-anchor {
+    padding: 0;
+}
+.jstree-default .jstree-checkbox,
+.tree-text {
     position: relative;
 }
+.jstree-default .jstree-checkbox {
+    padding-left: 1px;
+}
+.tree-text {
+    display: inline-block;
+    padding-right: 4px;
+}
 
-.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-default .jstree-hovered:not(.jstree-disabled)::after,
-.jstree-default .jstree-clicked:not(.jstree-disabled)::after,
-.jstree-anchor.added::before,
-.jstree-anchor.removed::before {
+.jstree-default
+    .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-default
+    .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-default .jstree-hovered:not(.jstree-disabled) .tree-text::after,
+.jstree-default .jstree-clicked:not(.jstree-disabled) .tree-text::after,
+.jstree-anchor.added .jstree-checkbox::before,
+.jstree-anchor.removed .jstree-checkbox::before {
     font-family: FontAwesome;
     font-style: normal;
     font-size: 14px;
@@ -542,22 +560,30 @@ table.dataTable.display tbody tr.even:hover {
     position: absolute;
 }
 
-.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-anchor.added::before,
-.jstree-anchor.removed::before {
+.jstree-default
+    .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-default
+    .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-anchor.added .jstree-checkbox::before,
+.jstree-anchor.removed .jstree-checkbox::before {
     left: -15px;
 }
-.jstree-default .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-anchor.added::before {
+.jstree-default
+    .jstree-hovered:not(.jstree-checked):not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-anchor.added .jstree-checkbox::before {
     content: '\f067'; /* fa-plus */
 }
-.jstree-default .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)::before,
-.jstree-anchor.removed::before {
+.jstree-default
+    .jstree-hovered.jstree-checked:not(.jstree-disabled):not(.added):not(.removed)
+    .jstree-checkbox:hover::before,
+.jstree-anchor.removed .jstree-checkbox::before {
     content: '\f068'; /* fa-minus */
 }
-.jstree-anchor.added::before,
-.jstree-anchor.removed::before {
+.jstree-anchor.added .jstree-checkbox::before,
+.jstree-anchor.removed .jstree-checkbox::before {
     animation: addremove 1s;
 }
 @keyframes addremove {
@@ -570,13 +596,16 @@ table.dataTable.display tbody tr.even:hover {
         font-weight: bold;
     }
 }
-
-.jstree-default .jstree-hovered:not(.jstree-disabled)::after,
-.jstree-default .jstree-clicked:not(.jstree-disabled)::after {
+.jstree-default .jstree-hovered:not(.jstree-disabled) .tree-text:hover::after,
+.jstree-default .jstree-clicked:not(.jstree-disabled) .tree-text::after {
     content: '\f06e'; /* fa-eye */
     right: -17px;
 }
-.jstree-default .jstree-clicked:not(.jstree-disabled)::after {
+.tree-text:hover {
+    box-shadow: inset 0 -1px rgba(224, 172, 104, 0.8);
+}
+
+.jstree-default .jstree-clicked:not(.jstree-disabled) .tree-text::after {
     color: #0074d9;
 }
 
