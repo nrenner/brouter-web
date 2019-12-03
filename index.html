@@ -737,9 +737,16 @@
 
                         <div class="leaflet-sidebar-pane" id="tab_data">
                             <h1 class="leaflet-sidebar-header">
-                                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
-                                ><span data-i18n="sidebar.data.title">Data</span>
+                                <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+                                <span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>
+                                <span
+                                    id="data-sync-map"
+                                    class="sync-map active"
+                                    data-i18n="[title]sidebar.data.sync-map"
+                                    title="Synchronize map"
+                                    ><i class="fa fa-exchange"></i
+                                ></span>
+                                <span data-i18n="sidebar.data.title">Data</span>
                             </h1>
                             <table id="datatable" class="mini cell-border hover stripe"></table>
                         </div>

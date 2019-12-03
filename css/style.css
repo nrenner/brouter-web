@@ -388,6 +388,10 @@ table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
     background-color: rgba(255, 255, 0, 0.2);
 }
+table.dataTable.hover tbody tr:hover.selected,
+table.dataTable.display tbody tr:hover.selected {
+    background-color: #bcc8b8;
+}
 
 /*
  * No-go areas
@@ -517,6 +521,19 @@ table.dataTable.display tbody tr.even:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* corresponding to leaflet-sidebar-expand/-close in leaflet-sidebar-v2 */
+.sync-map {
+    float: right;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+}
+.sync-map.active {
+    color: #0074d9;
 }
 
 /*
