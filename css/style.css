@@ -518,10 +518,9 @@ table.dataTable.display tbody tr.even:hover {
 }
 
 .tree-code {
-    /* fix increased element height
-       http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
-    */
-    font-family: monospace, monospace;
+    font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+    /* fix 1px increased parent span height (hover inset box-shadow outside background) */
+    line-height: normal;
     margin-right: 7px;
     color: #666; /* like root nodes, jstree-disabled */
 }
