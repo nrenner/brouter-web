@@ -69,7 +69,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         var toggleOptionalLayers = function(e) {
             var button = L.DomUtil.get('optional_layers_button');
             var treeButtons = L.DomUtil.get('tree-button-group');
-            var div = L.DomUtil.get('optional-layers-tree');
+            var div = L.DomUtil.get('optional-layers');
 
             div.hidden = !div.hidden;
             treeButtons.hidden = !treeButtons.hidden;
@@ -121,6 +121,12 @@ BR.LayersTab = BR.ControlLayers.extend({
             }
 
             this.storeDefaultLayers();
+
+            var ele = document.getElementById(data.node.a_attr.id);
+            ele.classList.add('added');
+            setTimeout(function() {
+                ele.classList.remove('added');
+            }, 1000);
         };
 
         var onUncheckNode = function(e, data) {
@@ -137,6 +143,12 @@ BR.LayersTab = BR.ControlLayers.extend({
             }
 
             this.storeDefaultLayers();
+
+            var ele = document.getElementById(data.node.a_attr.id);
+            ele.classList.add('removed');
+            setTimeout(function() {
+                ele.classList.remove('removed');
+            }, 1000);
         };
 
         $('#optional-layers-tree')
@@ -183,14 +195,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
 
         function getText(props, parent) {
-            var text = '';
+            var text = '<span class="tree-text">';
             var code = props.country_code || props.language_code;
             if (code && parent.text !== code) {
                 text += '<span class="tree-code">' + code + '</span>';
             }
             text += props.name;
 
-            return text;
+            return text + '</span>';
         }
 
         function createNode(id, layerData, parent) {
@@ -393,6 +405,8 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.previewLayer = layer;
 
         this.showPreviewBounds(layerData);
+
+        L.DomUtil.get('preview').hidden = false;
     },
 
     hidePreview: function(layer) {
@@ -400,6 +414,8 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.removePreviewBounds();
         this.removePreviewLayer();
         this.restoreActiveLayers();
+
+        L.DomUtil.get('preview').hidden = true;
     },
 
     toLayerString: function(obj) {

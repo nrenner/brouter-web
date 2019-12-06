@@ -579,6 +579,7 @@
             <div class="leaflet-sidebar-flex-row flexgrow">
                 <div id="map" class="leaflet-sidebar-map">
                     <div id="message"></div>
+                    <div id="preview" hidden data-i18n="map.preview">Preview</div>
                 </div>
 
                 <div id="sidebar" class="leaflet-sidebar collapsed">
@@ -645,7 +646,10 @@
                                     </button>
                                 </div>
                             </div>
-                            <div hidden id="optional-layers-tree"></div>
+                            <div hidden id="optional-layers">
+                                <div class="help-block" data-i18n="sidebar.layers.optional"></div>
+                                <div id="optional-layers-tree"></div>
+                            </div>
                         </div>
 
                         <div class="leaflet-sidebar-pane" id="tab_profile">
