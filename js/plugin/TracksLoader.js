@@ -42,7 +42,9 @@ BR.tracksLoader = function(map, layersControl, routing) {
                 e.preventDefault();
             });
             // dummy, no own representation, triggered in loading menu
-            return L.DomUtil.create('div');
+            var dummy = L.DomUtil.create('div');
+            dummy.hidden = true;
+            return dummy;
         }
     });
     var tracksLoaderControl = new TracksLoader();
