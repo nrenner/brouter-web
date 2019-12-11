@@ -256,8 +256,6 @@
 
         elevation.addBelow(map);
 
-        pois.addTo(map);
-
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
@@ -279,6 +277,7 @@
 
         BR.tracksLoader(map, layersControl, routing);
 
+        pois.addTo(map);
         routingPathQuality.addTo(map);
 
         map.addControl(
