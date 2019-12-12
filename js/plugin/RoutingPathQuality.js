@@ -9,6 +9,7 @@ BR.RoutingPathQuality = L.Control.extend({
         var renderer = new L.Hotline.Renderer({ pane: 'routingQualityPane' });
 
         this._routingSegments = L.featureGroup();
+        this._routingSegments.id = 'route-quality'; // for URL hash instead of language name
         layersControl.addOverlay(this._routingSegments, i18next.t('map.layer.route-quality'));
 
         this.providers = {
