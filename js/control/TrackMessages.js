@@ -3,7 +3,9 @@ BR.TrackMessages = L.Class.extend({
         edgeStyle: {
             color: 'yellow',
             opacity: 0.8,
-            weight: 8
+            weight: 8,
+            // show above quality coding (pane defined in RoutingPathQuality.js)
+            pane: 'routingQualityPane'
         },
         // center hovered edge (way segment) on map
         syncMap: true
