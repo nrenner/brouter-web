@@ -2,7 +2,18 @@ BR.tracksLoader = function(map, layersControl, routing) {
     TracksLoader = L.Control.FileLayerLoad.extend({
         options: {
             layer: L.geoJson,
-            layerOptions: { style: { color: 'blue' }, interactive: false },
+            layerOptions: {
+                style: { color: 'blue' },
+                interactive: false,
+                pointToLayer: function(geoJsonPoint, latlng) {
+                    return L.marker(latlng, {
+                        interactive: false,
+                        opacity: 0.7,
+                        // prevent being on top of route markers
+                        zIndexOffset: -1000
+                    });
+                }
+            },
             addToMap: false,
             // File size limit in kb (default: 1024) ?
             fileSizeLimit: 1024
