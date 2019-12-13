@@ -17,7 +17,8 @@ BR.Routing = L.Routing.extend({
         snapping: null,
         zIndexOffset: -2000,
         distanceMarkers: {
-            iconSize: 20,
+            // width as base number, multiplied by number of digits + one for padding
+            iconSize: [6, 18],
             offset: 5000,
             textFunction: function(distance) {
                 return distance / 1000;

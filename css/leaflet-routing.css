@@ -5,11 +5,13 @@ div.line-mouse-marker {
 }
 
 .dist-marker {
-    font-size: 11px;
+    font-size: 10px;
+    /* 1px less than height to also center in Firefox (?) */
+    line-height: 17px;
     border: 1px solid #777;
-    border-radius: 10px;
+    border-radius: 9px;
     text-align: center;
     text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
     color: black;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
 }

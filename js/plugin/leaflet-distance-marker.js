@@ -66,8 +66,10 @@ L.DistanceMarkers = L.LayerGroup.extend({
             var m_line = L.polyline([p1, p2]);
             var ratio = (distance - accumulated[j - 1]) / (accumulated[j] - accumulated[j - 1]);
             var position = L.GeometryUtil.interpolateOnLine(map, m_line, ratio);
-            var icon = L.divIcon({ className: cssClass, html: text, iconSize: iconSize });
-            var marker = L.marker(position.latLng, { title: text, icon: icon });
+            // width as base number, one for padding + multiply by number of digits
+            var size = [iconSize[0] + iconSize[0] * ('' + text).length, iconSize[1]];
+            var icon = L.divIcon({ className: cssClass, html: text, iconSize: size });
+            var marker = L.marker(position.latLng, { title: text, icon: icon, interactive: false });
 
             // visible only starting at a specific zoom level
             var zoom = this._minimumZoomLevelForItem(i, showAll);
