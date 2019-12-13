@@ -53,6 +53,7 @@ BR.tracksLoader = function(map, layersControl, routing) {
     tracksLoaderControl.loader.on('data:loaded', function(event) {
         var eventLayer = event.layer,
             routingMarkers = [];
+        /* disabled for now, see issue #254
         for (var layerIdx = 0; layerIdx < eventLayer.getLayers().length; layerIdx++) {
             var layer = eventLayer.getLayers()[layerIdx];
             if (layer.feature && layer.feature.properties && layer.feature.properties.type) {
@@ -72,6 +73,7 @@ BR.tracksLoader = function(map, layersControl, routing) {
                 );
             });
         }
+        */
         layersControl.addOverlay(eventLayer, event.filename);
         eventLayer.addTo(map);
     });
