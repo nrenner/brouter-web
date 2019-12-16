@@ -2310,8 +2310,9 @@
     "max_zoom": 18,
     "min_zoom": 0,
     "name": "OpenStreetMap Hungary (hiking routes)",
+    "overlay": true,
     "type": "tms",
-    "url": "http://{switch:h,i,j}.tile.openstreetmap.hu/turistautak/{zoom}/{x}/{y}.png",
+    "url": "https://{switch:a,b,c}.tile.openstreetmap.hu/tt/{zoom}/{x}/{y}.png",
     "valid-georeference": true,
     "dataSource": "JOSM"
   },

@@ -8,7 +8,7 @@
     },
     "icon": "https://static.waymarkedtrails.org/img/map_hiking.png",
     "id": "Waymarked_Trails-Hiking",
-    "max_zoom": 17,
+    "max_zoom": 18,
     "name": "Waymarked Trails: Hiking",
     "overlay": true,
     "type": "tms",

@@ -8,7 +8,7 @@
     },
     "icon": "https://static.waymarkedtrails.org/img/map_cycling.png",
     "id": "Waymarked_Trails-Cycling",
-    "max_zoom": 17,
+    "max_zoom": 18,
     "name": "Waymarked Trails: Cycling",
     "overlay": true,
     "type": "tms",

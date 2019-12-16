@@ -8,7 +8,7 @@
     },
     "icon": "https://static.waymarkedtrails.org/img/map_mtb.png",
     "id": "Waymarked_Trails-MTB",
-    "max_zoom": 17,
+    "max_zoom": 18,
     "name": "Waymarked Trails: MTB",
     "overlay": true,
     "type": "tms",

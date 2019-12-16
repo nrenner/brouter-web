@@ -12,7 +12,7 @@
     "mod-tile-features": true,
     "name": "OpenStreetMap (German Style)",
     "type": "tms",
-    "url": "https://{switch:a,b,c,d}.tile.openstreetmap.de/tiles/osmde/{zoom}/{x}/{y}.png",
+    "url": "https://{switch:a,b,c,d}.tile.openstreetmap.de/{zoom}/{x}/{y}.png",
     "valid-georeference": true,
     "dataSource": "JOSM"
   },

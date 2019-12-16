@@ -40,7 +40,6 @@ BR.confLayers.tree = {
             },
             'OpenStreetMap.CH',
             'topplus-open',
-            'OpenStreetMap-turistautak',
             {
                 'IL': [
                     'Israel_Hiking',
@@ -70,7 +69,12 @@ BR.confLayers.tree = {
         ],
         'country': [
             'historic-place-contours',
-            'hu-hillshade',
+            {
+                'HU': [
+                    'hu-hillshade',
+                    'OpenStreetMap-turistautak',
+                ]
+            },
             {
                 'PL': [
                     'mapaszlakow-cycle',

@@ -12,7 +12,7 @@
     "mod-tile-features": true,
     "name": "CyclOSM",
     "type": "tms",
-    "url": "https://dev.{switch:a,b,c}.tile.openstreetmap.fr/cyclosm/{zoom}/{x}/{y}.png",
+    "url": "https://{switch:a,b,c}.tile-cyclosm.openstreetmap.fr/cyclosm/{zoom}/{x}/{y}.png",
     "valid-georeference": true,
     "dataSource": "JOSM"
   },
