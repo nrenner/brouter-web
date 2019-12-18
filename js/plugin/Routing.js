@@ -8,9 +8,9 @@ BR.Routing = L.Routing.extend({
     options: {
         position: 'topright',
         icons: {
-            start: L.AwesomeMarkers.icon({ icon: 'play', markerColor: 'green' }),
-            normal: L.AwesomeMarkers.icon({ icon: 'circle', markerColor: 'blue' }),
-            end: L.AwesomeMarkers.icon({ icon: 'stop', markerColor: 'red' }),
+            start: L.VectorMarkers.icon({ icon: 'play', markerColor: BR.conf.markerColors.start }),
+            normal: L.VectorMarkers.icon({ icon: 'circle', markerColor: BR.conf.markerColors.via }),
+            end: L.VectorMarkers.icon({ icon: 'stop', markerColor: BR.conf.markerColors.stop }),
             draw: false,
             opacity: 1
         },

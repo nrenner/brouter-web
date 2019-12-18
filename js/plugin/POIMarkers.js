@@ -96,10 +96,11 @@ BR.PoiMarkers = L.Control.extend({
             return temp.innerHTML;
         };
 
-        var icon = L.AwesomeMarkers.icon({
+        var icon = L.VectorMarkers.icon({
             icon: 'star',
-            markerColor: 'cadetblue'
+            markerColor: BR.conf.markerColors.poi
         });
+
         var content = sanitizeHTMLContent(name) + '<br>';
         content += "<button id='remove-poi-marker' class='btn btn-secondary'><i class='fa fa-trash'></i></button>";
 
