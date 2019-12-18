@@ -414,8 +414,6 @@
             });
     }
 
-    L.AwesomeMarkers.Icon.prototype.options.prefix = 'fa';
-
     i18next
         .use(window.i18nextXHRBackend)
         .use(window.i18nextBrowserLanguageDetector)

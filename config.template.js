@@ -109,6 +109,14 @@
         }
     };
 
+    BR.conf.markerColors = {
+        // awesome-markers colors (by color picker)
+        poi: '#436978',
+        start: '#72b026',
+        via: '#38aadd',
+        stop: '#d63e2a'
+    };
+
     // transit (intermodal routing) demo config
     if (BR.conf.transit) {
         BR.conf.profiles = [
