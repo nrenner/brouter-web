@@ -63,7 +63,7 @@
         "leaflet-hotline": "^0.4.0",
         "leaflet-plugins": "~3.0.0",
         "leaflet-providers": "^1.5.0",
-        "leaflet-routing": "nrenner/leaflet-routing#dev",
+        "leaflet-routing": "nrenner/leaflet-routing#b00813f",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.1",
         "leaflet.awesome-markers": "^2.0.5",
