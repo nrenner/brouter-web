@@ -15,44 +15,10 @@
     if (hostname.endsWith('brouter.de')) {
         // online service (brouter.de) configuration
 
-        BR.conf.profiles = [
-            'trekking',
-            'fastbike',
-            'car-eco',
-            'car-fast',
-            'safety',
-            'shortest',
-            'trekking-ignore-cr',
-            'trekking-steep',
-            'trekking-noferries',
-            'trekking-nosteps',
-            'moped',
-            'rail',
-            'river',
-            'vm-forum-liegerad-schnell',
-            'vm-forum-velomobil-schnell',
-            'fastbike-lowtraffic',
-            'fastbike-asia-pacific',
-            'hiking-beta'
-        ];
-
         BR.conf.host = origin;
         BR.conf.profilesUrl = origin + '/brouter/profiles2/';
     } else {
         // desktop configuration
-
-        BR.conf.profiles = [
-            'trekking',
-            'fastbike',
-            'car-eco',
-            'car-fast',
-            'shortest',
-            'moped',
-            'vm-forum-liegerad-schnell',
-            'vm-forum-velomobil-schnell',
-            'fastbike-lowtraffic',
-            'fastbike-asia-pacific'
-        ];
 
         BR.conf.host = 'http://0.0.0.0:17777';
 
@@ -63,6 +29,27 @@
         //BR.conf.profilesUrl = 'http://localhost:8000/profiles2/';
         //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
+
+    BR.conf.profiles = [
+        'trekking',
+        'fastbike',
+        'car-eco',
+        'car-fast',
+        'safety',
+        'shortest',
+        'trekking-ignore-cr',
+        'trekking-steep',
+        'trekking-noferries',
+        'trekking-nosteps',
+        'moped',
+        'rail',
+        'river',
+        'vm-forum-liegerad-schnell',
+        'vm-forum-velomobil-schnell',
+        'fastbike-lowtraffic',
+        'fastbike-asia-pacific',
+        'hiking-beta'
+    ];
 
     // Removes default base layers when 'true'. Useful for only having custom layers (see below).
     BR.conf.clearBaseLayers = false;
