@@ -365,6 +365,8 @@ gulp.task('release:zip_standalone', function() {
             })
         );
 
+    var root = gulp.src(['resources/standalone/run.sh', 'resources/standalone/segments4']);
+
     var serverRoot = gulp
         .src(
             [
@@ -402,7 +404,7 @@ gulp.task('release:zip_standalone', function() {
         base: '../brouter/misc/scripts/'
     });
 
-    return merge(brouterWeb, serverRoot, serverProfiles, serverScripts)
+    return merge(brouterWeb, root, serverRoot, serverProfiles, serverScripts)
         .pipe(zip(destName))
         .pipe(gulp.dest('.'));
 });
