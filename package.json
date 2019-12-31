@@ -11,7 +11,8 @@
         "test": "gulp",
         "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
-        "serve": "gulp serve watch"
+        "serve": "gulp serve watch",
+        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
     },
     "husky": {
         "hooks": {
@@ -105,6 +106,7 @@
         "gulp-zip": "^4.0.0",
         "husky": "^2.3.0",
         "i18next-scanner": "^2.9.1",
+        "merge-stream": "^2.0.0",
         "node-fetch": "^2.3.0",
         "npmfiles": "^0.1.1",
         "prettier": "^1.17.1",

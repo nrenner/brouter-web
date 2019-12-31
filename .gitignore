@@ -5,6 +5,6 @@ nbproject/
 /config.js
 /keys.js
 /dist
-brouter-web.*.zip
+brouter-web*.zip
 yarn-error.log
 package-lock.json

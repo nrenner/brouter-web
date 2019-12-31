@@ -26,6 +26,7 @@ var scanner = require('i18next-scanner');
 var jsonConcat = require('gulp-json-concat');
 var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
+var merge = require('merge-stream');
 
 const server = browserSync.create();
 
@@ -73,6 +74,7 @@ var paths = {
         'layers/config/geometry.js'
     ],
     layersConfigDestName: 'layersConf.js',
+    zip: ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
     dest: 'dist',
     destName: 'brouter-web'
 };
@@ -336,13 +338,74 @@ gulp.task(
         cb();
     })
 );
+
 gulp.task('release:zip', function() {
     gutil.log(gutil.colors.green('Build brouter-web.' + nextVersion + '.zip'));
     return gulp
-        .src(['dist/**', 'index.html', 'config.template.js', 'keys.template.js'], {
+        .src(paths.zip, {
             base: '.'
         })
         .pipe(zip('brouter-web.' + nextVersion + '.zip'))
+        .pipe(gulp.dest('.'));
+});
+
+gulp.task('release:zip_standalone', function() {
+    var version = pkg.version;
+    var destName = 'brouter-web-standalone.' + version + '.zip';
+
+    gutil.log(gutil.colors.green('Build ' + destName));
+
+    var brouterWeb = gulp
+        .src(paths.zip, {
+            base: '.'
+        })
+        .pipe(
+            rename(function(path) {
+                path.dirname = 'brouter-web/' + path.dirname;
+            })
+        );
+
+    var root = gulp.src(['resources/standalone/run.sh', 'resources/standalone/segments4']);
+
+    var serverRoot = gulp
+        .src(
+            [
+                'misc/readmes/profile_developers_guide.txt',
+                'brouter-server/target/brouter-server-*-jar-with-dependencies.jar'
+            ],
+            {
+                cwd: path.join(process.cwd(), '../brouter')
+            }
+        )
+        .pipe(
+            rename(function(path) {
+                if (path.basename.startsWith('brouter-server-')) {
+                    path.basename = 'brouter';
+                }
+            })
+        );
+
+    var serverProfiles = gulp.src(
+        [
+            'profiles2/**',
+            '!profiles2/all.brf',
+            '!profiles2/car-eco-suspect_scan.brf',
+            '!profiles2/car-traffic_analysis.brf',
+            '!profiles2/softaccess.brf'
+        ],
+        {
+            cwd: path.join(process.cwd(), '../brouter/misc/'),
+            base: '../brouter/misc/'
+        }
+    );
+
+    var serverScripts = gulp.src(['standalone/**'], {
+        cwd: path.join(process.cwd(), '../brouter/misc/scripts/'),
+        base: '../brouter/misc/scripts/'
+    });
+
+    return merge(brouterWeb, root, serverRoot, serverProfiles, serverScripts)
+        .pipe(zip(destName))
         .pipe(gulp.dest('.'));
 });
 
