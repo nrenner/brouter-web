@@ -134,6 +134,8 @@ BR.Profile = L.Evented.extend({
     },
 
     _setValue: function(profileText, profileEditorActivated) {
+        profileText = profileText || '';
+
         if (L.DomUtil.get('profile_editor').classList.contains('active')) {
             // Set value of the full editor and exit
             this.editor.setValue(profileText);
@@ -141,17 +143,19 @@ BR.Profile = L.Evented.extend({
             return;
         }
 
+        if (!profileText) return;
+
         // Otherwise, create user friendly form
+        var params = {};
         var global = profileText.split('---context:').filter(function(e) {
             return e.startsWith('global');
         });
-        if (global) {
+        if (global && global.length > 0) {
             // Remove ---context:global line
             global = global[0].split('\n').slice(1);
 
             // Comment is mandatory
             var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
-            var params = {};
             global.forEach(function(item) {
                 var match = item.match(assignRegex);
                 var value;
