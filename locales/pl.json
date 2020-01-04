@@ -6,7 +6,7 @@
     "chat": "Czat z użytkownikami i twórcami",
     "contact": "Kontakt:",
     "data": "Dane:",
-    "data-description": "Bazujemy na <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Aktualizacje są zazwyczaj raz w tygodniu, kiedy są dostępne nowe pliki Planet, więc sprawdź daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
+    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
     "support": "Ogólna dyskusja/pytania, wsparcie",
@@ -15,6 +15,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Elevation data",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, źródła: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP oraz Społeczność Użytkowników GIS",
     "esri-tiles": "Obrazowanie świata Esri",
     "map-data": "Dane mapy",
@@ -116,6 +117,7 @@
       "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
     },
     "opacity-slider": "Ustaw przezroczystość trasy i znaczników",
+    "preview": "Preview",
     "privacy": "Prywatność",
     "reverse-route": "Odwróć trasę",
     "route-quality-altitude": "Altitude coding",
@@ -167,10 +169,11 @@
     }
   },
   "sidebar": {
-    "custom-profile": {
-      "title": "Własny profil"
+    "customize-profile": {
+      "title": "Customize profile"
     },
     "data": {
+      "sync-map": "Synchronize map",
       "title": "Dane"
     },
     "itinerary": {
@@ -203,10 +206,13 @@
       "title": "Warstwy"
     },
     "profile": {
+      "apply": "Apply",
       "clear": "Wyczyść",
       "help": "Pomoc",
+      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
+      "options": "Options",
       "placeholder": "Zapisz tutaj swój własny profil.",
-      "upload": "Prześlij"
+      "profile": "Profile"
     }
   },
   "title": "Klient przeglądarkowy BRouter",

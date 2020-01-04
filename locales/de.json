@@ -6,7 +6,7 @@
     "chat": "Chatte mit Benutzern und Entwicklern",
     "contact": "Kontakt:",
     "data": "Daten:",
-    "data-description": "Dies basiert auf <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Es wird normalerweise einmal pro Woche aktualisiert, wenn ein neues Planet-File verfügbar ist. Siehe Datum der <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">Datendateien</a>.",
+    "data-description": "Dies basiert auf <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Es wird normalerweise täglich aktualisiert. Siehe Datum der <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">Datendateien</a>.",
     "description": "Online-Service der BRouter Routing Engine. Für die Offline-Android-App und weitere Informationen siehe <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Datenschutz-Bestimmungen</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Änderungsprotokoll</a></i> und\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">weitere Infos</a></i> zum Client.",
     "support": "Generelle Diskussionen/Fragen, Support",
@@ -15,6 +15,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Höhendaten",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, Quellen: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP und die GIS Benutzergemeinschaft",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Kartendaten",
@@ -76,18 +77,18 @@
   "map": {
     "attribution-osm-long": "OpenStreetMap-Mitwirkende",
     "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route data",
+    "clear-route": "Routendaten löschen",
     "copyright": "Copyright",
     "cycling": "Radfahren",
     "delete-last-point": "Letzten Punkt löschen",
-    "delete-nogo-areas": "Lösche alle No-go Areas",
-    "delete-pois": "Delete all points of interest",
-    "delete-route": "Lösche Route",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "Route anzeigen (D Taste)",
-    "draw-route-stop": "Route entfernen (ESC Taste)",
-    "enter-poi-name": "Enter Point of Interest name",
+    "delete-nogo-areas": "Alle No-go-Areas löschen",
+    "delete-pois": "Alle POI löschen",
+    "delete-route": "Route löschen",
+    "draw-poi-start": "POI einzeichnen (P-Taste)",
+    "draw-poi-stop": "Einzeichnen der POI beenden (ESC-Taste)",
+    "draw-route-start": "Route anzeigen (D-Taste)",
+    "draw-route-stop": "Route entfernen (ESC-Taste)",
+    "enter-poi-name": "POI-Namen eingeben",
     "hikebike-hillshading": "Höhenschummerung",
     "hiking": "Wandern",
     "layer": {
@@ -107,15 +108,16 @@
       "topo": "OpenTopoMap"
     },
     "loading": "Lade...",
-    "locate-me": "Zeige meinen Standort",
+    "locate-me": "Meinen Standort anzeigen",
     "nogo": {
       "cancel": "No-Go-Areas löschen",
-      "click-drag": "klicken und ziehen zum Zeichnen eines Kreises",
+      "click-drag": "Klicken und ziehen zum Zeichnen eines Kreises",
       "draw": "No-Go-Area zeichnen (Kreis)",
       "edit": "Klicken zum Bearbeiten",
       "help": "&square; = Bewegen / Größe anpassen, <span class=\"fa fa-trash-o\"></span> = Löschen,<br>Kreis anklicken um Bearbeiten zu beenden"
     },
     "opacity-slider": "Transparenz von Route und Markern anpassen",
+    "preview": "Vorschau",
     "privacy": "Datenschutz",
     "reverse-route": "Route umkehren",
     "route-quality-altitude": "Höhencodierung",
@@ -148,9 +150,9 @@
       "car-fast": "Auto (schnell)",
       "car-test": "Auto (Test)",
       "custom": "Benutzerdefiniert",
-      "fastbike": "Fahrrad (schnell)",
-      "fastbike-asia-pacific": "Fahrrad (schnell, Asien Pazifik)",
-      "fastbike-lowtraffic": "Fahrrad (schnell, Routen mit wenig Verkehr)",
+      "fastbike": "Rennrad",
+      "fastbike-asia-pacific": "Rennrad (Asien Pazifik)",
+      "fastbike-lowtraffic": "Rennrad (Routen mit wenig Verkehr)",
       "hiking-beta": "Wandern (beta)",
       "moped": "Moped",
       "rail": "Eisenbahn",
@@ -167,10 +169,11 @@
     }
   },
   "sidebar": {
-    "custom-profile": {
-      "title": "Benutzerdefiniertes Profil"
+    "customize-profile": {
+      "title": "Profil personalisieren"
     },
     "data": {
+      "sync-map": "Karte synchronisieren",
       "title": "Daten"
     },
     "itinerary": {
@@ -198,15 +201,18 @@
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
         "name": "Name",
-        "type": "Type"
+        "type": "Typ"
       },
       "title": "Ebenen"
     },
     "profile": {
+      "apply": "Anwenden",
       "clear": "Löschen",
       "help": "Hilfe",
-      "placeholder": "Erstelle benutzerdefiniertes Profil hier.",
-      "upload": "Hochladen"
+      "no_easy_configuration_warning": "Für dieses Profil steht keine einfache Konfiguration zur Verfügung.",
+      "options": "Optionen",
+      "placeholder": "Hier benutzerdefiniertes Profil erstellen.",
+      "profile": "Profil"
     }
   },
   "title": "BRouter Web Client",

@@ -6,7 +6,7 @@
     "chat": "Chat with users and developers",
     "contact": "聯絡：",
     "data": "資料:",
-    "data-description": "這是一項基於 <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> 提供的服務。它通常會在每週新的 Planet 檔案發布後更新，詳見 <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">資料檔案</a>。",
+    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "BRouter 導航引擎線上版。有關離線版 Android 應用程式及更多資訊，請見 <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>。",
     "details": "用戸端上的<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
     "support": "一般討論/提問及技術支援",
@@ -15,6 +15,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Elevation data",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, 來源: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, 以及 GIS 使用者社群",
     "esri-tiles": "Esri World Imagery",
     "map-data": "地圖資料",
@@ -116,6 +117,7 @@
       "help": "&square; = 移動 / 調整大小， <span class=\"fa fa-trash-o\"></span> = 刪除，<br>點撃圓形以結束編輯"
     },
     "opacity-slider": "設定路線軌跡和標記的透明度",
+    "preview": "Preview",
     "privacy": "隱私權",
     "reverse-route": "Reverse route",
     "route-quality-altitude": "Altitude coding",
@@ -167,10 +169,11 @@
     }
   },
   "sidebar": {
-    "custom-profile": {
-      "title": "自定義設定檔"
+    "customize-profile": {
+      "title": "Customize profile"
     },
     "data": {
+      "sync-map": "Synchronize map",
       "title": "資料"
     },
     "itinerary": {
@@ -203,10 +206,13 @@
       "title": "圖層"
     },
     "profile": {
+      "apply": "Apply",
       "clear": "清除",
       "help": "說明",
+      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
+      "options": "Options",
       "placeholder": "請在意寫下您的自定義設定檔。",
-      "upload": "上傳"
+      "profile": "Profile"
     }
   },
   "title": "BRouter 網頁用戶端",
