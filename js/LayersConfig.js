@@ -2,6 +2,8 @@ BR.LayersConfig = L.Class.extend({
     defaultBaseLayers: BR.confLayers.defaultBaseLayers,
     defaultOverlays: BR.confLayers.defaultOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
+    // hardcoded, built-in layers with an id set (for URL hash)
+    builtInLayers: ['route-quality'],
 
     initialize: function(map) {
         this._map = map;
