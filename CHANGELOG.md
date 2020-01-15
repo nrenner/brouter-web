@@ -1,5 +1,27 @@
 # BRouter-Web Changelog
 
+## 0.11.0 (2020-01-21)
+
+See also [milestone 0.11.0](https://github.com/nrenner/brouter-web/milestone/12?closed=1)
+
+### New Features
+
+-   Load track in GPX, KML or GeoJSON format - by [@matzepan](https://github.com/matzepan) ([#30](https://github.com/nrenner/brouter-web/issues/30))
+-   Profile options UI (user interface) to customize profile variables - by [@Phyks](https://github.com/Phyks) ([#223](https://github.com/nrenner/brouter-web/issues/223))
+-   Add user POI (point of interest) markers with name, exported as waypoints - by [@bagage](https://github.com/bagage) ([#222](https://github.com/nrenner/brouter-web/issues/222))
+-   Color route segments by incline, altitude or cost - by [@matzepan](https://github.com/matzepan) ([#242](https://github.com/nrenner/brouter-web/pull/242))
+-   Distance markers - by [@matzepan](https://github.com/matzepan) ([#169](https://github.com/nrenner/brouter-web/issues/169))
+-   Option to include route waypoints in export - by [@Phyks](https://github.com/Phyks) ([#221](https://github.com/nrenner/brouter-web/pull/221))
+-   Transparency slider for overlay map layers - by [@Phyks](https://github.com/Phyks) ([#213](https://github.com/nrenner/brouter-web/issues/213))
+
+### Improvements
+
+-   Distinct from, to and via markers - by [@bagage](https://github.com/bagage) ([#129](https://github.com/nrenner/brouter-web/issues/129))
+-   Always show travel time and energy statistics - by [@rkflx](https://github.com/rkflx) ([#216](https://github.com/nrenner/brouter-web/pull/216))
+-   Synchronize data table highlight and selection with map - by [@matzepan](https://github.com/matzepan) ([#171](https://github.com/nrenner/brouter-web/issues/171))
+-   Option to delete all nogo areas - by [@Phyks](https://github.com/Phyks) ([#217](https://github.com/nrenner/brouter-web/issues/217))
+-   Hints and feedback for optional layers tree usage ([#211](https://github.com/nrenner/brouter-web/issues/211))
+
 ## 0.10.3 (2019-06-27)
 
 See also [milestone 0.10.3](https://github.com/nrenner/brouter-web/milestone/11?closed=1)
