@@ -6,7 +6,7 @@
     "chat": "Czat z użytkownikami i twórcami",
     "contact": "Kontakt:",
     "data": "Dane:",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+    "data-description": "Oparta jest o <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Zazwyczaj aktualizowana jest codziennie, zobacz daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
     "support": "Ogólna dyskusja/pytania, wsparcie",
@@ -15,7 +15,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "elevation-data": "Elevation data",
+    "elevation-data": "Dane wysokościowe",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, źródła: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP oraz Społeczność Użytkowników GIS",
     "esri-tiles": "Obrazowanie świata Esri",
     "map-data": "Dane mapy",
@@ -29,8 +29,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Include",
-    "include_waypoints": "Waypoints",
+    "include": "Dołącz",
+    "include_waypoints": "Punkty trasy",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
     "title": "Eksportuj trasę",
@@ -58,7 +58,7 @@
     "add-base": "Dodaj warstwę bazową",
     "add-overlay": "Dodaj nakładkę",
     "customize": "Dostosuj warstwy",
-    "opacity-slider": "Opacity slider",
+    "opacity-slider": "Suwak pokrycia",
     "placeholder-layer-name": "Własna nazwa warstwy. (np. OpenStreetMap)",
     "placeholder-layer-url": "URL niestandardowej warstwy. (np: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Usuń zaznaczenie"
@@ -77,18 +77,18 @@
   "map": {
     "attribution-osm-long": "Współtwórcy OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route data",
+    "clear-route": "Wyczyść dane trasy",
     "copyright": "Prawa autorskie",
     "cycling": "Kolarstwo",
     "delete-last-point": "Usuń ostatni punkt",
     "delete-nogo-areas": "Usuń wszystkie strefy no-go",
-    "delete-pois": "Delete all points of interest",
+    "delete-pois": "Usuń wszystkie punkty zainteresowania",
     "delete-route": "Usunąć trasę?",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
+    "draw-poi-start": "Narysuj punkt zainteresowania (klawisz P)",
+    "draw-poi-stop": "Przestań rysować punkty zainteresowania (klawisz Esc)",
     "draw-route-start": "Rysuj trasę (klawisz D)",
     "draw-route-stop": "Przestań rysować trasę (klawisz Esc)",
-    "enter-poi-name": "Enter Point of Interest name",
+    "enter-poi-name": "Wpisz nazwę punktu zainteresowania",
     "hikebike-hillshading": "Cieniowanie",
     "hiking": "Wspinaczka",
     "layer": {
@@ -102,7 +102,7 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Na zewnątrz (Thunderforest)",
-      "route-quality": "Route quality coding",
+      "route-quality": "Kodowanie jakości trasy",
       "stamen-terrain": "Teren (Stamen)",
       "strava-segments": "Segmenty Strava",
       "topo": "OpenTopoMap"
@@ -117,12 +117,12 @@
       "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
     },
     "opacity-slider": "Ustaw przezroczystość trasy i znaczników",
-    "preview": "Preview",
+    "preview": "Podgląd",
     "privacy": "Prywatność",
     "reverse-route": "Odwróć trasę",
-    "route-quality-altitude": "Altitude coding",
-    "route-quality-cost": "Cost coding",
-    "route-quality-incline": "Incline coding",
+    "route-quality-altitude": "Kodowanie wysokości",
+    "route-quality-cost": "Kodowanie kosztów",
+    "route-quality-incline": "Kodowanie nachylenia",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
     "zoomInTitle": "Przybliż",
@@ -143,7 +143,7 @@
     "load": {
       "nogos": "Stefy no-go",
       "title": "Wczytaj",
-      "tracks": "Tracks"
+      "tracks": "Drogi"
     },
     "profile": {
       "car-eco": "Samochód (ekonomicznie)",
@@ -170,10 +170,10 @@
   },
   "sidebar": {
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Dostosuj profil"
     },
     "data": {
-      "sync-map": "Synchronize map",
+      "sync-map": "Synchronizacja mapy",
       "title": "Dane"
     },
     "itinerary": {
@@ -196,7 +196,7 @@
       "expand": "Rozwiń wszystkie",
       "optional": "Dodaj lub usuń opcjonalne warstwy",
       "optional-layers": "Więcej",
-      "overlay-opacity": "Overlay transparency",
+      "overlay-opacity": "Przezroczystość nakładki",
       "table": {
         "URL": "URL",
         "empty": "Nie skonfigurowano jeszcze niestandardowych warstw.",
@@ -206,13 +206,13 @@
       "title": "Warstwy"
     },
     "profile": {
-      "apply": "Apply",
+      "apply": "Zastosuj",
       "clear": "Wyczyść",
       "help": "Pomoc",
-      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
-      "options": "Options",
+      "no_easy_configuration_warning": "Dla tego profilu nie jest dostępna łatwa konfiguracja.",
+      "options": "Opcje",
       "placeholder": "Zapisz tutaj swój własny profil.",
-      "profile": "Profile"
+      "profile": "Profil"
     }
   },
   "title": "Klient przeglądarkowy BRouter",
@@ -223,7 +223,7 @@
     "profile-error": "Błąd profilu: brak lub pusta odpowiedź z serwera",
     "strava-error": "Błąd pobierania segmentów Strava: {{error}}",
     "temporary-profile": "<strong>Uwaga:</strong> Przesłane własne profile są zapisywane na serwerze tylko tymczasowo.<br/>Zapisz zmiany na swoim komputerze.",
-    "tracks-load-error": "Error loading tracks: {{error}}",
+    "tracks-load-error": "Błąd wczytywania dróg: {{error}}",
     "upload-error": "Błąd przesyłania: {{error}}"
   }
 }

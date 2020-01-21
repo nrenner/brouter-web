@@ -1,0 +1,229 @@
+{
+  "about": {
+    "bug-reports": "Informes de errores y solicitudes de funciones:",
+    "bug-reports-back": "servidor / backend, motor de enrutamiento, aplicación de Android, perfiles, sitio brouter.de",
+    "bug-reports-front": "cliente web / frontend.",
+    "chat": "Chatea con usuarios y desarrolladores",
+    "contact": "Contacto:",
+    "data": "Datos:",
+    "data-description": "Esta basado en <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Por lo general se actualiza a diario, consulte las fechas <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">de los archivos</a>.",
+    "description": "Servicio en línea del motor de enrutamiento BRouter. Para la aplicación de Android sin conexión y más información, consulte  <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Política de privacidad</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Creditos</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> y\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">más información</a></i> en el cliente.",
+    "support": "General discusiones/preguntas, soporte",
+    "title": "Acerca de"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Datos de elevación",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Imágenes del mundo</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, fuentes: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
+    "esri-tiles": "Imágenes Esri World",
+    "map-data": "Datos del mapa",
+    "map-tiles": "Tiles del mapa",
+    "nominatim": "Búsqueda por <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Colaboradores de OpenStreetMap</a> bajo <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+  },
+  "export": {
+    "format": "Formato",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "include": "Incluir",
+    "include_waypoints": "Waypoints",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Exportar ruta",
+    "trackname": "Nombre"
+  },
+  "footer": {
+    "ascend": "Ascensión",
+    "cost": "Coste",
+    "distance": "Distancia",
+    "energy-per-100km": "Energía por 100 km",
+    "hours": "horas",
+    "hours-abbrev": "h",
+    "kilometer": "kilometros",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilovatios hora",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Factor de costo medio",
+    "meter": "metros",
+    "meter-abbrev": "m",
+    "plain-ascend": "Ascenso llano",
+    "total-energy": "Energia total",
+    "travel-time": "Tiempo de viaje"
+  },
+  "layers": {
+    "add-base": "Añadir capa base",
+    "add-overlay": "Añadir superposición",
+    "customize": "Personalizar capas",
+    "opacity-slider": "Control deslizante de opacidad",
+    "placeholder-layer-name": "Nombre de capa personalizada. (ex: OpenStreetMap)",
+    "placeholder-layer-url": "URL de capa personalizada. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Eliminar selección"
+  },
+  "loadNogos": {
+    "defaultProperties": "Propiedades por defecto",
+    "file": "Archivo (.geojson): ",
+    "load": "Cargar",
+    "nogoBuffer": "Buffer de zonas prohibidas (en metros):",
+    "nogoRadius": "Radio prohibido para puntos (en metros):",
+    "nogoWeight": "Peso prohibido (-1 significa intransitable):",
+    "source": "Fuente",
+    "title": "Cargar áreas prohibidas",
+    "url": "URL: "
+  },
+  "map": {
+    "attribution-osm-long": "Colaboradores de OpenStreetMap",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Borrar datos de ruta",
+    "copyright": "Copyright",
+    "cycling": "Ciclismo",
+    "delete-last-point": "Eliminar último punto",
+    "delete-nogo-areas": "Eliminar todas las áreas prohibidas",
+    "delete-pois": "Eliminar todos los Puntos de Interés",
+    "delete-route": "Eliminar ruta",
+    "draw-poi-start": "Dibujar puntos de interés (tecla P)",
+    "draw-poi-stop": "Dejar de dibujar puntos de interés (tecla ESC)",
+    "draw-route-start": "Dibujar ruta (tecla D)",
+    "draw-route-stop": "Dejar de dibujar ruta (tecla ESC)",
+    "enter-poi-name": "Ingrese el nombre del Punto de Interés",
+    "hikebike-hillshading": "Sombreado",
+    "hiking": "Senderismo",
+    "layer": {
+      "bing": "Bing Aerial",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Ciclismo (senderos marcados)",
+      "digitalglobe": "Imágenes recientes de DigitalGlobe",
+      "esri": "Imágenes del mundo de Esri",
+      "hikebike-hillshading": "Sombreado de colinas (mapa de senderismo y bicicleta)",
+      "hiking": "Senderismo (senderos marcados)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Al aire libre (Thunderforest)",
+      "route-quality": "Codificación de calidad de ruta",
+      "stamen-terrain": "Terreno (estambre)",
+      "strava-segments": "Segmentos Strava",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Cargando...",
+    "locate-me": "Muéstrame donde estoy",
+    "nogo": {
+      "cancel": "Cancelar el dibujo del área prohibida",
+      "click-drag": "Haz clic y arrastra para dibujar un círculo.",
+      "draw": "Dibujar área prohibida (círculo)",
+      "edit": "Click para editar",
+      "help": "&square; = mover / cambiar el tamaño, <span class=\"fa fa-trash-o\"></span>= eliminar, <br> haga clic en el círculo para salir de la edición"
+    },
+    "opacity-slider": "Establecer transparencia de ruta y marcadores",
+    "preview": "Preview",
+    "privacy": "Privado",
+    "reverse-route": "Ruta inversa",
+    "route-quality-altitude": "Codificación de altitud",
+    "route-quality-cost": "Codificación de costos",
+    "route-quality-incline": "Codificación de inclinación",
+    "strava-biking": "Mostrar segmentos de ciclismo de Strava",
+    "strava-running": "Mostrar segmentos de carrera de Strava",
+    "zoomInTitle": "Acercarse",
+    "zoomOutTitle": "Alejarse"
+  },
+  "modal": {
+    "close": "Cerrar"
+  },
+  "navbar": {
+    "about": "Acerca de",
+    "alternative": {
+      "first": "1ª Alternativa",
+      "original": "Original",
+      "second": "2ª Alternativa",
+      "third": "3ª Alternativa"
+    },
+    "export": "Exportar",
+    "load": {
+      "nogos": "Áreas prohibidas",
+      "title": "Cargar",
+      "tracks": "Pistas"
+    },
+    "profile": {
+      "car-eco": "Coche (económico)",
+      "car-fast": "Coche (rápido)",
+      "car-test": "Coche (test)",
+      "custom": "Personalizado",
+      "fastbike": "Fastbike",
+      "fastbike-asia-pacific": "Fastbike (Asia Pacífico)",
+      "fastbike-lowtraffic": "Fastbike (poco tráfico)",
+      "hiking-beta": "Senderismo (beta)",
+      "moped": "Ciclomotor",
+      "rail": "Ferrocarril",
+      "river": "Fluvial",
+      "safety": "Segura",
+      "shortest": "Más corta",
+      "trekking": "Bicicleta de trekking",
+      "trekking-ignore-cr": "Bicicleta de trekking (ignorar rutas en bicicleta)",
+      "trekking-noferries": "Bicicleta de trekking (sin ferries)",
+      "trekking-nosteps": "Bicicleta de trekking (sin escalones)",
+      "trekking-steep": "Bicicleta de trekking (empinada)",
+      "vm-forum-liegerad-schnell": "Bicicleta reclinada (rápida)",
+      "vm-forum-velomobil-schnell": "Velomobile (rápido)"
+    }
+  },
+  "sidebar": {
+    "customize-profile": {
+      "title": "Personalizar perfil"
+    },
+    "data": {
+      "sync-map": "Sincronizar mapa",
+      "title": "Datos"
+    },
+    "itinerary": {
+      "title": "Iitinerario"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Capas base",
+        "country": "País",
+        "europe": "Europa",
+        "europe-monolingual": "Monolingüe Europa",
+        "overlays": "Superposiciones",
+        "worldwide": "Mundial",
+        "worldwide-international": "Internacional mundial",
+        "worldwide-monolingual": "Monolingüe mundial"
+      },
+      "collapse": "Desplegar todo",
+      "custom-layers": "Capas personalizadas",
+      "customize": "Añadir o eliminar capas personalizadas",
+      "expand": "Expandir todo",
+      "optional": "Añadir o eliminar capas opcionales",
+      "optional-layers": "Más",
+      "overlay-opacity": "Transparencia de superposición",
+      "table": {
+        "URL": "URL",
+        "empty": "No hay una capa personalizada configurada todavía.",
+        "name": "Nombre",
+        "type": "Tipo"
+      },
+      "title": "Capas"
+    },
+    "profile": {
+      "apply": "Aplicar",
+      "clear": "Limpiar",
+      "help": "Ayuda",
+      "no_easy_configuration_warning": "No hay una configuración fácil disponible para este perfil.",
+      "options": "Opciones",
+      "placeholder": "Escribe tu perfil personalizado aquí.",
+      "profile": "Perfil"
+    }
+  },
+  "title": "BRoute web cliente",
+  "warning": {
+    "cannot-get-route": "Error al obtener la URL de ruta",
+    "no-response": "sin respuesta del servidor",
+    "no-route-found": "Error: no se puede encontrar una ruta para los puntos dados. ¿Quizás intentando acercarlos a las carreteras?",
+    "profile-error": "Error de perfil: no o respuesta vacía del servidor",
+    "strava-error": "Error al obtener segmentos de Strava: {{error}}",
+    "temporary-profile": "<strong>Nota:</strong> Los perfiles personalizados cargados solo se almacenan en caché temporalmente en el servidor.<br/> Guarde sus ediciones en su PC local.",
+    "tracks-load-error": "Error al cargar pistas: {{error}}",
+    "upload-error": "Error de carga: {{error}}"
+  }
+}
