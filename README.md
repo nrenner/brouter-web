@@ -41,7 +41,6 @@ As an alternative to the above online version, the standalone server of BRouter 
             cd ~/opt/brouter
             wget https://github.com/nrenner/brouter-web/releases/download/0.11.0/brouter-web-standalone.0.11.0.zip
             unzip brouter-web-standalone.0.11.0.zip
-            chmod +x ./run.sh ./standalone/local.sh
 
 2.  download one or more [data file(s)](https://brouter.de/brouter/segments4/) (rd5) into `segments4` directory
 
