@@ -1,5 +1,4 @@
 FROM node:8-alpine as build
-RUN apk add --no-cache git
 RUN mkdir /tmp/brouter-web
 WORKDIR /tmp/brouter-web
 COPY . .
