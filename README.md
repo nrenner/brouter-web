@@ -88,7 +88,7 @@ This creates a Docker image with the name `brouter-web`.
 To run the previously build Docker image run:
 
       docker run --rm --name brouter-web \
-        -p 127.0.0.1:80:80 \
+        -p 127.0.0.1:8080:80 \
         -v "`pwd`/config.js:/usr/share/nginx/html/config.js" \
         -v "`pwd`/keys.js:/usr/share/nginx/html/keys.js" \
         -v "`pwd`/profiles:/usr/share/nginx/html/profiles" \
