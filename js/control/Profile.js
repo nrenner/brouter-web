@@ -86,6 +86,7 @@ BR.Profile = L.Evented.extend({
             callback: L.bind(function(err, profileId, profileText) {
                 $(button).blur();
                 if (!err) {
+                    this.profileName = profileId;
                     this.cache[profileId] = profileText;
 
                     if (!this.saveWarningShown) {
@@ -127,6 +128,7 @@ BR.Profile = L.Evented.extend({
             profileText: profileText,
             callback: function(err, profileId, profileText) {
                 if (!err) {
+                    that.profileName = profileId;
                     that.cache[profileId] = profileText;
                 }
             }
