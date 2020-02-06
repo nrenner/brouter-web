@@ -28,6 +28,8 @@ BR.Profile = L.Evented.extend({
         var button = evt.target || evt.srcElement;
 
         evt.preventDefault();
+
+        this.editor.markClean();
         this._setValue('');
 
         this.fire('clear');
@@ -98,8 +100,7 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _buildCustomProfile: function() {
-        var profileText = this.cache[this.profileName];
+    _buildCustomProfile: function(profileText) {
         document.querySelectorAll('#profile_params input, #profile_params select').forEach(function(input) {
             var name = input.name;
             var value;
@@ -122,7 +123,7 @@ BR.Profile = L.Evented.extend({
     },
 
     _save: function(evt) {
-        var profileText = this._buildCustomProfile();
+        var profileText = this._buildCustomProfile(this.editor.getValue());
         var that = this;
         this.fire('update', {
             profileText: profileText,
@@ -135,16 +136,26 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _setValue: function(profileText, profileEditorActivated) {
+    _setValue: function(profileText) {
         profileText = profileText || '';
 
-        if (L.DomUtil.get('profile_editor').classList.contains('active')) {
-            // Set value of the full editor and exit
-            this.editor.setValue(profileText);
+        var clean = this.editor.isClean();
+
+        // Always set value of the full editor, even if not active.
+        // Full editor is master, the parameter form always gets the text from it (not cache).
+        this.editor.setValue(profileText);
+
+        // keep dirty state (manually modified; setValue also sets dirty)
+        if (clean) {
             this.editor.markClean();
-            return;
         }
 
+        if (this._isParamsFormActive()) {
+            this._buildParamsForm(profileText);
+        }
+    },
+
+    _buildParamsForm: function(profileText) {
         if (!profileText) return;
 
         // Otherwise, create user friendly form
@@ -280,11 +291,17 @@ BR.Profile = L.Evented.extend({
         });
     },
 
+    _isParamsFormActive: function() {
+        return L.DomUtil.get('profile_params_container').classList.contains('active');
+    },
+
     _activateSecondaryTab: function() {
-        if (L.DomUtil.get('profile_params_container').classList.contains('active')) {
-            this._setValue(this.editor.getValue());
+        var profileText = this.editor.getValue();
+
+        if (this._isParamsFormActive()) {
+            this._buildParamsForm(profileText);
         } else {
-            this._setValue(this._buildCustomProfile());
+            this._setValue(this._buildCustomProfile(profileText));
         }
     }
 });
