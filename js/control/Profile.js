@@ -19,6 +19,8 @@ BR.Profile = L.Evented.extend({
         L.DomUtil.get('upload').onclick = L.bind(this._upload, this);
         L.DomUtil.get('clear').onclick = L.bind(this.clear, this);
 
+        this.pinned = L.DomUtil.get('profile-pinned');
+
         this.message = new BR.Message('profile_message', {
             alert: true
         });
@@ -42,28 +44,40 @@ BR.Profile = L.Evented.extend({
             empty = !this.editor.getValue(),
             clean = this.editor.isClean();
 
-        if (profileName && BR.conf.profilesUrl && (empty || clean)) {
-            this.profileName = profileName;
-            if (!(profileName in this.cache)) {
-                profileUrl = BR.conf.profilesUrl + profileName + '.brf';
-                BR.Util.get(
-                    profileUrl,
-                    L.bind(function(err, profileText) {
-                        if (err) {
-                            console.warn('Error getting profile from "' + profileUrl + '": ' + err);
-                            return;
-                        }
+        if (profileName && BR.conf.profilesUrl) {
+            // only synchronize profile editor/parameters with selection if no manual changes in full editor,
+            // else keep custom profile pinned - to prevent changes in another profile overwriting previous ones
+            if (empty || clean) {
+                this.profileName = profileName;
+                if (!(profileName in this.cache)) {
+                    profileUrl = BR.conf.profilesUrl + profileName + '.brf';
+                    BR.Util.get(
+                        profileUrl,
+                        L.bind(function(err, profileText) {
+                            if (err) {
+                                console.warn('Error getting profile from "' + profileUrl + '": ' + err);
+                                return;
+                            }
 
-                        this.cache[profileName] = profileText;
+                            this.cache[profileName] = profileText;
 
-                        // don't set when option has changed while loading
-                        if (!this.profileName || this.profileName === profileName) {
-                            this._setValue(profileText);
-                        }
-                    }, this)
-                );
+                            // don't set when option has changed while loading
+                            if (!this.profileName || this.profileName === profileName) {
+                                this._setValue(profileText);
+                            }
+                        }, this)
+                    );
+                } else {
+                    this._setValue(this.cache[profileName]);
+                }
+
+                if (!this.pinned.hidden) {
+                    this.pinned.hidden = true;
+                }
             } else {
-                this._setValue(this.cache[profileName]);
+                if (this.pinned.hidden) {
+                    this.pinned.hidden = false;
+                }
             }
         }
     },
