@@ -1,5 +1,16 @@
 # BRouter-Web Changelog
 
+## 0.11.1 (2020-02-20)
+
+### Improvements
+
+-   Show icon indicator when profile is pinned (modified in editor) ([#277](https://github.com/nrenner/brouter-web/pull/277))
+
+### Bugfixes
+
+-   Fix overwriting editor changes when switching profile tabs ([#277](https://github.com/nrenner/brouter-web/pull/277))
+-   Fix search result not selectable in Chrome ([leaflet-control-geocoder#272](https://github.com/perliedman/leaflet-control-geocoder/issues/255))
+
 ## 0.11.0 (2020-01-21)
 
 See also [milestone 0.11.0](https://github.com/nrenner/brouter-web/milestone/12?closed=1)
