@@ -333,7 +333,8 @@ gulp.task(
         server.init({
             server: {
                 baseDir: './'
-            }
+            },
+            open: false
         });
         cb();
     })
