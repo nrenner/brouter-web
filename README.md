@@ -66,14 +66,12 @@ separate Nginx based image. The application runs from a webserver only container
 
 #### Prerequisites
 
-- Docker installed
-- working directory is this repository
-- `config.template.js` copied to `config.js` and modified with a Brouter server, see `BR.conf.host`
-- `keys.template.js` to `keys.js` and add your API keys
-- Optionally create `profiles` directory with `brf` profile files and add path to `config.js`: 
-    
-      BR.conf.profilesUrl = 'profiles/';
-
+-   Docker installed
+-   working directory is this repository
+-   `config.template.js` copied to `config.js` and modified with a Brouter server, see `BR.conf.host`
+-   `keys.template.js` to `keys.js` and add your API keys
+-   Optionally create `profiles` directory with `brf` profile files and add path to `config.js`:
+    BR.conf.profilesUrl = 'profiles/';
 
 #### Building Docker image
 
@@ -96,10 +94,10 @@ To run the previously build Docker image run:
 
 This command does the following:
 
-   1. Runs a container with the name `brouter-web` and removes it automatically after stopping
-   1. Binds port 80 of the container to the host interface 127.0.0.1 on port 8080
-   1. Takes the absolute paths of `config.js`, `keys.js` and `profiles` and mounts them inside the container
-   1. Uses the image `brouter-web` to run as a container
+1. Runs a container with the name `brouter-web` and removes it automatically after stopping
+1. Binds port 80 of the container to the host interface 127.0.0.1 on port 8080
+1. Takes the absolute paths of `config.js`, `keys.js` and `profiles` and mounts them inside the container
+1. Uses the image `brouter-web` to run as a container
 
 brouter-web should be accessible at http://127.0.0.1:8080.
 
