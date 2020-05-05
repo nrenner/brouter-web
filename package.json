@@ -56,7 +56,7 @@
         "jquery-i18next": "^1.2.1",
         "jstree": "^3.3.8",
         "leaflet": "~1.6.0",
-        "leaflet-control-geocoder": "nrenner/leaflet-control-geocoder#5f383f3",
+        "leaflet-control-geocoder": "^1.13.0",
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
         "leaflet-elevation": "nrenner/Leaflet.Elevation#dev",
