@@ -2,6 +2,7 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
+    'cyclosm',
     'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'
