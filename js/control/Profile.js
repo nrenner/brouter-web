@@ -260,6 +260,9 @@ BR.Profile = L.Evented.extend({
                 Object.keys(paramValues).forEach(function(paramValue) {
                     var option = document.createElement('option');
                     option.value = paramValue;
+                    if (paramValue == params[param].value) {
+                        option.selected = true;
+                    }
                     option.append(paramValues[paramValue]);
                     select.appendChild(option);
                 });
