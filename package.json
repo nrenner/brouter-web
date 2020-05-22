@@ -52,7 +52,7 @@
         "i18next": "^15.0.4",
         "i18next-browser-languagedetector": "^3.0.1",
         "i18next-xhr-backend": "^2.0.1",
-        "jquery": "3.5.0",
+        "jquery": "3.5.1",
         "jquery-i18next": "^1.2.1",
         "jstree": "^3.3.8",
         "leaflet": "~1.6.0",
