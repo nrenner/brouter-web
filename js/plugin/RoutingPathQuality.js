@@ -27,6 +27,7 @@ BR.RoutingPathQuality = L.Control.extend({
                             0.75: '#ffff00', // yellow
                             1.0: '#ff0000' // red
                         },
+                        outlineColor: 'dimgray',
                         renderer: renderer
                     },
                     valueFunction: function(latLng, prevLatLng) {
@@ -44,6 +45,7 @@ BR.RoutingPathQuality = L.Control.extend({
                 icon: 'fa-area-chart',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
+                        outlineColor: 'dimgray',
                         renderer: renderer
                     },
                     valueFunction: function(latLng) {
@@ -56,6 +58,7 @@ BR.RoutingPathQuality = L.Control.extend({
                 icon: 'fa-usd',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
+                        outlineColor: 'dimgray',
                         renderer: renderer
                     },
                     valueFunction: function(latLng) {
