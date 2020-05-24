@@ -772,43 +772,50 @@
         <div class="collapse" id="elevation-chart"></div>
 
         <footer>
-            <div class="flexrow">
+            <div id="stats-info">
+                <div>
+                    <span class="fa fa-info-circle"></span>
+                    <span data-i18n="footer.stats-info">Start drawing a route to get stats.</span>
+                </div>
+            </div>
+            <div id="stats-container" class="flexrow">
                 <ul id="stats">
                     <li>
-                        <div class="text-muted small d-none d-sm-block" data-i18n="footer.distance">
+                        <div class="text-muted small d-none d-md-block" data-i18n="footer.distance">
                             Distance
                         </div>
                         <p class="stats-label">
-                            <span id="distance">-</span>
-                            <abbr data-i18n="[title]footer.kilometer;footer.kilometer-abbrev" title="kilometers"
+                            <span id="distance">-</span
+                            ><abbr data-i18n="[title]footer.kilometer;footer.kilometer-abbrev" title="kilometers"
                                 >km</abbr
                             >
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small d-none d-sm-block" data-i18n="footer.travel-time">
+                        <div class="text-muted small d-none d-md-block" data-i18n="footer.travel-time">
                             Travel time
                         </div>
                         <p class="stats-label">
-                            <span id="totaltime">-</span>
-                            <abbr data-i18n="[title]footer.hours;footer.hours-abbrev" title="hours">h</abbr>
+                            <span id="totaltime">-</span
+                            ><abbr data-i18n="[title]footer.hours;footer.hours-abbrev" title="hours">h</abbr>
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small d-none d-sm-block">
+                        <div class="text-muted small d-none d-md-block">
                             <span data-i18n="footer.total-energy">Total Energy</span>
                             |
                             <span data-i18n="footer.energy-per-100km">Energy per 100 km</span>
                         </div>
                         <p class="stats-label">
-                            <span id="totalenergy">-</span>
-                            <abbr
+                            <span id="totalenergy">-</span
+                            ><abbr
+                                class="d-none d-md-inline"
                                 data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
                                 title="kilowatt hours"
                                 >kWh</abbr
                             >
-                            | <span id="meanenergy">-</span>
-                            <abbr
+                            | <span id="meanenergy">-</span
+                            ><abbr
                                 data-i18n="[title]footer.kilowatthour;footer.kilowatthour-abbrev"
                                 title="kilowatt hours"
                                 >kWh</abbr
@@ -816,19 +823,24 @@
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small d-none d-sm-block">
+                        <div class="text-muted small d-none d-md-block">
                             <span data-i18n="footer.ascend">Ascend</span> |
                             <span data-i18n="footer.plain-ascend">Plain ascend</span>
                         </div>
                         <p class="stats-label">
-                            <span id="ascend">-</span>
-                            <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meters">m</abbr>
-                            | <span id="plainascend">-</span>
-                            <abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meters">m</abbr>
+                            <span id="ascend">-</span
+                            ><abbr
+                                class="d-none d-md-inline"
+                                data-i18n="[title]footer.meter;footer.meter-abbrev"
+                                title="meters"
+                                >m</abbr
+                            >
+                            | <span id="plainascend">-</span
+                            ><abbr data-i18n="[title]footer.meter;footer.meter-abbrev" title="meters">m</abbr>
                         </p>
                     </li>
                     <li>
-                        <div class="text-muted small d-none d-sm-block">
+                        <div class="text-muted small d-none d-md-block">
                             <span data-i18n="footer.cost">Cost</span> |
                             <span data-i18n="footer.mean-cost-factor">Mean cost factor</span>
                         </div>

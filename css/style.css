@@ -79,29 +79,52 @@ table.dataTable {
 
 footer {
     flex: none;
-
     background-color: #f7f7f9;
 }
 
+#stats-container {
+    display: flex;
+}
+
+#stats-info {
+    align-items: center;
+    height: 46px;
+    display: none;
+}
+#stats-info[style*='display: block'] {
+    display: flex !important;
+}
+#stats-info > div {
+    margin: auto;
+}
 #stats {
     flex-grow: 1;
     margin: 0;
     padding: 0;
     text-align: center;
 }
-#stats li {
-    margin: 0 1rem;
-    display: inline-block;
+
+ul#stats {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+#stats li {
+    display: inline-block;
+    flex: 0 1 auto;
+    list-style-type: none;
+}
+
+p.stats-label {
+    margin-bottom: 0.2em;
+}
+
 @media (max-width: 767px) {
-    #stats li {
-        margin: 0 0.5rem;
-    }
     #stats {
         padding-top: 0.4em;
-    }
-    p.stats-label {
-        margin-bottom: 0.4em;
     }
 }
 
@@ -162,6 +185,8 @@ input#trackname:focus:invalid {
 #elevation-btn {
     align-items: center;
     margin-right: 0.5rem;
+    height: max-content;
+    align-self: center;
 }
 
 .routing-draw-enabled {
