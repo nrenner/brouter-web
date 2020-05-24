@@ -15,7 +15,9 @@ BR.TrackStats = L.Class.extend({
 
         var stats = this.calcStats(polyline, segments),
             length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
-            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(),
+            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(undefined, {
+                minimumFractionDigits: 3
+            }),
             formattedAscend = stats.filteredAscend.toLocaleString(),
             formattedPlainAscend = stats.plainAscend.toLocaleString(),
             formattedCost = stats.cost.toLocaleString(),
