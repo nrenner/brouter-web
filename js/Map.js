@@ -12,12 +12,15 @@ BR.Map = {
             minZoom: 0,
             maxZoom: maxZoom
         });
-        L.control
-            .zoom({
-                zoomInTitle: i18next.t('map.zoomInTitle'),
-                zoomOutTitle: i18next.t('map.zoomOutTitle')
-            })
-            .addTo(map);
+
+        if (BR.Util.getResponsiveBreakpoint() >= '3md') {
+            L.control
+                .zoom({
+                    zoomInTitle: i18next.t('map.zoomInTitle'),
+                    zoomOutTitle: i18next.t('map.zoomOutTitle')
+                })
+                .addTo(map);
+        }
         if (!map.restoreView()) {
             map.setView(BR.conf.initialMapLocation || [50.99, 9.86], BR.conf.initialMapZoom || 5);
         }
