@@ -226,11 +226,17 @@ BR.TrackAnalysis = L.Class.extend({
         var $content = $('#track_statistics');
 
         $content.html('');
-        $content.append($('<h4 class="analysis-heading">' + i18next.t('sidebar.analysis.header.highway') + '</h4>'));
+        $content.append(
+            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.highway') + '</h4>')
+        );
         $content.append(this.renderTable('highway', analysis.highway));
-        $content.append($('<h4 class="analysis-heading">' + i18next.t('sidebar.analysis.header.surface') + '</h4>'));
+        $content.append(
+            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.surface') + '</h4>')
+        );
         $content.append(this.renderTable('surface', analysis.surface));
-        $content.append($('<h4 class="analysis-heading">' + i18next.t('sidebar.analysis.header.smoothness') + '</h4>'));
+        $content.append(
+            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.smoothness') + '</h4>')
+        );
         $content.append(this.renderTable('smoothness', analysis.smoothness));
     },
 
