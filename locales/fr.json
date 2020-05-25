@@ -6,7 +6,7 @@
     "chat": "Discuter avec d'autres utilisateurs et développeurs",
     "contact": "Contact :",
     "data": "Données :",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+    "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement quotidienne, voir <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
     "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
     "support": "Discussions/Questions générales, support ;",
@@ -15,7 +15,7 @@
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "elevation-data": "Elevation data",
+    "elevation-data": "Données d'élévation",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources : Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, et la communauté d'utilisateurs GIS",
     "esri-tiles": "Imagerie mondiale Esri",
     "map-data": "Données de carte",
@@ -51,6 +51,7 @@
     "meter": "mètres",
     "meter-abbrev": "m",
     "plain-ascend": "global",
+    "stats-info": "Commencer un itinéraire pour voir ses stats.",
     "total-energy": "Énergie totale",
     "travel-time": "Temps de trajet"
   },
@@ -117,7 +118,7 @@
       "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
     },
     "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
-    "preview": "Preview",
+    "preview": "Prévisualiser",
     "privacy": "Vie privée",
     "reverse-route": "Inverse l'itinéraire",
     "route-quality-altitude": "Chiffrage de l'altitude",
@@ -170,10 +171,10 @@
   },
   "sidebar": {
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Personnaliser le profil"
     },
     "data": {
-      "sync-map": "Synchronize map",
+      "sync-map": "Synchroniser la carte",
       "title": "Données"
     },
     "itinerary": {
@@ -206,13 +207,13 @@
       "title": "Calques"
     },
     "profile": {
-      "apply": "Apply",
+      "apply": "Appliquer",
       "clear": "Nettoyer",
       "help": "Aide",
-      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
-      "options": "Options",
+      "no_easy_configuration_warning": "Aucune configuration facile n'est disponible pour ce profil.",
+      "options": "Paramètres",
       "placeholder": "Saisissez votre profil personnalisé ici.",
-      "profile": "Profile"
+      "profile": "Profil"
     }
   },
   "title": "Client web BRouter",

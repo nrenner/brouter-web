@@ -51,6 +51,7 @@
     "meter": "Meter",
     "meter-abbrev": "m",
     "plain-ascend": "einfach aufsteigend",
+    "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Gesamtenergie",
     "travel-time": "Reisezeit"
   },

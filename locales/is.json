@@ -1,0 +1,230 @@
+{
+  "about": {
+    "bug-reports": "Villutilkynningar og beiðnir um nýja eiginleika:",
+    "bug-reports-back": "netþjónn / bakendi, beiningarvél, Android-forrit, notkunarsnið, brouter.de vefurinn",
+    "bug-reports-front": "vefforrit / framendi.",
+    "chat": "Spjallað við notendur og forritara",
+    "contact": "Hafa samband:",
+    "data": "Gögn:",
+    "data-description": "Þetta er byggt á <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Það er venjulega uppfært daglega, skoðaðu dagsetningar í <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">gagnaskrám</a>.",
+    "description": "Vefþjónusta BRouter leiðagerðarvélarinnar. Varðandi Android forritið og ítarlegri upplýsingar er bent á <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Persónuverndarsetfna</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Framlög</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Breytingaannáll</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">ítarlegri upplýsingar</a></i> um forritið.",
+    "support": "Almennar umræður, spurningar, aðstoð",
+    "title": "Um hugbúnaðinn"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Hæðargögn",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Heimsmyndasafn</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, uppruni: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP og GIS notendasamfélagið",
+    "esri-tiles": "Esri heimsmyndasafnið",
+    "map-data": "Kortagögn",
+    "map-tiles": "Kortatíglar",
+    "nominatim": "Leita eftir <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap þátttakendur</a> með <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+  },
+  "export": {
+    "format": "Snið",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "include": "Hafa með",
+    "include_waypoints": "Leiðarpunktar",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Flytja út leið",
+    "trackname": "Nafn"
+  },
+  "footer": {
+    "ascend": "Uppsöfnuð hækkun",
+    "cost": "Kostnaður",
+    "distance": "Vegalengd",
+    "energy-per-100km": "Orka á hverja 100 km",
+    "hours": "klukkustundir",
+    "hours-abbrev": "klst",
+    "kilometer": "kílómetrar",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kílóvattstundir",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Meðal-kostnaðarstuðull",
+    "meter": "metrar",
+    "meter-abbrev": "m",
+    "plain-ascend": "Einföld hækkun (hæðarmunur)",
+    "stats-info": "Start drawing a route to get stats.",
+    "total-energy": "Orka alls",
+    "travel-time": "Ferðatími"
+  },
+  "layers": {
+    "add-base": "Bæta við grunnlagi",
+    "add-overlay": "Bæta við þekjulagi",
+    "customize": "Sérsníða lög",
+    "opacity-slider": "Ógegnsæissleði",
+    "placeholder-layer-name": "Heiti sérsniðins lags. (t.d: OpenStreetMap)",
+    "placeholder-layer-url": "URL-slóð sérsniðins lags. (t.d: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Fjarlægja valið"
+  },
+  "loadNogos": {
+    "defaultProperties": "Sjálfgefnir eiginleikar",
+    "file": "Skrá (.geojson): ",
+    "load": "Hlaða",
+    "nogoBuffer": "Útjaðar bannsvæða (í metrum):",
+    "nogoRadius": "Radíus bannsvæða í kringum punkt (í metrum):",
+    "nogoWeight": "Mikilvægi bannsvæðis (-1 þýðir ófært): ",
+    "source": "Uppruni",
+    "title": "Hlaða inn bannsvæðum",
+    "url": "Slóð:"
+  },
+  "map": {
+    "attribution-osm-long": "OpenStreetMap þátttakendurnir",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Hreinsa út leiðargögn",
+    "copyright": "Höfundarréttur",
+    "cycling": "Hjólreiðar",
+    "delete-last-point": "Eyða síðasta punkti",
+    "delete-nogo-areas": "Eyða öllum bannsvæðum",
+    "delete-pois": "Eyða öllum merkisstöðum",
+    "delete-route": "Eyða leið",
+    "draw-poi-start": "Teikna merkisstaði (points of interest = P-lykill)",
+    "draw-poi-stop": "Hætta að teikna merkisstaði (ESC-lykill)",
+    "draw-route-start": "Teikna leið (D-lykill)",
+    "draw-route-stop": "Hætta að teikna leið (ESC-lykill)",
+    "enter-poi-name": "Settu inn heiti á merkisstað",
+    "hikebike-hillshading": "Hæðaskygging",
+    "hiking": "Gangandi",
+    "layer": {
+      "bing": "Bing Aerial loftmyndir",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Hjólandi (Waymarked Trails)",
+      "digitalglobe": "DigitalGlobe nýlegt myndefni",
+      "esri": "Esri World Imagery heimsmyndasafnið",
+      "hikebike-hillshading": "Hæðaskygging (göngu- og hjólakort)",
+      "hiking": "Gangandi (Waymarked Trails)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Útivist (Thunderforest)",
+      "route-quality": "Kóði fyrir gæði leiðar",
+      "stamen-terrain": "Jarðvegsyfirborð (Stamen)",
+      "strava-segments": "Strava bútar",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Hleð inn…",
+    "locate-me": "Sýndu mér hvar ég er",
+    "nogo": {
+      "cancel": "Hætta við að teikna bannsvæði",
+      "click-drag": "Smella og draga til að teikna hring",
+      "draw": "Teikna bannsvæði (hring)",
+      "edit": "Smelltu til að breyta",
+      "help": "&square; = færa / breyta stærð, <span class=\"fa fa-trash-o\"></span> = eyða,<br>smella á hring til að hætta breytingum"
+    },
+    "opacity-slider": "Stilla gegnsæi leiða og merkja",
+    "preview": "Forskoðun",
+    "privacy": "Persónuvernd",
+    "reverse-route": "Snúa við leið",
+    "route-quality-altitude": "Kóði fyrir hæð",
+    "route-quality-cost": "Kóði fyrir kostnað",
+    "route-quality-incline": "Kóði fyrir halla",
+    "strava-biking": "Sýna Strava hjólabúta",
+    "strava-running": "Sýna Strava hlaupabúta",
+    "zoomInTitle": "Renna að",
+    "zoomOutTitle": "Renna frá"
+  },
+  "modal": {
+    "close": "Loka"
+  },
+  "navbar": {
+    "about": "Um hugbúnaðinn",
+    "alternative": {
+      "first": "1. varaleið",
+      "original": "Upprunalegt",
+      "second": "2. varaleið",
+      "third": "3. varaleið"
+    },
+    "export": "Flytja út",
+    "load": {
+      "nogos": "Bannsvæði",
+      "title": "Hlaða",
+      "tracks": "Ferlar"
+    },
+    "profile": {
+      "car-eco": "Akandi (hagkvæmt)",
+      "car-fast": "Akandi (hraðast)",
+      "car-test": "Akandi (prófun)",
+      "custom": "Sérsniðið",
+      "fastbike": "Hröð hjól (fastbike)",
+      "fastbike-asia-pacific": "Hröð hjól (fastbike - Kyrrahafs-Asía)",
+      "fastbike-lowtraffic": "Hröð hjól (fastbike - lítil umferð)",
+      "hiking-beta": "Gangandi (prufuútgáfa)",
+      "moped": "Skellinöðrur",
+      "rail": "Lestir",
+      "river": "Á",
+      "safety": "Öryggi",
+      "shortest": "Styst",
+      "trekking": "Ferðahjól",
+      "trekking-ignore-cr": "Ferðahjól (hunsa hjólaleiðir)",
+      "trekking-noferries": "Ferðahjól (engar ferjur)",
+      "trekking-nosteps": "Ferðahjól (engin þrep)",
+      "trekking-steep": "Ferðahjól (bratt)",
+      "vm-forum-liegerad-schnell": "Afturliggjandi hjól (hratt)",
+      "vm-forum-velomobil-schnell": "Hjúphjól (velomobile - hratt)"
+    }
+  },
+  "sidebar": {
+    "customize-profile": {
+      "title": "Sérsníða notkunarsnið"
+    },
+    "data": {
+      "sync-map": "Samstilla kort",
+      "title": "Gögn"
+    },
+    "itinerary": {
+      "title": "Ferðaáætlun"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Grunnlög",
+        "country": "Land",
+        "europe": "Evrópa",
+        "europe-monolingual": "Eitt tungumál í Evrópu",
+        "overlays": "Þekjulög (yfirlög)",
+        "worldwide": "Á heimsvísu",
+        "worldwide-international": "Alþjóðlegt á heimsvísu",
+        "worldwide-monolingual": "Eitt tungumál á heimsvísu"
+      },
+      "collapse": "Fella allt saman",
+      "custom-layers": "Sérsniðin lög",
+      "customize": "Bæta við eða fjarlægja sérsniðin lög",
+      "expand": "Útliða allt",
+      "optional": "Bæta við eða fjarlægja valkvæð lög",
+      "optional-layers": "Meira",
+      "overlay-opacity": "Gegnsæi þekjulags",
+      "table": {
+        "URL": "Slóð",
+        "empty": "Ekkert sérsniðið lag ennþá uppsett.",
+        "name": "Nafn",
+        "type": "Tegund"
+      },
+      "title": "Lög"
+    },
+    "profile": {
+      "apply": "Virkja",
+      "clear": "Hreinsa",
+      "help": "Hjálp",
+      "no_easy_configuration_warning": "Engin einföld uppsetning er tiltæk fyrir þetta snið.",
+      "options": "Valkostir",
+      "placeholder": "Skrifaðu sérsniðna notkunarsniðið þitt hér.",
+      "profile": "Notkunarsnið"
+    }
+  },
+  "title": "BRouter vefforrit",
+  "warning": {
+    "cannot-get-route": "Villa við að ná í URL-slóð leiðar",
+    "no-response": "ekkert svar frá netþjóni",
+    "no-route-found": "Villa: fann ekki leið fyrir uppgefna punkta. Kannski ættirðu að prófa að færa þá nær vegum?",
+    "profile-error": "Villa í notkunarsniði: ekkert eða tómt svar frá netþjóni",
+    "strava-error": "Villa við að sækja Strava-búta: {{error}}",
+    "temporary-profile": "<strong>Athugaðu:</strong> Innsend sérsniðin notkunarsnið eru aðeins geymd tímabundið á netþjóninum.<br/>Vistaðu breytingarnar þínar á tölvuna þína.",
+    "tracks-load-error": "Villa við að hlaða inn ferlum: {{error}}",
+    "upload-error": "Villa í innsendingu: {{error}}"
+  }
+}

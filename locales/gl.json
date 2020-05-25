@@ -51,6 +51,7 @@
     "meter": "meters",
     "meter-abbrev": "m",
     "plain-ascend": "Plain ascend",
+    "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
     "travel-time": "Travel time"
   },

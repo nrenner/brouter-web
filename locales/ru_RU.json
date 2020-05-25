@@ -1,15 +1,15 @@
 {
   "about": {
-    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports": "Сообщения об ошибках и предложения",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
-    "bug-reports-front": "web client / frontend.",
+    "bug-reports-front": "веб-клиент / интерфейс.",
     "chat": "Чат с пользователями и разработчиками",
-    "contact": "Contact:",
+    "contact": "Контактная информация:",
     "data": "Данные:",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+    "data-description": "Основано на проекте <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Обычно оно ежедневно обновляется, видит даты <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">загруженных файлов.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
-    "support": "General discussions/questions, support",
+    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Политика конфиденциальности</a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\"></a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Журнал изменений</a></i>и\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">подробнее</a></i> о клиенте.",
+    "support": "Общие дискуссии/ вопросы, поддержка",
     "title": "О сервисе"
   },
   "credits": {
@@ -19,7 +19,7 @@
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Данные карты",
-    "map-tiles": "Map tiles",
+    "map-tiles": "Картографические фрагменты",
     "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
@@ -30,67 +30,68 @@
     "format_gpx": "GPX",
     "format_kml": "KML",
     "include": "Include",
-    "include_waypoints": "Waypoints",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
-    "route-loop": "{{from}} ({{distance}}km)",
+    "include_waypoints": "Маршрутные точки",
+    "route-from-to": "{{от}} -> {{до}} ({{расстояние}}км)",
+    "route-loop": "{{от}} ({{расстояние}}км)",
     "title": "Export route",
-    "trackname": "Name"
+    "trackname": "Название"
   },
   "footer": {
     "ascend": "Ascend",
-    "cost": "Cost",
+    "cost": "Стоимость",
     "distance": "Расстояние",
     "energy-per-100km": "Energy per 100 km",
-    "hours": "hours",
+    "hours": "часы",
     "hours-abbrev": "h",
     "kilometer": "километров",
     "kilometer-abbrev": "км",
     "kilowatthour": "киловатт-часы",
     "kilowatthour-abbrev": "кВт⋅ч",
-    "mean-cost-factor": "Mean cost factor",
+    "mean-cost-factor": "Средний коэффициент стоимости",
     "meter": "метры",
     "meter-abbrev": "м",
     "plain-ascend": "Plain ascend",
-    "total-energy": "Total Energy",
-    "travel-time": "Travel time"
+    "stats-info": "Start drawing a route to get stats.",
+    "total-energy": "Общая энергия",
+    "travel-time": "Время в пути"
   },
   "layers": {
-    "add-base": "Add base layer",
-    "add-overlay": "Add overlay",
-    "customize": "Customize layers",
+    "add-base": "Добавить базовый слой",
+    "add-overlay": "Добавить наложение",
+    "customize": "Настроить слои",
     "opacity-slider": "Opacity slider",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
+    "placeholder-layer-name": "Имя пользовательского слоя. (наприм. OpenStreetMap)",
     "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
-    "remove-selection": "Remove selection"
+    "remove-selection": "Убрать выделение"
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
     "file": "File (.geojson): ",
-    "load": "Load",
+    "load": "Загрузить",
     "nogoBuffer": "Buffer no-go areas (in meters): ",
     "nogoRadius": "No-go radius for points (in meters): ",
     "nogoWeight": "No-go weight (-1 means impassable): ",
-    "source": "Source",
-    "title": "Load no-go areas",
+    "source": "Источник",
+    "title": "Загрузить запретные зоны",
     "url": "URL: "
   },
   "map": {
     "attribution-osm-long": "Участники OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
-    "clear-route": "Clear route data",
-    "copyright": "Copyright",
+    "clear-route": "Очистить данные маршрута",
+    "copyright": "Авторские права",
     "cycling": "Cycling",
-    "delete-last-point": "Delete last point",
-    "delete-nogo-areas": "Delete all no-go areas",
+    "delete-last-point": "Удалить последний пункт",
+    "delete-nogo-areas": "Удалить все запретные зоны",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Удалить маршрут",
     "draw-poi-start": "Draw points of interest (P key)",
     "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
+    "draw-route-start": "Нарисовать маршрут (Клавиша D)",
+    "draw-route-stop": "Прекратить рисовать маршрут (Клавиша ESC)",
     "enter-poi-name": "Enter Point of Interest name",
     "hikebike-hillshading": "Hillshading",
-    "hiking": "Hiking",
+    "hiking": "Пешие прогулки",
     "layer": {
       "bing": "Bing Aerial",
       "cycle": "OpenCycleMap (Thunderf.)",
@@ -102,31 +103,31 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
-      "route-quality": "Route quality coding",
+      "route-quality": "Качество кодирования маршрута",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
     "loading": "Загрузка...",
-    "locate-me": "Show me where I am",
+    "locate-me": "Покажите мне, где я",
     "nogo": {
       "cancel": "Cancel drawing no-go area",
-      "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
-      "edit": "Click to edit",
+      "click-drag": "Нажмите и перетащите, чтобы нарисовать круг",
+      "draw": "Нарисуйте запретную зону (обведите)",
+      "edit": "Нажмите для редактирования",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers",
-    "preview": "Preview",
-    "privacy": "Privacy",
-    "reverse-route": "Reverse route",
+    "opacity-slider": "Установить прозрачность маршрута и маркеры",
+    "preview": "Предварительный просмотр",
+    "privacy": "Конфиденциальность",
+    "reverse-route": "Обратный маршрут",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "zoomInTitle": "Увеличить",
+    "zoomOutTitle": "Уменьшить"
   },
   "modal": {
     "close": "Закрыть"
@@ -141,9 +142,9 @@
     },
     "export": "Экспорт",
     "load": {
-      "nogos": "No-go areas",
-      "title": "Load",
-      "tracks": "Tracks"
+      "nogos": "Запретные зоны",
+      "title": "Загрузить",
+      "tracks": "Дорожки"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -154,26 +155,26 @@
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
       "hiking-beta": "Hiking (beta)",
-      "moped": "Moped",
+      "moped": "Мопед",
       "rail": "Rail",
       "river": "Река",
-      "safety": "Safety",
+      "safety": "Безопасность",
       "shortest": "Shortest",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
       "trekking-nosteps": "Trekking bike (no steps)",
       "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+      "vm-forum-liegerad-schnell": "Лежачий велосипед (быстро)",
+      "vm-forum-velomobil-schnell": "Веломобиль (быстро)"
     }
   },
   "sidebar": {
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Настроить профиль"
     },
     "data": {
-      "sync-map": "Synchronize map",
+      "sync-map": "Синхронизировать карту",
       "title": "Данные"
     },
     "itinerary": {
@@ -185,45 +186,45 @@
         "country": "Страна",
         "europe": "Европа",
         "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
+        "overlays": "Наложение",
+        "worldwide": "Всемирный",
+        "worldwide-international": "Многоязычный во всём мире",
+        "worldwide-monolingual": "Одноязычный во всём мире"
       },
-      "collapse": "Collapse all",
-      "custom-layers": "Custom layers",
-      "customize": "Add or remove custom layers",
+      "collapse": "Свернуть все",
+      "custom-layers": "Пользовательские слои",
+      "customize": "Добавить или удалить пользовательские слои",
       "expand": "Развернуть все",
       "optional": "Добавить или удалить дополнительные слои",
       "optional-layers": "Ещё",
-      "overlay-opacity": "Overlay transparency",
+      "overlay-opacity": "Перекрытие прозрачностью",
       "table": {
-        "URL": "URL",
-        "empty": "No custom layer configured yet.",
+        "URL": "URL-адрес",
+        "empty": "Произвольный слой ещё не настроен.",
         "name": "Название",
         "type": "Тип"
       },
       "title": "Слои"
     },
     "profile": {
-      "apply": "Apply",
-      "clear": "Clear",
+      "apply": "Применить",
+      "clear": "Убрать",
       "help": "Справка",
-      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
-      "options": "Options",
+      "no_easy_configuration_warning": "Для этого профиля недоступна простая настройка.",
+      "options": "Параметры",
       "placeholder": "Write your custom profile here.",
-      "profile": "Profile"
+      "profile": "Профиль"
     }
   },
-  "title": "BRouter web client",
+  "title": "Веб-клиент BRouter",
   "warning": {
-    "cannot-get-route": "Error getting route URL",
+    "cannot-get-route": "Ошибка при получении URL маршрута",
     "no-response": "сервер не отвечает",
-    "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
+    "no-route-found": "Ошибка: не удается найти маршрут для заданных точек. Может быть, попытаться переместить их ближе к дорогам?",
+    "profile-error": "Ошибка профиля: не удалось получить ответ сервера либо получен пустой ответ.",
     "strava-error": "Error getting Strava segments: {{error}}",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "tracks-load-error": "Error loading tracks: {{error}}",
-    "upload-error": "Upload error: {{error}}"
+    "temporary-profile": "<strong>Примечание:</strong>  Добавленные пользовательские профили временно кэшируются на сервере.<br/> Пожалуйста, сохраните изменения на вашем компьютере.",
+    "tracks-load-error": "Ошибка загрузки треков: {{ошибка}}",
+    "upload-error": "Ошибка загрузки: {{ошибка}}"
   }
 }

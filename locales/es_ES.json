@@ -51,6 +51,7 @@
     "meter": "metros",
     "meter-abbrev": "m",
     "plain-ascend": "Ascenso llano",
+    "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Energia total",
     "travel-time": "Tiempo de viaje"
   },
