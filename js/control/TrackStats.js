@@ -1,21 +1,18 @@
 BR.TrackStats = L.Class.extend({
     update: function(polyline, segments) {
         if (segments.length == 0) {
-            $('#distance').html('-');
-            $('#distance').attr('title', '');
-            $('#ascend').html('-');
-            $('#plainascend').html('-');
-            $('#cost').html('-');
-            $('#meancostfactor').html('-');
-            $('#totaltime').html('-');
-            $('#totalenergy').html('-');
-            $('#meanenergy').html('-');
+            $('#stats-container').hide();
+            $('#stats-info').show();
             return;
         }
 
+        $('#stats-container').show();
+        $('#stats-info').hide();
         var stats = this.calcStats(polyline, segments),
             length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
-            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(),
+            length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(undefined, {
+                minimumFractionDigits: 3
+            }),
             formattedAscend = stats.filteredAscend.toLocaleString(),
             formattedPlainAscend = stats.plainAscend.toLocaleString(),
             formattedCost = stats.cost.toLocaleString(),

@@ -48,5 +48,24 @@ BR.Util = {
         } catch (e) {
             return false;
         }
+    },
+
+    // see https://stackoverflow.com/a/37141090/1906123
+    getResponsiveBreakpoint: function() {
+        var envs = { '1xs': 'd-none', '2sm': 'd-sm-none', '3md': 'd-md-none', '4lg': 'd-lg-none', '5xl': 'd-xl-none' };
+        var env = '';
+
+        var $el = $('<div>');
+        $el.appendTo($('body'));
+
+        for (var i = Object.keys(envs).length - 1; i >= 0; i--) {
+            env = Object.keys(envs)[i];
+            $el.addClass(envs[env]);
+            if ($el.is(':hidden')) {
+                break; // env detected
+            }
+        }
+        $el.remove();
+        return env;
     }
 };
