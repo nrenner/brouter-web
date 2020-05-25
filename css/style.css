@@ -83,16 +83,16 @@ footer {
 }
 
 #stats-container {
-    display: flex;
+    display: none;
+}
+#stats-container[style*='display: block'] {
+    display: flex !important;
 }
 
 #stats-info {
     align-items: center;
     height: 46px;
-    display: none;
-}
-#stats-info[style*='display: block'] {
-    display: flex !important;
+    display: flex;
 }
 #stats-info > div {
     margin: auto;
