@@ -18,7 +18,9 @@ BR.TrackAnalysis = L.Class.extend({
         overlayStyle: {
             color: 'yellow',
             opacity: 0.8,
-            weight: 8
+            weight: 8,
+            // show above quality coding (pane defined in RoutingPathQuality.js)
+            pane: 'routingQualityPane'
         }
     },
 
