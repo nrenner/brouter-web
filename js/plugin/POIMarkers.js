@@ -42,11 +42,9 @@ BR.PoiMarkers = L.Control.extend({
             self.draw(false);
         });
 
-        var container = new L.DomUtil.create('div');
-        // keys not working when map container does not have focus, use document instead
-        L.DomEvent.removeListener(container, 'keyup', this._keyupListener);
-        L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
+        L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
+        var container = new L.DomUtil.create('div');
         return container;
     },
 
@@ -62,14 +60,14 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    _keyupListener: function(e) {
+    _keydownListener: function(e) {
         // Suppress shortcut handling when a text input field is focussed
         if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
             return;
         }
-        if (e.keyCode === this.options.shortcut.draw.disable) {
+        if (e.keyCode === this.options.shortcut.draw.disable && !e.repeat) {
             this.draw(false);
-        } else if (e.keyCode === this.options.shortcut.draw.enable) {
+        } else if (e.keyCode === this.options.shortcut.draw.enable && !e.repeat) {
             this.draw(true);
         }
     },
