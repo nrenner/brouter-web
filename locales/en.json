@@ -118,7 +118,7 @@
       "edit": "Click to edit",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers\n(Hold M key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
@@ -127,8 +127,8 @@
     "route-quality-incline": "Incline coding",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "zoomInTitle": "Zoom in (+ key)",
+    "zoomOutTitle": "Zoom out (- key)"
   },
   "modal": {
     "close": "Close"
