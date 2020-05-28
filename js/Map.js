@@ -33,6 +33,7 @@ BR.Map = {
             $(map.getContainer()).outerWidth() >= 400
                 ? i18next.t('map.attribution-osm-long')
                 : i18next.t('map.attribution-osm-short');
+        var privacyPolicyUrl = BR.conf.privacyPolicyUrl || 'https://brouter.de/privacypolicy.html';
         map.attributionControl.setPrefix(
             '&copy; <a target="_blank" href="https://www.openstreetmap.org/copyright">' +
                 osmAttribution +
@@ -40,7 +41,9 @@ BR.Map = {
                 ' &middot; <a href="" data-toggle="modal" data-target="#credits">' +
                 i18next.t('map.copyright') +
                 '</a>' +
-                ' &middot; <a target="_blank" href="https://brouter.de/privacypolicy.html">' +
+                ' &middot; <a target="_blank" href="' +
+                privacyPolicyUrl +
+                '">' +
                 i18next.t('map.privacy') +
                 '</a>'
         );

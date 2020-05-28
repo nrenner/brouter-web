@@ -426,7 +426,9 @@
             },
             function(err, t) {
                 jqueryI18next.init(i18next, $);
-                $('html').localize();
+                $('html').localize({
+                    privacyPolicyUrl: BR.conf.privacyPolicyUrl || 'https://brouter.de/privacypolicy.html'
+                });
 
                 mapContext = BR.Map.initMap();
                 verifyTouchStyle(mapContext);
