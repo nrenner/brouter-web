@@ -61,13 +61,12 @@ BR.PoiMarkers = L.Control.extend({
     },
 
     _keydownListener: function(e) {
-        // Suppress shortcut handling when a text input field is focussed
-        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
+        if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
-        if (e.keyCode === this.options.shortcut.draw.disable && !e.repeat) {
+        if (e.keyCode === this.options.shortcut.draw.disable) {
             this.draw(false);
-        } else if (e.keyCode === this.options.shortcut.draw.enable && !e.repeat) {
+        } else if (e.keyCode === this.options.shortcut.draw.enable) {
             this.draw(true);
         }
     },

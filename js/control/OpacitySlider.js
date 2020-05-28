@@ -52,23 +52,13 @@ BR.OpacitySlider = L.Class.extend({
     },
 
     _keydownListener: function(e) {
-        // Suppress shortcut handling when a text input field is focussed
-        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
-            return;
-        }
-
-        if (e.keyCode === this.options.muteKeyCode && !e.repeat) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(0);
         }
     },
 
     _keyupListener: function(e) {
-        // Suppress shortcut handling when a text input field is focussed
-        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
-            return;
-        }
-
-        if (e.keyCode === this.options.muteKeyCode && !e.repeat) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(this.input.val() / 100);
         }
     },

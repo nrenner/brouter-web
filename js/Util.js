@@ -67,5 +67,35 @@ BR.Util = {
         }
         $el.remove();
         return env;
+    },
+
+    keyboardShortcutsAllowed: function(keyEvent) {
+        // Skip auto-repeating key events
+        if (keyEvent.repeat) {
+            return false;
+        }
+
+        // Suppress shortcut handling when a text or number input field is focussed
+        if (
+            document.activeElement.type == 'number' ||
+            document.activeElement.type == 'text' ||
+            document.activeElement.type == 'textarea'
+        ) {
+            return false;
+        }
+
+        // Only allow shortcuts without modifiers for now, to prevent triggering map functions
+        // when browser shortcuts are triggered (e.g. Ctrl+P for print should not add a POI)
+        if (keyEvent.ctrlKey || keyEvent.metaKey || keyEvent.altKey) {
+            return false;
+        }
+
+        // Do not allow shortcuts triggering actions behind Bootstrap's
+        // modal dialogs or when dropdown menus are opened
+        if ($('.modal.show').length || $('.dropdown.show').length) {
+            return false;
+        }
+
+        return true;
     }
 };
