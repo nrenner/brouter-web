@@ -8,7 +8,7 @@
     "data": "Данные:",
     "data-description": "Основано на проекте <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Обычно оно ежедневно обновляется, видит даты <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">загруженных файлов.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Политика конфиденциальности</a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\"></a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Журнал изменений</a></i>и\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">подробнее</a></i> о клиенте.",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Политика конфиденциальности</a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\"></a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Журнал изменений</a></i>и\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">подробнее</a></i> о клиенте.",
     "support": "Общие дискуссии/ вопросы, поддержка",
     "title": "О сервисе"
   },

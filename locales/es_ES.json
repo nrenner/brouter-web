@@ -8,7 +8,7 @@
     "data": "Datos:",
     "data-description": "Esta basado en <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Por lo general se actualiza a diario, consulte las fechas <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">de los archivos</a>.",
     "description": "Servicio en línea del motor de enrutamiento BRouter. Para la aplicación de Android sin conexión y más información, consulte  <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Política de privacidad</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Creditos</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> y\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">más información</a></i> en el cliente.",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Política de privacidad</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Creditos</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> y\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">más información</a></i> en el cliente.",
     "support": "General discusiones/preguntas, soporte",
     "title": "Acerca de"
   },

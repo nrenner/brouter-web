@@ -8,7 +8,7 @@
     "data": "Dane:",
     "data-description": "Oparta jest o <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Zazwyczaj aktualizowana jest codziennie, zobacz daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
     "support": "Ogólna dyskusja/pytania, wsparcie",
     "title": "Informacje"
   },

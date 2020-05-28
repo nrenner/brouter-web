@@ -8,7 +8,7 @@
     "data": "Gögn:",
     "data-description": "Þetta er byggt á <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Það er venjulega uppfært daglega, skoðaðu dagsetningar í <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">gagnaskrám</a>.",
     "description": "Vefþjónusta BRouter leiðagerðarvélarinnar. Varðandi Android forritið og ítarlegri upplýsingar er bent á <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"https://brouter.de/privacypolicy.html\" target=\"_blank\">Persónuverndarsetfna</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Framlög</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Breytingaannáll</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">ítarlegri upplýsingar</a></i> um forritið.",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Persónuverndarsetfna</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Framlög</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Breytingaannáll</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">ítarlegri upplýsingar</a></i> um forritið.",
     "support": "Almennar umræður, spurningar, aðstoð",
     "title": "Um hugbúnaðinn"
   },
