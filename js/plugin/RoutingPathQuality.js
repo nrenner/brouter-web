@@ -1,4 +1,10 @@
 BR.RoutingPathQuality = L.Control.extend({
+    options: {
+        shortcut: {
+            muteKeyCode: 77 // char code for 'm'
+        }
+    },
+
     initialize: function(map, layersControl, options) {
         L.setOptions(this, options);
 
@@ -78,6 +84,7 @@ BR.RoutingPathQuality = L.Control.extend({
         this.selectedProvider = this._initialProvider;
 
         this._active = false;
+        this._muted = false;
     },
 
     onAdd: function(map) {
@@ -133,6 +140,11 @@ BR.RoutingPathQuality = L.Control.extend({
             });
         }
 
+        if (this.options.shortcut.muteKeyCode) {
+            L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
+            L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
+        }
+
         this.routingPathButton = new L.easyButton({
             states: states
         }).addTo(map);
@@ -176,6 +188,20 @@ BR.RoutingPathQuality = L.Control.extend({
             for (var i = 0; i < layers.length; i++) {
                 this._routingSegments.addLayer(layers[i]);
             }
+        }
+    },
+
+    _keydownListener: function(e) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && this._active && e.keyCode === this.options.shortcut.muteKeyCode) {
+            this._muted = true;
+            this._deactivate(this.routingPathButton);
+        }
+    },
+
+    _keyupListener: function(e) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && this._muted && e.keyCode === this.options.shortcut.muteKeyCode) {
+            this._muted = false;
+            this._activate(this.routingPathButton);
         }
     }
 });
