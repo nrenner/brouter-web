@@ -1,6 +1,7 @@
 BR.RoutingPathQuality = L.Control.extend({
     options: {
         shortcut: {
+            toggle: 67, // char code for 'c'
             muteKeyCode: 77 // char code for 'm'
         }
     },
@@ -140,7 +141,7 @@ BR.RoutingPathQuality = L.Control.extend({
             });
         }
 
-        if (this.options.shortcut.muteKeyCode) {
+        if (this.options.shortcut.muteKeyCode || this.options.shortcut.toggle) {
             L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
             L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
         }
@@ -192,9 +193,15 @@ BR.RoutingPathQuality = L.Control.extend({
     },
 
     _keydownListener: function(e) {
-        if (BR.Util.keyboardShortcutsAllowed(e) && this._active && e.keyCode === this.options.shortcut.muteKeyCode) {
+        if (!BR.Util.keyboardShortcutsAllowed(e)) {
+            return;
+        }
+        if (this._active && e.keyCode === this.options.shortcut.muteKeyCode) {
             this._muted = true;
             this._deactivate(this.routingPathButton);
+        }
+        if (!this._muted && e.keyCode === this.options.shortcut.toggle) {
+            this.routingPathButton.button.click();
         }
     },
 
