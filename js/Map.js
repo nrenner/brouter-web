@@ -2,6 +2,12 @@ BR.Map = {
     initMap: function() {
         var map, layersControl;
 
+        L.setOptions(this, {
+            shortcut: {
+                locate: 76 // char code for 'l'
+            }
+        });
+
         BR.keys = BR.keys || {};
 
         var maxZoom = 19;
@@ -96,7 +102,7 @@ BR.Map = {
 
         var secureContext = 'isSecureContext' in window ? isSecureContext : location.protocol === 'https:';
         if (secureContext) {
-            L.control
+            var locationControl = L.control
                 .locate({
                     strings: {
                         title: i18next.t('map.locate-me')
@@ -105,6 +111,16 @@ BR.Map = {
                     iconLoading: 'fa fa-spinner fa-pulse'
                 })
                 .addTo(map);
+            L.DomEvent.addListener(
+                document,
+                'keydown',
+                function(e) {
+                    if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.locate) {
+                        locationControl.start();
+                    }
+                },
+                this
+            );
         }
 
         L.control.scale().addTo(map);
