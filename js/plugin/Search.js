@@ -9,6 +9,15 @@ BR.Search = L.Control.Geocoder.extend({
         position: 'topleft'
     },
 
+    initialize: function(options) {
+        L.Control.Geocoder.prototype.initialize.call(this, options);
+        L.setOptions(this, {
+            // i18next.t will only return 'undefined' if it is called in a static context
+            // (e.g. when added directly to "options:" above), so we have to call it here
+            placeholder: i18next.t('map.geocoder-placeholder')
+        });
+    },
+
     markGeocode: function(result) {
         this._map.fitBounds(result.geocode.bbox, {
             maxZoom: 17

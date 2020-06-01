@@ -91,6 +91,7 @@
     "draw-route-start": "Draw route (D key)",
     "draw-route-stop": "Stop drawing route (ESC key)",
     "enter-poi-name": "Enter Point of Interest name",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
     "layer": {
