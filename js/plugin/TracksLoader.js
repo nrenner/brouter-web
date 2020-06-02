@@ -3,7 +3,13 @@ BR.tracksLoader = function(map, layersControl, routing) {
         options: {
             layer: L.geoJson,
             layerOptions: {
-                style: { color: 'blue' },
+                style: function(geoJsonFeature) {
+                    var currentLayerId = layersControl.getActiveBaseLayer().layer.id;
+                    return {
+                        color: currentLayerId === 'cyclosm' ? 'yellow' : 'blue',
+                        weight: 4
+                    };
+                },
                 interactive: false,
                 pointToLayer: function(geoJsonPoint, latlng) {
                     return L.marker(latlng, {
