@@ -46,6 +46,7 @@
 
         search = new BR.Search();
         map.addControl(search);
+        $('#map .leaflet-control-geocoder > button')[0].title = i18next.t('map.geocoder');
 
         router = L.bRouter(); //brouterCgi dummyRouter
 
