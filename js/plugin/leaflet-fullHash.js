@@ -144,6 +144,10 @@
 
             formatLayers: function() {
                 var objList = this.options.layersControl.getActiveLayers();
+                // exclude vector layers (loaded tracks), but not when id set (route quality coding)
+                objList = objList.filter(function(obj) {
+                    return obj.layer instanceof L.GridLayer || obj.layer.id;
+                });
                 var layerList = objList.map(
                     L.bind(function(obj) {
                         return encodeURIComponent(this.options.layersControl.toLayerString(obj));
