@@ -28,7 +28,8 @@ BR.Routing = L.Routing.extend({
             draw: {
                 enable: 68, // char code for 'd'
                 disable: 27 // char code for 'ESC'
-            }
+            },
+            reverse: 82 // char code for 'r'
         }
     },
 
@@ -349,6 +350,8 @@ BR.Routing = L.Routing.extend({
             this._draw.disable();
         } else if (e.keyCode === this.options.shortcut.draw.enable) {
             this._draw.enable();
+        } else if (e.keyCode === this.options.shortcut.reverse) {
+            this.reverse();
         }
     },
 

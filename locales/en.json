@@ -123,7 +123,7 @@
     "opacity-slider": "Set transparency of route track and markers\n(Hold M key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privacy",
-    "reverse-route": "Reverse route",
+    "reverse-route": "Reverse route (R key)",
     "route-quality-altitude": "Altitude coding (C key to toggle)",
     "route-quality-cost": "Cost coding (C key to toggle)",
     "route-quality-incline": "Incline coding (C key to toggle)",
