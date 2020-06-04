@@ -114,9 +114,9 @@
     "loading": "Loading…",
     "locate-me": "Show me where I am (L key)",
     "nogo": {
-      "cancel": "Cancel drawing no-go area",
+      "cancel": "Cancel drawing no-go area (ESC key)",
       "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
+      "draw": "Draw circular no-go area (N key)",
       "edit": "Click to edit",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },

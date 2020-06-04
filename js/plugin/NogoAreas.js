@@ -1,4 +1,13 @@
 BR.NogoAreas = L.Control.extend({
+    options: {
+        shortcut: {
+            draw: {
+                enable: 78, // char code for 'n'
+                disable: 27 // char code for 'ESC'
+            }
+        }
+    },
+
     statics: {
         MSG_BUTTON: 'Draw no-go area (circle)',
         MSG_BUTTON_CANCEL: 'Cancel drawing no-go area',
@@ -48,28 +57,32 @@ BR.NogoAreas = L.Control.extend({
             featuresLayer: this.drawnItems
         }));
 
+        this.startDrawing = function(control) {
+            // initial radius of 0 to detect click, see DeletableCircleEditor.onDrawingMouseUp
+            var opts = L.extend({ radius: 0 }, self.style);
+            editTools.startCircle(null, opts);
+
+            control.state('cancel-no-go-create');
+        };
+
+        this.stopDrawing = function(control) {
+            editTools.stopDrawing();
+            control.state('no-go-create');
+        };
+
         this.button = L.easyButton({
             states: [
                 {
                     stateName: BR.NogoAreas.STATE_CREATE,
                     icon: 'fa-ban',
                     title: BR.NogoAreas.MSG_BUTTON,
-                    onClick: function(control) {
-                        // initial radius of 0 to detect click, see DeletableCircleEditor.onDrawingMouseUp
-                        var opts = L.extend({ radius: 0 }, self.style);
-                        editTools.startCircle(null, opts);
-
-                        control.state('cancel-no-go-create');
-                    }
+                    onClick: this.startDrawing
                 },
                 {
                     stateName: BR.NogoAreas.STATE_CANCEL,
                     icon: 'fa-ban active',
                     title: BR.NogoAreas.MSG_BUTTON_CANCEL,
-                    onClick: function(control) {
-                        editTools.stopDrawing();
-                        control.state('no-go-create');
-                    }
+                    onClick: this.stopDrawing
                 }
             ]
         });
@@ -77,6 +90,8 @@ BR.NogoAreas = L.Control.extend({
         // prevent instant re-activate when turning off button by both Pointer and Click
         // events firing in Chrome mobile while L.Map.Tap enabled for circle drawing
         L.DomEvent.addListener(this.button.button, 'pointerdown', L.DomEvent.stop);
+
+        L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
         this.editTools.on(
             'editable:drawing:end',
@@ -122,6 +137,20 @@ BR.NogoAreas = L.Control.extend({
 
         // dummy, no own representation, delegating to EasyButton
         return L.DomUtil.create('div');
+    },
+
+    _keydownListener: function(e) {
+        if (!BR.Util.keyboardShortcutsAllowed(e)) {
+            return;
+        }
+        if (e.keyCode === this.options.shortcut.draw.disable && this.button.state() === BR.NogoAreas.STATE_CANCEL) {
+            this.stopDrawing(this.button);
+        } else if (
+            e.keyCode === this.options.shortcut.draw.enable &&
+            this.button.state() === BR.NogoAreas.STATE_CREATE
+        ) {
+            this.startDrawing(this.button);
+        }
     },
 
     displayUploadError: function(message) {
