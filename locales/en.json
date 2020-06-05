@@ -82,7 +82,7 @@
     "clear-route": "Clear route data",
     "copyright": "Copyright",
     "cycling": "Cycling",
-    "delete-last-point": "Delete last point",
+    "delete-last-point": "Delete last point (Z key)",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",

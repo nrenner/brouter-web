@@ -29,7 +29,8 @@ BR.Routing = L.Routing.extend({
                 enable: 68, // char code for 'd'
                 disable: 27 // char code for 'ESC'
             },
-            reverse: 82 // char code for 'r'
+            reverse: 82, // char code for 'r'
+            deleteLastPoint: 90 // char code for 'z'
         }
     },
 
@@ -352,6 +353,8 @@ BR.Routing = L.Routing.extend({
             this._draw.enable();
         } else if (e.keyCode === this.options.shortcut.reverse) {
             this.reverse();
+        } else if (e.keyCode === this.options.shortcut.deleteLastPoint) {
+            this.deleteLastPoint();
         }
     },
 
@@ -372,6 +375,10 @@ BR.Routing = L.Routing.extend({
         waypoints.reverse();
         this.clear();
         this.setWaypoints(waypoints);
+    },
+
+    deleteLastPoint: function() {
+        this.removeWaypoint(this.getLast(), function(err, data) {});
     },
 
     _removeDistanceMarkers: function() {
