@@ -378,7 +378,9 @@ BR.Routing = L.Routing.extend({
     },
 
     deleteLastPoint: function() {
-        this.removeWaypoint(this.getLast(), function(err, data) {});
+        if ((lastPoint = this.getLast())) {
+            this.removeWaypoint(lastPoint, function(err, data) {});
+        }
     },
 
     _removeDistanceMarkers: function() {
