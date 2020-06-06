@@ -284,6 +284,7 @@
             new BR.OpacitySliderControl({
                 id: 'route',
                 title: i18next.t('map.opacity-slider'),
+                muteKeyCode: 77, // m
                 callback: L.bind(routing.setOpacity, routing)
             })
         );

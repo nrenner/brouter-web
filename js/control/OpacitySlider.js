@@ -44,6 +44,33 @@ BR.OpacitySlider = L.Class.extend({
         this.getElement().title = this.options.title;
 
         this.options.callback(value / 100);
+
+        if (this.options.muteKeyCode) {
+            L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
+            L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
+        }
+    },
+
+    _keydownListener: function(e) {
+        // Suppress shortcut handling when a text input field is focussed
+        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
+            return;
+        }
+
+        if (e.keyCode === this.options.muteKeyCode && !e.repeat) {
+            this.options.callback(0);
+        }
+    },
+
+    _keyupListener: function(e) {
+        // Suppress shortcut handling when a text input field is focussed
+        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
+            return;
+        }
+
+        if (e.keyCode === this.options.muteKeyCode && !e.repeat) {
+            this.options.callback(this.input.val() / 100);
+        }
     },
 
     getElement: function() {
