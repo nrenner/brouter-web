@@ -45,6 +45,15 @@ table.dataTable {
     flex: auto;
 }
 
+/* reduce title font size in overpass popups */
+.leaflet-popup-content h1 {
+    font-size: 1.2rem;
+}
+
+.overpass-tags th {
+    vertical-align: top;
+}
+
 /* wrap toolbar controls */
 .leaflet-top.leaflet-left {
     bottom: 0;

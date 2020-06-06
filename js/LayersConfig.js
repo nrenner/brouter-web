@@ -1,4 +1,7 @@
 BR.LayersConfig = L.Class.extend({
+    overpassFrontend: new OverpassFrontend(
+        (BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter').replace('?data=', '')
+    ),
     defaultBaseLayers: BR.confLayers.defaultBaseLayers,
     defaultOverlays: BR.confLayers.defaultOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
@@ -251,6 +254,19 @@ BR.LayersConfig = L.Class.extend({
             if (props.subdomains) {
                 layer.subdomains = props.subdomains;
             }
+        } else if (props.dataSource === 'OverpassAPI') {
+            layer = new OverpassLayer({
+                overpassFrontend: this.overpassFrontend,
+                query: props.query,
+                minZoom: undefined,
+                feature: {
+                    title: '{{ tags.name }}',
+                    body:
+                        '<table class="overpass-tags">{% for k, v in tags %}{% if k[:5] != "addr:" %}<tr><th>{{ k }}</th><td>{{ v }}</td></tr>{% endif %}{% endfor %}</table>',
+                    markerSymbol:
+                        '<img anchorX="13" anchorY="42" width="25" height="42" signAnchorX="0" signAnchorY="-30" src="dist/images/marker-icon.png">',
+                },
+            });
         } else {
             // JOSM
             var josmUrl = url;

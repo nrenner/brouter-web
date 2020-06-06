@@ -130,3 +130,5 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-2021 Denis Pushkarev; [MIT License](https://github.com/zloirock/core-js/blob/master/LICENSE)
 -   [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)  
     Copyright (c) 2014-present, Facebook, Inc.; [MIT License](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/LICENSE)
+-   [overpass-layer](https://github.com/plepe/overpass-layer)
+    Copyright (c) 2020 Stephan Bösch-Plepelits; [MIT License](https://github.com/plepe/overpass-layer/blob/master/LICENSE)

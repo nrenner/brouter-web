@@ -83,5 +83,10 @@ BR.confLayers.tree = {
                 ]
             }
         ]
+    },
+    'overpass': {
+        'tourism': [
+            'campsites'
+        ]
     }
 };
