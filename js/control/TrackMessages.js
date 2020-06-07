@@ -26,6 +26,16 @@ BR.TrackMessages = L.Class.extend({
         InitialCost: { title: 'initial$', className: 'dt-body-right' }
     },
 
+    /**
+     * @type {?BR.TrackEdges}
+     */
+    trackEdges: null,
+
+    /**
+     * @type {?L.Polyline}
+     */
+    trackPolyline: null,
+
     initialize: function(map, options) {
         L.setOptions(this, options);
         this._map = map;
@@ -48,6 +58,9 @@ BR.TrackMessages = L.Class.extend({
         if (!this.active) {
             return;
         }
+
+        this.trackPolyline = polyline;
+        this.trackEdges = new BR.TrackEdges(segments);
 
         for (i = 0; segments && i < segments.length; i++) {
             messages = segments[i].feature.properties.messages;
@@ -80,7 +93,7 @@ BR.TrackMessages = L.Class.extend({
         });
 
         // highlight track segment (graph edge) on row hover
-        this._setEdges(polyline, segments);
+
         $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
         $('#datatable tbody').on('click', 'tr', L.bind(this._toggleSelected, this));
     },
@@ -147,59 +160,11 @@ BR.TrackMessages = L.Class.extend({
         return empty;
     },
 
-    _getMessageLatLng: function(message) {
-        var lon = message[0] / 1000000,
-            lat = message[1] / 1000000;
-
-        return L.latLng(lat, lon);
-    },
-
-    _setEdges: function(polyline, segments) {
-        var messages,
-            segLatLngs,
-            length,
-            si,
-            mi,
-            latLng,
-            i,
-            segIndex,
-            baseIndex = 0;
-
-        // track latLngs index for end node of edge
-        this._edges = [];
-        this._track = polyline;
-
-        for (si = 0; si < segments.length; si++) {
-            messages = segments[si].feature.properties.messages;
-            segLatLngs = segments[si].getLatLngs();
-            length = segLatLngs.length;
-            segIndex = 0;
-
-            for (mi = 1; mi < messages.length; mi++) {
-                latLng = this._getMessageLatLng(messages[mi]);
-
-                for (i = segIndex; i < length; i++) {
-                    if (latLng.equals(segLatLngs[i])) {
-                        break;
-                    }
-                }
-                if (i === length) {
-                    i = length - 1;
-                    if (mi !== messages.length - 1) debugger;
-                }
-
-                segIndex = i + 1;
-                this._edges.push(baseIndex + i);
-            }
-            baseIndex += length;
-        }
-    },
-
     _getRowEdge: function(tr) {
         var row = this._table.row($(tr)),
-            trackLatLngs = this._track.getLatLngs(),
-            startIndex = row.index() > 0 ? this._edges[row.index() - 1] : 0,
-            endIndex = this._edges[row.index()],
+            trackLatLngs = this.trackPolyline.getLatLngs(),
+            startIndex = row.index() > 0 ? this.trackEdges.edges[row.index() - 1] : 0,
+            endIndex = this.trackEdges.edges[row.index()],
             edgeLatLngs = trackLatLngs.slice(startIndex, endIndex + 1);
 
         return L.polyline(edgeLatLngs, this.options.edgeStyle);
