@@ -80,6 +80,7 @@
     "attribution-osm-long": "OpenStreetMap contributors",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
+    "clear-route-tooltip": "Clear route data (Backspace key)",
     "copyright": "Copyright",
     "cycling": "Cycling",
     "delete-last-point": "Delete last point (Z key)",

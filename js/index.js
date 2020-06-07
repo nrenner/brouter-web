@@ -92,44 +92,60 @@
         deleteRouteButton = L.easyButton(
             'fa-trash-o',
             function() {
-                bootbox.prompt({
-                    size: 'small',
-                    title: i18next.t('map.clear-route'),
-                    inputType: 'checkbox',
-                    inputOptions: [
-                        {
-                            text: i18next.t('map.delete-route'),
-                            value: 'route'
-                        },
-                        {
-                            text: i18next.t('map.delete-nogo-areas'),
-                            value: 'nogo'
-                        },
-                        {
-                            text: i18next.t('map.delete-pois'),
-                            value: 'pois'
-                        }
-                    ],
-                    value: ['route'],
-                    callback: function(result) {
-                        if (result !== null) {
-                            if (result.indexOf('route') !== -1) {
-                                routing.clear();
-                            }
-                            if (result.indexOf('nogo') !== -1) {
-                                nogos.clear();
-                            }
-                            if (result.indexOf('pois') !== -1) {
-                                pois.clear();
-                            }
-                            onUpdate();
-                            urlHash.onMapMove();
-                        }
-                    }
-                });
+                clearRoute();
             },
-            i18next.t('map.clear-route')
+            i18next.t('map.clear-route-tooltip')
         );
+
+        L.DomEvent.addListener(
+            document,
+            'keydown',
+            function(e) {
+                if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === 8 && !$('.modal.show').length) {
+                    // char code for 'backspace'
+                    clearRoute();
+                }
+            },
+            this
+        );
+
+        function clearRoute() {
+            bootbox.prompt({
+                size: 'small',
+                title: i18next.t('map.clear-route'),
+                inputType: 'checkbox',
+                inputOptions: [
+                    {
+                        text: i18next.t('map.delete-route'),
+                        value: 'route'
+                    },
+                    {
+                        text: i18next.t('map.delete-nogo-areas'),
+                        value: 'nogo'
+                    },
+                    {
+                        text: i18next.t('map.delete-pois'),
+                        value: 'pois'
+                    }
+                ],
+                value: ['route'],
+                callback: function(result) {
+                    if (result !== null) {
+                        if (result.indexOf('route') !== -1) {
+                            routing.clear();
+                        }
+                        if (result.indexOf('nogo') !== -1) {
+                            nogos.clear();
+                        }
+                        if (result.indexOf('pois') !== -1) {
+                            pois.clear();
+                        }
+                        onUpdate();
+                        urlHash.onMapMove();
+                    }
+                }
+            });
+        }
 
         function updateRoute(evt) {
             router.setOptions(evt.options);
