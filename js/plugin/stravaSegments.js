@@ -16,6 +16,12 @@ BR.stravaSegments = function(map, layersControl) {
         );
     };
 
+    L.setOptions(this, {
+        shortcut: {
+            toggleLayer: 83 // char code for 's'
+        }
+    });
+
     // hide strava buttons when layer is inactive
     var toggleStravaControl = function() {
         var stravaBar = stravaControl.runningButton.button.parentElement;
@@ -23,6 +29,21 @@ BR.stravaSegments = function(map, layersControl) {
     };
     toggleStravaControl();
     stravaControl.stravaLayer.on('add remove', toggleStravaControl);
+
+    L.DomEvent.addListener(
+        document,
+        'keydown',
+        function(e) {
+            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggleLayer) {
+                if (map.hasLayer(stravaControl.stravaLayer)) {
+                    map.removeLayer(stravaControl.stravaLayer);
+                } else {
+                    map.addLayer(stravaControl.stravaLayer);
+                }
+            }
+        },
+        this
+    );
 
     return stravaControl;
 };

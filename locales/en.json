@@ -128,8 +128,8 @@
     "route-quality-altitude": "Altitude coding (C key to toggle)",
     "route-quality-cost": "Cost coding (C key to toggle)",
     "route-quality-incline": "Incline coding (C key to toggle)",
-    "strava-biking": "Show Strava biking segments",
-    "strava-running": "Show Strava running segments",
+    "strava-biking": "Show Strava biking segments\n(S key to toggle layer, click to reload for current area)",
+    "strava-running": "Show Strava running segments\n(S key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Zoom in (+ key)",
     "zoomOutTitle": "Zoom out (- key)"
   },
