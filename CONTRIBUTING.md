@@ -9,21 +9,35 @@ BRouter is heavily based on the following libraries:
 
 ## Install dependencies
 
-    yarn
+```sh
+yarn
+```
 
 ## Build
 
 ```sh
-    #for development
-    yarn build debug
+#for development
+yarn build debug
 
-    #for release
-    yarn build
+#for release
+yarn build
 ```
 
 ## Develop
 
-    yarn serve
+```sh
+yarn serve
+```
+
+### Develop with Docker
+
+```sh
+#to install dependencies
+docker-compose run --rm install
+
+#to serve for development
+docker-compose run --rm serve
+```
 
 ## Translations
 
