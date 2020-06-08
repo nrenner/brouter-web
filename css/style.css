@@ -249,6 +249,38 @@ input#trackname:focus:invalid {
     margin: 0;
 }
 
+.track-analysis-header-distance {
+    text-align: right;
+}
+
+.track-analysis-table td {
+    font-size: small;
+}
+
+table.dataTable.track-analysis-table tfoot td {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 0;
+}
+
+table.track-analysis-table tr:hover {
+    background-color: rgba(255, 255, 0, 0.3);
+}
+
+.track-analysis-title {
+    text-transform: capitalize;
+}
+
+.track-analysis-distance {
+    text-align: right;
+}
+
+.track-analysis-heading {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
 /* dashed line animation, derived from Chris Coyier and others
 https://css-tricks.com/svg-line-animation-works/
 */

@@ -180,6 +180,31 @@
     "itinerary": {
       "title": "Reiseroute"
     },
+    "analysis": {
+      "title": "Analyse",
+      "header": {
+        "highway": "Weg",
+        "surface": "Material",
+        "smoothness": "Beschaffenheit"
+      },
+      "table": {
+        "category": "Art",
+        "length": "Länge",
+        "total_known": "Gesamt bekannt:",
+        "unknown": "Unbekannt"
+      },
+      "data": {
+        "highway": {
+          "living_street": "living street"
+        },
+        "surface": {
+          "paving_stones": "paving stones"
+        },
+        "smoothness": {
+          "very_bad": "very bad"
+        }
+      }
+    },
     "layers": {
       "category": {
         "base-layers": "Grundkarten",
