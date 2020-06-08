@@ -170,6 +170,20 @@
     }
   },
   "sidebar": {
+    "analysis": {
+      "header": {
+        "highway": "Highway",
+        "smoothness": "Smoothness",
+        "surface": "Surface"
+      },
+      "table": {
+        "category": "Category",
+        "length": "Length",
+        "total_known": "Total Known:",
+        "unknown": "Unknown"
+      },
+      "title": "Analysis"
+    },
     "customize-profile": {
       "title": "Customize profile"
     },
@@ -179,32 +193,6 @@
     },
     "itinerary": {
       "title": "Itinerary"
-    },
-    "analysis": {
-      "title": "Analysis",
-      "header": {
-        "highway": "Highway",
-        "surface": "Surface",
-        "smoothness": "Smoothness"
-      },
-      "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
-      },
-      "data": {
-        "highway": {
-          "living_street": "Living Street"
-        },
-        "surface": {
-          "fine_gravel": "Fine Gravel",
-          "paving_stones": "Paving Stones"
-        },
-        "smoothness": {
-          "very_bad": "Very Bad"
-        }
-      }
     },
     "layers": {
       "category": {
