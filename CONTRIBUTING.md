@@ -36,7 +36,10 @@ yarn serve
 docker-compose run --rm install
 
 #to serve for development
-docker-compose run --rm serve
+docker-compose run --rm -p 3000:3000 serve
+
+#or
+docker-compose up serve
 ```
 
 ## Translations
