@@ -171,7 +171,8 @@
       "trekking-steep": "Trekking bike (steep)",
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
-    }
+    },
+    "profile-tooltip": "\n(G key to switch)"
   },
   "sidebar": {
     "analysis": {
