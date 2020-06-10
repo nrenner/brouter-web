@@ -145,6 +145,7 @@
       "third": "3rd alternative"
     },
     "export": "Export",
+    "export-tooltip": "Export route (X key)",
     "load": {
       "nogos": "No-go areas",
       "title": "Load",
