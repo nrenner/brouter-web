@@ -149,6 +149,7 @@
     "load": {
       "nogos": "No-go areas",
       "title": "Load",
+      "tooltip": "Load tracks (O key)\nLoad No-go areas (Shift+O)",
       "tracks": "Tracks"
     },
     "profile": {
