@@ -101,9 +101,14 @@
             document,
             'keydown',
             function(e) {
-                if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === 8 && !$('.modal.show').length) {
-                    // char code for 'backspace'
-                    clearRoute();
+                if (BR.Util.keyboardShortcutsAllowed(e) && !$('.modal.show').length) {
+                    if (e.keyCode === 8) {
+                        // char code for 'backspace'
+                        clearRoute();
+                    } else if (e.keyCode === 72) {
+                        // char code for 'h'
+                        $('#about').modal('show');
+                    }
                 }
             },
             this
