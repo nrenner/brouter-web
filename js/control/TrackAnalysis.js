@@ -190,7 +190,7 @@ BR.TrackAnalysis = L.Class.extend({
             }
 
             analysisSortable[type].sort(function(a, b) {
-                return a.distance < b.distance;
+                return b.distance - a.distance;
             });
 
             for (var j = 0; j < analysisSortable[type].length; j++) {
