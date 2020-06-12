@@ -117,7 +117,7 @@
       "edit": "Click to edit",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
     "preview": "Preview",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
