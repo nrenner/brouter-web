@@ -190,17 +190,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route\n(T key to toggle, Shift+T to switch to next tab)"
     },
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Customize profile",
+      "tooltip": "Customize profile\n(T key to toggle, Shift+T to switch to next tab)"
     },
     "data": {
       "sync-map": "Synchronize map",
-      "title": "Data"
+      "title": "Data",
+      "tooltip": "Show detailed route data table\n(T key to toggle, Shift+T to switch to next tab)"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Itinerary",
+      "tooltip": "Show itinerary\n(T key to toggle, Shift+T to switch to next tab)"
     },
     "layers": {
       "category": {
@@ -226,7 +230,8 @@
         "name": "Name",
         "type": "Type"
       },
-      "title": "Layers"
+      "title": "Layers",
+      "tooltip": "Select layers\n(T key to toggle, Shift+T to switch to next tab)"
     },
     "profile": {
       "apply": "Apply",
