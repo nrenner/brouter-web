@@ -7,7 +7,10 @@ BR.Elevation = L.Control.Elevation.extend({
             bottom: 30,
             left: 60
         },
-        theme: 'steelblue-theme'
+        theme: 'steelblue-theme',
+        shortcut: {
+            toggle: 69 // char code for 'e'
+        }
     },
 
     onAdd: function(map) {
@@ -29,6 +32,8 @@ BR.Elevation = L.Control.Elevation.extend({
                 .on('mousemove.drag', this._dragHandler.bind(this));
             L.DomEvent.on(this._container, 'mouseup', this._dragEndHandler, this);
         }
+
+        L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
         return container;
     },
@@ -63,6 +68,12 @@ BR.Elevation = L.Control.Elevation.extend({
             this.addData(track.toGeoJSON(), layer);
 
             layer.on('mouseout', this._hidePositionMarker.bind(this));
+        }
+    },
+
+    _keydownListener: function(e) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggle) {
+            $('#elevation-btn').click();
         }
     }
 });

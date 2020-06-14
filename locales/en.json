@@ -42,6 +42,7 @@
     "ascend": "Ascend",
     "cost": "Cost",
     "distance": "Distance",
+    "elevation-chart": "Toggle elevation chart (E key)",
     "energy-per-100km": "Energy per 100 km",
     "hours": "hours",
     "hours-abbrev": "h",
