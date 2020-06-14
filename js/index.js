@@ -283,6 +283,8 @@
 
         BR.tracksLoader(map, layersControl, routing);
 
+        BR.routeLoader(map, layersControl, routing,pois);
+
         pois.addTo(map);
         routingPathQuality.addTo(map);
 
