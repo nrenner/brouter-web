@@ -108,6 +108,7 @@ ul#stats {
     display: flex;
     align-items: stretch;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -116,6 +117,7 @@ ul#stats {
     display: inline-block;
     flex: 0 1 auto;
     list-style-type: none;
+    margin: 0 0.2em;
 }
 
 p.stats-label {
