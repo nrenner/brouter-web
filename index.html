@@ -86,14 +86,14 @@
                                     >Tracks</a
                                 >
                             </div>
-                             <div id="navbarLoadEditTracksContainer">
-                                <a 
-									class="dropdown-item"
-									data-i18n="trackasroute.title"
-									data-toggle="modal"
-									data-target="#loadedittrackdlg"
-									href="#" 
-									id="navbarLoadEditTracks"
+                            <div id="navbarLoadEditTracksContainer">
+                                <a
+                                    class="dropdown-item"
+                                    data-i18n="trackasroute.title"
+                                    data-toggle="modal"
+                                    data-target="#loadedittrackdlg"
+                                    href="#"
+                                    id="navbarLoadEditTracks"
                                     >Track as Route</a
                                 >
                             </div>
@@ -550,12 +550,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-						<h4 class="modal-title" data-i18n="trackasroute.title">
+                        <h4 class="modal-title" data-i18n="trackasroute.title">
                             Load Track as Route
                         </h4>
-						<div id="busy_img" style="display:none;padding-left:1rem;vertical-align:middle;line-height: 2rem;">
-							<img src="dist/images/throbber.gif" >
-						</div>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -563,58 +560,112 @@
                     </div>
                     <div class="modal-body">
                         <form name="loadedittrackForm" id="loadedittrackForm">
-							<div class="form-group row mt-4">
-								<label for="file_format" class="col-sm-3" data-i18n="export.format" >Format</label>
-								<select id="file_format" class="custom-select col-sm-8">
-								  <option value="extension" selected data-i18n="trackasroute.fromext" >from file extension</option>
-								  <option value="gpx">GPX</option>
-								  <option value="kml">KML</option>
-								  <option value="geojson">GeoJSON</option>
-								</select>
-							</div>
-							
-							<div class="form-group row mt-4 ">
-								<label class="col-sm-3" for="loadedittrackFile"  data-i18n="trackasroute.file" >Trackfile</label>								
-								<div class="custom-control  custom-file col-sm-8">
-									<input type="file" accept=".gpx,.kml,.geojson,*.*" name="loadedittrackFile" id="loadedittrackFile"  class="custom-file-input" />
-									<label for="loadedittrackFile" class="custom-file-label" 
-											style="white-space: nowrap; overflow: hidden;  text-overflow: ellipsis;">
-									</label><br />
-								</div>							
+                            <div class="form-group row mt-4 ">
+                                <label class="col-sm-3" for="loadedittrackFile" data-i18n="trackasroute.file"
+                                    >Trackfile</label
+                                >
+                                <div class="custom-control  custom-file col-sm-8">
+                                    <input
+                                        type="file"
+                                        accept=".gpx,.kml,.geojson,*.*"
+                                        name="loadedittrackFile"
+                                        id="loadedittrackFile"
+                                        class="custom-file-input"
+                                    />
+                                    <label
+                                        for="loadedittrackFile"
+                                        class="custom-file-label"
+                                        style="white-space: nowrap; overflow: hidden;  text-overflow: ellipsis;"
+                                    >
+                                    </label
+                                    ><br />
+                                </div>
                             </div>
-                            
-							<div class="form-group row mt-4 ">
-								<label class="col-sm-3" for="cb_showtracklayer"  data-i18n="trackasroute.tracklayer">Track Layer</label>								
-								<div class="custom-control custom-switch">
-								  <input type="checkbox" class="custom-control-input" id="cb_showtracklayer" checked="checked">
-								  <label class="custom-control-label" for="cb_showtracklayer"  data-i18n="trackasroute.explaintracklayer">(show Track as separate Layer)</label>
-								</div>							
-							</div>							
-							
-							<div class="form-group row mt-4 ">
-								<label class="col-sm-3" for="cb_showpois" data-i18n="trackasroute.showpois">POI's</label>								
-								<div class="custom-control custom-switch">
-								  <input type="checkbox" class="custom-control-input" id="cb_showpois" checked="checked">
-								  <label class="custom-control-label" for="cb_showpois" data-i18n="trackasroute.explainpoi">(show waypoints as POI's)</label>
-								</div>							
-							</div>							
-							
-							<div class="accordion " id="manual_accordion">
-								<div class="row">
-									<button class="btn btn-link" id="bt_manual_collapse" autocomplete="off" type="button" data-toggle="collapse" 
-											href="#manual_collapse" aria-expanded="false" aria-controls="manual_collapse" data-i18n="trackasroute.tuning">
-									  Tuning
-									</button>
-								</div>
-								<div id="manual_collapse" class="collapse" data-toggle="false">
-									<div class="form-group  row">
-										<label for="simplify_tolerance"  class="col-sm-3" data-i18n="trackasroute.fuzziness" >fuzziness</label>
-										<input type="range" class="custom-range  col-sm-8" id="simplify_tolerance" min="-500" max="500" step="any" value="0">
-									</div>
-								</div>
-							  </div>
-  
-							<div id="msg_busy" class="row float-right mr-4 invisible text-danger"  data-i18n="trackasroute.pleasewait" >Please wait!</div>
+
+                            <div class="form-group row mt-4 ">
+                                <label class="col-sm-3" for="cb_showtracklayer" data-i18n="trackasroute.tracklayer"
+                                    >Track Layer</label
+                                >
+                                <div class="custom-control custom-switch">
+                                    <input
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id="cb_showtracklayer"
+                                        checked="checked"
+                                    />
+                                    <label
+                                        class="custom-control-label"
+                                        for="cb_showtracklayer"
+                                        data-i18n="trackasroute.explaintracklayer"
+                                        >(show Track as separate Layer)</label
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group row mt-4 ">
+                                <label class="col-sm-3" for="cb_showpois" data-i18n="trackasroute.showpois"
+                                    >POI's</label
+                                >
+                                <div class="custom-control custom-switch">
+                                    <input
+                                        type="checkbox"
+                                        class="custom-control-input"
+                                        id="cb_showpois"
+                                        checked="checked"
+                                    />
+                                    <label
+                                        class="custom-control-label"
+                                        for="cb_showpois"
+                                        data-i18n="trackasroute.explainpoi"
+                                        >(show waypoints as POI's)</label
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="accordion " id="manual_accordion">
+                                <div class="row">
+                                    <button
+                                        class="btn btn-link"
+                                        id="bt_manual_collapse"
+                                        autocomplete="off"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        href="#manual_collapse"
+                                        aria-expanded="false"
+                                        aria-controls="manual_collapse"
+                                        data-i18n="trackasroute.tuning"
+                                    >
+                                        Tuning
+                                    </button>
+                                </div>
+                                <div id="manual_collapse" class="collapse" data-toggle="false">
+                                    <div class="form-group  row">
+                                        <label
+                                            for="simplify_tolerance"
+                                            class="col-sm-3"
+                                            data-i18n="trackasroute.fuzziness"
+                                            >fuzziness</label
+                                        >
+                                        <input
+                                            type="range"
+                                            class="custom-range  col-sm-8"
+                                            id="simplify_tolerance"
+                                            min="-500"
+                                            max="500"
+                                            step="any"
+                                            value="0"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                id="msg_busy"
+                                class="row float-right mr-4 invisible text-danger"
+                                data-i18n="trackasroute.pleasewait"
+                            >
+                                Please wait!
+                            </div>
                             <div class="modal-footer mt-4">
                                 <button
                                     type="button"
@@ -632,7 +683,6 @@
                                 >
                                     Import Track
                                 </button>
-
                             </div>
                         </form>
                     </div>
