@@ -423,6 +423,12 @@ button.btn {
     margin-right: -1em;
 }
 
+/* about dialog */
+#about-contact-language {
+    font-size: 0.9em;
+    margin: -6px 0 6px 20px;
+}
+
 /*
 * DataTables
 */

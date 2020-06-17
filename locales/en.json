@@ -5,6 +5,7 @@
     "bug-reports-front": "web client / frontend.",
     "chat": "Chat with users and developers",
     "contact": "Contact:",
+    "contact-language": "Preferred language is English, as we have both international contributors and users.",
     "data": "Data:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
