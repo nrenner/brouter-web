@@ -1,5 +1,33 @@
 # BRouter-Web Changelog
 
+## 0.12.0 (2020-06-19)
+
+See also [milestone 0.12.0](https://github.com/nrenner/brouter-web/milestone/13?closed=1)
+
+### New Features
+
+-   Add sidebar tab with route analysis data - by [@mjaschen](https://github.com/mjaschen) ([#304](https://github.com/nrenner/brouter-web/pull/304), [#45](https://github.com/nrenner/brouter-web/issues/45#issuecomment-633255152))
+-   Allow to mute route display by holding down the "m" key - by [@stesie](https://github.com/stesie) ([#303](https://github.com/nrenner/brouter-web/pull/303))
+
+### Improvements
+
+-   Improve mobile stats layout - by [@bagage](https://github.com/bagage) ([#298](https://github.com/nrenner/brouter-web/pull/298))
+-   Polish color coding + analysis tab visuals - by [@rkflx](https://github.com/rkflx) ([#313](https://github.com/nrenner/brouter-web/pull/313))
+
+### Bugfixes
+
+-   Brouter-Web on mobile: adjust route in between two waypoints ([#285](https://github.com/nrenner/brouter-web/issues/285))
+-   NogoAreas control doesn't work on mobile Chrome ([#259](https://github.com/nrenner/brouter-web/issues/259))
+-   Fix: Profile params of type 'select' ignored default value from profile - by [@tbsmark86](https://github.com/tbsmark86) ([#292](https://github.com/nrenner/brouter-web/pull/292))
+
+### Local installation / development
+
+-   Add config option for initial map position and zoom level - by [@rmsacks](https://github.com/rmsacks) ([#281](https://github.com/nrenner/brouter-web/pull/281))
+-   Privacy link relative path - by [@erdmark](https://github.com/erdmark) ([#284](https://github.com/nrenner/brouter-web/pull/284))
+-   Add CONTRIBUTING.md - by [@bagage](https://github.com/bagage) ([#305](https://github.com/nrenner/brouter-web/pull/305))
+-   add VS Code settings, launch and extension recommendations - by [@schmic](https://github.com/schmic) ([#307](https://github.com/nrenner/brouter-web/pull/307))
+-   add docker-compose tasks for development - by [@schmic](https://github.com/schmic) ([#308](https://github.com/nrenner/brouter-web/pull/308))
+
 ## 0.11.1 (2020-02-20)
 
 ### Improvements
