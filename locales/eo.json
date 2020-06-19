@@ -1,12 +1,12 @@
 {
   "about": {
-    "bug-reports": "گزارش اشکال و درخواست ویژگی:",
-    "bug-reports-back": "سرور/سمت سرور، موتور مسیریابی، برنامه اندرویدی، پروفایل‌ها ، سایت brouter.de",
+    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
-    "chat": "با کاربران و توسعه‌دهندگان گپ بزنید",
+    "chat": "Chat with users and developers",
     "contact": "Contact:",
     "contact-language": "Preferred language is English, as we have both international contributors and users.",
-    "data": "داده:",
+    "data": "Data:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
@@ -35,21 +35,21 @@
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
-    "trackname": "Name"
+    "trackname": "Nomo"
   },
   "footer": {
     "ascend": "Ascend",
     "cost": "Cost",
-    "distance": "Distance",
+    "distance": "Distanco",
     "energy-per-100km": "Energy per 100 km",
-    "hours": "hours",
+    "hours": "horoj",
     "hours-abbrev": "h",
-    "kilometer": "kilometers",
+    "kilometer": "kilometroj",
     "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
+    "kilowatthour": "kilovathoroj",
     "kilowatthour-abbrev": "kWh",
     "mean-cost-factor": "Mean cost factor",
-    "meter": "meters",
+    "meter": "metroj",
     "meter-abbrev": "m",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
@@ -119,7 +119,7 @@
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
     "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
-    "preview": "Preview",
+    "preview": "Antaŭvidi",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
     "route-quality-altitude": "Altitude coding",
@@ -131,7 +131,7 @@
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"
+    "close": "Fermi"
   },
   "navbar": {
     "about": "About",
@@ -193,13 +193,13 @@
       "title": "Data"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Itinero"
     },
     "layers": {
       "category": {
         "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
+        "country": "Lando",
+        "europe": "Eŭropo",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
         "worldwide": "Worldwide",
@@ -216,7 +216,7 @@
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",
-        "name": "Name",
+        "name": "Nomo",
         "type": "Type"
       },
       "title": "Layers"

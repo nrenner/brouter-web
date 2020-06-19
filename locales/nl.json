@@ -1,22 +1,22 @@
 {
   "about": {
-    "bug-reports": "گزارش اشکال و درخواست ویژگی:",
-    "bug-reports-back": "سرور/سمت سرور، موتور مسیریابی، برنامه اندرویدی، پروفایل‌ها ، سایت brouter.de",
+    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
-    "chat": "با کاربران و توسعه‌دهندگان گپ بزنید",
+    "chat": "Chat with users and developers",
     "contact": "Contact:",
     "contact-language": "Preferred language is English, as we have both international contributors and users.",
-    "data": "داده:",
+    "data": "Data:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
-    "title": "About"
+    "title": "Over"
   },
   "credits": {
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "elevation-data": "Elevation data",
+    "elevation-data": "Hoogtedata",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Map data",
@@ -25,7 +25,7 @@
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
   },
   "export": {
-    "format": "Format",
+    "format": "Formaat",
     "format_csv": "CSV",
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
@@ -35,12 +35,12 @@
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
-    "trackname": "Name"
+    "trackname": "Naam"
   },
   "footer": {
     "ascend": "Ascend",
-    "cost": "Cost",
-    "distance": "Distance",
+    "cost": "Kosten",
+    "distance": "Afstand",
     "energy-per-100km": "Energy per 100 km",
     "hours": "hours",
     "hours-abbrev": "h",
@@ -81,7 +81,7 @@
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
     "copyright": "Copyright",
-    "cycling": "Cycling",
+    "cycling": "Fietsen",
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
@@ -131,10 +131,10 @@
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"
+    "close": "Afsluiten"
   },
   "navbar": {
-    "about": "About",
+    "about": "Over",
     "alternative": {
       "first": "1st alternative",
       "original": "Original",
@@ -148,8 +148,8 @@
       "tracks": "Tracks"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
+      "car-eco": "Auto (economisch)",
+      "car-fast": "Auto (snel)",
       "car-test": "Car (test)",
       "custom": "Custom",
       "fastbike": "Fastbike",
@@ -157,10 +157,10 @@
       "fastbike-lowtraffic": "Fastbike (low traffic)",
       "hiking-beta": "Hiking (beta)",
       "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
+      "rail": "Trein",
+      "river": "Rivier",
+      "safety": "Veiligheid",
+      "shortest": "Kortste",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
@@ -175,15 +175,15 @@
       "header": {
         "highway": "Highway",
         "smoothness": "Smoothness",
-        "surface": "Surface"
+        "surface": "Oppervlakte"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Catagorie",
+        "length": "Lengte",
+        "total_known": "Totaal bekend:",
+        "unknown": "Onbekend"
       },
-      "title": "Analysis"
+      "title": "Analyse"
     },
     "customize-profile": {
       "title": "Customize profile"
@@ -198,8 +198,8 @@
     "layers": {
       "category": {
         "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
+        "country": "Land",
+        "europe": "Europa",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
         "worldwide": "Worldwide",
@@ -216,10 +216,10 @@
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",
-        "name": "Name",
+        "name": "Naam",
         "type": "Type"
       },
-      "title": "Layers"
+      "title": "Lagen"
     },
     "profile": {
       "apply": "Apply",
@@ -228,7 +228,7 @@
       "no_easy_configuration_warning": "No easy configuration is available for this profile.",
       "options": "Options",
       "placeholder": "Write your custom profile here.",
-      "profile": "Profile"
+      "profile": "Profiel"
     }
   },
   "title": "BRouter web client",

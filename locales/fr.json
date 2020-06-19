@@ -5,6 +5,7 @@
     "bug-reports-front": "client web.",
     "chat": "Discuter avec d'autres utilisateurs et développeurs",
     "contact": "Contact :",
+    "contact-language": "Preferred language is English, as we have both international contributors and users.",
     "data": "Données :",
     "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement quotidienne, voir <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
     "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
@@ -117,7 +118,7 @@
       "edit": "Cliquer pour éditer",
       "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
     },
-    "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
+    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
     "preview": "Prévisualiser",
     "privacy": "Vie privée",
     "reverse-route": "Inverse l'itinéraire",
@@ -170,6 +171,20 @@
     }
   },
   "sidebar": {
+    "analysis": {
+      "header": {
+        "highway": "Highway",
+        "smoothness": "Smoothness",
+        "surface": "Surface"
+      },
+      "table": {
+        "category": "Category",
+        "length": "Length",
+        "total_known": "Total Known:",
+        "unknown": "Unknown"
+      },
+      "title": "Analysis"
+    },
     "customize-profile": {
       "title": "Personnaliser le profil"
     },

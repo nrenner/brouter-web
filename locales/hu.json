@@ -5,6 +5,7 @@
     "bug-reports-front": "weboldali kliens / frontend.",
     "chat": "Chat felhasználókkal és fejlesztőkkel",
     "contact": "Kapcsolat:",
+    "contact-language": "Preferred language is English, as we have both international contributors and users.",
     "data": "Adatok:",
     "data-description": "Az alapja az <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>, és általában naponta frissül (a konkrét időpontok az <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">adatfájlok</a> dátumában olvashatók).",
     "description": "Ez itt a BRouter útvonaltervező motor online szolgáltatása. Az Android alkalmazásról és a további információkról a <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a> oldalon olvashat.",
@@ -117,7 +118,7 @@
       "edit": "Szerkesztés kattintással",
       "help": "&square; = áthelyezés / átméretezés, <span class=\"fa fa-trash-o\"></span> = törlés,<br>a szerkesztés befejezéséhez kattintson a körre"
     },
-    "opacity-slider": "Nyomvonal és jelölők átlátszóságának beállítása",
+    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
     "preview": "Előnézet",
     "privacy": "Adatvédelem",
     "reverse-route": "Útvonal megfordítása",
@@ -170,6 +171,20 @@
     }
   },
   "sidebar": {
+    "analysis": {
+      "header": {
+        "highway": "Highway",
+        "smoothness": "Smoothness",
+        "surface": "Surface"
+      },
+      "table": {
+        "category": "Category",
+        "length": "Length",
+        "total_known": "Total Known:",
+        "unknown": "Unknown"
+      },
+      "title": "Analysis"
+    },
     "customize-profile": {
       "title": "Profil testreszabása"
     },

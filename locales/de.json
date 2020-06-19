@@ -5,6 +5,7 @@
     "bug-reports-front": "Web-Client / Frontend.",
     "chat": "Chatte mit Benutzern und Entwicklern",
     "contact": "Kontakt:",
+    "contact-language": "Bevorzugte Sprache ist Englisch, da wir internationale Beitragende und Anwender haben.",
     "data": "Daten:",
     "data-description": "Dies basiert auf <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Es wird normalerweise täglich aktualisiert. Siehe Datum der <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">Datendateien</a>.",
     "description": "Online-Service der BRouter Routing Engine. Für die Offline-Android-App und weitere Informationen siehe <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
@@ -51,7 +52,7 @@
     "meter": "Meter",
     "meter-abbrev": "m",
     "plain-ascend": "einfach aufsteigend",
-    "stats-info": "Start drawing a route to get stats.",
+    "stats-info": "Route zeichnen, um Statistiken zu sehen.",
     "total-energy": "Gesamtenergie",
     "travel-time": "Reisezeit"
   },
@@ -117,7 +118,7 @@
       "edit": "Klicken zum Bearbeiten",
       "help": "&square; = Bewegen / Größe anpassen, <span class=\"fa fa-trash-o\"></span> = Löschen,<br>Kreis anklicken um Bearbeiten zu beenden"
     },
-    "opacity-slider": "Transparenz von Route und Markern anpassen",
+    "opacity-slider": "Transparenz von Route und Markern anpassen. Taste 'M' drücken und halten, um Route vorübergehend auszublenden.",
     "preview": "Vorschau",
     "privacy": "Datenschutz",
     "reverse-route": "Route umkehren",
@@ -170,6 +171,20 @@
     }
   },
   "sidebar": {
+    "analysis": {
+      "header": {
+        "highway": "Weg",
+        "smoothness": "Beschaffenheit",
+        "surface": "Material"
+      },
+      "table": {
+        "category": "Art",
+        "length": "Länge",
+        "total_known": "Gesamt bekannt:",
+        "unknown": "Unbekannt"
+      },
+      "title": "Analyse"
+    },
     "customize-profile": {
       "title": "Profil personalisieren"
     },
@@ -179,31 +194,6 @@
     },
     "itinerary": {
       "title": "Reiseroute"
-    },
-    "analysis": {
-      "title": "Analyse",
-      "header": {
-        "highway": "Weg",
-        "surface": "Material",
-        "smoothness": "Beschaffenheit"
-      },
-      "table": {
-        "category": "Art",
-        "length": "Länge",
-        "total_known": "Gesamt bekannt:",
-        "unknown": "Unbekannt"
-      },
-      "data": {
-        "highway": {
-          "living_street": "living street"
-        },
-        "surface": {
-          "paving_stones": "paving stones"
-        },
-        "smoothness": {
-          "very_bad": "very bad"
-        }
-      }
     },
     "layers": {
       "category": {
