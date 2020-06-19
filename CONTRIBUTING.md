@@ -48,9 +48,9 @@ docker-compose up serve
 
 ### How internationalization works
 
-BRouter is translated using [i18next](https://www.i18next.com/) library, via command `gulp i18next`. It extracts translatable elements into `locales/en.json` file (English version).
+BRouter is translated using [i18next](https://www.i18next.com/) library, via command `gulp i18next`. It extracts translatable elements into `locales/en.json` file (English version). (Note that unused translation keys or keys not referenced in `keys.js` might get removed automatically. Make sure to commit any changes first before running this, and only amend the previous commit after checking the diff carefully.)
 
-As soon as this file is modified, it must be uploaded to Transifex (manually) with the command `yarn push-transifex`.
+As soon as this file is modified, it must be uploaded by the maintainers to Transifex (manually) with the command `yarn push-transifex`.
 
 Anyone can then translate BRouter directly on [Transifex](https://www.transifex.com/openstreetmap/brouter-web/) platform.
 
