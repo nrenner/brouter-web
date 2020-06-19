@@ -22,7 +22,10 @@ BR.tracksLoader = function(map, layersControl, routing) {
             },
             addToMap: false,
             // File size limit in kb (default: 1024) ?
-            fileSizeLimit: 1024
+            fileSizeLimit: 1024,
+            shortcut: {
+                open: 79 // char code for 'o'
+            }
         },
 
         _initContainer: function() {
@@ -30,6 +33,8 @@ BR.tracksLoader = function(map, layersControl, routing) {
 
             var fileInput;
             var container = L.DomUtil.get('navbarLoadTracksContainer');
+
+            L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
             // Create an invisible file input
             fileInput = L.DomUtil.create('input', 'hidden', container);
@@ -62,6 +67,16 @@ BR.tracksLoader = function(map, layersControl, routing) {
             var dummy = L.DomUtil.create('div');
             dummy.hidden = true;
             return dummy;
+        },
+
+        _keydownListener: function(e) {
+            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.open) {
+                if (e.shiftKey) {
+                    $('#loadNogos').modal('show');
+                } else {
+                    $('#navbarLoadTracks')[0].click();
+                }
+            }
         }
     });
     var tracksLoaderControl = new TracksLoader();

@@ -23,6 +23,14 @@ BR.Routing = L.Routing.extend({
             textFunction: function(distance) {
                 return distance / 1000;
             }
+        },
+        shortcut: {
+            draw: {
+                enable: 68, // char code for 'd'
+                disable: 27 // char code for 'ESC'
+            },
+            reverse: 82, // char code for 'r'
+            deleteLastPoint: 90 // char code for 'z'
         }
     },
 
@@ -163,8 +171,7 @@ BR.Routing = L.Routing.extend({
             this._draw
         );
 
-        // keys not working when map container does not have focus, use document instead
-        L.DomEvent.removeListener(this._container, 'keyup', this._keyupListener);
+        L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
         L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
 
         // enable drawing mode
@@ -336,16 +343,26 @@ BR.Routing = L.Routing.extend({
         return segments;
     },
 
-    _keyupListener: function(e) {
-        // Suppress shortcut handling when a text input field is focussed
-        if (document.activeElement.type == 'text' || document.activeElement.type == 'textarea') {
+    _keydownListener: function(e) {
+        if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
-        // add 'esc' to disable drawing
-        if (e.keyCode === 27) {
+        if (e.keyCode === this.options.shortcut.draw.disable) {
             this._draw.disable();
-        } else {
-            L.Routing.prototype._keyupListener.call(this, e);
+        } else if (e.keyCode === this.options.shortcut.draw.enable) {
+            this._draw.enable();
+        } else if (e.keyCode === this.options.shortcut.reverse) {
+            this.reverse();
+        } else if (e.keyCode === this.options.shortcut.deleteLastPoint) {
+            this.deleteLastPoint();
+        }
+    },
+
+    _keyupListener: function(e) {
+        // Prevent Leaflet from triggering drawing a second time on keyup,
+        // since this is already done in _keydownListener
+        if (e.keyCode === this.options.shortcut.draw.enable) {
+            return;
         }
     },
 
@@ -358,6 +375,12 @@ BR.Routing = L.Routing.extend({
         waypoints.reverse();
         this.clear();
         this.setWaypoints(waypoints);
+    },
+
+    deleteLastPoint: function() {
+        if ((lastPoint = this.getLast())) {
+            this.removeWaypoint(lastPoint, function(err, data) {});
+        }
     },
 
     _removeDistanceMarkers: function() {

@@ -46,6 +46,7 @@
 
         search = new BR.Search();
         map.addControl(search);
+        $('#map .leaflet-control-geocoder > button')[0].title = i18next.t('map.geocoder');
 
         router = L.bRouter(); //brouterCgi dummyRouter
 
@@ -83,7 +84,7 @@
         var deletePointButton = L.easyButton(
             '<span><i class="fa fa-caret-left"></i><i class="fa fa-map-marker" style="margin-left: 1px; color: gray;"></i></span>',
             function() {
-                routing.removeWaypoint(routing.getLast(), function(err, data) {});
+                routing.deleteLastPoint();
             },
             i18next.t('map.delete-last-point')
         );
@@ -91,44 +92,65 @@
         deleteRouteButton = L.easyButton(
             'fa-trash-o',
             function() {
-                bootbox.prompt({
-                    size: 'small',
-                    title: i18next.t('map.clear-route'),
-                    inputType: 'checkbox',
-                    inputOptions: [
-                        {
-                            text: i18next.t('map.delete-route'),
-                            value: 'route'
-                        },
-                        {
-                            text: i18next.t('map.delete-nogo-areas'),
-                            value: 'nogo'
-                        },
-                        {
-                            text: i18next.t('map.delete-pois'),
-                            value: 'pois'
-                        }
-                    ],
-                    value: ['route'],
-                    callback: function(result) {
-                        if (result !== null) {
-                            if (result.indexOf('route') !== -1) {
-                                routing.clear();
-                            }
-                            if (result.indexOf('nogo') !== -1) {
-                                nogos.clear();
-                            }
-                            if (result.indexOf('pois') !== -1) {
-                                pois.clear();
-                            }
-                            onUpdate();
-                            urlHash.onMapMove();
-                        }
-                    }
-                });
+                clearRoute();
             },
-            i18next.t('map.clear-route')
+            i18next.t('map.clear-route-tooltip')
         );
+
+        L.DomEvent.addListener(
+            document,
+            'keydown',
+            function(e) {
+                if (BR.Util.keyboardShortcutsAllowed(e) && !$('.modal.show').length) {
+                    if (e.keyCode === 8) {
+                        // char code for 'backspace'
+                        clearRoute();
+                    } else if (e.keyCode === 72) {
+                        // char code for 'h'
+                        $('#about').modal('show');
+                    }
+                }
+            },
+            this
+        );
+
+        function clearRoute() {
+            bootbox.prompt({
+                size: 'small',
+                title: i18next.t('map.clear-route'),
+                inputType: 'checkbox',
+                inputOptions: [
+                    {
+                        text: i18next.t('map.delete-route'),
+                        value: 'route'
+                    },
+                    {
+                        text: i18next.t('map.delete-nogo-areas'),
+                        value: 'nogo'
+                    },
+                    {
+                        text: i18next.t('map.delete-pois'),
+                        value: 'pois'
+                    }
+                ],
+                value: ['route'],
+                callback: function(result) {
+                    if (result !== null) {
+                        if (result.indexOf('route') !== -1) {
+                            routing.clear();
+                        }
+                        if (result.indexOf('nogo') !== -1) {
+                            nogos.clear();
+                        }
+                        if (result.indexOf('pois') !== -1) {
+                            pois.clear();
+                        }
+                        onUpdate();
+                        urlHash.onMapMove();
+                    }
+                }
+            });
+        }
 
         function updateRoute(evt) {
             router.setOptions(evt.options);

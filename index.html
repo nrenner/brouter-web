@@ -29,7 +29,7 @@
             >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
-                    <form class="form-inline">
+                    <form class="form-inline" id="profile-alternative-form">
                         <div class="form-group">
                             <select class="selectpicker show-tick" data-width="250px" id="profile-alternative" multiple>
                                 <optgroup label="Profile" data-max-options="1" data-icon="fa-bicycle" id="profile">
@@ -61,6 +61,8 @@
                             role="button"
                             aria-haspopup="true"
                             aria-expanded="false"
+                            data-i18n="[title]navbar.export-tooltip"
+                            title="Export route"
                         >
                             <span class="fa fa-lg fa-cloud-download" aria-hidden="true"> </span>
                             <span data-i18n="navbar.export">Export</span>
@@ -76,6 +78,8 @@
                             id="navbarLoadDropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
+                            data-i18n="[title]navbar.load.tooltip"
+                            title="Load route"
                         >
                             <span class="fa fa-lg fa-cloud-upload" aria-hidden="true"> </span>
                             <span data-i18n="navbar.load.title">Load</span>
@@ -107,7 +111,11 @@
                             >
                         </div>
                     </div>
-                    <div class="nav-item">
+                    <div
+                        class="nav-item"
+                        data-i18n="[title]about.tooltip"
+                        title="Show more information about BRouter-Web"
+                    >
                         <a class="nav-link" href="#" data-toggle="modal" data-target="#about"
                             ><span class="fa fa-lg fa-info-circle" aria-hidden="true"></span
                             ><span data-i18n="navbar.about">About</span></a
@@ -698,7 +706,12 @@
             <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
                 <ul role="tablist">
                     <li>
-                        <a href="#tab_layers_control" role="tab" data-i18n="[title]sidebar.layers.title" title="Layers">
+                        <a
+                            href="#tab_layers_control"
+                            role="tab"
+                            data-i18n="[title]sidebar.layers.tooltip"
+                            title="Select layers"
+                        >
                             <!--
                 https://github.com/feathericons/feather/blob/0dc2bf5c9d01759e47485d9498aefc02cac1d845/icons/layers.svg
                 MIT License: https://github.com/feathericons/feather/blob/master/LICENSE
@@ -722,7 +735,11 @@
                         </a>
                     </li>
                     <li hidden>
-                        <a href="#tab_itinerary" role="tab" data-i18n="[title]sidebar.itinerary.title" title="Itinerary"
+                        <a
+                            href="#tab_itinerary"
+                            role="tab"
+                            data-i18n="[title]sidebar.itinerary.tooltip"
+                            title="Show Itinerary"
                             ><i class="fa fa-map-signs"></i
                         ></a>
                     </li>
@@ -730,18 +747,26 @@
                         <a
                             href="#tab_profile"
                             role="tab"
-                            data-i18n="[title]sidebar.customize-profile.title"
+                            data-i18n="[title]sidebar.customize-profile.tooltip"
                             title="Customize profile"
                             ><i class="fa fa-wrench"></i
                         ></a>
                     </li>
                     <li>
-                        <a href="#tab_data" role="tab" data-i18n="[title]sidebar.data.title" title="Data"
+                        <a
+                            href="#tab_data"
+                            role="tab"
+                            data-i18n="[title]sidebar.data.tooltip"
+                            title="Show detailed route data table"
                             ><i class="fa fa-table"></i
                         ></a>
                     </li>
                     <li>
-                        <a href="#tab_statistics" role="tab" data-i18n="[title]sidebar.analysis.title" title="Analysis"
+                        <a
+                            href="#tab_statistics"
+                            role="tab"
+                            data-i18n="[title]sidebar.analysis.tooltip"
+                            title="Analyse route"
                             ><i class="fa fa-pie-chart"></i
                         ></a>
                     </li>
@@ -1048,6 +1073,8 @@
                     id="elevation-btn"
                     aria-expanded="false"
                     aria-label="Toggle elevation chart"
+                    data-i18n="[title]footer.elevation-chart"
+                    title="Toggle elevation chart"
                 >
                     <span class="fa fa-area-chart"></span>
                 </button>

@@ -8,6 +8,10 @@ BR.Sidebar = L.Control.Sidebar.extend({
         autopan: false,
         defaultTabId: '',
 
+        shortcut: {
+            toggleTabs: 84 // char code for 't'
+        },
+
         // Tabs to be notified when shown or hidden
         // (tab div id -> object implementing show/hide methods)
         listeningTabs: {}
@@ -17,6 +21,8 @@ BR.Sidebar = L.Control.Sidebar.extend({
         L.Control.Sidebar.prototype.initialize.call(this, id, options);
 
         this.oldTab = null;
+
+        L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
     addTo: function(map) {
@@ -30,6 +36,15 @@ BR.Sidebar = L.Control.Sidebar.extend({
             'closing',
             function() {
                 this._map.getContainer().focus();
+            },
+            this
+        );
+
+        this.recentTab = this.options.defaultTabId;
+        this.on(
+            'content',
+            function(tab) {
+                this.recentTab = tab.id;
             },
             this
         );
@@ -103,6 +118,30 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
     _storeActiveTab: function(e) {
         localStorage.setItem(this.storageId, e.id || '');
+    },
+
+    _keydownListener: function(e) {
+        if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggleTabs) {
+            if ($('#sidebarTabs > ul > li[class=active]').length) {
+                // sidebar is currently open
+                if (e.shiftKey) {
+                    // try to find next tab
+                    var nextTab = $('#sidebarTabs > ul > li[class=active] ~ li:not([hidden]) > a');
+                    if (!nextTab.length) {
+                        // wrap around to first tab
+                        nextTab = $('#sidebarTabs > ul > li:not([hidden]) > a');
+                    }
+                    // switch to next or first tab
+                    this.open(nextTab.attr('href').slice(1));
+                } else {
+                    // close current tab
+                    this.close();
+                }
+            } else {
+                // sidebar is currently closed, open recent or default tab
+                this.open(this.recentTab);
+            }
+        }
     }
 });
 
