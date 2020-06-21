@@ -24,8 +24,8 @@ BR.Map = {
         if (BR.Util.getResponsiveBreakpoint() >= '3md') {
             L.control
                 .zoom({
-                    zoomInTitle: i18next.t('map.zoomInTitle'),
-                    zoomOutTitle: i18next.t('map.zoomOutTitle')
+                    zoomInTitle: i18next.t('keyboard.generic-shortcut', { action: '$t(map.zoomInTitle)', key: '+' }),
+                    zoomOutTitle: i18next.t('keyboard.generic-shortcut', { action: '$t(map.zoomOutTitle)', key: '-' })
                 })
                 .addTo(map);
         }
@@ -105,7 +105,7 @@ BR.Map = {
             var locationControl = L.control
                 .locate({
                     strings: {
-                        title: i18next.t('map.locate-me')
+                        title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.locate-me)', key: 'L' })
                     },
                     icon: 'fa fa-location-arrow',
                     iconLoading: 'fa fa-spinner fa-pulse'

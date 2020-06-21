@@ -12,7 +12,7 @@
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
     "title": "About",
-    "tooltip": "Show more information about Brouter-Web (H key)"
+    "tooltip": "Show more information about Brouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -42,7 +42,7 @@
     "ascend": "Ascend",
     "cost": "Cost",
     "distance": "Distance",
-    "elevation-chart": "Toggle elevation chart (E key)",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energy per 100 km",
     "hours": "hours",
     "hours-abbrev": "h",
@@ -57,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
     "travel-time": "Travel time"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Add base layer",
@@ -82,19 +88,18 @@
     "attribution-osm-long": "OpenStreetMap contributors",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
-    "clear-route-tooltip": "Clear route data (Backspace key)",
     "copyright": "Copyright",
     "cycling": "Cycling",
-    "delete-last-point": "Delete last point (Z key)",
+    "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Enter Point of Interest name",
-    "geocoder": "Search (F key)",
+    "geocoder": "Search",
     "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
@@ -115,25 +120,28 @@
       "topo": "OpenTopoMap"
     },
     "loading": "Loading…",
-    "locate-me": "Show me where I am (L key)",
+    "locate-me": "Show me where I am",
     "nogo": {
-      "cancel": "Cancel drawing no-go area (ESC key)",
+      "cancel": "Cancel drawing no-go area",
       "click-drag": "Click and drag to draw circle",
-      "draw": "Draw circular no-go area (N key)",
+      "draw": "Draw circular no-go area",
       "edit": "Click to edit",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers\n(Hold M key to mute temporarily)",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privacy",
-    "reverse-route": "Reverse route (R key)",
-    "route-quality-altitude": "Altitude coding (C key to toggle)",
-    "route-quality-cost": "Cost coding (C key to toggle)",
-    "route-quality-incline": "Incline coding (C key to toggle)",
-    "strava-biking": "Show Strava biking segments\n(S key to toggle layer, click to reload for current area)",
-    "strava-running": "Show Strava running segments\n(S key to toggle layer, click to reload for current area)",
-    "zoomInTitle": "Zoom in (+ key)",
-    "zoomOutTitle": "Zoom out (- key)"
+    "reverse-route": "Reverse route",
+    "route-quality-altitude": "Altitude coding",
+    "route-quality-cost": "Cost coding",
+    "route-quality-incline": "Incline coding",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "strava-biking": "Show Strava biking segments",
+    "strava-running": "Show Strava running segments",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "zoomInTitle": "Zoom in",
+    "zoomOutTitle": "Zoom out"
   },
   "modal": {
     "close": "Close"
@@ -147,12 +155,12 @@
       "third": "3rd alternative"
     },
     "export": "Export",
-    "export-tooltip": "Export route (X key)",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "No-go areas",
+      "nogos": "Load no-go areas",
       "title": "Load",
-      "tooltip": "Load tracks (O key)\nLoad No-go areas (Shift+O)",
-      "tracks": "Tracks"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -176,7 +184,7 @@
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
     },
-    "profile-tooltip": "\n(G key to switch)"
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -192,20 +200,20 @@
         "unknown": "Unknown"
       },
       "title": "Analysis",
-      "tooltip": "Analyse route\n(T key to toggle, Shift+T to switch to next tab)"
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
       "title": "Customize profile",
-      "tooltip": "Customize profile\n(T key to toggle, Shift+T to switch to next tab)"
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchronize map",
       "title": "Data",
-      "tooltip": "Show detailed route data table\n(T key to toggle, Shift+T to switch to next tab)"
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
       "title": "Itinerary",
-      "tooltip": "Show itinerary\n(T key to toggle, Shift+T to switch to next tab)"
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -232,7 +240,7 @@
         "type": "Type"
       },
       "title": "Layers",
-      "tooltip": "Select layers\n(T key to toggle, Shift+T to switch to next tab)"
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Apply",
@@ -242,7 +250,8 @@
       "options": "Options",
       "placeholder": "Write your custom profile here.",
       "profile": "Profile"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter web client",
   "trackasroute": {

@@ -1,8 +1,8 @@
 BR.stravaSegments = function(map, layersControl) {
     var stravaControl = L.control
         .stravaSegments({
-            runningTitle: i18next.t('map.strava-running'),
-            bikingTitle: i18next.t('map.strava-biking'),
+            runningTitle: i18next.t('map.strava-shortcut', { action: '$t(map.strava-running)', key: 'S' }),
+            bikingTitle: i18next.t('map.strava-shortcut', { action: '$t(map.strava-biking)', key: 'S' }),
             loadingTitle: i18next.t('map.loading'),
             stravaToken: BR.keys.strava
         })

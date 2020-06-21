@@ -46,7 +46,10 @@
 
         search = new BR.Search();
         map.addControl(search);
-        $('#map .leaflet-control-geocoder > button')[0].title = i18next.t('map.geocoder');
+        $('#map .leaflet-control-geocoder > button')[0].title = i18next.t('keyboard.generic-shortcut', {
+            action: '$t(map.geocoder)',
+            key: 'F'
+        });
 
         router = L.bRouter(); //brouterCgi dummyRouter
 
@@ -59,7 +62,10 @@
                         routing.draw(false);
                         control.state('activate-draw');
                     },
-                    title: i18next.t('map.draw-route-stop')
+                    title: i18next.t('keyboard.generic-shortcut', {
+                        action: '$t(map.draw-route-stop)',
+                        key: '$t(keyboard.escape)'
+                    })
                 },
                 {
                     stateName: 'activate-draw',
@@ -68,7 +74,7 @@
                         routing.draw(true);
                         control.state('deactivate-draw');
                     },
-                    title: i18next.t('map.draw-route-start')
+                    title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-route-start)', key: 'D' })
                 }
             ]
         });
@@ -78,7 +84,7 @@
             function() {
                 routing.reverse();
             },
-            i18next.t('map.reverse-route')
+            i18next.t('keyboard.generic-shortcut', { action: '$t(map.reverse-route)', key: 'R' })
         );
 
         var deletePointButton = L.easyButton(
@@ -86,7 +92,7 @@
             function() {
                 routing.deleteLastPoint();
             },
-            i18next.t('map.delete-last-point')
+            i18next.t('keyboard.generic-shortcut', { action: '$t(map.delete-last-point)', key: 'Z' })
         );
 
         deleteRouteButton = L.easyButton(
@@ -94,7 +100,7 @@
             function() {
                 clearRoute();
             },
-            i18next.t('map.clear-route-tooltip')
+            i18next.t('keyboard.generic-shortcut', { action: '$t(map.clear-route)', key: '$t(keyboard.backspace)' })
         );
 
         L.DomEvent.addListener(
@@ -175,8 +181,11 @@
             profile.update(evt.options);
         });
 
-        BR.NogoAreas.MSG_BUTTON = i18next.t('map.nogo.draw');
-        BR.NogoAreas.MSG_BUTTON_CANCEL = i18next.t('map.nogo.cancel');
+        BR.NogoAreas.MSG_BUTTON = i18next.t('keyboard.generic-shortcut', { action: '$t(map.nogo.draw)', key: 'N' });
+        BR.NogoAreas.MSG_BUTTON_CANCEL = i18next.t('keyboard.generic-shortcut', {
+            action: '$t(map.nogo.cancel)',
+            key: '$t(keyboard.escape)'
+        });
         BR.NogoAreas.MSG_CREATE = i18next.t('map.nogo.click-drag');
         BR.NogoAreas.MSG_DISABLED = i18next.t('map.nogo.edit');
         BR.NogoAreas.MSG_ENABLED = i18next.t('map.nogo.help');
@@ -313,7 +322,7 @@
         map.addControl(
             new BR.OpacitySliderControl({
                 id: 'route',
-                title: i18next.t('map.opacity-slider'),
+                title: i18next.t('map.opacity-slider-shortcut', { action: '$t(map.opacity-slider)', key: 'M' }),
                 muteKeyCode: 77, // m
                 callback: L.bind(routing.setOpacity, routing)
             })
@@ -456,8 +465,9 @@
                 }
             },
             function(err, t) {
-                jqueryI18next.init(i18next, $);
-                $('html').localize({
+                jqueryI18next.init(i18next, $, { useOptionsAttr: true });
+                $('html').localize();
+                $('#aboutLinks').localize({
                     privacyPolicyUrl: BR.conf.privacyPolicyUrl || 'https://brouter.de/privacypolicy.html'
                 });
 
