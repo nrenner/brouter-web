@@ -25,7 +25,7 @@ BR.PoiMarkers = L.Control.extend({
                     onClick: function() {
                         self.draw(true);
                     },
-                    title: i18next.t('map.draw-poi-start')
+                    title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-poi-start)', key: 'P' })
                 },
                 {
                     stateName: 'deactivate-poi',
@@ -33,7 +33,10 @@ BR.PoiMarkers = L.Control.extend({
                     onClick: function() {
                         self.draw(false);
                     },
-                    title: i18next.t('map.draw-poi-stop')
+                    title: i18next.t('keyboard.generic-shortcut', {
+                        action: '$t(map.draw-poi-stop)',
+                        key: '$t(keyboard.escape)'
+                    })
                 }
             ]
         }).addTo(map);

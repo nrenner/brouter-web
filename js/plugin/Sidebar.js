@@ -123,23 +123,23 @@ BR.Sidebar = L.Control.Sidebar.extend({
     _keydownListener: function(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggleTabs) {
             if ($('#sidebarTabs > ul > li[class=active]').length) {
-                // sidebar is currently open
-                if (e.shiftKey) {
-                    // try to find next tab
-                    var nextTab = $('#sidebarTabs > ul > li[class=active] ~ li:not([hidden]) > a');
-                    if (!nextTab.length) {
-                        // wrap around to first tab
-                        nextTab = $('#sidebarTabs > ul > li:not([hidden]) > a');
-                    }
-                    // switch to next or first tab
-                    this.open(nextTab.attr('href').slice(1));
-                } else {
-                    // close current tab
+                // sidebar is currently open, close current tab
+                if (!e.shiftKey) {
                     this.close();
                 }
             } else {
                 // sidebar is currently closed, open recent or default tab
                 this.open(this.recentTab);
+            }
+            if (e.shiftKey) {
+                // try to find next tab
+                var nextTab = $('#sidebarTabs > ul > li[class=active] ~ li:not([hidden]) > a');
+                if (!nextTab.length) {
+                    // wrap around to first tab
+                    nextTab = $('#sidebarTabs > ul > li:not([hidden]) > a');
+                }
+                // switch to next or first tab
+                this.open(nextTab.attr('href').slice(1));
             }
         }
     }

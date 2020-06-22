@@ -250,7 +250,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
 
             if (!this._options.format) this._options.format = trackFile.name.split('.').pop();
 
-            const reader = new FileReader();
+            var reader = new FileReader();
 
             reader.onload = L.bind(this.processFile, this);
             reader.readAsText(trackFile);

@@ -21,7 +21,7 @@ BR.RoutingPathQuality = L.Control.extend({
 
         this.providers = {
             incline: {
-                title: i18next.t('map.route-quality-incline'),
+                title: i18next.t('map.route-quality-shortcut', { action: '$t(map.route-quality-incline)', key: 'C' }),
                 icon: 'fa-line-chart',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
@@ -48,7 +48,7 @@ BR.RoutingPathQuality = L.Control.extend({
                 })
             },
             altitude: {
-                title: i18next.t('map.route-quality-altitude'),
+                title: i18next.t('map.route-quality-shortcut', { action: '$t(map.route-quality-altitude)', key: 'C' }),
                 icon: 'fa-area-chart',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
@@ -61,7 +61,7 @@ BR.RoutingPathQuality = L.Control.extend({
                 })
             },
             cost: {
-                title: i18next.t('map.route-quality-cost'),
+                title: i18next.t('map.route-quality-shortcut', { action: '$t(map.route-quality-cost)', key: 'C' }),
                 icon: 'fa-usd',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {

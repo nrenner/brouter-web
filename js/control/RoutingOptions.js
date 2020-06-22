@@ -48,7 +48,7 @@ BR.RoutingOptions = L.Evented.extend({
 
         // append shortcut text to tooltip
         var button = $('#profile-alternative-form button')[0];
-        button.title = button.title + i18next.t('navbar.profile-tooltip');
+        button.title = button.title + i18next.t('navbar.profile-tooltip', { key: 'G' });
     },
 
     getOptions: function() {
