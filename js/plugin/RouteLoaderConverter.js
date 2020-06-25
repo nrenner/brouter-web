@@ -257,11 +257,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         },
 
         addTrackOverlay: function(geoJSON) {
-            this._trackLayer = L.geoJSON(geoJSON, {
-                filter: function(geoJsonFeature) {
-                    return !(geoJsonFeature.type == 'Feature' && geoJsonFeature.geometry.type == 'Point');
-                }
-            }).addTo(map);
+            this._trackLayer = L.geoJSON(geoJSON, BR.Track.getGeoJsonOptions(layersControl)).addTo(map);
 
             layersControl.addOverlay(this._trackLayer, this._layerName);
 
@@ -320,15 +316,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             if (!this._bounds) map.fitBounds(this._bounds);
 
             if (this._options.showPointAsPoi) {
-                turf.featureEach(this._currentGeoJSON, function(feature, idx) {
-                    if (turf.getType(feature) == 'Point') {
-                        var coord = turf.getCoord(feature);
-                        var latlng = L.GeoJSON.coordsToLatLng(coord);
-                        var name = '';
-                        if (feature.properties && feature.properties.name) name = feature.properties.name;
-                        pois.addMarker(latlng, name);
-                    }
-                });
+                BR.Track.addPoiMarkers(pois, this._currentGeoJSON);
             }
         },
 
