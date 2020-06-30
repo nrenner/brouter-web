@@ -51,6 +51,28 @@ BR.TrackAnalysis = L.Class.extend({
     trackPolyline: null,
 
     /**
+     * true when tab is shown, false when hidden
+     *
+     * @type {boolean}
+     */
+    active: false,
+
+    /**
+     * Called by BR.Sidebar when tab is activated
+     */
+    show: function() {
+        this.active = true;
+        this.options.requestUpdate(this);
+    },
+
+    /**
+     * Called by BR.Sidebar when tab is deactivated
+     */
+    hide: function() {
+        this.active = false;
+    },
+
+    /**
      * Everytime the track changes this method is called:
      *
      * - calculate statistics (way type, surface, smoothness)
@@ -63,6 +85,10 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Array} segments
      */
     update: function(polyline, segments) {
+        if (!this.active) {
+            return;
+        }
+
         if (segments.length === 0) {
             $('#track_statistics').html('');
             return;
