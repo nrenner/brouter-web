@@ -36,6 +36,7 @@ BR.Routing = L.Routing.extend({
 
     onAdd: function(map) {
         this._segmentsCasing = new L.FeatureGroup().addTo(map);
+        this._loadingTrailerGroup = new L.FeatureGroup().addTo(map);
 
         var container = L.Routing.prototype.onAdd.call(this, map);
 
@@ -276,9 +277,24 @@ BR.Routing = L.Routing.extend({
         };
 
         this.fire('routing:setWaypointsStart');
+
+        // Workaround to optimize performance.
+        // Add markers/layers to map "at once" and avoid a repaint for every single one.
+        // Therefore remove and re-add FeatureGroup from/to map, also need to unset map reference,
+        // as LayerGroup.addLayer would add to map anyway.
+        this._waypoints.remove();
+        this._waypoints._map = null;
+        this._loadingTrailerGroup.remove();
+        this._loadingTrailerGroup._map = null;
+
         for (i = 0; latLngs && i < latLngs.length; i++) {
             this.addWaypoint(latLngs[i], this._waypoints._last, null, callback);
         }
+
+        this._loadingTrailerGroup._map = this._map;
+        this._loadingTrailerGroup.addTo(this._map);
+        this._waypoints._map = this._map;
+        this._waypoints.addTo(this._map);
     },
 
     // patch to fix error when line is null or error line
@@ -313,7 +329,7 @@ BR.Routing = L.Routing.extend({
                 dashArray: [10, 10],
                 className: 'loading-trailer'
             });
-            loadingTrailer.addTo(this._map);
+            this._loadingTrailerGroup.addLayer(loadingTrailer);
         }
 
         L.Routing.prototype._routeSegment.call(
@@ -322,7 +338,7 @@ BR.Routing = L.Routing.extend({
             m2,
             L.bind(function(err, data) {
                 if (loadingTrailer) {
-                    this._map.removeLayer(loadingTrailer);
+                    this._loadingTrailerGroup.removeLayer(loadingTrailer);
                 }
                 cb(err, data);
             }, this)
