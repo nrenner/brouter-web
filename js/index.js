@@ -454,6 +454,22 @@
             });
     }
 
+    i18next.on('languageChanged', function(detectedLanguage) {
+        // detected + fallbacks, e.g. ["de-DE", "de", "en"]
+        for (i = 0; i < i18next.languages.length; i++) {
+            var language = i18next.languages[i];
+
+            // set first (fallback) language, for which a bundle was found
+            if (i18next.hasResourceBundle(language, 'translation')) {
+                var htmlElem = document.documentElement;
+                if (htmlElem.getAttribute('lang') !== language) {
+                    htmlElem.setAttribute('lang', language);
+                }
+                break;
+            }
+        }
+    });
+
     i18next
         .use(window.i18nextXHRBackend)
         .use(window.i18nextBrowserLanguageDetector)
