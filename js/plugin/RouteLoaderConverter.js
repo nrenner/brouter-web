@@ -5,6 +5,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         _bounds: undefined,
         _testLayer: L.layerGroup().addTo(map),
         _trackPoints: [],
+        _maxTrackPoints: 200,
         _closeCanceled: true,
         _currentGeoJSON: {},
         _options: {
@@ -50,11 +51,10 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             this._testLayer.clearLayers();
 
             var simplifiedLatLngs = this.getSimplifiedLatLngs();
-            if (simplifiedLatLngs.length > 5000) {
+            if (simplifiedLatLngs.length > this._maxTrackPoints) {
                 this.onBusyChanged(false);
                 return false;
             }
-
             for (var i = 0; i < simplifiedLatLngs.length; i++) {
                 this._testLayer.addLayer(
                     L.circleMarker(simplifiedLatLngs[i], {
@@ -241,6 +241,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         },
 
         convertTrackLocal: function() {
+            if ($('#loadedittrackFile')[0].files.length == 0) return;
             this.onBusyChanged(true);
 
             this.getOptions();
@@ -339,6 +340,8 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             this.setLayerNameFromGeojson(geoJSON);
 
             this._trackPoints = this.getLineStringsFromGeoJSON(geoJSON);
+            var length = turf.length(this._trackPoints, { units: 'kilometers' });
+            this._maxTrackPoints = Math.min(length * Math.max(-0.14 * length + 10, 1), 200);
             this.fire('file:loaded');
 
             if (this._options.showTrackLayer || this._options.isTestMode) this.addTrackOverlay(geoJSON);
