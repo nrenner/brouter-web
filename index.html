@@ -1009,14 +1009,14 @@
 
         <div class="collapse" id="elevation-chart"></div>
 
-        <footer>
-            <div id="stats-info">
+        <footer class="flexrow">
+            <div id="stats-info" class="flexgrow">
                 <div>
                     <span class="fa fa-info-circle"></span>
                     <span data-i18n="footer.stats-info">Start drawing a route to get stats.</span>
                 </div>
             </div>
-            <div id="stats-container" class="flexrow">
+            <div id="stats-container" class="flexrow flexgrow">
                 <ul id="stats">
                     <li>
                         <div class="text-muted small d-none d-md-block" data-i18n="footer.distance">
@@ -1096,23 +1096,23 @@
                         </p>
                     </li>
                 </ul>
-
-                <button
-                    class="btn btn-outline-secondary btn-sm"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#elevation-chart"
-                    aria-controls="elevation-chart"
-                    id="elevation-btn"
-                    aria-expanded="false"
-                    aria-label="Toggle elevation chart"
-                    data-i18n="[title]keyboard.generic-shortcut"
-                    data-i18n-options='{ "action": "$t(footer.elevation-chart)", "key": "E" }'
-                    title="Toggle elevation chart"
-                >
-                    <span class="fa fa-area-chart"></span>
-                </button>
             </div>
+
+            <button
+                class="btn btn-outline-secondary btn-sm"
+                type="button"
+                data-toggle="collapse"
+                data-target="#elevation-chart"
+                aria-controls="elevation-chart"
+                id="elevation-btn"
+                aria-expanded="false"
+                aria-label="Toggle elevation chart"
+                data-i18n="[title]keyboard.generic-shortcut"
+                data-i18n-options='{ "action": "$t(footer.elevation-chart)", "key": "E" }'
+                title="Toggle elevation chart"
+            >
+                <span class="fa fa-area-chart"></span>
+            </button>
         </footer>
 
         <script>
