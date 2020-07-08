@@ -8,7 +8,6 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         _maxTrackPoints: 200,
         _closeCanceled: true,
         _currentGeoJSON: {},
-        _counter: 0,
         _options: {
             format: undefined,
             showTrackLayer: true,
@@ -44,7 +43,6 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                 highQuality: true
             });
             return simplifiedLine.coordinates;
-            // return L.GeoJSON.coordsToLatLngs(simplifiedLine.coordinates);
         },
 
         refreshTestLayer: function() {
