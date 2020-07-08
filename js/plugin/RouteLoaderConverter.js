@@ -5,6 +5,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         _bounds: undefined,
         _testLayer: L.layerGroup().addTo(map),
         _trackPoints: [],
+        _maxTrackPoints: 200,
         _closeCanceled: true,
         _currentGeoJSON: {},
         _options: {
@@ -36,25 +37,25 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             });
         },
 
-        getSimplifiedLatLngs: function() {
+        getSimplifiedCoords: function(tolerance) {
             var simplifiedLine = turf.simplify(this._trackPoints.geometry, {
-                tolerance: this._options.simplifyTolerance,
+                tolerance: tolerance,
                 highQuality: true
             });
-
-            return L.GeoJSON.coordsToLatLngs(simplifiedLine.coordinates);
+            return simplifiedLine.coordinates;
         },
 
         refreshTestLayer: function() {
             this.onBusyChanged(true);
             this._testLayer.clearLayers();
 
-            var simplifiedLatLngs = this.getSimplifiedLatLngs();
-            if (simplifiedLatLngs.length > 5000) {
+            var simplifiedLatLngs = L.GeoJSON.coordsToLatLngs(
+                this.getSimplifiedCoords(this._options.simplifyTolerance)
+            );
+            if (simplifiedLatLngs.length > this._maxTrackPoints) {
                 this.onBusyChanged(false);
                 return false;
             }
-
             for (var i = 0; i < simplifiedLatLngs.length; i++) {
                 this._testLayer.addLayer(
                     L.circleMarker(simplifiedLatLngs[i], {
@@ -94,6 +95,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
 
         setSliderRange: function() {
             $slider = $('#simplify_tolerance');
+            $slider.prop('min', -500);
             var guessedTolerance = this.guessSimplifyTolerance(this._trackPoints);
             $slider.data('guess', guessedTolerance.toFixed(20));
             $slider.val(0);
@@ -111,13 +113,35 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             else this._options.simplifyTolerance = Math.abs(guess + Math.pow(f, 3) * (guess / Math.pow(frac, 3)));
 
             if (!this.refreshTestLayer()) {
+                var iterate = this.findLowestTolerance(
+                    parseInt(e.target.value),
+                    parseInt($(e.target).data('lastknowngood')),
+                    guess,
+                    frac
+                );
+                $(e.target).prop('min', iterate);
+                $(e.target).data('lastknowngood', iterate);
                 e.target.value = $(e.target).data('lastknowngood');
-                this._options.simplifyTolerance = this._options.simplifyLastKnownGood;
+                this._options.simplifyTolerance = this._options.simplifyLastKnownGood = Math.abs(
+                    guess + Math.pow(iterate, 3) * (guess / Math.pow(frac, 3))
+                );
                 this.refreshTestLayer();
             } else {
                 this._options.simplifyLastKnownGood = this._options.simplifyTolerance;
                 $(e.target).data('lastknowngood', e.target.value);
             }
+        },
+
+        findLowestTolerance: function(min, max, guess, frac) {
+            if (Math.abs(max - min) <= 2) return max;
+            var meridian = Math.round((max + min) / 2);
+
+            var tolerance = Math.abs(guess + Math.pow(meridian, 3) * (guess / Math.pow(frac, 3)));
+            var simplifiedCoords = this.getSimplifiedCoords(tolerance);
+
+            if (simplifiedCoords.length > this._maxTrackPoints)
+                return this.findLowestTolerance(meridian, max, guess, frac);
+            else return this.findLowestTolerance(min, meridian, guess, frac);
         },
 
         onBusyChanged: function(isBusy) {
@@ -177,7 +201,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                     );
             }, this);
 
-            L.DomUtil.get('simplify_tolerance').onchange = L.bind(this.onToleranceSlider, this);
+            L.DomUtil.get('simplify_tolerance').oninput = L.bind(this.onToleranceSlider, this);
 
             L.DomUtil.get('loadedittrackFile').onchange = L.bind(this.onFileChanged, this);
             this.onFileChanged({ target: L.DomUtil.get('loadedittrackFile') });
@@ -241,6 +265,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
         },
 
         convertTrackLocal: function() {
+            if ($('#loadedittrackFile')[0].files.length == 0) return;
             this.onBusyChanged(true);
 
             this.getOptions();
@@ -293,7 +318,9 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                 this._options.simplifyTolerance = this.guessSimplifyTolerance(this._trackPoints);
 
             var routingPoints = [];
-            var simplifiedLatLngs = this.getSimplifiedLatLngs();
+            var simplifiedLatLngs = L.GeoJSON.coordsToLatLngs(
+                this.getSimplifiedCoords(this._options.simplifyTolerance)
+            );
 
             for (var i = 0; i < simplifiedLatLngs.length; i++) {
                 routingPoints.push(simplifiedLatLngs[i]);
@@ -339,6 +366,8 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             this.setLayerNameFromGeojson(geoJSON);
 
             this._trackPoints = this.getLineStringsFromGeoJSON(geoJSON);
+            var length = turf.length(this._trackPoints, { units: 'kilometers' });
+            this._maxTrackPoints = Math.min(length * Math.max(-0.14 * length + 10, 1), 200);
             this.fire('file:loaded');
 
             if (this._options.showTrackLayer || this._options.isTestMode) this.addTrackOverlay(geoJSON);
