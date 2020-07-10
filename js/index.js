@@ -420,38 +420,11 @@
             urlHash
         );
 
+        // listener and initCollapse here and not in onAdd, as addBelow calls addTo (-> onAdd) on resize
         $(window).resize(function() {
             elevation.addBelow(map);
         });
-
-        $('#elevation-chart').on('show.bs.collapse', function() {
-            $('#elevation-btn').addClass('active');
-        });
-        $('#elevation-chart').on('hidden.bs.collapse', function() {
-            $('#elevation-btn').removeClass('active');
-            // we must fetch tiles that are located behind elevation-chart
-            map._onResize();
-        });
-
-        var onHide = function() {
-            if (this.id && BR.Util.localStorageAvailable()) {
-                localStorage.removeItem(this.id);
-            }
-        };
-        var onShow = function() {
-            if (this.id && BR.Util.localStorageAvailable()) {
-                localStorage[this.id] = 'true';
-            }
-        };
-        // on page load, we want to restore collapsible elements from previous usage
-        $('.collapse')
-            .on('hidden.bs.collapse', onHide)
-            .on('shown.bs.collapse', onShow)
-            .each(function() {
-                if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
-                    $(this).collapse('show');
-                }
-            });
+        elevation.initCollapse(map);
     }
 
     i18next.on('languageChanged', function(detectedLanguage) {

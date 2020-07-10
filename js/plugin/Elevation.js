@@ -55,6 +55,34 @@ BR.Elevation = L.Control.Elevation.extend({
         setParent(this.getContainer(), document.getElementById('elevation-chart'));
     },
 
+    initCollapse: function(map) {
+        var onHide = function() {
+            $('#elevation-btn').removeClass('active');
+            // we must fetch tiles that are located behind elevation-chart
+            map._onResize();
+
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage.removeItem(this.id);
+            }
+        };
+        var onShow = function() {
+            $('#elevation-btn').addClass('active');
+
+            if (this.id && BR.Util.localStorageAvailable()) {
+                localStorage[this.id] = 'true';
+            }
+        };
+        // on page load, we want to restore collapse state from previous usage
+        $('#elevation-chart')
+            .on('hidden.bs.collapse', onHide)
+            .on('shown.bs.collapse', onShow)
+            .each(function() {
+                if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
+                    $(this).collapse('show');
+                }
+            });
+    },
+
     update: function(track, layer) {
         this.clear();
 
