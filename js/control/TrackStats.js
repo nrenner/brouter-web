@@ -3,15 +3,11 @@ BR.TrackStats = L.Class.extend({
         if (segments.length == 0) {
             $('#stats-container').hide();
             $('#stats-info').show();
-            this.shouldRestoreChart = $('#elevation-chart').hasClass('show');
-            $('#elevation-chart').collapse('hide');
             return;
         }
 
         $('#stats-container').show();
         $('#stats-info').hide();
-        if (this.shouldRestoreChart === true) $('#elevation-chart').collapse('show');
-        this.shouldRestoreChart = undefined;
 
         var stats = this.calcStats(polyline, segments),
             length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
