@@ -56,12 +56,13 @@ BR.Elevation = L.Control.Elevation.extend({
     },
 
     initCollapse: function(map) {
+        var self = this;
         var onHide = function() {
             $('#elevation-btn').removeClass('active');
             // we must fetch tiles that are located behind elevation-chart
             map._onResize();
 
-            if (this.id && BR.Util.localStorageAvailable()) {
+            if (this.id && BR.Util.localStorageAvailable() && !self.shouldRestoreChart) {
                 localStorage.removeItem(this.id);
             }
         };
@@ -78,7 +79,7 @@ BR.Elevation = L.Control.Elevation.extend({
             .on('shown.bs.collapse', onShow)
             .each(function() {
                 if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
-                    $(this).collapse('show');
+                    self.shouldRestoreChart = true;
                 }
             });
     },
@@ -93,9 +94,17 @@ BR.Elevation = L.Control.Elevation.extend({
         }
 
         if (track && track.getLatLngs().length > 0) {
+            if (this.shouldRestoreChart === true) $('#elevation-chart').collapse('show');
+            this.shouldRestoreChart = undefined;
+
             this.addData(track.toGeoJSON(), layer);
 
             layer.on('mouseout', this._hidePositionMarker.bind(this));
+        } else {
+            if ($('#elevation-chart').hasClass('show')) {
+                this.shouldRestoreChart = true;
+            }
+            $('#elevation-chart').collapse('hide');
         }
     },
 
