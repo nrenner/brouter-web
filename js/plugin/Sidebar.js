@@ -79,7 +79,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
                 // not set: closed by default for new users
                 tabId = '';
             }
-            if (tabId !== '') {
+            if (tabId !== '' && this._getTab(tabId)) {
                 this.open(tabId);
             }
         }
