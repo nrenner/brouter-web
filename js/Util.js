@@ -97,5 +97,14 @@ BR.Util = {
         }
 
         return true;
+    },
+
+    // this method must only be used to sanitize for textContent.
+    // do NOT use it to sanitize any attribute,
+    // see https://web.archive.org/web/20121208091505/http://benv.ca/2012/10/4/you-are-probably-misusing-DOM-text-methods/
+    sanitizeHTMLContent: function(str) {
+        var temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
     }
 };

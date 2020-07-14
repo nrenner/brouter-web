@@ -87,21 +87,12 @@ BR.PoiMarkers = L.Control.extend({
     },
 
     addMarker: function(latlng, name) {
-        // this method must only be used to sanitize for textContent.
-        // do NOT use it to sanitize any attribute,
-        // see https://web.archive.org/web/20121208091505/http://benv.ca/2012/10/4/you-are-probably-misusing-DOM-text-methods/
-        var sanitizeHTMLContent = function(str) {
-            var temp = document.createElement('div');
-            temp.textContent = str;
-            return temp.innerHTML;
-        };
-
         var icon = L.VectorMarkers.icon({
             icon: 'star',
             markerColor: BR.conf.markerColors.poi
         });
 
-        var content = sanitizeHTMLContent(name) + '<br>';
+        var content = BR.Util.sanitizeHTMLContent(name) + '<br>';
         content += "<button id='remove-poi-marker' class='btn btn-secondary'><i class='fa fa-trash'></i></button>";
 
         var self = this;
