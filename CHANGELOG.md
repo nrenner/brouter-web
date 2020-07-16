@@ -1,5 +1,21 @@
 # BRouter-Web Changelog
 
+## 0.13.0 (2020-07-17)
+
+See also [milestone 0.13.0](https://github.com/nrenner/brouter-web/milestone/14?closed=1)
+
+### New Features
+
+-   Load Track from file and add as Route - by [@printpagestopdf](https://github.com/printpagestopdf) ([#312](https://github.com/nrenner/brouter-web/pull/312), [#318](https://github.com/nrenner/brouter-web/issues/318))
+
+### Improvements
+
+-   Add more keyboard shortcuts and fix various shortcut related issues - by [@rkflx](https://github.com/rkflx) ([#314](https://github.com/nrenner/brouter-web/pull/314), [#315](https://github.com/nrenner/brouter-web/issues/315))
+
+### Bugfixes
+
+-   Empty elevation chart on load, but button to hide not visible ([#320](https://github.com/nrenner/brouter-web/issues/320))
+
 ## 0.12.0 (2020-06-19)
 
 See also [milestone 0.12.0](https://github.com/nrenner/brouter-web/milestone/13?closed=1)
