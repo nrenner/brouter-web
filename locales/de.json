@@ -11,7 +11,8 @@
     "description": "Online-Service der BRouter Routing Engine. Für die Offline-Android-App und weitere Informationen siehe <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Datenschutz-Bestimmungen</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Änderungsprotokoll</a></i> und\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">weitere Infos</a></i> zum Client.",
     "support": "Generelle Diskussionen/Fragen, Support",
-    "title": "Über"
+    "title": "Über",
+    "tooltip": "Mehr Informationen über BRouter-Web anzeigen"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Aufsteigend",
     "cost": "Kosten",
     "distance": "Entfernung",
+    "elevation-chart": "Höhendiagramm ein-/ausblenden",
     "energy-per-100km": "Energie pro 100 km",
     "hours": "Stunden",
     "hours-abbrev": "h",
@@ -55,6 +57,12 @@
     "stats-info": "Route zeichnen, um Statistiken zu sehen.",
     "total-energy": "Gesamtenergie",
     "travel-time": "Reisezeit"
+  },
+  "keyboard": {
+    "backspace": "Rücktaste",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} Taste)",
+    "shift": "Umschalt"
   },
   "layers": {
     "add-base": "Basisebene hinzufügen",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Alle No-go-Areas löschen",
     "delete-pois": "Alle POI löschen",
     "delete-route": "Route löschen",
-    "draw-poi-start": "POI einzeichnen (P-Taste)",
-    "draw-poi-stop": "Einzeichnen der POI beenden (ESC-Taste)",
-    "draw-route-start": "Route zeichnen (D-Taste)",
-    "draw-route-stop": "Route Zeichnen beenden (ESC-Taste)",
+    "draw-poi-start": "POI einzeichnen",
+    "draw-poi-stop": "Einzeichnen der POI beenden",
+    "draw-route-start": "Route zeichnen",
+    "draw-route-stop": "Route Zeichnen beenden",
     "enter-poi-name": "POI-Namen eingeben",
+    "geocoder": "Suche",
+    "geocoder-placeholder": "Suche...",
     "hikebike-hillshading": "Höhenschummerung",
     "hiking": "Wandern",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "No-Go-Areas löschen",
       "click-drag": "Klicken und ziehen zum Zeichnen eines Kreises",
-      "draw": "No-Go-Area zeichnen (Kreis)",
+      "draw": "Kreisförmige No-Go-Area zeichnen",
       "edit": "Klicken zum Bearbeiten",
       "help": "&square; = Bewegen / Größe anpassen, <span class=\"fa fa-trash-o\"></span> = Löschen,<br>Kreis anklicken um Bearbeiten zu beenden"
     },
-    "opacity-slider": "Transparenz von Route und Markern anpassen. Taste 'M' drücken und halten, um Route vorübergehend auszublenden.",
+    "opacity-slider": "Transparenz von Route und Markern anpassen",
+    "opacity-slider-shortcut": "{{action}}\n(Taste {{key}} drücken und halten, um Route vorübergehend auszublenden)",
     "preview": "Vorschau",
     "privacy": "Datenschutz",
     "reverse-route": "Route umkehren",
     "route-quality-altitude": "Höhencodierung",
     "route-quality-cost": "Kostencodierung",
     "route-quality-incline": "Steigungscodierung",
+    "route-quality-shortcut": "{{action}} ({{key}} Taste zum Ein-/Ausschalten)",
     "strava-biking": "Zeige Strava Radfahrsegmente",
     "strava-running": "Zeige Strava Läufersegmente",
+    "strava-shortcut": "{{action}}\n({{key}} Taste um Ebene ein-/auszublenden, Klicken um aktuellen Ausschnitt neu zu laden)",
     "zoomInTitle": "Hineinzoomen",
     "zoomOutTitle": "Herauszoomen"
   },
@@ -142,10 +155,12 @@
       "third": "3. Alternative"
     },
     "export": "Export",
+    "export-tooltip": "Route exportieren",
     "load": {
-      "nogos": "No-go-Areas",
+      "nogos": "No-go-Areas laden",
       "title": "Laden",
-      "tracks": "Touren"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} Taste)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Touren laden"
     },
     "profile": {
       "car-eco": "Auto (effizient)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Trekkingrad (steil)",
       "vm-forum-liegerad-schnell": "Liegerad (schnell)",
       "vm-forum-velomobil-schnell": "Velomobil (schnell)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} Taste zum Umschalten)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Gesamt bekannt:",
         "unknown": "Unbekannt"
       },
-      "title": "Analyse"
+      "title": "Analyse",
+      "tooltip": "Route analysieren"
     },
     "customize-profile": {
-      "title": "Profil personalisieren"
+      "title": "Profil personalisieren",
+      "tooltip": "Profil anpassen"
     },
     "data": {
       "sync-map": "Karte synchronisieren",
-      "title": "Daten"
+      "title": "Daten",
+      "tooltip": "Detaillierte Datentabelle der Route anzeigen"
     },
     "itinerary": {
-      "title": "Reiseroute"
+      "title": "Reiseroute",
+      "tooltip": "Reiseplan anzeigen"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Name",
         "type": "Typ"
       },
-      "title": "Ebenen"
+      "title": "Ebenen",
+      "tooltip": "Ebenen auswählen"
     },
     "profile": {
       "apply": "Anwenden",
@@ -229,9 +250,21 @@
       "options": "Optionen",
       "placeholder": "Hier benutzerdefiniertes Profil erstellen.",
       "profile": "Profil"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} Taste zum Ein-/Ausblenden, {{switchKey}} um zum nächsten Tab zu schalten)"
   },
   "title": "BRouter Web Client",
+  "trackasroute": {
+    "explainpoi": "(Wegpunkte als POIs anzeigen)",
+    "explaintracklayer": "(Tour als separate Ebene anzeigen)",
+    "file": "Tourdatei",
+    "fuzziness": "Unschärfe",
+    "pleasewait": "Bitte warten!",
+    "showpois": "POIs",
+    "title": "Tour als Route laden",
+    "tracklayer": "Tour-Ebene",
+    "tuning": "Abstimmung"
+  },
   "warning": {
     "cannot-get-route": "Fehler beim Abrufen der Routen-URL",
     "no-response": "Keine Antwort vom Server",

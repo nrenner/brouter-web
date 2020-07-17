@@ -11,7 +11,8 @@
     "description": "Vefþjónusta BRouter leiðagerðarvélarinnar. Varðandi Android forritið og ítarlegri upplýsingar er bent á <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Persónuverndarsetfna</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Framlög</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Breytingaannáll</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">ítarlegri upplýsingar</a></i> um forritið.",
     "support": "Almennar umræður, spurningar, aðstoð",
-    "title": "Um hugbúnaðinn"
+    "title": "Um hugbúnaðinn",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Uppsöfnuð hækkun",
     "cost": "Kostnaður",
     "distance": "Vegalengd",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Orka á hverja 100 km",
     "hours": "klukkustundir",
     "hours-abbrev": "klst",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Orka alls",
     "travel-time": "Ferðatími"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Bæta við grunnlagi",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Eyða öllum bannsvæðum",
     "delete-pois": "Eyða öllum merkisstöðum",
     "delete-route": "Eyða leið",
-    "draw-poi-start": "Teikna merkisstaði (points of interest = P-lykill)",
-    "draw-poi-stop": "Hætta að teikna merkisstaði (ESC-lykill)",
-    "draw-route-start": "Teikna leið (D-lykill)",
-    "draw-route-stop": "Hætta að teikna leið (ESC-lykill)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Settu inn heiti á merkisstað",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hæðaskygging",
     "hiking": "Gangandi",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Hætta við að teikna bannsvæði",
       "click-drag": "Smella og draga til að teikna hring",
-      "draw": "Teikna bannsvæði (hring)",
+      "draw": "Draw circular no-go area",
       "edit": "Smelltu til að breyta",
       "help": "&square; = færa / breyta stærð, <span class=\"fa fa-trash-o\"></span> = eyða,<br>smella á hring til að hætta breytingum"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Forskoðun",
     "privacy": "Persónuvernd",
     "reverse-route": "Snúa við leið",
     "route-quality-altitude": "Kóði fyrir hæð",
     "route-quality-cost": "Kóði fyrir kostnað",
     "route-quality-incline": "Kóði fyrir halla",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Sýna Strava hjólabúta",
     "strava-running": "Sýna Strava hlaupabúta",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Renna að",
     "zoomOutTitle": "Renna frá"
   },
@@ -142,10 +155,12 @@
       "third": "3. varaleið"
     },
     "export": "Flytja út",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "Bannsvæði",
+      "nogos": "Load no-go areas",
       "title": "Hlaða",
-      "tracks": "Ferlar"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Akandi (hagkvæmt)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Ferðahjól (bratt)",
       "vm-forum-liegerad-schnell": "Afturliggjandi hjól (hratt)",
       "vm-forum-velomobil-schnell": "Hjúphjól (velomobile - hratt)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Sérsníða notkunarsnið"
+      "title": "Sérsníða notkunarsnið",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Samstilla kort",
-      "title": "Gögn"
+      "title": "Gögn",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Ferðaáætlun"
+      "title": "Ferðaáætlun",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Nafn",
         "type": "Tegund"
       },
-      "title": "Lög"
+      "title": "Lög",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Virkja",
@@ -229,9 +250,21 @@
       "options": "Valkostir",
       "placeholder": "Skrifaðu sérsniðna notkunarsniðið þitt hér.",
       "profile": "Notkunarsnið"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter vefforrit",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Villa við að ná í URL-slóð leiðar",
     "no-response": "ekkert svar frá netþjóni",

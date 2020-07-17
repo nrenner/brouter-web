@@ -11,7 +11,8 @@
     "description": "Online-tjenesten til BRounter rutemotoren. For offline Android-app og mer informasjon, se <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Personvernerklæring</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Kreditt</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Endringslogg</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">mer informasjon</a></i> om klienten.",
     "support": "Generelle diskusjoner/spørsmål, støtte",
-    "title": "Om"
+    "title": "Om",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Stigning",
     "cost": "Kostnad",
     "distance": "Distanse",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energi per 100 km",
     "hours": "timer",
     "hours-abbrev": "t",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total energi",
     "travel-time": "Reisetid"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Legg til grunnlag",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Slett alle no-go områder",
     "delete-pois": "Slett alle interessepunkter",
     "delete-route": "Slett rute",
-    "draw-poi-start": "Tegn interessepunkter (P-tasten)",
-    "draw-poi-stop": "Slutt å tegne interessepunkter (ESC-tasten)",
-    "draw-route-start": "Tegn rute (D-tasten)",
-    "draw-route-stop": "Slutt å tegne rute (ESC-tasten)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Angi interessepunktets navn",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Høydeskygger",
     "hiking": "Gåtur",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Avbryt tegning av no-go område",
       "click-drag": "Klikk og dra for å tegne sirkel",
-      "draw": "Tegn no-go område (sirkel)",
+      "draw": "Draw circular no-go area",
       "edit": "Klikk for å redigere",
       "help": "&square; = flytt / endre størrelse, <span class=\"fa fa-trash-o\"></span> = slett,<br>klikk på sirkelen for å avslutte redigering"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Forhåndsvisning",
     "privacy": "Personvern",
     "reverse-route": "Snu rute",
     "route-quality-altitude": "Høyde-koding",
     "route-quality-cost": "Kostnad-koding",
     "route-quality-incline": "Stigning-koding",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Vis Strava sykkel-segmenter",
     "strava-running": "Vis Strava løpe-segmenter",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Zoom inn",
     "zoomOutTitle": "Zoom ut"
   },
@@ -142,10 +155,12 @@
       "third": "Tredje alternativ"
     },
     "export": "Eksporter",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "No-go områder",
+      "nogos": "Load no-go areas",
       "title": "Last",
-      "tracks": "Stier"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Bil (økonomisk)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Trekking bike (steep)",
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Customize profile",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchronize map",
-      "title": "Data"
+      "title": "Data",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Itinerary",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Navn",
         "type": "Type"
       },
-      "title": "Lag"
+      "title": "Lag",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Anvende",
@@ -229,9 +250,21 @@
       "options": "Alternativer",
       "placeholder": "Skriv din tilpassede profil her.",
       "profile": "Profil"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter web client",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Feil under mottak av rute-URL",
     "no-response": "ingen svar fra serveren",

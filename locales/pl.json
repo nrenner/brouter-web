@@ -11,7 +11,8 @@
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
     "support": "Ogólna dyskusja/pytania, wsparcie",
-    "title": "Informacje"
+    "title": "Informacje",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Przewyższenie",
     "cost": "Koszt",
     "distance": "Odległość",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energia na 100 km",
     "hours": "godzin",
     "hours-abbrev": "godz.",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Całkowita energia",
     "travel-time": "Czas podróży"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Dodaj warstwę bazową",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Usuń wszystkie strefy no-go",
     "delete-pois": "Usuń wszystkie punkty zainteresowania",
     "delete-route": "Usunąć trasę?",
-    "draw-poi-start": "Narysuj punkt zainteresowania (klawisz P)",
-    "draw-poi-stop": "Przestań rysować punkty zainteresowania (klawisz Esc)",
-    "draw-route-start": "Rysuj trasę (klawisz D)",
-    "draw-route-stop": "Przestań rysować trasę (klawisz Esc)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Wpisz nazwę punktu zainteresowania",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Cieniowanie",
     "hiking": "Wspinaczka",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Anuluj rysowanie strefy no-go",
       "click-drag": "Kliknij i przeciągnij, aby narysować okrąg",
-      "draw": "Rysuj strefę no-go (okrąg)",
+      "draw": "Draw circular no-go area",
       "edit": "Kliknij, aby edytować",
       "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Podgląd",
     "privacy": "Prywatność",
     "reverse-route": "Odwróć trasę",
     "route-quality-altitude": "Kodowanie wysokości",
     "route-quality-cost": "Kodowanie kosztów",
     "route-quality-incline": "Kodowanie nachylenia",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Przybliż",
     "zoomOutTitle": "Oddal"
   },
@@ -142,10 +155,12 @@
       "third": "Alternatywa nr 3"
     },
     "export": "Eksportuj",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "Stefy no-go",
+      "nogos": "Load no-go areas",
       "title": "Wczytaj",
-      "tracks": "Drogi"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Samochód (ekonomicznie)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Rower trekkingowy (stromo)",
       "vm-forum-liegerad-schnell": "Rower poziomy (szosowy)",
       "vm-forum-velomobil-schnell": "Velomobile (szosowy)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Dostosuj profil"
+      "title": "Dostosuj profil",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchronizacja mapy",
-      "title": "Dane"
+      "title": "Dane",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Plan podróży"
+      "title": "Plan podróży",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Nazwa",
         "type": "Rodzaj"
       },
-      "title": "Warstwy"
+      "title": "Warstwy",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Zastosuj",
@@ -229,9 +250,21 @@
       "options": "Opcje",
       "placeholder": "Zapisz tutaj swój własny profil.",
       "profile": "Profil"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "Klient przeglądarkowy BRouter",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Błąd pobierania URL trasy",
     "no-response": "brak odpowiedzi z serwera",

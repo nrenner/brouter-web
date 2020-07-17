@@ -11,7 +11,8 @@
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
-    "title": "Hakkında"
+    "title": "Hakkında",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Ascend",
     "cost": "Cost",
     "distance": "Distance",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energy per 100 km",
     "hours": "saatler",
     "hours-abbrev": "s",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
     "travel-time": "Seyahat zamanı"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Add base layer",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "Draw route (D key)",
-    "draw-route-stop": "Stop drawing route (ESC key)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Enter Point of Interest name",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Cancel drawing no-go area",
       "click-drag": "Click and drag to draw circle",
-      "draw": "Draw no-go area (circle)",
+      "draw": "Draw circular no-go area",
       "edit": "Click to edit",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privacy",
     "reverse-route": "Reverse route",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom out"
   },
@@ -142,10 +155,12 @@
       "third": "3rd alternative"
     },
     "export": "Export",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "No-go areas",
+      "nogos": "Load no-go areas",
       "title": "Load",
-      "tracks": "Tracks"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Trekking bike (steep)",
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Customize profile",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchronize map",
-      "title": "Data"
+      "title": "Data",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Itinerary",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Name",
         "type": "Type"
       },
-      "title": "Layers"
+      "title": "Layers",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Apply",
@@ -229,9 +250,21 @@
       "options": "Options",
       "placeholder": "Write your custom profile here.",
       "profile": "Profile"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter web client",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Error getting route URL",
     "no-response": "no response from server",

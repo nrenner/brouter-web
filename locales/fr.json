@@ -11,7 +11,8 @@
     "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
     "support": "Discussions/Questions générales, support ;",
-    "title": "À propos"
+    "title": "À propos",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Dénivelé cumulé",
     "cost": "Coût",
     "distance": "Distance",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "pour 100km",
     "hours": "heures",
     "hours-abbrev": "h",
@@ -55,6 +57,12 @@
     "stats-info": "Commencer un itinéraire pour voir ses stats.",
     "total-energy": "Énergie totale",
     "travel-time": "Temps de trajet"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Ajouter un fond de carte ",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Supprimer toutes les zones interdites",
     "delete-pois": "Supprimer tous les points d'intérêt ",
     "delete-route": "Supprimer l'itinéraire",
-    "draw-poi-start": "Ajouter des points d'intérêt (touche P)",
-    "draw-poi-stop": "Stopper l'ajout de points d'intérêt (touche ECH)",
-    "draw-route-start": "Dessiner l'itinéraire (touche D)",
-    "draw-route-stop": "Arrêter de dessiner l'itinéraire (touche ECH)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Saisir le nom du point d'intérêt",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Relief avec ombre",
     "hiking": "Randonnée",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Annuler la zone interdite",
       "click-drag": "Cliquer et faire glisser pour dessiner un cercle",
-      "draw": "Dessiner une zone interdite (cercle)",
+      "draw": "Draw circular no-go area",
       "edit": "Cliquer pour éditer",
       "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Prévisualiser",
     "privacy": "Vie privée",
     "reverse-route": "Inverse l'itinéraire",
     "route-quality-altitude": "Chiffrage de l'altitude",
     "route-quality-cost": "Chiffrage du coût",
     "route-quality-incline": "Chiffrage d'inclinaison",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Zoomer",
     "zoomOutTitle": "Dézoomer"
   },
@@ -142,10 +155,12 @@
       "third": "3ème alternative"
     },
     "export": "Exporter",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "Zones interdites",
+      "nogos": "Load no-go areas",
       "title": "Charger",
-      "tracks": "Traces"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Voiture (économique)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Cyclotourisme (escarpé)",
       "vm-forum-liegerad-schnell": "Vélo couché (rapide)",
       "vm-forum-velomobil-schnell": "Vélomobile (rapide)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Personnaliser le profil"
+      "title": "Personnaliser le profil",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchroniser la carte",
-      "title": "Données"
+      "title": "Données",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Itinéraire"
+      "title": "Itinéraire",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Nom",
         "type": "Type"
       },
-      "title": "Calques"
+      "title": "Calques",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Appliquer",
@@ -229,9 +250,21 @@
       "options": "Paramètres",
       "placeholder": "Saisissez votre profil personnalisé ici.",
       "profile": "Profil"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "Client web BRouter",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Erreur lors de la réception de l'itinéraire",
     "no-response": "aucune réponse du serveur",

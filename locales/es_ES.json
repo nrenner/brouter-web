@@ -11,7 +11,8 @@
     "description": "Servicio en línea del motor de enrutamiento BRouter. Para la aplicación de Android sin conexión y más información, consulte  <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Política de privacidad</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Creditos</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> y\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">más información</a></i> en el cliente.",
     "support": "General discusiones/preguntas, soporte",
-    "title": "Acerca de"
+    "title": "Acerca de",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Ascensión",
     "cost": "Coste",
     "distance": "Distancia",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energía por 100 km",
     "hours": "horas",
     "hours-abbrev": "h",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Energia total",
     "travel-time": "Tiempo de viaje"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Añadir capa base",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Eliminar todas las áreas prohibidas",
     "delete-pois": "Eliminar todos los Puntos de Interés",
     "delete-route": "Eliminar ruta",
-    "draw-poi-start": "Dibujar puntos de interés (tecla P)",
-    "draw-poi-stop": "Dejar de dibujar puntos de interés (tecla ESC)",
-    "draw-route-start": "Dibujar ruta (tecla D)",
-    "draw-route-stop": "Dejar de dibujar ruta (tecla ESC)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Ingrese el nombre del Punto de Interés",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Sombreado",
     "hiking": "Senderismo",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Cancelar el dibujo del área prohibida",
       "click-drag": "Haz clic y arrastra para dibujar un círculo.",
-      "draw": "Dibujar área prohibida (círculo)",
+      "draw": "Draw circular no-go area",
       "edit": "Click para editar",
       "help": "&square; = mover / cambiar el tamaño, <span class=\"fa fa-trash-o\"></span>= eliminar, <br> haga clic en el círculo para salir de la edición"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privado",
     "reverse-route": "Ruta inversa",
     "route-quality-altitude": "Codificación de altitud",
     "route-quality-cost": "Codificación de costos",
     "route-quality-incline": "Codificación de inclinación",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Mostrar segmentos de ciclismo de Strava",
     "strava-running": "Mostrar segmentos de carrera de Strava",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Acercarse",
     "zoomOutTitle": "Alejarse"
   },
@@ -142,10 +155,12 @@
       "third": "3ª Alternativa"
     },
     "export": "Exportar",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "Áreas prohibidas",
+      "nogos": "Load no-go areas",
       "title": "Cargar",
-      "tracks": "Pistas"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Coche (económico)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Bicicleta de trekking (empinada)",
       "vm-forum-liegerad-schnell": "Bicicleta reclinada (rápida)",
       "vm-forum-velomobil-schnell": "Velomobile (rápido)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Personalizar perfil"
+      "title": "Personalizar perfil",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Sincronizar mapa",
-      "title": "Datos"
+      "title": "Datos",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Iitinerario"
+      "title": "Iitinerario",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Nombre",
         "type": "Tipo"
       },
-      "title": "Capas"
+      "title": "Capas",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Aplicar",
@@ -229,9 +250,21 @@
       "options": "Opciones",
       "placeholder": "Escribe tu perfil personalizado aquí.",
       "profile": "Perfil"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRoute web cliente",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Error al obtener la URL de ruta",
     "no-response": "sin respuesta del servidor",

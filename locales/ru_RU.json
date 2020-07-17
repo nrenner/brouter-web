@@ -11,7 +11,8 @@
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Политика конфиденциальности</a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\"></a></i>\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Журнал изменений</a></i>и\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">подробнее</a></i> о клиенте.",
     "support": "Общие дискуссии/ вопросы, поддержка",
-    "title": "О сервисе"
+    "title": "О сервисе",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Ascend",
     "cost": "Стоимость",
     "distance": "Расстояние",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energy per 100 km",
     "hours": "часы",
     "hours-abbrev": "h",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Общая энергия",
     "travel-time": "Время в пути"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "Добавить базовый слой",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Удалить все запретные зоны",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Удалить маршрут",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "Нарисовать маршрут (Клавиша D)",
-    "draw-route-stop": "Прекратить рисовать маршрут (Клавиша ESC)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Enter Point of Interest name",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Пешие прогулки",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "Cancel drawing no-go area",
       "click-drag": "Нажмите и перетащите, чтобы нарисовать круг",
-      "draw": "Нарисуйте запретную зону (обведите)",
+      "draw": "Draw circular no-go area",
       "edit": "Нажмите для редактирования",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Предварительный просмотр",
     "privacy": "Конфиденциальность",
     "reverse-route": "Обратный маршрут",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "Увеличить",
     "zoomOutTitle": "Уменьшить"
   },
@@ -142,10 +155,12 @@
       "third": "3rd alternative"
     },
     "export": "Экспорт",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "Запретные зоны",
+      "nogos": "Load no-go areas",
       "title": "Загрузить",
-      "tracks": "Дорожки"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Car (economic)",
@@ -168,7 +183,8 @@
       "trekking-steep": "Trekking bike (steep)",
       "vm-forum-liegerad-schnell": "Лежачий велосипед (быстро)",
       "vm-forum-velomobil-schnell": "Веломобиль (быстро)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Настроить профиль"
+      "title": "Настроить профиль",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Синхронизировать карту",
-      "title": "Данные"
+      "title": "Данные",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Itinerary"
+      "title": "Itinerary",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "Название",
         "type": "Тип"
       },
-      "title": "Слои"
+      "title": "Слои",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Применить",
@@ -229,9 +250,21 @@
       "options": "Параметры",
       "placeholder": "Write your custom profile here.",
       "profile": "Профиль"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "Веб-клиент BRouter",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "Ошибка при получении URL маршрута",
     "no-response": "сервер не отвечает",

@@ -11,7 +11,8 @@
     "description": "BRouter 導航引擎線上版。有關離線版 Android 應用程式及更多資訊，請見 <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>。",
     "details": "用戸端上的<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
     "support": "一般討論/提問及技術支援",
-    "title": "關於"
+    "title": "關於",
+    "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -41,6 +42,7 @@
     "ascend": "Ascend",
     "cost": "Cost",
     "distance": "距離",
+    "elevation-chart": "Toggle elevation chart",
     "energy-per-100km": "Energy per 100 km",
     "hours": "hours",
     "hours-abbrev": "h",
@@ -55,6 +57,12 @@
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
     "travel-time": "旅程需時"
+  },
+  "keyboard": {
+    "backspace": "Backspace",
+    "escape": "Escape",
+    "generic-shortcut": "{{action}} ({{key}} key)",
+    "shift": "Shift"
   },
   "layers": {
     "add-base": "添加底層圖",
@@ -86,11 +94,13 @@
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
-    "draw-poi-start": "Draw points of interest (P key)",
-    "draw-poi-stop": "Stop drawing points of interest (ESC key)",
-    "draw-route-start": "繪畫路線 (按鍵D)",
-    "draw-route-stop": "停止繪畫路線 (按鍵ESC)",
+    "draw-poi-start": "Draw points of interest",
+    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-route-start": "Draw route",
+    "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Enter Point of Interest name",
+    "geocoder": "Search",
+    "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "遠足",
     "layer": {
@@ -114,19 +124,22 @@
     "nogo": {
       "cancel": "取消繪畫禁區",
       "click-drag": "點擊並拖曳以畫出圓形",
-      "draw": "繪畫禁區 (圓形)",
+      "draw": "Draw circular no-go area",
       "edit": "點撃以編輯",
       "help": "&square; = 移動 / 調整大小， <span class=\"fa fa-trash-o\"></span> = 刪除，<br>點撃圓形以結束編輯"
     },
-    "opacity-slider": "Set transparency of route track and markers. Press and hold the 'M' key to temporarily hide the planned route.",
+    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "隱私權",
     "reverse-route": "Reverse route",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
+    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "strava-biking": "顯示 Strava 自行車區段",
     "strava-running": "顯示 Strava 跑步區段",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "zoomInTitle": "放大",
     "zoomOutTitle": "縮小"
   },
@@ -142,10 +155,12 @@
       "third": "第三替代方案"
     },
     "export": "Export",
+    "export-tooltip": "Export route",
     "load": {
-      "nogos": "No-go areas",
+      "nogos": "Load no-go areas",
       "title": "Load",
-      "tracks": "Tracks"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "汽車 (經濟型)",
@@ -168,7 +183,8 @@
       "trekking-steep": "登山越野車 (極限)",
       "vm-forum-liegerad-schnell": "臥式自行車 (速度型)",
       "vm-forum-velomobil-schnell": "躺車 (速度型)"
-    }
+    },
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "sidebar": {
     "analysis": {
@@ -183,17 +199,21 @@
         "total_known": "Total Known:",
         "unknown": "Unknown"
       },
-      "title": "Analysis"
+      "title": "Analysis",
+      "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Customize profile"
+      "title": "Customize profile",
+      "tooltip": "Customize profile"
     },
     "data": {
       "sync-map": "Synchronize map",
-      "title": "資料"
+      "title": "資料",
+      "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "行程"
+      "title": "行程",
+      "tooltip": "Show itinerary"
     },
     "layers": {
       "category": {
@@ -219,7 +239,8 @@
         "name": "名稱",
         "type": "類型"
       },
-      "title": "圖層"
+      "title": "圖層",
+      "tooltip": "Select layers"
     },
     "profile": {
       "apply": "Apply",
@@ -229,9 +250,21 @@
       "options": "Options",
       "placeholder": "請在意寫下您的自定義設定檔。",
       "profile": "Profile"
-    }
+    },
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter 網頁用戶端",
+  "trackasroute": {
+    "explainpoi": "(show waypoints as POI's)",
+    "explaintracklayer": "(show Track as separate Layer)",
+    "file": "Trackfile",
+    "fuzziness": "fuzzines",
+    "pleasewait": "Please wait!",
+    "showpois": "POI's",
+    "title": "Load Track as Route",
+    "tracklayer": "Track Layer",
+    "tuning": "Tuning"
+  },
   "warning": {
     "cannot-get-route": "取得路線URL時發生錯誤",
     "no-response": "伺服器沒有回應",
