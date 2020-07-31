@@ -97,6 +97,14 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             $slider = $('#simplify_tolerance');
             $slider.prop('min', -500);
             var guessedTolerance = this.guessSimplifyTolerance(this._trackPoints);
+            var guessedLength = this.getSimplifiedCoords(guessedTolerance).length;
+
+            if (guessedLength > this._maxTrackPoints) {
+                this._maxTrackPoints = guessedLength;
+                $slider.prop('min', 0);
+            }
+
+            $slider.data('lastknowngood', 0);
             $slider.data('guess', guessedTolerance.toFixed(20));
             $slider.val(0);
             this._options.simplifyTolerance = guessedTolerance;
