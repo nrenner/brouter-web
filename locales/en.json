@@ -70,6 +70,7 @@
   "layers": {
     "add-base": "Add base layer",
     "add-overlay": "Add overlay",
+    "add-overpass": "Add overpass query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
     "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
@@ -248,7 +249,8 @@
         "name": "Name",
         "type": "Type",
         "type_layer": "Layer",
-        "type_overlay": "Overlay"
+        "type_overlay": "Overlay",
+        "type_overpass_query": "Overpass Query"
       },
       "title": "Layers",
       "tooltip": "Select layers"
