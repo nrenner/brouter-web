@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Hostel",
+    "id": "hostel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[tourism=hostel]; way[tourism=hostel];);"
+  },
+  "type": "Feature"
+}

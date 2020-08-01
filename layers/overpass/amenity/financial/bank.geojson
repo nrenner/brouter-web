@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bank",
+    "id": "bank",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=bank]; way[amenity=bank];);"
+  },
+  "type": "Feature"
+}

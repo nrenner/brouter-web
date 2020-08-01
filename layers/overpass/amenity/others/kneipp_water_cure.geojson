@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Kneipp water cure",
+    "id": "kneipp_water_cure",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=kneipp_water_cure]; way[amenity=kneipp_water_cure];);"
+  },
+  "type": "Feature"
+}

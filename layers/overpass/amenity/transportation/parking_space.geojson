@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Parking space",
+    "id": "parking_space",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=parking_space]; way[amenity=parking_space];);"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Guest house",
+    "id": "guest_house",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[tourism=guest_house]; way[tourism=guest_house];);"
+  },
+  "type": "Feature"
+}

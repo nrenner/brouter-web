@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bakery",
+    "id": "bakery",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[shop=bakery]; way[shop=bakery];);"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Charging station",
+    "id": "charging_station",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "node[amenity=charging_station];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Public bath",
+    "id": "public_bath",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=public_bath]; way[amenity=public_bath];);"
+  },
+  "type": "Feature"
+}

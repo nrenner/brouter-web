@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Viewpoint",
+    "id": "viewpoint",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "node[tourism=viewpoint];"
+  },
+  "type": "Feature"
+}

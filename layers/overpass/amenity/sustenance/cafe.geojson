@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Cafe",
+    "id": "cafe",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=cafe]; way[amenity=cafe];);"
+  },
+  "type": "Feature"
+}

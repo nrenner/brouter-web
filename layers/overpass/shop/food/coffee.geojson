@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Coffee",
+    "id": "coffee",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[shop=coffee]; way[shop=coffee];);"
+  },
+  "type": "Feature"
+}

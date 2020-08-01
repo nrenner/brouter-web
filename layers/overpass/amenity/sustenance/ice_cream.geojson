@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Ice cream",
+    "id": "ice_cream",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=ice_cream]; way[amenity=ice_cream];);"
+  },
+  "type": "Feature"
+}

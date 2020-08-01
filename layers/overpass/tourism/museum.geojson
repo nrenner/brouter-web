@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Museum",
+    "id": "museum",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[tourism=museum]; way[tourism=museum];);"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bar",
+    "id": "bar",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=bar]; way[amenity=bar];);"
+  },
+  "type": "Feature"
+}

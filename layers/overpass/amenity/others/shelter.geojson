@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Shelter",
+    "id": "shelter",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=shelter]; way[amenity=shelter];);"
+  },
+  "type": "Feature"
+}

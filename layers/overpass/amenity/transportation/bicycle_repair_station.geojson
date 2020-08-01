@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bicycle repair station",
+    "id": "bicycle_repair_station",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=bicycle_repair_station]; way[amenity=bicycle_repair_station];);"
+  },
+  "type": "Feature"
+}

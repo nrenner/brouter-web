@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Toilets",
+    "id": "toilets",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=toilets]; way[amenity=toilets];);"
+  },
+  "type": "Feature"
+}

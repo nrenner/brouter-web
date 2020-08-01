@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Fuel",
+    "id": "fuel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=fuel]; way[amenity=fuel];);"
+  },
+  "type": "Feature"
+}

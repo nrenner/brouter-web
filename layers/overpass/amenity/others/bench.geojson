@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bench",
+    "id": "bench",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "node[amenity=bench];"
+  },
+  "type": "Feature"
+}

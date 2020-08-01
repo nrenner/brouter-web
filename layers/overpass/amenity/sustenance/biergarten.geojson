@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Biergarten",
+    "id": "biergarten",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=biergarten]; way[amenity=biergarten];);"
+  },
+  "type": "Feature"
+}

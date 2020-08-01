@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Vehicle inspection",
+    "id": "vehicle_inspection",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=vehicle_inspection]; way[amenity=vehicle_inspection];);"
+  },
+  "type": "Feature"
+}

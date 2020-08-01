@@ -85,8 +85,86 @@ BR.confLayers.tree = {
         ]
     },
     'overpass': {
+        'amenity': {
+            'financial': [
+                'atm',
+                'bank',
+            ],
+            'others': [
+                'bench',
+                'kneipp_water_cure',
+                'public_bath',
+                'shelter',
+                'shower',
+                'telephone',
+                'toilets',
+                'water_point',
+            ],
+            'sustenance': [
+                'bar',
+                'bbq',
+                'biergarten',
+                'cafe',
+                'drinking_water',
+                'fast_food',
+                'food_court',
+                'ice_cream',
+                'pub',
+                'restaurant',
+            ],
+            'transportation': [
+                'bicycle_parking',
+                'bicycle_rental',
+                'bicycle_repair_station',
+                'boat_rental',
+                'boat_sharing',
+                'bus_station',
+                'car_rental',
+                'car_sharing',
+                'car_wash',
+                'charging_station',
+                'ferry_terminal',
+                'fuel',
+                'grit_bin',
+                'motorcycle_parking',
+                'parking_entrance',
+                'parking',
+                'parking_space',
+                'taxi',
+                'vehicle_inspection',
+            ]
+        },
+        'shop': {
+            'food': [
+                'bakery',
+                'beverages',
+                'butcher',
+                'cheese',
+                'coffee',
+                'convenience',
+                'greengrocer',
+                'health_food',
+                'ice_cream',
+                'organic',
+            ]
+        },
         'tourism': [
-            'campsites'
+            'apartment',
+            'artwork',
+            'attraction',
+            'camp_site',
+            'caravan_site',
+            'chalet',
+            'gallery',
+            'guest_house',
+            'hostel',
+            'hotel',
+            'information',
+            'motel',
+            'museum',
+            'picnic_site',
+            'viewpoint',
+            'wilderness_hut',
         ]
     }
 };

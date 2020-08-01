@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Pub",
+    "id": "pub",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "(node[amenity=pub]; way[amenity=pub];);"
+  },
+  "type": "Feature"
+}

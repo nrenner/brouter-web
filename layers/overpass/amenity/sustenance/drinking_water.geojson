@@ -1,11 +1,11 @@
 {
   "geometry": null,
   "properties": {
-    "name": "Campsites",
-    "id": "campsites",
+    "name": "Drinking water",
+    "id": "drinking_water",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=camp_site];way[tourism=camp_site];);"
+    "query": "node[amenity=drinking_water];"
   },
   "type": "Feature"
 }
