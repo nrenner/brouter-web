@@ -262,7 +262,7 @@ BR.LayersConfig = L.Class.extend({
                 feature: {
                     title: '{{ tags.name }}',
                     body:
-                        '<table class="overpass-tags">{% for k, v in tags %}{% if k[:5] != "addr:" %}<tr><th>{{ k }}</th><td>{{ v }}</td></tr>{% endif %}{% endfor %}</table>',
+                        '<table class="overpass-tags">{% for k, v in tags %}{% if k[:5] != "addr:" %}<tr><th>{{ k }}</th><td>{% if k matches "/email/" %}<a href="mailto:{{ v }}">{{ v }}</a>{% elseif v matches "/^http/" %}<a href="{{ v }}">{{ v }}</a>{% elseif v matches "/^www/" %}<a href="http://{{ v }}">{{ v }}</a>{% else %}{{ v }}{% endif %}</td></tr>{% endif %}{% endfor %}</table>',
                     markerSymbol:
                         '<img anchorX="13" anchorY="42" width="25" height="42" signAnchorX="0" signAnchorY="-30" src="dist/images/marker-icon.png">',
                 },
