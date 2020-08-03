@@ -3,15 +3,18 @@
   "properties": {
     "attribution": {
       "required": true,
-      "text": "© OpenStreetMap contributors, CC-BY-SA",
+      "text": "© OpenStreetMap contributors, CC-BY-SA 2.0",
       "url": "https://www.openstreetmap.org/"
     },
+    "category": "osmbasedmap",
     "default": true,
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAGb0lEQVR4Xq3MS2xcVx3H8e855z7m3vH1jMdjO43zshIrtpM0SZ3WFEcRVFFKoRWPBYtAHwgWCFUsQN100QeCsqAhCESrirRASdWWIkoUqgKFJm3UZ5o2oW2akrR5uXbi2ON4PPfOfZ17iERW2bCAz1/f3V8/cfDC02UEj4OxKHjdFMUfmUzOlAeXZFZuuVIKN8zi1dPh7Hcn5091G2EOB5b//NplA28/9tAT4bq111jD64ZKHR2VQWPEbULI0aHqZz7NZeLNmSeVMOJu4AfGgNEGLsR/95YuetcRzprcFJvaaVxrpm2mmqfp8FxKSYk8ck+0pt1nykFp0A/k9Tnt/lq3T2dHEOmi2DxSu+EdAAFwcPqp640xe42h26Qa2hqnXsFVHs04pNFuYgvbtOWCmD3aMj2VNaLi1+jwyxgpCKOQRCdMN6ZMd5Bmw1cPfG+5O/7LeX0ECyBppx9Zrn0c6BbNHJNr4qhFYWtsJCWpSFUm3ntxips2bxe+p1BKIJQECpRbkCQ2wu0XzbnIeemvhzYCVNR6JMDm5bdNF9qcwhiKbpvMg2KujZDmUgX1jgqT719gy+iX6QxsPM9F2YqclHbRRpUEXmCRZTGFlZGKxSMbR6+uA0gu863OzLc7cVUZN6jgKI8kicl0ykzjAiW5lGrVAWUwokApSa3UTY/XR2B3UlDgVy1sB8od7tgt2++4AcACOHL+uRW2bW8QQiCxcUoS6XssyBbnF6Y5+8kci8vjlJwqjnQwWpDlgtRYZDpHmxJzWUyk26gOYXxK0g+8G4bXX/snC0DZcmVh9EoQ5DpDSIVJYmIiGvkCurAQpkLU9kkTEEJeCjxbURSCZgTkfVjOApoM6Qtc3109Nj7uWO9M70EbPQT4YMhNjrWQEdHmTPs8SgfUisUgDLoAgcGyEjJtEaeaVlKQ5gVSGYwBhETaEmVJcemQaZ44aRpvyLIEnedGoNHNkNTTeI5DT2kRljeJziVhnKNlE1GaJFfnuRi3SXMDxmA7IUqCI20qdifkxfED+/dlanzb1cYL3BFhsTXPU4Ep0FGKUVALegCb1oLN7FlNpd5HIUNQLYxIsO0EKcByWljuAmXbp7fcIwgVb7xyaNeep3YfUnt272PLjaP1em/lZqmEk4cJQoMKfBxVIcwjlAp47okX6ap3XaoP221CIREyx7La2E6O7/h0eTXK+Bw+8uHrP7znvocXLe6flwCHXj06kab5hJAS6dhQFOgiJ2qXsKLVuHqAgdVD7HrwXibPTKJzFyMMAgECHGXTJTqxE4t3T5xMD7y29+mFRjgpLSUlYJ793T9ORWF0Lk1StCzQNqTTAle30flbzJ/bx6n3Xsa2Fb9/5Eccfu19wnlNFBniWJA3JecbDfa/8y5nJg7bW7ZeuyYKZwyF0QIAkC988Ogzfof6SppapHGZqgNTExPsfngfgaXpqyWk9QF6lwWk7YJlK1fQaTysqk8sE6LwIq4OEMql1DH3/O03PnBHUCk3JMCeA7/q6u1a0ltiNZ1eL719cPrcWR752d+Yn2lx/HSDY40qY2Pb2PapjYxv3YBX1syZ88weP3bp90Omw3PMOxNUe9FTn9gn5uemQqfk5BbAisHBlVo7g7PFx9TdgDMnZvjtzheI51qkWY5xYWxTLxXfJ5IVevIZ6gMDxCYnPjWDXZ0nSiOkEmYqO5l8cGT6FSD6+NhRJMCF1sWV88VkX6f3n/FHd+xl9uwsrTDEOIbPfWEj120eorw0JEzLhGWfop3ixxKrP0CTIQSAEVmhw5/f94uXAANg3b/r+1YrnV1T86ucPDzBrp3PcvHcHGmaUekL+OKtm9m0ailOUEe4FrXyWaKFblM4HmUvElNzF4jTxFiOhRRSJO34JHCOy6RU0i60uepfx07nO+593FycapAkCbX+Kl+/cxvXfXYIU3GjN/Yf2vPPg2/9JVxoNYNqQ+hcilznlKWDcpSwlCWiZrtx/O3Tf+AKClj88I9v/9aD99/aHBkaLlYNDTXuvPubH/3kN3e9vP3bn78HGAP6gSXA6K3fufnOXz+/888vHH3i9O4XH3j1roe+8dDo1pGvAeuAClfa/+aTQH35Yztuenz7l4aPLB9c81O/3H3L5VHFlUACZaAH6AQc/pv1o9cEiwbWbRlev+mrazeOblg3usnj/6nWV2fVyFp71fCa0sDgkOKyq5av4H/xb0Ky8po5hQEuAAAAAElFTkSuQmCC",
     "id": "standard",
+    "license_url": "https://wiki.osmfoundation.org/wiki/Terms_of_Use",
     "max_zoom": 19,
     "mod-tile-features": true,
     "name": "OpenStreetMap Carto (Standard)",
+    "privacy_policy_url": "https://wiki.osmfoundation.org/wiki/Privacy_Policy",
     "type": "tms",
     "url": "https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png",
     "valid-georeference": true,

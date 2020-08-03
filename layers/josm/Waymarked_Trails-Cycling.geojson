@@ -4,8 +4,9 @@
     "attribution": {
       "required": true,
       "text": "© waymarkedtrails.org, OpenStreetMap contributors, CC by-SA 3.0",
-      "url": "https://cycling.waymarkedtrails.org/en/help/legal"
+      "url": "https://cycling.waymarkedtrails.org/help/legal"
     },
+    "category": "other",
     "icon": "https://static.waymarkedtrails.org/img/map_cycling.png",
     "id": "Waymarked_Trails-Cycling",
     "max_zoom": 18,

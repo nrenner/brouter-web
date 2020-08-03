@@ -196,6 +196,7 @@
       "required": true,
       "text": "Copyright ©2007-2012 Freemap Slovakia (www.freemap.sk). Some rights reserved."
     },
+    "category": "osmbasedmap",
     "country_code": "SK",
     "icon": "https://raw.githubusercontent.com/FreemapSlovakia/freemap-v3-react/master/src/images/freemap-logo-small.png",
     "id": "Freemap.sk-Hiking",
@@ -203,7 +204,7 @@
     "min_zoom": 8,
     "name": "Freemap.sk Hiking",
     "type": "tms",
-    "url": "https://{switch:a,b,c,d}.freemap.sk/T/{zoom}/{x}/{y}.jpeg",
+    "url": "https://tile.freemap.sk/T/{zoom}/{x}/{y}.jpeg",
     "dataSource": "JOSM"
   },
   "type": "Feature"

@@ -4,8 +4,9 @@
     "attribution": {
       "required": true,
       "text": "© waymarkedtrails.org, OpenStreetMap contributors, CC by-SA 3.0",
-      "url": "https://hiking.waymarkedtrails.org/en/help/legal"
+      "url": "https://hiking.waymarkedtrails.org/help/legal"
     },
+    "category": "other",
     "icon": "https://static.waymarkedtrails.org/img/map_hiking.png",
     "id": "Waymarked_Trails-Hiking",
     "max_zoom": 18,

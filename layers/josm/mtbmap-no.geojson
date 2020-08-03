@@ -116,6 +116,7 @@
       "text": "© MTBmap.no",
       "url": "https://www.mtbmap.no/"
     },
+    "category": "osmbasedmap",
     "country_code": "NO",
     "description": "Norwegian mountain biking map from OSM (max zoom 14-16, varies per region)",
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAyVBMVEUAAAAAAAAAAAAAAABHcEwAAAAAAAAAAAAAAAAAAAAAAAAGBgYAAAAAAAD///8DAwMKCgrX19d3d3fe3t4fHx/4+PikpKQGBgbb29vIyMizs7MlJSXExMQQEBA2NjYNDQ2pqam6urr+/v4UFBS8vLzg4OCMjIxvb297e3vLy8taWlqXl5fs7Oz7+/vn5+c7OzvQ0NDT09MxMTFFRUWTk5O/v7/k5OReXl6urq5iYmJLS0uGhoZOTk7y8vJpaWmcnJyDg4N/f3+bm5thW7HyAAAADXRSTlM9D3VaADJrd4BEKIEG/oGXoQAAAP1JREFUKM9tkIdywyAMhmmb0WVhjLcd2/HK3jvdff+HKjQ1kNr/HYdOH5J+hG463QbdtdCtJtXDImyje5nP5oaIkQLiKcwCxzH+A30PAAXpg30NdPJmMcLPWAXxINLwMAUuy7yewfT6YtgWJJ6ugmPoXDxH2BxiCTKAd1GJzQo4+bS/7ClN/wAeARB1WAV8loelXwczKHAZ+rgGtim4Zq1VSSkZr+Ar21Ga6xJsw1hbz9fwSdj6DCJBwR+d2O5CnhgtKvBE+R2sUv+DB/ZAVFA+dTLZRC7/kBsIcN6fFt8u65d4m7OXKK6CY1j+mjns8oO029Ea9Yie0UOD2q0frM8mZOHCEDcAAAAASUVORK5CYII=",

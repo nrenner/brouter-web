@@ -6,6 +6,7 @@
       "text": "© OpenStreetMap contributors, tiles courtesy of Humanitarian OpenStreetMap Team",
       "url": "https://www.hotosm.org/"
     },
+    "category": "osmbasedmap",
     "icon": "https://wiki.openstreetmap.org/w/images/thumb/c/c9/Hot_logo.svg/300px-Hot_logo.svg.png",
     "id": "HDM_HOT",
     "max_zoom": 20,

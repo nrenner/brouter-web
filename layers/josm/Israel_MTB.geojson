@@ -172,6 +172,7 @@
       "text": "Tiles © IsraelHiking, CC BY-SA-NC 3.0. Data by OpenStreetMap under ODbL.",
       "url": "https://israelhiking.osm.org.il/"
     },
+    "category": "osmbasedmap",
     "country_code": "IL",
     "description": "Israel MTB map",
     "icon": "https://israelhiking.osm.org.il/content/favicons/favicon.ico",

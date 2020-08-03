@@ -172,6 +172,9 @@ BR.confLayers.getPropertyOverrides = function() {
         'Freemap.sk-Cyclo': {
             'mapUrl': 'https://www.freemap.sk/?map={zoom}/{lat}/{lon}&layers=C'
         },
+        'Freemap.sk-Outdoor': {
+            'mapUrl': 'https://www.freemap.sk/?map={zoom}/{lat}/{lon}&layers=X'
+        },
         'osm-cambodia_laos_thailand_vietnam-bilingual': {
             'country_code': 'TH+',
             'nameShort': 'Thaimap',

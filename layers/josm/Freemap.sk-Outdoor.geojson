@@ -1,0 +1,110 @@
+{
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          23.642578,
+          50.625073
+        ],
+        [
+          21.566162,
+          51.213766
+        ],
+        [
+          14.348145,
+          51.213766
+        ],
+        [
+          11.832275,
+          50.412018
+        ],
+        [
+          11.840515,
+          47.802087
+        ],
+        [
+          10.30242919922,
+          47.80024163283
+        ],
+        [
+          8.60229492188,
+          47.94210682755
+        ],
+        [
+          6.88293457031,
+          47.58764167942
+        ],
+        [
+          5.59753417969,
+          46.29761098988
+        ],
+        [
+          6.860962,
+          44.203866
+        ],
+        [
+          7.558594,
+          43.564472
+        ],
+        [
+          9.239502,
+          43.564472
+        ],
+        [
+          10.184326,
+          42.195969
+        ],
+        [
+          13.64501953125,
+          40.40513069753
+        ],
+        [
+          21.10473632813,
+          40.63896734382
+        ],
+        [
+          23.642578125,
+          41.1621139394
+        ],
+        [
+          26.125488,
+          41.162114
+        ],
+        [
+          28.201904,
+          41.869561
+        ],
+        [
+          29.94873,
+          45.243953
+        ],
+        [
+          26.993408,
+          48.356249
+        ],
+        [
+          23.642578,
+          50.625073
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "Copyright ©2019 Freemap Slovakia (www.freemap.sk). Some rights reserved."
+    },
+    "category": "osmbasedmap",
+    "country_code": "SK",
+    "icon": "https://raw.githubusercontent.com/FreemapSlovakia/freemap-v3-react/master/src/images/freemap-logo-small.png",
+    "id": "Freemap.sk-Outdoor",
+    "max_zoom": 19,
+    "min_zoom": 7,
+    "name": "Freemap.sk Outdoor",
+    "type": "tms",
+    "url": "https://outdoor.tiles.freemap.sk/{zoom}/{x}/{y}",
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

@@ -6,6 +6,7 @@
       "text": "© OpenStreetMap contributors, CC-BY-SA",
       "url": "https://www.openstreetmap.org/"
     },
+    "category": "osmbasedmap",
     "id": "wikimedia-map",
     "max_zoom": 18,
     "name": "Wikimedia Map",

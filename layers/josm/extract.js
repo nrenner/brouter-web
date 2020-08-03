@@ -18,6 +18,7 @@ const includeList = [
     "Israel_Hiking",
     "Israel_MTB",
     "mtbmap-no",
+    "Freemap.sk-Outdoor",
     "Freemap.sk-Car",
     "Freemap.sk-Hiking",
     "Freemap.sk-Cyclo",

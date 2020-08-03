@@ -2305,6 +2305,7 @@
       "text": "© OpenStreetMap contributors",
       "url": "https://www.openstreetmap.org/"
     },
+    "category": "osmbasedmap",
     "country_code": "HU",
     "id": "OpenStreetMap-turistautak",
     "max_zoom": 18,

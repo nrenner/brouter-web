@@ -51,8 +51,9 @@ BR.confLayers.tree = {
             {
                 'SK': [
                     'Freemap.sk-Car',
-                    'Freemap.sk-Hiking',
                     'Freemap.sk-Cyclo',
+                    'Freemap.sk-Hiking',
+                    'Freemap.sk-Outdoor'
                 ]
             },
             'osm-cambodia_laos_thailand_vietnam-bilingual'

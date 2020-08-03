@@ -156,6 +156,7 @@
       "text": "© osm-tools.org & OpenStreetMap contributors, CC-BY-SA",
       "url": "https://www.osm-tools.org/"
     },
+    "category": "osmbasedmap",
     "id": "osm-cambodia_laos_thailand_vietnam-bilingual",
     "max_zoom": 20,
     "name": "Cambodia, Laos, Thailand, Vietnam, Malaysia, Myanmar bilingual",

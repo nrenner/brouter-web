@@ -6,6 +6,7 @@
       "text": "Tiles © CyclOSM, Openstreetmap France, data © OpenStreetMap contributors, ODBL",
       "url": "https://www.openstreetmap.org/"
     },
+    "category": "osmbasedmap",
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAUdEVYdFRpdGxlAENvbWJpbmVkIFNoYXBlc3SJBQAAAvdJREFUSIntk1tI03EUx7/n99/mls3StJXZPaOyueyhfOgyL/lgdKGbUBRFYumyKCIiiKT7SxRY6oPZxaRSiKAiCVsWhSzQzBGpLalIMl1G6tqm//1OLxk+NIvwIaLP049zzu98OL8L8J9/HgqWMCdnnwYhSWE+U28vutgft6Tbpktf4AiRaPuqU/a57ub7f1tgWZKTJiVWeXu+7HM5yrosyds3ssAGBr0csGGmZHkFRO8FU1rD/cIDvyWwpOQUMaQVTK0s2E2gTmKES3AEiLb31wnGShASTSPUSg3xhGaP4cRgU4j+hSSEM0Q5EdoBImbWM6NbgDqlSu3OqsIWGZBGnZaXTxndmzouvK8gaqS6N8P86WPxqYxtgwrmpGYvJZZuATb7fP4sZ1XhOgJFAjQZpClXFN6ZsGRHtEYR+WnmLnOvSq3P3hlKLhVfNL7+YChxNOnPFBxfuzyooL6q8A5ApvCAaW3Tk5JuS6ptHUvUMeiwlGoCgIVSqqWZSZ/tjR/0gTvlxWYpMW6SdXPItdLzez55RH2oHrmDHhEIanV1njrXmjONZaB4RqT7sNN+7hEICxgULVk8jzT6xwuF275fXoNRMdwCAJ1C9jcd2thBBcyks1rzNHXVBS5tqBxTUVERiE+yzQfBQcT39CLkLEPTyCqNBoDnC0yHugPeZQAgA1gcM0p9+zPBj1c0OzknjQibvDplq+tuvj/emhvDinrB29O12uUo6wKAXbsyTaFa34u3bo2zxeNJr4mL829+9+aYRsu7Eyb61tsOXL8RVAAA8Sm5Cwmq7XvmKwve33CvqH1gzam8jMQenyhr6QiJFgIyYrjsmx3jrZxq8k962Dhiy8GjpS8H1gf9yb9iT26GJSxMGG9VGh1TFoVqsue0XIuJUKffeBq2Zv+Rqy/+tG9QlmVlDXtwecXtV7fTm04e3GDujytDJWiure3rjFp8My7Km5IY68keO3Ge/f5jZ8eQCQZKxhp6Z7V7QmoePGpwD2X///ylfAN0qT1vK+TL4gAAAABJRU5ErkJggg==",
     "id": "cyclosm",
     "max_zoom": 20,

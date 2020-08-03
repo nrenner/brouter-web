@@ -6,6 +6,7 @@
       "text": "© OpenStreetMap contributors, CC-BY-SA",
       "url": "http://openptmap.de/"
     },
+    "category": "osmbasedmap",
     "icon": "http://openptmap.de/favicon_pt.png",
     "id": "openpt_map",
     "max_zoom": 17,
