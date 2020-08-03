@@ -232,7 +232,7 @@ BR.confLayers.getPropertyOverrides = function() {
             'mapUrl': 'http://mapaszlakow.eu/#{zoom}/{lat}/{lon}'
         },
         'cyclosm': {
-            'language_code': 'fr',
+            'pseudo_language_code': 'fr',
             'nameShort': 'CyclOSM',
             'mapUrl': 'https://www.cyclosm.org/#map={zoom}/{lat}/{lon}/cyclosm'
         },

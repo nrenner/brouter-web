@@ -88,7 +88,7 @@ BR.LayersConfig = L.Class.extend({
             var id = BR.confLayers.languageDefaultLayers[i];
             var layer = BR.layerIndex[id];
             if (layer) {
-                var layerLanguage = layer.properties['language_code'];
+                var layerLanguage = layer.properties['language_code'] || layer.properties['pseudo_language_code'];
                 if (layerLanguage) {
                     languageLayersMap[layerLanguage] = id;
                 }

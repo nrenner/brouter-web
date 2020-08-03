@@ -2,6 +2,7 @@ BR.confLayers.tree = {
     'base-layers': {
         'worldwide-international': [
             'standard',
+            'cyclosm',
             'OpenTopoMap',
             'Stamen.Terrain',
             'Esri.WorldImagery',
