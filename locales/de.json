@@ -263,7 +263,7 @@
     "showpois": "POIs",
     "title": "Tour als Route laden",
     "tracklayer": "Tour-Ebene",
-    "tuning": "Abstimmung"
+    "tuning": "Justierung"
   },
   "warning": {
     "cannot-get-route": "Fehler beim Abrufen der Routen-URL",

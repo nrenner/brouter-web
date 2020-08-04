@@ -96,11 +96,11 @@
     "delete-route": "Eyða leið",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
-    "draw-route-stop": "Stop drawing route",
+    "draw-route-start": "Teikna leið",
+    "draw-route-stop": "Hætta að teikna leið",
     "enter-poi-name": "Settu inn heiti á merkisstað",
-    "geocoder": "Search",
-    "geocoder-placeholder": "Search…",
+    "geocoder": "Leita",
+    "geocoder-placeholder": "Leita…",
     "hikebike-hillshading": "Hæðaskygging",
     "hiking": "Gangandi",
     "layer": {
@@ -124,7 +124,7 @@
     "nogo": {
       "cancel": "Hætta við að teikna bannsvæði",
       "click-drag": "Smella og draga til að teikna hring",
-      "draw": "Draw circular no-go area",
+      "draw": "Teikna hringlaga bannsvæði",
       "edit": "Smelltu til að breyta",
       "help": "&square; = færa / breyta stærð, <span class=\"fa fa-trash-o\"></span> = eyða,<br>smella á hring til að hætta breytingum"
     },
@@ -155,9 +155,9 @@
       "third": "3. varaleið"
     },
     "export": "Flytja út",
-    "export-tooltip": "Export route",
+    "export-tooltip": "Flytja út leið",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Hlaða inn bannsvæðum",
       "title": "Hlaða",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
