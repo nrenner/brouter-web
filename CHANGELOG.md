@@ -1,6 +1,6 @@
 # BRouter-Web Changelog
 
-## 0.13.0 (2020-07-17)
+## 0.13.0 (2020-08-04)
 
 See also [milestone 0.13.0](https://github.com/nrenner/brouter-web/milestone/14?closed=1)
 
@@ -15,6 +15,10 @@ See also [milestone 0.13.0](https://github.com/nrenner/brouter-web/milestone/14?
 ### Bugfixes
 
 -   Empty elevation chart on load, but button to hide not visible ([#320](https://github.com/nrenner/brouter-web/issues/320))
+
+### Layers
+
+-   Add CyclOSM back for all, with kind permission from OpenStreetMap France ([#290](https://github.com/nrenner/brouter-web/pull/290))
 
 ## 0.12.0 (2020-06-19)
 
