@@ -64,7 +64,7 @@
         "leaflet-geometryutil": "^0.9.1",
         "leaflet-hotline": "^0.4.0",
         "leaflet-plugins": "~3.0.0",
-        "leaflet-providers": "^1.5.0",
+        "leaflet-providers": "^1.10.2",
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
