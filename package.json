@@ -43,7 +43,7 @@
         "async": "~0.9.2",
         "bootbox": "~5.3.4",
         "bootstrap": "4.3.1",
-        "bootstrap-select": "1.13.0",
+        "bootstrap-select": "1.13.6",
         "bootstrap-slider": "^9.8.1",
         "codemirror": "^5.35.0",
         "d3": "~3.5.5",

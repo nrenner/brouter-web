@@ -1853,10 +1853,10 @@ bootbox@~5.3.4:
     jquery ">=1.12.0"
     popper.js ">=1.12.9"
 
-bootstrap-select@1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.13.0.tgz#f31d0a23fc6070fd5b17b841bf1ca115ce54775b"
-  integrity sha1-8x0KI/xgcP1bF7hBvxyhFc5Ud1s=
+bootstrap-select@1.13.6:
+  version "1.13.6"
+  resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.13.6.tgz#dc41f8a7385ab4e385562b400d4cf2422f5ef852"
+  integrity sha512-MsOZjYVv0jjHOCUV6CG3J8MSsosrKL8MlA8DacMhMqFq43tTxMjjd7Czo5a/upKPNHW6asFq29oyKJTrPva6FQ==
 
 bootstrap-slider@^9.8.1:
   version "9.10.0"
