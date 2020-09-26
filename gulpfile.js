@@ -206,7 +206,6 @@ gulp.task('inject', function() {
 });
 
 var pkg = require('./package.json');
-var tags = { patch: 'patch', minor: 'minor', major: 'major' };
 var nextVersion;
 var ghToken;
 
@@ -220,7 +219,7 @@ gulp.task('release:init', function(cb) {
     }
     ghToken = gutil.env.token;
     if (!ghToken) {
-        return cb(new Error('--token is required (github personnal access token'));
+        return cb(new Error('--token is required (github personal access token'));
     }
     if (ghToken.length != 40) {
         return cb(new Error('--token length must be 40'));
