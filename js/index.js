@@ -198,7 +198,10 @@
         } else {
             stats = new BR.TrackStats();
         }
-        elevation = new BR.Elevation();
+
+        // remove the old dep
+        // elevation = new BR.Elevation();
+        elevation = new BR.Heightgraph();
 
         profile = new BR.Profile();
         profile.on('update', function(evt) {

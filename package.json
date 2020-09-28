@@ -59,7 +59,6 @@
         "leaflet-control-geocoder": "^1.13.0",
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
-        "leaflet-elevation": "nrenner/Leaflet.Elevation#dev",
         "leaflet-filelayer": "^1.2.0",
         "leaflet-geometryutil": "^0.9.1",
         "leaflet-hotline": "^0.4.0",
@@ -68,6 +67,7 @@
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
+        "leaflet.heightgraph": "^1.3.2",
         "leaflet.locatecontrol": "^0.60.0",
         "leaflet.snogylop": "^0.4.0",
         "leaflet.stravasegments": "2.3.2",
@@ -173,11 +173,11 @@
                 "dist/css/bootstrap.css"
             ]
         },
-        "leaflet-elevation": {
+        "leaflet.heightgraph": {
             "main": [
-                "src/L.Control.Elevation.js",
-                "dist/leaflet.elevation-0.0.4.css",
-                "dist/images/*.png"
+                "src/L.Control.Heightgraph.js",
+                "src/L.Control.Heightgraph.css",
+                "src/img/*.svg"
             ],
             "dependencies": null
         },
