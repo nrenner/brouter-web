@@ -68,14 +68,15 @@ BR.RoutingPathQuality = L.Control.extend({
                         outlineColor: 'dimgray',
                         renderer: renderer
                     },
-                    valueFunction: function(latLng) {
+                    valueFunction: function(latLng, prevLatLng) {
                         var feature = latLng.feature;
+                        var distance = Math.min(prevLatLng.distanceTo(latLng), 1) / 1000; // in km
                         return (
                             feature.cost.perKm +
-                            feature.cost.elev +
-                            feature.cost.turn +
-                            feature.cost.node +
-                            feature.cost.initial
+                            (feature.cost.elev +
+                             feature.cost.turn +
+                             feature.cost.node +
+                             feature.cost.initial) / distance
                         );
                     }
                 })
