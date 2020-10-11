@@ -216,35 +216,6 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         }
     },
 
-    /*
-    onAdd: function(map) {
-        var container = L.Control.Heightgraph.prototype.onAdd.call(this, map);
-
-        // revert registering touch events when touch screen detection is available and negative
-        // see https://github.com/MrMufflon/Leaflet.Elevation/issues/67
-        if (L.Browser.touch && BR.Browser.touchScreenDetectable && !BR.Browser.touchScreen) {
-            // heightgraph registers its own event handlers in _appendBackground()
-            //
-            // this._background
-            //     .on('touchmove.drag', null)
-            //     .on('touchstart.drag', null)
-            //     .on('touchstart.focus', null);
-            // L.DomEvent.off(this._container, 'touchend', this._dragEndHandler, this);
-            //
-            // this._background
-            //     .on('mousemove.focus', this._mousemoveHandler.bind(this))
-            //     .on('mouseout.focus', this._mouseoutHandler.bind(this))
-            //     .on('mousedown.drag', this._dragStartHandler.bind(this))
-            //     .on('mousemove.drag', this._dragHandler.bind(this));
-            // L.DomEvent.on(this._container, 'mouseup', this._dragEndHandler, this);
-        }
-
-        return container;
-    },
-    */
-
-    // initialized: false,
-
     addBelow: function(map) {
         // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
         // this.width($('#map').outerWidth());
@@ -262,14 +233,6 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         // move elevation graph outside of the map
         setParent(this.getContainer(), document.getElementById('elevation-chart'));
 
-        // this function is also executed on window resize; hence,
-        // initialize the internal state on first call,
-        // otherwise reset it
-        //         if (this.initialized === true) {
-        //             this._removeMarkedSegmentsOnMap();
-        //             this._resetDrag();
-        //             this._onAddData();
-        //         } else {
         // bind the the mouse move and mouse out handlers, I'll reuse them later on
         this._mouseMoveHandlerBound = this.mapMousemoveHandler.bind(this);
         this._mouseoutHandlerBound = this._mouseoutHandler.bind(this);
@@ -286,11 +249,8 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
             }
         });
 
-        //            this.initialized = true;
-
         // and render the chart
         this.update();
-        //        }
     },
 
     update: function(track, layer) {
@@ -317,9 +277,6 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
                 }
             ];
             this.addData(data);
-
-            // this adds a blue track on the map, which only overwrites the pink brouter track
-            // L.geoJson(geojson).addTo(this._map);
 
             // re-add handlers
             if (layer) {
