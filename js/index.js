@@ -199,9 +199,19 @@
             stats = new BR.TrackStats();
         }
 
-        // remove the old dep
-        // elevation = new BR.Elevation();
         elevation = new BR.Heightgraph();
+        // Trigger the chart resize after the toggle animation is complete,
+        // in case the window was resized while the chart was not visible.
+        // The resize must be called after the animation (i.e. 'shown.bs.collapse')
+        // and cannot be called before the animation (i.e. 'show.bs.collapse'),
+        // for the container has the old width pre animation and new width post animation.
+        var container = $('#elevation-chart');
+        container.on('shown.bs.collapse', function() {
+            elevation.resize({
+                width: container.width(),
+                height: container.height()
+            });
+        });
 
         profile = new BR.Profile();
         profile.on('update', function(evt) {
@@ -422,12 +432,6 @@
             },
             urlHash
         );
-
-        // listener and initCollapse here and not in onAdd, as addBelow calls addTo (-> onAdd) on resize
-        $(window).resize(function() {
-            elevation.addBelow(map);
-        });
-        elevation.initCollapse(map);
     }
 
     i18next.on('languageChanged', function(detectedLanguage) {

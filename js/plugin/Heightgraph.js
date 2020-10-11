@@ -216,6 +216,7 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         }
     },
 
+    /*
     onAdd: function(map) {
         var container = L.Control.Heightgraph.prototype.onAdd.call(this, map);
 
@@ -240,8 +241,9 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
 
         return container;
     },
+    */
 
-    initialized: false,
+    // initialized: false,
 
     addBelow: function(map) {
         // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
@@ -263,20 +265,32 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         // this function is also executed on window resize; hence,
         // initialize the internal state on first call,
         // otherwise reset it
-        if (this.initialized === true) {
-            this._removeMarkedSegmentsOnMap();
-            this._resetDrag();
-            this._onAddData();
-        } else {
-            // bind the the mouse move and mouse out handlers, I'll reuse them later on
-            this._mouseMoveHandlerBound = this._mapMousemoveHandler.bind(this);
-            this._mouseoutHandlerBound = this._mouseoutHandler.bind(this);
+        //         if (this.initialized === true) {
+        //             this._removeMarkedSegmentsOnMap();
+        //             this._resetDrag();
+        //             this._onAddData();
+        //         } else {
+        // bind the the mouse move and mouse out handlers, I'll reuse them later on
+        this._mouseMoveHandlerBound = this.mapMousemoveHandler.bind(this);
+        this._mouseoutHandlerBound = this._mouseoutHandler.bind(this);
 
-            this.initialized = true;
+        var self = this;
+        var container = $('#elevation-chart');
+        $(window).resize(function() {
+            // avoid useless computations if the chart is not visible
+            if (container.is(':visible')) {
+                self.resize({
+                    width: container.width(),
+                    height: container.height()
+                });
+            }
+        });
 
-            // and render the chart
-            this.update();
-        }
+        //            this.initialized = true;
+
+        // and render the chart
+        this.update();
+        //        }
     },
 
     update: function(track, layer) {
