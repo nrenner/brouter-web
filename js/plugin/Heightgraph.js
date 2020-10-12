@@ -2,14 +2,14 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
     options: {
         width: $('#map').outerWidth(),
         margins: {
-            top: 20,
+            top: 15,
             right: 30,
-            bottom: 30,
-            left: 60
+            bottom: 40,
+            left: 70
         },
         expandControls: false,
         mappings: {
-            steepness: {
+            gradient: {
                 '-5': {
                     text: '16%+',
                     color: '#028306'
@@ -53,164 +53,6 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
                 '5': {
                     text: '16%+',
                     color: '#AD0F0C'
-                }
-            },
-            waytypes: {
-                '0': {
-                    text: 'Other',
-                    color: '#30959e'
-                },
-                '1': {
-                    text: 'StateRoad',
-                    color: '#3f9da6'
-                },
-                '2': {
-                    text: 'Road',
-                    color: '#4ea5ae'
-                },
-                '3': {
-                    text: 'Street',
-                    color: '#5baeb5'
-                },
-                '4': {
-                    text: 'Path',
-                    color: '#67b5bd'
-                },
-                '5': {
-                    text: 'Track',
-                    color: '#73bdc4'
-                },
-                '6': {
-                    text: 'Cycleway',
-                    color: '#7fc7cd'
-                },
-                '7': {
-                    text: 'Footway',
-                    color: '#8acfd5'
-                },
-                '8': {
-                    text: 'Steps',
-                    color: '#96d7dc'
-                },
-                '9': {
-                    text: 'Ferry',
-                    color: '#a2dfe5'
-                },
-                '10': {
-                    text: 'Construction',
-                    color: '#ade8ed'
-                }
-            },
-            surface: {
-                '0': {
-                    text: 'Other',
-                    color: '#ddcdeb'
-                },
-                '1': {
-                    text: 'Paved',
-                    color: '#cdb8df'
-                },
-                '2': {
-                    text: 'Unpaved',
-                    color: '#d2c0e3'
-                },
-                '3': {
-                    text: 'Asphalt',
-                    color: '#bca4d3'
-                },
-                '4': {
-                    text: 'Concrete',
-                    color: '#c1abd7'
-                },
-                '5': {
-                    text: 'Cobblestone',
-                    color: '#c7b2db'
-                },
-                '6': {
-                    text: 'Metal',
-                    color: '#e8dcf3'
-                },
-                '7': {
-                    text: 'Wood',
-                    color: '#eee3f7'
-                },
-                '8': {
-                    text: 'Compacted Gravel',
-                    color: '#d8c6e7'
-                },
-                '9': {
-                    text: 'Fine Gravel',
-                    color: '#8f9de4'
-                },
-                '10': {
-                    text: 'Gravel',
-                    color: '#e3d4ef'
-                },
-                '11': {
-                    text: 'Dirt',
-                    color: '#99a6e7'
-                },
-                '12': {
-                    text: 'Ground',
-                    color: '#a3aeeb'
-                },
-                '13': {
-                    text: 'Ice',
-                    color: '#acb6ee'
-                },
-                '14': {
-                    text: 'Salt',
-                    color: '#b6c0f2'
-                },
-                '15': {
-                    text: 'Sand',
-                    color: '#c9d1f8'
-                },
-                '16': {
-                    text: 'Woodchips',
-                    color: '#c0c8f5'
-                },
-                '17': {
-                    text: 'Grass',
-                    color: '#d2dafc'
-                },
-                '18': {
-                    text: 'Grass Paver',
-                    color: '#dbe3ff'
-                }
-            },
-            suitability: {
-                '3': {
-                    text: '3/10',
-                    color: '#3D3D3D'
-                },
-                '4': {
-                    text: '4/10',
-                    color: '#4D4D4D'
-                },
-                '5': {
-                    text: '5/10',
-                    color: '#5D5D5D'
-                },
-                '6': {
-                    text: '6/10',
-                    color: '#6D6D6D'
-                },
-                '7': {
-                    text: '7/10',
-                    color: '#7C7C7C'
-                },
-                '8': {
-                    text: '8/10',
-                    color: '#8D8D8D'
-                },
-                '9': {
-                    text: '9/10',
-                    color: '#9D9D9D'
-                },
-                '10': {
-                    text: '10/10',
-                    color: '#ADADAD'
                 }
             }
         }
@@ -261,22 +103,8 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         }
 
         if (track && track.getLatLngs().length > 0) {
-            // TODO fix the geojson
-            // https://leafletjs.com/reference-1.6.0.html#layer
-            var geojson = track.toGeoJSON();
-            geojson.properties = { attributeType: 0 };
-            var data = [
-                {
-                    type: 'FeatureCollection',
-                    features: [geojson],
-                    properties: {
-                        Creator: 'OpenRouteService.org',
-                        records: 1,
-                        summary: 'steepness'
-                    }
-                }
-            ];
-            this.addData(data);
+            var geojsonFeatures = this._buildGeojsonFeatures(track.getLatLngs());
+            this.addData(geojsonFeatures);
 
             // re-add handlers
             if (layer) {
@@ -295,6 +123,93 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
                 layer.off('mousemove', this._mouseMoveHandlerBound);
                 layer.off('mouseout', this._mouseoutHandlerBound);
             }
+        }
+    },
+
+    /**
+     * @param {LatLng[]} latLngs an array of LatLng objects, guaranteed to be not empty
+     */
+    _buildGeojsonFeatures: function(latLngs) {
+        var features = [];
+
+        // this is going to be initialized in the first iteration
+        var currentFeature;
+        // undefined is fine, as it will be different than the next gradient
+        var previousGradient;
+        for (var i = 1; i < latLngs.length; i++) {
+            var previousPoint = latLngs[i - 1];
+            var currentPoint = latLngs[i];
+
+            var dist = currentPoint.distanceTo(previousPoint); // always > 0
+            var altDelta = currentPoint.alt - previousPoint.alt;
+            var currentGradient = this._mapGradient((altDelta * 100) / dist);
+
+            var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
+
+            if (currentGradient == previousGradient) {
+                currentFeature.geometry.coordinates.push(coordinate);
+            } else {
+                currentFeature = {
+                    type: 'Feature',
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: [coordinate]
+                    },
+                    properties: {
+                        attributeType: currentGradient
+                    }
+                };
+                features.push(currentFeature);
+            }
+
+            // prepare for the next iteration
+            previousGradient = currentGradient;
+        }
+
+        // insert the first coordinate in pole position,
+        // and give it the same gradient as the next one
+        features[0].geometry.coordinates.splice(0, 0, [latLngs[0].lng, latLngs[0].lat, latLngs[0].alt]);
+
+        return [
+            {
+                type: 'FeatureCollection',
+                features: features,
+                properties: {
+                    Creator: 'OpenRouteService.org',
+                    records: features.length,
+                    summary: 'gradient'
+                }
+            }
+        ];
+    },
+
+    /**
+     * Map a gradient percentage to one of the codes defined
+     * in options.mappings.gradient.
+     */
+    _mapGradient: function(gradientPercentage) {
+        if (gradientPercentage <= -16) {
+            return -5;
+        } else if (gradientPercentage > -16 && gradientPercentage <= -10) {
+            return -4;
+        } else if (gradientPercentage > -10 && gradientPercentage <= -7) {
+            return -3;
+        } else if (gradientPercentage > -7 && gradientPercentage <= -4) {
+            return -2;
+        } else if (gradientPercentage > -4 && gradientPercentage <= -1) {
+            return -1;
+        } else if (gradientPercentage > -1 && gradientPercentage < 1) {
+            return 0;
+        } else if (gradientPercentage >= 1 && gradientPercentage < 4) {
+            return 1;
+        } else if (gradientPercentage >= 4 && gradientPercentage < 7) {
+            return 2;
+        } else if (gradientPercentage >= 7 && gradientPercentage < 10) {
+            return 3;
+        } else if (gradientPercentage >= 10 && gradientPercentage < 16) {
+            return 4;
+        } else if (gradientPercentage >= 16) {
+            return 5;
         }
     }
 });
