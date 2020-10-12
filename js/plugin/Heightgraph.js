@@ -4,54 +4,54 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         margins: {
             top: 15,
             right: 30,
-            bottom: 40,
+            bottom: 30,
             left: 70
         },
         expandControls: false,
         mappings: {
             gradient: {
                 '-5': {
-                    text: '16%+',
+                    text: '',
                     color: '#028306'
                 },
                 '-4': {
-                    text: '10-15%',
+                    text: '',
                     color: '#2AA12E'
                 },
                 '-3': {
-                    text: '7-9%',
+                    text: '',
                     color: '#53BF56'
                 },
                 '-2': {
-                    text: '4-6%',
+                    text: '',
                     color: '#7BDD7E'
                 },
                 '-1': {
-                    text: '1-3%',
+                    text: '',
                     color: '#A4FBA6'
                 },
                 '0': {
-                    text: '0%',
+                    text: '',
                     color: '#ffcc99'
                 },
                 '1': {
-                    text: '1-3%',
+                    text: '',
                     color: '#F29898'
                 },
                 '2': {
-                    text: '4-6%',
+                    text: '',
                     color: '#E07575'
                 },
                 '3': {
-                    text: '7-9%',
+                    text: '',
                     color: '#CF5352'
                 },
                 '4': {
-                    text: '10-15%',
+                    text: '',
                     color: '#BE312F'
                 },
                 '5': {
-                    text: '16%+',
+                    text: '',
                     color: '#AD0F0C'
                 }
             }
@@ -90,6 +90,17 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
                 });
             }
         });
+        // Trigger the chart resize after the toggle animation is complete,
+        // in case the window was resized while the chart was not visible.
+        // The resize must be called after the animation (i.e. 'shown.bs.collapse')
+        // and cannot be called before the animation (i.e. 'show.bs.collapse'),
+        // for the container has the old width pre animation and new width post animation.
+        container.on('shown.bs.collapse', function() {
+            self.resize({
+                width: container.width(),
+                height: container.height()
+            });
+        });
 
         // and render the chart
         this.update();
@@ -105,6 +116,23 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
         if (track && track.getLatLngs().length > 0) {
             var geojsonFeatures = this._buildGeojsonFeatures(track.getLatLngs());
             this.addData(geojsonFeatures);
+            // TODO
+            /*
+var geojson = track.toGeoJSON();
+geojson.properties = { attributeType: 0 };
+var data = [
+    {
+        type: 'FeatureCollection',
+        features: [geojson],
+        properties: {
+            Creator: 'OpenRouteService.org',
+            records: 1,
+            summary: 'gradient'
+        }
+    }
+];
+this.addData(data);
+*/
 
             // re-add handlers
             if (layer) {
@@ -140,9 +168,19 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
             var previousPoint = latLngs[i - 1];
             var currentPoint = latLngs[i];
 
-            var dist = currentPoint.distanceTo(previousPoint); // always > 0
+            var dist = currentPoint.distanceTo(previousPoint); // never negative
             var altDelta = currentPoint.alt - previousPoint.alt;
-            var currentGradient = this._mapGradient((altDelta * 100) / dist);
+            var currentGradientPercentage = (altDelta * 100) / dist;
+            var currentGradient = dist == 0 ? 0 : this._mapGradient(currentGradientPercentage);
+            // TODO
+            /*
+console.log("gradient %:", currentGradientPercentage,
+            "; gradient level:", currentGradient,
+           "; dist:", dist,
+           "; alt:", altDelta,
+           "; previous point:", previousPoint.lng, previousPoint.lat, previousPoint.alt,
+           "; current point:", currentPoint.lng, currentPoint.lat, currentPoint.alt);
+*/
 
             var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
 
@@ -153,7 +191,13 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
                     type: 'Feature',
                     geometry: {
                         type: 'LineString',
-                        coordinates: [coordinate]
+                        coordinates: [
+                            // each feature starts with the last point on the previous feature;
+                            // that will also take care of inserting the firstmost point
+                            // (latLngs[0]) at position 0 into the first feature in the list
+                            [previousPoint.lng, previousPoint.lat, previousPoint.alt],
+                            coordinate
+                        ]
                     },
                     properties: {
                         attributeType: currentGradient
@@ -165,10 +209,6 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
             // prepare for the next iteration
             previousGradient = currentGradient;
         }
-
-        // insert the first coordinate in pole position,
-        // and give it the same gradient as the next one
-        features[0].geometry.coordinates.splice(0, 0, [latLngs[0].lng, latLngs[0].lat, latLngs[0].alt]);
 
         return [
             {
@@ -184,7 +224,7 @@ BR.Heightgraph = L.Control.Heightgraph.extend({
     },
 
     /**
-     * Map a gradient percentage to one of the codes defined
+     * Map a gradient percentage to one of the levels defined
      * in options.mappings.gradient.
      */
     _mapGradient: function(gradientPercentage) {
