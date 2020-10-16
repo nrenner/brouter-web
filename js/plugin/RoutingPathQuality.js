@@ -71,10 +71,11 @@ BR.RoutingPathQuality = L.Control.extend({
                     valueFunction: function(latLng) {
                         var feature = latLng.feature;
                         var cost = feature.cost.perKm;
-                        if (feature.distance > 0) {
+                        var distance = feature.distance / 1000; // in km
+                        if (distance > 0) {
                             cost +=
                                 (feature.cost.elev + feature.cost.turn + feature.cost.node + feature.cost.initial) /
-                                feature.distance;
+                                distance;
                         }
                         return cost;
                     }
