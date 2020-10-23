@@ -46,7 +46,6 @@
         "bootstrap-select": "1.13.6",
         "bootstrap-slider": "^9.8.1",
         "codemirror": "^5.35.0",
-        "d3": "~3.5.5",
         "datatables": "~1.10.18",
         "font-awesome": "^4.7.0",
         "i18next": "^15.0.4",
@@ -175,11 +174,10 @@
         },
         "leaflet.heightgraph": {
             "main": [
-                "src/L.Control.Heightgraph.js",
+                "dist/L.Control.Heightgraph.js",
                 "src/L.Control.Heightgraph.css",
-                "src/img/*.svg"
-            ],
-            "dependencies": null
+                "dist/img/*.svg"
+            ]
         },
         "leaflet-control-geocoder": {
             "main": [
