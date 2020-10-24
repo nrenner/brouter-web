@@ -12,7 +12,8 @@
         "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
         "serve": "gulp serve watch",
-        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
+        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone",
+        "postinstall": "patch-package"
     },
     "husky": {
         "hooks": {
@@ -66,7 +67,7 @@
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
-        "leaflet.heightgraph": "^1.3.2",
+        "leaflet.heightgraph": "1.3.3",
         "leaflet.locatecontrol": "^0.60.0",
         "leaflet.snogylop": "^0.4.0",
         "leaflet.stravasegments": "2.3.2",
@@ -108,6 +109,8 @@
         "merge-stream": "^2.0.0",
         "node-fetch": "^2.6.1",
         "npmfiles": "^0.1.1",
+        "patch-package": "^6.2.2",
+        "postinstall-postinstall": "^2.1.0",
         "prettier": "^1.17.1",
         "pretty-quick": "^1.10.0"
     },

@@ -110,7 +110,7 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
         update: function(track, layer) {
             // bring height indicator to front, because of track casing in BR.Routing
             if (this._mouseHeightFocus) {
-                var g = this._mouseHeightFocus[0][0].parentNode;
+                var g = this._mouseHeightFocus._groups[0][0].parentNode;
                 g.parentNode.appendChild(g);
             }
 
