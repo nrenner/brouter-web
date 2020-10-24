@@ -70,13 +70,14 @@ BR.RoutingPathQuality = L.Control.extend({
                     },
                     valueFunction: function(latLng) {
                         var feature = latLng.feature;
-                        return (
-                            feature.cost.perKm +
-                            feature.cost.elev +
-                            feature.cost.turn +
-                            feature.cost.node +
-                            feature.cost.initial
-                        );
+                        var cost = feature.cost.perKm;
+                        var distance = feature.distance / 1000; // in km
+                        if (distance > 0) {
+                            cost +=
+                                (feature.cost.elev + feature.cost.turn + feature.cost.node + feature.cost.initial) /
+                                distance;
+                        }
+                        return cost;
                     }
                 })
             }

@@ -236,6 +236,7 @@ L.BRouter = L.Class.extend({
                 node: parseInt(featureMessage[7]),
                 initial: parseInt(featureMessage[8])
             },
+            distance: parseInt(featureMessage[3]),
             wayTags: featureMessage[9],
             nodeTags: featureMessage[10]
         };
