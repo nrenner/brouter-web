@@ -12,47 +12,47 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             mappings: {
                 gradient: {
                     '-5': {
-                        text: '',
+                        text: '16%+',
                         color: '#028306'
                     },
                     '-4': {
-                        text: '',
+                        text: '10-15%',
                         color: '#2AA12E'
                     },
                     '-3': {
-                        text: '',
+                        text: '7-9%',
                         color: '#53BF56'
                     },
                     '-2': {
-                        text: '',
+                        text: '4-6%',
                         color: '#7BDD7E'
                     },
                     '-1': {
-                        text: '',
+                        text: '1-3%',
                         color: '#A4FBA6'
                     },
                     '0': {
-                        text: '',
+                        text: '0%',
                         color: '#ffcc99'
                     },
                     '1': {
-                        text: '',
+                        text: '1-3%',
                         color: '#F29898'
                     },
                     '2': {
-                        text: '',
+                        text: '4-6%',
                         color: '#E07575'
                     },
                     '3': {
-                        text: '',
+                        text: '7-9%',
                         color: '#CF5352'
                     },
                     '4': {
-                        text: '',
+                        text: '10-15%',
                         color: '#BE312F'
                     },
                     '5': {
-                        text: '',
+                        text: '16%+',
                         color: '#AD0F0C'
                     }
                 }
@@ -159,13 +159,97 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
          * @param {LatLng[]} latLngs an array of LatLng objects, guaranteed to be not empty
          */
         _buildGeojsonFeatures: function(latLngs) {
+            var self = this;
+
             var features = [];
 
-            // this is going to be initialized in the first iteration
+            // this is going to be initialized on the first buffer flush
             var currentFeature;
+
             // undefined is fine, as it will be different than the current gradient
-            // in the first iteration
+            // in the first buffer flush
             var previousGradient;
+
+            // since the altitude coordinate on points is not very reliable, let's normalize it
+            // by averaging the gradient over several point (within the min distance defined below)
+            var buffer = [];
+            var bufferDistance = 0;
+
+            // each subsequent feature starts with the last point on the previous features,
+            // and hence keep track of it
+            var lastFeaturePoint;
+
+            // the minimum distance (in meters) between the points in the buffer;
+            // once reached, the buffer is flushed
+            var bufferMinDistance = 200;
+            // TODO calculate min distance based on the total route distance
+
+            if (latLngs.length > 0) {
+                buffer.push(latLngs[0]);
+            }
+            for (var i = 1; i < latLngs.length; i++) {
+                buffer.push(latLngs[i]); // the buffer contains at least 2 points by now
+                bufferDistance =
+                    bufferDistance +
+                    // never negative
+                    buffer[buffer.length - 1].distanceTo(buffer[buffer.length - 2]);
+
+                console.log('point:', latLngs[i], 'bufferDistance:', bufferDistance);
+                // if we reached the tipping point,
+                // each point in the buffer gets the same gradient rating,
+                // and flush the buffer
+                if (bufferDistance >= bufferMinDistance) {
+                    var altDelta = buffer[buffer.length - 1].alt - buffer[0].alt;
+                    var currentGradientPercentage = (altDelta * 100) / bufferDistance; // never division by 0
+                    var currentGradient = self._mapGradient(currentGradientPercentage);
+                    console.log('currentGradient:', currentGradient);
+
+                    if (currentGradient == previousGradient) {
+                        // the gradient hasn't changed; flush into the last feature
+                        console.log('adding points in buffer to the current feature:', buffer);
+                        buffer.forEach(function(point) {
+                            var coordinate = [point.lng, point.lat, point.alt];
+                            currentFeature.geometry.coordinates.push(coordinate);
+                        });
+                    } else {
+                        // the gradient has changed; flush into a new feature
+                        currentFeature = self._buildFeature(buffer, currentGradient);
+                        console.log('building new feature:', currentFeature);
+                        features.push(currentFeature);
+                    }
+
+                    // prepare for the next iteration
+                    previousGradient = currentGradient;
+                    lastFeaturePoint = buffer[buffer.length - 1]; // before clearing the buffer
+                    // TODO this is wrong, as on line 209 and 249 it will be repeated
+                    buffer = [lastFeaturePoint];
+                    bufferDistance = 0;
+                }
+            }
+
+            // handle the remaining points in the buffer
+            if (typeof currentFeature === 'undefined') {
+                if (buffer.length > 1) {
+                    // TODO remove duplication
+                    // building a feature with the few points on the route
+                    console.log('building a feature with the few points on the route');
+                    var altDelta = buffer[buffer.length - 1].alt - buffer[0].alt;
+                    // bufferDistance as already initialized in the main for loop
+                    var currentGradientPercentage = (altDelta * 100) / bufferDistance; // never division by 0
+                    var currentGradient = self._mapGradient(currentGradientPercentage);
+
+                    currentFeature = self._buildFeature(buffer, currentGradient);
+                    features.push(currentFeature);
+                }
+            } else {
+                // adding a few more points to the last feature
+                console.log('adding a few more points to the last feature; point count:', buffer.length);
+                buffer.forEach(function(point) {
+                    var coordinate = [point.lng, point.lat, point.alt];
+                    currentFeature.geometry.coordinates.push(coordinate);
+                });
+            }
+            /*
             // each feature starts with the last point on the previous feature;
             // this will also take care of inserting the firstmost point
             // (latLngs[0]) at position 0 into the first feature in the list
@@ -201,14 +285,14 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
                     currentFeature.geometry.coordinates.push(coordinate);
                 } else {
-                    currentFeature = this._buildFeature(previousPoint, currentPoint, currentGradient);
+                    currentFeature = this._buildFeature([previousPoint, currentPoint], currentGradient);
                     features.push(currentFeature);
                 }
 
                 // prepare for the next iteration
                 previousGradient = currentGradient;
             }
-
+*/
             return [
                 {
                     type: 'FeatureCollection',
@@ -222,12 +306,18 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             ];
         },
 
-        _buildFeature: function(point1, point2, gradient) {
+        _buildFeature: function(subsequentPoints, gradient) {
+            var coordinates = [];
+            subsequentPoints.forEach(function(point) {
+                coordinates.push([point.lng, point.lat, point.alt]);
+            });
+
             return {
                 type: 'Feature',
                 geometry: {
                     type: 'LineString',
-                    coordinates: [[point1.lng, point1.lat, point1.alt], [point2.lng, point2.lat, point2.alt]]
+                    coordinates: coordinates
+                    // coordinates: [[point1.lng, point1.lat, point1.alt], [point2.lng, point2.lat, point2.alt]]
                 },
                 properties: {
                     attributeType: gradient
