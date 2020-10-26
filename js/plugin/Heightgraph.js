@@ -163,8 +163,12 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
 
             // this is going to be initialized in the first iteration
             var currentFeature;
-            // undefined is fine, as it will be different than the next gradient
+            // undefined is fine, as it will be different than the current gradient
+            // in the first iteration
             var previousGradient;
+            // each feature starts with the last point on the previous feature;
+            // this will also take care of inserting the firstmost point
+            // (latLngs[0]) at position 0 into the first feature in the list
             for (var i = 1; i < latLngs.length; i++) {
                 var previousPoint = latLngs[i - 1];
                 var currentPoint = latLngs[i];
@@ -174,36 +178,30 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 var currentGradientPercentage = (altDelta * 100) / dist;
                 var currentGradient = dist == 0 ? 0 : this._mapGradient(currentGradientPercentage);
                 // TODO
-                /*
-    console.log("gradient %:", currentGradientPercentage,
-                "; gradient level:", currentGradient,
-               "; dist:", dist,
-               "; alt:", altDelta,
-               "; previous point:", previousPoint.lng, previousPoint.lat, previousPoint.alt,
-               "; current point:", currentPoint.lng, currentPoint.lat, currentPoint.alt);
-    */
-
-                var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
+                console.log(
+                    'gradient %:',
+                    currentGradientPercentage,
+                    '; gradient level:',
+                    currentGradient,
+                    '; dist:',
+                    dist,
+                    '; alt:',
+                    altDelta,
+                    '; previous point:',
+                    previousPoint.lng,
+                    previousPoint.lat,
+                    previousPoint.alt,
+                    '; current point:',
+                    currentPoint.lng,
+                    currentPoint.lat,
+                    currentPoint.alt
+                );
 
                 if (currentGradient == previousGradient) {
+                    var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
                     currentFeature.geometry.coordinates.push(coordinate);
                 } else {
-                    currentFeature = {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'LineString',
-                            coordinates: [
-                                // each feature starts with the last point on the previous feature;
-                                // that will also take care of inserting the firstmost point
-                                // (latLngs[0]) at position 0 into the first feature in the list
-                                [previousPoint.lng, previousPoint.lat, previousPoint.alt],
-                                coordinate
-                            ]
-                        },
-                        properties: {
-                            attributeType: currentGradient
-                        }
-                    };
+                    currentFeature = this._buildFeature(previousPoint, currentPoint, currentGradient);
                     features.push(currentFeature);
                 }
 
@@ -222,6 +220,19 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     }
                 }
             ];
+        },
+
+        _buildFeature: function(point1, point2, gradient) {
+            return {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: [[point1.lng, point1.lat, point1.alt], [point2.lng, point2.lat, point2.alt]]
+                },
+                properties: {
+                    attributeType: gradient
+                }
+            };
         },
 
         /**
