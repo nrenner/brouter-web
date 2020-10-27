@@ -158,10 +158,6 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             var buffer = [];
             var bufferDistance = 0;
 
-            // each subsequent feature starts with the last point on the previous features,
-            // and hence keep track of it
-            var lastFeaturePoint;
-
             // the minimum distance (in meters) between the points in the buffer;
             // once reached, the buffer is flushed;
             // for short routes, make sure we still have enough of a distance to normalize over;
@@ -169,7 +165,6 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             // hence increasing the accuracy
             var totalDistance = self._calculateDistance(latLngs);
             var bufferMinDistance = Math.max(totalDistance / 200, 200);
-            console.log('using buffer min distance:', bufferMinDistance);
 
             if (latLngs.length > 0) {
                 buffer.push(latLngs[0]);
@@ -181,32 +176,28 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     // never negative
                     buffer[buffer.length - 1].distanceTo(buffer[buffer.length - 2]);
 
-                console.log('point:', latLngs[i], 'bufferDistance:', bufferDistance);
                 // if we reached the tipping point,
                 // each point in the buffer gets the same gradient rating,
                 // and the buffer is flushed into the existing feature or a new one
                 if (bufferDistance >= bufferMinDistance) {
                     var currentGradient = self._calculateGradient(buffer);
-                    console.log('currentGradient:', currentGradient);
 
                     if (currentGradient == previousGradient) {
                         // the gradient hasn't changed, we can flush the buffer into the last feature;
                         // since the buffer contains, at index 0,
                         // the last point on the feature (it was pushed into it on buffer reset),
                         // add only points from index 1 onward
-                        console.log('adding points in buffer to the current feature:', buffer);
                         self._addPointsToFeature(currentFeature, buffer.slice(1));
                     } else {
                         // the gradient has changed; flush into a new feature
                         currentFeature = self._buildFeature(buffer, currentGradient);
-                        console.log('building new feature:', currentFeature);
                         features.push(currentFeature);
                     }
 
                     // reset to prepare for the next iteration
                     previousGradient = currentGradient;
-                    lastFeaturePoint = buffer[buffer.length - 1]; // before clearing the buffer
-                    buffer = [lastFeaturePoint];
+                    var lastPoint = buffer[buffer.length - 1]; // before clearing the buffer
+                    buffer = [lastPoint];
                     bufferDistance = 0;
                 }
             }
@@ -216,7 +207,6 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 // no feature was build so far
                 if (buffer.length > 1) {
                     // building a feature with the few points on the route
-                    console.log('building a feature with the few points on the route');
                     var currentGradient = self._calculateGradient(buffer);
                     currentFeature = self._buildFeature(buffer, currentGradient);
                     features.push(currentFeature);
@@ -226,53 +216,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 // since the buffer contains, at index 0,
                 // the last point on the feature (it was pushed into it on buffer reset),
                 // add only points from index 1 onward
-                console.log('adding a few more points to the last feature; point count:', buffer.length);
                 self._addPointsToFeature(currentFeature, buffer.slice(1));
             }
 
-            /*
-            // each feature starts with the last point on the previous feature;
-            // this will also take care of inserting the firstmost point
-            // (latLngs[0]) at position 0 into the first feature in the list
-            for (var i = 1; i < latLngs.length; i++) {
-                var previousPoint = latLngs[i - 1];
-                var currentPoint = latLngs[i];
-
-                var dist = currentPoint.distanceTo(previousPoint); // never negative
-                var altDelta = currentPoint.alt - previousPoint.alt;
-                var currentGradientPercentage = (altDelta * 100) / dist;
-                var currentGradient = dist == 0 ? 0 : this._mapGradient(currentGradientPercentage);
-                console.log(
-                    'gradient %:',
-                    currentGradientPercentage,
-                    '; gradient level:',
-                    currentGradient,
-                    '; dist:',
-                    dist,
-                    '; alt:',
-                    altDelta,
-                    '; previous point:',
-                    previousPoint.lng,
-                    previousPoint.lat,
-                    previousPoint.alt,
-                    '; current point:',
-                    currentPoint.lng,
-                    currentPoint.lat,
-                    currentPoint.alt
-                );
-
-                if (currentGradient == previousGradient) {
-                    var coordinate = [currentPoint.lng, currentPoint.lat, currentPoint.alt];
-                    currentFeature.geometry.coordinates.push(coordinate);
-                } else {
-                    currentFeature = this._buildFeature([previousPoint, currentPoint], currentGradient);
-                    features.push(currentFeature);
-                }
-
-                // prepare for the next iteration
-                previousGradient = currentGradient;
-            }
-*/
             return [
                 {
                     type: 'FeatureCollection',
@@ -286,6 +232,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             ];
         },
 
+        /**
+         * Calculate the distance between all LatLng points in the given array.
+         */
         _calculateDistance: function(latLngs) {
             var distance = 0;
             for (var i = 1; i < latLngs.length; i++) {
@@ -294,6 +243,11 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             return distance;
         },
 
+        /**
+         * Calculate the gradient between the first and last point in the LatLng array,
+         * and map it to a gradient level.
+         * The array must have at least 2 elements.
+         */
         _calculateGradient: function(latLngs) {
             // the array is guaranteed to have 2+ elements
             var altDelta = latLngs[latLngs.length - 1].alt - latLngs[0].alt;
@@ -304,6 +258,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             return currentGradient;
         },
 
+        /**
+         * Add the given array of LatLng points to the end of the provided feature.
+         */
         _addPointsToFeature: function(feature, latLngs) {
             latLngs.forEach(function(point) {
                 var coordinate = [point.lng, point.lat, point.alt];
