@@ -143,81 +143,62 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
          */
         _buildGeojsonFeatures: function(latLngs) {
             var self = this;
-
-            var features = [];
-
-            // this is going to be initialized on the first buffer flush, no need to initialize now
-            var currentFeature;
-
-            // undefined is fine, as it will be different than the current gradient
-            // when the buffer is flushed for the first time
-            var previousGradient;
+            // TODO set the alt to undefined on the first few points
+            // TODO set the alt to undefined on the last few points
+            // TODO set the alt to undefined on the first and last few points
+            // TODO set the alt to undefined on all but first point
+            // TODO set the alt to undefined on all but last point
+            // TODO set the alt to undefined on all points
+            // TODO set the alt to undefined on all between first and last points
+            // TODO set the alt to undefined on all between first and middle point, and on all between middle and last point
 
             // since the altitude coordinate on points is not very reliable, let's normalize it
-            // by averaging the gradient over several point (within the min distance defined below)
-            var buffer = [];
-            var bufferDistance = 0;
+            // by taking into account only the altitude on points at a given min distance
 
-            // the minimum distance (in meters) between the points in the buffer;
-            // once reached, the buffer is flushed;
+            // the minimum distance (in meters) between points which we consider
+            // for the purpose of calculating altitudes and gradients;
+            // consider 200 segments on the route, at least 200m long each
             // for short routes, make sure we still have enough of a distance to normalize over;
             // for long routes, we can afford to normalized over a longer distance,
             // hence increasing the accuracy
             var totalDistance = self._calculateDistance(latLngs);
             var bufferMinDistance = Math.max(totalDistance / 200, 200);
 
-            if (latLngs.length > 0) {
-                buffer.push(latLngs[0]);
-            }
-            for (var i = 1; i < latLngs.length; i++) {
-                buffer.push(latLngs[i]); // the buffer contains at least 2 points by now
-                bufferDistance =
-                    bufferDistance +
-                    // never negative
-                    buffer[buffer.length - 1].distanceTo(buffer[buffer.length - 2]);
+            var segments = self._partitionByMinDistance(latLngs, bufferMinDistance);
 
-                // if we reached the tipping point,
-                // each point in the buffer gets the same gradient rating,
-                // and the buffer is flushed into the existing feature or a new one
-                if (bufferDistance >= bufferMinDistance) {
-                    var currentGradient = self._calculateGradient(buffer);
+            var features = [];
 
-                    if (currentGradient == previousGradient) {
-                        // the gradient hasn't changed, we can flush the buffer into the last feature;
-                        // since the buffer contains, at index 0,
-                        // the last point on the feature (it was pushed into it on buffer reset),
-                        // add only points from index 1 onward
-                        self._addPointsToFeature(currentFeature, buffer.slice(1));
-                    } else {
-                        // the gradient has changed; flush into a new feature
-                        currentFeature = self._buildFeature(buffer, currentGradient);
-                        features.push(currentFeature);
-                    }
+            // this is going to be initialized in the first loop, no need to initialize now
+            var currentFeature;
 
-                    // reset to prepare for the next iteration
-                    previousGradient = currentGradient;
-                    var lastPoint = buffer[buffer.length - 1]; // before clearing the buffer
-                    buffer = [lastPoint];
-                    bufferDistance = 0;
-                }
-            }
+            // undefined is fine, as it will be different to the current gradient in the first loop
+            var previousGradient;
 
-            // handle the remaining points in the buffer
-            if (typeof currentFeature === 'undefined') {
-                // no feature was build so far
-                if (buffer.length > 1) {
-                    // building a feature with the few points on the route
-                    var currentGradient = self._calculateGradient(buffer);
-                    currentFeature = self._buildFeature(buffer, currentGradient);
+            segments.forEach(function(segment) {
+                var currentGradient = self._calculateGradient(segment);
+
+                if (typeof currentGradient === 'undefined') {
+                    // not enough points on the segment to calculate the gradient
+                    currentFeature = self._buildFeature(segment, currentGradient);
+                    features.push(currentFeature);
+                } else if (currentGradient == previousGradient) {
+                    // the gradient hasn't changed, we can append this segment to the last feature;
+                    // since the segment contains, at index 0 the last point on the feature,
+                    // add only points from index 1 onward
+                    self._addPointsToFeature(currentFeature, segment.slice(1));
+                } else {
+                    // the gradient has changed; create a new feature
+                    currentFeature = self._buildFeature(segment, currentGradient);
                     features.push(currentFeature);
                 }
-            } else {
-                // adding the extra points to the last feature;
-                // since the buffer contains, at index 0,
-                // the last point on the feature (it was pushed into it on buffer reset),
-                // add only points from index 1 onward
-                self._addPointsToFeature(currentFeature, buffer.slice(1));
-            }
+
+                // reset to prepare for the next iteration
+                previousGradient = currentGradient;
+            });
+            // TODO at the end of 3rd render (breakpoint on line 203), feature 37 has undefined points;
+            //      test with previous working version for errors in console
+
+            // TODO when elevation profile is open, the toggle button should be blue, not gray
 
             return [
                 {
@@ -230,6 +211,63 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     }
                 }
             ];
+        },
+
+        /**
+         * Given the list of latLng points, partition them into segments
+         * at least _minDistance__ meters long,
+         * where the first and last points always have a valid altitude.
+         * NOTE: Given that some of the given points might not have a valid altitude,
+         *       the first point(s) in the first buffer, as well as the last point(s)
+         *       in the last buffer, might not have a valid altitude.
+         */
+        _partitionByMinDistance: function(latLngs, minDistance) {
+            var segments = [];
+
+            // temporary buffer where we add points
+            // until the distance between them is at least minDistance
+            var buffer = [];
+
+            // push all points up to (and including) the first one with a valid altitude
+            var index = 0;
+            for (; index < latLngs.length; index++) {
+                var latLng = latLngs[index];
+                buffer.push(latLng);
+                if (typeof latLng.alt !== 'undefined') {
+                    break;
+                }
+            }
+
+            var bufferDistance = this._calculateDistance(buffer);
+            for (; index < latLngs.length; index++) {
+                var latLng = latLngs[index];
+                buffer.push(latLng); // the buffer contains at least 2 points by now
+                bufferDistance =
+                    bufferDistance +
+                    // never negative
+                    buffer[buffer.length - 1].distanceTo(buffer[buffer.length - 2]);
+
+                // if we reached the tipping point, add the buffer to segments, then flush it;
+                // if this point doesn't have a valid alt, continue to the next one
+                if (bufferDistance >= minDistance && typeof latLng.alt !== 'undefined') {
+                    segments.push(buffer);
+                    // re-init the buffer with the last point from the previous buffer
+                    buffer = [buffer[buffer.length - 1]];
+                    bufferDistance = 0;
+                }
+            }
+
+            // if the buffer is not empty, add all points from it into the last segment
+            if (segments.length === 0) {
+                segments.push(buffer);
+            } else if (buffer.length > 0) {
+                var lastSegment = segments[segments.length - 1];
+                buffer.forEach(function(p) {
+                    lastSegment.push(p);
+                });
+            }
+
+            return segments;
         },
 
         /**
@@ -249,6 +287,7 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
          * The array must have at least 2 elements.
          */
         _calculateGradient: function(latLngs) {
+            // TODO what if .alt is undefined on the heading or trailing points
             // the array is guaranteed to have 2+ elements
             var altDelta = latLngs[latLngs.length - 1].alt - latLngs[0].alt;
             var distance = this._calculateDistance(latLngs);
@@ -279,7 +318,6 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 geometry: {
                     type: 'LineString',
                     coordinates: coordinates
-                    // coordinates: [[point1.lng, point1.lat, point1.alt], [point2.lng, point2.lat, point2.alt]]
                 },
                 properties: {
                     attributeType: gradient
