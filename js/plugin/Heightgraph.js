@@ -143,19 +143,19 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
          */
         _buildGeojsonFeatures: function(latLngs) {
             var self = this;
-            // TODO set the alt to undefined on the first few points
-            // TODO set the alt to undefined on the last few points
-            // TODO set the alt to undefined on the first and last few points
-            // TODO set the alt to undefined on all but first point
-            // TODO set the alt to undefined on all but last point
-            // TODO set the alt to undefined on all points
-            // TODO set the alt to undefined on all between first and last points
-            // TODO set the alt to undefined on all between first and middle point, and on all between middle and last point
+                // TODO set the alt to undefined on the first few points
+                // TODO set the alt to undefined on the last few points
+                // TODO set the alt to undefined on the first and last few points
+                // TODO set the alt to undefined on all but first point
+                // TODO set the alt to undefined on all but last point
+                // TODO set the alt to undefined on all points
+                // TODO set the alt to undefined on all between first and last points
+                // TODO set the alt to undefined on all between first and middle point, and on all between middle and last point
 
 var mockLatLngs = [];
-for (var i = 0; i < 15; i++) {
+for (var i = 0; i < 5; i++) {
     var p = latLngs[i];
-    var alt = i >= 2 && i < 13 ?  p.alt : undefined;
+    var alt = i == 0 || i == 2 || i == 4 ?  p.alt : undefined;
     mockLatLngs.push(L.latLng(p.lng, p.lat, alt));
     console.log('' + mockLatLngs[i].lng + ', ' + mockLatLngs[i].lat + ', ' + mockLatLngs[i].alt);
 }
@@ -201,7 +201,8 @@ console.log('currentGradient: ' + currentGradient);
                     currentFeature = self._buildFeature(segment, currentGradient);
 console.log('new currentFeature for no gradient: ' + currentFeature);
                     features.push(currentFeature);
-console.log('features so far for no gradient: ' + features);
+console.log('features so far for no gradient: ');
+for (var k = 0; k < features.length; k++) console.log('feature: ' + features[k]);
                 } else if (currentGradient == previousGradient) {
                     // the gradient hasn't changed, we can append this segment to the last feature;
                     // since the segment contains, at index 0 the last point on the feature,
@@ -213,7 +214,8 @@ console.log('existing currentFeature: ' + currentFeature);
                     currentFeature = self._buildFeature(segment, currentGradient);
 console.log('new currentFeature: ' + currentFeature);
                     features.push(currentFeature);
-console.log('features so far for no gradient: ' + features);
+console.log('features so far for no gradient:');
+for (var k = 0; k < features.length; k++) console.log('feature: ' + features[k]);
                 }
 
                 // reset to prepare for the next iteration
@@ -254,17 +256,23 @@ console.log('final features: ' + features);
             // push all points up to (and including) the first one with a valid altitude
             var index = 0;
             for (; index < latLngs.length; index++) {
+console.log('testing point at index: ' + index);
                 var latLng = latLngs[index];
                 buffer.push(latLng);
                 if (typeof latLng.alt !== 'undefined') {
                     break;
                 }
             }
-console.log('buffer init: ' + buffer);
+console.log('buffer init: ' + buffer + ', index: ' + index);
 
-            var bufferDistance = this._calculateDistance(buffer);
+            // since the segments are used for gradient calculation (hence alt is needed),
+            // consider 0 length so far,
+            // for all points so far, except for the last one, don't have an altitude
+            var bufferDistance = 0;
 console.log('buffer distance init: ' + bufferDistance);
-            for (; index < latLngs.length; index++) {
+            // since index was already used, start at the next one
+            for (index = index + 1; index < latLngs.length; index++) {
+console.log('using point at index: ' + index);
                 var latLng = latLngs[index];
                 buffer.push(latLng); // the buffer contains at least 2 points by now
                 bufferDistance =
@@ -279,26 +287,30 @@ console.log('latLng.alt: ' + latLng.alt);
                 if (bufferDistance >= minDistance && typeof latLng.alt !== 'undefined') {
 console.log('wrapping up');
                     segments.push(buffer);
-console.log('segments so far: ' + segments);
+console.log('segments so far:');
+for (var k = 0; k < segments.length; k++) console.log('segment: ' + segments[k]);
                     // re-init the buffer with the last point from the previous buffer
                     buffer = [buffer[buffer.length - 1]];
 console.log('buffer re-init: ' + buffer);
                     bufferDistance = 0;
                 }
             }
-console.log('complete segments: ' + segments);
+console.log('complete segments: ');
+for (var k = 0; k < segments.length; k++) console.log('segment: ' + segments[k]);
 console.log('remaining buffer: ' + buffer);
 
-            // if the buffer is not empty, add all points from it into the last segment
+            // if the buffer is not empty, add all points from it (except for the first one)
+            // to the last segment
             if (segments.length === 0) {
                 segments.push(buffer);
             } else if (buffer.length > 0) {
                 var lastSegment = segments[segments.length - 1];
-                buffer.forEach(function(p) {
-                    lastSegment.push(p);
-                });
+                for (var i = 1; i < buffer.length; i++) {
+                    lastSegment.push(buffer[i]);
+                };
             }
-console.log('final segments: ' + segments);
+console.log('final segments:');
+for (var k = 0; k < segments.length; k++) console.log('segment: ' + segments[k]);
 
             return segments;
         },
@@ -341,7 +353,7 @@ console.log('firstIndex:', firstIndex);
             }
 
             // find the index of the last point with a valid altitude
-            var lastIndex = latLngs.length;
+            var lastIndex = -1;
             for (var i = latLngs.length - 1; i > firstIndex; i--) {
                 if (typeof latLngs[i].alt !== 'undefined') {
                     lastIndex = i;
@@ -351,7 +363,7 @@ console.log('firstIndex:', firstIndex);
 console.log('lastIndex:', lastIndex);
             // if no point with a valid altitude was found between firstIndex and end of array,
             // there's not much else to do
-            if (lastIndex == latLngs.length) {
+            if (lastIndex == -1) {
                 return this._mapGradient(0);
             }
 
