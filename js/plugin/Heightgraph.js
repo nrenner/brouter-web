@@ -56,6 +56,10 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                         color: '#AD0F0C'
                     }
                 }
+            },
+            // extra options
+            shortcut: {
+                toggle: 69 // char code for 'e'
             }
         },
 
@@ -79,6 +83,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             // bind the the mouse move and mouse out handlers, I'll reuse them later on
             this._mouseMoveHandlerBound = this.mapMousemoveHandler.bind(this);
             this._mouseoutHandlerBound = this._mouseoutHandler.bind(this);
+
+            L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
+            this.initCollapse(map);
 
             var self = this;
             var container = $('#elevation-chart');
@@ -107,6 +114,41 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             this.update();
         },
 
+        initCollapse: function(map) {
+            var self = this;
+            var onHide = function() {
+                $('#elevation-btn').removeClass('active');
+                // we must fetch tiles that are located behind elevation-chart
+                map._onResize();
+
+                if (this.id && BR.Util.localStorageAvailable() && !self.shouldRestoreChart) {
+                    localStorage.removeItem(this.id);
+                }
+            };
+            var onShow = function() {
+                $('#elevation-btn').addClass('active');
+
+                if (this.id && BR.Util.localStorageAvailable()) {
+                    localStorage[this.id] = 'true';
+                }
+            };
+            // on page load, we want to restore collapse state from previous usage
+            $('#elevation-chart')
+                .on('hidden.bs.collapse', onHide)
+                .on('shown.bs.collapse', onShow)
+                .each(function() {
+                    if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
+                        self.shouldRestoreChart = true;
+                    }
+                });
+        },
+
+        _keydownListener: function(e) {
+            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggle) {
+                $('#elevation-btn').click();
+            }
+        },
+
         update: function(track, layer) {
             // bring height indicator to front, because of track casing in BR.Routing
             if (this._mouseHeightFocus) {
@@ -123,6 +165,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     layer.on('mousemove', this._mouseMoveHandlerBound);
                     layer.on('mouseout', this._mouseoutHandlerBound);
                 }
+
+                if (this.shouldRestoreChart === true) $('#elevation-chart').collapse('show');
+                this.shouldRestoreChart = undefined;
             } else {
                 this._removeMarkedSegmentsOnMap();
                 this._resetDrag();
@@ -135,6 +180,11 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     layer.off('mousemove', this._mouseMoveHandlerBound);
                     layer.off('mouseout', this._mouseoutHandlerBound);
                 }
+
+                if ($('#elevation-chart').hasClass('show')) {
+                    this.shouldRestoreChart = true;
+                }
+                $('#elevation-chart').collapse('hide');
             }
         },
 
@@ -187,8 +237,6 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 // reset to prepare for the next iteration
                 previousGradient = currentGradient;
             });
-
-            // TODO when elevation profile is open, the toggle button should be blue, not gray
 
             return [
                 {
