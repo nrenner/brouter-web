@@ -60,6 +60,14 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             // extra options
             shortcut: {
                 toggle: 69 // char code for 'e'
+            },
+            patches: {
+                // whether or not to compensate for the bug in Leaflet.Heightgraph
+                // which makes the chart rendering to break if the track contains points
+                // without an elevation/altitude coordinate;
+                // if set to true, the elevation of these points will be inferred
+                // from the adjacent points which have it
+                inferElevation: true
             }
         },
 
@@ -219,14 +227,10 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             segments.forEach(function(segment) {
                 var currentGradient = self._calculateGradient(segment);
 
-                if (typeof currentGradient === 'undefined') {
-                    // not enough points on the segment to calculate the gradient
-                    currentFeature = self._buildFeature(segment, currentGradient);
-                    features.push(currentFeature);
-                } else if (currentGradient == previousGradient) {
+                if (currentGradient == previousGradient) {
                     // the gradient hasn't changed, we can append this segment to the last feature;
-                    // since the segment contains, at index 0 the last point on the feature,
-                    // add only points from index 1 onward
+                    // since the segment contains, at index 0,
+                    // the last point on the current feature, add only points from index 1 onward
                     self._addPointsToFeature(currentFeature, segment.slice(1));
                 } else {
                     // the gradient has changed; create a new feature
@@ -378,15 +382,17 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
          * Add the given array of LatLng points to the end of the provided feature.
          */
         _addPointsToFeature: function(feature, latLngs) {
-            latLngs.forEach(function(point) {
+            var latLngsWithElevation = this._inferElevation(latLngs);
+            latLngsWithElevation.forEach(function(point) {
                 var coordinate = [point.lng, point.lat, point.alt];
                 feature.geometry.coordinates.push(coordinate);
             });
         },
 
         _buildFeature: function(latLngs, gradient) {
+            var latLngsWithElevation = this._inferElevation(latLngs);
             var coordinates = [];
-            latLngs.forEach(function(latLng) {
+            latLngsWithElevation.forEach(function(latLng) {
                 coordinates.push([latLng.lng, latLng.lat, latLng.alt]);
             });
 
@@ -400,6 +406,147 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     attributeType: gradient
                 }
             };
+        },
+
+        /**
+         * If the global flag is true, return a new list of LatLng points
+         * which all have the elevation coordinate set,
+         * so that the overall gradient profile of the point list stays the same.
+         * If there are points without elevation at the start or end of the given list,
+         * the elevation coordinate is set so that the gradient profile to the closest point
+         * with elevation is flat (i.e. the gradient is 0).
+         * If the global flag is false, the given list is returned.
+         */
+        _inferElevation: function(latLngs) {
+            if (this.options.patches.inferElevation != true || latLngs.length === 0) {
+                return latLngs;
+            }
+
+            var result = latLngs.slice();
+
+            this._inferElevationStart(result);
+            this._inferElevationEnd(result);
+
+            // find points without elevation and set it
+            var previousIndex = -1; // keep track of the index of the previous point with elevation
+            for (var i = 0; i < result.length; i++) {
+                if (typeof result[i].alt !== 'undefined') {
+                    previousIndex = i;
+                    continue;
+                }
+
+                // we've just found the first point in a potential series
+
+                // if there is no previous point with elevation (which is unexpected),
+                // we're in a pickle, hence skip the current point
+                if (previousIndex == -1) {
+                    continue;
+                }
+
+                // look up the next point with ele
+                var nextIndex = i + 1;
+                for (; nextIndex < result.length; nextIndex++) {
+                    if (typeof result[nextIndex].alt !== 'undefined') {
+                        break;
+                    }
+                }
+                // if we got to the end of list and haven't found a point with elevation
+                // (which is unexpected), we're in a pickle, hence skip the current point
+                if (nextIndex == result.length) {
+                    continue;
+                }
+
+                // fix the elevation on all points in the current series
+                this._inferElevationSublist(result, previousIndex + 1, nextIndex - 1);
+
+                // finally, since we've fixed the current series, skip to the next point
+                i = nextIndex - 1;
+            }
+
+            return result;
+        },
+
+        /*
+         * Check for points without elevation at the start of the list;
+         * if such points are found, set their elevation to be the same
+         * as the elevation on the first point with such coordinate.
+         * If no points in the list have an elevation coordinate, set it to 0 on all.
+         * Note that the given list of LatLng points is mutated.
+         */
+        _inferElevationStart: function(latLngs) {
+            // if the list is empty, or the first point has elevation, there's nothing to do
+            if (latLngs.length == 0 || typeof latLngs[0].alt !== 'undefined') {
+                return;
+            }
+
+            var index = 0; // the index of the first point with elevation
+            var alt = 0; // the elevation of the first point with such coordinate
+            for (; index < latLngs.length; index++) {
+                if (typeof latLngs[index].alt !== 'undefined') {
+                    alt = latLngs[index].alt;
+                    break;
+                }
+            }
+            // set the elevation on all points without it at the start of the list
+            for (var i = 0; i < index; i++) {
+                var point = latLngs[i];
+                latLngs[i] = L.latLng(point.lat, point.lng, alt);
+            }
+        },
+
+        /*
+         * Check for points without elevation at the end of the list;
+         * if such points are found, set their elevation to be the same
+         * as the elevation on the last point with such coordinate.
+         * If no points in the list have an elevation coordinate, set it to 0 on all.
+         * Note that the given list of LatLng points is mutated.
+         */
+        _inferElevationEnd: function(latLngs) {
+            // if the list is empty, or the last point has elevation, there's nothing to do
+            if (latLngs.length == 0 || typeof latLngs[latLngs.length - 1].alt !== 'undefined') {
+                return;
+            }
+
+            var index = latLngs.length - 1; // the index of the last point with elevation
+            var alt = 0; // the elevation of the last point with such coordinate
+            for (; index >= 0; index--) {
+                if (typeof latLngs[index].alt !== 'undefined') {
+                    alt = latLngs[index].alt;
+                    break;
+                }
+            }
+            // set the elevation on all points without it at the end of the list
+            for (var i = index + 1; i < latLngs.length; i++) {
+                var point = latLngs[i];
+                latLngs[i] = L.latLng(point.lat, point.lng, alt);
+            }
+        },
+
+        /**
+         * Given the list of LatLng points,
+         * and the series of points without elevation from startIndex to endIndex,
+         * set the elevation on these points so that the gradient from
+         * startIndex-1 to endIndex+1 is constant.
+         * startIndex must be preceeded by a point with elevation;
+         * endIndex must be followed by a point with elevation.
+         * Note that the given list of LatLng points is mutated.
+         */
+        _inferElevationSublist: function(latLngs, startIndex, endIndex) {
+            var previousIndex = startIndex - 1; // index of the previous point with elevation before this series
+            var nextIndex = endIndex + 1; // index of the next point with elevation after this series
+
+            // calculate the overall gradient for the current series
+            var distance = this._calculateDistance(latLngs.slice(previousIndex, nextIndex + 1));
+            var altitudeDelta = latLngs[nextIndex].alt - latLngs[previousIndex].alt;
+            var gradient = distance == 0 ? 0 : (altitudeDelta * 100) / distance;
+
+            // now  fix the elevation on each point in the series, one by one
+            for (var i = startIndex; i <= endIndex; i++) {
+                var dist = latLngs[i].distanceTo(latLngs[i - 1]);
+                var alt = (gradient * dist) / 100 + latLngs[i - 1].alt;
+                var point = latLngs[i];
+                latLngs[i] = L.latLng(point.lat, point.lng, Number(alt.toFixed(1)));
+            }
         },
 
         /**
@@ -429,6 +576,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 return 4;
             } else if (gradientPercentage >= 16) {
                 return 5;
+            } else {
+                console.log('Unknown gradientPercentage: ', gradientPercentage, '; cannot map');
+                return 0;
             }
         }
     });
