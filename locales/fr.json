@@ -5,14 +5,14 @@
     "bug-reports-front": "client web.",
     "chat": "Discuter avec d'autres utilisateurs et développeurs",
     "contact": "Contact :",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
+    "contact-language": "La langue privilégiée est l'anglais, car il y a des contributeurs et des utilisateurs du monde entier.",
     "data": "Données :",
     "data-description": "Les données reposent sur <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. La mise à jour est généralement quotidienne, voir <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">les fichiers de données</a>. ",
     "description": "Service web pour le moteur de routage BRouter. Pour l'appli Android et de plus amples informations, voir <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>.",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Respect de la vie privée</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crédits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changements</a></i> et\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">plus d'infos</a></i> sur le client web.",
     "support": "Discussions/Questions générales, support ;",
     "title": "À propos",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Afficher plus d'informations à propos de BRouter-Web"
   },
   "credits": {
     "brouter": "BRouter",
@@ -42,7 +42,7 @@
     "ascend": "Dénivelé cumulé",
     "cost": "Coût",
     "distance": "Distance",
-    "elevation-chart": "Toggle elevation chart",
+    "elevation-chart": "Inverser l'affichage du profil altimétrique",
     "energy-per-100km": "pour 100km",
     "hours": "heures",
     "hours-abbrev": "h",
@@ -59,10 +59,10 @@
     "travel-time": "Temps de trajet"
   },
   "keyboard": {
-    "backspace": "Backspace",
-    "escape": "Escape",
-    "generic-shortcut": "{{action}} ({{key}} key)",
-    "shift": "Shift"
+    "backspace": "Retour chariot",
+    "escape": "Échap",
+    "generic-shortcut": "{{action}} (touche {{key}} )",
+    "shift": "Maj"
   },
   "layers": {
     "add-base": "Ajouter un fond de carte ",
@@ -94,13 +94,13 @@
     "delete-nogo-areas": "Supprimer toutes les zones interdites",
     "delete-pois": "Supprimer tous les points d'intérêt ",
     "delete-route": "Supprimer l'itinéraire",
-    "draw-poi-start": "Draw points of interest",
-    "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
-    "draw-route-stop": "Stop drawing route",
+    "draw-poi-start": "Ajouter des points d'intérêt",
+    "draw-poi-stop": "Arrêter l'ajout de points d'intérêt",
+    "draw-route-start": "Dessiner l'itinéraire",
+    "draw-route-stop": "Arrêter de dessiner l'itinéraire",
     "enter-poi-name": "Saisir le nom du point d'intérêt",
-    "geocoder": "Search",
-    "geocoder-placeholder": "Search…",
+    "geocoder": "Rechercher",
+    "geocoder-placeholder": "Rechercher…",
     "hikebike-hillshading": "Relief avec ombre",
     "hiking": "Randonnée",
     "layer": {
@@ -124,22 +124,22 @@
     "nogo": {
       "cancel": "Annuler la zone interdite",
       "click-drag": "Cliquer et faire glisser pour dessiner un cercle",
-      "draw": "Draw circular no-go area",
+      "draw": "Dessiner une zone interdite circulaire",
       "edit": "Cliquer pour éditer",
       "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
     },
-    "opacity-slider": "Set transparency of route track and markers",
-    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
+    "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
+    "opacity-slider-shortcut": "{{action}}\n(Maintenir la touche {{key}} pour masquer temporairement)",
     "preview": "Prévisualiser",
     "privacy": "Vie privée",
     "reverse-route": "Inverse l'itinéraire",
     "route-quality-altitude": "Chiffrage de l'altitude",
     "route-quality-cost": "Chiffrage du coût",
     "route-quality-incline": "Chiffrage d'inclinaison",
-    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-quality-shortcut": "{{action}} (touche {{key}} pour basculer)",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
-    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "strava-shortcut": "{{action}}\n(touche {{key}} pour basculer de calque, cliquer pour recharger la zone actuelle)",
     "zoomInTitle": "Zoomer",
     "zoomOutTitle": "Dézoomer"
   },
@@ -155,12 +155,12 @@
       "third": "3ème alternative"
     },
     "export": "Exporter",
-    "export-tooltip": "Export route",
+    "export-tooltip": "Exporter l'itinéraire",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Charger des zones interdites",
       "title": "Charger",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tooltip": "{{tracksAction}} (touche {{tracksKey}} )\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Charger des traces"
     },
     "profile": {
       "car-eco": "Voiture (économique)",
@@ -184,36 +184,36 @@
       "vm-forum-liegerad-schnell": "Vélo couché (rapide)",
       "vm-forum-velomobil-schnell": "Vélomobile (rapide)"
     },
-    "profile-tooltip": "\n({{key}} key to switch)"
+    "profile-tooltip": "\n(touche {{key}} pour échanger)"
   },
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
-        "surface": "Surface"
+        "highway": "Grande route",
+        "smoothness": "Qualité de roulage",
+        "surface": "Revêtement"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Catégorie",
+        "length": "Longueur",
+        "total_known": "Total connu :",
+        "unknown": "Inconnu"
       },
-      "title": "Analysis",
-      "tooltip": "Analyse route"
+      "title": "Analyse",
+      "tooltip": "Analyse de l'itinéraire"
     },
     "customize-profile": {
       "title": "Personnaliser le profil",
-      "tooltip": "Customize profile"
+      "tooltip": "Personnaliser le profil"
     },
     "data": {
       "sync-map": "Synchroniser la carte",
       "title": "Données",
-      "tooltip": "Show detailed route data table"
+      "tooltip": "Afficher la table des données de l'itinéraire détaillé"
     },
     "itinerary": {
       "title": "Itinéraire",
-      "tooltip": "Show itinerary"
+      "tooltip": "Afficher l'itinéraire"
     },
     "layers": {
       "category": {
@@ -240,7 +240,7 @@
         "type": "Type"
       },
       "title": "Calques",
-      "tooltip": "Select layers"
+      "tooltip": "Sélection des calques"
     },
     "profile": {
       "apply": "Appliquer",
@@ -251,19 +251,19 @@
       "placeholder": "Saisissez votre profil personnalisé ici.",
       "profile": "Profil"
     },
-    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
+    "tab-tooltip": "{{action}}\n(touche {{toggleKey}} pour basculer, {{switchKey}} pour passer à l'onglet suivant)"
   },
   "title": "Client web BRouter",
   "trackasroute": {
-    "explainpoi": "(show waypoints as POI's)",
-    "explaintracklayer": "(show Track as separate Layer)",
-    "file": "Trackfile",
-    "fuzziness": "fuzzines",
-    "pleasewait": "Please wait!",
-    "showpois": "POI's",
-    "title": "Load Track as Route",
-    "tracklayer": "Track Layer",
-    "tuning": "Tuning"
+    "explainpoi": "(afficher les points de passage comme des PIs)",
+    "explaintracklayer": "(afficher la piste comme un calque distinct)",
+    "file": "Fichier de piste",
+    "fuzziness": "flou",
+    "pleasewait": "Merci de patienter !",
+    "showpois": "PIs",
+    "title": "Charger la trace comme itinéraire",
+    "tracklayer": "Calque de trace",
+    "tuning": "Réglages"
   },
   "warning": {
     "cannot-get-route": "Erreur lors de la réception de l'itinéraire",
