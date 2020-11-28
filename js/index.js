@@ -34,6 +34,7 @@
             drawButton,
             deleteRouteButton,
             pois,
+            circleGo,
             urlHash;
 
         // By default bootstrap-select use glyphicons
@@ -74,7 +75,10 @@
                         routing.draw(true);
                         control.state('deactivate-draw');
                     },
-                    title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-route-start)', key: 'D' })
+                    title: i18next.t('keyboard.generic-shortcut', {
+                        action: '$t(map.draw-route-start)',
+                        key: 'D'
+                    })
                 }
             ]
         });
@@ -84,7 +88,10 @@
             function() {
                 routing.reverse();
             },
-            i18next.t('keyboard.generic-shortcut', { action: '$t(map.reverse-route)', key: 'R' })
+            i18next.t('keyboard.generic-shortcut', {
+                action: '$t(map.reverse-route)',
+                key: 'R'
+            })
         );
 
         var deletePointButton = L.easyButton(
@@ -92,7 +99,10 @@
             function() {
                 routing.deleteLastPoint();
             },
-            i18next.t('keyboard.generic-shortcut', { action: '$t(map.delete-last-point)', key: 'Z' })
+            i18next.t('keyboard.generic-shortcut', {
+                action: '$t(map.delete-last-point)',
+                key: 'Z'
+            })
         );
 
         deleteRouteButton = L.easyButton(
@@ -100,7 +110,10 @@
             function() {
                 clearRoute();
             },
-            i18next.t('keyboard.generic-shortcut', { action: '$t(map.clear-route)', key: '$t(keyboard.backspace)' })
+            i18next.t('keyboard.generic-shortcut', {
+                action: '$t(map.clear-route)',
+                key: '$t(keyboard.backspace)'
+            })
         );
 
         L.DomEvent.addListener(
@@ -181,7 +194,10 @@
             profile.update(evt.options);
         });
 
-        BR.NogoAreas.MSG_BUTTON = i18next.t('keyboard.generic-shortcut', { action: '$t(map.nogo.draw)', key: 'N' });
+        BR.NogoAreas.MSG_BUTTON = i18next.t('keyboard.generic-shortcut', {
+            action: '$t(map.nogo.draw)',
+            key: 'N'
+        });
         BR.NogoAreas.MSG_BUTTON_CANCEL = i18next.t('keyboard.generic-shortcut', {
             action: '$t(map.nogo.cancel)',
             key: '$t(keyboard.escape)'
@@ -243,9 +259,9 @@
             styles: BR.conf.routingStyles
         });
 
-        pois = new BR.PoiMarkers({
-            routing: routing
-        });
+        pois = new BR.PoiMarkers(routing);
+        circleGo = new BR.CircleGoArea(routing, nogos, pois);
+        pois.circlego = circleGo;
 
         exportRoute = new BR.Export(router, pois);
 
@@ -305,7 +321,22 @@
         }
 
         nogos.addTo(map);
-        L.easyBar([drawButton, reverseRouteButton, nogos.getButton(), deletePointButton, deleteRouteButton]).addTo(map);
+
+        var shouldAddCircleGo = false;
+        var lang = i18next.languages.length && i18next.languages[0];
+
+        if (lang.startsWith('fr')) {
+            circleGo.options.radius = 20000;
+            shouldAddCircleGo = true;
+        }
+
+        if (shouldAddCircleGo) circleGo.addTo(map);
+
+        var buttons = [drawButton, reverseRouteButton, nogos.getButton()];
+        if (shouldAddCircleGo) buttons.push(circleGo.getButton());
+        buttons.push(deletePointButton, deleteRouteButton);
+
+        L.easyBar(buttons).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
 
         if (BR.keys.strava) {
@@ -322,7 +353,10 @@
         map.addControl(
             new BR.OpacitySliderControl({
                 id: 'route',
-                title: i18next.t('map.opacity-slider-shortcut', { action: '$t(map.opacity-slider)', key: 'M' }),
+                title: i18next.t('map.opacity-slider-shortcut', {
+                    action: '$t(map.opacity-slider)',
+                    key: 'M'
+                }),
                 muteKeyCode: 77, // m
                 callback: L.bind(routing.setOpacity, routing)
             })
@@ -358,6 +392,11 @@
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
             routingOptions.setOptions(opts);
+            if (opts.circlego) {
+                // must be done before nogos!
+                circleGo.options.radius = opts.circlego[2];
+                circleGo.setCircle([opts.circlego[0], opts.circlego[1]]);
+            }
             nogos.setOptions(opts);
             profile.update(opts);
 
@@ -366,7 +405,6 @@
                 routing.clear();
                 routing.setWaypoints(opts.lonlats);
             }
-
             if (opts.pois) {
                 pois.setMarkers(opts.pois);
             }
@@ -384,7 +422,9 @@
         urlHash = new L.Hash(null, null);
         // this callback is used to append anything in URL after L.Hash wrote #map=zoom/lat/lng/layer
         urlHash.additionalCb = function() {
-            var url = router.getUrl(routing.getWaypoints(), pois.getMarkers(), null).substr('brouter?'.length + 1);
+            var url = router
+                .getUrl(routing.getWaypoints(), pois.getMarkers(), circleGo.getCircle(), null)
+                .substr('brouter?'.length + 1);
 
             // by default brouter use | as separator. To make URL more human-readable, we remplace them with ; for users
             url = url.replace(/\|/g, ';');

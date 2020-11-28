@@ -3,7 +3,7 @@ L.BRouter = L.Class.extend({
         // NOTE: the routing API used here is not public!
         // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
         URL_TEMPLATE:
-            '/brouter?lonlats={lonlats}&nogos={nogos}&polylines={polylines}&polygons={polygons}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+            '/brouter?lonlats={lonlats}&profile={profile}&alternativeidx={alternativeidx}&format={format}&nogos={nogos}&polylines={polylines}&polygons={polygons}',
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
@@ -42,7 +42,7 @@ L.BRouter = L.Class.extend({
         L.setOptions(this, options);
     },
 
-    getUrlParams: function(latLngs, pois, format) {
+    getUrlParams: function(latLngs, pois, circlego, format) {
         params = {};
         if (this._getLonLatsString(latLngs) != null) params.lonlats = this._getLonLatsString(latLngs);
 
@@ -58,6 +58,8 @@ L.BRouter = L.Class.extend({
         if (this.options.profile != null) params.profile = this.options.profile;
 
         if (pois && this._getLonLatsNameString(pois) != null) params.pois = this._getLonLatsNameString(pois);
+
+        if (circlego) params.circlego = circlego;
 
         params.alternativeidx = this.options.alternative;
 
@@ -100,15 +102,27 @@ L.BRouter = L.Class.extend({
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
         }
+        if (params.circlego) {
+            var circlego = params.circlego.split(',');
+            if (circlego.length == 3) {
+                circlego = [
+                    Number.parseFloat(circlego[0]),
+                    Number.parseFloat(circlego[1]),
+                    Number.parseInt(circlego[2])
+                ];
+                opts.circlego = circlego;
+            }
+        }
         return opts;
     },
 
-    getUrl: function(latLngs, pois, format, trackname, exportWaypoints) {
-        var urlParams = this.getUrlParams(latLngs, pois, format);
+    getUrl: function(latLngs, pois, circlego, format, trackname, exportWaypoints) {
+        var urlParams = this.getUrlParams(latLngs, pois, circlego, format);
         var args = [];
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
         if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
+        if (urlParams.circlego != null) args.push(L.Util.template('circlego={circlego}', urlParams));
         if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
         if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
         if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
@@ -129,7 +143,7 @@ L.BRouter = L.Class.extend({
     },
 
     getRoute: function(latLngs, cb) {
-        var url = this.getUrl(latLngs, null, 'geojson'),
+        var url = this.getUrl(latLngs, null, null, 'geojson'),
             xhr = new XMLHttpRequest();
 
         if (!url) {

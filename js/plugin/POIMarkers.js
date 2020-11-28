@@ -1,14 +1,18 @@
 BR.PoiMarkers = L.Control.extend({
     markersLayer: null,
+    circlego: null,
 
     options: {
-        routing: null,
         shortcut: {
             draw: {
                 enable: 80, // char code for 'p'
                 disable: 27 // char code for 'ESC'
             }
         }
+    },
+    initialize: function(routing) {
+        this.routing = routing;
+        this.circlego = null;
     },
 
     onAdd: function(map) {
@@ -54,7 +58,8 @@ BR.PoiMarkers = L.Control.extend({
     draw: function(enable) {
         this.drawButton.state(enable ? 'deactivate-poi' : 'activate-poi');
         if (enable) {
-            this.options.routing.draw(false);
+            this.routing.draw(false);
+            this.circlego.draw(false);
             this.map.on('click', this.onMapClick, this);
             L.DomUtil.addClass(this.map.getContainer(), 'pois-draw-enabled');
         } else {
@@ -129,7 +134,7 @@ BR.PoiMarkers = L.Control.extend({
     getMarkers: function() {
         return this.markersLayer.getLayers().map(function(it) {
             return {
-                latlng: it._latlng,
+                latlng: it.getLatLng(),
                 name: it.options.name
             };
         });

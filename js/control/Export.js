@@ -47,7 +47,7 @@ BR.Export = L.Class.extend({
         var name = encodeURIComponent(exportForm['trackname'].value);
         var includeWaypoints = exportForm['include-waypoints'].checked;
 
-        var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), format, name, includeWaypoints);
+        var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, name, includeWaypoints);
 
         e.preventDefault();
 
