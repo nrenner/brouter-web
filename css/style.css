@@ -197,6 +197,9 @@ input#trackname:focus:invalid {
 .pois-draw-enabled {
     cursor: cell;
 }
+.circlego-draw-enabled {
+    cursor: pointer;
+}
 
 #map {
     /* center error message horizontally */

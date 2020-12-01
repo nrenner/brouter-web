@@ -61,7 +61,7 @@
   "keyboard": {
     "backspace": "Retour chariot",
     "escape": "Échap",
-    "generic-shortcut": "{{action}} (touche {{key}} )",
+    "generic-shortcut": "{{action}} (touche {{key}})",
     "shift": "Maj"
   },
   "layers": {
@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Supprimer toutes les zones interdites",
     "delete-pois": "Supprimer tous les points d'intérêt ",
     "delete-route": "Supprimer l'itinéraire",
+    "draw-circlego-start": "Ajouter une zone limite de {{radius}} km",
+    "draw-circlego-stop": "Arrêter l'ajout d'une zone limit de {{radius}} km",
     "draw-poi-start": "Ajouter des points d'intérêt",
     "draw-poi-stop": "Arrêter l'ajout de points d'intérêt",
     "draw-route-start": "Dessiner l'itinéraire",
