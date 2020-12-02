@@ -173,6 +173,9 @@ BR.CircleGoArea = L.Control.extend({
         }
         inner.push(inner[0]);
 
+        /* hack: it seems there is a bug when using a single closed ring line,
+         cf. https://github.com/nrenner/brouter-web/issues/349#issue-755514458
+         so instead we use 2 half rings to ensure we properly close the area */
         return {
             type: 'FeatureCollection',
             features: [
@@ -181,7 +184,15 @@ BR.CircleGoArea = L.Control.extend({
                     properties: {},
                     geometry: {
                         type: 'LineString',
-                        coordinates: inner
+                        coordinates: inner.slice(n / 2 - 1)
+                    }
+                },
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: inner.slice(0, n / 2 + 1)
                     }
                 }
             ]

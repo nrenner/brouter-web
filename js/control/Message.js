@@ -50,6 +50,8 @@ BR.Message = L.Class.extend({
             err = i18next.t('warning.invalid-route-to');
         } else if (err == 'from-position not mapped in existing datafile\n') {
             err = i18next.t('warning.invalid-route-from');
+        } else if (err && err.startsWith('null description for: ')) {
+            err = i18next.t('warning.no-route-found');
         }
         this._show(err, 'error');
     },
