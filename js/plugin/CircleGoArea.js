@@ -96,10 +96,10 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     onMapClick: function(e) {
-        this.setCircle([e.latlng.lng, e.latlng.lat]);
+        this.setCircle([e.latlng.lng, e.latlng.lat], false);
     },
 
-    setCircle: function(center) {
+    setCircle: function(center, skipNogo) {
         var self = this;
         var icon = L.VectorMarkers.icon({
             icon: 'home',
@@ -119,7 +119,7 @@ BR.CircleGoArea = L.Control.extend({
 
         this.clear();
         marker.addTo(this.circleLayer);
-        this.setNogoCircle(center);
+        if (!skipNogo) this.setNogoCircle(center);
         this.draw(false);
     },
 

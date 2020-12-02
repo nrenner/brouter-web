@@ -394,11 +394,6 @@
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
             routingOptions.setOptions(opts);
-            if (circlego && opts.circlego) {
-                // must be done before nogos!
-                circlego.options.radius = opts.circlego[2];
-                circlego.setCircle([opts.circlego[0], opts.circlego[1]]);
-            }
             nogos.setOptions(opts);
             profile.update(opts);
 
@@ -409,6 +404,10 @@
             }
             if (opts.pois) {
                 pois.setMarkers(opts.pois);
+            }
+            if (circlego && opts.circlego) {
+                circlego.options.radius = opts.circlego[2];
+                circlego.setCircle([opts.circlego[0], opts.circlego[1]], opts.polylines != null);
             }
         };
 
