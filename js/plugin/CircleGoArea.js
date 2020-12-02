@@ -88,6 +88,7 @@ BR.CircleGoArea = L.Control.extend({
         if (center) {
             var polygon = this.circleToPolygon(center, this.options.radius);
             $('#nogoJSON').val(JSON.stringify(polygon));
+            $('#nogoBuffer').val(0);
             this.nogos.uploadNogos();
         } else {
             this.nogos.clear();
@@ -164,7 +165,7 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     circleToPolygon: function(center, radius, numberOfSegments) {
-        var n = numberOfSegments ? numberOfSegments : 64;
+        var n = numberOfSegments ? numberOfSegments : 32;
 
         var inner = [];
         for (var i = 0; i < n; ++i) {
