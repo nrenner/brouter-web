@@ -34,7 +34,7 @@
             drawButton,
             deleteRouteButton,
             pois,
-            circleGo,
+            circlego,
             urlHash;
 
         // By default bootstrap-select use glyphicons
@@ -260,8 +260,6 @@
         });
 
         pois = new BR.PoiMarkers(routing);
-        circleGo = new BR.CircleGoArea(routing, nogos, pois);
-        pois.circlego = circleGo;
 
         exportRoute = new BR.Export(router, pois);
 
@@ -322,18 +320,22 @@
 
         nogos.addTo(map);
 
-        var shouldAddCircleGo = false;
+        var circlegoRadius = null;
         var lang = i18next.languages.length && i18next.languages[0];
 
         if (lang.startsWith('fr')) {
-            circleGo.options.radius = 20000;
-            shouldAddCircleGo = true;
+            circlegoRadius = 20000;
         }
 
-        if (shouldAddCircleGo) circleGo.addTo(map);
+        if (circlegoRadius != null) {
+            circlego = new BR.CircleGoArea(routing, nogos, pois);
+            circlego.options.radius = circlegoRadius;
+            pois.circlego = circlego;
+            circlego.addTo(map);
+        }
 
         var buttons = [drawButton, reverseRouteButton, nogos.getButton()];
-        if (shouldAddCircleGo) buttons.push(circleGo.getButton());
+        if (circlegoRadius) buttons.push(circlego.getButton());
         buttons.push(deletePointButton, deleteRouteButton);
 
         L.easyBar(buttons).addTo(map);
@@ -392,10 +394,10 @@
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
             routingOptions.setOptions(opts);
-            if (opts.circlego) {
+            if (circlego && opts.circlego) {
                 // must be done before nogos!
-                circleGo.options.radius = opts.circlego[2];
-                circleGo.setCircle([opts.circlego[0], opts.circlego[1]]);
+                circlego.options.radius = opts.circlego[2];
+                circlego.setCircle([opts.circlego[0], opts.circlego[1]]);
             }
             nogos.setOptions(opts);
             profile.update(opts);
@@ -423,7 +425,7 @@
         // this callback is used to append anything in URL after L.Hash wrote #map=zoom/lat/lng/layer
         urlHash.additionalCb = function() {
             var url = router
-                .getUrl(routing.getWaypoints(), pois.getMarkers(), circleGo.getCircle(), null)
+                .getUrl(routing.getWaypoints(), pois.getMarkers(), circlego ? circlego.getCircle() : null, null)
                 .substr('brouter?'.length + 1);
 
             // by default brouter use | as separator. To make URL more human-readable, we remplace them with ; for users
