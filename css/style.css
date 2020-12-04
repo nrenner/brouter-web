@@ -200,6 +200,9 @@ input#trackname:focus:invalid {
 .circlego-draw-enabled {
     cursor: pointer;
 }
+.circlego-outside {
+    cursor: not-allowed;
+}
 
 #map {
     /* center error message horizontally */
