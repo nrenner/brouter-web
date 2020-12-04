@@ -59,7 +59,7 @@ BR.PoiMarkers = L.Control.extend({
         this.drawButton.state(enable ? 'deactivate-poi' : 'activate-poi');
         if (enable) {
             this.routing.draw(false);
-            this.circlego.draw(false);
+            if (this.circlego) this.circlego.draw(false);
             this.map.on('click', this.onMapClick, this);
             L.DomUtil.addClass(this.map.getContainer(), 'pois-draw-enabled');
         } else {

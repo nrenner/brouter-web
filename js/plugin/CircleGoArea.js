@@ -88,6 +88,7 @@ BR.CircleGoArea = L.Control.extend({
         if (center) {
             var polygon = this.circleToPolygon(center, this.options.radius);
             $('#nogoJSON').val(JSON.stringify(polygon));
+            $('#nogoBuffer').val(0);
             this.nogos.uploadNogos();
         } else {
             this.nogos.clear();
@@ -95,10 +96,10 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     onMapClick: function(e) {
-        this.setCircle([e.latlng.lng, e.latlng.lat]);
+        this.setCircle([e.latlng.lng, e.latlng.lat], false);
     },
 
-    setCircle: function(center) {
+    setCircle: function(center, skipNogo) {
         var self = this;
         var icon = L.VectorMarkers.icon({
             icon: 'home',
@@ -118,7 +119,7 @@ BR.CircleGoArea = L.Control.extend({
 
         this.clear();
         marker.addTo(this.circleLayer);
-        this.setNogoCircle(center);
+        if (!skipNogo) this.setNogoCircle(center);
         this.draw(false);
     },
 
@@ -164,7 +165,7 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     circleToPolygon: function(center, radius, numberOfSegments) {
-        var n = numberOfSegments ? numberOfSegments : 64;
+        var n = numberOfSegments ? numberOfSegments : 32;
 
         var inner = [];
         for (var i = 0; i < n; ++i) {
@@ -172,6 +173,9 @@ BR.CircleGoArea = L.Control.extend({
         }
         inner.push(inner[0]);
 
+        /* hack: it seems there is a bug when using a single closed ring line,
+         cf. https://github.com/nrenner/brouter-web/issues/349#issue-755514458
+         so instead we use 2 half rings to ensure we properly close the area */
         return {
             type: 'FeatureCollection',
             features: [
@@ -180,7 +184,15 @@ BR.CircleGoArea = L.Control.extend({
                     properties: {},
                     geometry: {
                         type: 'LineString',
-                        coordinates: inner
+                        coordinates: inner.slice(n / 2 - 1)
+                    }
+                },
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: inner.slice(0, n / 2 + 1)
                     }
                 }
             ]
