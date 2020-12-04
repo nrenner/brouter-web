@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Eyða öllum bannsvæðum",
     "delete-pois": "Eyða öllum merkisstöðum",
     "delete-route": "Eyða leið",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Teikna leið",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Villa við að ná í URL-slóð leiðar",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "ekkert svar frá netþjóni",
     "no-route-found": "Villa: fann ekki leið fyrir uppgefna punkta. Kannski ættirðu að prófa að færa þá nær vegum?",
     "profile-error": "Villa í notkunarsniði: ekkert eða tómt svar frá netþjóni",

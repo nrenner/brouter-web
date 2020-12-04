@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Eliminar todas las áreas prohibidas",
     "delete-pois": "Eliminar todos los Puntos de Interés",
     "delete-route": "Eliminar ruta",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Draw route",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Error al obtener la URL de ruta",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "sin respuesta del servidor",
     "no-route-found": "Error: no se puede encontrar una ruta para los puntos dados. ¿Quizás intentando acercarlos a las carreteras?",
     "profile-error": "Error de perfil: no o respuesta vacía del servidor",

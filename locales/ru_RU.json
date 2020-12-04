@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Удалить все запретные зоны",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Удалить маршрут",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Draw route",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Ошибка при получении URL маршрута",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "сервер не отвечает",
     "no-route-found": "Ошибка: не удается найти маршрут для заданных точек. Может быть, попытаться переместить их ближе к дорогам?",
     "profile-error": "Ошибка профиля: не удалось получить ответ сервера либо получен пустой ответ.",

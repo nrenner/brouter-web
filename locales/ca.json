@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Esborra totes les àrees omeses",
     "delete-pois": "Esborra tots els punts d'interès",
     "delete-route": "Esborra la ruta",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Dibuixa punts d'interès",
     "draw-poi-stop": "Para de dibuixar punts d'interès",
     "draw-route-start": "Dibuixa una ruta",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Error en obtenir l'URL de la ruta",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "el servidor no respon",
     "no-route-found": "Error: no es pot trobar una ruta pels punts donats. Podríeu provar de moure'ls més a prop de carreteres?",
     "profile-error": "Error del perfil: cap resposta o resposta buida del servidor",

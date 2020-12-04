@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Verwijder alle no-go gebieden",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Verwijder route",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Teken route",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Fout bij ophalen route URL",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "geen antwoord van server",
     "no-route-found": "Fout: Kan geen route vinden voor de gegeven punten.\nProbeer de punten dichter bij wegen te plaatsen",
     "profile-error": "Profielfout: geen of leeg antwoord van server",
