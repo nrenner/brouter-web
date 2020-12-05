@@ -1,5 +1,5 @@
 BR.Layers = L.Class.extend({
-    _loadLayers: function() {
+    _loadLayers: function () {
         this._customLayers = {};
 
         if (BR.Util.localStorageAvailable()) {
@@ -10,13 +10,13 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _loadTable: function() {
+    _loadTable: function () {
         var layersData = [];
         for (layer in this._customLayers) {
             layersData.push([
                 layer,
                 this._customLayers[layer].layer._url,
-                this._customLayers[layer].isOverlay ? 'Overlay' : 'Layer'
+                this._customLayers[layer].isOverlay ? 'Overlay' : 'Layer',
             ]);
         }
         if (this._layersTable != null) {
@@ -29,17 +29,17 @@ BR.Layers = L.Class.extend({
             searching: false,
             paging: false,
             language: {
-                emptyTable: i18next.t('sidebar.layers.table.empty')
+                emptyTable: i18next.t('sidebar.layers.table.empty'),
             },
             columns: [
                 { title: i18next.t('sidebar.layers.table.name') },
                 { title: i18next.t('sidebar.layers.table.URL') },
-                { title: i18next.t('sidebar.layers.table.type') }
-            ]
+                { title: i18next.t('sidebar.layers.table.type') },
+            ],
         });
     },
 
-    init: function(map, layersControl, baseLayers, overlays) {
+    init: function (map, layersControl, baseLayers, overlays) {
         this._layersControl = layersControl;
         this._map = map;
         this._layers = {};
@@ -54,7 +54,7 @@ BR.Layers = L.Class.extend({
         this._loadTable();
 
         var table = this._layersTable;
-        $('#custom_layers_table tbody').on('click', 'tr', function() {
+        $('#custom_layers_table tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
@@ -63,40 +63,37 @@ BR.Layers = L.Class.extend({
             }
         });
 
-        L.DomUtil.get('custom_layers_button').onclick = function() {
+        L.DomUtil.get('custom_layers_button').onclick = function () {
             $('#custom_layers').modal();
         };
     },
 
-    _remove: function(evt) {
+    _remove: function (evt) {
         var row = this._layersTable.row('.selected').data();
         if (row != null) {
             var name = row[0];
             this._layersControl.removeLayer(this._customLayers[name].layer);
             this._map.removeLayer(this._customLayers[name].layer);
             delete this._customLayers[name];
-            this._layersTable
-                .row('.selected')
-                .remove()
-                .draw(false);
+            this._layersTable.row('.selected').remove().draw(false);
             this._sync();
         }
     },
 
-    _addFromInput: function(isOverlay) {
+    _addFromInput: function (isOverlay) {
         var layer_name = L.DomUtil.get('layer_name').value;
         var layer_url = L.DomUtil.get('layer_url').value;
         if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layer_name, layer_url, isOverlay);
     },
 
-    _addBaseLayer: function(evt) {
+    _addBaseLayer: function (evt) {
         this._addFromInput(false);
     },
-    _addOverlay: function(evt) {
+    _addOverlay: function (evt) {
         this._addFromInput(true);
     },
 
-    _addLayer: function(layerName, layerUrl, isOverlay) {
+    _addLayer: function (layerName, layerUrl, isOverlay) {
         if (layerName in this._layers) return;
 
         if (layerName in this._customLayers) return;
@@ -106,7 +103,7 @@ BR.Layers = L.Class.extend({
 
             this._customLayers[layerName] = {
                 layer: layer,
-                isOverlay: isOverlay
+                isOverlay: isOverlay,
             };
 
             if (isOverlay) {
@@ -123,15 +120,15 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _sync: function() {
+    _sync: function () {
         if (BR.Util.localStorageAvailable()) {
             localStorage.setItem(
                 'map/customLayers',
-                JSON.stringify(this._customLayers, function(k, v) {
+                JSON.stringify(this._customLayers, function (k, v) {
                     // dont write Leaflet.Layer in localStorage; simply keep the URL
                     return v._url || v;
                 })
             );
         }
-    }
+    },
 });

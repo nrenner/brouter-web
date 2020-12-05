@@ -17,7 +17,7 @@ BR.TrackEdges = L.Class.extend({
     /**
      * @param {Array} segments
      */
-    initialize: function(segments) {
+    initialize: function (segments) {
         this.edges = this.getTrackEdges(segments);
     },
 
@@ -30,7 +30,7 @@ BR.TrackEdges = L.Class.extend({
      *
      * @return {number[]}
      */
-    getTrackEdges: function(segments) {
+    getTrackEdges: function (segments) {
         var messages,
             segLatLngs,
             length,
@@ -70,10 +70,10 @@ BR.TrackEdges = L.Class.extend({
         return edges;
     },
 
-    getMessageLatLng: function(message) {
+    getMessageLatLng: function (message) {
         var lon = message[0] / 1000000,
             lat = message[1] / 1000000;
 
         return L.latLng(lat, lon);
-    }
+    },
 });

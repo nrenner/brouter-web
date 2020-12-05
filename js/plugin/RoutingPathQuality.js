@@ -2,11 +2,11 @@ BR.RoutingPathQuality = L.Control.extend({
     options: {
         shortcut: {
             toggle: 67, // char code for 'c'
-            muteKeyCode: 77 // char code for 'm'
-        }
+            muteKeyCode: 77, // char code for 'm'
+        },
     },
 
-    initialize: function(map, layersControl, options) {
+    initialize: function (map, layersControl, options) {
         L.setOptions(this, options);
 
         // hotline uses canvas and cannot be moved in front of the svg, so we create another pane
@@ -32,20 +32,20 @@ BR.RoutingPathQuality = L.Control.extend({
                             0.25: '#00ffff', // cyan
                             0.5: '#00ff00', // green
                             0.75: '#ffff00', // yellow
-                            1.0: '#ff0000' // red
+                            1.0: '#ff0000', // red
                         },
                         outlineColor: 'dimgray',
-                        renderer: renderer
+                        renderer: renderer,
                     },
-                    valueFunction: function(latLng, prevLatLng) {
+                    valueFunction: function (latLng, prevLatLng) {
                         var deltaAltitude = latLng.alt - prevLatLng.alt, // in m
                             distance = prevLatLng.distanceTo(latLng); // in m
                         if (distance === 0) {
                             return 0;
                         }
                         return (Math.atan(deltaAltitude / distance) * 180) / Math.PI;
-                    }
-                })
+                    },
+                }),
             },
             altitude: {
                 title: i18next.t('map.route-quality-shortcut', { action: '$t(map.route-quality-altitude)', key: 'C' }),
@@ -53,12 +53,12 @@ BR.RoutingPathQuality = L.Control.extend({
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
                         outlineColor: 'dimgray',
-                        renderer: renderer
+                        renderer: renderer,
                     },
-                    valueFunction: function(latLng) {
+                    valueFunction: function (latLng) {
                         return latLng.alt;
-                    }
-                })
+                    },
+                }),
             },
             cost: {
                 title: i18next.t('map.route-quality-shortcut', { action: '$t(map.route-quality-cost)', key: 'C' }),
@@ -66,9 +66,9 @@ BR.RoutingPathQuality = L.Control.extend({
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
                         outlineColor: 'dimgray',
-                        renderer: renderer
+                        renderer: renderer,
                     },
-                    valueFunction: function(latLng) {
+                    valueFunction: function (latLng) {
                         var feature = latLng.feature;
                         var cost = feature.cost.perKm;
                         var distance = feature.distance / 1000; // in km
@@ -78,9 +78,9 @@ BR.RoutingPathQuality = L.Control.extend({
                                 distance;
                         }
                         return cost;
-                    }
-                })
-            }
+                    },
+                }),
+            },
         };
         this._initialProvider = this.options.initialProvider || 'incline';
         this.selectedProvider = this._initialProvider;
@@ -89,12 +89,12 @@ BR.RoutingPathQuality = L.Control.extend({
         this._muted = false;
     },
 
-    onAdd: function(map) {
+    onAdd: function (map) {
         this._map = map;
 
         map.on(
             'overlayadd',
-            function(evt) {
+            function (evt) {
                 if (evt.layer === this._routingSegments) {
                     this._activate(this.routingPathButton);
                 }
@@ -103,7 +103,7 @@ BR.RoutingPathQuality = L.Control.extend({
         );
         map.on(
             'overlayremove',
-            function(evt) {
+            function (evt) {
                 if (evt.layer === this._routingSegments) {
                     this._deactivate(this.routingPathButton);
                 }
@@ -123,8 +123,8 @@ BR.RoutingPathQuality = L.Control.extend({
                 stateName: keys[i],
                 icon: provider.icon,
                 title: provider.title,
-                onClick: L.bind(function(state) {
-                    return L.bind(function(btn) {
+                onClick: L.bind(function (state) {
+                    return L.bind(function (btn) {
                         if (this._active) {
                             btn.state(state);
                             this.setProvider(state);
@@ -138,7 +138,7 @@ BR.RoutingPathQuality = L.Control.extend({
                             this._activate(btn);
                         }
                     }, this);
-                }, this)(nextState)
+                }, this)(nextState),
             });
         }
 
@@ -148,42 +148,42 @@ BR.RoutingPathQuality = L.Control.extend({
         }
 
         this.routingPathButton = new L.easyButton({
-            states: states
+            states: states,
         }).addTo(map);
         return new L.DomUtil.create('div');
     },
 
-    _activate: function(btn) {
+    _activate: function (btn) {
         this._active = true;
         this._getIcon(btn).classList.add('active');
         this._routingSegments.addTo(this._map);
     },
 
-    _deactivate: function(btn) {
+    _deactivate: function (btn) {
         this._active = false;
         this._getIcon(btn).classList.remove('active');
         this._map.removeLayer(this._routingSegments);
     },
 
-    _getIcon: function(btn) {
+    _getIcon: function (btn) {
         return btn.button.firstChild.firstChild;
     },
 
-    update: function(track, layer) {
+    update: function (track, layer) {
         var segments = [];
-        layer.eachLayer(function(layer) {
+        layer.eachLayer(function (layer) {
             segments.push(layer);
         });
         this.segments = segments;
         this._update(this.segments);
     },
 
-    setProvider: function(provider) {
+    setProvider: function (provider) {
         this.selectedProvider = provider;
         this._update(this.segments);
     },
 
-    _update: function(segments) {
+    _update: function (segments) {
         this._routingSegments.clearLayers();
         var layers = this.providers[this.selectedProvider].provider.computeLayers(segments);
         if (layers) {
@@ -193,7 +193,7 @@ BR.RoutingPathQuality = L.Control.extend({
         }
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
@@ -206,21 +206,21 @@ BR.RoutingPathQuality = L.Control.extend({
         }
     },
 
-    _keyupListener: function(e) {
+    _keyupListener: function (e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && this._muted && e.keyCode === this.options.shortcut.muteKeyCode) {
             this._muted = false;
             this._activate(this.routingPathButton);
         }
-    }
+    },
 });
 
 var HotLineQualityProvider = L.Class.extend({
-    initialize: function(options) {
+    initialize: function (options) {
         this.hotlineOptions = options.hotlineOptions;
         this.valueFunction = options.valueFunction;
     },
 
-    computeLayers: function(segments) {
+    computeLayers: function (segments) {
         var layers = [];
         if (segments) {
             var segmentLatLngs = [];
@@ -250,7 +250,7 @@ var HotLineQualityProvider = L.Class.extend({
         return layers;
     },
 
-    _computeLatLngVals: function(segment) {
+    _computeLatLngVals: function (segment) {
         var latLngVals = [],
             segmentLatLngs = segment.getLatLngs(),
             segmentLength = segmentLatLngs.length;
@@ -268,11 +268,11 @@ var HotLineQualityProvider = L.Class.extend({
         return latLngVals;
     },
 
-    _convertToArray: function(latLng, val) {
+    _convertToArray: function (latLng, val) {
         return [latLng.lat, latLng.lng, val];
     },
 
-    _calcMinMaxValues: function(lines) {
+    _calcMinMaxValues: function (lines) {
         var min = lines[0][2],
             max = min;
         for (var i = 1; lines && i < lines.length; i++) {
@@ -285,7 +285,7 @@ var HotLineQualityProvider = L.Class.extend({
         }
         return {
             min: min,
-            max: max
+            max: max,
         };
-    }
+    },
 });

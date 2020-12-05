@@ -5,10 +5,10 @@ BR.OpacitySlider = L.Class.extend({
         orientation: 'vertical',
         defaultValue: BR.conf.defaultOpacity,
         title: '',
-        callback: function(opacity) {}
+        callback: function (opacity) {},
     },
 
-    initialize: function(options) {
+    initialize: function (options) {
         L.setOptions(this, options);
 
         var input = (this.input = $('<input id="slider-' + this.options.id + '" type="text"/>')),
@@ -30,12 +30,12 @@ BR.OpacitySlider = L.Class.extend({
                 orientation: this.options.orientation,
                 reversed: this.options.reversed,
                 selection: this.options.reversed ? 'before' : 'after', // inverted, serves as track style, see css
-                tooltip: 'hide'
+                tooltip: 'hide',
             })
-            .on('slide slideStop', { self: this }, function(evt) {
+            .on('slide slideStop', { self: this }, function (evt) {
                 evt.data.self.options.callback(evt.value / 100);
             })
-            .on('slideStop', { self: this }, function(evt) {
+            .on('slideStop', { self: this }, function (evt) {
                 if (BR.Util.localStorageAvailable()) {
                     localStorage['opacitySliderValue' + evt.data.self.options.id] = evt.value;
                 }
@@ -51,19 +51,19 @@ BR.OpacitySlider = L.Class.extend({
         }
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(0);
         }
     },
 
-    _keyupListener: function(e) {
+    _keyupListener: function (e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(this.input.val() / 100);
         }
     },
 
-    getElement: function() {
+    getElement: function () {
         return this.input.slider('getElement');
-    }
+    },
 });

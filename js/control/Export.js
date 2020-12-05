@@ -3,11 +3,11 @@ BR.Export = L.Class.extend({
 
     options: {
         shortcut: {
-            export: 88 // char code for 'x'
-        }
+            export: 88, // char code for 'x'
+        },
     },
 
-    initialize: function(router, pois) {
+    initialize: function (router, pois) {
         this.router = router;
         this.pois = pois;
         this.exportButton = $('#exportButton');
@@ -31,7 +31,7 @@ BR.Export = L.Class.extend({
         this.update([]);
     },
 
-    update: function(latLngs) {
+    update: function (latLngs) {
         this.latLngs = latLngs;
 
         if (latLngs.length < 2) {
@@ -41,7 +41,7 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _export: function(e) {
+    _export: function (e) {
         var exportForm = document.forms['export'];
         var format = exportForm['format'].value || $('#export-format input:radio:checked').val();
         var name = encodeURIComponent(exportForm['trackname'].value);
@@ -58,7 +58,7 @@ BR.Export = L.Class.extend({
         link.dispatchEvent(evt);
     },
 
-    _validationMessage: function() {
+    _validationMessage: function () {
         var trackname = this.trackname;
         var replaceRegex = new RegExp('[^' + this.tracknameAllowedChars + ']', 'g');
 
@@ -71,14 +71,14 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _generateTrackname: function() {
+    _generateTrackname: function () {
         var trackname = this.trackname;
         this._getCityAtPosition(
             this.latLngs[0],
-            L.bind(function(from) {
+            L.bind(function (from) {
                 this._getCityAtPosition(
                     this.latLngs[this.latLngs.length - 1],
-                    L.bind(function(to) {
+                    L.bind(function (to) {
                         var distance = document.getElementById('distance').innerHTML;
                         if (this.tracknameAllowedChars) {
                             distance = distance.replace(',', '.'); // temp. fix (#202)
@@ -88,13 +88,13 @@ BR.Export = L.Class.extend({
                         } else if (from === to) {
                             trackname.value = i18next.t('export.route-loop', {
                                 from: from,
-                                distance: distance
+                                distance: distance,
                             });
                         } else {
                             trackname.value = i18next.t('export.route-from-to', {
                                 from: from,
                                 to: to,
-                                distance: distance
+                                distance: distance,
                             });
                         }
 
@@ -109,14 +109,14 @@ BR.Export = L.Class.extend({
         );
     },
 
-    _getCityAtPosition: function(lonlat, cb) {
+    _getCityAtPosition: function (lonlat, cb) {
         var url = L.Util.template(
             'https://nominatim.openstreetmap.org/reverse?lon={lng}&lat={lat}&format=json',
             lonlat
         );
         BR.Util.get(
             url,
-            L.bind(function(err, response) {
+            L.bind(function (err, response) {
                 try {
                     var addr = JSON.parse(response).address;
                     cb(addr.village || addr.town || addr.hamlet || addr.city_district || addr.city);
@@ -128,7 +128,7 @@ BR.Export = L.Class.extend({
         );
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (
             BR.Util.keyboardShortcutsAllowed(e) &&
             e.keyCode === this.options.shortcut.export &&
@@ -137,9 +137,9 @@ BR.Export = L.Class.extend({
             this._generateTrackname();
             $('#export').modal('show');
         }
-    }
+    },
 });
 
-BR.export = function() {
+BR.export = function () {
     return new BR.Export();
 };

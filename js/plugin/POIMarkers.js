@@ -6,16 +6,16 @@ BR.PoiMarkers = L.Control.extend({
         shortcut: {
             draw: {
                 enable: 80, // char code for 'p'
-                disable: 27 // char code for 'ESC'
-            }
-        }
+                disable: 27, // char code for 'ESC'
+            },
+        },
     },
-    initialize: function(routing) {
+    initialize: function (routing) {
         this.routing = routing;
         this.circlego = null;
     },
 
-    onAdd: function(map) {
+    onAdd: function (map) {
         var self = this;
 
         this.map = map;
@@ -26,26 +26,26 @@ BR.PoiMarkers = L.Control.extend({
                 {
                     stateName: 'activate-poi',
                     icon: 'fa-hand-o-right',
-                    onClick: function() {
+                    onClick: function () {
                         self.draw(true);
                     },
-                    title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-poi-start)', key: 'P' })
+                    title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-poi-start)', key: 'P' }),
                 },
                 {
                     stateName: 'deactivate-poi',
                     icon: 'fa-hand-o-right active',
-                    onClick: function() {
+                    onClick: function () {
                         self.draw(false);
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
                         action: '$t(map.draw-poi-stop)',
-                        key: '$t(keyboard.escape)'
-                    })
-                }
-            ]
+                        key: '$t(keyboard.escape)',
+                    }),
+                },
+            ],
         }).addTo(map);
 
-        map.on('routing:draw-start', function() {
+        map.on('routing:draw-start', function () {
             self.draw(false);
         });
 
@@ -55,7 +55,7 @@ BR.PoiMarkers = L.Control.extend({
         return container;
     },
 
-    draw: function(enable) {
+    draw: function (enable) {
         this.drawButton.state(enable ? 'deactivate-poi' : 'activate-poi');
         if (enable) {
             this.routing.draw(false);
@@ -68,7 +68,7 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
@@ -79,22 +79,22 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    onMapClick: function(e) {
+    onMapClick: function (e) {
         var self = this;
         bootbox.prompt({
             title: i18next.t('map.enter-poi-name'),
-            callback: function(result) {
+            callback: function (result) {
                 if (result !== null) {
                     self.addMarker(e.latlng, result);
                 }
-            }
+            },
         });
     },
 
-    addMarker: function(latlng, name) {
+    addMarker: function (latlng, name) {
         var icon = L.VectorMarkers.icon({
             icon: 'star',
-            markerColor: BR.conf.markerColors.poi
+            markerColor: BR.conf.markerColors.poi,
         });
 
         var content = BR.Util.sanitizeHTMLContent(name) + '<br>';
@@ -103,11 +103,11 @@ BR.PoiMarkers = L.Control.extend({
         var self = this;
         var marker = L.marker(latlng, { icon: icon, draggable: true, name: name })
             .bindPopup(content)
-            .on('dragend', function() {
+            .on('dragend', function () {
                 self.fire('update');
             })
-            .on('popupopen', function() {
-                $('#remove-poi-marker').on('click', function(e) {
+            .on('popupopen', function () {
+                $('#remove-poi-marker').on('click', function (e) {
                     self.markersLayer.removeLayer(marker);
                     e.preventDefault();
                     self.fire('update');
@@ -116,11 +116,11 @@ BR.PoiMarkers = L.Control.extend({
             .addTo(this.markersLayer);
     },
 
-    clear: function() {
+    clear: function () {
         this.markersLayer.clearLayers();
     },
 
-    setMarkers: function(latLngNames) {
+    setMarkers: function (latLngNames) {
         this.clear();
 
         if (!latLngNames) return;
@@ -131,14 +131,14 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    getMarkers: function() {
-        return this.markersLayer.getLayers().map(function(it) {
+    getMarkers: function () {
+        return this.markersLayer.getLayers().map(function (it) {
             return {
                 latlng: it.getLatLng(),
-                name: it.options.name
+                name: it.options.name,
             };
         });
-    }
+    },
 });
 
 BR.PoiMarkers.include(L.Evented.prototype);

@@ -1,5 +1,5 @@
-(function() {
-    var touchScreen = (function() {
+(function () {
+    var touchScreen = (function () {
             var result = null;
 
             if ('maxTouchPoints' in navigator) {
@@ -21,6 +21,6 @@
     BR.Browser = {
         touchScreen: touchScreen,
         touchScreenDetectable: touchScreenDetectable,
-        touch: touch
+        touch: touch,
     };
 })();

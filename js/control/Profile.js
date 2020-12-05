@@ -2,15 +2,15 @@ BR.Profile = L.Evented.extend({
     cache: {},
     saveWarningShown: false,
 
-    initialize: function() {
+    initialize: function () {
         var textArea = L.DomUtil.get('profile_upload');
         this.editor = CodeMirror.fromTextArea(textArea, {
-            lineNumbers: true
+            lineNumbers: true,
         });
 
         $('#profileEditorTabs a[data-toggle="tab"]').on(
             'shown.bs.tab',
-            L.bind(function(e) {
+            L.bind(function (e) {
                 this._activateSecondaryTab();
             }, this)
         );
@@ -22,11 +22,11 @@ BR.Profile = L.Evented.extend({
         this.pinned = L.DomUtil.get('profile-pinned');
 
         this.message = new BR.Message('profile_message', {
-            alert: true
+            alert: true,
         });
     },
 
-    clear: function(evt) {
+    clear: function (evt) {
         var button = evt.target || evt.srcElement;
 
         evt.preventDefault();
@@ -38,7 +38,7 @@ BR.Profile = L.Evented.extend({
         button.blur();
     },
 
-    update: function(options) {
+    update: function (options) {
         var profileName = options.profile,
             profileUrl,
             empty = !this.editor.getValue(),
@@ -53,7 +53,7 @@ BR.Profile = L.Evented.extend({
                     profileUrl = BR.conf.profilesUrl + profileName + '.brf';
                     BR.Util.get(
                         profileUrl,
-                        L.bind(function(err, profileText) {
+                        L.bind(function (err, profileText) {
                             if (err) {
                                 console.warn('Error getting profile from "' + profileUrl + '": ' + err);
                                 return;
@@ -82,15 +82,15 @@ BR.Profile = L.Evented.extend({
         }
     },
 
-    show: function() {
+    show: function () {
         this.editor.refresh();
     },
 
-    onResize: function() {
+    onResize: function () {
         this.editor.refresh();
     },
 
-    _upload: function(evt) {
+    _upload: function (evt) {
         var button = evt.target || evt.srcElement,
             profile = this.editor.getValue();
 
@@ -99,7 +99,7 @@ BR.Profile = L.Evented.extend({
 
         this.fire('update', {
             profileText: profile,
-            callback: L.bind(function(err, profileId, profileText) {
+            callback: L.bind(function (err, profileId, profileText) {
                 $(button).blur();
                 if (!err) {
                     this.profileName = profileId;
@@ -110,12 +110,12 @@ BR.Profile = L.Evented.extend({
                         this.saveWarningShown = true;
                     }
                 }
-            }, this)
+            }, this),
         });
     },
 
-    _buildCustomProfile: function(profileText) {
-        document.querySelectorAll('#profile_params input, #profile_params select').forEach(function(input) {
+    _buildCustomProfile: function (profileText) {
+        document.querySelectorAll('#profile_params input, #profile_params select').forEach(function (input) {
             var name = input.name;
             var value;
             if (input.type == 'checkbox') {
@@ -129,28 +129,28 @@ BR.Profile = L.Evented.extend({
                     name +
                     '\\s*=?\\s*)([\\w.]*)(\\s*#\\s*%(.*)%\\s*(\\|\\s*(.*)\\s*\\|\\s*(.*)\\s*)?[\\r\\n])'
             );
-            profileText = profileText.replace(re, function(match, p1, p2, p3) {
+            profileText = profileText.replace(re, function (match, p1, p2, p3) {
                 return p1 + value + p3;
             });
         });
         return profileText;
     },
 
-    _save: function(evt) {
+    _save: function (evt) {
         var profileText = this._buildCustomProfile(this.editor.getValue());
         var that = this;
         this.fire('update', {
             profileText: profileText,
-            callback: function(err, profileId, profileText) {
+            callback: function (err, profileId, profileText) {
                 if (!err) {
                     that.profileName = profileId;
                     that.cache[profileId] = profileText;
                 }
-            }
+            },
         });
     },
 
-    _setValue: function(profileText) {
+    _setValue: function (profileText) {
         profileText = profileText || '';
 
         var clean = this.editor.isClean();
@@ -169,12 +169,12 @@ BR.Profile = L.Evented.extend({
         }
     },
 
-    _buildParamsForm: function(profileText) {
+    _buildParamsForm: function (profileText) {
         if (!profileText) return;
 
         // Otherwise, create user friendly form
         var params = {};
-        var global = profileText.split('---context:').filter(function(e) {
+        var global = profileText.split('---context:').filter(function (e) {
             return e.startsWith('global');
         });
         if (global && global.length > 0) {
@@ -183,7 +183,7 @@ BR.Profile = L.Evented.extend({
 
             // Comment is mandatory
             var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
-            global.forEach(function(item) {
+            global.forEach(function (item) {
                 var match = item.match(assignRegex);
                 var value;
                 if (match) {
@@ -198,7 +198,7 @@ BR.Profile = L.Evented.extend({
                         paramType
                             .slice(1, -1)
                             .split(',')
-                            .forEach(function(option) {
+                            .forEach(function (option) {
                                 var splitOption = option.split('=');
                                 var value = (splitOption[0] || '').replace(/^\s+|\s+$/g, '');
                                 var description = (splitOption[1] || '').replace(/^\s+|\s+$/g, '');
@@ -230,7 +230,7 @@ BR.Profile = L.Evented.extend({
                         description: description,
                         type: paramType,
                         value: value,
-                        possible_values: paramValues
+                        possible_values: paramValues,
                     };
                 }
             });
@@ -242,7 +242,7 @@ BR.Profile = L.Evented.extend({
             paramsSection.append(i18next.t('sidebar.profile.no_easy_configuration_warning'));
         }
 
-        Object.keys(params).forEach(function(param) {
+        Object.keys(params).forEach(function (param) {
             var div = document.createElement('div');
             var label = document.createElement('label');
 
@@ -257,7 +257,7 @@ BR.Profile = L.Evented.extend({
                 label.htmlFor = select.id = 'customize-profile-' + paramName;
 
                 var paramValues = params[param].possible_values;
-                Object.keys(paramValues).forEach(function(paramValue) {
+                Object.keys(paramValues).forEach(function (paramValue) {
                     var option = document.createElement('option');
                     option.value = paramValue;
                     if (paramValue == params[param].value) {
@@ -308,11 +308,11 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _isParamsFormActive: function() {
+    _isParamsFormActive: function () {
         return L.DomUtil.get('profile_params_container').classList.contains('active');
     },
 
-    _activateSecondaryTab: function() {
+    _activateSecondaryTab: function () {
         var profileText = this.editor.getValue();
 
         if (this._isParamsFormActive()) {
@@ -320,5 +320,5 @@ BR.Profile = L.Evented.extend({
         } else {
             this._setValue(this._buildCustomProfile(profileText));
         }
-    }
+    },
 });

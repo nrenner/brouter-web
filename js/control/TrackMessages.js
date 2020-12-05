@@ -5,10 +5,10 @@ BR.TrackMessages = L.Class.extend({
             opacity: 0.8,
             weight: 8,
             // show above quality coding (pane defined in RoutingPathQuality.js)
-            pane: 'routingQualityPane'
+            pane: 'routingQualityPane',
         },
         // center hovered edge (way segment) on map
-        syncMap: true
+        syncMap: true,
     },
 
     // true when tab is shown, false when hidden
@@ -23,7 +23,7 @@ BR.TrackMessages = L.Class.extend({
         ElevCost: { title: 'elev$', className: 'dt-body-right' },
         TurnCost: { title: 'turn$', className: 'dt-body-right' },
         NodeCost: { title: 'node$', className: 'dt-body-right' },
-        InitialCost: { title: 'initial$', className: 'dt-body-right' }
+        InitialCost: { title: 'initial$', className: 'dt-body-right' },
     },
 
     /**
@@ -36,7 +36,7 @@ BR.TrackMessages = L.Class.extend({
      */
     trackPolyline: null,
 
-    initialize: function(map, options) {
+    initialize: function (map, options) {
         L.setOptions(this, options);
         this._map = map;
 
@@ -48,7 +48,7 @@ BR.TrackMessages = L.Class.extend({
         L.DomEvent.on(syncButton, 'click', this._toggleSyncMap, this);
     },
 
-    update: function(polyline, segments) {
+    update: function (polyline, segments) {
         var i,
             messages,
             columns,
@@ -89,7 +89,7 @@ BR.TrackMessages = L.Class.extend({
             // (^= minimum height with flexbox?)
             scrollY: 50,
             scrollX: true,
-            order: []
+            order: [],
         });
 
         // highlight track segment (graph edge) on row hover
@@ -98,23 +98,21 @@ BR.TrackMessages = L.Class.extend({
         $('#datatable tbody').on('click', 'tr', L.bind(this._toggleSelected, this));
     },
 
-    show: function() {
+    show: function () {
         this.active = true;
         this.options.requestUpdate(this);
     },
 
-    hide: function() {
+    hide: function () {
         this.active = false;
     },
 
-    _destroyTable: function() {
+    _destroyTable: function () {
         var ele;
 
         if ($.fn.DataTable.isDataTable('#datatable')) {
             // destroy option too slow on update, really remove elements with destroy method
-            $('#datatable')
-                .DataTable()
-                .destroy(true);
+            $('#datatable').DataTable().destroy(true);
 
             // recreate original table element, destroy removes all
             ele = document.createElement('table');
@@ -126,7 +124,7 @@ BR.TrackMessages = L.Class.extend({
         return ele || document.getElementById('datatable');
     },
 
-    _getColumns: function(headings, data) {
+    _getColumns: function (headings, data) {
         var columns = [],
             defaultOptions,
             options,
@@ -135,7 +133,7 @@ BR.TrackMessages = L.Class.extend({
         for (k = 0; k < headings.length; k++) {
             defaultOptions = {
                 title: headings[k],
-                visible: !emptyColumns[k]
+                visible: !emptyColumns[k],
             };
             options = L.extend(defaultOptions, this.columnOptions[headings[k]]);
             columns.push(options);
@@ -143,7 +141,7 @@ BR.TrackMessages = L.Class.extend({
         return columns;
     },
 
-    _getEmptyColumns: function(data) {
+    _getEmptyColumns: function (data) {
         var empty = new Array(data[0].length),
             i;
 
@@ -151,8 +149,8 @@ BR.TrackMessages = L.Class.extend({
             empty[i] = true;
         }
 
-        data.forEach(function(row) {
-            row.forEach(function(val, i) {
+        data.forEach(function (row) {
+            row.forEach(function (val, i) {
                 empty[i] = empty[i] && !val;
             });
         });
@@ -160,7 +158,7 @@ BR.TrackMessages = L.Class.extend({
         return empty;
     },
 
-    _getRowEdge: function(tr) {
+    _getRowEdge: function (tr) {
         var row = this._table.row($(tr)),
             trackLatLngs = this.trackPolyline.getLatLngs(),
             startIndex = row.index() > 0 ? this.trackEdges.edges[row.index() - 1] : 0,
@@ -170,7 +168,7 @@ BR.TrackMessages = L.Class.extend({
         return L.polyline(edgeLatLngs, this.options.edgeStyle);
     },
 
-    _handleHover: function(evt) {
+    _handleHover: function (evt) {
         var tr = evt.currentTarget;
 
         this._hoveredEdge = this._getRowEdge(tr).addTo(this._map);
@@ -179,12 +177,12 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _handleHoverOut: function(evt) {
+    _handleHoverOut: function (evt) {
         this._map.removeLayer(this._hoveredEdge);
         this._hoveredEdge = null;
     },
 
-    _toggleSelected: function(evt) {
+    _toggleSelected: function (evt) {
         var tr = evt.currentTarget;
 
         if (tr.classList.toggle('selected')) {
@@ -205,10 +203,10 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _toggleSyncMap: function(evt) {
+    _toggleSyncMap: function (evt) {
         var button = evt.currentTarget;
 
         button.classList.toggle('active');
         this.options.syncMap = !this.options.syncMap;
-    }
+    },
 });

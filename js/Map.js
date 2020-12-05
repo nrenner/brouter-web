@@ -1,11 +1,11 @@
 BR.Map = {
-    initMap: function() {
+    initMap: function () {
         var map, layersControl;
 
         L.setOptions(this, {
             shortcut: {
-                locate: 76 // char code for 'l'
-            }
+                locate: 76, // char code for 'l'
+            },
         });
 
         BR.keys = BR.keys || {};
@@ -18,14 +18,14 @@ BR.Map = {
             minZoom: 0,
             maxZoom: maxZoom,
             // fix for route drag on mobile (#285), until next Leaflet version released (> 1.6.0)
-            tap: false
+            tap: false,
         });
 
         if (BR.Util.getResponsiveBreakpoint() >= '3md') {
             L.control
                 .zoom({
                     zoomInTitle: i18next.t('keyboard.generic-shortcut', { action: '$t(map.zoomInTitle)', key: '+' }),
-                    zoomOutTitle: i18next.t('keyboard.generic-shortcut', { action: '$t(map.zoomOutTitle)', key: '-' })
+                    zoomOutTitle: i18next.t('keyboard.generic-shortcut', { action: '$t(map.zoomOutTitle)', key: '-' }),
                 })
                 .addTo(map);
         }
@@ -54,7 +54,7 @@ BR.Map = {
                 '</a>'
         );
 
-        $('#credits').on('show.bs.modal', function(event) {
+        $('#credits').on('show.bs.modal', function (event) {
             BR.Map._renderLayerCredits(layersControl._layers);
         });
 
@@ -77,7 +77,7 @@ BR.Map = {
                     minZoom: 1,
                     maxZoom: 19,
                     attribution:
-                        '&copy; <a href="https://www.digitalglobe.com/platforms/mapsapi">DigitalGlobe</a> (<a href="https://bit.ly/mapsapiview">Terms of Use</a>)'
+                        '&copy; <a href="https://www.digitalglobe.com/platforms/mapsapi">DigitalGlobe</a> (<a href="https://bit.ly/mapsapiview">Terms of Use</a>)',
                 }
             );
             baseLayers[i18next.t('map.layer.digitalglobe')] = recent;
@@ -105,16 +105,16 @@ BR.Map = {
             var locationControl = L.control
                 .locate({
                     strings: {
-                        title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.locate-me)', key: 'L' })
+                        title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.locate-me)', key: 'L' }),
                     },
                     icon: 'fa fa-location-arrow',
-                    iconLoading: 'fa fa-spinner fa-pulse'
+                    iconLoading: 'fa fa-spinner fa-pulse',
                 })
                 .addTo(map);
             L.DomEvent.addListener(
                 document,
                 'keydown',
-                function(e) {
+                function (e) {
                     if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.locate) {
                         locationControl.start();
                     }
@@ -133,11 +133,11 @@ BR.Map = {
 
         return {
             map: map,
-            layersControl: layersControl
+            layersControl: layersControl,
         };
     },
 
-    _renderLayerCredits: function(layers) {
+    _renderLayerCredits: function (layers) {
         var dl = document.getElementById('credits-maps');
         var i, obj, dt, dd, attribution;
 
@@ -157,5 +157,5 @@ BR.Map = {
                 dl.appendChild(dd);
             }
         }
-    }
+    },
 };
