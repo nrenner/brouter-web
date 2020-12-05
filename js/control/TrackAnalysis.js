@@ -20,8 +20,8 @@ BR.TrackAnalysis = L.Class.extend({
             opacity: 0.8,
             weight: 8,
             // show above quality coding (pane defined in RoutingPathQuality.js)
-            pane: 'routingQualityPane'
-        }
+            pane: 'routingQualityPane',
+        },
     },
 
     /**
@@ -35,7 +35,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Map} map
      * @param {object} options
      */
-    initialize: function(map, options) {
+    initialize: function (map, options) {
         this.map = map;
         L.setOptions(this, options);
     },
@@ -60,7 +60,7 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Called by BR.Sidebar when tab is activated
      */
-    show: function() {
+    show: function () {
         this.active = true;
         this.options.requestUpdate(this);
     },
@@ -68,7 +68,7 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Called by BR.Sidebar when tab is deactivated
      */
-    hide: function() {
+    hide: function () {
         this.active = false;
     },
 
@@ -84,7 +84,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Polyline} polyline
      * @param {Array} segments
      */
-    update: function(polyline, segments) {
+    update: function (polyline, segments) {
         if (!this.active) {
             return;
         }
@@ -121,11 +121,11 @@ BR.TrackAnalysis = L.Class.extend({
      * @param segments
      * @returns {Object}
      */
-    calcStats: function(polyline, segments) {
+    calcStats: function (polyline, segments) {
         var analysis = {
             highway: {},
             surface: {},
-            smoothness: {}
+            smoothness: {},
         };
 
         this.totalRouteDistance = 0.0;
@@ -158,7 +158,7 @@ BR.TrackAnalysis = L.Class.extend({
                                     ),
                                     name: wayTagParts[1],
                                     subtype: trackType,
-                                    distance: 0.0
+                                    distance: 0.0,
                                 };
                             }
                             analysis.highway[highwayType].distance += parseFloat(
@@ -175,7 +175,7 @@ BR.TrackAnalysis = L.Class.extend({
                                     ),
                                     name: wayTagParts[1],
                                     subtype: '',
-                                    distance: 0.0
+                                    distance: 0.0,
                                 };
                             }
                             analysis[wayTagParts[0]][wayTagParts[1]].distance += parseFloat(
@@ -198,7 +198,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {Object}
      */
-    sortAnalysisData: function(analysis) {
+    sortAnalysisData: function (analysis) {
         var analysisSortable = {};
         var result = {};
 
@@ -217,7 +217,7 @@ BR.TrackAnalysis = L.Class.extend({
                 analysisSortable[type].push(analysis[type][name]);
             }
 
-            analysisSortable[type].sort(function(a, b) {
+            analysisSortable[type].sort(function (a, b) {
                 return b.distance - a.distance;
             });
 
@@ -236,7 +236,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {string[]} wayTags
      * @returns {string}
      */
-    getTrackType: function(wayTags) {
+    getTrackType: function (wayTags) {
         for (var i = 0; i < wayTags.length; i++) {
             var wayTagParts = wayTags[i].split('=');
             if (wayTagParts[0] === 'tracktype') {
@@ -250,7 +250,7 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * @param {Object} analysis
      */
-    render: function(analysis) {
+    render: function (analysis) {
         var $content = $('#track_statistics');
 
         $content.html('');
@@ -275,7 +275,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Array} data
      * @returns {jQuery}
      */
-    renderTable: function(type, data) {
+    renderTable: function (type, data) {
         var index;
         var $table = $(
             '<table data-type="' + type + '" class="mini cell-border stripe dataTable track-analysis-table"></table>'
@@ -366,11 +366,11 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {number} meters
      * @returns {string}
      */
-    formatDistance: function(meters) {
+    formatDistance: function (meters) {
         return (meters / 1000).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
 
-    handleHover: function(event) {
+    handleHover: function (event) {
         var $tableRow = $(event.currentTarget);
         var $table = $tableRow.parents('table').first();
         var dataType = $table.data('type');
@@ -382,15 +382,13 @@ BR.TrackAnalysis = L.Class.extend({
         this.highlightedSegments = L.layerGroup(polylinesForDataType).addTo(this.map);
     },
 
-    handleHoverOut: function() {
+    handleHoverOut: function () {
         this.map.removeLayer(this.highlightedSegments);
     },
 
-    toggleSelected: function(event) {
+    toggleSelected: function (event) {
         var tableRow = event.currentTarget;
-        var $table = $(tableRow)
-            .parents('table')
-            .first();
+        var $table = $(tableRow).parents('table').first();
         var dataType = $table.data('type');
         var dataName = $(tableRow).data('name');
         var trackType = $(tableRow).data('subtype');
@@ -426,7 +424,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {Polyline[]}
      */
-    getPolylinesForDataType: function(dataType, dataName, trackType) {
+    getPolylinesForDataType: function (dataType, dataName, trackType) {
         var polylines = [];
         var trackLatLngs = this.trackPolyline.getLatLngs();
 
@@ -461,7 +459,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {boolean}
      */
-    wayTagsMatchesData: function(wayTags, dataType, dataName, trackType) {
+    wayTagsMatchesData: function (wayTags, dataType, dataName, trackType) {
         var parsed = this.parseWayTags(wayTags);
 
         switch (dataType) {
@@ -502,7 +500,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {object}
      */
-    parseWayTags: function(wayTags) {
+    parseWayTags: function (wayTags) {
         var result = {};
         var wayTagPairs = wayTags.feature.wayTags.split(' ');
 
@@ -512,5 +510,5 @@ BR.TrackAnalysis = L.Class.extend({
         }
 
         return result;
-    }
+    },
 });

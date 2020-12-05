@@ -109,8 +109,8 @@
         "merge-stream": "^2.0.0",
         "node-fetch": "^2.6.1",
         "npmfiles": "^0.1.1",
-        "prettier": "^1.17.1",
-        "pretty-quick": "^1.10.0"
+        "prettier": "^2.2.1",
+        "pretty-quick": "^3.1.0"
     },
     "overrides": {
         "leaflet": {

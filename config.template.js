@@ -1,4 +1,4 @@
-(function() {
+(function () {
     var hostname = window.location.hostname;
     var origin = window.location.protocol + '//' + hostname + (window.location.port ? ':' + window.location.port : '');
 
@@ -54,7 +54,7 @@
         'vm-forum-velomobil-schnell',
         'fastbike-lowtraffic',
         'fastbike-asia-pacific',
-        'hiking-beta'
+        'hiking-beta',
     ];
 
     // Removes default base layers when 'true'. Useful for only having custom layers (see below).
@@ -84,22 +84,22 @@
             weight: 5,
             dashArray: [10, 10],
             opacity: 0.6,
-            color: 'magenta'
+            color: 'magenta',
         },
         track: {
             weight: 5,
             color: 'magenta',
-            opacity: BR.conf.defaultOpacity
+            opacity: BR.conf.defaultOpacity,
         },
         trackCasing: {
             weight: 8,
             color: 'white',
             // assumed to be same as track, see setOpacity
-            opacity: BR.conf.defaultOpacity
+            opacity: BR.conf.defaultOpacity,
         },
         nodata: {
-            color: 'darkred'
-        }
+            color: 'darkred',
+        },
     };
 
     BR.conf.markerColors = {
@@ -107,7 +107,7 @@
         poi: '#436978',
         start: '#72b026',
         via: '#38aadd',
-        stop: '#d63e2a'
+        stop: '#d63e2a',
     };
 
     // transit (intermodal routing) demo config
@@ -121,7 +121,7 @@
             'fastbike',
             'shortest',
             'moped',
-            'car-test'
+            'car-test',
         ];
     }
 

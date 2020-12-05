@@ -1,6 +1,6 @@
-BR.tracksLoader = function(map, layersControl, routing, pois) {
+BR.tracksLoader = function (map, layersControl, routing, pois) {
     // proxy to L.geoJSON factory function, to get hold of raw GeoJSON object
-    var createGeoJsonLayer = function(geojson, options) {
+    var createGeoJsonLayer = function (geojson, options) {
         BR.Track.addPoiMarkers(pois, geojson);
 
         return L.geoJSON(geojson, options);
@@ -15,11 +15,11 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
             // File size limit in kb (default: 1024) ?
             fileSizeLimit: 1024,
             shortcut: {
-                open: 79 // char code for 'o'
-            }
+                open: 79, // char code for 'o'
+            },
         },
 
-        _initContainer: function() {
+        _initContainer: function () {
             var thisLoader = this.loader;
 
             var fileInput;
@@ -40,7 +40,7 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
             // Load on file change
             fileInput.addEventListener(
                 'change',
-                function() {
+                function () {
                     thisLoader.loadMultiple(this.files);
                     // reset so that the user can upload the same file again if they want to
                     this.value = '';
@@ -50,7 +50,7 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
 
             var link = L.DomUtil.get('navbarLoadTracks');
             L.DomEvent.disableClickPropagation(link);
-            L.DomEvent.on(link, 'click', function(e) {
+            L.DomEvent.on(link, 'click', function (e) {
                 fileInput.click();
                 e.preventDefault();
             });
@@ -60,7 +60,7 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
             return dummy;
         },
 
-        _keydownListener: function(e) {
+        _keydownListener: function (e) {
             if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.open) {
                 if (e.shiftKey) {
                     $('#loadNogos').modal('show');
@@ -68,12 +68,12 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
                     $('#navbarLoadTracks')[0].click();
                 }
             }
-        }
+        },
     });
     var tracksLoaderControl = new TracksLoader();
     tracksLoaderControl.addTo(map);
 
-    tracksLoaderControl.loader.on('data:loaded', function(event) {
+    tracksLoaderControl.loader.on('data:loaded', function (event) {
         var eventLayer = event.layer,
             routingMarkers = [];
         /* disabled for now, see issue #254
@@ -101,11 +101,11 @@ BR.tracksLoader = function(map, layersControl, routing, pois) {
         eventLayer.addTo(map);
     });
 
-    tracksLoaderControl.loader.on('data:error', function(event) {
+    tracksLoaderControl.loader.on('data:error', function (event) {
         var err = event.error;
         BR.message.showError(
             i18next.t('warning.tracks-load-error', {
-                error: err && err.message ? err.message : err
+                error: err && err.message ? err.message : err,
             })
         );
         console.error(err);

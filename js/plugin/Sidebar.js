@@ -9,15 +9,15 @@ BR.Sidebar = L.Control.Sidebar.extend({
         defaultTabId: '',
 
         shortcut: {
-            toggleTabs: 84 // char code for 't'
+            toggleTabs: 84, // char code for 't'
         },
 
         // Tabs to be notified when shown or hidden
         // (tab div id -> object implementing show/hide methods)
-        listeningTabs: {}
+        listeningTabs: {},
     },
 
-    initialize: function(id, options) {
+    initialize: function (id, options) {
         L.Control.Sidebar.prototype.initialize.call(this, id, options);
 
         this.oldTab = null;
@@ -25,7 +25,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
-    addTo: function(map) {
+    addTo: function (map) {
         L.Control.Sidebar.prototype.addTo.call(this, map);
 
         this.on('content', this._notifyOnContent, this);
@@ -34,7 +34,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
 
         this.on(
             'closing',
-            function() {
+            function () {
                 this._map.getContainer().focus();
             },
             this
@@ -43,7 +43,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
         this.recentTab = this.options.defaultTabId;
         this.on(
             'content',
-            function(tab) {
+            function (tab) {
                 this.recentTab = tab.id;
             },
             this
@@ -59,14 +59,14 @@ BR.Sidebar = L.Control.Sidebar.extend({
         return this;
     },
 
-    showPanel: function(id) {
+    showPanel: function (id) {
         var tab = this._getTab(id);
         tab.hidden = false;
 
         return this;
     },
 
-    _rememberTabState: function() {
+    _rememberTabState: function () {
         if (BR.Util.localStorageAvailable()) {
             this.on('content closing', this._storeActiveTab, this);
 
@@ -85,42 +85,42 @@ BR.Sidebar = L.Control.Sidebar.extend({
         }
     },
 
-    _notifyShow: function(tab) {
+    _notifyShow: function (tab) {
         if (tab && tab.show) {
             tab.show();
         }
     },
 
-    _notifyHide: function(tab) {
+    _notifyHide: function (tab) {
         if (tab && tab.hide) {
             tab.hide();
         }
     },
 
-    _notifyOnContent: function(e) {
+    _notifyOnContent: function (e) {
         var tab = this.options.listeningTabs[e.id];
         this._notifyHide(this.oldTab);
         this._notifyShow(tab);
         this.oldTab = tab;
     },
 
-    _notifyOnClose: function(e) {
+    _notifyOnClose: function (e) {
         this._notifyHide(this.oldTab);
         this.oldTab = null;
     },
 
-    _notifyOnResize: function(e) {
+    _notifyOnResize: function (e) {
         var tab = this.oldTab;
         if (tab && tab.onResize) {
             tab.onResize();
         }
     },
 
-    _storeActiveTab: function(e) {
+    _storeActiveTab: function (e) {
         localStorage.setItem(this.storageId, e.id || '');
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggleTabs) {
             if ($('#sidebarTabs > ul > li[class=active]').length) {
                 // sidebar is currently open, close current tab
@@ -142,9 +142,9 @@ BR.Sidebar = L.Control.Sidebar.extend({
                 this.open(nextTab.attr('href').slice(1));
             }
         }
-    }
+    },
 });
 
-BR.sidebar = function(divId, options) {
+BR.sidebar = function (divId, options) {
     return new BR.Sidebar(divId, options);
 };

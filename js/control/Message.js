@@ -2,15 +2,15 @@ BR.Message = L.Class.extend({
     options: {
         // true to manually attach click event to close button,
         // Bootstrap data-api's auto-initialization doesn't work in Controls because of stopPropagation
-        alert: false
+        alert: false,
     },
 
-    initialize: function(id, options) {
+    initialize: function (id, options) {
         L.setOptions(this, options);
         this.id = id;
     },
 
-    _show: function(msg, type) {
+    _show: function (msg, type) {
         var ele = L.DomUtil.get(this.id),
             iconClass = type === 'warning' ? 'fa-exclamation-triangle' : 'fa-times-circle',
             alertClass = type === 'warning' ? 'alert-warning' : 'alert-danger';
@@ -35,11 +35,11 @@ BR.Message = L.Class.extend({
         }
     },
 
-    hide: function() {
+    hide: function () {
         $('#' + this.id + ' .alert').alert('close');
     },
 
-    showError: function(err) {
+    showError: function (err) {
         if (err && err.message) err = err.message;
 
         if (err == 'target island detected for section 0\n') {
@@ -56,9 +56,9 @@ BR.Message = L.Class.extend({
         this._show(err, 'error');
     },
 
-    showWarning: function(msg) {
+    showWarning: function (msg) {
         this._show(msg, 'warning');
-    }
+    },
 });
 
 // static instance as global control

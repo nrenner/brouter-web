@@ -4,7 +4,7 @@
     Licensed under the MIT license.
 */
 
-(function() {
+(function () {
     var mapContext;
 
     function verifyTouchStyle(mapContext) {
@@ -42,14 +42,14 @@
             iconBase: 'fa',
             tickIcon: 'fa-check',
             // don't overlap with footer
-            windowPadding: [0, 0, 40, 0]
+            windowPadding: [0, 0, 40, 0],
         });
 
         search = new BR.Search();
         map.addControl(search);
         $('#map .leaflet-control-geocoder > button')[0].title = i18next.t('keyboard.generic-shortcut', {
             action: '$t(map.geocoder)',
-            key: 'F'
+            key: 'F',
         });
 
         router = L.bRouter(); //brouterCgi dummyRouter
@@ -59,67 +59,67 @@
                 {
                     stateName: 'deactivate-draw',
                     icon: 'fa-pencil active',
-                    onClick: function(control) {
+                    onClick: function (control) {
                         routing.draw(false);
                         control.state('activate-draw');
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
                         action: '$t(map.draw-route-stop)',
-                        key: '$t(keyboard.escape)'
-                    })
+                        key: '$t(keyboard.escape)',
+                    }),
                 },
                 {
                     stateName: 'activate-draw',
                     icon: 'fa-pencil',
-                    onClick: function(control) {
+                    onClick: function (control) {
                         routing.draw(true);
                         control.state('deactivate-draw');
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
                         action: '$t(map.draw-route-start)',
-                        key: 'D'
-                    })
-                }
-            ]
+                        key: 'D',
+                    }),
+                },
+            ],
         });
 
         var reverseRouteButton = L.easyButton(
             'fa-random',
-            function() {
+            function () {
                 routing.reverse();
             },
             i18next.t('keyboard.generic-shortcut', {
                 action: '$t(map.reverse-route)',
-                key: 'R'
+                key: 'R',
             })
         );
 
         var deletePointButton = L.easyButton(
             '<span><i class="fa fa-caret-left"></i><i class="fa fa-map-marker" style="margin-left: 1px; color: gray;"></i></span>',
-            function() {
+            function () {
                 routing.deleteLastPoint();
             },
             i18next.t('keyboard.generic-shortcut', {
                 action: '$t(map.delete-last-point)',
-                key: 'Z'
+                key: 'Z',
             })
         );
 
         deleteRouteButton = L.easyButton(
             'fa-trash-o',
-            function() {
+            function () {
                 clearRoute();
             },
             i18next.t('keyboard.generic-shortcut', {
                 action: '$t(map.clear-route)',
-                key: '$t(keyboard.backspace)'
+                key: '$t(keyboard.backspace)',
             })
         );
 
         L.DomEvent.addListener(
             document,
             'keydown',
-            function(e) {
+            function (e) {
                 if (BR.Util.keyboardShortcutsAllowed(e) && !$('.modal.show').length) {
                     if (e.keyCode === 8) {
                         // char code for 'backspace'
@@ -141,19 +141,19 @@
                 inputOptions: [
                     {
                         text: i18next.t('map.delete-route'),
-                        value: 'route'
+                        value: 'route',
                     },
                     {
                         text: i18next.t('map.delete-nogo-areas'),
-                        value: 'nogo'
+                        value: 'nogo',
                     },
                     {
                         text: i18next.t('map.delete-pois'),
-                        value: 'pois'
-                    }
+                        value: 'pois',
+                    },
                 ],
                 value: ['route'],
-                callback: function(result) {
+                callback: function (result) {
                     if (result !== null) {
                         if (result.indexOf('route') !== -1) {
                             routing.clear();
@@ -167,7 +167,7 @@
                         onUpdate();
                         urlHash.onMapMove();
                     }
-                }
+                },
             });
         }
 
@@ -190,17 +190,17 @@
 
         routingOptions = new BR.RoutingOptions();
         routingOptions.on('update', updateRoute);
-        routingOptions.on('update', function(evt) {
+        routingOptions.on('update', function (evt) {
             profile.update(evt.options);
         });
 
         BR.NogoAreas.MSG_BUTTON = i18next.t('keyboard.generic-shortcut', {
             action: '$t(map.nogo.draw)',
-            key: 'N'
+            key: 'N',
         });
         BR.NogoAreas.MSG_BUTTON_CANCEL = i18next.t('keyboard.generic-shortcut', {
             action: '$t(map.nogo.cancel)',
-            key: '$t(keyboard.escape)'
+            key: '$t(keyboard.escape)',
         });
         BR.NogoAreas.MSG_CREATE = i18next.t('map.nogo.click-drag');
         BR.NogoAreas.MSG_DISABLED = i18next.t('map.nogo.edit');
@@ -217,14 +217,14 @@
         elevation = new BR.Elevation();
 
         profile = new BR.Profile();
-        profile.on('update', function(evt) {
+        profile.on('update', function (evt) {
             BR.message.hide();
             var profileId = routingOptions.getCustomProfile();
-            router.uploadProfile(profileId, evt.profileText, function(err, profileId) {
+            router.uploadProfile(profileId, evt.profileText, function (err, profileId) {
                 if (!err) {
                     routingOptions.setCustomProfile(profileId, true);
                     updateRoute({
-                        options: routingOptions.getOptions()
+                        options: routingOptions.getOptions(),
                     });
                 } else {
                     profile.message.showError(err);
@@ -239,38 +239,38 @@
                 }
             });
         });
-        profile.on('clear', function(evt) {
+        profile.on('clear', function (evt) {
             profile.message.hide();
             routingOptions.setCustomProfile(null);
         });
         trackMessages = new BR.TrackMessages(map, {
-            requestUpdate: requestUpdate
+            requestUpdate: requestUpdate,
         });
         trackAnalysis = new BR.TrackAnalysis(map, {
-            requestUpdate: requestUpdate
+            requestUpdate: requestUpdate,
         });
 
         routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
 
         routing = new BR.Routing({
             routing: {
-                router: L.bind(router.getRouteSegment, router)
+                router: L.bind(router.getRouteSegment, router),
             },
-            styles: BR.conf.routingStyles
+            styles: BR.conf.routingStyles,
         });
 
         pois = new BR.PoiMarkers(routing);
 
         exportRoute = new BR.Export(router, pois);
 
-        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function(evt) {
+        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function (evt) {
             search.clear();
             onUpdate(evt && evt.err);
         });
-        map.on('routing:draw-start', function() {
+        map.on('routing:draw-start', function () {
             drawButton.state('deactivate-draw');
         });
-        map.on('routing:draw-end', function() {
+        map.on('routing:draw-end', function () {
             drawButton.state('activate-draw');
         });
 
@@ -311,8 +311,8 @@
             listeningTabs: {
                 tab_profile: profile,
                 tab_data: trackMessages,
-                tab_analysis: trackAnalysis
-            }
+                tab_analysis: trackAnalysis,
+            },
         }).addTo(map);
         if (BR.conf.transit) {
             sidebar.showPanel('tab_itinerary');
@@ -357,10 +357,10 @@
                 id: 'route',
                 title: i18next.t('map.opacity-slider-shortcut', {
                     action: '$t(map.opacity-slider)',
-                    key: 'M'
+                    key: 'M',
                 }),
                 muteKeyCode: 77, // m
-                callback: L.bind(routing.setOpacity, routing)
+                callback: L.bind(routing.setOpacity, routing),
             })
         );
 
@@ -375,8 +375,8 @@
             layersControl.loadActiveLayers();
         }
 
-        var onHashChangeCb = function(url) {
-            var url2params = function(s) {
+        var onHashChangeCb = function (url) {
+            var url2params = function (s) {
                 s = s.replace(/;/g, '|');
                 var p = {};
                 var sep = '&';
@@ -411,7 +411,7 @@
             }
         };
 
-        var onInvalidHashChangeCb = function(params) {
+        var onInvalidHashChangeCb = function (params) {
             params = params.replace('zoom=', 'map=');
             params = params.replace('&lat=', '/');
             params = params.replace('&lon=', '/');
@@ -422,7 +422,7 @@
         // do not initialize immediately
         urlHash = new L.Hash(null, null);
         // this callback is used to append anything in URL after L.Hash wrote #map=zoom/lat/lng/layer
-        urlHash.additionalCb = function() {
+        urlHash.additionalCb = function () {
             var url = router
                 .getUrl(routing.getWaypoints(), pois.getMarkers(), circlego ? circlego.getCircle() : null, null)
                 .substr('brouter?'.length + 1);
@@ -435,12 +435,12 @@
         urlHash.onHashChangeCb = onHashChangeCb;
         urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
         urlHash.init(map, {
-            layersControl: layersControl
+            layersControl: layersControl,
         });
 
         // activate configured default base layer or first if no hash,
         // only after hash init, by using the same delay
-        setTimeout(function() {
+        setTimeout(function () {
             layersControl.activateDefaultBaseLayer();
         }, urlHash.changeDefer);
 
@@ -452,7 +452,7 @@
         // delete last waypoint
         routing.on(
             'waypoint:click',
-            function(evt) {
+            function (evt) {
                 var r = evt.marker._routing;
                 if (!r.prevMarker && !r.nextMarker) {
                     urlHash.onMapMove();
@@ -462,13 +462,13 @@
         );
 
         // listener and initCollapse here and not in onAdd, as addBelow calls addTo (-> onAdd) on resize
-        $(window).resize(function() {
+        $(window).resize(function () {
             elevation.addBelow(map);
         });
         elevation.initCollapse(map);
     }
 
-    i18next.on('languageChanged', function(detectedLanguage) {
+    i18next.on('languageChanged', function (detectedLanguage) {
         // detected + fallbacks, e.g. ["de-DE", "de", "en"]
         for (i = 0; i < i18next.languages.length; i++) {
             var language = i18next.languages[i];
@@ -491,14 +491,14 @@
             {
                 fallbackLng: 'en',
                 backend: {
-                    loadPath: 'dist/locales/{{lng}}.json'
-                }
+                    loadPath: 'dist/locales/{{lng}}.json',
+                },
             },
-            function(err, t) {
+            function (err, t) {
                 jqueryI18next.init(i18next, $, { useOptionsAttr: true });
                 $('html').localize();
                 $('#aboutLinks').localize({
-                    privacyPolicyUrl: BR.conf.privacyPolicyUrl || 'https://brouter.de/privacypolicy.html'
+                    privacyPolicyUrl: BR.conf.privacyPolicyUrl || 'https://brouter.de/privacypolicy.html',
                 });
 
                 mapContext = BR.Map.initMap();

@@ -9,29 +9,29 @@ BR.Track = {
      *
      * @returns {Object} to pass as `options` parameter to `L.geoJson`
      */
-    getGeoJsonOptions: function(layersControl) {
+    getGeoJsonOptions: function (layersControl) {
         return {
-            style: function(geoJsonFeature) {
+            style: function (geoJsonFeature) {
                 var currentLayerId = layersControl.getActiveBaseLayer().layer.id;
                 return {
                     color: currentLayerId === 'cyclosm' ? 'yellow' : 'blue',
-                    weight: 4
+                    weight: 4,
                 };
             },
             interactive: false,
-            filter: function(geoJsonFeature) {
+            filter: function (geoJsonFeature) {
                 // remove POIs, added separately
                 return !BR.Track.isPoiPoint(geoJsonFeature);
             },
-            pointToLayer: function(geoJsonPoint, latlng) {
+            pointToLayer: function (geoJsonPoint, latlng) {
                 // route waypoint (type=from/via/to)
                 return L.marker(latlng, {
                     interactive: false,
                     opacity: 0.7,
                     // prevent being on top of route markers
-                    zIndexOffset: -1000
+                    zIndexOffset: -1000,
                 });
-            }
+            },
         };
     },
 
@@ -41,8 +41,8 @@ BR.Track = {
      * @param {BR.PoiMarkers} pois POI control instance
      * @param {Object} geoJson GeoJSON object
      */
-    addPoiMarkers: function(pois, geoJson) {
-        turf.featureEach(geoJson, function(feature, idx) {
+    addPoiMarkers: function (pois, geoJson) {
+        turf.featureEach(geoJson, function (feature, idx) {
             if (BR.Track.isPoiPoint(feature)) {
                 var coord = turf.getCoord(feature);
                 var latlng = L.GeoJSON.coordsToLatLng(coord);
@@ -61,7 +61,7 @@ BR.Track = {
      *
      * @param {Object} geoJsonPointFeature GeoJSON Point feature
      */
-    isRouteWaypoint: function(geoJsonPointFeature) {
+    isRouteWaypoint: function (geoJsonPointFeature) {
         var props = geoJsonPointFeature.properties;
         if (props && props.type) {
             var wptType = props.type;
@@ -77,7 +77,7 @@ BR.Track = {
      *
      * @param {Object} geoJsonFeature GeoJSON feature
      */
-    isPoiPoint: function(geoJsonFeature) {
+    isPoiPoint: function (geoJsonFeature) {
         return turf.getType(geoJsonFeature) === 'Point' && !BR.Track.isRouteWaypoint(geoJsonFeature);
-    }
+    },
 };

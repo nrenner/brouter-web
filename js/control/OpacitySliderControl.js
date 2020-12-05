@@ -1,9 +1,9 @@
 BR.OpacitySliderControl = L.Control.extend({
     options: {
-        position: 'topleft'
+        position: 'topleft',
     },
 
-    onAdd: function(map) {
+    onAdd: function (map) {
         var container = L.DomUtil.create('div', 'leaflet-bar control-slider');
 
         // prevent also dragging map in Chrome
@@ -21,22 +21,22 @@ BR.OpacitySliderControl = L.Control.extend({
         var slider = new BR.OpacitySlider(this.options);
         container.appendChild(slider.getElement());
 
-        var stopClickAfterSlide = function(evt) {
+        var stopClickAfterSlide = function (evt) {
             L.DomEvent.stop(evt);
             removeStopClickListeners();
         };
 
-        var removeStopClickListeners = function() {
+        var removeStopClickListeners = function () {
             document.removeEventListener('click', stopClickAfterSlide, true);
             document.removeEventListener('mousedown', removeStopClickListeners, true);
         };
 
         slider.input
-            .on('slideStart', function(evt) {
+            .on('slideStart', function (evt) {
                 // dragging beyond slider control selects zoom control +/- text in Firefox
                 L.DomUtil.disableTextSelection();
             })
-            .on('slideStop', { self: this }, function(evt) {
+            .on('slideStop', { self: this }, function (evt) {
                 L.DomUtil.enableTextSelection();
 
                 // When dragging outside slider and over map, click event after mouseup
@@ -49,5 +49,5 @@ BR.OpacitySliderControl = L.Control.extend({
             });
 
         return container;
-    }
+    },
 });

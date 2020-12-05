@@ -1,4 +1,4 @@
-BR.routeLoader = function(map, layersControl, routing, pois) {
+BR.routeLoader = function (map, layersControl, routing, pois) {
     RouteLoader = L.Control.extend({
         _layerName: 'Tracklayer',
         _trackLayer: undefined,
@@ -14,38 +14,38 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             showPointAsPoi: true,
             simplifyTolerance: -1,
             isTestMode: false,
-            simplifyLastKnownGood: 0.001
+            simplifyLastKnownGood: 0.001,
         },
 
-        setDialogDraggable: function(jqDlgHeader) {
-            jqDlgHeader.on('mousedown', function(mousedownEvt) {
+        setDialogDraggable: function (jqDlgHeader) {
+            jqDlgHeader.on('mousedown', function (mousedownEvt) {
                 var $draggable = $(this);
                 var x = mousedownEvt.pageX - $draggable.offset().left,
                     y = mousedownEvt.pageY - $draggable.offset().top;
-                $('body').on('mousemove.draggable', function(mousemoveEvt) {
+                $('body').on('mousemove.draggable', function (mousemoveEvt) {
                     $draggable.closest('.modal-dialog').offset({
                         left: mousemoveEvt.pageX - x,
-                        top: mousemoveEvt.pageY - y
+                        top: mousemoveEvt.pageY - y,
                     });
                 });
-                $('body').one('mouseup', function() {
+                $('body').one('mouseup', function () {
                     $('body').off('mousemove.draggable');
                 });
-                $draggable.closest('.modal').one('bs.modal.hide', function() {
+                $draggable.closest('.modal').one('bs.modal.hide', function () {
                     $('body').off('mousemove.draggable');
                 });
             });
         },
 
-        getSimplifiedCoords: function(tolerance) {
+        getSimplifiedCoords: function (tolerance) {
             var simplifiedLine = turf.simplify(this._trackPoints.geometry, {
                 tolerance: tolerance,
-                highQuality: true
+                highQuality: true,
             });
             return simplifiedLine.coordinates;
         },
 
-        refreshTestLayer: function() {
+        refreshTestLayer: function () {
             this.onBusyChanged(true);
             this._testLayer.clearLayers();
 
@@ -61,7 +61,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                     L.circleMarker(simplifiedLatLngs[i], {
                         radius: 6,
                         fill: false,
-                        color: '#FF0000'
+                        color: '#FF0000',
                     })
                 );
             }
@@ -70,7 +70,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             return true;
         },
 
-        cleanup: function(e) {
+        cleanup: function (e) {
             this._testLayer.clearLayers();
             if (
                 this._trackLayer &&
@@ -89,11 +89,11 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                 showPointAsPoi: true,
                 simplifyTolerance: -1,
                 isTestMode: false,
-                simplifyLastKnownGood: 0.001
+                simplifyLastKnownGood: 0.001,
             };
         },
 
-        setSliderRange: function() {
+        setSliderRange: function () {
             $slider = $('#simplify_tolerance');
             $slider.prop('min', -500);
             var guessedTolerance = this.guessSimplifyTolerance(this._trackPoints);
@@ -111,7 +111,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             this.refreshTestLayer();
         },
 
-        onToleranceSlider: function(e) {
+        onToleranceSlider: function (e) {
             var guess = parseFloat($(e.target).data('guess'));
             var f = parseFloat(e.target.value);
             var frac = parseFloat($(e.target).prop('max'));
@@ -140,7 +140,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             }
         },
 
-        findLowestTolerance: function(min, max, guess, frac) {
+        findLowestTolerance: function (min, max, guess, frac) {
             if (Math.abs(max - min) <= 2) return max;
             var meridian = Math.round((max + min) / 2);
 
@@ -152,7 +152,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             else return this.findLowestTolerance(min, meridian, guess, frac);
         },
 
-        onBusyChanged: function(isBusy) {
+        onBusyChanged: function (isBusy) {
             if (typeof isBusy === undefined) {
                 isBusy = false;
             }
@@ -160,7 +160,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             else $('#loadedittrackdlg #msg_busy').addClass('invisible');
         },
 
-        onManualCollapse: function(e) {
+        onManualCollapse: function (e) {
             //workaround for starting with closed collapse
             if ($('#loadedittrackdlg').is(':hidden')) return;
             this._options.isTestMode = $(e.target).hasClass('show');
@@ -171,28 +171,28 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             } else this.cleanup();
         },
 
-        onAdd: function(map) {
+        onAdd: function (map) {
             $('#loadedittrackdlg').on(
                 'hidden.bs.modal',
-                function(e) {
+                function (e) {
                     this.cleanup();
                 }.bind(this)
             );
             $('#loadedittrackdlg').on(
                 'show.bs.modal',
-                function(e) {
+                function (e) {
                     $('#manual_collapse').collapse('hide');
                     this._closeCanceled = true;
                 }.bind(this)
             );
 
-            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function() {
+            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function () {
                 this._closeCanceled = false;
                 this.onBusyChanged(true);
                 if (this._testLayer.getLayers().length > 0) {
                     this._testLayer.clearLayers();
                     setTimeout(
-                        function() {
+                        function () {
                             this.addRoutingPoints();
                             this.onBusyChanged(false);
                             $('#loadedittrackdlg').modal('hide');
@@ -201,7 +201,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
                     );
                 } else
                     setTimeout(
-                        function() {
+                        function () {
                             this.convertTrackLocal();
                             $('#loadedittrackdlg').modal('hide');
                         }.bind(this),
@@ -219,7 +219,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             $('#manual_collapse').collapse('hide');
             $('#manual_collapse').on(
                 'hidden.bs.collapse shown.bs.collapse',
-                function(e) {
+                function (e) {
                     this.onManualCollapse(e);
                 }.bind(this)
             );
@@ -230,15 +230,13 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             return dummy;
         },
 
-        onRemove: function(map) {
+        onRemove: function (map) {
             // Nothing to do here
         },
 
-        onFileChanged: function(e) {
+        onFileChanged: function (e) {
             if (!e.target.files[0]) return;
-            $(e.target)
-                .next('label')
-                .text(e.target.files[0].name);
+            $(e.target).next('label').text(e.target.files[0].name);
             var testmode = this._options.isTestMode;
             this.cleanup();
             this._options.isTestMode = testmode;
@@ -248,7 +246,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             }
         },
 
-        setLayerNameFromGeojson: function(geoJSON) {
+        setLayerNameFromGeojson: function (geoJSON) {
             if (geoJSON.type == 'Feature' && geoJSON.properties && geoJSON.properties.name) {
                 this._layerName = geoJSON.properties.name;
                 return;
@@ -264,7 +262,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             }
         },
 
-        getOptions: function() {
+        getOptions: function () {
             this._options.showTrackLayer = $('#cb_showtracklayer')[0].checked;
             this._options.showPointAsPoi = $('#cb_showpois')[0].checked;
 
@@ -272,7 +270,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             this._bounds = undefined;
         },
 
-        convertTrackLocal: function() {
+        convertTrackLocal: function () {
             if ($('#loadedittrackFile')[0].files.length == 0) return;
             this.onBusyChanged(true);
 
@@ -289,7 +287,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             reader.readAsText(trackFile);
         },
 
-        addTrackOverlay: function(geoJSON) {
+        addTrackOverlay: function (geoJSON) {
             this._trackLayer = L.geoJSON(geoJSON, BR.Track.getGeoJsonOptions(layersControl)).addTo(map);
 
             layersControl.addOverlay(this._trackLayer, BR.Util.sanitizeHTMLContent(this._layerName));
@@ -299,10 +297,10 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             if (this._bounds) map.fitBounds(this._bounds);
         },
 
-        getLineStringsFromGeoJSON: function(geoJSON) {
+        getLineStringsFromGeoJSON: function (geoJSON) {
             var allLinePoints = [];
             var flat = turf.flatten(geoJSON);
-            turf.featureEach(flat, function(feature, idx) {
+            turf.featureEach(flat, function (feature, idx) {
                 if (turf.getType(feature) == 'LineString') {
                     feature = turf.cleanCoords(feature);
                     var lPoints = turf.coordAll(feature);
@@ -315,13 +313,13 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             return linesGeoJSON;
         },
 
-        guessSimplifyTolerance: function(trackPoints) {
+        guessSimplifyTolerance: function (trackPoints) {
             var tolerance = trackPoints.length / 1000000;
             if (tolerance > 0.8) tolerance = 0.8;
             return tolerance;
         },
 
-        addRoutingPoints: function(geoJSON) {
+        addRoutingPoints: function (geoJSON) {
             if (this._options.simplifyTolerance < 0)
                 this._options.simplifyTolerance = this.guessSimplifyTolerance(this._trackPoints);
 
@@ -335,12 +333,12 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             }
 
             if (routingPoints.length > 0) {
-                routing.setWaypoints(routingPoints, function(event) {
+                routing.setWaypoints(routingPoints, function (event) {
                     if (!event) return;
                     var err = event.error;
                     BR.message.showError(
                         i18next.t('warning.tracks-load-error', {
-                            error: err && err.message ? err.message : err
+                            error: err && err.message ? err.message : err,
                         })
                     );
                 });
@@ -355,7 +353,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             }
         },
 
-        processFile: function(e) {
+        processFile: function (e) {
             var res = e.target.result;
             var geoJSON = null;
             switch (this._options.format) {
@@ -383,7 +381,7 @@ BR.routeLoader = function(map, layersControl, routing, pois) {
             if (!this._options.isTestMode) this.addRoutingPoints();
 
             this.onBusyChanged(false);
-        }
+        },
     });
 
     RouteLoader.include(L.Evented.prototype);

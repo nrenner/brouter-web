@@ -24,7 +24,7 @@
  */
 
 L.DistanceMarkers = L.LayerGroup.extend({
-    initialize: function(line, map, options) {
+    initialize: function (line, map, options) {
         options = options || {};
         var offset = options.offset || 1000;
         var showAll = Math.min(map.getMaxZoom(), options.showAll || 12);
@@ -32,7 +32,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
         var iconSize = options.iconSize !== undefined ? options.iconSize : [12, 12];
         var textFunction =
             options.textFunction ||
-            function(distance, i) {
+            function (distance, i) {
                 return i;
             };
 
@@ -81,7 +81,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
 
         var currentZoomLevel = 0;
         var markerLayer = this;
-        var updateMarkerVisibility = function() {
+        var updateMarkerVisibility = function () {
             var oldZoom = currentZoomLevel;
             var newZoom = (currentZoomLevel = map.getZoom());
 
@@ -106,20 +106,20 @@ L.DistanceMarkers = L.LayerGroup.extend({
         updateMarkerVisibility();
     },
 
-    setOpacity: function(opacity) {
+    setOpacity: function (opacity) {
         var i,
             keys = Object.keys(this._zoomLayers),
             l = keys.length;
 
         for (i = 0; i < l; ++i) {
             var zoomLayer = this._zoomLayers[keys[i]];
-            zoomLayer.eachLayer(function(layer) {
+            zoomLayer.eachLayer(function (layer) {
                 layer.setOpacity(opacity);
             });
         }
     },
 
-    _minimumZoomLevelForItem: function(item, showAllLevel) {
+    _minimumZoomLevelForItem: function (item, showAllLevel) {
         var zoom = showAllLevel,
             i = item;
         while (i > 0 && i % 2 === 0) {
@@ -127,5 +127,5 @@ L.DistanceMarkers = L.LayerGroup.extend({
             i = Math.floor(i / 2);
         }
         return zoom;
-    }
+    },
 });
