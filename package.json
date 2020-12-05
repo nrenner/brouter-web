@@ -73,7 +73,6 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "promise-polyfill": "^8.1.0",
-        "tether": "1.4.5",
         "url-search-params": "~0.5.0",
         "whatwg-fetch": "^3.5.0"
     },

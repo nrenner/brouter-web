@@ -37,7 +37,6 @@ var paths = {
     scriptsConfig: mainNpmFiles().filter((f) => RegExp('url-search-params/.*\\.js', 'i').test(f)),
     scripts: [
         'node_modules/jquery/dist/jquery.js',
-        'node_modules/tether/dist/js/tether.js',
         'node_modules/async/lib/async.js',
         'node_modules/leaflet/dist/leaflet-src.js',
     ]
