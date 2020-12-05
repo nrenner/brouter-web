@@ -75,7 +75,7 @@
         "promise-polyfill": "^8.1.0",
         "tether": "1.4.5",
         "url-search-params": "~0.5.0",
-        "whatwg-fetch": "^3.0.0"
+        "whatwg-fetch": "^3.5.0"
     },
     "devDependencies": {
         "autoprefixer": "^8.1.0",
