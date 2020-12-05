@@ -5835,10 +5835,10 @@ npm-run-path@^4.0.0:
   dependencies:
     path-key "^3.0.0"
 
-npmfiles@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/npmfiles/-/npmfiles-0.1.1.tgz#081f51f98c9a4d488e6e15acc5989870c94db77b"
-  integrity sha1-CB9R+YyaTUiObhWsxZiYcMlNt3s=
+npmfiles@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/npmfiles/-/npmfiles-0.1.3.tgz#9a5b4c42d1c4fef9ae4143dd2ecdeb1623082919"
+  integrity sha512-HIyhLLFzSATLgqO1axwzcufHgNeu3+mHgRi2t/c118nlAVuNeIHdJBKs/aGdZd3Gd86B9l/7g7z8j4r3B+FO5Q==
   dependencies:
     caller-id "^0.1.0"
     glob "^7.1.1"
