@@ -49,6 +49,7 @@
         "codemirror": "^5.35.0",
         "datatables": "~1.10.18",
         "font-awesome": "^4.7.0",
+        "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
         "i18next": "^15.0.4",
         "i18next-browser-languagedetector": "^3.0.1",
         "i18next-xhr-backend": "^2.0.1",
@@ -109,8 +110,8 @@
         "merge-stream": "^2.0.0",
         "node-fetch": "^2.6.1",
         "npmfiles": "^0.1.1",
-        "patch-package": "^6.2.2",
-        "postinstall-postinstall": "^2.1.0",
+        "patch-package": "~6.2.2",
+        "postinstall-postinstall": "~2.1.0",
         "prettier": "^1.17.1",
         "pretty-quick": "^1.10.0"
     },
