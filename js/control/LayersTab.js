@@ -3,13 +3,13 @@ BR.LayersTab = BR.ControlLayers.extend({
     previewBounds: null,
     saveLayers: [],
 
-    initialize: function(layersConfig, baseLayers, overlays, options) {
+    initialize: function (layersConfig, baseLayers, overlays, options) {
         L.Control.Layers.prototype.initialize.call(this, baseLayers, overlays, options);
 
         this.layersConfig = layersConfig;
     },
 
-    addTo: function(map) {
+    addTo: function (map) {
         this._map = map;
         this.onAdd(map);
 
@@ -22,19 +22,19 @@ BR.LayersTab = BR.ControlLayers.extend({
         return this;
     },
 
-    onAdd: function(map) {
+    onAdd: function (map) {
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
         map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
     },
 
-    onRemove: function(map) {
+    onRemove: function (map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
         map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
     },
 
-    initOpacitySlider: function(map) {
+    initOpacitySlider: function (map) {
         var self = this;
         var overlayOpacitySlider = new BR.OpacitySlider({
             id: 'overlay',
@@ -42,7 +42,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             orientation: 'horizontal',
             defaultValue: 1,
             title: i18next.t('layers.opacity-slider'),
-            callback: function(opacity) {
+            callback: function (opacity) {
                 for (var i = 0; i < self._layers.length; i++) {
                     if (!self._layers[i].overlay || !map.hasLayer(self._layers[i].layer)) {
                         continue;
@@ -53,20 +53,20 @@ BR.LayersTab = BR.ControlLayers.extend({
                         self._layers[i].layer.setStyle({ opacity: opacity });
                     }
                 }
-            }
+            },
         });
         L.DomUtil.get('leaflet-control-layers-overlays-opacity-slider').appendChild(overlayOpacitySlider.getElement());
     },
 
-    initButtons: function() {
-        var expandTree = function(e) {
+    initButtons: function () {
+        var expandTree = function (e) {
             this.jstree.open_all();
         };
-        var collapseTree = function(e) {
+        var collapseTree = function (e) {
             this.jstree.close_all();
         };
 
-        var toggleOptionalLayers = function(e) {
+        var toggleOptionalLayers = function (e) {
             var button = L.DomUtil.get('optional_layers_button');
             var treeButtons = L.DomUtil.get('tree-button-group');
             var div = L.DomUtil.get('optional-layers');
@@ -86,12 +86,12 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
     },
 
-    initJsTree: function() {
+    initJsTree: function () {
         var layerIndex = BR.layerIndex;
         var treeData = this.toJsTree(BR.confLayers.tree);
         var oldSelected = null;
 
-        var onSelectNode = function(e, data) {
+        var onSelectNode = function (e, data) {
             var layerData = layerIndex[data.node.id];
             var selected = data.selected[0];
 
@@ -103,12 +103,12 @@ BR.LayersTab = BR.ControlLayers.extend({
             }
         };
 
-        var onDeselectNode = function(e, data) {
+        var onDeselectNode = function (e, data) {
             this.hidePreview();
             oldSelected = null;
         };
 
-        var onCheckNode = function(e, data) {
+        var onCheckNode = function (e, data) {
             var layerData = layerIndex[data.node.id];
             var layer = this.createLayer(layerData);
             var name = layerData.properties.name;
@@ -124,12 +124,12 @@ BR.LayersTab = BR.ControlLayers.extend({
 
             var ele = document.getElementById(data.node.a_attr.id);
             ele.classList.add('added');
-            setTimeout(function() {
+            setTimeout(function () {
                 ele.classList.remove('added');
             }, 1000);
         };
 
-        var onUncheckNode = function(e, data) {
+        var onUncheckNode = function (e, data) {
             var obj = this.getLayerById(data.node.id);
             if (!obj) return;
 
@@ -146,7 +146,7 @@ BR.LayersTab = BR.ControlLayers.extend({
 
             var ele = document.getElementById(data.node.a_attr.id);
             ele.classList.add('removed');
-            setTimeout(function() {
+            setTimeout(function () {
                 ele.classList.remove('removed');
             }, 1000);
         };
@@ -156,30 +156,30 @@ BR.LayersTab = BR.ControlLayers.extend({
             .on('deselect_node.jstree', L.bind(onDeselectNode, this))
             .on('check_node.jstree', L.bind(onCheckNode, this))
             .on('uncheck_node.jstree', L.bind(onUncheckNode, this))
-            .on('ready.jstree', function(e, data) {
+            .on('ready.jstree', function (e, data) {
                 data.instance.open_all();
             })
             .jstree({
                 plugins: ['checkbox'],
                 checkbox: {
                     whole_node: false,
-                    tie_selection: false
+                    tie_selection: false,
                 },
                 core: {
                     multiple: false,
                     themes: {
                         icons: false,
-                        dots: false
+                        dots: false,
                     },
-                    data: treeData
-                }
+                    data: treeData,
+                },
             });
         this.jstree = $('#optional-layers-tree').jstree(true);
     },
 
-    toJsTree: function(layerTree) {
+    toJsTree: function (layerTree) {
         var data = {
-            children: []
+            children: [],
         };
         var self = this;
 
@@ -187,9 +187,9 @@ BR.LayersTab = BR.ControlLayers.extend({
             var rootNode = {
                 text: i18next.t('sidebar.layers.category.' + name, name),
                 state: {
-                    disabled: true
+                    disabled: true,
                 },
-                children: []
+                children: [],
             };
             return rootNode;
         }
@@ -217,8 +217,8 @@ BR.LayersTab = BR.ControlLayers.extend({
                     id: id,
                     text: getText(props, parent),
                     state: {
-                        checked: self.layersConfig.isDefaultLayer(id, props.overlay)
-                    }
+                        checked: self.layersConfig.isDefaultLayer(id, props.overlay),
+                    },
                 };
             }
             return childNode;
@@ -262,7 +262,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return data.children;
     },
 
-    storeDefaultLayers: function() {
+    storeDefaultLayers: function () {
         var baseLayers = [];
         var overlays = [];
 
@@ -284,7 +284,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.layersConfig.storeDefaultLayers(baseLayers, overlays);
     },
 
-    createLayer: function(layerData) {
+    createLayer: function (layerData) {
         var layer = this.layersConfig.createLayer(layerData);
         var overlay = layerData.properties.overlay;
 
@@ -294,7 +294,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return layer;
     },
 
-    getLayerById: function(id) {
+    getLayerById: function (id) {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (obj.layer.id === id) {
@@ -305,7 +305,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return null;
     },
 
-    getLayerByLegacyName: function(legacyName) {
+    getLayerByLegacyName: function (legacyName) {
         var obj = null;
         var id = this.layersConfig.legacyNameToIdMap[legacyName];
 
@@ -316,7 +316,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
-    activateDefaultBaseLayer: function() {
+    activateDefaultBaseLayer: function () {
         var index = BR.conf.defaultBaseLayerIndex || 0;
         var activeBaseLayer = this.getActiveBaseLayer();
         if (!activeBaseLayer) {
@@ -324,11 +324,11 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    saveRemoveActiveLayers: function() {
+    saveRemoveActiveLayers: function () {
         this.saveLayers = this.removeActiveLayers();
     },
 
-    restoreActiveLayers: function(overlaysOnly) {
+    restoreActiveLayers: function (overlaysOnly) {
         for (var i = 0; i < this.saveLayers.length; i++) {
             var obj = this.saveLayers[i];
 
@@ -345,7 +345,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.saveLayers = [];
     },
 
-    removePreviewLayer: function() {
+    removePreviewLayer: function () {
         if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
             this._map.removeLayer(this.previewLayer);
             this.previewLayer = null;
@@ -354,7 +354,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return false;
     },
 
-    showPreviewBounds: function(layerData) {
+    showPreviewBounds: function (layerData) {
         if (layerData.geometry) {
             this.previewBounds = L.geoJson(layerData.geometry, {
                 // fill/mask outside of bounds polygon with Leaflet.snogylop
@@ -363,30 +363,30 @@ BR.LayersTab = BR.ControlLayers.extend({
                 renderer: L.svg({ padding: 1 }),
                 color: '#333',
                 fillOpacity: 0.4,
-                weight: 2
+                weight: 2,
             }).addTo(this._map);
         }
     },
 
-    removePreviewBounds: function() {
+    removePreviewBounds: function () {
         if (this.previewBounds && this._map.hasLayer(this.previewBounds)) {
             this._map.removeLayer(this.previewBounds);
             this.previewBounds = null;
         }
     },
 
-    deselectNode: function() {
+    deselectNode: function () {
         var selected = this.jstree.get_selected();
         if (selected.length > 0) {
             this.jstree.deselect_node(selected[0]);
         }
     },
 
-    onBaselayerchange: function() {
+    onBaselayerchange: function () {
         // execute after current input click handler,
         // otherwise added overlay checkbox state doesn't update
         setTimeout(
-            L.Util.bind(function() {
+            L.Util.bind(function () {
                 this.removePreviewBounds();
                 this.removePreviewLayer();
                 this.restoreActiveLayers(true);
@@ -396,7 +396,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         );
     },
 
-    showPreview: function(layerData) {
+    showPreview: function (layerData) {
         var layer = this.createLayer(layerData);
         this._map.addLayer(layer);
         this.removePreviewBounds();
@@ -411,7 +411,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('preview').hidden = false;
     },
 
-    hidePreview: function(layer) {
+    hidePreview: function (layer) {
         this._map.off('baselayerchange', this.onBaselayerchange, this);
         this.removePreviewBounds();
         this.removePreviewLayer();
@@ -420,11 +420,11 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('preview').hidden = true;
     },
 
-    toLayerString: function(obj) {
+    toLayerString: function (obj) {
         return obj.layer.id ? obj.layer.id : obj.name;
     },
 
-    getLayerFromString: function(layerString) {
+    getLayerFromString: function (layerString) {
         var obj = this.getLayerById(layerString);
 
         if (!obj) {
@@ -440,11 +440,11 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
-    storeActiveLayers: function() {
+    storeActiveLayers: function () {
         if (BR.Util.localStorageAvailable()) {
             var objList = this.getActiveLayers();
             var idList = objList.map(
-                L.bind(function(obj) {
+                L.bind(function (obj) {
                     return this.toLayerString(obj);
                 }, this)
             );
@@ -454,7 +454,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    loadActiveLayers: function() {
+    loadActiveLayers: function () {
         if (BR.Util.localStorageAvailable()) {
             var item = localStorage.getItem('map/activeLayers');
 
@@ -471,9 +471,9 @@ BR.LayersTab = BR.ControlLayers.extend({
                 }
             }
         }
-    }
+    },
 });
 
-BR.layersTab = function(baseLayers, overlays, options) {
+BR.layersTab = function (baseLayers, overlays, options) {
     return new BR.LayersTab(baseLayers, overlays, options);
 };

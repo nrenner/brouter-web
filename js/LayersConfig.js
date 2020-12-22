@@ -5,7 +5,7 @@ BR.LayersConfig = L.Class.extend({
     // hardcoded, built-in layers with an id set (for URL hash)
     builtInLayers: ['route-quality'],
 
-    initialize: function(map) {
+    initialize: function (map) {
         this._map = map;
 
         this._addLeafletProvidersLayers();
@@ -14,7 +14,7 @@ BR.LayersConfig = L.Class.extend({
         this._addLanguageDefaultLayer();
     },
 
-    loadDefaultLayers: function() {
+    loadDefaultLayers: function () {
         if (BR.Util.localStorageAvailable()) {
             var item = localStorage.getItem('map/defaultLayers');
             if (item) {
@@ -25,17 +25,17 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    storeDefaultLayers: function(baseLayers, overlays) {
+    storeDefaultLayers: function (baseLayers, overlays) {
         if (BR.Util.localStorageAvailable()) {
             var defaultLayers = {
                 baseLayers: baseLayers,
-                overlays: overlays
+                overlays: overlays,
             };
             localStorage.setItem('map/defaultLayers', JSON.stringify(defaultLayers));
         }
     },
 
-    _addLeafletProvidersLayers: function() {
+    _addLeafletProvidersLayers: function () {
         var includeList = BR.confLayers.leafletProvidersIncludeList;
 
         for (var i = 0; i < includeList.length; i++) {
@@ -45,15 +45,15 @@ BR.LayersConfig = L.Class.extend({
                 properties: {
                     id: id,
                     name: id.replace('.', ' '),
-                    dataSource: 'leaflet-providers'
+                    dataSource: 'leaflet-providers',
                 },
-                type: 'Feature'
+                type: 'Feature',
             };
             BR.layerIndex[id] = obj;
         }
     },
 
-    _customizeLayers: function() {
+    _customizeLayers: function () {
         var propertyOverrides = BR.confLayers.getPropertyOverrides();
 
         for (id in propertyOverrides) {
@@ -79,7 +79,7 @@ BR.LayersConfig = L.Class.extend({
         BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
     },
 
-    _addLanguageDefaultLayer: function() {
+    _addLanguageDefaultLayer: function () {
         // language code -> layer id
         var languageLayersMap = {};
         var i;
@@ -107,7 +107,7 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    isDefaultLayer: function(id, overlay) {
+    isDefaultLayer: function (id, overlay) {
         var result = false;
         if (overlay) {
             result = this.defaultOverlays.indexOf(id) > -1;
@@ -117,15 +117,15 @@ BR.LayersConfig = L.Class.extend({
         return result;
     },
 
-    getBaseLayers: function() {
+    getBaseLayers: function () {
         return this._getLayers(this.defaultBaseLayers);
     },
 
-    getOverlays: function() {
+    getOverlays: function () {
         return this._getLayers(this.defaultOverlays);
     },
 
-    _getLayers: function(ids) {
+    _getLayers: function (ids) {
         var layers = {};
 
         for (var i = 0; i < ids.length; i++) {
@@ -148,7 +148,7 @@ BR.LayersConfig = L.Class.extend({
 
     // own convention: key placeholder with prefix
     // e.g. ?api_key={keys_openrouteservice}
-    getKeyName: function(url) {
+    getKeyName: function (url) {
         var result = null;
         // L.Util.template only matches [\w_-]
         var prefix = 'keys_';
@@ -162,14 +162,14 @@ BR.LayersConfig = L.Class.extend({
             name = found[1];
             result = {
                 name: name,
-                urlVar: prefix + name
+                urlVar: prefix + name,
             };
         }
 
         return result;
     },
 
-    createLayer: function(layerData) {
+    createLayer: function (layerData) {
         var props = layerData.properties;
         var url = props.url;
         var layer;
@@ -218,7 +218,7 @@ BR.LayersConfig = L.Class.extend({
 
         var options = {
             maxZoom: this._map.getMaxZoom(),
-            bounds: layerData.geometry && !props.worldTiles ? L.geoJson(layerData.geometry).getBounds() : null
+            bounds: layerData.geometry && !props.worldTiles ? L.geoJson(layerData.geometry).getBounds() : null,
         };
         if (props.mapUrl) {
             options.mapLink =
@@ -237,7 +237,7 @@ BR.LayersConfig = L.Class.extend({
             layer = L.tileLayer.provider(props.id);
 
             var layerOptions = L.Util.extend(options, {
-                maxNativeZoom: layer.options.maxZoom
+                maxNativeZoom: layer.options.maxZoom,
             });
             L.setOptions(layer, layerOptions);
         } else if (props.dataSource === 'LayersCollection') {
@@ -245,7 +245,7 @@ BR.LayersConfig = L.Class.extend({
                 url,
                 L.Util.extend(options, {
                     minZoom: props.minZoom || 0,
-                    maxNativeZoom: props.maxZoom
+                    maxNativeZoom: props.maxZoom,
                 })
             );
             if (props.subdomains) {
@@ -260,7 +260,7 @@ BR.LayersConfig = L.Class.extend({
                 minZoom: props.min_zoom || 0,
                 maxNativeZoom: props.max_zoom,
                 subdomains: getSubdomains(josmUrl),
-                attribution: convertAttributionJosm(props)
+                attribution: convertAttributionJosm(props),
             });
 
             if (props.type && props.type === 'wms') {
@@ -268,7 +268,7 @@ BR.LayersConfig = L.Class.extend({
                     url,
                     L.Util.extend(josmOptions, {
                         layers: props.layers,
-                        format: props.format
+                        format: props.format,
                     })
                 );
             } else {
@@ -279,7 +279,7 @@ BR.LayersConfig = L.Class.extend({
         // Layer attribution here only as short link to original site,
         // to keep current position use placeholders: {zoom}/{lat}/{lon}
         // Copyright attribution in index.html #credits
-        var getAttribution = function() {
+        var getAttribution = function () {
             return this.options.mapLink;
         };
         layer.getAttribution = getAttribution;
@@ -287,9 +287,9 @@ BR.LayersConfig = L.Class.extend({
         layer.id = props.id;
 
         return layer;
-    }
+    },
 });
 
-BR.layersConfig = function(map) {
+BR.layersConfig = function (map) {
     return new BR.LayersConfig(map);
 };

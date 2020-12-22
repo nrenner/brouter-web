@@ -1,0 +1,282 @@
+{
+  "about": {
+    "bug-reports": "Informes d'errors i petició de funcionalitats:",
+    "bug-reports-back": "servidor / dorsal, motor d'itineraris, aplicació Android, web brouter.de",
+    "bug-reports-front": "client web / frontal.",
+    "chat": "Xat amb usuaris i desenvolupadors",
+    "contact": "Contacte:",
+    "contact-language": "L'idioma preferit és l'anglès, ja que tenim tant contribuïdors com usuaris d'arreu del món.",
+    "data": "Dades:",
+    "data-description": "Això està basat en <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Normalment s'actualitza diàriament, veure les dates a <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">fitxers de dades</a>.",
+    "description": "Serveis en línia del motor d'itineraris BRouter. Per l'aplicació Android fora de línia i més informació, veure <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Política de privacitat</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Crèdits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Registre de canvis</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">més informació</a></i> sobre el client.",
+    "support": "Debats generals/preguntes, suport",
+    "title": "Quant a",
+    "tooltip": "Mostra més informació sobre BRouter-Web"
+  },
+  "credits": {
+    "brouter": "BRouter",
+    "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
+    "elevation-data": "Dades d'elevació",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Imatgeria del món</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, fonts: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, i la comunitat d'usuaris de SIG",
+    "esri-tiles": "Imatgeria del món d'Esri",
+    "map-data": "Dades del mapa",
+    "map-tiles": "Tessel·les del mapa",
+    "nominatim": "Cerca per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+  },
+  "export": {
+    "format": "Format",
+    "format_csv": "CSV",
+    "format_geojson": "GeoJSON",
+    "format_gpx": "GPX",
+    "format_kml": "KML",
+    "include": "Inclou",
+    "include_waypoints": "Fites",
+    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-loop": "{{from}} ({{distance}}km)",
+    "title": "Exporta la ruta",
+    "trackname": "Nom"
+  },
+  "footer": {
+    "ascend": "Desnivell acumulat",
+    "cost": "Cost",
+    "distance": "Distància",
+    "elevation-chart": "Commuta el gràfic d'elevació",
+    "energy-per-100km": "Energia per 100 km",
+    "hours": "hores",
+    "hours-abbrev": "h",
+    "kilometer": "kilòmetres",
+    "kilometer-abbrev": "km",
+    "kilowatthour": "kilowatts hora",
+    "kilowatthour-abbrev": "kWh",
+    "mean-cost-factor": "Factor de cost mitjà",
+    "meter": "metres",
+    "meter-abbrev": "m",
+    "plain-ascend": "Desnivell final",
+    "stats-info": "Comenceu a dibuixar una ruta per obtenir les estadístiques",
+    "total-energy": "Energia total",
+    "travel-time": "Temps de viatge"
+  },
+  "keyboard": {
+    "backspace": "Retrocés",
+    "escape": "Esc",
+    "generic-shortcut": "{{action}} ({{key}} tecla)",
+    "shift": "Majúscules"
+  },
+  "layers": {
+    "add-base": "Afegeix una capa base",
+    "add-overlay": "Afegeix superposició",
+    "customize": "Personalitza les capes",
+    "opacity-slider": "Control lliscant de l'opacitat",
+    "placeholder-layer-name": "Nom de la capa personalitzada. (eg: OpenStreetMap)",
+    "placeholder-layer-url": "URL de la capa personalitzada. (eg: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "remove-selection": "Elimina la selecció"
+  },
+  "loadNogos": {
+    "defaultProperties": "Propietats per defecte",
+    "file": "Fitxer (.geojson):",
+    "load": "Carrega",
+    "nogoBuffer": "Zona d'influència de les àrees omeses (en metres):",
+    "nogoRadius": "Radi de les àrees omeses per punts (en metres)",
+    "nogoWeight": "Pes de les àrees omeses (-1 vol dir inaccessible)",
+    "source": "Font",
+    "title": "Carrega les àrees omeses",
+    "url": "URL: "
+  },
+  "map": {
+    "attribution-osm-long": "Contribuidors de l'OpenStreetMap",
+    "attribution-osm-short": "OpenStreetMap",
+    "clear-route": "Neteja les dades de la ruta",
+    "copyright": "Copyright",
+    "cycling": "Ciclisme",
+    "delete-last-point": "Esborra l'últim punt",
+    "delete-nogo-areas": "Esborra totes les àrees omeses",
+    "delete-pois": "Esborra tots els punts d'interès",
+    "delete-route": "Esborra la ruta",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-poi-start": "Dibuixa punts d'interès",
+    "draw-poi-stop": "Para de dibuixar punts d'interès",
+    "draw-route-start": "Dibuixa una ruta",
+    "draw-route-stop": "Para de dibuixar la ruta",
+    "enter-poi-name": "Introdueix el nom del punt d'interès",
+    "geocoder": "Cerca",
+    "geocoder-placeholder": "Cerca...",
+    "hikebike-hillshading": "Ombreig del relleu ",
+    "hiking": "Excursionisme",
+    "layer": {
+      "bing": "Bing aeri",
+      "cycle": "OpenCycleMap (Thunderf.)",
+      "cycling": "Bici (camins marcats)",
+      "digitalglobe": "Imatgeria recent de DigitalGlobe",
+      "esri": "Imatgeria del món d'Esri",
+      "hikebike-hillshading": "Ombreig del relleu (mapa per caminades i bici)",
+      "hiking": "Caminada (camins marcats)",
+      "osm": "OpenStreetMap",
+      "osmde": "OpenStreetMap.de",
+      "outdoors": "Aire lliure (Thunderforest)",
+      "route-quality": "Codificació  de la qualitat de la ruta",
+      "stamen-terrain": "Terreny (Stamen)",
+      "strava-segments": "Segments de Strava",
+      "topo": "OpenTopoMap"
+    },
+    "loading": "Carregant...",
+    "locate-me": "Mostra'm on sóc",
+    "nogo": {
+      "cancel": "Cancel·la el dibuix d'àrees omeses",
+      "click-drag": "Cliqueu i arrossegueu per dibuixar un cercle",
+      "draw": "Dibuixa una àrea omesa circular",
+      "edit": "Cliqueu per editar",
+      "help": "&square; = mou / redimensiona, <span class=\"fa fa-trash-o\"></span> = esborra,<br>clique al cercle per deixar d'editar"
+    },
+    "opacity-slider": "Especifica la transparència de la ruta i els marcadors",
+    "opacity-slider-shortcut": "{{action}}\n(Mantén premuda la tecla {{key}} per silenciar temporalment)",
+    "preview": "Previsualitza",
+    "privacy": "Privacitat",
+    "reverse-route": "Capgira la ruta",
+    "route-quality-altitude": "Codificació de l'altitud",
+    "route-quality-cost": "Codificació del cost",
+    "route-quality-incline": "Codificació de la inclinació",
+    "route-quality-shortcut": "{{action}} ({{key}} tecla per commutar)",
+    "strava-biking": "Mostra els segments de bici de Strava",
+    "strava-running": "Mostra els segments de córrer de Strava",
+    "strava-shortcut": "{{action}}\n(tecla {{key}} per commutar les capes, cliqueu per recarregar l'àrea actual)",
+    "zoomInTitle": "Apropa",
+    "zoomOutTitle": "Allunya"
+  },
+  "modal": {
+    "close": "Tanca"
+  },
+  "navbar": {
+    "about": "Quant a",
+    "alternative": {
+      "first": "1a alternativa",
+      "original": "Original",
+      "second": "2a alternativa",
+      "third": "3a alternativa"
+    },
+    "export": "Exporta",
+    "export-tooltip": "Exporta la ruta",
+    "load": {
+      "nogos": "Carrega les àrees omeses",
+      "title": "Carrega",
+      "tooltip": "{{tracksAction}} (tecla {{tracksKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Carrega traces"
+    },
+    "profile": {
+      "car-eco": "Cotxe (econòmic)",
+      "car-fast": "Cotxe (ràpid)",
+      "car-test": "Cotxe (test)",
+      "custom": "Personalitzat",
+      "fastbike": "Bici ràpida",
+      "fastbike-asia-pacific": "Bici ràpida (Àsia Pacífic)",
+      "fastbike-lowtraffic": "Bici ràpida (poc trànsit)",
+      "hiking-beta": "Excursionisme (beta)",
+      "moped": "Ciclomotor",
+      "rail": "Via",
+      "river": "Riu",
+      "safety": "Seguretat",
+      "shortest": "El més curt",
+      "trekking": "Trescar amb bici",
+      "trekking-ignore-cr": "Trescar amb bici (ignora les rutes de bici)",
+      "trekking-noferries": "Trescar amb bici (sense ferris)",
+      "trekking-nosteps": "Trescar amb bici (sense graons)",
+      "trekking-steep": "Trescar amb bici (dret)",
+      "vm-forum-liegerad-schnell": "Trescar amb bici (ràpid)",
+      "vm-forum-velomobil-schnell": "Velomobile (ràpid)"
+    },
+    "profile-tooltip": "\n(tecla {{key}} per canviar)"
+  },
+  "sidebar": {
+    "analysis": {
+      "header": {
+        "highway": "Autopista",
+        "smoothness": "Suavitat",
+        "surface": "Superfície"
+      },
+      "table": {
+        "category": "Categoria",
+        "length": "Longitud",
+        "total_known": "Total conegut:",
+        "unknown": "Desconegut"
+      },
+      "title": "Anàlisi",
+      "tooltip": "Analitza la ruta"
+    },
+    "customize-profile": {
+      "title": "Personalitza el perfil",
+      "tooltip": "Personalitza el perfil"
+    },
+    "data": {
+      "sync-map": "Sincronitza el mapa",
+      "title": "Dades",
+      "tooltip": "Mostra la taula de dades detallades de la ruta"
+    },
+    "itinerary": {
+      "title": "Itinerari",
+      "tooltip": "Mostra l'itinerari"
+    },
+    "layers": {
+      "category": {
+        "base-layers": "Capes base",
+        "country": "País",
+        "europe": "Europa",
+        "europe-monolingual": "Europa monolingüe",
+        "overlays": "Superposicions",
+        "worldwide": "Arreu del món",
+        "worldwide-international": "Arreu del món internacional",
+        "worldwide-monolingual": "Arreu del món monolígüe"
+      },
+      "collapse": "Col·lapsa-ho tot",
+      "custom-layers": "Capes personalitzades",
+      "customize": "Afegeix o elimina capes personalitzades",
+      "expand": "Expandeix-ho tot",
+      "optional": "Afegeix o elimina capes opcionals",
+      "optional-layers": "Més",
+      "overlay-opacity": "Transparència de la superposició",
+      "table": {
+        "URL": "URL",
+        "empty": "Encara no hi ha cap capa personalitzada configurada.",
+        "name": "Nom",
+        "type": "Tipus"
+      },
+      "title": "Capes",
+      "tooltip": "Seleccioneu capes"
+    },
+    "profile": {
+      "apply": "Aplica",
+      "clear": "Neteja",
+      "help": "Ajuda",
+      "no_easy_configuration_warning": "No hi ha configuració fàcil per aquest perfil.",
+      "options": "Opcions",
+      "placeholder": "Escriviu el vostre propi perfil personalitzat aquí",
+      "profile": "Perfil"
+    },
+    "tab-tooltip": "{{action}}\n(tecla {{toggleKey}} per commutar, {{switchKey}} per canviar a la pestanya següent)"
+  },
+  "title": "Client web de BRouter",
+  "trackasroute": {
+    "explainpoi": "(mostra les fites com a PDI)",
+    "explaintracklayer": "(mostra traces com a capa separada)",
+    "file": "Fitxer de traça",
+    "fuzziness": "grau d'aproximació",
+    "pleasewait": "Espereu si us plau.",
+    "showpois": "PDI",
+    "title": "Carrega una traça com a ruta",
+    "tracklayer": "Capa de la traça",
+    "tuning": "Ajust"
+  },
+  "warning": {
+    "cannot-get-route": "Error en obtenir l'URL de la ruta",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
+    "no-response": "el servidor no respon",
+    "no-route-found": "Error: no es pot trobar una ruta pels punts donats. Podríeu provar de moure'ls més a prop de carreteres?",
+    "profile-error": "Error del perfil: cap resposta o resposta buida del servidor",
+    "strava-error": "Error en obtenir els segments de Strava: {{error}}",
+    "temporary-profile": "<strong>Nota:</strong> Els perfils personalitzats carregats només es desen temporalment al servidor.<br/>Deseu les vostres edicions al vostre ordinador.",
+    "tracks-load-error": "Error en carregar les traces: {{error}}",
+    "upload-error": "Error de càrrega: {{error}}"
+  }
+}

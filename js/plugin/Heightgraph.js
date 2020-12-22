@@ -1,4 +1,4 @@
-BR.Heightgraph = function(map, layersControl, routing, pois) {
+BR.Heightgraph = function (map, layersControl, routing, pois) {
     Heightgraph = L.Control.Heightgraph.extend({
         options: {
             width: $('#map').outerWidth(),
@@ -6,64 +6,64 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 top: 15,
                 right: 30,
                 bottom: 30,
-                left: 70
+                left: 70,
             },
             expandControls: false,
             mappings: {
                 gradient: {
                     '-5': {
                         text: '- 16%+',
-                        color: '#028306'
+                        color: '#028306',
                     },
                     '-4': {
                         text: '- 10-15%',
-                        color: '#2AA12E'
+                        color: '#2AA12E',
                     },
                     '-3': {
                         text: '- 7-9%',
-                        color: '#53BF56'
+                        color: '#53BF56',
                     },
                     '-2': {
                         text: '- 4-6%',
-                        color: '#7BDD7E'
+                        color: '#7BDD7E',
                     },
                     '-1': {
                         text: '- 1-3%',
-                        color: '#A4FBA6'
+                        color: '#A4FBA6',
                     },
-                    '0': {
+                    0: {
                         text: '0%',
-                        color: '#ffcc99'
+                        color: '#ffcc99',
                     },
-                    '1': {
+                    1: {
                         text: '1-3%',
-                        color: '#F29898'
+                        color: '#F29898',
                     },
-                    '2': {
+                    2: {
                         text: '4-6%',
-                        color: '#E07575'
+                        color: '#E07575',
                     },
-                    '3': {
+                    3: {
                         text: '7-9%',
-                        color: '#CF5352'
+                        color: '#CF5352',
                     },
-                    '4': {
+                    4: {
                         text: '10-15%',
-                        color: '#BE312F'
+                        color: '#BE312F',
                     },
-                    '5': {
+                    5: {
                         text: '16%+',
-                        color: '#AD0F0C'
-                    }
-                }
+                        color: '#AD0F0C',
+                    },
+                },
             },
             // extra options
             shortcut: {
-                toggle: 69 // char code for 'e'
-            }
+                toggle: 69, // char code for 'e'
+            },
         },
 
-        addBelow: function(map) {
+        addBelow: function (map) {
             // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
             // this.width($('#map').outerWidth());
             this.options.width = $('#content').outerWidth();
@@ -89,12 +89,12 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
 
             var self = this;
             var container = $('#elevation-chart');
-            $(window).resize(function() {
+            $(window).resize(function () {
                 // avoid useless computations if the chart is not visible
                 if (container.is(':visible')) {
                     self.resize({
                         width: container.width(),
-                        height: container.height()
+                        height: container.height(),
                     });
                 }
             });
@@ -103,10 +103,10 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             // The resize must be called after the animation (i.e. 'shown.bs.collapse')
             // and cannot be called before the animation (i.e. 'show.bs.collapse'),
             // for the container has the old width pre animation and new width post animation.
-            container.on('shown.bs.collapse', function() {
+            container.on('shown.bs.collapse', function () {
                 self.resize({
                     width: container.width(),
-                    height: container.height()
+                    height: container.height(),
                 });
             });
 
@@ -114,9 +114,9 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             this.update();
         },
 
-        initCollapse: function(map) {
+        initCollapse: function (map) {
             var self = this;
-            var onHide = function() {
+            var onHide = function () {
                 $('#elevation-btn').removeClass('active');
                 // we must fetch tiles that are located behind elevation-chart
                 map._onResize();
@@ -125,7 +125,7 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                     localStorage.removeItem(this.id);
                 }
             };
-            var onShow = function() {
+            var onShow = function () {
                 $('#elevation-btn').addClass('active');
 
                 if (this.id && BR.Util.localStorageAvailable()) {
@@ -136,20 +136,20 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
             $('#elevation-chart')
                 .on('hidden.bs.collapse', onHide)
                 .on('shown.bs.collapse', onShow)
-                .each(function() {
+                .each(function () {
                     if (this.id && BR.Util.localStorageAvailable() && localStorage[this.id] === 'true') {
                         self.shouldRestoreChart = true;
                     }
                 });
         },
 
-        _keydownListener: function(e) {
+        _keydownListener: function (e) {
             if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggle) {
                 $('#elevation-btn').click();
             }
         },
 
-        update: function(track, layer) {
+        update: function (track, layer) {
             // bring height indicator to front, because of track casing in BR.Routing
             if (this._mouseHeightFocus) {
                 var g = this._mouseHeightFocus._groups[0][0].parentNode;
@@ -186,7 +186,7 @@ BR.Heightgraph = function(map, layersControl, routing, pois) {
                 }
                 $('#elevation-chart').collapse('hide');
             }
-        }
+        },
     });
 
     var heightgraphControl = new Heightgraph();

@@ -1,4 +1,4 @@
-L.Routing.Draw.prototype._hideTrailer = function() {
+L.Routing.Draw.prototype._hideTrailer = function () {
     if (this._trailer.options.opacity !== 0.0) {
         this._trailer.setStyle({ opacity: 0.0 });
     }
@@ -12,7 +12,7 @@ BR.Routing = L.Routing.extend({
             normal: L.VectorMarkers.icon({ icon: 'circle', markerColor: BR.conf.markerColors.via }),
             end: L.VectorMarkers.icon({ icon: 'stop', markerColor: BR.conf.markerColors.stop }),
             draw: false,
-            opacity: 1
+            opacity: 1,
         },
         snapping: null,
         zIndexOffset: -2000,
@@ -20,21 +20,21 @@ BR.Routing = L.Routing.extend({
             // width as base number, multiplied by number of digits + one for padding
             iconSize: [6, 18],
             offset: 5000,
-            textFunction: function(distance) {
+            textFunction: function (distance) {
                 return distance / 1000;
-            }
+            },
         },
         shortcut: {
             draw: {
                 enable: 68, // char code for 'd'
-                disable: 27 // char code for 'ESC'
+                disable: 27, // char code for 'ESC'
             },
             reverse: 82, // char code for 'r'
-            deleteLastPoint: 90 // char code for 'z'
-        }
+            deleteLastPoint: 90, // char code for 'z'
+        },
     },
 
-    onAdd: function(map) {
+    onAdd: function (map) {
         this._segmentsCasing = new L.FeatureGroup().addTo(map);
         this._loadingTrailerGroup = new L.FeatureGroup().addTo(map);
 
@@ -45,18 +45,18 @@ BR.Routing = L.Routing.extend({
 
         this._waypoints.on('layeradd', this._setMarkerOpacity, this);
 
-        this.on('routing:routeWaypointStart routing:rerouteAllSegmentsStart', function(evt) {
+        this.on('routing:routeWaypointStart routing:rerouteAllSegmentsStart', function (evt) {
             this._removeDistanceMarkers();
         });
 
-        this.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd', function(evt) {
+        this.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd', function (evt) {
             this._updateDistanceMarkers(evt);
         });
 
         // turn line mouse marker off while over waypoint marker
         this.on(
             'waypoint:mouseover',
-            function(e) {
+            function (e) {
                 // L.Routing.Edit._segmentOnMouseout without firing 'segment:mouseout' (enables draw)
                 if (this._dragging) {
                     return;
@@ -71,7 +71,7 @@ BR.Routing = L.Routing.extend({
 
         this.on(
             'waypoint:mouseout',
-            function(e) {
+            function (e) {
                 this._segmentOnMouseover(e);
                 this._suspended = false;
             },
@@ -82,7 +82,7 @@ BR.Routing = L.Routing.extend({
             L.divIcon({
                 className: 'line-mouse-marker',
                 iconAnchor: [8, 8], // size/2 + border/2
-                iconSize: [16, 16]
+                iconSize: [16, 16],
             })
         );
 
@@ -90,7 +90,7 @@ BR.Routing = L.Routing.extend({
         // update indicator), see also L.Routing.Edit._segmentOnMousemove
         this._edit._mouseMarker.on(
             'move',
-            L.bind(function(e) {
+            L.bind(function (e) {
                 var latLng = e.latlng;
                 if (latLng._feature) {
                     this._mouseMarker._feature = latLng._feature;
@@ -98,7 +98,7 @@ BR.Routing = L.Routing.extend({
                 }
             }, this._edit)
         );
-        var mouseoutHandler = function(e) {
+        var mouseoutHandler = function (e) {
             if (this._mouseMarker._feature) {
                 this._mouseMarker._feature.fire('mouseout', e, true);
                 this._mouseMarker._feature = null;
@@ -108,7 +108,7 @@ BR.Routing = L.Routing.extend({
         this._edit._mouseMarker.on('dragstart', mouseoutHandler, this._edit);
         this.on('waypoint:mouseover', mouseoutHandler, this._edit);
 
-        this._draw.on('enabled', function() {
+        this._draw.on('enabled', function () {
             // crosshair cursor
             L.DomUtil.addClass(map.getContainer(), 'routing-draw-enabled');
 
@@ -120,7 +120,7 @@ BR.Routing = L.Routing.extend({
             this._parent.off('waypoint:mouseout', this._catchWaypointEvent, this);
             this.on(
                 'waypoint:mouseout',
-                function(e) {
+                function (e) {
                     if (!this._parent._edit._suspended) {
                         this._catchWaypointEvent(e);
                     }
@@ -128,7 +128,7 @@ BR.Routing = L.Routing.extend({
                 this
             );
         });
-        this._draw.on('disabled', function() {
+        this._draw.on('disabled', function () {
             L.DomUtil.removeClass(map.getContainer(), 'routing-draw-enabled');
         });
 
@@ -143,13 +143,13 @@ BR.Routing = L.Routing.extend({
                 this._hide();
             }
         }
-        this._draw.on('enabled', function() {
+        this._draw.on('enabled', function () {
             this._map.on('mouseout', hide, this);
             this._map.on('mouseover', show, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseout', show, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseover', hide, this);
         });
-        this._draw.on('disabled', function() {
+        this._draw.on('disabled', function () {
             this._map.off('mouseout', hide, this);
             this._map.off('mouseover', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
@@ -163,7 +163,7 @@ BR.Routing = L.Routing.extend({
         // although enabled.
         this.on(
             'waypoint:click',
-            function() {
+            function () {
                 if (this._hidden && !this._parent._waypoints._first) {
                     this._show();
                     this._hideTrailer();
@@ -181,18 +181,18 @@ BR.Routing = L.Routing.extend({
         return container;
     },
 
-    _addSegmentCasing: function(e) {
+    _addSegmentCasing: function (e) {
         var casing = L.polyline(e.layer.getLatLngs(), this.options.styles.trackCasing);
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
         this._segments.bringToFront();
     },
 
-    _removeSegmentCasing: function(e) {
+    _removeSegmentCasing: function (e) {
         this._segmentsCasing.removeLayer(e.layer._casing);
     },
 
-    setOpacity: function(opacity) {
+    setOpacity: function (opacity) {
         // Due to the second Polyline layer for casing, the combined opacity is less
         // transparent than with a single layer and the slider is non-linear. The
         // inverted formula is used to get the same result as with a single layer.
@@ -205,12 +205,12 @@ BR.Routing = L.Routing.extend({
         this.options.icons.opacity = opacity;
 
         this._segments.setStyle({
-            opacity: sourceOpacity
+            opacity: sourceOpacity,
         });
         this._segmentsCasing.setStyle({
-            opacity: sourceOpacity
+            opacity: sourceOpacity,
         });
-        this._waypoints.eachLayer(function(marker) {
+        this._waypoints.eachLayer(function (marker) {
             marker.setOpacity(opacity);
         });
 
@@ -219,11 +219,11 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    _setMarkerOpacity: function(e) {
+    _setMarkerOpacity: function (e) {
         e.layer.setOpacity(this.options.icons.opacity);
     },
 
-    _removeMarkerEvents: function(marker) {
+    _removeMarkerEvents: function (marker) {
         marker.off('mouseover', this._fireWaypointEvent, this);
         marker.off('mouseout', this._fireWaypointEvent, this);
         marker.off('dragstart', this._fireWaypointEvent, this);
@@ -232,7 +232,7 @@ BR.Routing = L.Routing.extend({
         marker.off('click', this._fireWaypointEvent, this);
     },
 
-    clear: function() {
+    clear: function () {
         var drawEnabled = this._draw._enabled;
         var current = this._waypoints._first;
 
@@ -259,13 +259,13 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    setWaypoints: function(latLngs, cb) {
+    setWaypoints: function (latLngs, cb) {
         var i;
         var callbackCount = 0;
         var firstErr;
         var $this = this;
 
-        var callback = function(err, data) {
+        var callback = function (err, data) {
             callbackCount++;
             firstErr = firstErr || err;
             if (callbackCount >= latLngs.length) {
@@ -299,10 +299,10 @@ BR.Routing = L.Routing.extend({
 
     // patch to fix error when line is null or error line
     // (when called while still segments to calculate, e.g. permalink or fast drawing)
-    toPolyline: function() {
+    toPolyline: function () {
         var latLngs = [];
 
-        this._eachSegment(function(m1, m2, line) {
+        this._eachSegment(function (m1, m2, line) {
             // omit if null (still calculating) or error
             // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
             if (line && line.feature) {
@@ -313,7 +313,7 @@ BR.Routing = L.Routing.extend({
         return L.polyline(latLngs);
     },
 
-    _routeSegment: function(m1, m2, cb) {
+    _routeSegment: function (m1, m2, cb) {
         var loadingTrailer;
 
         // change segment color before request to indicate recalculation (mark old)
@@ -327,7 +327,7 @@ BR.Routing = L.Routing.extend({
                 color: this.options.styles.track.color,
                 opacity: this.options.styles.trailer.opacity,
                 dashArray: [10, 10],
-                className: 'loading-trailer'
+                className: 'loading-trailer',
             });
             this._loadingTrailerGroup.addLayer(loadingTrailer);
         }
@@ -336,7 +336,7 @@ BR.Routing = L.Routing.extend({
             this,
             m1,
             m2,
-            L.bind(function(err, data) {
+            L.bind(function (err, data) {
                 if (loadingTrailer) {
                     this._loadingTrailerGroup.removeLayer(loadingTrailer);
                 }
@@ -345,10 +345,10 @@ BR.Routing = L.Routing.extend({
         );
     },
 
-    getSegments: function() {
+    getSegments: function () {
         var segments = [];
 
-        this._eachSegment(function(m1, m2, line) {
+        this._eachSegment(function (m1, m2, line) {
             // omit if null (still calculating) or error
             // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
             if (line && line.feature) {
@@ -359,7 +359,7 @@ BR.Routing = L.Routing.extend({
         return segments;
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
@@ -374,7 +374,7 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    _keyupListener: function(e) {
+    _keyupListener: function (e) {
         // Prevent Leaflet from triggering drawing a second time on keyup,
         // since this is already done in _keydownListener
         if (e.keyCode === this.options.shortcut.draw.enable) {
@@ -382,30 +382,30 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    isDrawing: function() {
+    isDrawing: function () {
         return this._draw._enabled;
     },
 
-    reverse: function() {
+    reverse: function () {
         var waypoints = this.getWaypoints();
         waypoints.reverse();
         this.clear();
         this.setWaypoints(waypoints);
     },
 
-    deleteLastPoint: function() {
+    deleteLastPoint: function () {
         if ((lastPoint = this.getLast())) {
-            this.removeWaypoint(lastPoint, function(err, data) {});
+            this.removeWaypoint(lastPoint, function (err, data) {});
         }
     },
 
-    _removeDistanceMarkers: function() {
+    _removeDistanceMarkers: function () {
         if (this._map && this._distanceMarkers) {
             this._map.removeLayer(this._distanceMarkers);
         }
     },
 
-    _updateDistanceMarkers: function(e) {
+    _updateDistanceMarkers: function (e) {
         this._removeDistanceMarkers();
 
         if (this._map) {
@@ -413,5 +413,5 @@ BR.Routing = L.Routing.extend({
             this._distanceMarkers = new L.DistanceMarkers(this.toPolyline(), this._map, distanceMarkersOpts);
             this._map.addLayer(this._distanceMarkers);
         }
-    }
+    },
 });

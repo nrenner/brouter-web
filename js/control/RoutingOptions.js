@@ -1,11 +1,11 @@
 BR.RoutingOptions = L.Evented.extend({
     options: {
         shortcut: {
-            switch: 71 // char code for 'g'
-        }
+            switch: 71, // char code for 'g'
+        },
     },
 
-    initialize: function() {
+    initialize: function () {
         $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
         // build option list from config
@@ -25,17 +25,17 @@ BR.RoutingOptions = L.Evented.extend({
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
-    refreshUI: function() {
+    refreshUI: function () {
         // we do not allow to select more than one profile and/or alternative at a time
         // so we disable the current selected items
         $('#profile-alternative')
             .find('option:disabled')
-            .each(function(index) {
+            .each(function (index) {
                 $(this).prop('disabled', false);
             });
         $('#profile-alternative')
             .find('option:selected')
-            .each(function(index) {
+            .each(function (index) {
                 $(this).prop('disabled', true);
             });
 
@@ -51,21 +51,21 @@ BR.RoutingOptions = L.Evented.extend({
         button.title = button.title + i18next.t('navbar.profile-tooltip', { key: 'G' });
     },
 
-    getOptions: function() {
+    getOptions: function () {
         var profile = $('#profile option:selected'),
             alternative = $('#alternative option:selected');
         this.refreshUI();
 
         return {
             profile: profile.val(),
-            alternative: alternative.val()
+            alternative: alternative.val(),
         };
     },
 
-    setOptions: function(options) {
+    setOptions: function (options) {
         var values = [
             options.profile ? options.profile : $('#profile option:selected').val(),
-            options.alternative ? options.alternative : $('#alternative option:selected').val()
+            options.alternative ? options.alternative : $('#alternative option:selected').val(),
         ];
         $('.selectpicker').selectpicker('val', values);
         this.refreshUI();
@@ -76,7 +76,7 @@ BR.RoutingOptions = L.Evented.extend({
         }
     },
 
-    setCustomProfile: function(profile, noUpdate) {
+    setCustomProfile: function (profile, noUpdate) {
         var profiles_grp, option;
 
         profiles_grp = L.DomUtil.get('profile');
@@ -87,7 +87,7 @@ BR.RoutingOptions = L.Evented.extend({
         if (profile) {
             $('#profile')
                 .find('option:selected')
-                .each(function(index) {
+                .each(function (index) {
                     $(this).prop('selected', false);
                 });
         } else if (option.selected) {
@@ -102,7 +102,7 @@ BR.RoutingOptions = L.Evented.extend({
         }
     },
 
-    getCustomProfile: function() {
+    getCustomProfile: function () {
         var profiles_grp = L.DomUtil.get('profile'),
             option = profiles_grp.children[0],
             profile = null;
@@ -113,17 +113,17 @@ BR.RoutingOptions = L.Evented.extend({
         return profile;
     },
 
-    _getChangeHandler: function() {
-        return L.bind(function(evt) {
+    _getChangeHandler: function () {
+        return L.bind(function (evt) {
             this.fire('update', { options: this.getOptions() });
         }, this);
     },
 
-    _keydownListener: function(e) {
+    _keydownListener: function (e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.switch) {
             if (!$('#profile-alternative-form .dropdown').hasClass('show')) {
                 $('#profile-alternative-form button').click();
             }
         }
-    }
+    },
 });

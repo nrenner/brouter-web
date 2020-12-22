@@ -1,5 +1,11 @@
 # BRouter-Web Changelog
 
+## 0.14.0 (2020-12-04)
+
+### New Features [fr]
+
+-   [French users only] New button to add 20km allowed zone - by [@bagage](https://github.com/bagage) ([#347](https://github.com/nrenner/brouter-web/pull/347), [#350](https://github.com/nrenner/brouter-web/pull/350), [#352](https://github.com/nrenner/brouter-web/pull/352))
+
 ## 0.13.0 (2020-08-04)
 
 See also [milestone 0.13.0](https://github.com/nrenner/brouter-web/milestone/14?closed=1)

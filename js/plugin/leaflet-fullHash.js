@@ -1,10 +1,10 @@
-(function(window) {
-    var HAS_HASHCHANGE = (function() {
+(function (window) {
+    var HAS_HASHCHANGE = (function () {
         var doc_mode = window.documentMode;
         return 'onhashchange' in window && (doc_mode === undefined || doc_mode > 7);
     })();
 
-    L.Hash = function(map, options) {
+    L.Hash = function (map, options) {
         this.onHashChange = L.Util.bind(this.onHashChange, this);
 
         if (map) {
@@ -12,7 +12,7 @@
         }
     };
 
-    L.Hash.parseHash = function(hash) {
+    L.Hash.parseHash = function (hash) {
         if (hash.indexOf('#map=') === 0) {
             hash = hash.substr(5);
         }
@@ -31,7 +31,7 @@
                     center: new L.LatLng(lat, lon),
                     zoom: zoom,
                     layers: layers,
-                    additional: additional
+                    additional: additional,
                 };
             }
         } else {
@@ -39,7 +39,7 @@
         }
     };
 
-    (L.Hash.formatHash = function(map) {
+    (L.Hash.formatHash = function (map) {
         var center = map.getCenter(),
             zoom = map.getZoom(),
             precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
@@ -57,7 +57,7 @@
     }),
         (L.Hash.prototype = {
             options: {
-                layerSeparator: ','
+                layerSeparator: ',',
             },
             map: null,
             lastHash: null,
@@ -65,7 +65,7 @@
             parseHash: L.Hash.parseHash,
             formatHash: L.Hash.formatHash,
 
-            init: function(map, options) {
+            init: function (map, options) {
                 this.map = map;
                 L.Util.setOptions(this, options);
 
@@ -78,9 +78,9 @@
                 }
             },
 
-            _parseLayers: function(layersParam, layerSeparator) {
+            _parseLayers: function (layersParam, layerSeparator) {
                 var layers = layersParam.split(layerSeparator).map(
-                    L.bind(function(layerEncoded) {
+                    L.bind(function (layerEncoded) {
                         var obj = null;
                         var layerString = decodeURIComponent(layerEncoded);
 
@@ -95,8 +95,8 @@
                 return layers;
             },
 
-            parseLayers: function(layersParam) {
-                var countFoundLayers = function(count, obj) {
+            parseLayers: function (layersParam) {
+                var countFoundLayers = function (count, obj) {
                     if (obj) {
                         count++;
                     }
@@ -119,14 +119,14 @@
                 return layers;
             },
 
-            activateLayers: function(layers) {
+            activateLayers: function (layers) {
                 var layersControl = this.options.layersControl;
                 var added = false;
 
                 layersControl.removeActiveLayers();
 
                 layers.forEach(
-                    L.bind(function(obj, index, array) {
+                    L.bind(function (obj, index, array) {
                         if (obj) {
                             layersControl.activateLayer(obj);
                             if (obj && !obj.overlay) {
@@ -142,14 +142,14 @@
                 }
             },
 
-            formatLayers: function() {
+            formatLayers: function () {
                 var objList = this.options.layersControl.getActiveLayers();
                 // exclude vector layers (loaded tracks), but not when id set (route quality coding)
-                objList = objList.filter(function(obj) {
+                objList = objList.filter(function (obj) {
                     return obj.layer instanceof L.GridLayer || obj.layer.id;
                 });
                 var layerList = objList.map(
-                    L.bind(function(obj) {
+                    L.bind(function (obj) {
                         return encodeURIComponent(this.options.layersControl.toLayerString(obj));
                     }, this)
                 );
@@ -157,7 +157,7 @@
                 return layerList.join(this.options.layerSeparator);
             },
 
-            removeFrom: function(map) {
+            removeFrom: function (map) {
                 if (this.changeTimeout) {
                     clearTimeout(this.changeTimeout);
                 }
@@ -169,7 +169,7 @@
                 this.map = null;
             },
 
-            onMapMove: function() {
+            onMapMove: function () {
                 // bail if we're moving the map (updating from a hash),
                 // or if the map is not yet loaded
 
@@ -185,7 +185,7 @@
             },
 
             movingMap: false,
-            update: function() {
+            update: function () {
                 var hash = location.hash;
                 if (hash === this.lastHash) {
                     return;
@@ -221,12 +221,12 @@
             // defer hash change updates every 100ms
             changeDefer: 100,
             changeTimeout: null,
-            onHashChange: function() {
+            onHashChange: function () {
                 // throttle calls to update() so that they only happen every
                 // `changeDefer` ms
                 if (!this.changeTimeout) {
                     var that = this;
-                    this.changeTimeout = setTimeout(function() {
+                    this.changeTimeout = setTimeout(function () {
                         that.update();
                         that.changeTimeout = null;
                     }, this.changeDefer);
@@ -235,7 +235,7 @@
 
             isListening: false,
             hashChangeInterval: null,
-            startListening: function() {
+            startListening: function () {
                 this.map.on('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
@@ -247,7 +247,7 @@
                 this.isListening = true;
             },
 
-            stopListening: function() {
+            stopListening: function () {
                 this.map.off('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
@@ -258,7 +258,7 @@
                 this.isListening = false;
             },
 
-            _keyByValue: function(obj, value) {
+            _keyByValue: function (obj, value) {
                 for (var key in obj) {
                     if (obj.hasOwnProperty(key)) {
                         if (obj[key] === value) {
@@ -268,15 +268,15 @@
                         }
                     }
                 }
-            }
+            },
         });
-    L.hash = function(map, options) {
+    L.hash = function (map, options) {
         return new L.Hash(map, options);
     };
-    L.Map.prototype.addHash = function() {
+    L.Map.prototype.addHash = function () {
         this._hash = L.hash(this, this.options);
     };
-    L.Map.prototype.removeHash = function() {
+    L.Map.prototype.removeHash = function () {
         this._hash.removeFrom();
     };
 })(window);

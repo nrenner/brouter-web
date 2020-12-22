@@ -1,10 +1,10 @@
 BR.Itinerary = L.Class.extend({
-    initialize: function() {
+    initialize: function () {
         this._content = document.getElementById('itinerary');
         this.update();
     },
 
-    update: function(polyline, segments) {
+    update: function (polyline, segments) {
         var i,
             j,
             iter,
@@ -20,5 +20,5 @@ BR.Itinerary = L.Class.extend({
         html += '</pre>';
 
         this._content.innerHTML = html;
-    }
+    },
 });

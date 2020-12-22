@@ -3,46 +3,46 @@ L.BRouter = L.Class.extend({
         // NOTE: the routing API used here is not public!
         // /brouter?lonlats=1.1,1.2|2.1,2.2|3.1,3.2|4.1,4.2&nogos=-1.1,-1.2,1|-2.1,-2.2,2&profile=shortest&alternativeidx=1&format=kml
         URL_TEMPLATE:
-            '/brouter?lonlats={lonlats}&nogos={nogos}&polylines={polylines}&polygons={polygons}&profile={profile}&alternativeidx={alternativeidx}&format={format}',
+            '/brouter?lonlats={lonlats}&profile={profile}&alternativeidx={alternativeidx}&format={format}&nogos={nogos}&polylines={polylines}&polygons={polygons}',
         URL_PROFILE_UPLOAD: BR.conf.host + '/brouter/profile',
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
         GROUP_SEPARATOR: '|',
         ABORTED_ERROR: 'aborted',
         CUSTOM_PREFIX: 'custom_',
-        isCustomProfile: function(profileName) {
+        isCustomProfile: function (profileName) {
             return profileName && profileName.substring(0, 7) === L.BRouter.CUSTOM_PREFIX;
-        }
+        },
     },
 
     options: {},
 
-    initialize: function(options) {
+    initialize: function (options) {
         L.setOptions(this, options);
 
         this.queue = async.queue(
-            L.bind(function(task, callback) {
+            L.bind(function (task, callback) {
                 this.getRoute(task.segment, callback);
             }, this),
             1
         );
 
         // patch to call callbacks on kill for cleanup (loadingTrailer)
-        this.queue.kill = function() {
+        this.queue.kill = function () {
             var aborted = this.tasks;
             this.drain = null;
             this.tasks = [];
-            aborted.forEach(function(task) {
+            aborted.forEach(function (task) {
                 task.callback(L.BRouter.ABORTED_ERROR);
             });
         };
     },
 
-    setOptions: function(options) {
+    setOptions: function (options) {
         L.setOptions(this, options);
     },
 
-    getUrlParams: function(latLngs, pois, format) {
+    getUrlParams: function (latLngs, pois, circlego, format) {
         params = {};
         if (this._getLonLatsString(latLngs) != null) params.lonlats = this._getLonLatsString(latLngs);
 
@@ -58,6 +58,8 @@ L.BRouter = L.Class.extend({
         if (this.options.profile != null) params.profile = this.options.profile;
 
         if (pois && this._getLonLatsNameString(pois) != null) params.pois = this._getLonLatsNameString(pois);
+
+        if (circlego) params.circlego = circlego;
 
         params.alternativeidx = this.options.alternative;
 
@@ -77,7 +79,7 @@ L.BRouter = L.Class.extend({
         return params;
     },
 
-    parseUrlParams: function(params) {
+    parseUrlParams: function (params) {
         var opts = {};
         if (params.lonlats) {
             opts.lonlats = this._parseLonLats(params.lonlats);
@@ -100,15 +102,27 @@ L.BRouter = L.Class.extend({
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
         }
+        if (params.circlego) {
+            var circlego = params.circlego.split(',');
+            if (circlego.length == 3) {
+                circlego = [
+                    Number.parseFloat(circlego[0]),
+                    Number.parseFloat(circlego[1]),
+                    Number.parseInt(circlego[2]),
+                ];
+                opts.circlego = circlego;
+            }
+        }
         return opts;
     },
 
-    getUrl: function(latLngs, pois, format, trackname, exportWaypoints) {
-        var urlParams = this.getUrlParams(latLngs, pois, format);
+    getUrl: function (latLngs, pois, circlego, format, trackname, exportWaypoints) {
+        var urlParams = this.getUrlParams(latLngs, pois, circlego, format);
         var args = [];
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
         if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
+        if (urlParams.circlego != null) args.push(L.Util.template('circlego={circlego}', urlParams));
         if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
         if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
         if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
@@ -118,7 +132,7 @@ L.BRouter = L.Class.extend({
         if (trackname)
             args.push(
                 L.Util.template('trackname={trackname}', {
-                    trackname: trackname
+                    trackname: trackname,
                 })
             );
         if (exportWaypoints) args.push('exportWaypoints=1');
@@ -128,8 +142,8 @@ L.BRouter = L.Class.extend({
         return (prepend_host ? BR.conf.host : '') + '/brouter?' + args.join('&');
     },
 
-    getRoute: function(latLngs, cb) {
-        var url = this.getUrl(latLngs, null, 'geojson'),
+    getRoute: function (latLngs, cb) {
+        var url = this.getUrl(latLngs, null, null, 'geojson'),
             xhr = new XMLHttpRequest();
 
         if (!url) {
@@ -139,7 +153,7 @@ L.BRouter = L.Class.extend({
         xhr.open('GET', url, true);
         xhr.onload = L.bind(this._handleRouteResponse, this, xhr, cb);
         xhr.onerror = L.bind(
-            function(xhr, cb) {
+            function (xhr, cb) {
                 cb(BR.Util.getError(xhr));
             },
             this,
@@ -149,7 +163,7 @@ L.BRouter = L.Class.extend({
         xhr.send();
     },
 
-    _handleRouteResponse: function(xhr, cb) {
+    _handleRouteResponse: function (xhr, cb) {
         var layer, geojson;
 
         if (
@@ -175,11 +189,11 @@ L.BRouter = L.Class.extend({
         }
     },
 
-    getRouteSegment: function(l1, l2, cb) {
+    getRouteSegment: function (l1, l2, cb) {
         this.queue.push({ segment: [l1, l2] }, cb);
     },
 
-    uploadProfile: function(profileId, profileText, cb) {
+    uploadProfile: function (profileId, profileText, cb) {
         var url = L.BRouter.URL_PROFILE_UPLOAD;
         xhr = new XMLHttpRequest();
 
@@ -190,7 +204,7 @@ L.BRouter = L.Class.extend({
 
         xhr.open('POST', url, true);
         xhr.onload = L.bind(this._handleProfileResponse, this, xhr, cb);
-        xhr.onerror = function(evt) {
+        xhr.onerror = function (evt) {
             var xhr = this;
             cb(i18next.t('warning.upload-error', { error: xhr.statusText }));
         };
@@ -199,7 +213,7 @@ L.BRouter = L.Class.extend({
         xhr.send(profileText);
     },
 
-    _assignFeatures: function(segment) {
+    _assignFeatures: function (segment) {
         if (segment.feature.properties.messages) {
             var featureMessages = segment.feature.properties.messages,
                 segmentLatLngs = segment.getLatLngs(),
@@ -226,7 +240,7 @@ L.BRouter = L.Class.extend({
         return segment;
     },
 
-    _getFeature: function(featureMessage) {
+    _getFeature: function (featureMessage) {
         //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
         return {
             cost: {
@@ -234,22 +248,22 @@ L.BRouter = L.Class.extend({
                 elev: parseInt(featureMessage[5]),
                 turn: parseInt(featureMessage[6]),
                 node: parseInt(featureMessage[7]),
-                initial: parseInt(featureMessage[8])
+                initial: parseInt(featureMessage[8]),
             },
             distance: parseInt(featureMessage[3]),
             wayTags: featureMessage[9],
-            nodeTags: featureMessage[10]
+            nodeTags: featureMessage[10],
         };
     },
 
-    _getFeatureLatLng: function(message) {
+    _getFeatureLatLng: function (message) {
         var lon = message[0] / 1000000,
             lat = message[1] / 1000000;
 
         return L.latLng(lat, lon);
     },
 
-    _handleProfileResponse: function(xhr, cb) {
+    _handleProfileResponse: function (xhr, cb) {
         var response;
 
         if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
@@ -260,7 +274,7 @@ L.BRouter = L.Class.extend({
         }
     },
 
-    _getLonLatsString: function(latLngs) {
+    _getLonLatsString: function (latLngs) {
         var s = '';
         for (var i = 0; i < latLngs.length; i++) {
             s += this._formatLatLng(latLngs[i]);
@@ -271,7 +285,7 @@ L.BRouter = L.Class.extend({
         return s;
     },
 
-    _parseLonLats: function(s) {
+    _parseLonLats: function (s) {
         var groups,
             numbers,
             lonlats = [];
@@ -290,7 +304,7 @@ L.BRouter = L.Class.extend({
         return lonlats;
     },
 
-    _getLonLatsNameString: function(latLngNames) {
+    _getLonLatsNameString: function (latLngNames) {
         var s = '';
         for (var i = 0; i < latLngNames.length; i++) {
             s += this._formatLatLng(latLngNames[i].latlng);
@@ -304,7 +318,7 @@ L.BRouter = L.Class.extend({
         return s;
     },
 
-    _parseLonLatNames: function(s) {
+    _parseLonLatNames: function (s) {
         var groups,
             part,
             lonlatnames = [];
@@ -323,7 +337,7 @@ L.BRouter = L.Class.extend({
         return lonlatnames;
     },
 
-    _getNogosString: function(nogos) {
+    _getNogosString: function (nogos) {
         var s = '';
         for (var i = 0, circle; i < nogos.length; i++) {
             circle = nogos[i];
@@ -346,7 +360,7 @@ L.BRouter = L.Class.extend({
         return s;
     },
 
-    _parseNogos: function(s) {
+    _parseNogos: function (s) {
         var groups,
             numbers,
             nogos = [];
@@ -372,7 +386,7 @@ L.BRouter = L.Class.extend({
         return nogos;
     },
 
-    _getNogosPolylinesString: function(nogos) {
+    _getNogosPolylinesString: function (nogos) {
         var s = '';
         for (var i = 0, polyline, vertices; i < nogos.length; i++) {
             polyline = nogos[i];
@@ -399,7 +413,7 @@ L.BRouter = L.Class.extend({
         return s;
     },
 
-    _parseNogosPolylines: function(s) {
+    _parseNogosPolylines: function (s) {
         var groups,
             numbers,
             latlngs,
@@ -425,7 +439,7 @@ L.BRouter = L.Class.extend({
         return nogos;
     },
 
-    _getNogosPolygonsString: function(nogos) {
+    _getNogosPolygonsString: function (nogos) {
         var s = '';
         for (var i = 0, polygon, vertices; i < nogos.length; i++) {
             polygon = nogos[i];
@@ -452,7 +466,7 @@ L.BRouter = L.Class.extend({
         return s;
     },
 
-    _parseNogosPolygons: function(s) {
+    _parseNogosPolygons: function (s) {
         var groups,
             numbers,
             latlngs,
@@ -479,15 +493,15 @@ L.BRouter = L.Class.extend({
     },
 
     // formats L.LatLng object as lng,lat string
-    _formatLatLng: function(latLng) {
+    _formatLatLng: function (latLng) {
         var s = '';
         s += L.Util.formatNum(latLng.lng || latLng[1], L.BRouter.PRECISION);
         s += L.BRouter.NUMBER_SEPARATOR;
         s += L.Util.formatNum(latLng.lat || latLng[0], L.BRouter.PRECISION);
         return s;
-    }
+    },
 });
 
-L.bRouter = function(options) {
+L.bRouter = function (options) {
     return new L.BRouter(options);
 };

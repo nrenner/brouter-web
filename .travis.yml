@@ -2,3 +2,6 @@ language: node_js
 node_js:
     - lts/*
 cache: yarn
+script:
+    - yarn test
+    - yarn lint

@@ -94,6 +94,8 @@
     "delete-nogo-areas": "Minden elkerülendő terület törlése",
     "delete-pois": "Minden érdekes pont (POI) törlése",
     "delete-route": "Útvonal törlése",
+    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
+    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
     "draw-poi-start": "Érdekes pontok (POI-k) rajzolása",
     "draw-poi-stop": "Érdekes pontok rajzolásának megszakítása",
     "draw-route-start": "Útvonal rajzolása",
@@ -267,6 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Hiba történt az útvonal URL-jének beolvasásakor",
+    "invalid-route-from": "Start marker is too far from a route.",
+    "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "a kiszolgáló nem válaszol",
     "no-route-found": "Hiba: az adott pontokhoz nem sikerül útvonalat találni. Esetleg próbálja meg közelebb tenni őket az utakhoz.",
     "profile-error": "Profilhiba: a kiszolgáló nem válaszol vagy üres választ küld",
