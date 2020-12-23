@@ -1,0 +1,14 @@
+diff --git a/node_modules/leaflet.heightgraph/dist/L.Control.Heightgraph.js b/node_modules/leaflet.heightgraph/dist/L.Control.Heightgraph.js
+index 122c9ac..1048691 100644
+--- a/node_modules/leaflet.heightgraph/dist/L.Control.Heightgraph.js
++++ b/node_modules/leaflet.heightgraph/dist/L.Control.Heightgraph.js
+@@ -1,3 +1,4 @@
++(function() {
+ 'use strict';
+ 
+ function _typeof(obj) {
+@@ -5792,3 +5793,4 @@ var schemeSet3 = colors("8dd3c7ffffb3bebadafb807280b1d3fdb462b3de69fccde5d9d9d9b
+ 
+   return L.Control.Heightgraph;
+ }, window);
++}());

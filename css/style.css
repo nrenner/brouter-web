@@ -749,3 +749,15 @@ table.dataTable.display tbody tr:hover.selected {
     so we ignore pointer events in this situation to avoid that*/
     pointer-events: none;
 }
+
+/*
+ * Heightgraph customizations;
+ * since the legend and the gradient types are in the way, hide them;
+ * since there's only the gradient layer, hide the layer selector.
+ */
+.legend-hover {
+    display: none;
+}
+#selectionText {
+    display: none;
+}

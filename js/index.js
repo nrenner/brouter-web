@@ -214,7 +214,8 @@
         } else {
             stats = new BR.TrackStats();
         }
-        elevation = new BR.Elevation();
+
+        elevation = new BR.Heightgraph();
 
         profile = new BR.Profile();
         profile.on('update', function (evt) {
@@ -460,12 +461,6 @@
             },
             urlHash
         );
-
-        // listener and initCollapse here and not in onAdd, as addBelow calls addTo (-> onAdd) on resize
-        $(window).resize(function () {
-            elevation.addBelow(map);
-        });
-        elevation.initCollapse(map);
     }
 
     i18next.on('languageChanged', function (detectedLanguage) {

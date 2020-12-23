@@ -12,7 +12,8 @@
         "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
         "serve": "gulp serve watch",
-        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
+        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone",
+        "postinstall": "patch-package"
     },
     "husky": {
         "hooks": {
@@ -46,9 +47,9 @@
         "bootstrap-select": "1.13.6",
         "bootstrap-slider": "^9.8.1",
         "codemirror": "^5.35.0",
-        "d3": "~3.5.5",
         "datatables": "~1.10.18",
         "font-awesome": "^4.7.0",
+        "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
         "i18next": "^19.8.4",
         "i18next-browser-languagedetector": "^6.0.1",
         "i18next-xhr-backend": "^3.2.2",
@@ -59,7 +60,6 @@
         "leaflet-control-geocoder": "^1.13.0",
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
-        "leaflet-elevation": "nrenner/Leaflet.Elevation#dev",
         "leaflet-filelayer": "^1.2.0",
         "leaflet-geometryutil": "^0.9.1",
         "leaflet-hotline": "^0.4.0",
@@ -68,6 +68,7 @@
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
+        "leaflet.heightgraph": "1.3.3",
         "leaflet.locatecontrol": "^0.60.0",
         "leaflet.snogylop": "^0.4.0",
         "leaflet.stravasegments": "2.3.2",
@@ -108,6 +109,8 @@
         "merge-stream": "^2.0.0",
         "node-fetch": "^2.6.1",
         "npmfiles": "^0.1.3",
+        "patch-package": "~6.2.2",
+        "postinstall-postinstall": "~2.1.0",
         "prettier": "^2.2.1",
         "pretty-quick": "^3.1.0"
     },
@@ -172,13 +175,12 @@
                 "dist/css/bootstrap.css"
             ]
         },
-        "leaflet-elevation": {
+        "leaflet.heightgraph": {
             "main": [
-                "src/L.Control.Elevation.js",
-                "dist/leaflet.elevation-0.0.4.css",
-                "dist/images/*.png"
-            ],
-            "dependencies": null
+                "dist/L.Control.Heightgraph.js",
+                "src/L.Control.Heightgraph.css",
+                "dist/img/*.svg"
+            ]
         },
         "leaflet-control-geocoder": {
             "main": [
