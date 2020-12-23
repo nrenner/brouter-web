@@ -67,7 +67,7 @@
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
-        "leaflet.heightgraph": "nrenner/Leaflet.Heightgraph#40cdbc9",
+        "leaflet.heightgraph": "nrenner/Leaflet.Heightgraph#0757b2a",
         "leaflet.locatecontrol": "^0.60.0",
         "leaflet.snogylop": "^0.4.0",
         "leaflet.stravasegments": "2.3.2",
