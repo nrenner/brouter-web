@@ -61,7 +61,7 @@
   "keyboard": {
     "backspace": "Retrocés",
     "escape": "Esc",
-    "generic-shortcut": "{{action}} ({{key}} tecla)",
+    "generic-shortcut": "{{action}} (tecla {{key}})",
     "shift": "Majúscules"
   },
   "layers": {
@@ -94,8 +94,8 @@
     "delete-nogo-areas": "Esborra totes les àrees omeses",
     "delete-pois": "Esborra tots els punts d'interès",
     "delete-route": "Esborra la ruta",
-    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
-    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-circlego-start": "Dibuixa una zona de pas limitada a {{radius}}km",
+    "draw-circlego-stop": "Para de dibuixar una zona de pas limitada a {{radius}}km",
     "draw-poi-start": "Dibuixa punts d'interès",
     "draw-poi-stop": "Para de dibuixar punts d'interès",
     "draw-route-start": "Dibuixa una ruta",
@@ -138,7 +138,7 @@
     "route-quality-altitude": "Codificació de l'altitud",
     "route-quality-cost": "Codificació del cost",
     "route-quality-incline": "Codificació de la inclinació",
-    "route-quality-shortcut": "{{action}} ({{key}} tecla per commutar)",
+    "route-quality-shortcut": "{{action}} (tecla {{key}} per commutar)",
     "strava-biking": "Mostra els segments de bici de Strava",
     "strava-running": "Mostra els segments de córrer de Strava",
     "strava-shortcut": "{{action}}\n(tecla {{key}} per commutar les capes, cliqueu per recarregar l'àrea actual)",
@@ -191,7 +191,7 @@
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Autopista",
+        "highway": "Via",
         "smoothness": "Suavitat",
         "surface": "Superfície"
       },
@@ -269,8 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Error en obtenir l'URL de la ruta",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "El marcador d'inici és massa lluny de cap ruta.",
+    "invalid-route-to": "El marcador de destí és massa lluny de cap ruta.",
     "no-response": "el servidor no respon",
     "no-route-found": "Error: no es pot trobar una ruta pels punts donats. Podríeu provar de moure'ls més a prop de carreteres?",
     "profile-error": "Error del perfil: cap resposta o resposta buida del servidor",

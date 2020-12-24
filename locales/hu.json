@@ -269,8 +269,8 @@
   },
   "warning": {
     "cannot-get-route": "Hiba történt az útvonal URL-jének beolvasásakor",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "A kiindulási pont jelölője túl távol esik az úttól.",
+    "invalid-route-to": "A célpont jelölője túl távol esik az úttól.",
     "no-response": "a kiszolgáló nem válaszol",
     "no-route-found": "Hiba: az adott pontokhoz nem sikerül útvonalat találni. Esetleg próbálja meg közelebb tenni őket az utakhoz.",
     "profile-error": "Profilhiba: a kiszolgáló nem válaszol vagy üres választ küld",
