@@ -328,6 +328,10 @@
             circlegoRadius = 20000;
         }
 
+        if (lang.startsWith('de')) {
+            circlegoRadius = 15000;
+        }
+
         if (circlegoRadius != null) {
             circlego = new BR.CircleGoArea(routing, nogos, pois);
             circlego.options.radius = circlegoRadius;
