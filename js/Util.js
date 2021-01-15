@@ -107,4 +107,17 @@ BR.Util = {
         temp.textContent = str;
         return temp.innerHTML;
     },
+
+    isCountry: function (country, language) {
+        // de-DE | fr-FR
+        var lang = i18next.languages[0].split('-');
+
+        if (lang.length > 1) {
+            // if available only test country, to avoid e.g. de-CH to match
+            return lang[1] === country;
+        }
+
+        // fallback when country not available
+        return lang[0] === language;
+    },
 };

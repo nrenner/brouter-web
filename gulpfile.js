@@ -34,7 +34,12 @@ var debug = false;
 
 var paths = {
     // see overrides in package.json
-    scriptsConfig: mainNpmFiles().filter((f) => RegExp('url-search-params/.*\\.js', 'i').test(f)),
+    scriptsConfig: mainNpmFiles()
+        .filter((f) => RegExp('url-search-params/.*\\.js', 'i').test(f))
+        .concat([
+            // large lib as extra file for faster parallel loading (*.min.js already excluded from bundle)
+            'node_modules/@turf/turf/turf.min.js',
+        ]),
     scripts: [
         'node_modules/jquery/dist/jquery.js',
         'node_modules/async/lib/async.js',
@@ -74,6 +79,7 @@ var paths = {
         'layers/config/geometry.js',
     ],
     layersConfigDestName: 'layersConf.js',
+    boundaries: 'resources/boundaries/*.geojson',
     zip: ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
     dest: 'dist',
     destName: 'brouter-web',
@@ -151,6 +157,10 @@ gulp.task('fonts', function () {
 
 gulp.task('locales', function () {
     return gulp.src(paths.locales).pipe(gulp.dest(paths.dest + '/locales'));
+});
+
+gulp.task('boundaries', function () {
+    return gulp.src(paths.boundaries).pipe(gulp.dest(paths.dest + '/boundaries'));
 });
 
 gulp.task('reload', function (done) {
@@ -303,7 +313,18 @@ gulp.task('layers', function () {
 
 gulp.task(
     'default',
-    gulp.series('clean', 'scripts_config', 'layers_config', 'layers', 'scripts', 'styles', 'images', 'fonts', 'locales')
+    gulp.series(
+        'clean',
+        'scripts_config',
+        'layers_config',
+        'layers',
+        'scripts',
+        'styles',
+        'images',
+        'fonts',
+        'locales',
+        'boundaries'
+    )
 );
 
 gulp.task(

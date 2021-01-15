@@ -321,26 +321,14 @@
 
         nogos.addTo(map);
 
-        var circlegoRadius = null;
-        var lang = i18next.languages.length && i18next.languages[0];
-
-        if (lang.startsWith('fr')) {
-            circlegoRadius = 20000;
-        }
-
-        if (lang.startsWith('de')) {
-            circlegoRadius = 15000;
-        }
-
-        if (circlegoRadius != null) {
-            circlego = new BR.CircleGoArea(routing, nogos, pois);
-            circlego.options.radius = circlegoRadius;
+        circlego = BR.circleGoArea(routing, nogos, pois);
+        if (circlego != null) {
             pois.circlego = circlego;
             circlego.addTo(map);
         }
 
         var buttons = [drawButton, reverseRouteButton, nogos.getButton()];
-        if (circlegoRadius) buttons.push(circlego.getButton());
+        if (circlego) buttons.push(circlego.getButton());
         buttons.push(deletePointButton, deleteRouteButton);
 
         L.easyBar(buttons).addTo(map);
@@ -411,8 +399,7 @@
                 pois.setMarkers(opts.pois);
             }
             if (circlego && opts.circlego) {
-                circlego.options.radius = opts.circlego[2];
-                circlego.setCircle([opts.circlego[0], opts.circlego[1]], opts.polylines != null);
+                circlego.setOptions(opts);
             }
         };
 

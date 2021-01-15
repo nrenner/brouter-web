@@ -2,3 +2,4 @@ layers/josm/extract.js
 layers/collection/extract.js
 gulpfile.js
 dist/brouter-web.js
+dist/turf.min.js

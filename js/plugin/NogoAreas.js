@@ -35,6 +35,10 @@ BR.NogoAreas = L.Control.extend({
         fillOpacity: 0.1,
     },
 
+    polylineOptions: {
+        smoothFactor: 0.5,
+    },
+
     initialize: function () {
         this._wasRouteDrawing = false;
     },
@@ -233,6 +237,9 @@ BR.NogoAreas = L.Control.extend({
             var geoJSON = L.geoJson(turf.featureCollection(cleanedGeoJSONFeatures), {
                 onEachFeature: function (feature, layer) {
                     layer.options.nogoWeight = feature.properties.nogoWeight || nogoWeight;
+                    if (feature.geometry.type === 'LineString') {
+                        L.setOptions(layer, self.polylineOptions);
+                    }
                 },
             });
             var nogosPoints = geoJSON.getLayers().filter(function (e) {
@@ -308,6 +315,15 @@ BR.NogoAreas = L.Control.extend({
         var polylines = options.polylines;
         var polygons = options.polygons;
         this._clear();
+        this._addNogos(nogos, polylines, polygons);
+    },
+
+    addNogos: function (nogos, polylines, polygons) {
+        this._addNogos(nogos, polylines, polygons);
+        this._fireUpdate();
+    },
+
+    _addNogos: function (nogos, polylines, polygons) {
         if (nogos) {
             for (var i = 0; i < nogos.length; i++) {
                 nogos[i].setStyle(this.style);
@@ -326,6 +342,26 @@ BR.NogoAreas = L.Control.extend({
                 this.drawnItems.addLayer(polygons[i]);
             }
         }
+    },
+
+    removeNogos: function (nogos, polylines, polygons) {
+        if (nogos) {
+            for (var i = 0; i < nogos.length; i++) {
+                this.drawnItems.removeLayer(nogos[i]);
+            }
+        }
+        if (polylines) {
+            for (var i = 0; i < polylines.length; i++) {
+                this.drawnItems.removeLayer(polylines[i]);
+            }
+        }
+        if (polygons) {
+            for (var i = 0; i < polygons.length; i++) {
+                this.drawnItems.removeLayer(polygons[i]);
+            }
+        }
+
+        this._fireUpdate();
     },
 
     _clear: function () {

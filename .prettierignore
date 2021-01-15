@@ -8,3 +8,4 @@ yarn.lock
 .tx/
 layers/
 locales/*.json
+resources/boundaries/
