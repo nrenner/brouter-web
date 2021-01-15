@@ -102,8 +102,9 @@ L.BRouter = L.Class.extend({
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
         }
-        if (params.circlego) {
-            var circlego = params.circlego.split(',');
+        if (params.ringgo || params.circlego) {
+            var paramRinggo = params.ringgo || params.circlego;
+            var circlego = paramRinggo.split(',');
             if (circlego.length == 3) {
                 circlego = [
                     Number.parseFloat(circlego[0]),
@@ -122,7 +123,7 @@ L.BRouter = L.Class.extend({
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
         if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
-        if (urlParams.circlego != null) args.push(L.Util.template('circlego={circlego}', urlParams));
+        if (urlParams.circlego != null) args.push(L.Util.template('ringgo={circlego}', urlParams));
         if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
         if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
         if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
@@ -433,7 +434,8 @@ L.BRouter = L.Class.extend({
                 if (j < numbers.length) {
                     nogoWeight = Number.parseFloat(numbers[j++]);
                 }
-                nogos.push(L.polyline(latlngs, { nogoWeight: nogoWeight }));
+                var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
+                nogos.push(L.polyline(latlngs, options));
             }
         }
         return nogos;
