@@ -15,6 +15,7 @@
     "tooltip": "Mehr Informationen über BRouter-Web anzeigen"
   },
   "credits": {
+    "boundaries": "Verwaltungsgrenzen: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Höhendaten",
@@ -23,7 +24,8 @@
     "map-data": "Kartendaten",
     "map-tiles": "Kartendarstellung",
     "nominatim": "Suchen mit <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> unter <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> unter <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "title": "Credits"
   },
   "export": {
     "format": "Format",
@@ -94,8 +96,8 @@
     "delete-nogo-areas": "Alle No-go-Areas löschen",
     "delete-pois": "Alle POI löschen",
     "delete-route": "Route löschen",
-    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
-    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-circlego-start": "{{radius}}km Bewegungsradius durch Klick auf Wohnsitz ermitteln - keine rechtsverbindliche Auskunft",
+    "draw-circlego-stop": "Stoppen des Zeichnens eines {{radius}}km Bewegungsradius",
     "draw-poi-start": "POI einzeichnen",
     "draw-poi-stop": "Einzeichnen der POI beenden",
     "draw-route-start": "Route zeichnen",
@@ -269,8 +271,8 @@
   },
   "warning": {
     "cannot-get-route": "Fehler beim Abrufen der Routen-URL",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "Die Startmarkierung ist zu weit von der Route entfernt.",
+    "invalid-route-to": "Die Zielmarkierung ist zu weit von der Route entfernt.",
     "no-response": "Keine Antwort vom Server",
     "no-route-found": "Fehler: kann für angegebene Punkte keine Route finden. Vielleicht die Punkte näher an Straßen verschieben?",
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",

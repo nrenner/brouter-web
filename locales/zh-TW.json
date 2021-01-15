@@ -15,6 +15,7 @@
     "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Elevation data",
@@ -23,7 +24,8 @@
     "map-data": "地圖資料",
     "map-tiles": "Map tiles",
     "nominatim": "搜尋服務由 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>提供",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出",
+    "title": "Credits"
   },
   "export": {
     "format": "Format",

@@ -15,6 +15,7 @@
     "tooltip": "További információk megjelenítése a BRouter-Webről"
   },
   "credits": {
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Magassági adatok",
@@ -23,7 +24,8 @@
     "map-data": "Térképadatok",
     "map-tiles": "Map tiles",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
+    "title": "Credits"
   },
   "export": {
     "format": "Formátum",

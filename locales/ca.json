@@ -15,6 +15,7 @@
     "tooltip": "Mostra més informació sobre BRouter-Web"
   },
   "credits": {
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dades d'elevació",
@@ -23,7 +24,8 @@
     "map-data": "Dades del mapa",
     "map-tiles": "Tessel·les del mapa",
     "nominatim": "Cerca per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "title": "Credits"
   },
   "export": {
     "format": "Format",
