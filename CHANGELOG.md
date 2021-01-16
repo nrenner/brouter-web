@@ -8,7 +8,7 @@
 
 ### New Features [de]
 
--   [German users only] New button to determine 15km allowed zone ([#358](hhttps://github.com/nrenner/brouter-web/issues/358)), [@mjaschen](https://github.com/mjaschen): ([#357](https://github.com/nrenner/brouter-web/pull/357))
+-   [German users only] New button to determine 15km allowed zone ([#358](https://github.com/nrenner/brouter-web/issues/358)), [@mjaschen](https://github.com/mjaschen): ([#357](https://github.com/nrenner/brouter-web/pull/357))
 
 See also [milestone 0.15.0](https://github.com/nrenner/brouter-web/milestone/15?closed=1)
 
