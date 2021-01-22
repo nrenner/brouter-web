@@ -7,7 +7,7 @@ BR.CircleGoArea = L.Control.extend({
     options: {
         radius: 1000, // in meters
         stateRules: false,
-        statesUrl: BR.conf.statesUrl || 'dist/boundaries/germany-states.geojson',
+        statesUrl: BR.conf.statesUrl || 'dist/boundaries/germany-states.topo.json',
         overpassBaseUrl: BR.conf.overpassBaseUrl || 'https://overpass-api.de/api/interpreter?data=',
         shortcut: {
             draw: {
@@ -276,28 +276,21 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     _loadStates: function (cb) {
-        BR.Util.get(
+        BR.Util.getGeoJson(
             this.options.statesUrl,
+            'states',
             L.bind(function (err, data) {
-                if (err) {
-                    BR.message.showError('Error getting states: ' + err);
-                    return;
-                }
+                // TODO spinner aus?, mit ringgo parameter testen
+                if (err) return;
 
-                try {
-                    this.states = JSON.parse(data);
+                this.states = data;
 
-                    // debugging
-                    //this._logStates(this.states);
-                    //this._addStatesLayer(this.states);
+                // debugging
+                //this._logStates(this.states);
+                //this._addStatesLayer(this.states);
 
-                    this.fire('states:loaded');
-
-                    cb();
-                } catch (err) {
-                    BR.message.showError('Error parsing states: ' + err);
-                    console.error(err);
-                }
+                this.fire('states:loaded');
+                cb();
             }, this)
         );
     },

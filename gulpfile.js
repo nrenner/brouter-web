@@ -79,7 +79,7 @@ var paths = {
         'layers/config/geometry.js',
     ],
     layersConfigDestName: 'layersConf.js',
-    boundaries: 'resources/boundaries/*.geojson',
+    boundaries: ['resources/boundaries/*.geojson', 'resources/boundaries/*.topo.json'],
     zip: ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
     dest: 'dist',
     destName: 'brouter-web',
