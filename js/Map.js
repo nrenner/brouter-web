@@ -12,6 +12,20 @@ BR.Map = {
 
         var maxZoom = 19;
 
+        // Extend Map Class to Include a hotel search activated member
+        L.Map.include({
+            // a boolean to check if route  is clicked to initiate hotel search
+            _hotelSearchIsActive: false,
+
+            setHotelSearchIsActive: function (value) {
+                this._hotelSearchIsActive = value;
+            },
+
+            getHotelSearchIsActive: function () {
+                return this._hotelSearchIsActive;
+            },
+        });
+
         map = new L.Map('map', {
             zoomControl: false, // add it manually so that we can translate it
             worldCopyJump: true,
@@ -21,6 +35,7 @@ BR.Map = {
             tap: false,
         });
 
+        // Translated zoom added to map
         if (BR.Util.getResponsiveBreakpoint() >= '3md') {
             L.control
                 .zoom({
@@ -29,6 +44,7 @@ BR.Map = {
                 })
                 .addTo(map);
         }
+
         if (!map.restoreView()) {
             map.setView(BR.conf.initialMapLocation || [50.99, 9.86], BR.conf.initialMapZoom || 5);
         }

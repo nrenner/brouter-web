@@ -92,12 +92,31 @@ BR.Routing = L.Routing.extend({
             'move',
             L.bind(function (e) {
                 var latLng = e.latlng;
+
                 if (latLng._feature) {
                     this._mouseMarker._feature = latLng._feature;
                     latLng._feature.fire('mousemove', e, true);
                 }
             }, this._edit)
         );
+
+        this._edit._mouseMarker.on('click', function (e) {
+            // check if route has been clicked before that is user has already initiated hotel search
+
+            if (!map.getHotelSearchIsActive()) {
+                var latLng = e.latlng;
+                var hotels = new BR.FindHotels(latLng);
+                hotels.addTo(map);
+
+                //todo
+                // if not control added to map
+                L.easyBar([hotels.getButton()]).addTo(map);
+
+                // indicate user has already initiated hotel search
+                map.setHotelSearchIsActive(true);
+            }
+        });
+
         var mouseoutHandler = function (e) {
             if (this._mouseMarker._feature) {
                 this._mouseMarker._feature.fire('mouseout', e, true);
