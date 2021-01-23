@@ -30,6 +30,38 @@ BR.Util = {
         return new Error(msg);
     },
 
+    getJson: function (url, context, cb) {
+        BR.Util.get(url, function (err, data) {
+            if (err) {
+                BR.message.showError('Error getting ' + context + ': ' + err);
+                return cb(err);
+            }
+
+            try {
+                var json = JSON.parse(data);
+                cb(null, json);
+            } catch (err) {
+                BR.message.showError('Error parsing ' + context + ': ' + err);
+                console.error(err);
+                cb(err);
+            }
+        });
+    },
+
+    getGeoJson: function (url, context, cb) {
+        BR.Util.getJson(url, context, function (err, data) {
+            if (err) return cb(err);
+
+            var geoJson = data;
+            if (data && data.type && data.type === 'Topology') {
+                var key = Object.keys(data.objects)[0];
+                geoJson = topojson.feature(data, data.objects[key]);
+            }
+
+            cb(null, geoJson);
+        });
+    },
+
     // check if localStorage is available, especially for catching SecurityError
     // when cookie settings are blocking access (Chrome, Pale Moon, older Firefox)
     //
@@ -118,6 +150,10 @@ BR.Util = {
         }
 
         // fallback when country not available
-        return lang[0] === language;
+        if (language) {
+            return lang[0] === language;
+        }
+
+        return false;
     },
 };
