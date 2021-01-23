@@ -1,8 +1,9 @@
 BR.CircleGoArea = L.Control.extend({
     circleLayer: null,
     boundaryLayer: null,
-    outsideAreaRenderer: L.svg({ padding: 1 }),
+    maskRenderer: L.svg({ padding: 2 }),
     countries: null,
+    countriesMask: null,
     states: null,
     statesLoading: false,
 
@@ -94,10 +95,12 @@ BR.CircleGoArea = L.Control.extend({
             this.routing.draw(false);
             this.pois.draw(false);
             this.map.on('click', this.onMapClick, this);
+            this.map.addLayer(this.countriesMask);
             this._unlockOutsideArea();
             L.DomUtil.addClass(this.map.getContainer(), 'circlego-draw-enabled');
         } else {
             this.map.off('click', this.onMapClick, this);
+            this.map.removeLayer(this.countriesMask);
             this._lockOutsideArea();
             L.DomUtil.removeClass(this.map.getContainer(), 'circlego-draw-enabled');
         }
@@ -281,7 +284,7 @@ BR.CircleGoArea = L.Control.extend({
                 console.error('unhandled country: ' + name);
             }
         } else {
-            // TODO message: no rules implemented for this location
+            // NOOP, no rules implemented for this location
         }
     },
 
@@ -342,16 +345,38 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     _loadCountries: function () {
-        BR.Util.getGeoJson(
+        BR.Util.getJson(
             this.options.countriesUrl,
             'countries',
             L.bind(function (err, data) {
                 if (err) return;
 
-                this.countries = data;
+                var key = Object.keys(data.objects)[0];
+                this.countries = topojson.feature(data, data.objects[key]);
 
-                // debugging
-                //this._addGeoJsonLayer(this.countries, { color: 'darkgreen', opacity: 1 });
+                var union = topojson.merge(data, [data.objects[key]]);
+                this.countriesMask = L.geoJson(union, {
+                    renderer: this.maskRenderer,
+                    // use Leaflet.snogylop plugin here, turf.mask too slow (~4s) for some reason
+                    invert: true,
+                    style: function (feature) {
+                        return {
+                            weight: 1,
+                            color: 'darkgreen',
+                            opacity: 0.8,
+                            fillColor: '#020',
+                            fillOpacity: 0.2,
+                            className: 'circlego-outside',
+                        };
+                    },
+                });
+                this.countriesMask.on('click', L.DomEvent.stop);
+                this.countriesMask.bindTooltip(i18next.t('map.not-applicable-here'), {
+                    sticky: true,
+                    offset: [10, 0],
+                    direction: 'right',
+                    opacity: 0.8,
+                });
 
                 this.fire('countries:loaded');
             }, this)
@@ -420,7 +445,7 @@ BR.CircleGoArea = L.Control.extend({
         var mask = turf.mask(turf.polygonize(ring));
 
         this.outsideArea = L.geoJson(mask, {
-            renderer: this.outsideAreaRenderer,
+            renderer: this.maskRenderer,
             style: function (feature) {
                 return {
                     weight: 4,
