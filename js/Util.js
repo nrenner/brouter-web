@@ -150,6 +150,10 @@ BR.Util = {
         }
 
         // fallback when country not available
-        return lang[0] === language;
+        if (language) {
+            return lang[0] === language;
+        }
+
+        return false;
     },
 };

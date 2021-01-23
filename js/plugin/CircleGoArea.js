@@ -2,11 +2,13 @@ BR.CircleGoArea = L.Control.extend({
     circleLayer: null,
     boundaryLayer: null,
     outsideAreaRenderer: L.svg({ padding: 1 }),
+    countries: null,
     states: null,
+    statesLoading: false,
 
     options: {
         radius: 1000, // in meters
-        stateRules: false,
+        countriesUrl: BR.conf.countriesUrl || 'dist/boundaries/countries.topo.json',
         statesUrl: BR.conf.statesUrl || 'dist/boundaries/germany-states.topo.json',
         overpassBaseUrl: BR.conf.overpassBaseUrl || 'https://overpass-api.de/api/interpreter?data=',
         shortcut: {
@@ -58,16 +60,22 @@ BR.CircleGoArea = L.Control.extend({
             ],
         });
 
-        if (this.options.stateRules) {
-            this.drawButton.disable();
-            this._loadStates(
-                L.bind(function () {
-                    this.drawButton.enable();
-                    if (this.marker && !this.marker.dragging.enabled()) {
-                        this.marker.dragging.enable();
-                    }
-                }, this)
-            );
+        this.drawButton.disable();
+        this.once(
+            'countries:loaded',
+            function () {
+                this.drawButton.enable();
+                if (this.marker && !this.marker.dragging.enabled()) {
+                    this.marker.dragging.enable();
+                }
+            },
+            this
+        );
+        this._loadCountries();
+
+        // preload states in parallel, before clicked country is known, using browser language as indicator
+        if (BR.Util.isCountry('DE')) {
+            this._loadStates();
         }
 
         map.on('routing:draw-start', function () {
@@ -126,17 +134,11 @@ BR.CircleGoArea = L.Control.extend({
         var url = this.options.overpassBaseUrl + encodeURIComponent(query);
 
         this.marker.setIcon(this.iconSpinner);
-        BR.Util.get(
+        BR.Util.getJson(
             url,
-            L.bind(function (err, data) {
-                if (err) {
-                    BR.message.showError('Error getting boundary for coordinate "' + center + '": ' + err);
-                    return;
-                }
-
-                try {
-                    var osmJson = JSON.parse(data);
-
+            'boundary for coordinate "' + center + '"',
+            L.bind(function (err, osmJson) {
+                if (!err) {
                     if (osmJson.elements.length === 0) {
                         if (adminLevel === 8 || adminLevel === 7) {
                             // admin_level 6 (kreisfreie Stadt)
@@ -150,14 +152,9 @@ BR.CircleGoArea = L.Control.extend({
                     var geoJson = osmtogeojson(osmJson);
 
                     this._setBoundary(geoJson);
-
-                    this.marker.setIcon(this.icon);
-                } catch (err) {
-                    BR.message.showError('Error parsing boundary: ' + err);
-                    console.error(err);
-                } finally {
-                    this.marker.setIcon(this.icon);
                 }
+
+                this.marker.setIcon(this.icon);
             }, this)
         );
     },
@@ -196,21 +193,29 @@ BR.CircleGoArea = L.Control.extend({
         this.setOutsideArea(ring);
     },
 
-    _getState: function (center) {
-        var state = null;
+    _getPolygonForPoint: function (center, featureCollection) {
+        var polygon = null;
         var point = turf.point(center);
 
-        var features = this.states.features;
+        var features = featureCollection.features;
         for (var i = 0; i < features.length; i++) {
             var feature = features[i];
             var inside = turf.booleanPointInPolygon(point, feature);
             if (inside) {
-                state = feature;
+                polygon = feature;
                 break;
             }
         }
 
-        return state;
+        return polygon;
+    },
+
+    _getState: function (center) {
+        return this._getPolygonForPoint(center, this.states);
+    },
+
+    _getCountry: function (center) {
+        return this._getPolygonForPoint(center, this.countries);
     },
 
     _applyStateRules: function (center) {
@@ -244,6 +249,42 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
+    _applyCountryRules: function (center) {
+        var country = this._getCountry(center);
+
+        if (country) {
+            var name = country.properties.name;
+
+            if (name === 'Germany') {
+                this.options.radius = 15000;
+
+                if (!this.states) {
+                    this.marker.setIcon(this.iconSpinner);
+                    this.once(
+                        'states:loaded',
+                        function () {
+                            this.marker.setIcon(this.icon);
+                            if (this.states) {
+                                this._applyStateRules(center);
+                            }
+                        },
+                        this
+                    );
+                    this._loadStates();
+                } else {
+                    this._applyStateRules(center);
+                }
+            } else if (name === 'Metropolitan France') {
+                this.options.radius = 20000;
+                this._setNogoCircle(center);
+            } else {
+                console.error('unhandled country: ' + name);
+            }
+        } else {
+            // TODO message: no rules implemented for this location
+        }
+    },
+
     // debugging
     _logStates: function (states) {
         for (var i = 0; i < states.features.length; i++) {
@@ -255,19 +296,22 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     // debugging
-    _addStatesLayer: function (states) {
+    _addGeoJsonLayer: function (states, options) {
         // delay, otherwise triggers premature hash update through mapmove
         setTimeout(
             L.bind(function () {
                 L.geoJson(states, {
                     style: function (feature) {
-                        return {
-                            weight: 1,
-                            color: 'navy',
-                            opacity: 0.8,
-                            fill: false,
-                            interactive: false,
-                        };
+                        return L.extend(
+                            {
+                                weight: 1,
+                                color: 'navy',
+                                opacity: 0.8,
+                                fill: false,
+                                interactive: false,
+                            },
+                            options
+                        );
                     },
                 }).addTo(this.map);
             }, this),
@@ -275,22 +319,41 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _loadStates: function (cb) {
+    _loadStates: function () {
+        if (this.statesLoading) return;
+
+        this.statesLoading = true;
         BR.Util.getGeoJson(
             this.options.statesUrl,
             'states',
             L.bind(function (err, data) {
-                // TODO spinner aus?, mit ringgo parameter testen
+                if (!err) {
+                    this.states = data;
+
+                    // debugging
+                    //this._logStates(this.states);
+                    //this._addGeoJsonLayer(this.states);
+                }
+
+                this.statesLoading = false;
+                this.fire('states:loaded');
+            }, this)
+        );
+    },
+
+    _loadCountries: function () {
+        BR.Util.getGeoJson(
+            this.options.countriesUrl,
+            'countries',
+            L.bind(function (err, data) {
                 if (err) return;
 
-                this.states = data;
+                this.countries = data;
 
                 // debugging
-                //this._logStates(this.states);
-                //this._addStatesLayer(this.states);
+                //this._addGeoJsonLayer(this.countries, { color: 'darkgreen', opacity: 1 });
 
-                this.fire('states:loaded');
-                cb();
+                this.fire('countries:loaded');
             }, this)
         );
     },
@@ -318,23 +381,19 @@ BR.CircleGoArea = L.Control.extend({
         this._removeNogo();
 
         if (center) {
-            if (this.options.stateRules) {
-                if (!this.states) {
-                    // wait for states to be loaded (when circlego hash parameter without polylines)
-                    this.marker.setIcon(this.iconSpinner);
-                    this.once(
-                        'states:loaded',
-                        function () {
-                            this._applyStateRules(center);
-                            this.marker.setIcon(this.icon);
-                        },
-                        this
-                    );
-                } else {
-                    this._applyStateRules(center);
-                }
+            if (!this.countries) {
+                // wait for countries to be loaded (when circlego hash parameter without polylines)
+                this.marker.setIcon(this.iconSpinner);
+                this.once(
+                    'countries:loaded',
+                    function () {
+                        this.marker.setIcon(this.icon);
+                        this._applyCountryRules(center);
+                    },
+                    this
+                );
             } else {
-                this._setNogoCircle(center);
+                this._applyCountryRules(center);
             }
         }
     },
@@ -420,8 +479,8 @@ BR.CircleGoArea = L.Control.extend({
         this.clear();
         marker.addTo(this.circleLayer);
 
-        if (this.options.stateRules && !this.states) {
-            // prevent editing (when called by hash) until states are loaded, see _loadStates call in onAdd
+        // prevent editing (when called by hash) until countries are loaded, see _loadCountries call in onAdd
+        if (!this.countries) {
             marker.dragging.disable();
         }
 
@@ -531,19 +590,5 @@ BR.CircleGoArea = L.Control.extend({
 BR.CircleGoArea.include(L.Evented.prototype);
 
 BR.circleGoArea = function (routing, nogos, pois) {
-    var circleGo = null;
-    var options = {};
-
-    if (BR.Util.isCountry('FR', 'fr')) {
-        options.radius = 20000;
-    } else if (BR.Util.isCountry('DE', 'de')) {
-        options.radius = 15000;
-        options.stateRules = true;
-    }
-
-    if (options) {
-        circleGo = new BR.CircleGoArea(routing, nogos, pois, options);
-    }
-
-    return circleGo;
+    return new BR.CircleGoArea(routing, nogos, pois);
 };
