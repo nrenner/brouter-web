@@ -225,7 +225,6 @@ BR.Overpass = function (map) {
                                 .bindPopup(function (layer) {
                                     console.log(layer.feature.properties);
                                     var content = layer.feature.properties;
-
                                     return JSON.stringify(content);
                                 })
                                 .addTo(map);

@@ -217,14 +217,14 @@
                             placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"
                         />
 
-                        <button
+                        <buttonsmile
                             type="button"
                             id="custom_layers_add_base"
                             class="btn btn-success"
                             data-i18n="layers.add-base"
                         >
                             Add base layer
-                        </button>
+                        </buttonsmile>
                         <button
                             type="button"
                             id="custom_layers_add_overlay"
@@ -691,6 +691,21 @@
             </div>
         </div>
         <!-- Track to Route window  END -->
+
+        <!-- Wait spinner -->
+        <div class="Hmodal is-active" id="loading-dialog">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <progress class="progress is-small is-dark" max="100"></progress>
+                    <div class="wait-info">
+                        <h4>😊😊 Please wait Loading...</h4>
+                        <ul class="plain"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wait spinner End -->
         <div id="content" class="flexcolumn flexgrow">
             <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
                 <ul role="tablist">
