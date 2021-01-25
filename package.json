@@ -81,7 +81,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^8.1.0",
-        "browser-sync": "^2.26.13",
+        "browser-sync": "^2.26.14",
         "del": "^1.1.1",
         "eslint": "^7.15.0",
         "eslint-plugin-compat": "^3.3.0",
