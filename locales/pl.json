@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Usuń wszystkie strefy no-go",
     "delete-pois": "Usuń wszystkie punkty zainteresowania",
     "delete-route": "Usunąć trasę?",
-    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
-    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-circlego-start": "Draw limited go-to zone",
+    "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Draw route",
@@ -132,6 +132,7 @@
       "edit": "Kliknij, aby edytować",
       "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
     },
+    "not-applicable-here": "not applicable here",
     "opacity-slider": "Set transparency of route track and markers",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Podgląd",

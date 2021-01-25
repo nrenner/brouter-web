@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Alle No-go-Areas löschen",
     "delete-pois": "Alle POI löschen",
     "delete-route": "Route löschen",
-    "draw-circlego-start": "{{radius}}km Bewegungsradius durch Klick auf Wohnsitz ermitteln - keine rechtsverbindliche Auskunft",
-    "draw-circlego-stop": "Stoppen des Zeichnens eines {{radius}}km Bewegungsradius",
+    "draw-circlego-start": "Bewegungsradius durch Klick auf Wohnsitz ermitteln - ohne Gewähr",
+    "draw-circlego-stop": "Bewegungsradius ermitteln stoppen",
     "draw-poi-start": "POI einzeichnen",
     "draw-poi-stop": "Einzeichnen der POI beenden",
     "draw-route-start": "Route zeichnen",
@@ -132,6 +132,7 @@
       "edit": "Klicken zum Bearbeiten",
       "help": "&square; = Bewegen / Größe anpassen, <span class=\"fa fa-trash-o\"></span> = Löschen,<br>Kreis anklicken um Bearbeiten zu beenden"
     },
+    "not-applicable-here": "hier nicht anwendbar",
     "opacity-slider": "Transparenz von Route und Markern anpassen",
     "opacity-slider-shortcut": "{{action}}\n(Taste {{key}} drücken und halten, um Route vorübergehend auszublenden)",
     "preview": "Vorschau",

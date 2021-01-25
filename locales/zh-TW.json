@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
-    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
-    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-circlego-start": "Draw limited go-to zone",
+    "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
     "draw-route-start": "Draw route",
@@ -132,6 +132,7 @@
       "edit": "點撃以編輯",
       "help": "&square; = 移動 / 調整大小， <span class=\"fa fa-trash-o\"></span> = 刪除，<br>點撃圓形以結束編輯"
     },
+    "not-applicable-here": "not applicable here",
     "opacity-slider": "Set transparency of route track and markers",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",

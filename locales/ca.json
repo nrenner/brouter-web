@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Esborra totes les àrees omeses",
     "delete-pois": "Esborra tots els punts d'interès",
     "delete-route": "Esborra la ruta",
-    "draw-circlego-start": "Dibuixa una zona de pas limitada a {{radius}}km",
-    "draw-circlego-stop": "Para de dibuixar una zona de pas limitada a {{radius}}km",
+    "draw-circlego-start": "Draw limited go-to zone",
+    "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Dibuixa punts d'interès",
     "draw-poi-stop": "Para de dibuixar punts d'interès",
     "draw-route-start": "Dibuixa una ruta",
@@ -132,6 +132,7 @@
       "edit": "Cliqueu per editar",
       "help": "&square; = mou / redimensiona, <span class=\"fa fa-trash-o\"></span> = esborra,<br>clique al cercle per deixar d'editar"
     },
+    "not-applicable-here": "not applicable here",
     "opacity-slider": "Especifica la transparència de la ruta i els marcadors",
     "opacity-slider-shortcut": "{{action}}\n(Mantén premuda la tecla {{key}} per silenciar temporalment)",
     "preview": "Previsualitza",

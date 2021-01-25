@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Minden elkerülendő terület törlése",
     "delete-pois": "Minden érdekes pont (POI) törlése",
     "delete-route": "Útvonal törlése",
-    "draw-circlego-start": "Draw limited {{radius}}km go-to zone",
-    "draw-circlego-stop": "Stop drawing limited {{radius}}km go-to zone",
+    "draw-circlego-start": "Draw limited go-to zone",
+    "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Érdekes pontok (POI-k) rajzolása",
     "draw-poi-stop": "Érdekes pontok rajzolásának megszakítása",
     "draw-route-start": "Útvonal rajzolása",
@@ -132,6 +132,7 @@
       "edit": "Szerkesztés kattintással",
       "help": "&square; = áthelyezés / átméretezés, <span class=\"fa fa-trash-o\"></span> = törlés,<br>a szerkesztés befejezéséhez kattintson a körre"
     },
+    "not-applicable-here": "not applicable here",
     "opacity-slider": "Útvonal és jelölők átlátszóságának beállítása",
     "opacity-slider-shortcut": "{{action}}\n(Időszakos elnémítás a {{key}} billentyűt lenyomva tartásával)",
     "preview": "Előnézet",

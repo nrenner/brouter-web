@@ -96,8 +96,8 @@
     "delete-nogo-areas": "Supprimer toutes les zones interdites",
     "delete-pois": "Supprimer tous les points d'intérêt ",
     "delete-route": "Supprimer l'itinéraire",
-    "draw-circlego-start": "Ajouter une zone limite de {{radius}} km",
-    "draw-circlego-stop": "Arrêter l'ajout d'une zone limite de {{radius}} km",
+    "draw-circlego-start": "Ajouter une zone limite",
+    "draw-circlego-stop": "Arrêter l'ajout d'une zone limite",
     "draw-poi-start": "Ajouter des points d'intérêt",
     "draw-poi-stop": "Arrêter l'ajout de points d'intérêt",
     "draw-route-start": "Dessiner l'itinéraire",
@@ -132,6 +132,7 @@
       "edit": "Cliquer pour éditer",
       "help": "&square; = déplacer / redimensionner, <span class=\"fa fa-trash-o\"></span> = supprimer,<br>cliquer sur le cercle pour arrêter l'édition"
     },
+    "not-applicable-here": "not applicable here",
     "opacity-slider": "Définie l'opacité de l'itinéraire et des marqueurs",
     "opacity-slider-shortcut": "{{action}}\n(Maintenir la touche {{key}} pour masquer temporairement)",
     "preview": "Prévisualiser",
