@@ -1,5 +1,15 @@
 # BRouter-Web Changelog
 
+## 0.15.1 (2021-01-25)
+
+### Improvements [de, fr]
+
+-   Popup for allowed zone marker with delete button and GPX & GeoJSON download links
+
+### Bugfixes
+
+-   Apply allowed zone country rules on click instead of using browser language ([#360](https://github.com/nrenner/brouter-web/issues/360))
+
 ## 0.15.0 (2021-01-15)
 
 ### New Features
