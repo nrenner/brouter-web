@@ -94,12 +94,16 @@ BR.CircleGoArea = L.Control.extend({
             this.routing.draw(false);
             this.pois.draw(false);
             this.map.on('click', this.onMapClick, this);
-            this.map.addLayer(this.countriesMask);
+            if (this.countriesMask) {
+                this.map.addLayer(this.countriesMask);
+            }
             this._unlockOutsideArea();
             L.DomUtil.addClass(this.map.getContainer(), 'circlego-draw-enabled');
         } else {
             this.map.off('click', this.onMapClick, this);
-            this.map.removeLayer(this.countriesMask);
+            if (this.countriesMask && this.map.hasLayer(this.countriesMask)) {
+                this.map.removeLayer(this.countriesMask);
+            }
             this._lockOutsideArea();
             L.DomUtil.removeClass(this.map.getContainer(), 'circlego-draw-enabled');
         }
@@ -475,57 +479,7 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     setCircle: function (center, polylines) {
-        var self = this;
-        var icon = (this.icon = L.VectorMarkers.icon({
-            icon: 'home',
-            markerColor: BR.conf.markerColors.circlego,
-        }));
-        this.iconSpinner = L.VectorMarkers.icon({
-            icon: 'spinner',
-            spin: true,
-            markerColor: BR.conf.markerColors.circlego,
-        });
-
-        var popupContent =
-            '<button id="remove-ringgo-marker" class="btn btn-secondary"><i class="fa fa-trash"></i></button>';
-
-        var marker = (this.marker = L.marker([center[1], center[0]], {
-            icon: icon,
-            draggable: true,
-            // prevent being on top of route markers
-            zIndexOffset: -500,
-        })
-            .bindPopup(popupContent)
-            .on('dragend', function (e) {
-                self.setNogoRing([e.target.getLatLng().lng, e.target.getLatLng().lat]);
-            })
-            .on('click', function () {
-                var drawing = self.drawButton.state() == 'deactivate-circlego';
-                if (drawing) {
-                    self.circleLayer.removeLayer(marker);
-                    self.setNogoRing(undefined);
-                }
-            })
-            .on('popupopen', function (evt) {
-                var popup = evt.popup;
-                var html = '';
-                if (self.radius) {
-                    if (self.boundaryLayer) {
-                        var name = self.boundaryLayer.getLayers()[0].feature.properties.name;
-                        html += BR.Util.sanitizeHTMLContent(name) + '<br />+ ';
-                    }
-                    html += (self.radius / 1000).toFixed() + '&#8239;km<p>';
-                } else {
-                    html += i18next.t('map.not-applicable-here') + '<p>';
-                }
-                popup.setContent(html + popupContent);
-
-                $('#remove-ringgo-marker').on('click', function (e) {
-                    e.preventDefault();
-                    self.circleLayer.removeLayer(marker);
-                    self.setNogoRing(undefined);
-                });
-            }));
+        var marker = (this.marker = this._createMarker(center));
 
         this.clear();
         marker.addTo(this.circleLayer);
@@ -547,6 +501,123 @@ BR.CircleGoArea = L.Control.extend({
             this.setOutsideArea(ring);
         }
         this.draw(false);
+    },
+
+    _createMarker: function (center) {
+        var self = this;
+        var icon = (this.icon = L.VectorMarkers.icon({
+            icon: 'home',
+            markerColor: BR.conf.markerColors.circlego,
+        }));
+        this.iconSpinner = L.VectorMarkers.icon({
+            icon: 'spinner',
+            spin: true,
+            markerColor: BR.conf.markerColors.circlego,
+        });
+
+        var popupContent =
+            '<button id="remove-ringgo-marker" class="btn btn-secondary"><i class="fa fa-trash"></i></button>';
+
+        var marker = L.marker([center[1], center[0]], {
+            icon: icon,
+            draggable: true,
+            // prevent being on top of route markers
+            zIndexOffset: -500,
+        })
+            .bindPopup(popupContent)
+            .on('dragend', function (e) {
+                self.setNogoRing([e.target.getLatLng().lng, e.target.getLatLng().lat]);
+            })
+            .on('click', function () {
+                var drawing = self.drawButton.state() == 'deactivate-circlego';
+                if (drawing) {
+                    self.circleLayer.removeLayer(marker);
+                    self.setNogoRing(undefined);
+                }
+            })
+            .on(
+                'popupopen',
+                function (evt) {
+                    this._onPopupOpen(evt.popup, popupContent);
+                },
+                this
+            )
+            .on('popupclose', this._onPopupClose, this);
+
+        return marker;
+    },
+
+    _onPopupOpen: function (popup, popupContent) {
+        var exportName = '';
+        var html = '<p>';
+        if (this.radius) {
+            if (this.boundaryLayer) {
+                var name = this.boundaryLayer.getLayers()[0].feature.properties.name;
+                exportName += name + ' + ';
+                html += BR.Util.sanitizeHTMLContent(name) + '<br />+ ';
+            }
+            var radiusText = (this.radius / 1000).toFixed();
+            exportName += radiusText + ' km';
+            html += radiusText + '&#8239;km';
+            if (this.nogoPolylines) {
+                html += '</p><p>';
+                html +=
+                    '<a id="ringgo-download-gpx" href="javascript:;" download="radius.gpx">' +
+                    i18next.t('export.format_gpx') +
+                    '</a>';
+                html += '<br />';
+                html +=
+                    '<a id="ringgo-download-geojson" href="javascript:;" download="radius.geojson">' +
+                    i18next.t('export.format_geojson') +
+                    '</a>';
+            }
+        } else {
+            html += i18next.t('map.not-applicable-here');
+        }
+        html += '</p>';
+        popup.setContent(html + popupContent);
+
+        if (this.nogoPolylines) {
+            var link = location.href.replace(/&polylines=[^&]*/, '');
+            var geoJson = this.nogoPolylines.toGeoJSON();
+            var gpx = togpx(geoJson, { metadata: { name: exportName, link: link } });
+            this._setDownloadUrl(gpx, 'application/gpx+xml', 'ringgo-download-gpx');
+            this._setDownloadUrl(
+                JSON.stringify(geoJson, null, 2),
+                'application/vnd.geo+json',
+                'ringgo-download-geojson'
+            );
+        }
+
+        $('#remove-ringgo-marker').on(
+            'click',
+            L.bind(function (e) {
+                e.preventDefault();
+                this.circleLayer.removeLayer(this.marker);
+                this.setNogoRing(undefined);
+            }, this)
+        );
+    },
+
+    _onPopupClose: function (evt) {
+        this._revokeDownloadUrl('ringgo-download-gpx');
+        this._revokeDownloadUrl('ringgo-download-geojson');
+    },
+
+    _setDownloadUrl: function (text, mimeType, elementId) {
+        var blob = new Blob([text], {
+            type: mimeType + ';charset=utf-8',
+        });
+        var objectUrl = URL.createObjectURL(blob);
+        var download = document.getElementById(elementId);
+        download.href = objectUrl;
+    },
+
+    _revokeDownloadUrl: function (elementId) {
+        var download = document.getElementById(elementId);
+        if (download) {
+            URL.revokeObjectURL(download.href);
+        }
     },
 
     _clearLayers: function () {

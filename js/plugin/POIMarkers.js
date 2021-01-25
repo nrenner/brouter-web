@@ -97,7 +97,7 @@ BR.PoiMarkers = L.Control.extend({
             markerColor: BR.conf.markerColors.poi,
         });
 
-        var content = BR.Util.sanitizeHTMLContent(name) + '<br>';
+        var content = '<p>' + BR.Util.sanitizeHTMLContent(name) + '</p>';
         content += "<button id='remove-poi-marker' class='btn btn-secondary'><i class='fa fa-trash'></i></button>";
 
         var self = this;

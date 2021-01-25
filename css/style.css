@@ -203,6 +203,9 @@ input#trackname:focus:invalid {
 .circlego-outside {
     cursor: not-allowed;
 }
+.leaflet-popup-content p {
+    margin: 0.5em 0;
+}
 
 #map {
     /* center error message horizontally */
