@@ -2,7 +2,7 @@
 
 Introduction:
 A project on Routing Hotel location countributed by 
-1. [Shaikh Shahidul Islam] (https://github.com/sumon05)
+1. [Shaikh Shahidul Islam](https://github.com/sumon05). 
 Web client (by [@nrenner](https://github.com/nrenner) and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)).
 
 ![demo](https://user-images.githubusercontent.com/1451988/83979926-1f6d8c80-a912-11ea-8f21-b2ed60963501.gif)
