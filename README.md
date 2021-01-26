@@ -7,6 +7,8 @@ A project on Routing Hotel location, countributed by
 3. [Pooja Naringrekar](https://github.com/poojanaringrekar26).
 4. [Kennedy Nwankwo](https://github.com/KennedycN).
 
+This Project will allow you to realtime routing for the hotel locations. It allows users to select the buffer area and and find a numbers of available hotels within that selected buffer zone. However, user can also edit (expand and reduce) buffer area for searchibg the hotels.      
+
 ### This Projct was forked from the following existing project and added frontend "Hotel" searching functionalities.
 Web client (by [@nrenner](https://github.com/nrenner) and [contributors](https://github.com/nrenner/brouter-web/graphs/contributors)) for the BRouter routing engine (by [@abrensch](https://github.com/abrensch)).
 
