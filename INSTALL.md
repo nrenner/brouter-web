@@ -11,7 +11,7 @@ As an alternative to the [online version](https://brouter.de/brouter-web/), the 
             wget https://github.com/nrenner/brouter-web/releases/download/0.11.0/brouter-web-standalone.0.11.0.zip
             unzip brouter-web-standalone.0.11.0.zip
 
-2.  download one or more [data file(s)](https://brouter.de/brouter/segments4/) (rd5) into `segments4` directory
+2.  download one or more rd5 data file(s) from the [download directory](https://brouter.de/brouter/segments4/) or the [grid map](https://umap.openstreetmap.de/de/map/brouter-rd5-grid_9438) into the `segments4` directory
 
 ### Configure BRouter-Web
 
