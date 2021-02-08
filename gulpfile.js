@@ -210,19 +210,26 @@ var nextVersion;
 var ghToken;
 
 gulp.task('release:init', function (cb) {
+    ghToken = gutil.env.token;
+    if (!ghToken) {
+        return cb(new Error('--token is required (github personal access token'));
+    }
+    if (ghToken.length != 40) {
+        return cb(new Error('--token length must be 40, not ' + ghToken.length));
+    }
+
+    nextVersion = pkg.version;
+
+    if (gutil.env.skipnewtag) {
+        return cb();
+    }
+
     var tag = gutil.env.tag;
     if (!tag) {
         return cb(new Error('--tag is required'));
     }
     if (['major', 'minor', 'patch'].indexOf(tag) < 0) {
         return cb(new Error('--tag must be major, minor or patch'));
-    }
-    ghToken = gutil.env.token;
-    if (!ghToken) {
-        return cb(new Error('--token is required (github personal access token'));
-    }
-    if (ghToken.length != 40) {
-        return cb(new Error('--token length must be 40'));
     }
 
     nextVersion = semver.inc(pkg.version, tag);
@@ -248,11 +255,9 @@ gulp.task('bump:json', function () {
 gulp.task('bump:html', function () {
     return gulp
         .src('./index.html')
-        .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + nextVersion + '</sup>'))
+        .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + pkg.version + '</sup>'))
         .pipe(gulp.dest('.'));
 });
-
-gulp.task('bump', gulp.series('bump:json', 'bump:html'));
 
 gulp.task('release:commit', function () {
     return gulp.src(['./index.html', './package.json']).pipe(git.commit('release: ' + nextVersion));
@@ -318,6 +323,7 @@ gulp.task(
         'scripts_config',
         'layers_config',
         'layers',
+        'bump:html',
         'scripts',
         'styles',
         'images',
@@ -430,7 +436,7 @@ gulp.task(
     'release',
     gulp.series(
         'release:init',
-        'bump',
+        'bump:json',
         'release:commit',
         'release:tag',
         'release:push',
