@@ -66,8 +66,7 @@ BR.confLayers.tree = {
             'Waymarked_Trails-Cycling',
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',
-            'mapillary-coverage-raster',
-            'openpt_map'
+            'mapillary-coverage-raster'
         ],
         'country': [
             'historic-place-contours',
