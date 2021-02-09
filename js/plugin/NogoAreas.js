@@ -114,7 +114,7 @@ BR.NogoAreas = L.Control.extend({
         );
 
         this.editTools.on(
-            'editable:vertex:dragend editable:deleted',
+            'editable:vertex:dragend editable:vertex:deleted editable:deleted',
             function (e) {
                 this._fireUpdate();
             },
