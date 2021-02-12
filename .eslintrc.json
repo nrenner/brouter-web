@@ -1,9 +1,10 @@
 {
     "extends": ["plugin:compat/recommended"],
     "env": {
-        "browser": true
+        "browser": true,
+        "es2021": true
     },
     "settings": {
-        "polyfills": ["URLSearchParams", "Symbol.iterator", "Promise", "fetch", "Math", "Number", "navigator"]
+        "polyfills": ["URL", "Promise", "navigator", "Uint8Array", "performance", "location.hostname"]
     }
 }

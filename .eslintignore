@@ -3,3 +3,5 @@ layers/collection/extract.js
 gulpfile.js
 dist/brouter-web.js
 dist/turf.min.js
+dist/core-js-bundle.min.js
+dist/regenerator-runtime.js

@@ -46,6 +46,7 @@
         "bootstrap-select": "1.13.6",
         "bootstrap-slider": "^9.8.1",
         "codemirror": "^5.35.0",
+        "core-js-bundle": "^3.8.3",
         "datatables": "~1.10.18",
         "font-awesome": "^4.7.0",
         "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
@@ -73,19 +74,22 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "osmtogeojson": "^3.0.0-beta.4",
-        "promise-polyfill": "^8.2.0",
+        "regenerator-runtime": "^0.13.7",
         "togpx": "^0.5.4",
         "topojson-client": "^3.1.0",
-        "url-search-params": "~0.5.0",
-        "whatwg-fetch": "^3.5.0"
+        "url-search-params": "~0.5.0"
     },
     "devDependencies": {
+        "@babel/cli": "^7.12.13",
+        "@babel/core": "^7.12.13",
+        "@babel/preset-env": "^7.12.13",
         "autoprefixer": "^8.1.0",
         "browser-sync": "^2.26.14",
         "del": "^1.1.1",
         "eslint": "^7.15.0",
-        "eslint-plugin-compat": "^3.3.0",
+        "eslint-plugin-compat": "^3.9.0",
         "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
         "gulp-bump": "^3.2.0",
         "gulp-cached": "^1.0.4",
         "gulp-clean-css": "^4.3.0",
@@ -247,11 +251,6 @@
                 "dist/themes/default/*.png"
             ]
         },
-        "promise-polyfill": {
-            "main": [
-                "dist/polyfill.js"
-            ]
-        },
         "Leaflet.vector-markers": {
             "main": [
                 "dist/leaflet-vector-markers.js",
@@ -271,6 +270,11 @@
         "togpx": {
             "main": [
                 "togpx.js"
+            ]
+        },
+        "core-js-bundle": {
+            "main": [
+                "minified.js"
             ]
         }
     }
