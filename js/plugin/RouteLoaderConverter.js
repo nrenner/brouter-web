@@ -305,6 +305,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                     feature = turf.cleanCoords(feature);
                     var lPoints = turf.coordAll(feature);
                     allLinePoints = allLinePoints.concat(lPoints);
+                    console.debug('number of trkpts loaded trackPoints=' + allLinePoints.length);
                 }
             });
 
@@ -328,7 +329,41 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 this.getSimplifiedCoords(this._options.simplifyTolerance)
             );
 
+            // use now the middle point between the "simplified" waypoint and the "previous" trkpt in the origin track
+
+            var trackPt_b = turf.cleanCoords(this._trackPoints.geometry);
+            var trackPt_bis = L.GeoJSON.coordsToLatLngs(trackPt_b.coordinates);
+            var lookupIndex = 0;
+
             for (var i = 0; i < simplifiedLatLngs.length; i++) {
+                console.debug('simplifiedWP (raw result)=' + simplifiedLatLngs[i] + ': ' + (i - 1));
+                // do not change first and last waypoint
+                if (i > 0 && i < simplifiedLatLngs.length - 1) {
+                    // modify now the waypoint (choose the middle point between this waypoint
+                    // and the previous waypoint from the initial track)
+                    for (var j = lookupIndex; j < trackPt_bis.length; j++) {
+                        lookupIndex = j; // for better performance by long tracks..
+
+                        if (
+                            parseFloat(simplifiedLatLngs[i].lat.toFixed(6)) ===
+                                parseFloat(trackPt_bis[j].lat.toFixed(6)) &&
+                            parseFloat(simplifiedLatLngs[i].lng.toFixed(6)) ===
+                                parseFloat(trackPt_bis[j].lng.toFixed(6))
+                        ) {
+                            break;
+                        }
+                    }
+                    if (lookupIndex < trackPt_bis.length) {
+                        // this should always be true, but if problem with turf.simplify do not change the waypoint
+                        simplifiedLatLngs[i].lat = (simplifiedLatLngs[i].lat + trackPt_bis[lookupIndex - 1].lat) / 2;
+                        simplifiedLatLngs[i].lng = (simplifiedLatLngs[i].lng + trackPt_bis[lookupIndex - 1].lng) / 2;
+                    } else {
+                        console.warn('a problem ouccured during modifying the simplified waypoint');
+                    }
+                }
+                // change end
+
+                console.debug('simplifiedWP (modified)=' + simplifiedLatLngs[i] + ': ' + (i - 1));
                 routingPoints.push(simplifiedLatLngs[i]);
             }
 
@@ -353,8 +388,47 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
         },
 
+        // select only "trkpt" coordinates (remove "rtepts" and others)
+        // and remove duplicates because "turf.cleanCoords" eliminates
+        // all points (1 unique point remains now)
+        filterGPXlines: function (buf1) {
+            var buf3 = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+            buf3 = buf3 + '<gpx><trk><trkseg>\n';
+            var buf2 = buf1.split('<trkpt ');
+            // split is case-sensitive, try with uppercase
+            if (buf2.length < 2) {
+                buf2 = buf1.split('<TRKPT ');
+            }
+            var lgt_after = 0;
+            for (i = 1; i < buf2.length; i++) {
+                var length2 = buf2[i].indexOf('>');
+                if (length2 > 0) {
+                    buf2[i] = '<trkpt ' + buf2[i].substring(0, length2) + '></trkpt>\n';
+                    // point remains only if it is not a duplicate of the previous point
+                    if (buf2[i] != buf2[i - 1]) {
+                        buf3 = buf3 + buf2[i];
+                        lgt_after = lgt_after + 1;
+                    }
+                } else {
+                    console.warn('filterGPXlines: error found in GPX file ??' + buf2[i]);
+                }
+            }
+            buf3 = buf3 + '</trkseg></trk></gpx>\n';
+            console.debug(
+                'GPX file filtered successfully, number of trkpts found=' +
+                    (buf2.length - 1) +
+                    '\n number of trkpts after removing duplicates=' +
+                    lgt_after
+            );
+            return buf3;
+        },
+
         processFile: function (e) {
             var res = e.target.result;
+            // select only "trkpt" coordinates (remove "rtepts" and others)
+            if (this._options.format === 'gpx') {
+                res = this.filterGPXlines(res);
+            }
             var geoJSON = null;
             switch (this._options.format) {
                 case 'kml':
