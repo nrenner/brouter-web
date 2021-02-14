@@ -539,8 +539,91 @@
                                 >
                                     Export route
                                 </button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#qrcode"
+                                    data-i18n="export.qrcode"
+                                    role="button"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    id="submitQRCode"
+                                >
+                                    Generate QRCode
+                                </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Code modal window -->
+        <div
+            class="modal fade"
+            id="qrcode"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="QR Code route window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="qrcode.title">QR Code</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p data-i18n="qrcode.introduction">
+                            Use this QR Code to transfer the GPX track directly to your smartphone.
+                        </p>
+                        <p id="qrcode-img"></p>
+                        <p class="alert alert-danger hide" id="qrcode-msg-too-long" data-i18n="qrcode.msg-too-long">
+                            Cannot create QR Code: Route definition is too long. Removing some waypoints or disabling
+                            the limited go-to zone may help to decrease the route data.
+                        </p>
+                        <p
+                            class="alert alert-danger hide"
+                            id="qrcode-msg-unknown-error"
+                            data-i18n="qrcode.msg-unknown-error"
+                        >
+                            Cannot create QR Code: An unknown error occurred. See the browser console for details.
+                        </p>
+                        <p id="qrcode-buttons">
+                            <button
+                                class="btn btn-sm btn-primary qrcode-size-button"
+                                id="qrcode-create-small"
+                                data-qrcode-size="256"
+                                data-i18n="qrcode.small"
+                            >
+                                Small
+                            </button>
+                            <button
+                                class="btn btn-sm btn-primary qrcode-size-button"
+                                id="qrcode-create-medium"
+                                data-qrcode-size="384"
+                                data-i18n="qrcode.medium"
+                            >
+                                Medium
+                            </button>
+                            <button
+                                class="btn btn-sm btn-primary qrcode-size-button"
+                                id="qrcode-create-large"
+                                data-qrcode-size="512"
+                                data-i18n="qrcode.large"
+                            >
+                                Large
+                            </button>
+                        </p>
+                        <p>
+                            <small data-i18n="qrcode.description-long"
+                                >The QR Code contains a link to the GPX track for the current route. It can be opened by
+                                any app which has registered itself as handler for GPX files.</small
+                            >
+                        </p>
                     </div>
                 </div>
             </div>

@@ -262,8 +262,6 @@
 
         pois = new BR.PoiMarkers(routing);
 
-        exportRoute = new BR.Export(router, pois);
-
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function (evt) {
             search.clear();
             onUpdate(evt && evt.err);
@@ -330,6 +328,8 @@
         var buttons = [drawButton, reverseRouteButton, nogos.getButton()];
         if (circlego) buttons.push(circlego.getButton());
         buttons.push(deletePointButton, deleteRouteButton);
+
+        exportRoute = new BR.Export(router, pois, circlego);
 
         L.easyBar(buttons).addTo(map);
         nogos.preventRoutePointOnCreate(routing);
