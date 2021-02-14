@@ -35,7 +35,7 @@
     "format_kml": "KML",
     "include": "Include",
     "include_waypoints": "Waypoints",
-    "qrcode": "",
+    "qrcode": "Generate QR Code",
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
@@ -193,14 +193,14 @@
     "profile-tooltip": "\n({{key}} key to switch)"
   },
   "qrcode": {
-    "description-long": "",
-    "introduction": "",
-    "large": "",
-    "medium": "",
-    "msg-too-long": "",
-    "msg-unknown-error": "",
-    "small": "",
-    "title": ""
+    "description-long": "The QR Code contains a link to the GPX track for the current route. It can be opened by any app which has registered itself as handler for GPX files.",
+    "introduction": "Use this QR Code to transfer the GPX track directly to your smartphone.",
+    "large": "Large",
+    "medium": "Medium",
+    "msg-too-long": "Cannot create QR Code: Route definition is too long. Removing some waypoints or disabling the limited go-to zone may help to decrease the route data.",
+    "msg-unknown-error": "Cannot create QR Code: An unknown error occurred. See the browser console for details.",
+    "small": "Small",
+    "title": "Route as QR Code"
   },
   "sidebar": {
     "analysis": {
