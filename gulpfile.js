@@ -71,6 +71,7 @@ var paths = {
             'js/LayersConfig.js',
             'js/router/BRouter.js',
             'js/util/*.js',
+            'js/format/*.js',
             'js/plugin/*.js',
             'js/control/*.js',
             'js/index.js',
