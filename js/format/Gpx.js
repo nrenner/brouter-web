@@ -1,11 +1,37 @@
 BR.Gpx = {
-    format: function (geoJson) {
-        const gpx = togpx(geoJson, {
+    format: function (geoJson, turnInstructionMode = 0) {
+        if (!geoJson) return '';
+
+        if (turnInstructionMode > 0) {
+            BR.Gpx._addVoiceHints(geoJson, turnInstructionMode);
+        }
+
+        let gpx = togpx(geoJson, {
+            featureTitle: function () {},
             featureDescription: function () {},
+            transform: {
+                trk: function (trk, feature, coordsList) {
+                    return {
+                        name: feature.properties.name,
+                        trkseg: trk.trkseg,
+                    };
+                },
+                wpt: function (wpt, feature, coord, index) {
+                    return Object.assign(wpt, feature.properties);
+                },
+            },
         });
         const statsComment = BR.Gpx._statsComment(geoJson);
-        const xml = '<?xml version="1.0" encoding="UTF-8"?>' + statsComment + gpx;
-        return BR.Gpx.pretty(xml, 1);
+        gpx = '<?xml version="1.0" encoding="UTF-8"?>' + statsComment + gpx;
+        gpx = BR.Gpx.pretty(gpx);
+        return gpx;
+    },
+
+    _addVoiceHints: function (geoJson, turnInstructionMode) {
+        if (!geoJson.features) return;
+
+        const voiceHints = BR.voiceHints(geoJson);
+        voiceHints.add(turnInstructionMode);
     },
 
     // <!-- track-length = 319 filtered ascend = 2 plain-ascend = -1 cost=533 energy=.0kwh time=44s -->
@@ -35,9 +61,13 @@ BR.Gpx = {
     // modified version of
     // https://gist.github.com/sente/1083506#gistcomment-2254622
     // MIT License, Copyright (c) 2016 Stuart Powers, ES6 version by Jonathan Gruber
-    pretty: function (xml, indentSize = 2) {
+    pretty: function (xml, indentSize = 1) {
         const PADDING = ' '.repeat(indentSize);
         const newline = '\n';
+
+        // Remove all the newlines and then remove all the spaces between tags
+        xml = xml.replace(/\s*(\r\n|\n|\r)\s*/gm, ' ').replace(/>\s+</g, '><');
+
         // break into lines, keep trkpt with subelement ele in single line
         const reg = /(>)(<)(?!ele|\/trkpt)(\/?)/g;
         let pad = 0;

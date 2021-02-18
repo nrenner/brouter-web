@@ -7189,7 +7189,7 @@ just-debounce@^1.0.0:
   resolved "https://registry.yarnpkg.com/just-debounce/-/just-debounce-1.0.0.tgz#87fccfaeffc0b68cd19d55f6722943f929ea35ea"
   integrity sha1-h/zPrv/AtozRnVX2cilD+SnqNeo=
 
-jxon@~2.0.0-beta.5:
+jxon@~2.0.0-beta.2:
   version "2.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/jxon/-/jxon-2.0.0-beta.5.tgz#3b6a94104f9801ee682fd056645ff5473d9b343e"
   integrity sha1-O2qUEE+YAe5oL9BWZF/1Rz2bND4=
@@ -10565,13 +10565,12 @@ to-utf8@0.0.1:
   resolved "https://registry.yarnpkg.com/to-utf8/-/to-utf8-0.0.1.tgz#d17aea72ff2fba39b9e43601be7b3ff72e089852"
   integrity sha1-0Xrqcv8vujm55DYBvns/9y4ImFI=
 
-togpx@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/togpx/-/togpx-0.5.4.tgz#b33dbb0541df04bd6ba4f50b86da953424bb7773"
-  integrity sha1-sz27BUHfBL1rpPULhtqVNCS7d3M=
+togpx@JarnoLeConte/togpx#13c65a8:
+  version "0.5.1"
+  resolved "https://codeload.github.com/JarnoLeConte/togpx/tar.gz/13c65a82e3fbe8694f189d34fb7a339fa07700ec"
   dependencies:
     concat-stream "~1.0.1"
-    jxon "~2.0.0-beta.5"
+    jxon "~2.0.0-beta.2"
     optimist "~0.3.5"
     xmldom "~0.1.17"
 

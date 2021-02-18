@@ -1,5 +1,8 @@
 BR = {};
+turf = require('@turf/turf');
 togpx = require('togpx');
+require('leaflet');
+require('../../js/format/VoiceHints.js');
 require('../../js/format/Gpx.js');
 
 const fs = require('fs');
@@ -21,7 +24,7 @@ function adoptGpx(gpx) {
         .split(newline)
         .map((line) => line.replace(/lon="([^"]*)" lat="([^"]*)"/, 'lat="$2" lon="$1"'))
         .join(newline);
-    gpx = gpx.replace(/0"><ele>/g, '"><ele>');
+    gpx = gpx.replace(/(lon|lat)="([-0-9]+.[0-9]+?)0+"/g, '$1="$2"'); // remove trailing zeros
     gpx = gpx.replace('</gpx>\n', '</gpx>');
 
     return gpx;
@@ -35,4 +38,12 @@ test('simple track', () => {
     const brouterGpx = read('track.gpx');
     const gpx = BR.Gpx.format(geoJson);
     expect(gpx).toEqual(brouterGpx);
+});
+
+describe('voice hints', () => {
+    test('5-gpsies', () => {
+        const brouterGpx = BR.Gpx.pretty(read('5-gpsies.gpx'));
+        const gpx = BR.Gpx.format(geoJson, 5);
+        expect(gpx).toEqual(brouterGpx);
+    });
 });
