@@ -28,6 +28,8 @@ var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 var merge = require('merge-stream');
 var babel = require('gulp-babel');
+var marked = require('marked');
+var fs = require('fs');
 
 const server = browserSync.create();
 
@@ -63,6 +65,7 @@ var paths = {
         )
         .concat([
             'js/Browser.js',
+            'js/WhatsNew.js',
             'js/Util.js',
             'js/Map.js',
             'js/LayersConfig.js',
@@ -182,6 +185,11 @@ gulp.task('locales', function () {
 
 gulp.task('boundaries', function () {
     return gulp.src(paths.boundaries).pipe(gulp.dest(paths.dest + '/boundaries'));
+});
+
+gulp.task('changelog', function (cb) {
+    var content = 'BR.changelog = `' + marked(fs.readFileSync('./CHANGELOG.md', 'utf-8')) + '`';
+    fs.writeFile(paths.dest + '/changelog.js', content, cb);
 });
 
 gulp.task('reload', function (done) {
@@ -350,7 +358,8 @@ gulp.task(
         'images',
         'fonts',
         'locales',
-        'boundaries'
+        'boundaries',
+        'changelog'
     )
 );
 
