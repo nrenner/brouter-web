@@ -5,27 +5,27 @@
     "bug-reports-front": "klient przeglądarkowy / interfejs.",
     "chat": "Czat z użytkownikami i twórcami",
     "contact": "Kontakt:",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
+    "contact-language": "Preferowanym językiem jest angielski, ponieważ mamy zarówno międzynarodowych edytorów jak i użytkowników.",
     "data": "Dane:",
-    "data-description": "Oparta jest o <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Zazwyczaj aktualizowana jest codziennie, zobacz daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
+    "data-description": "Oparta jest na <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Zazwyczaj aktualizowana jest codziennie, zobacz daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Polityka prywatności</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Autorzy</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Histroia zmian</a></i> i\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">więcej informacji</a></i> na temat klienta.",
     "support": "Ogólna dyskusja/pytania, wsparcie",
     "title": "Informacje",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Pokaż więcej informacji o BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Granice Administracyjne: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dane wysokościowe",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, źródła: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP oraz Społeczność Użytkowników GIS",
-    "esri-tiles": "Obrazowanie świata Esri",
+    "esri-tiles": "Esri",
     "map-data": "Dane mapy",
     "map-tiles": "Kafelki mapy",
     "nominatim": "Wyszukaj przez <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Współtwórcy OpenStreetMap</a> na licencji <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "title": "Credits"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Autorzy OpenStreetMap</a> na licencji <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "title": "Wkład"
   },
   "export": {
     "format": "Format",
@@ -44,7 +44,7 @@
     "ascend": "Przewyższenie",
     "cost": "Koszt",
     "distance": "Odległość",
-    "elevation-chart": "Toggle elevation chart",
+    "elevation-chart": "Przełącz wykres wysokości",
     "energy-per-100km": "Energia na 100 km",
     "hours": "godzin",
     "hours-abbrev": "godz.",
@@ -56,14 +56,14 @@
     "meter": "metrów",
     "meter-abbrev": "m",
     "plain-ascend": "Różnica wysokości",
-    "stats-info": "Start drawing a route to get stats.",
+    "stats-info": "Zacznij rysować trasę, aby zobaczyć statystyki.",
     "total-energy": "Całkowita energia",
     "travel-time": "Czas podróży"
   },
   "keyboard": {
     "backspace": "Backspace",
     "escape": "Escape",
-    "generic-shortcut": "{{action}} ({{key}} key)",
+    "generic-shortcut": "{{action}} (klawisz {{key}})",
     "shift": "Shift"
   },
   "layers": {
@@ -71,69 +71,69 @@
     "add-overlay": "Dodaj nakładkę",
     "customize": "Dostosuj warstwy",
     "opacity-slider": "Suwak pokrycia",
-    "placeholder-layer-name": "Własna nazwa warstwy. (np. OpenStreetMap)",
-    "placeholder-layer-url": "URL niestandardowej warstwy. (np: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "placeholder-layer-name": "Nazwa warstwy (np. OpenStreetMap)",
+    "placeholder-layer-url": "URL warstwy (np. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Usuń zaznaczenie"
   },
   "loadNogos": {
     "defaultProperties": "Domyślne właściwości",
     "file": "Plik (.geojson): ",
     "load": "Wczytaj",
-    "nogoBuffer": "Bufor stref no-go (w metrach):",
-    "nogoRadius": "Promień dla punktów (w metrach):",
-    "nogoWeight": "Waga no-go (-1 dla nieprzejezdnych):",
+    "nogoBuffer": "Bufor obszarów omijania (w metrach):",
+    "nogoRadius": "Promień punktów (w metrach):",
+    "nogoWeight": "Waga obszaru omijania (-1 to nieprzejezdne):",
     "source": "Źródło",
-    "title": "Wczytaj strefy no-go",
+    "title": "Wczytaj obszary omijania",
     "url": "URL: "
   },
   "map": {
-    "attribution-osm-long": "Współtwórcy OpenStreetMap",
+    "attribution-osm-long": "Autorzy OpenStreetMap",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Wyczyść dane trasy",
     "copyright": "Prawa autorskie",
     "cycling": "Kolarstwo",
     "delete-last-point": "Usuń ostatni punkt",
-    "delete-nogo-areas": "Usuń wszystkie strefy no-go",
+    "delete-nogo-areas": "Usuń wszystkie obszary omijania",
     "delete-pois": "Usuń wszystkie punkty zainteresowania",
-    "delete-route": "Usunąć trasę?",
+    "delete-route": "Usuń trasę",
     "draw-circlego-start": "Draw limited go-to zone",
     "draw-circlego-stop": "Stop drawing limited go-to zone",
-    "draw-poi-start": "Draw points of interest",
-    "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
-    "draw-route-stop": "Stop drawing route",
+    "draw-poi-start": "Rysuj punkty zainteresowania",
+    "draw-poi-stop": "Przestań rysować punkty zainteresowania",
+    "draw-route-start": "Rysuj trasę",
+    "draw-route-stop": "Przestań rysować trasę",
     "enter-poi-name": "Wpisz nazwę punktu zainteresowania",
-    "geocoder": "Search",
-    "geocoder-placeholder": "Search…",
+    "geocoder": "Szukaj",
+    "geocoder-placeholder": "Szukaj...",
     "hikebike-hillshading": "Cieniowanie",
     "hiking": "Wspinaczka",
     "layer": {
       "bing": "Zdjęcia lotnicze Bing",
       "cycle": "OpenCycleMap (Thunderf.)",
       "cycling": "Jazda na rowerze (oznaczone szlaki)",
-      "digitalglobe": "Najnowsze obrazowanie DigitalGlobe",
-      "esri": "Obrazowanie świata Esri",
+      "digitalglobe": "DigitalGlobe",
+      "esri": "Esri",
       "hikebike-hillshading": "Cieniowanie (Mapa wspinaczkowo-rowerowa)",
       "hiking": "Wspinaczka (oznaczone szlaki)",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Na zewnątrz (Thunderforest)",
       "route-quality": "Kodowanie jakości trasy",
-      "stamen-terrain": "Teren (Stamen)",
+      "stamen-terrain": "Stamen (teren)",
       "strava-segments": "Segmenty Strava",
       "topo": "OpenTopoMap"
     },
     "loading": "Wczytywanie…",
     "locate-me": "Pokaż mi, gdzie jestem",
     "nogo": {
-      "cancel": "Anuluj rysowanie strefy no-go",
+      "cancel": "Anuluj rysowanie obszaru omijania",
       "click-drag": "Kliknij i przeciągnij, aby narysować okrąg",
-      "draw": "Draw circular no-go area",
+      "draw": "Narysuj okrągły obszar omijania",
       "edit": "Kliknij, aby edytować",
       "help": "&square; = przesuń / zmień rozmiar, <span class=\"fa fa-trash-o\"></span> = usuń,<br>kliknij okrąg, aby wyjść z edycji"
     },
-    "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
+    "not-applicable-here": "tutaj niemożliwe",
+    "opacity-slider": "Ustaw przezroczystość trasy i wskaźników",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Podgląd",
     "privacy": "Prywatność",
@@ -141,7 +141,7 @@
     "route-quality-altitude": "Kodowanie wysokości",
     "route-quality-cost": "Kodowanie kosztów",
     "route-quality-incline": "Kodowanie nachylenia",
-    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-quality-shortcut": "{{action}} (naciśnij {{key}}, aby przełączyć)",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -160,12 +160,12 @@
       "third": "Alternatywa nr 3"
     },
     "export": "Eksportuj",
-    "export-tooltip": "Export route",
+    "export-tooltip": "Eksportuj trasę",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Wczytaj obszary omijania",
       "title": "Wczytaj",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tracks": "Wczytaj ślady"
     },
     "profile": {
       "car-eco": "Samochód (ekonomicznie)",
@@ -194,22 +194,22 @@
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
-        "surface": "Surface"
+        "highway": "Droga",
+        "smoothness": "Gładkość",
+        "surface": "Powierzchnia"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Kategoria",
+        "length": "Długość",
+        "total_known": "Razem:",
+        "unknown": "Nieznana"
       },
-      "title": "Analysis",
+      "title": "Analiza",
       "tooltip": "Analyse route"
     },
     "customize-profile": {
       "title": "Dostosuj profil",
-      "tooltip": "Customize profile"
+      "tooltip": "Dostosuj profil"
     },
     "data": {
       "sync-map": "Synchronizacja mapy",
@@ -225,11 +225,11 @@
         "base-layers": "Warstwy bazowe",
         "country": "Kraj",
         "europe": "Europa",
-        "europe-monolingual": "Europa jeden język",
+        "europe-monolingual": "Europa (mapy jednojęzyczne)",
         "overlays": "Nakładki",
         "worldwide": "Cały świat",
-        "worldwide-international": "Świat wielojęzyczny",
-        "worldwide-monolingual": "Świat jeden język"
+        "worldwide-international": "Świat",
+        "worldwide-monolingual": "Świat (mapy jednojęzyczne)"
       },
       "collapse": "Zwiń wszystkie",
       "custom-layers": "Własne warstwy",
@@ -245,7 +245,7 @@
         "type": "Rodzaj"
       },
       "title": "Warstwy",
-      "tooltip": "Select layers"
+      "tooltip": "Wybierz warstwy"
     },
     "profile": {
       "apply": "Zastosuj",
@@ -260,20 +260,20 @@
   },
   "title": "Klient przeglądarkowy BRouter",
   "trackasroute": {
-    "explainpoi": "(show waypoints as POI's)",
-    "explaintracklayer": "(show Track as separate Layer)",
-    "file": "Trackfile",
-    "fuzziness": "fuzziness",
-    "pleasewait": "Please wait!",
-    "showpois": "POI's",
-    "title": "Load Track as Route",
-    "tracklayer": "Track Layer",
-    "tuning": "Tuning"
+    "explainpoi": "(pokaż punkty trasy jako POI)",
+    "explaintracklayer": "(pokaż ślad jako osobną warstwę)",
+    "file": "Plik śladu",
+    "fuzziness": "rozmycie",
+    "pleasewait": "Proszę czekać!",
+    "showpois": "Interesujące punkty",
+    "title": "Wczytaj ślad jako trasę",
+    "tracklayer": "Warstwa śladu",
+    "tuning": "Dostrojenie"
   },
   "warning": {
     "cannot-get-route": "Błąd pobierania URL trasy",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "Punkt startowy jest zbyt daleko od drogi.",
+    "invalid-route-to": "Punkt docelowy jest zbyt daleko od drogi.",
     "no-response": "brak odpowiedzi z serwera",
     "no-route-found": "Błąd: nie można znaleźć trasy dla zadanych punktów. Spróbuj przesunąć je bliżej dróg.",
     "profile-error": "Błąd profilu: brak lub pusta odpowiedź z serwera",
@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Uwaga:</strong> Przesłane własne profile są zapisywane na serwerze tylko tymczasowo.<br/>Zapisz zmiany na swoim komputerze.",
     "tracks-load-error": "Błąd wczytywania dróg: {{error}}",
     "upload-error": "Błąd przesyłania: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

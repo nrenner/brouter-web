@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Figyelem:</strong> A kiszolgáló csak ideiglenesen gyorsítótárazza a feltöltött egyedi profilokat.<br/>Kérjük, szerkesztéseit mentse el saját számítógépére.",
     "tracks-load-error": "Hiba történt a nyomvonalak betöltésekor: {{error}}",
     "upload-error": "Feltöltési hiba: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

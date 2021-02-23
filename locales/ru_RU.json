@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Примечание:</strong>  Добавленные пользовательские профили временно кэшируются на сервере.<br/> Пожалуйста, сохраните изменения на вашем компьютере.",
     "tracks-load-error": "Ошибка загрузки треков: {{ошибка}}",
     "upload-error": "Ошибка загрузки: {{ошибка}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

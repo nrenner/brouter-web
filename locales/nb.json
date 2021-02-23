@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
     "tracks-load-error": "Feil ved lasting av spor: {{error}}",
     "upload-error": "Upload error: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

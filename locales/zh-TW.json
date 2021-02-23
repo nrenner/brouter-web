@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>注意:</strong> 已上傳的自定義設定檔僅暫存於伺服器之中。<br/>請將您的編輯儲存至本機當中。",
     "tracks-load-error": "Error loading tracks: {{error}}",
     "upload-error": "上傳錯誤: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

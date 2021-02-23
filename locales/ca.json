@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Nota:</strong> Els perfils personalitzats carregats només es desen temporalment al servidor.<br/>Deseu les vostres edicions al vostre ordinador.",
     "tracks-load-error": "Error en carregar les traces: {{error}}",
     "upload-error": "Error de càrrega: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }

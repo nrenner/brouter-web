@@ -281,5 +281,9 @@
     "temporary-profile": "<strong>Nota:</strong> Los perfiles personalizados cargados solo se almacenan en caché temporalmente en el servidor.<br/> Guarde sus ediciones en su PC local.",
     "tracks-load-error": "Error al cargar pistas: {{error}}",
     "upload-error": "Error de carga: {{error}}"
+  },
+  "whatsnew": {
+    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
+    "title": "What's new?"
   }
 }
