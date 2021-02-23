@@ -341,6 +341,49 @@
                             on the client.
                         </p>
                     </div>
+                    <div class="modal-footer mt-4">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-i18n="whatsnew.title"
+                            data-toggle="modal"
+                            data-target="#whatsnew"
+                        >
+                            What's new?
+                        </button>
+                        <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What's new modal window -->
+        <div
+            class="modal fade"
+            id="whatsnew"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="What's new window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="whatsnew.title">What's new?</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- will be filled automatically -->
+                    </div>
+                    <div class="modal-footer mt-4">
+                        <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -695,7 +738,7 @@
                 </div>
             </div>
         </div>
-        <!-- Track to Route window  END -->
+
         <div id="content" class="flexcolumn flexgrow">
             <div id="sidebarTabs" class="leaflet-sidebar-tabs collapsed">
                 <ul role="tablist">
@@ -1111,6 +1154,7 @@
         <!-- <script src="dist/url-search-params.js"></script> -->
         <script src="config.js"></script>
         <script src="keys.js"></script>
+        <script src="dist/changelog.js"></script>
         <script src="dist/layers.js"></script>
         <script src="dist/layersConf.js"></script>
         <script src="dist/turf.min.js"></script>

@@ -112,6 +112,7 @@
         "gulp-zip": "^5.0.2",
         "husky": "^4.3.4",
         "i18next-scanner": "^3.0.0",
+        "marked": "^2.0.0",
         "merge-stream": "^2.0.0",
         "node-fetch": "^2.6.1",
         "npmfiles": "^0.1.3",

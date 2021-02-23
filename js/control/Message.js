@@ -12,8 +12,19 @@ BR.Message = L.Class.extend({
 
     _show: function (msg, type) {
         var ele = L.DomUtil.get(this.id),
-            iconClass = type === 'warning' ? 'fa-exclamation-triangle' : 'fa-times-circle',
-            alertClass = type === 'warning' ? 'alert-warning' : 'alert-danger';
+            iconClass,
+            alertClass;
+        switch (type) {
+            case 'error':
+                iconClass = 'fa-times-circle';
+                alertClass = 'alert-danger';
+            case 'warning':
+                iconClass = 'fa-exclamation-triangle';
+                alertClass = 'alert-warning';
+            case 'info':
+                iconClass = 'fa-info-circle';
+                alertClass = 'alert-info';
+        }
 
         L.DomEvent.disableClickPropagation(ele);
 
@@ -58,6 +69,10 @@ BR.Message = L.Class.extend({
 
     showWarning: function (msg) {
         this._show(msg, 'warning');
+    },
+
+    showInfo: function (msg) {
+        this._show(msg, 'info');
     },
 });
 
