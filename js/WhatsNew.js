@@ -22,7 +22,6 @@ BR.WhatsNew = {
     },
 
     hasNewVersions: function () {
-        return true;
         if (!BR.Util.localStorageAvailable()) return false;
 
         var currentVersion = localStorage.getItem('changelogVersion');
