@@ -9,7 +9,7 @@
         }
     }
 
-    class RoundaboutCommand {
+    class RoundaboutCommand extends Command {
         constructor(command, exitNumber) {
             this.name = command.name + exitNumber;
             this.locus = command.locus + exitNumber;
@@ -19,7 +19,7 @@
         }
     }
 
-    class RoundaboutLeftCommand {
+    class RoundaboutLeftCommand extends RoundaboutCommand {
         constructor(command, exitNumber) {
             this.name = command.name + -exitNumber;
             this.locus = command.locus + -exitNumber;
@@ -64,17 +64,99 @@
             }
         },
 
-        add: function (turnInstructionMode) {
-            if (!this.voicehints) return;
+        createWpt: function (coord, properties) {
+            return Object.assign(
+                {
+                    '@lat': coord[1],
+                    '@lon': coord[0],
+                },
+                properties
+            );
+        },
 
-            for (const hint of this.voicehints) {
-                const [indexInTrack, commandId, exitNumber] = hint;
-                const coord = this.track.geometry.coordinates[indexInTrack];
-                const cmd = this.getCommand(commandId, exitNumber);
-                const properties = { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
+        getGpxTransform: function (turnInstructionMode, transportMode) {
+            const mode = turnInstructionMode;
+            const transform = {
+                gpx: function (gpx, features) {
+                    for (const hint of this.voicehints) {
+                        const [indexInTrack, commandId, exitNumber, distance, time] = hint;
+                        let speed;
+                        if (time > 0) {
+                            speed = distance / time;
+                        }
 
-                this.geoJson.features.push(turf.point(coord.slice(0, 2), properties));
-            }
+                        const coord = this.track.geometry.coordinates[indexInTrack];
+                        const cmd = this.getCommand(commandId, exitNumber);
+                        if (!cmd) {
+                            console.error(`no voicehint command for id: ${commandId} (${hint})`);
+                            continue;
+                        }
+
+                        let properties;
+                        if (mode === 2) {
+                            const extensions = {};
+                            // TODO 'locus:' namespace gets removed
+                            extensions['locus:rteDistance'] = distance;
+                            if (time > 0) {
+                                extensions['locus:rteTime'] = time;
+                                extensions['locus:rteSpeed'] = speed;
+                            }
+                            extensions['locus:rtePointAction'] = cmd.locus;
+
+                            properties = {
+                                ele: coord[2],
+                                name: cmd.message,
+                                extensions: extensions,
+                            };
+                        } else if (mode === 5) {
+                            properties = { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
+                        } else {
+                            console.error('unhandled turnInstructionMode: ' + mode);
+                        }
+
+                        const wpt = this.createWpt(coord, properties);
+                        gpx.wpt.push(wpt);
+                    }
+
+                    if (mode === 2) {
+                        // hack to insert attribute after the other `xmlns`s
+                        gpx = Object.assign(
+                            {
+                                '@xmlns': gpx['@xmlns'],
+                                '@xmlns:xsi': gpx['@xmlns:xsi'],
+                                '@xmlns:locus': 'http://www.locusmap.eu',
+                            },
+                            gpx
+                        );
+                    }
+                    return gpx;
+                }.bind(this),
+                trk: function (trk, feature, coordsList) {
+                    const properties = {
+                        name: feature.properties.name,
+                    };
+
+                    const getLocusRouteType = (transportMode) => {
+                        switch (transportMode) {
+                            case 'car':
+                                return 0;
+                            case 'bike':
+                                return 5;
+                            default:
+                                return 3; // foot
+                        }
+                    };
+
+                    if (mode === 2) {
+                        properties.extensions = {
+                            'locus:rteComputeType': getLocusRouteType(transportMode),
+                            'locus:rteSimpleRoundabouts': 1,
+                        };
+                    }
+                    return Object.assign(properties, trk);
+                },
+            };
+            return transform;
         },
 
         getCommand: function (id, exitNumber) {

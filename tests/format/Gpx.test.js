@@ -31,7 +31,7 @@ function adoptGpx(gpx) {
 }
 
 function read(fileName) {
-    return adoptGpx(fs.readFileSync(path + fileName, 'utf8'));
+    return BR.Gpx.pretty(adoptGpx(fs.readFileSync(path + fileName, 'utf8')));
 }
 
 test('simple track', () => {
@@ -41,8 +41,18 @@ test('simple track', () => {
 });
 
 describe('voice hints', () => {
+    test('2-locus', () => {
+        let brouterGpx = read('2-locus.gpx');
+        brouterGpx = brouterGpx.replace(/<(\/?)locus:/g, '<$1'); // TODO 'locus:' namespace
+        brouterGpx = brouterGpx.replace(/.0<\/rteDistance/g, '</rteDistance'); // ignore .0 decimal
+        brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
+
+        const gpx = BR.Gpx.format(geoJson, 2);
+        expect(gpx).toEqual(brouterGpx);
+    });
+
     test('5-gpsies', () => {
-        const brouterGpx = BR.Gpx.pretty(read('5-gpsies.gpx'));
+        const brouterGpx = read('5-gpsies.gpx');
         const gpx = BR.Gpx.format(geoJson, 5);
         expect(gpx).toEqual(brouterGpx);
     });
