@@ -157,6 +157,16 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
 
             if (track && track.getLatLngs().length > 0) {
+                // there is no elevation data available above 60°N, except within 10°E-30°E (issue #365)
+                if (
+                    track.getLatLngs().filter(function (point) {
+                        return point.alt !== undefined;
+                    }).length == 0
+                ) {
+                    $('#no-elevation-data').show();
+                } else {
+                    $('#no-elevation-data').hide();
+                }
                 var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs());
                 this.addData(geojsonFeatures);
 

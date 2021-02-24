@@ -55,6 +55,7 @@
     "mean-cost-factor": "Mean cost factor",
     "meter": "meters",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
