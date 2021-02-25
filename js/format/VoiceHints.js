@@ -68,6 +68,7 @@
 
         getGpxTransform: function () {
             const transform = {
+                comment: '',
                 trk: function (trk, feature, coordsList) {
                     const properties = this._getTrk();
 
@@ -84,6 +85,25 @@
             this._addToTransform(transform);
 
             return transform;
+        },
+
+        _loopHints: function (hintCallback) {
+            for (const values of this.voicehints) {
+                const [indexInTrack, commandId, exitNumber, distance, time, geometry] = values;
+                const hint = { indexInTrack, commandId, exitNumber, distance, time, geometry };
+                if (time > 0) {
+                    hint.speed = distance / time;
+                }
+
+                const coord = this.track.geometry.coordinates[indexInTrack];
+                const cmd = this.getCommand(commandId, exitNumber);
+                if (!cmd) {
+                    console.error(`no voicehint command for id: ${commandId} (${values})`);
+                    continue;
+                }
+
+                hintCallback(hint, cmd, coord);
+            }
         },
 
         getCommand: function (id, exitNumber) {
@@ -114,25 +134,12 @@
         },
 
         _addWaypoints: function (gpx) {
-            for (const values of this.voicehints) {
-                const [indexInTrack, commandId, exitNumber, distance, time] = values;
-                const hint = { indexInTrack, commandId, exitNumber, distance, time };
-                if (time > 0) {
-                    hint.speed = distance / time;
-                }
-
-                const coord = this.track.geometry.coordinates[indexInTrack];
-                const cmd = this.getCommand(commandId, exitNumber);
-                if (!cmd) {
-                    console.error(`no voicehint command for id: ${commandId} (${values})`);
-                    continue;
-                }
-
+            this._loopHints((hint, cmd, coord) => {
                 const properties = this._getWpt(hint, cmd, coord);
 
                 const wpt = this._createWpt(coord, properties);
                 gpx.wpt.push(wpt);
-            }
+            });
         },
 
         _createWpt: function (coord, properties) {
@@ -214,14 +221,50 @@
         },
     });
 
+    BR.CommentVoiceHints = BR.VoiceHints.extend({
+        _addToTransform: function (transform) {
+            let comment = `
+<!-- $transport-mode$${this.transportMode}$ -->
+<!--          cmd    idx        lon        lat d2next  geometry -->
+<!-- $turn-instruction-start$
+`;
+
+            this._loopHints((hint, cmd, coord) => {
+                const pad = (obj = '', len) => {
+                    return new String(obj).padStart(len) + ';';
+                };
+
+                let turn = '';
+                turn += pad(cmd.name, 6);
+                turn += pad(hint.indexInTrack, 6);
+                turn += pad(coord[0], 10);
+                turn += pad(coord[1], 10);
+                turn += pad(hint.distance, 6);
+                turn += hint.geometry;
+
+                comment += `
+     $turn$${turn}$
+`;
+            });
+
+            comment += `
+    $turn-instruction-end$ -->
+`;
+
+            transform.comment = comment;
+        },
+    });
+
     BR.voiceHints = function (geoJson, turnInstructionMode, transportMode) {
         switch (turnInstructionMode) {
             case 2:
                 return new BR.LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 4:
+                return new BR.CommentVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 5:
                 return new BR.GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
             default:
-                console.error('unhandled turnInstructionMode: ' + mode);
+                console.error('unhandled turnInstructionMode: ' + turnInstructionMode);
                 return new BR.VoiceHints(geoJson, turnInstructionMode, transportMode);
         }
     };

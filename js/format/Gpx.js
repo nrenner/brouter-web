@@ -3,6 +3,7 @@ BR.Gpx = {
         if (!geoJson?.features) return '';
 
         const trkNameTransform = {
+            comment: '',
             trk: function (trk, feature, coordsList) {
                 // name as first tag, by using assign and in this order
                 return Object.assign(
@@ -26,7 +27,7 @@ BR.Gpx = {
             transform: gpxTransform,
         });
         const statsComment = BR.Gpx._statsComment(geoJson);
-        gpx = '<?xml version="1.0" encoding="UTF-8"?>' + statsComment + gpx;
+        gpx = '<?xml version="1.0" encoding="UTF-8"?>' + statsComment + gpxTransform.comment + gpx;
         gpx = BR.Gpx.pretty(gpx);
         return gpx;
     },

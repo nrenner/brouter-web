@@ -51,6 +51,14 @@ describe('voice hints', () => {
         expect(gpx).toEqual(brouterGpx);
     });
 
+    test('4-comment', () => {
+        let brouterGpx = read('4-comment.gpx');
+        brouterGpx = brouterGpx.replace(/;\s*([-0-9]+.[0-9]+?)0+;/g, (match, p1) => `;${p1.padStart(10)};`); // remove trailing zeros
+
+        const gpx = BR.Gpx.format(geoJson, 4);
+        expect(gpx).toEqual(brouterGpx);
+    });
+
     test('5-gpsies', () => {
         const brouterGpx = read('5-gpsies.gpx');
         const gpx = BR.Gpx.format(geoJson, 5);
