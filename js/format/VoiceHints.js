@@ -51,8 +51,10 @@
             })(),
         },
 
-        initialize: function (geoJson) {
+        initialize: function (geoJson, turnInstructionMode, transportMode) {
             this.geoJson = geoJson;
+            this.turnInstructionMode = turnInstructionMode;
+            this.transportMode = transportMode;
 
             for (const feature of geoJson.features) {
                 let voicehints = feature?.properties.voicehints;
@@ -64,98 +66,23 @@
             }
         },
 
-        createWpt: function (coord, properties) {
-            return Object.assign(
-                {
-                    '@lat': coord[1],
-                    '@lon': coord[0],
-                },
-                properties
-            );
-        },
-
-        getGpxTransform: function (turnInstructionMode, transportMode) {
-            const mode = turnInstructionMode;
+        getGpxTransform: function () {
             const transform = {
-                gpx: function (gpx, features) {
-                    for (const hint of this.voicehints) {
-                        const [indexInTrack, commandId, exitNumber, distance, time] = hint;
-                        let speed;
-                        if (time > 0) {
-                            speed = distance / time;
-                        }
-
-                        const coord = this.track.geometry.coordinates[indexInTrack];
-                        const cmd = this.getCommand(commandId, exitNumber);
-                        if (!cmd) {
-                            console.error(`no voicehint command for id: ${commandId} (${hint})`);
-                            continue;
-                        }
-
-                        let properties;
-                        if (mode === 2) {
-                            const extensions = {};
-                            // TODO 'locus:' namespace gets removed
-                            extensions['locus:rteDistance'] = distance;
-                            if (time > 0) {
-                                extensions['locus:rteTime'] = time;
-                                extensions['locus:rteSpeed'] = speed;
-                            }
-                            extensions['locus:rtePointAction'] = cmd.locus;
-
-                            properties = {
-                                ele: coord[2],
-                                name: cmd.message,
-                                extensions: extensions,
-                            };
-                        } else if (mode === 5) {
-                            properties = { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
-                        } else {
-                            console.error('unhandled turnInstructionMode: ' + mode);
-                        }
-
-                        const wpt = this.createWpt(coord, properties);
-                        gpx.wpt.push(wpt);
-                    }
-
-                    if (mode === 2) {
-                        // hack to insert attribute after the other `xmlns`s
-                        gpx = Object.assign(
-                            {
-                                '@xmlns': gpx['@xmlns'],
-                                '@xmlns:xsi': gpx['@xmlns:xsi'],
-                                '@xmlns:locus': 'http://www.locusmap.eu',
-                            },
-                            gpx
-                        );
-                    }
-                    return gpx;
-                }.bind(this),
                 trk: function (trk, feature, coordsList) {
-                    const properties = {
-                        name: feature.properties.name,
-                    };
+                    const properties = this._getTrk();
 
-                    const getLocusRouteType = (transportMode) => {
-                        switch (transportMode) {
-                            case 'car':
-                                return 0;
-                            case 'bike':
-                                return 5;
-                            default:
-                                return 3; // foot
-                        }
-                    };
-
-                    if (mode === 2) {
-                        properties.extensions = {
-                            'locus:rteComputeType': getLocusRouteType(transportMode),
-                            'locus:rteSimpleRoundabouts': 1,
-                        };
-                    }
-                    return Object.assign(properties, trk);
-                },
+                    return Object.assign(
+                        {
+                            name: feature.properties.name,
+                        },
+                        properties,
+                        trk
+                    );
+                }.bind(this),
             };
+
+            this._addToTransform(transform);
+
             return transform;
         },
 
@@ -168,9 +95,134 @@
             }
             return command;
         },
+
+        // override in subclass
+        _addToTransform: function (transform) {},
+
+        // override in subclass
+        _getTrk: function () {
+            return {};
+        },
     });
 
-    BR.voiceHints = function (geoJson) {
-        return new BR.VoiceHints(geoJson);
+    BR.WaypointVoiceHints = BR.VoiceHints.extend({
+        _addToTransform: function (transform) {
+            transform.gpx = function (gpx, features) {
+                this._addWaypoints(gpx);
+                return gpx;
+            }.bind(this);
+        },
+
+        _addWaypoints: function (gpx) {
+            for (const values of this.voicehints) {
+                const [indexInTrack, commandId, exitNumber, distance, time] = values;
+                const hint = { indexInTrack, commandId, exitNumber, distance, time };
+                if (time > 0) {
+                    hint.speed = distance / time;
+                }
+
+                const coord = this.track.geometry.coordinates[indexInTrack];
+                const cmd = this.getCommand(commandId, exitNumber);
+                if (!cmd) {
+                    console.error(`no voicehint command for id: ${commandId} (${values})`);
+                    continue;
+                }
+
+                const properties = this._getWpt(hint, cmd, coord);
+
+                const wpt = this._createWpt(coord, properties);
+                gpx.wpt.push(wpt);
+            }
+        },
+
+        _createWpt: function (coord, properties) {
+            return Object.assign(
+                {
+                    '@lat': coord[1],
+                    '@lon': coord[0],
+                },
+                properties
+            );
+        },
+
+        // override in subclass
+        _getWpt: function (hint, cmd, coord) {
+            return {};
+        },
+    });
+
+    BR.GpsiesVoiceHints = BR.WaypointVoiceHints.extend({
+        _getWpt: function (hint, cmd, coord) {
+            return { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
+        },
+    });
+
+    BR.LocusVoiceHints = BR.WaypointVoiceHints.extend({
+        _addToTransform: function (transform) {
+            transform.gpx = function (gpx, features) {
+                // hack to insert attribute after the other `xmlns`s
+                gpx = Object.assign(
+                    {
+                        '@xmlns': gpx['@xmlns'],
+                        '@xmlns:xsi': gpx['@xmlns:xsi'],
+                        '@xmlns:locus': 'http://www.locusmap.eu',
+                    },
+                    gpx
+                );
+
+                this._addWaypoints(gpx);
+
+                return gpx;
+            }.bind(this);
+        },
+
+        _getWpt: function (hint, cmd, coord) {
+            const extensions = {};
+            // TODO 'locus:' namespace gets removed
+            extensions['locus:rteDistance'] = hint.distance;
+            if (hint.time > 0) {
+                extensions['locus:rteTime'] = hint.time;
+                extensions['locus:rteSpeed'] = hint.speed;
+            }
+            extensions['locus:rtePointAction'] = cmd.locus;
+
+            return {
+                ele: coord[2],
+                name: cmd.message,
+                extensions: extensions,
+            };
+        },
+
+        _getTrk: function () {
+            return {
+                extensions: {
+                    'locus:rteComputeType': this._getLocusRouteType(this.transportMode),
+                    'locus:rteSimpleRoundabouts': 1,
+                },
+            };
+        },
+
+        _getLocusRouteType: function (transportMode) {
+            switch (transportMode) {
+                case 'car':
+                    return 0;
+                case 'bike':
+                    return 5;
+                default:
+                    return 3; // foot
+            }
+        },
+    });
+
+    BR.voiceHints = function (geoJson, turnInstructionMode, transportMode) {
+        switch (turnInstructionMode) {
+            case 2:
+                return new BR.LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 5:
+                return new BR.GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
+            default:
+                console.error('unhandled turnInstructionMode: ' + mode);
+                return new BR.VoiceHints(geoJson, turnInstructionMode, transportMode);
+        }
     };
 })();

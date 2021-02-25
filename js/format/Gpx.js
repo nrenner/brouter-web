@@ -16,8 +16,8 @@ BR.Gpx = {
         let gpxTransform = trkNameTransform;
 
         if (turnInstructionMode > 0) {
-            const voiceHints = BR.voiceHints(geoJson);
-            gpxTransform = voiceHints.getGpxTransform(turnInstructionMode, transportMode);
+            const voiceHints = BR.voiceHints(geoJson, turnInstructionMode, transportMode);
+            gpxTransform = voiceHints.getGpxTransform();
         }
 
         let gpx = togpx(geoJson, {
