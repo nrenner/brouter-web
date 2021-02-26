@@ -142,6 +142,8 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",

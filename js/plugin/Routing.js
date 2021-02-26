@@ -35,6 +35,9 @@ BR.Routing = L.Routing.extend({
     },
 
     onAdd: function (map) {
+        this.options.tooltips.waypoint = i18next.t('map.route-tooltip-waypoint');
+        this.options.tooltips.segment = i18next.t('map.route-tooltip-segment');
+
         this._segmentsCasing = new L.FeatureGroup().addTo(map);
         this._loadingTrailerGroup = new L.FeatureGroup().addTo(map);
 
