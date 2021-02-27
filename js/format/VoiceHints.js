@@ -87,12 +87,38 @@
             return transform;
         },
 
+        _getDuration: function (voicehintsIndex) {
+            const timeList = this.track.properties.times;
+            const indexInTrack = this.voicehints[voicehintsIndex][0];
+            const currTime = timeList[indexInTrack];
+            const len = this.voicehints.length;
+            const nextIndex = voicehintsIndex < len - 1 ? this.voicehints[voicehintsIndex + 1][0] : timeList.length - 1;
+            const nextTime = timeList[nextIndex];
+
+            const duration = nextTime - currTime;
+
+            // TODO remove
+            const time = this.voicehints[voicehintsIndex][4];
+            const p = 5;
+            if (!(time.toPrecision(p) === duration.toPrecision(p))) {
+                console.error(
+                    `${voicehintsIndex}: ${time.toPrecision(p)} =? ${duration.toPrecision(p)}, ${time} =? ${duration}`
+                );
+            }
+
+            return duration;
+        },
+
         _loopHints: function (hintCallback) {
-            for (const values of this.voicehints) {
-                const [indexInTrack, commandId, exitNumber, distance, time, geometry] = values;
-                const hint = { indexInTrack, commandId, exitNumber, distance, time, geometry };
-                if (time > 0) {
-                    hint.speed = distance / time;
+            for (const [i, values] of this.voicehints.entries()) {
+                const [indexInTrack, commandId, exitNumber, distance, time, angle, geometry] = values;
+                const hint = { indexInTrack, commandId, exitNumber, distance, time, angle, geometry };
+
+                // TODO remove server hint time
+                //hint.time = this._getDuration(i);
+                this._getDuration(i);
+                if (hint.time > 0) {
+                    hint.speed = distance / hint.time;
                 }
 
                 const coord = this.track.geometry.coordinates[indexInTrack];
@@ -255,10 +281,76 @@
         },
     });
 
+    BR.OsmAndVoiceHints = BR.VoiceHints.extend({
+        _addToTransform: function (transform) {
+            transform.gpx = function (gpx, features) {
+                gpx['@creator'] = 'OsmAndRouter';
+
+                gpx.rte.push({
+                    rtept: this._createRoutePoints(gpx),
+                });
+
+                // reorder trk after rte
+                const trk = gpx.trk;
+                delete gpx.trk;
+                gpx.trk = trk;
+
+                return gpx;
+            }.bind(this);
+        },
+
+        _createRoutePoints: function (gpx) {
+            const rteptList = [];
+
+            const trkseg = gpx.trk[0].trkseg[0];
+            let trkpt = trkseg.trkpt[0];
+            const startTime = this.track.properties.times[this.voicehints[0][0]];
+            rteptList.push({
+                '@lat': trkpt['@lat'],
+                '@lon': trkpt['@lon'],
+                desc: 'start',
+                extensions: { time: Math.round(startTime), offset: 0 },
+            });
+
+            this._loopHints((hint, cmd, coord) => {
+                const rtept = {
+                    '@lat': coord[1],
+                    '@lon': coord[0],
+                    desc: cmd.message,
+                    extensions: {
+                        time: Math.round(hint.time),
+                        turn: cmd.name,
+                        'turn-angle': hint.angle,
+                        offset: hint.indexInTrack,
+                    },
+                };
+
+                if (hint.time === 0) {
+                    delete properties.extensions.time;
+                }
+
+                rteptList.push(rtept);
+            });
+
+            const lastIndex = trkseg.trkpt.length - 1;
+            trkpt = trkseg.trkpt[lastIndex];
+            rteptList.push({
+                '@lat': trkpt['@lat'],
+                '@lon': trkpt['@lon'],
+                desc: 'destination',
+                extensions: { time: 0, offset: lastIndex },
+            });
+
+            return rteptList;
+        },
+    });
+
     BR.voiceHints = function (geoJson, turnInstructionMode, transportMode) {
         switch (turnInstructionMode) {
             case 2:
                 return new BR.LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 3:
+                return new BR.OsmAndVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 4:
                 return new BR.CommentVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 5:

@@ -13,14 +13,15 @@
         "total-energy": "4412",
         "cost": "533",
         "voicehints": [
-          [1,5,0,140.0,24.90994644165039," 6(90)6 (0)6 (-89)2"],
-          [5,2,0,90.0,9.614852905273438," 6(-89)6 (0)6 (89)6"]
+          [1,5,0,140.0,24.90994644165039,89," 6(90)6 (0)6 (-89)2"],
+          [5,2,0,90.0,9.614852905273438,-90," 6(-89)6 (0)6 (89)6"]
         ],
         "messages": [
           ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
           ["8468340", "49488794", "101", "89", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes", ""],
           ["8470671", "49488909", "99", "230", "1150", "0", "180", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
-        ]
+        ],
+        "times": [0.0,9.592433,12.270765,14.129882,19.406338,34.50238,44.117233]
       },
       "geometry": {
         "type": "LineString",

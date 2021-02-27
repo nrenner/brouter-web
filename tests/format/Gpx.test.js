@@ -11,14 +11,16 @@ const geoJson = require('./data/track.json');
 const path = 'tests/format/data/';
 
 // resolve intended/accepted differences before comparing
-function adoptGpx(gpx) {
+function adoptGpx(gpx, replaceCreator = true) {
     const creator = 'togpx';
     const name = 'Track';
     const newline = '\n';
 
     gpx = gpx.replace('=.0', '=0.0');
-    gpx = gpx.replace(/creator="[^"]*"/, `creator="${creator}"`);
-    gpx = gpx.replace(`creator="${creator}" version="1.1"`, `version="1.1" \n creator="${creator}"`);
+    if (replaceCreator) {
+        gpx = gpx.replace(/creator="[^"]*"/, `creator="${creator}"`);
+    }
+    gpx = gpx.replace(/creator="([^"]*)" version="1.1"/, 'version="1.1" \n creator="$1"');
     gpx = gpx.replace(/<trk>\n  <name>[^<]*<\/name>/, `<trk>\n  <name>${name}</name>`);
     gpx = gpx
         .split(newline)
@@ -30,8 +32,8 @@ function adoptGpx(gpx) {
     return gpx;
 }
 
-function read(fileName) {
-    return BR.Gpx.pretty(adoptGpx(fs.readFileSync(path + fileName, 'utf8')));
+function read(fileName, replaceCreator) {
+    return BR.Gpx.pretty(adoptGpx(fs.readFileSync(path + fileName, 'utf8'), replaceCreator));
 }
 
 test('simple track', () => {
@@ -48,6 +50,12 @@ describe('voice hints', () => {
         brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
 
         const gpx = BR.Gpx.format(geoJson, 2);
+        expect(gpx).toEqual(brouterGpx);
+    });
+
+    test('3-osmand', () => {
+        const brouterGpx = read('3-osmand.gpx', false);
+        const gpx = BR.Gpx.format(geoJson, 3);
         expect(gpx).toEqual(brouterGpx);
     });
 

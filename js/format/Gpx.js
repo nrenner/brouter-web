@@ -24,6 +24,7 @@ BR.Gpx = {
         let gpx = togpx(geoJson, {
             featureTitle: function () {},
             featureDescription: function () {},
+            featureCoordTimes: function () {},
             transform: gpxTransform,
         });
         const statsComment = BR.Gpx._statsComment(geoJson);
