@@ -72,4 +72,11 @@ describe('voice hints', () => {
         const gpx = BR.Gpx.format(geoJson, 5);
         expect(gpx).toEqual(brouterGpx);
     });
+
+    test('6-orux', () => {
+        let brouterGpx = read('6-orux.gpx');
+        brouterGpx = brouterGpx.replace(/<(\/?)om:/g, '<$1'); // TODO namespace
+        const gpx = BR.Gpx.format(geoJson, 6);
+        expect(gpx).toEqual(brouterGpx);
+    });
 });

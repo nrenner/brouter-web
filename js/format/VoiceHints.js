@@ -190,6 +190,26 @@
         },
     });
 
+    BR.OruxVoiceHints = BR.WaypointVoiceHints.extend({
+        _getWpt: function (hint, cmd, coord) {
+            const wpt = {
+                ele: coord[2],
+                extensions: {
+                    'om:oruxmapsextensions': {
+                        '@xmlns:om': 'http://www.oruxmaps.com/oruxmapsextensions/1/0',
+                        'om:ext': { '@type': 'ICON', '@subtype': 0, _: cmd.orux },
+                    },
+                },
+            };
+
+            if (wpt.ele === undefined || wpt.ele === null) {
+                delete wpt.ele;
+            }
+
+            return wpt;
+        },
+    });
+
     BR.LocusVoiceHints = BR.WaypointVoiceHints.extend({
         _addToTransform: function (transform) {
             transform.gpx = function (gpx, features) {
@@ -219,11 +239,17 @@
             }
             extensions['locus:rtePointAction'] = cmd.locus;
 
-            return {
+            const wpt = {
                 ele: coord[2],
                 name: cmd.message,
                 extensions: extensions,
             };
+
+            if (wpt.ele === undefined || wpt.ele === null) {
+                delete wpt.ele;
+            }
+
+            return wpt;
         },
 
         _getTrk: function () {
@@ -355,6 +381,8 @@
                 return new BR.CommentVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 5:
                 return new BR.GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 6:
+                return new BR.OruxVoiceHints(geoJson, turnInstructionMode, transportMode);
             default:
                 console.error('unhandled turnInstructionMode: ' + turnInstructionMode);
                 return new BR.VoiceHints(geoJson, turnInstructionMode, transportMode);
