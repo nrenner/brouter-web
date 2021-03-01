@@ -26,12 +26,14 @@ BR.LayersTab = BR.ControlLayers.extend({
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
         map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
+        map.on('overlayadd overlayremove', this.updateOpacityLabel, this);
     },
 
     onRemove: function (map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
         map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
+        map.off('overlayadd overlayremove', this.updateOpacityLabel, this);
     },
 
     initOpacitySlider: function (map) {
@@ -470,6 +472,17 @@ BR.LayersTab = BR.ControlLayers.extend({
                     }
                 }
             }
+        }
+    },
+
+    updateOpacityLabel: function () {
+        var slider = $('#leaflet-control-layers-overlays-opacity-slider');
+        var overlaysCount = this.getActiveLayers().length - 1;
+        if (overlaysCount === 0) {
+            slider.hide();
+        } else {
+            slider.show();
+            slider.children()[1].innerText = i18next.t('sidebar.layers.overlay-opacity', { count: overlaysCount });
         }
     },
 });
