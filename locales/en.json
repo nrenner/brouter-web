@@ -241,6 +241,7 @@
       "optional": "Add or remove optional layers",
       "optional-layers": "More",
       "overlay-opacity": "Overlay transparency",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",

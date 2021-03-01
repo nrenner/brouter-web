@@ -238,6 +238,7 @@
       "optional": "Ajouter ou supprimer des calques optionnels",
       "optional-layers": "Plus",
       "overlay-opacity": "Transparence de la surcouche",
+      "overlay-opacity_plural": "Transparence des surcouches",
       "table": {
         "URL": "URL",
         "empty": "Aucun calque personnel trouvé.",
