@@ -244,7 +244,9 @@
         "URL": "URL",
         "empty": "No custom layer configured yet.",
         "name": "Name",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Layers",
       "tooltip": "Select layers"

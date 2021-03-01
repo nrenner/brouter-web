@@ -13,20 +13,23 @@ BR.Layers = L.Class.extend({
     _loadTable: function () {
         var layersData = [];
         for (layer in this._customLayers) {
+            var isOverlay = this._customLayers[layer].isOverlay;
             layersData.push([
                 layer,
                 this._customLayers[layer].layer._url,
-                this._customLayers[layer].isOverlay ? 'Overlay' : 'Layer',
+                isOverlay
+                    ? i18next.t('sidebar.layers.table.type_overlay')
+                    : i18next.t('sidebar.layers.table.type_layer'),
             ]);
         }
         if (this._layersTable != null) {
             this._layersTable.destroy();
         }
-
         this._layersTable = $('#custom_layers_table').DataTable({
             data: layersData,
             info: false,
             searching: false,
+            bAutoWidth: false,
             paging: false,
             language: {
                 emptyTable: i18next.t('sidebar.layers.table.empty'),
