@@ -770,3 +770,16 @@ table.dataTable.display tbody tr:hover.selected {
     content: '\f06a'; /* fa-exclamation */
     margin-left: 3px;
 }
+
+#elevation-chart {
+    position: relative;
+}
+
+#no-elevation-data {
+    z-index: 1000;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
