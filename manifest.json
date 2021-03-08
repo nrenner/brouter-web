@@ -1,0 +1,40 @@
+{
+    "short_name": "BRouter-Web",
+    "name": "BRouter routing web client",
+    "description": "Frontend for BRouter routing engine based on OpenStreetMap",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "icon-192-maskable.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icon-512-maskable.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#343a40",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#343a40",
+    "lang": "en-US",
+    "orientation": "portrait-primary",
+    "categories": ["entertainment", "sports"],
+    "screenshots": ["https://user-images.githubusercontent.com/1451988/83979926-1f6d8c80-a912-11ea-8f21-b2ed60963501.gif"]
+}

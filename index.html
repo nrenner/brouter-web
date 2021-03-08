@@ -7,6 +7,8 @@
 
         <title data-i18n="title">BRouter web client</title>
 
+        <link rel="manifest" href="manifest.json" />
+
         <!-- inject:css -->
         <link rel="stylesheet" href="dist/brouter-web.css" />
         <!-- endinject -->
@@ -1163,5 +1165,13 @@
         <!-- inject:js -->
         <script src="dist/brouter-web.js"></script>
         <!-- endinject -->
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('./dist/pwabuilder-sw.js');
+                });
+            }
+        </script>
     </body>
 </html>
