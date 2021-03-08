@@ -55,6 +55,7 @@
     "mean-cost-factor": "Gjennomsnittelig kostnadsfaktor",
     "meter": "meter",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Stigning",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total energi",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Kostnad-koding",
     "route-quality-incline": "Stigning-koding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Vis Strava sykkel-segmenter",
     "strava-running": "Vis Strava løpe-segmenter",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Add or remove optional layers",
       "optional-layers": "Mer",
       "overlay-opacity": "Overleggs transparens",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "Ingen tilpasset lag konfigurert ennå.",
         "name": "Navn",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Lag",
       "tooltip": "Select layers"

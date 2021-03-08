@@ -15,7 +15,7 @@
     "tooltip": "Mostra més informació sobre BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Fronteres administratives: <a href=\"https://osm-boundaries.com\" target=\"_blank\">Fronteres-OSM</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">API d'Overpass</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dades d'elevació",
@@ -25,7 +25,7 @@
     "map-tiles": "Tessel·les del mapa",
     "nominatim": "Cerca per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "title": "Credits"
+    "title": "Crèdits"
   },
   "export": {
     "format": "Format",
@@ -55,6 +55,7 @@
     "mean-cost-factor": "Factor de cost mitjà",
     "meter": "metres",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Desnivell final",
     "stats-info": "Comenceu a dibuixar una ruta per obtenir les estadístiques",
     "total-energy": "Energia total",
@@ -96,8 +97,8 @@
     "delete-nogo-areas": "Esborra totes les àrees omeses",
     "delete-pois": "Esborra tots els punts d'interès",
     "delete-route": "Esborra la ruta",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
+    "draw-circlego-start": "Dibuixa una zona de pas limitada",
+    "draw-circlego-stop": "Para de dibuixar una zona de pas limitada",
     "draw-poi-start": "Dibuixa punts d'interès",
     "draw-poi-stop": "Para de dibuixar punts d'interès",
     "draw-route-start": "Dibuixa una ruta",
@@ -132,7 +133,7 @@
       "edit": "Cliqueu per editar",
       "help": "&square; = mou / redimensiona, <span class=\"fa fa-trash-o\"></span> = esborra,<br>clique al cercle per deixar d'editar"
     },
-    "not-applicable-here": "not applicable here",
+    "not-applicable-here": "no aplicable aquí",
     "opacity-slider": "Especifica la transparència de la ruta i els marcadors",
     "opacity-slider-shortcut": "{{action}}\n(Mantén premuda la tecla {{key}} per silenciar temporalment)",
     "preview": "Previsualitza",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Codificació del cost",
     "route-quality-incline": "Codificació de la inclinació",
     "route-quality-shortcut": "{{action}} (tecla {{key}} per commutar)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Mostra els segments de bici de Strava",
     "strava-running": "Mostra els segments de córrer de Strava",
     "strava-shortcut": "{{action}}\n(tecla {{key}} per commutar les capes, cliqueu per recarregar l'àrea actual)",
@@ -238,11 +241,14 @@
       "optional": "Afegeix o elimina capes opcionals",
       "optional-layers": "Més",
       "overlay-opacity": "Transparència de la superposició",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "Encara no hi ha cap capa personalitzada configurada.",
         "name": "Nom",
-        "type": "Tipus"
+        "type": "Tipus",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Capes",
       "tooltip": "Seleccioneu capes"
@@ -283,7 +289,7 @@
     "upload-error": "Error de càrrega: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "S'ha alliberat una versió nova des de l'última visita. Cliqueu <a href='.' data-toggle='modal' data-target='#whatsnew'>aquí</a> per veure les novetats!",
+    "title": "Què hi ha de nou?"
   }
 }

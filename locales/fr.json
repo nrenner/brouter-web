@@ -55,8 +55,9 @@
     "mean-cost-factor": "Facteur coût moyen",
     "meter": "mètres",
     "meter-abbrev": "m",
+    "no-elevation-data": "Aucune donnée d'élévation pour ce parcours.",
     "plain-ascend": "faux plat",
-    "stats-info": "Commencer un itinéraire pour voir ses stats.",
+    "stats-info": "Tracer un itinéraire pour voir ses stats.",
     "total-energy": "Énergie totale",
     "travel-time": "Temps de trajet"
   },
@@ -68,7 +69,7 @@
   },
   "layers": {
     "add-base": "Ajouter un fond de carte ",
-    "add-overlay": "Ajouter un calque superposable",
+    "add-overlay": "Ajouter une surcouche",
     "customize": "Personnaliser les calques",
     "opacity-slider": "Curseur d'opacité",
     "placeholder-layer-name": "Nom du calque (p. ex. OpenStreetMap).",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Chiffrage du coût",
     "route-quality-incline": "Chiffrage d'inclinaison",
     "route-quality-shortcut": "{{action}} (touche {{key}} pour basculer)",
+    "route-tooltip-segment": "Laisser appuyer et déplacer pour ajouter un nouveau point de passage",
+    "route-tooltip-waypoint": "Point de passage. Laisser appuyer pour déplacer ; cliquer pour supprimer.",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
     "strava-shortcut": "{{action}}\n(touche {{key}} pour basculer de calque, cliquer pour recharger la zone actuelle)",
@@ -226,7 +229,7 @@
         "country": "Pays",
         "europe": "Europe",
         "europe-monolingual": "Europe monolingue",
-        "overlays": "Calques superposables",
+        "overlays": "Surcouches",
         "worldwide": "Mondial",
         "worldwide-international": "Mondial international",
         "worldwide-monolingual": "Mondial monolingue"
@@ -243,7 +246,9 @@
         "URL": "URL",
         "empty": "Aucun calque personnel trouvé.",
         "name": "Nom",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Calque",
+        "type_overlay": "Surcouche"
       },
       "title": "Calques",
       "tooltip": "Sélection des calques"

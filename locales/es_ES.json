@@ -55,6 +55,7 @@
     "mean-cost-factor": "Factor de costo medio",
     "meter": "metros",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Ascenso llano",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Energia total",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Codificación de costos",
     "route-quality-incline": "Codificación de inclinación",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Mostrar segmentos de ciclismo de Strava",
     "strava-running": "Mostrar segmentos de carrera de Strava",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Añadir o eliminar capas opcionales",
       "optional-layers": "Más",
       "overlay-opacity": "Transparencia de superposición",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "No hay una capa personalizada configurada todavía.",
         "name": "Nombre",
-        "type": "Tipo"
+        "type": "Tipo",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Capas",
       "tooltip": "Select layers"

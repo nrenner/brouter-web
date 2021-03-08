@@ -55,6 +55,7 @@
     "mean-cost-factor": "durchschnittlicher Kostenfaktor",
     "meter": "Meter",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "einfach aufsteigend",
     "stats-info": "Route zeichnen, um Statistiken zu sehen.",
     "total-energy": "Gesamtenergie",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Kostencodierung",
     "route-quality-incline": "Steigungscodierung",
     "route-quality-shortcut": "{{action}} ({{key}} Taste zum Ein-/Ausschalten)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Zeige Strava Radfahrsegmente",
     "strava-running": "Zeige Strava Läufersegmente",
     "strava-shortcut": "{{action}}\n({{key}} Taste um Ebene ein-/auszublenden, Klicken um aktuellen Ausschnitt neu zu laden)",
@@ -165,7 +168,7 @@
       "nogos": "No-go-Areas laden",
       "title": "Laden",
       "tooltip": "{{tracksAction}} ({{tracksKey}} Taste)\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Touren laden"
+      "tracks": "Track laden"
     },
     "profile": {
       "car-eco": "Auto (effizient)",
@@ -238,11 +241,14 @@
       "optional": "Optionale Ebenen hinzufügen oder entfernen",
       "optional-layers": "Mehr",
       "overlay-opacity": "Transparenz der Überlagerung",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
         "name": "Name",
-        "type": "Typ"
+        "type": "Typ",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Ebenen",
       "tooltip": "Ebenen auswählen"
@@ -262,11 +268,11 @@
   "trackasroute": {
     "explainpoi": "(Wegpunkte als POIs anzeigen)",
     "explaintracklayer": "(Tour als separate Ebene anzeigen)",
-    "file": "Tourdatei",
+    "file": "Track-Datei",
     "fuzziness": "Unschärfe",
     "pleasewait": "Bitte warten!",
     "showpois": "POIs",
-    "title": "Tour als Route laden",
+    "title": "Track als Route laden",
     "tracklayer": "Tour-Ebene",
     "tuning": "Justierung"
   },
@@ -279,7 +285,7 @@
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
     "strava-error": "Fehler beim Laden der Strava Segmente: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
-    "tracks-load-error": "Fehler beim Laden der Touren: {{error}}",
+    "tracks-load-error": "Fehler beim Laden von tracks: {{error}}",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   },
   "whatsnew": {

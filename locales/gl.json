@@ -55,6 +55,7 @@
     "mean-cost-factor": "Mean cost factor",
     "meter": "meters",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Add or remove optional layers",
       "optional-layers": "More",
       "overlay-opacity": "Overlay transparency",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "No custom layer configured yet.",
         "name": "Name",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Layers",
       "tooltip": "Select layers"

@@ -15,7 +15,7 @@
     "tooltip": "További információk megjelenítése a BRouter-Webről"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Közigazgatási határok: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-határok</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Magassági adatok",
@@ -25,7 +25,7 @@
     "map-tiles": "Map tiles",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
-    "title": "Credits"
+    "title": "Alkotók"
   },
   "export": {
     "format": "Formátum",
@@ -55,6 +55,7 @@
     "mean-cost-factor": "Közepes ráfordítástényező",
     "meter": "méter",
     "meter-abbrev": "m",
+    "no-elevation-data": "Ehhez az útvonalhoz nincsenek magassági adatok.",
     "plain-ascend": "Végpontok közötti szintkülönbség",
     "stats-info": "A statisztika megtekintéséhez kezdjen el egy útvonalat rajzolni.",
     "total-energy": "Teljes energiafelhasználás",
@@ -96,8 +97,8 @@
     "delete-nogo-areas": "Minden elkerülendő terület törlése",
     "delete-pois": "Minden érdekes pont (POI) törlése",
     "delete-route": "Útvonal törlése",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
+    "draw-circlego-start": "Korlátozott elkerülendő terület rajzolása",
+    "draw-circlego-stop": "Korlátozott elkerülendő terület rajzolásának megszakítása",
     "draw-poi-start": "Érdekes pontok (POI-k) rajzolása",
     "draw-poi-stop": "Érdekes pontok rajzolásának megszakítása",
     "draw-route-start": "Útvonal rajzolása",
@@ -132,7 +133,7 @@
       "edit": "Szerkesztés kattintással",
       "help": "&square; = áthelyezés / átméretezés, <span class=\"fa fa-trash-o\"></span> = törlés,<br>a szerkesztés befejezéséhez kattintson a körre"
     },
-    "not-applicable-here": "not applicable here",
+    "not-applicable-here": "itt nem alkalmazható",
     "opacity-slider": "Útvonal és jelölők átlátszóságának beállítása",
     "opacity-slider-shortcut": "{{action}}\n(Időszakos elnémítás a {{key}} billentyűt lenyomva tartásával)",
     "preview": "Előnézet",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Ráfordítás kódolása",
     "route-quality-incline": "Lejtés kódolása",
     "route-quality-shortcut": "{{action}} (be-/kikapcsolás: {{key}} billentyű)",
+    "route-tooltip-segment": "Húzza el új útpont létrehozásához",
+    "route-tooltip-waypoint": "Útpont: mozgatáshoz húzza el, eltávolításhoz kattintson rá.",
     "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
     "strava-running": "Strava futó útvonalszakaszok megjelenítése",
     "strava-shortcut": "{{action}}\n({{key}} billentyű a réteg be-/kikapcsolásához, kattintás az adott terület újratöltéséhez)",
@@ -238,11 +241,14 @@
       "optional": "Rétegek hozzáadása vagy eltávolítása",
       "optional-layers": "Több",
       "overlay-opacity": "Rátétréteg átlászósága",
+      "overlay-opacity_plural": "Rátétrétegek átlátszósága",
       "table": {
         "URL": "URL",
         "empty": "Még nincs beállítva egyedi réteg",
         "name": "Név",
-        "type": "Típus"
+        "type": "Típus",
+        "type_layer": "Réteg",
+        "type_overlay": "Rátétréteg"
       },
       "title": "Rétegek",
       "tooltip": "Rétegek kijelölése"
@@ -283,7 +289,7 @@
     "upload-error": "Feltöltési hiba: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Legutóbbi látogatása óta megjelent egy új verzió. <a href='.' data-toggle='modal' data-target='#whatsnew'>Kattintson ide</a>, és nézze meg az újdonságokat!",
+    "title": "Újdonságok"
   }
 }

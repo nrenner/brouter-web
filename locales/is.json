@@ -55,6 +55,7 @@
     "mean-cost-factor": "Meðal-kostnaðarstuðull",
     "meter": "metrar",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Einföld hækkun (hæðarmunur)",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Orka alls",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Kóði fyrir kostnað",
     "route-quality-incline": "Kóði fyrir halla",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Sýna Strava hjólabúta",
     "strava-running": "Sýna Strava hlaupabúta",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Bæta við eða fjarlægja valkvæð lög",
       "optional-layers": "Meira",
       "overlay-opacity": "Gegnsæi þekjulags",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "Slóð",
         "empty": "Ekkert sérsniðið lag ennþá uppsett.",
         "name": "Nafn",
-        "type": "Tegund"
+        "type": "Tegund",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Lög",
       "tooltip": "Select layers"

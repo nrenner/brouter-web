@@ -55,6 +55,7 @@
     "mean-cost-factor": "Średni współczynnik kosztów",
     "meter": "metrów",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Różnica wysokości",
     "stats-info": "Zacznij rysować trasę, aby zobaczyć statystyki.",
     "total-energy": "Całkowita energia",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Kodowanie kosztów",
     "route-quality-incline": "Kodowanie nachylenia",
     "route-quality-shortcut": "{{action}} (naciśnij {{key}}, aby przełączyć)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Dodaj lub usuń opcjonalne warstwy",
       "optional-layers": "Więcej",
       "overlay-opacity": "Przezroczystość nakładki",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "Nie skonfigurowano jeszcze niestandardowych warstw.",
         "name": "Nazwa",
-        "type": "Rodzaj"
+        "type": "Rodzaj",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "Warstwy",
       "tooltip": "Wybierz warstwy"

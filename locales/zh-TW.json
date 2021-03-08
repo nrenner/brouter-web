@@ -55,6 +55,7 @@
     "mean-cost-factor": "Mean cost factor",
     "meter": "meters",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
@@ -142,6 +143,8 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "顯示 Strava 自行車區段",
     "strava-running": "顯示 Strava 跑步區段",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -238,11 +241,14 @@
       "optional": "Add or remove optional layers",
       "optional-layers": "More",
       "overlay-opacity": "Overlay transparency",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL",
         "empty": "尚未設定自訂圖層。",
         "name": "名稱",
-        "type": "類型"
+        "type": "類型",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay"
       },
       "title": "圖層",
       "tooltip": "Select layers"
