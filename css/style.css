@@ -783,3 +783,8 @@ table.dataTable.display tbody tr:hover.selected {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+/* Gray out non selectable layers (zoom out of scope, etc.) */
+.leaflet-control-layers-selector[disabled] ~ span {
+    color: #777;
+}
