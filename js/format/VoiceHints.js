@@ -56,14 +56,8 @@
             this.turnInstructionMode = turnInstructionMode;
             this.transportMode = transportMode;
 
-            for (const feature of geoJson.features) {
-                let voicehints = feature?.properties.voicehints;
-                if (voicehints) {
-                    this.voicehints = voicehints;
-                    this.track = feature;
-                    break;
-                }
-            }
+            this.track = geoJson.features?.[0];
+            this.voicehints = this.track?.properties?.voicehints;
         },
 
         getGpxTransform: function () {
@@ -110,6 +104,7 @@
         },
 
         _loopHints: function (hintCallback) {
+            if (!this.voicehints) return;
             for (const [i, values] of this.voicehints.entries()) {
                 const [indexInTrack, commandId, exitNumber, distance, time, angle, geometry] = values;
                 const hint = { indexInTrack, commandId, exitNumber, distance, time, angle, geometry };
@@ -330,13 +325,17 @@
 
             const trkseg = gpx.trk[0].trkseg[0];
             let trkpt = trkseg.trkpt[0];
-            const startTime = this.track.properties.times[this.voicehints[0][0]];
-            rteptList.push({
+            const startPt = {
                 '@lat': trkpt['@lat'],
                 '@lon': trkpt['@lon'],
                 desc: 'start',
-                extensions: { time: Math.round(startTime), offset: 0 },
-            });
+            };
+            const times = this.track?.properties?.times;
+            if (this.voicehints && times) {
+                const startTime = times[this.voicehints[0][0]];
+                startPt.extensions = { time: Math.round(startTime), offset: 0 };
+            }
+            rteptList.push(startPt);
 
             this._loopHints((hint, cmd, coord) => {
                 const rtept = {
