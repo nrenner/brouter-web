@@ -226,7 +226,7 @@
 
         _getWpt: function (hint, cmd, coord) {
             const extensions = {};
-            // TODO 'locus:' namespace gets removed
+
             extensions['locus:rteDistance'] = hint.distance;
             if (hint.time > 0) {
                 extensions['locus:rteTime'] = hint.time;
@@ -310,11 +310,6 @@
                 gpx.rte.push({
                     rtept: this._createRoutePoints(gpx),
                 });
-
-                // reorder trk after rte
-                const trk = gpx.trk;
-                delete gpx.trk;
-                gpx.trk = trk;
 
                 return gpx;
             }.bind(this);

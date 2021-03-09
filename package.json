@@ -75,7 +75,7 @@
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "osmtogeojson": "^3.0.0-beta.4",
         "regenerator-runtime": "^0.13.7",
-        "togpx": "JarnoLeConte/togpx#13c65a8",
+        "togpx": "nrenner/togpx#722d291",
         "topojson-client": "^3.1.0",
         "url-search-params": "~0.5.0"
     },

@@ -45,8 +45,7 @@ test('simple track', () => {
 describe('voice hints', () => {
     test('2-locus', () => {
         let brouterGpx = read('2-locus.gpx');
-        brouterGpx = brouterGpx.replace(/<(\/?)locus:/g, '<$1'); // TODO 'locus:' namespace
-        brouterGpx = brouterGpx.replace(/.0<\/rteDistance/g, '</rteDistance'); // ignore .0 decimal
+        brouterGpx = brouterGpx.replace(/.0<\/locus:rteDistance/g, '</locus:rteDistance'); // ignore .0 decimal
         brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
 
         const gpx = BR.Gpx.format(geoJson, 2);
@@ -75,7 +74,6 @@ describe('voice hints', () => {
 
     test('6-orux', () => {
         let brouterGpx = read('6-orux.gpx');
-        brouterGpx = brouterGpx.replace(/<(\/?)om:/g, '<$1'); // TODO namespace
         const gpx = BR.Gpx.format(geoJson, 6);
         expect(gpx).toEqual(brouterGpx);
     });
