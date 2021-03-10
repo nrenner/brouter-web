@@ -242,10 +242,6 @@ input#trackname:focus:invalid {
     display: flex;
 }
 
-#profile_buttons {
-    padding-top: 4px;
-}
-
 /* track messages (data tab) */
 #tab_data,
 .CodeMirror {
