@@ -11,21 +11,25 @@
 
     class RoundaboutCommand extends Command {
         constructor(command, exitNumber) {
-            this.name = command.name + exitNumber;
-            this.locus = command.locus + exitNumber;
-            this.orux = command.orux + exitNumber;
-            this.symbol = command.symbol + exitNumber;
-            this.message = command.message + exitNumber;
+            super(
+                command.name + exitNumber,
+                command.locus + exitNumber,
+                command.orux + exitNumber,
+                command.symbol + exitNumber,
+                command.message + exitNumber
+            );
         }
     }
 
     class RoundaboutLeftCommand extends RoundaboutCommand {
         constructor(command, exitNumber) {
-            this.name = command.name + -exitNumber;
-            this.locus = command.locus + -exitNumber;
-            this.orux = command.orux + exitNumber;
-            this.symbol = command.symbol + -exitNumber;
-            this.message = command.message + -exitNumber;
+            super(
+                command.name + -exitNumber,
+                command.locus + -exitNumber,
+                command.orux + exitNumber,
+                command.symbol + -exitNumber,
+                command.message + -exitNumber
+            );
         }
     }
 
@@ -82,36 +86,25 @@
         },
 
         _getDuration: function (voicehintsIndex) {
-            const timeList = this.track.properties.times;
+            const times = this.track.properties.times;
+            if (!times) return 0;
+
             const indexInTrack = this.voicehints[voicehintsIndex][0];
-            const currTime = timeList[indexInTrack];
+            const currentTime = times[indexInTrack];
             const len = this.voicehints.length;
-            const nextIndex = voicehintsIndex < len - 1 ? this.voicehints[voicehintsIndex + 1][0] : timeList.length - 1;
-            const nextTime = timeList[nextIndex];
+            const nextIndex = voicehintsIndex < len - 1 ? this.voicehints[voicehintsIndex + 1][0] : times.length - 1;
+            const nextTime = times[nextIndex];
 
-            const duration = nextTime - currTime;
-
-            // TODO remove
-            const time = this.voicehints[voicehintsIndex][4];
-            const p = 5;
-            if (!(time.toPrecision(p) === duration.toPrecision(p))) {
-                console.error(
-                    `${voicehintsIndex}: ${time.toPrecision(p)} =? ${duration.toPrecision(p)}, ${time} =? ${duration}`
-                );
-            }
-
-            return duration;
+            return nextTime - currentTime;
         },
 
         _loopHints: function (hintCallback) {
             if (!this.voicehints) return;
             for (const [i, values] of this.voicehints.entries()) {
-                const [indexInTrack, commandId, exitNumber, distance, time, angle, geometry] = values;
-                const hint = { indexInTrack, commandId, exitNumber, distance, time, angle, geometry };
+                const [indexInTrack, commandId, exitNumber, distance, angle, geometry] = values;
+                const hint = { indexInTrack, commandId, exitNumber, distance, angle, geometry };
 
-                // TODO remove server hint time
-                //hint.time = this._getDuration(i);
-                this._getDuration(i);
+                hint.time = this._getDuration(i);
                 if (hint.time > 0) {
                     hint.speed = distance / hint.time;
                 }
@@ -229,8 +222,8 @@
 
             extensions['locus:rteDistance'] = hint.distance;
             if (hint.time > 0) {
-                extensions['locus:rteTime'] = hint.time;
-                extensions['locus:rteSpeed'] = hint.speed;
+                extensions['locus:rteTime'] = hint.time.toFixed(3);
+                extensions['locus:rteSpeed'] = hint.speed.toFixed(3);
             }
             extensions['locus:rtePointAction'] = cmd.locus;
 

@@ -300,7 +300,7 @@
             trackMessages.update(track, segments);
             trackAnalysis.update(track, segments);
 
-            exportRoute.update(latLngs);
+            exportRoute.update(latLngs, segments);
         }
 
         routing.addTo(map);

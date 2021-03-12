@@ -49,12 +49,23 @@ BR.Gpx = {
             comment += ' energy=' + (props['total-energy'] / 3600000).toFixed(1) + 'kwh';
         }
         if (props['total-time']) {
-            // TODO format, e.g. total-time=14833 -> time=4h 7m 13s
-            // see brouter OsmTrack.getFormattedTime2
-            comment += ' time=' + props['total-time'] + 's';
+            comment += ' time=' + BR.Gpx.formatTime(props['total-time']);
         }
         comment += ' -->';
         return comment;
+    },
+
+    // 14833 -> 4h 7m 13s
+    // see BRouter OsmTrack.getFormattedTime2
+    formatTime(seconds) {
+        const hours = Math.trunc(seconds / 3600);
+        const minutes = Math.trunc((seconds - hours * 3600) / 60);
+        seconds = seconds - hours * 3600 - minutes * 60;
+        let time = '';
+        if (hours != 0) time += hours + 'h ';
+        if (minutes != 0) time += minutes + 'm ';
+        if (seconds != 0) time += seconds + 's';
+        return time;
     },
 
     // modified version of
