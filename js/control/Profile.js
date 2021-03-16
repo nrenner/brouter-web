@@ -90,9 +90,38 @@ BR.Profile = L.Evented.extend({
         this.editor.refresh();
     },
 
+    // Returns the initial value of the given profile variable as String, as defined by the assign statement.
+    // Intended for all assigned variables, not just parameters with a comment declaration, i.e. no type information used.
+    getProfileVar: function (name) {
+        let value;
+        if (this._isParamsFormActive()) {
+            const formValues = this._getFormValues();
+            if (formValues.hasOwnProperty(name)) {
+                return formValues[name];
+            }
+        }
+
+        const profileText = this._getProfileText();
+        if (!profileText) return value;
+
+        const regex = new RegExp(`assign\\s*${name}\\s*=?\\s*([\\w\\.]*)`);
+        const match = profileText.match(regex);
+        if (match) {
+            value = match[1];
+        }
+        return value;
+    },
+
+    // Returns car|bike|foot, default is foot
+    getTransportMode: function () {
+        const isCar = !!this.getProfileVar('validForCars');
+        const isBike = !!this.getProfileVar('validForBikes');
+        return isCar ? 'car' : isBike ? 'bike' : 'foot';
+    },
+
     _upload: function (evt) {
         var button = evt.target || evt.srcElement,
-            profile = this.editor.getValue();
+            profile = this._getProfileText();
 
         this.message.hide();
         evt.preventDefault();
@@ -115,15 +144,9 @@ BR.Profile = L.Evented.extend({
     },
 
     _buildCustomProfile: function (profileText) {
-        document.querySelectorAll('#profile_params input, #profile_params select').forEach(function (input) {
-            var name = input.name;
-            var value;
-            if (input.type == 'checkbox') {
-                value = input.checked;
-            } else {
-                value = input.value;
-            }
-
+        const formValues = this._getFormValues();
+        Object.keys(formValues).forEach((name) => {
+            const value = formValues[name];
             var re = new RegExp(
                 '(assign\\s*' +
                     name +
@@ -136,8 +159,23 @@ BR.Profile = L.Evented.extend({
         return profileText;
     },
 
+    _getFormValues: function () {
+        const obj = {};
+        document.querySelectorAll('#profile_params input, #profile_params select').forEach((input) => {
+            const name = input.name;
+            let value;
+            if (input.type == 'checkbox') {
+                value = input.checked;
+            } else {
+                value = input.value;
+            }
+            obj[name] = value;
+        });
+        return obj;
+    },
+
     _save: function (evt) {
-        var profileText = this._buildCustomProfile(this.editor.getValue());
+        var profileText = this._buildCustomProfile(this._getProfileText());
         var that = this;
         this.fire('update', {
             profileText: profileText,
@@ -313,12 +351,16 @@ BR.Profile = L.Evented.extend({
     },
 
     _activateSecondaryTab: function () {
-        var profileText = this.editor.getValue();
+        var profileText = this._getProfileText();
 
         if (this._isParamsFormActive()) {
             this._buildParamsForm(profileText);
         } else {
             this._setValue(this._buildCustomProfile(profileText));
         }
+    },
+
+    _getProfileText: function () {
+        return this.editor.getValue();
     },
 });

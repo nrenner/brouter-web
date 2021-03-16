@@ -262,7 +262,7 @@
 
         pois = new BR.PoiMarkers(routing);
 
-        exportRoute = new BR.Export(router, pois);
+        exportRoute = new BR.Export(router, pois, profile);
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function (evt) {
             search.clear();

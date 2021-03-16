@@ -7,9 +7,10 @@ BR.Export = L.Class.extend({
         },
     },
 
-    initialize: function (router, pois) {
+    initialize: function (router, pois, profile) {
         this.router = router;
         this.pois = pois;
+        this.profile = profile;
         this.exportButton = $('#exportButton');
         var trackname = (this.trackname = document.getElementById('trackname'));
         this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
@@ -61,7 +62,8 @@ BR.Export = L.Class.extend({
             //} else {
 
             const track = this._formatTrack(format, name, includeWaypoints);
-            BR.Export.diff(uri, track, format);
+            console.log('track: ', track);
+            BR.Diff.diff(uri, track, format);
         }
     },
 
@@ -71,8 +73,9 @@ BR.Export = L.Class.extend({
         //console.log('GeoJson: ', JSON.stringify(trackGeoJson, null, 4));
         switch (format) {
             case 'gpx':
-                //console.log('gpx: ', gpx);
-                return BR.Gpx.format(track, 2, 'bike'); // TODO parse turnInstructionMode, transportMode
+                const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
+                const transportMode = this.profile.getTransportMode();
+                return BR.Gpx.format(track, turnInstructionMode, transportMode);
             case 'geojson':
                 return JSON.stringify(track, null, 2);
             case 'kml':
@@ -235,83 +238,4 @@ BR.Export._concatTotalTrack = function (segments) {
     //console.timeEnd('_concatTotalTrack');
 
     return turf.featureCollection([turf.lineString(coordinates, properties)]);
-};
-
-// <script src="https://unpkg.com/googlediff@0.1.0/javascript/diff_match_patch.js"></script>
-BR.Export.diff = function (uri, track, format) {
-    BR.Util.get(
-        uri,
-        ((err, text) => {
-            if (err) {
-                console.error('Error exporting "' + profileUrl + '": ' + err);
-                return;
-            }
-
-            if (format === 'gpx') {
-                text = BR.Gpx.pretty(BR.Export.adoptGpx(text));
-            } else if (format === 'geojson') {
-                text = JSON.stringify(JSON.parse(text), null, 2);
-            }
-            var dmp = new diff_match_patch();
-            var diff = dmp.diff_main(text, track);
-            dmp.diff_cleanupSemantic(diff);
-
-            if (dmp.diff_levenshtein(diff) > 0) {
-                let i = 0;
-                while (i < diff.length - 2) {
-                    if (
-                        diff[i][0] === 0 &&
-                        diff[i + 1][0] === -1 &&
-                        diff[i + 2][0] === 1 &&
-                        (/(rteTime|rteSpeed)>\d+\.\d{0,2}$/.test(diff[i][1]) || /time=[0-9h ]*m \d$/.test(diff[i][1]))
-                    ) {
-                        const del = +diff[i + 1][1];
-                        const ins = +diff[i + 2][1];
-                        if (Number.isInteger(del) && Number.isInteger(ins) && Math.abs(del - ins) === 1) {
-                            diff.splice(i + 1, 2);
-                        }
-                    }
-                    i++;
-                }
-            }
-
-            if (dmp.diff_levenshtein(diff) > 0) {
-                //console.log('server: ', text);
-                //console.log('client: ', track);
-                console.log(diff);
-                bootbox.alert(dmp.diff_prettyHtml(diff));
-            } else {
-                console.log('diff equal');
-            }
-        }).bind(this)
-    );
-};
-
-// TODO remove
-// copied from Gpx.test.js
-BR.Export.adoptGpx = function (gpx, replaceCreator = true) {
-    const creator = 'togpx';
-    const name = 'Track';
-    const newline = '\n';
-
-    gpx = gpx.replace(/=\.(?=\d)/, '=0.');
-    if (replaceCreator) {
-        gpx = gpx.replace(/creator="[^"]*"/, `creator="${creator}"`);
-    }
-    gpx = gpx.replace(/creator="([^"]*)" version="1.1"/, 'version="1.1" \n creator="$1"');
-    //gpx = gpx.replace(/<trk>\n  <name>[^<]*<\/name>/, `<trk>\n  <name>${name}</name>`);
-    gpx = gpx
-        .split(newline)
-        .map((line) => line.replace(/lon="([^"]*)" lat="([^"]*)"/, 'lat="$2" lon="$1"'))
-        .join(newline);
-    gpx = gpx.replace(/(lon|lat)="([-0-9]+.[0-9]+?)0+"/g, '$1="$2"'); // remove trailing zeros
-    gpx = gpx.replace('</gpx>\n', '</gpx>');
-
-    // added
-    gpx = gpx.replace(/>([-.0-9]+?0+)<\//g, (match, p1) => `>${+p1}</`); // remove trailing zeros
-    // trunc bc. float precision diffs
-    gpx = gpx.replace(/(rteTime|rteSpeed)>([^<]*)<\//g, (match, p1, p2) => `${p1}>${(+p2).toFixed(3)}</`);
-    gpx = gpx.replace(/\n?\s*<\/extensions>\n?\s*<extensions>/, ''); // ignore (invalid) double tag
-
-    return gpx;
 };

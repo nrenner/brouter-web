@@ -21,7 +21,7 @@
         }
     }
 
-    class RoundaboutLeftCommand extends RoundaboutCommand {
+    class RoundaboutLeftCommand extends Command {
         constructor(command, exitNumber) {
             super(
                 command.name + -exitNumber,
