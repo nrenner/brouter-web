@@ -33,38 +33,17 @@
         }
     }
 
-    BR.VoiceHints = L.Class.extend({
-        statics: {
-            commands: (function () {
-                return {
-                    1: new Command('C', 1, 1002, 'Straight', 'straight'),
-                    2: new Command('TL', 4, 1000, 'Left', 'left'),
-                    3: new Command('TSLL', 3, 1017, 'TSLL', 'slight left'),
-                    4: new Command('TSHL', 5, 1019, 'TSHL', 'sharp left'),
-                    5: new Command('TR', 7, 1001, 'Right', 'right'),
-                    6: new Command('TSLR', 6, 1016, 'TSLR', 'slight right'),
-                    7: new Command('TSHR', 8, 1018, 'TSHR', 'sharp right'),
-                    8: new Command('KL', 9, 1015, 'TSLL', 'keep left'),
-                    9: new Command('KR', 10, 1014, 'TSLR', 'keep right'),
-                    10: new Command('TU', 13, 1003, 'TU', 'u-turn'),
-                    11: new Command('TRU', 14, 1003, 'TU', 'u-turn'), // Right U-turn
-                    12: new Command('OFFR'), // Off route
-                    13: new Command('RNDB', 26, 1008, 'RNDB', 'Take exit '), // Roundabout
-                    14: new Command('RNLB', 26, 1008, 'RNLB', 'Take exit '), // Roundabout left
-                };
-            })(),
-        },
-
-        initialize: function (geoJson, turnInstructionMode, transportMode) {
+    class VoiceHints {
+        constructor(geoJson, turnInstructionMode, transportMode) {
             this.geoJson = geoJson;
             this.turnInstructionMode = turnInstructionMode;
             this.transportMode = transportMode;
 
             this.track = geoJson.features?.[0];
             this.voicehints = this.track?.properties?.voicehints;
-        },
+        }
 
-        getGpxTransform: function () {
+        getGpxTransform() {
             const transform = {
                 comment: '',
                 trk: function (trk, feature, coordsList) {
@@ -83,9 +62,9 @@
             this._addToTransform(transform);
 
             return transform;
-        },
+        }
 
-        _getDuration: function (voicehintsIndex) {
+        _getDuration(voicehintsIndex) {
             const times = this.track.properties.times;
             if (!times) return 0;
 
@@ -96,9 +75,9 @@
             const nextTime = times[nextIndex];
 
             return nextTime - currentTime;
-        },
+        }
 
-        _loopHints: function (hintCallback) {
+        _loopHints(hintCallback) {
             if (!this.voicehints) return;
             for (const [i, values] of this.voicehints.entries()) {
                 const [indexInTrack, commandId, exitNumber, distance, angle, geometry] = values;
@@ -118,45 +97,64 @@
 
                 hintCallback(hint, cmd, coord);
             }
-        },
+        }
 
-        getCommand: function (id, exitNumber) {
-            let command = BR.VoiceHints.commands[id];
+        getCommand(id, exitNumber) {
+            let command = VoiceHints.commands[id];
             if (id === 13) {
                 command = new RoundaboutCommand(command, exitNumber);
             } else if (id === 14) {
                 command = new RoundaboutLeftCommand(command, exitNumber);
             }
             return command;
-        },
+        }
 
         // override in subclass
-        _addToTransform: function (transform) {},
+        _addToTransform(transform) {}
 
         // override in subclass
-        _getTrk: function () {
+        _getTrk() {
             return {};
-        },
-    });
+        }
+    }
 
-    BR.WaypointVoiceHints = BR.VoiceHints.extend({
-        _addToTransform: function (transform) {
+    VoiceHints.commands = (function () {
+        return {
+            1: new Command('C', 1, 1002, 'Straight', 'straight'),
+            2: new Command('TL', 4, 1000, 'Left', 'left'),
+            3: new Command('TSLL', 3, 1017, 'TSLL', 'slight left'),
+            4: new Command('TSHL', 5, 1019, 'TSHL', 'sharp left'),
+            5: new Command('TR', 7, 1001, 'Right', 'right'),
+            6: new Command('TSLR', 6, 1016, 'TSLR', 'slight right'),
+            7: new Command('TSHR', 8, 1018, 'TSHR', 'sharp right'),
+            8: new Command('KL', 9, 1015, 'TSLL', 'keep left'),
+            9: new Command('KR', 10, 1014, 'TSLR', 'keep right'),
+            10: new Command('TU', 13, 1003, 'TU', 'u-turn'),
+            11: new Command('TRU', 14, 1003, 'TU', 'u-turn'), // Right U-turn
+            12: new Command('OFFR'), // Off route
+            13: new Command('RNDB', 26, 1008, 'RNDB', 'Take exit '), // Roundabout
+            14: new Command('RNLB', 26, 1008, 'RNLB', 'Take exit '), // Roundabout left
+        };
+    })();
+
+    class WaypointVoiceHints extends VoiceHints {
+        _addToTransform(transform) {
             transform.gpx = function (gpx, features) {
                 this._addWaypoints(gpx);
                 return gpx;
             }.bind(this);
-        },
+        }
 
-        _addWaypoints: function (gpx) {
+        _addWaypoints(gpx) {
             this._loopHints((hint, cmd, coord) => {
                 const properties = this._getWpt(hint, cmd, coord);
 
                 const wpt = this._createWpt(coord, properties);
                 gpx.wpt.push(wpt);
             });
-        },
+        }
 
-        _createWpt: function (coord, properties) {
+        _createWpt(coord, properties) {
             return Object.assign(
                 {
                     '@lat': coord[1],
@@ -164,22 +162,22 @@
                 },
                 properties
             );
-        },
+        }
 
         // override in subclass
-        _getWpt: function (hint, cmd, coord) {
+        _getWpt(hint, cmd, coord) {
             return {};
-        },
-    });
+        }
+    }
 
-    BR.GpsiesVoiceHints = BR.WaypointVoiceHints.extend({
-        _getWpt: function (hint, cmd, coord) {
+    class GpsiesVoiceHints extends WaypointVoiceHints {
+        _getWpt(hint, cmd, coord) {
             return { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
-        },
-    });
+        }
+    }
 
-    BR.OruxVoiceHints = BR.WaypointVoiceHints.extend({
-        _getWpt: function (hint, cmd, coord) {
+    class OruxVoiceHints extends WaypointVoiceHints {
+        _getWpt(hint, cmd, coord) {
             const wpt = {
                 ele: coord[2],
                 extensions: {
@@ -195,11 +193,11 @@
             }
 
             return wpt;
-        },
-    });
+        }
+    }
 
-    BR.LocusVoiceHints = BR.WaypointVoiceHints.extend({
-        _addToTransform: function (transform) {
+    class LocusVoiceHints extends WaypointVoiceHints {
+        _addToTransform(transform) {
             transform.gpx = function (gpx, features) {
                 // hack to insert attribute after the other `xmlns`s
                 gpx = Object.assign(
@@ -215,9 +213,9 @@
 
                 return gpx;
             }.bind(this);
-        },
+        }
 
-        _getWpt: function (hint, cmd, coord) {
+        _getWpt(hint, cmd, coord) {
             const extensions = {};
 
             extensions['locus:rteDistance'] = hint.distance;
@@ -238,18 +236,18 @@
             }
 
             return wpt;
-        },
+        }
 
-        _getTrk: function () {
+        _getTrk() {
             return {
                 extensions: {
                     'locus:rteComputeType': this._getLocusRouteType(this.transportMode),
                     'locus:rteSimpleRoundabouts': 1,
                 },
             };
-        },
+        }
 
-        _getLocusRouteType: function (transportMode) {
+        _getLocusRouteType(transportMode) {
             switch (transportMode) {
                 case 'car':
                     return 0;
@@ -258,11 +256,11 @@
                 default:
                     return 3; // foot
             }
-        },
-    });
+        }
+    }
 
-    BR.CommentVoiceHints = BR.VoiceHints.extend({
-        _addToTransform: function (transform) {
+    class CommentVoiceHints extends VoiceHints {
+        _addToTransform(transform) {
             let comment = `
 <!-- $transport-mode$${this.transportMode}$ -->
 <!--          cmd    idx        lon        lat d2next  geometry -->
@@ -292,11 +290,11 @@
 `;
 
             transform.comment = comment;
-        },
-    });
+        }
+    }
 
-    BR.OsmAndVoiceHints = BR.VoiceHints.extend({
-        _addToTransform: function (transform) {
+    class OsmAndVoiceHints extends VoiceHints {
+        _addToTransform(transform) {
             transform.gpx = function (gpx, features) {
                 gpx['@creator'] = 'OsmAndRouter';
 
@@ -306,9 +304,9 @@
 
                 return gpx;
             }.bind(this);
-        },
+        }
 
-        _createRoutePoints: function (gpx) {
+        _createRoutePoints(gpx) {
             const rteptList = [];
 
             const trkseg = gpx.trk[0].trkseg[0];
@@ -355,24 +353,24 @@
             });
 
             return rteptList;
-        },
-    });
+        }
+    }
 
     BR.voiceHints = function (geoJson, turnInstructionMode, transportMode) {
         switch (turnInstructionMode) {
             case 2:
-                return new BR.LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 3:
-                return new BR.OsmAndVoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new OsmAndVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 4:
-                return new BR.CommentVoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new CommentVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 5:
-                return new BR.GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 6:
-                return new BR.OruxVoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new OruxVoiceHints(geoJson, turnInstructionMode, transportMode);
             default:
                 console.error('unhandled turnInstructionMode: ' + turnInstructionMode);
-                return new BR.VoiceHints(geoJson, turnInstructionMode, transportMode);
+                return new VoiceHints(geoJson, turnInstructionMode, transportMode);
         }
     };
 })();
