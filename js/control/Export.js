@@ -69,6 +69,9 @@ BR.Export = L.Class.extend({
 
     _formatTrack: function (format, name, includeWaypoints) {
         const track = BR.Export._concatTotalTrack(this.segments);
+        if (includeWaypoints) {
+            this._addRouteWaypoints(track);
+        }
         //console.log('GeoJson: ', trackGeoJson);
         //console.log('GeoJson: ', JSON.stringify(trackGeoJson, null, 4));
         switch (format) {
@@ -83,6 +86,24 @@ BR.Export = L.Class.extend({
                 break;
         }
         console.error('Export format not implemented: ' + format);
+    },
+
+    _addRouteWaypoints: function (track) {
+        const routePoints = [];
+        for (const [i, latLng] of this.latLngs.entries()) {
+            let name = 'via' + i;
+            let type = 'via';
+            if (i === 0) {
+                name = 'from';
+                type = 'from';
+            } else if (i === this.latLngs.length - 1) {
+                name = 'to';
+                type = 'to';
+            }
+            const properties = { name, type };
+            routePoints.push(turf.point([latLng.lng, latLng.lat], properties));
+        }
+        track.features.push(...routePoints);
     },
 
     _validationMessage: function () {

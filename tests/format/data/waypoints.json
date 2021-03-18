@@ -1,0 +1,231 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "creator": "BRouter-1.1",
+        "name": "Track",
+        "track-length": "388",
+        "filtered ascend": "1",
+        "plain-ascend": "0",
+        "total-time": "44",
+        "total-energy": "4420",
+        "cost": "703",
+        "voicehints": [
+          [
+            1,
+            5,
+            0,
+            88,
+            89
+          ],
+          [
+            6,
+            2,
+            0,
+            99,
+            -90
+          ],
+          [
+            7,
+            2,
+            0,
+            10,
+            -90
+          ]
+        ],
+        "messages": [
+          [
+            "Longitude",
+            "Latitude",
+            "Elevation",
+            "Distance",
+            "CostPerKm",
+            "ElevCost",
+            "TurnCost",
+            "NodeCost",
+            "InitialCost",
+            "WayTags",
+            "NodeTags"
+          ],
+          [
+            "8468340",
+            "49488794",
+            "101",
+            "89",
+            "1000",
+            "0",
+            "0",
+            "0",
+            "0",
+            "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes",
+            ""
+          ],
+          [
+            "8469971",
+            "49488151",
+            "102",
+            "88",
+            "1150",
+            "0",
+            "90",
+            "0",
+            "0",
+            "highway=residential surface=asphalt oneway=yes smoothness=good",
+            ""
+          ],
+          [
+            "8469852",
+            "49489230",
+            "99",
+            "162",
+            "1150",
+            "0",
+            "180",
+            "0",
+            "0",
+            "highway=residential surface=asphalt oneway=yes smoothness=good",
+            ""
+          ],
+          [
+            "8469852",
+            "49489230",
+            "100",
+            "49",
+            "1150",
+            "0",
+            "0",
+            "0",
+            "0",
+            "highway=residential surface=asphalt oneway=yes smoothness=good",
+            ""
+          ]
+        ],
+        "times": [
+          0,
+          9.592,
+          12.271,
+          14.13,
+          19.406,
+          22.134,
+          28.832,
+          37.817,
+          38.938,
+          44.217
+        ]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.467714,
+            49.488115,
+            101.5
+          ],
+          [
+            8.46834,
+            49.488794,
+            101.5
+          ],
+          [
+            8.468586,
+            49.488698,
+            101.5
+          ],
+          [
+            8.468743,
+            49.488636,
+            101.5
+          ],
+          [
+            8.469161,
+            49.488473,
+            101.75
+          ],
+          [
+            8.469355,
+            49.488395,
+            102
+          ],
+          [
+            8.469971,
+            49.488151,
+            103.5
+          ],
+          [
+            8.470671,
+            49.488909,
+            99.5
+          ],
+          [
+            8.470561,
+            49.488951,
+            99.5
+          ],
+          [
+            8.469984,
+            49.489178,
+            100
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "from",
+        "type": "from"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.467712,
+          49.488117
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "via1",
+        "type": "via"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.469354,
+          49.488394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "via2",
+        "type": "via"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.470556,
+          49.488946
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "to",
+        "type": "to"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.469982,
+          49.489176
+        ]
+      }
+    }
+  ]
+}

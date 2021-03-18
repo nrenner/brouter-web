@@ -8,6 +8,9 @@ require('../../js/format/Gpx.js');
 const fs = require('fs');
 
 const geoJson = require('./data/track.json');
+// lonlats=8.467712,49.488117;8.469354,49.488394;8.470556,49.488946;8.469982,49.489176 + turnInstructionMode = 5
+// console log in Export._formatTrack
+const waypointsGeoJson = require('./data/waypoints.json');
 const path = 'tests/format/data/';
 
 // resolve intended/accepted differences before comparing
@@ -26,7 +29,8 @@ function adoptGpx(gpx, replaceCreator = true) {
         .split(newline)
         .map((line) => line.replace(/lon="([^"]*)" lat="([^"]*)"/, 'lat="$2" lon="$1"'))
         .join(newline);
-    gpx = gpx.replace(/(lon|lat)="([-0-9]+.[0-9]+?)0+"/g, '$1="$2"'); // remove trailing zeros
+    gpx = gpx.replace(/(lon|lat)="([-0-9]+\.[0-9]+?)0+"/g, '$1="$2"'); // remove trailing zeros
+    gpx = gpx.replace(/>([-0-9]+\.\d*0+)<\//g, (match, p1) => `>${+p1}</`); // remove trailing zeros
     gpx = gpx.replace('</gpx>\n', '</gpx>');
 
     return gpx;
@@ -42,10 +46,15 @@ test('simple track', () => {
     expect(gpx).toEqual(brouterGpx);
 });
 
+test('waypoints', () => {
+    const brouterGpx = read('waypoints.gpx');
+    const gpx = BR.Gpx.format(waypointsGeoJson, 5);
+    expect(gpx).toEqual(brouterGpx);
+});
+
 describe('voice hints', () => {
     test('2-locus', () => {
         let brouterGpx = read('2-locus.gpx');
-        brouterGpx = brouterGpx.replace(/.0<\/locus:rteDistance/g, '</locus:rteDistance'); // ignore .0 decimal
         brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
         // ignore float rounding differences
         brouterGpx = brouterGpx.replace(

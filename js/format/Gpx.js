@@ -2,9 +2,34 @@ BR.Gpx = {
     format: function (geoJson, turnInstructionMode = 0, transportMode = 'bike') {
         if (!geoJson?.features) return '';
 
-        const trkNameTransform = {
-            comment: '',
-            trk: function (trk, feature, coordsList) {
+        class GpxTransform {
+            constructor(voiceHintsTransform) {
+                this.voiceHintsTransform = voiceHintsTransform;
+                this.comment = voiceHintsTransform?.comment || '';
+
+                if (this.voiceHintsTransform) {
+                    Object.keys(this.voiceHintsTransform).forEach((member) => {
+                        if (!GpxTransform.prototype.hasOwnProperty(member)) {
+                            this[member] = this.voiceHintsTransform[member];
+                        }
+                    });
+                }
+            }
+
+            wpt(wpt, feature, coord, index) {
+                // not in use right now, just to be safe in case of future overrides
+                wpt = (voiceHintsTransform?.wpt && voiceHintsTransform.wpt(wpt, feature, coord, index)) || wpt;
+                if (feature.properties.name) {
+                    wpt.name = feature.properties.name;
+                }
+                if (feature.properties.type) {
+                    wpt.type = feature.properties.type;
+                }
+                return wpt;
+            }
+
+            trk(trk, feature, coordsList) {
+                trk = (voiceHintsTransform?.trk && voiceHintsTransform.trk(trk, feature, coordsList)) || trk;
                 // name as first tag, by using assign and in this order
                 return Object.assign(
                     {
@@ -12,14 +37,15 @@ BR.Gpx = {
                     },
                     trk
                 );
-            },
-        };
-        let gpxTransform = trkNameTransform;
+            }
+        }
 
+        let voiceHintsTransform;
         if (turnInstructionMode > 1) {
             const voiceHints = BR.voiceHints(geoJson, turnInstructionMode, transportMode);
-            gpxTransform = voiceHints.getGpxTransform();
+            voiceHintsTransform = voiceHints.getGpxTransform();
         }
+        const gpxTransform = new GpxTransform(voiceHintsTransform);
 
         let gpx = togpx(geoJson, {
             featureTitle: function () {},

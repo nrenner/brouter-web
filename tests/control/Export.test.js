@@ -1,7 +1,13 @@
 BR = {};
+BR.conf = {};
+$ = require('jquery');
 require('leaflet');
 turf = require('@turf/turf');
 require('../../js/control/Export.js');
+const fs = require('fs');
+
+const indexHtmlString = fs.readFileSync('index.html', 'utf8');
+const indexHtml = new DOMParser().parseFromString(indexHtmlString, 'text/html');
 
 // &lonlats=8.467712,49.488117;8.469354,49.488394;8.470556,49.488946;8.469982,49.489176 + turnInstructionMode=2
 const segments = require('./data/segments.json');
@@ -24,6 +30,10 @@ function adopt(total, brouterTotal) {
     total.features[0].properties.name = brouterTotal.features[0].properties.name;
 }
 
+beforeEach(() => {
+    document.body = indexHtml.body.cloneNode(true);
+});
+
 test('total track', () => {
     const segmentsString = JSON.stringify(segments, null, 2);
     let total = BR.Export._concatTotalTrack(segments);
@@ -37,4 +47,31 @@ test('total track', () => {
     total = BR.Export._concatTotalTrack(segments);
     adopt(total, brouterTotal);
     expect(total).toEqual(brouterTotal);
+});
+
+test('include route points', () => {
+    const getLngCoord = (i) => track.features[i].geometry.coordinates[0];
+    const getProperty = (i, p) => track.features[i].properties[p];
+    const latLngs = [L.latLng(0, 0), L.latLng(1, 1), L.latLng(2, 2)];
+    const trackFeature = turf.lineString([
+        [0, 0],
+        [1, 1],
+        [2, 2],
+    ]);
+    const track = turf.featureCollection([trackFeature]);
+    const exportRoute = new BR.Export();
+
+    exportRoute.update(latLngs, null);
+    exportRoute._addRouteWaypoints(track);
+
+    expect(track.features[0].geometry.type).toEqual('LineString');
+    expect(getLngCoord(1)).toEqual(0);
+    expect(getLngCoord(2)).toEqual(1);
+    expect(getLngCoord(3)).toEqual(2);
+    expect(getProperty(1, 'name')).toEqual('from');
+    expect(getProperty(2, 'name')).toEqual('via1');
+    expect(getProperty(3, 'name')).toEqual('to');
+    expect(getProperty(1, 'type')).toEqual('from');
+    expect(getProperty(2, 'type')).toEqual('via');
+    expect(getProperty(3, 'type')).toEqual('to');
 });

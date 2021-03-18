@@ -112,10 +112,10 @@ BR.Diff.adoptGpx = function (gpx, replaceCreator = true) {
     gpx = gpx.replace(/(lon|lat)="([-0-9]+.[0-9]+?)0+"/g, '$1="$2"'); // remove trailing zeros
     // remove trailing zeros comment-style voicehints
     gpx = gpx.replace(/;\s*([-0-9]+.[0-9]+?)0+;/g, (match, p1) => `;${p1.padStart(10)};`);
+    gpx = gpx.replace(/>([-0-9]+?\.\d*0+)<\//g, (match, p1) => `>${+p1}</`); // remove trailing zeros
     gpx = gpx.replace('</gpx>\n', '</gpx>');
 
     // added
-    gpx = gpx.replace(/>([-.0-9]+?0+)<\//g, (match, p1) => `>${+p1}</`); // remove trailing zeros
     // trunc bc. float precision diffs
     gpx = gpx.replace(/(rteTime|rteSpeed)>([^<]*)<\//g, (match, p1, p2) => `${p1}>${(+p2).toFixed(3)}</`);
     gpx = gpx.replace(/\n?\s*<\/extensions>\n?\s*<extensions>/, ''); // ignore (invalid) double tag

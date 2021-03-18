@@ -48,14 +48,7 @@
                 comment: '',
                 trk: function (trk, feature, coordsList) {
                     const properties = this._getTrk();
-
-                    return Object.assign(
-                        {
-                            name: feature.properties.name,
-                        },
-                        properties,
-                        trk
-                    );
+                    return Object.assign(properties, trk);
                 }.bind(this),
             };
 
@@ -146,12 +139,14 @@
         }
 
         _addWaypoints(gpx) {
+            const waypoints = [];
             this._loopHints((hint, cmd, coord) => {
                 const properties = this._getWpt(hint, cmd, coord);
 
                 const wpt = this._createWpt(coord, properties);
-                gpx.wpt.push(wpt);
+                waypoints.push(wpt);
             });
+            gpx.wpt.unshift(...waypoints);
         }
 
         _createWpt(coord, properties) {
