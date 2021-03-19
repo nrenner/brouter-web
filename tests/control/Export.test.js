@@ -30,8 +30,20 @@ function adopt(total, brouterTotal) {
     total.features[0].properties.name = brouterTotal.features[0].properties.name;
 }
 
+let track;
+const getLngCoord = (i) => track.features[i].geometry.coordinates[0];
+const getProperty = (i, p) => track.features[i].properties[p];
+
 beforeEach(() => {
     document.body = indexHtml.body.cloneNode(true);
+
+    track = turf.featureCollection([
+        turf.lineString([
+            [0, 0],
+            [1, 1],
+            [2, 2],
+        ]),
+    ]);
 });
 
 test('total track', () => {
@@ -50,15 +62,7 @@ test('total track', () => {
 });
 
 test('include route points', () => {
-    const getLngCoord = (i) => track.features[i].geometry.coordinates[0];
-    const getProperty = (i, p) => track.features[i].properties[p];
     const latLngs = [L.latLng(0, 0), L.latLng(1, 1), L.latLng(2, 2)];
-    const trackFeature = turf.lineString([
-        [0, 0],
-        [1, 1],
-        [2, 2],
-    ]);
-    const track = turf.featureCollection([trackFeature]);
     const exportRoute = new BR.Export();
 
     exportRoute.update(latLngs, null);
@@ -74,4 +78,29 @@ test('include route points', () => {
     expect(getProperty(1, 'type')).toEqual('from');
     expect(getProperty(2, 'type')).toEqual('via');
     expect(getProperty(3, 'type')).toEqual('to');
+});
+
+test('pois', () => {
+    const markers = [
+        {
+            latlng: L.latLng(1, 1),
+            name: 'poi 1',
+        },
+        {
+            latlng: L.latLng(2, 2),
+            name: 'poi 2',
+        },
+    ];
+    const pois = { getMarkers: () => markers };
+    const exportRoute = new BR.Export(null, pois, null);
+
+    exportRoute._addPois(track);
+
+    expect(track.features[0].geometry.type).toEqual('LineString');
+    expect(getLngCoord(1)).toEqual(1);
+    expect(getLngCoord(2)).toEqual(2);
+    expect(getProperty(1, 'name')).toEqual('poi 1');
+    expect(getProperty(2, 'name')).toEqual('poi 2');
+    expect(getProperty(1, 'type')).toEqual('poi');
+    expect(getProperty(2, 'type')).toEqual('poi');
 });

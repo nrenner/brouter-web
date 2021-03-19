@@ -8,6 +8,12 @@
  <wpt lon="8.468340" lat="49.488794"><name>right</name><sym>right</sym><type>Right</type></wpt>
  <wpt lon="8.469971" lat="49.488151"><name>left</name><sym>left</sym><type>Left</type></wpt>
  <wpt lon="8.470671" lat="49.488909"><name>left</name><sym>left</sym><type>Left</type></wpt>
+ <wpt lon="8.469279" lat="49.487399">
+  <name>poi 1</name>
+ </wpt>
+ <wpt lon="8.469021" lat="49.489532">
+  <name>poi 2</name>
+ </wpt>
  <wpt lon="8.467712" lat="49.488117">
   <name>from</name>
   <type>from</type>

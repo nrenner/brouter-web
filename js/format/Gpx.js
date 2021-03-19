@@ -22,8 +22,9 @@ BR.Gpx = {
                 if (feature.properties.name) {
                     wpt.name = feature.properties.name;
                 }
-                if (feature.properties.type) {
-                    wpt.type = feature.properties.type;
+                const type = feature.properties.type;
+                if (type && type !== 'poi') {
+                    wpt.type = type;
                 }
                 return wpt;
             }
