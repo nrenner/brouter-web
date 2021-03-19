@@ -7,9 +7,10 @@ BR.Export = L.Class.extend({
         },
     },
 
-    initialize: function (router, pois) {
+    initialize: function (router, pois, circlego) {
         this.router = router;
         this.pois = pois;
+        this.circlego = circlego;
         this.exportButton = $('#exportButton');
         var trackname = (this.trackname = document.getElementById('trackname'));
         this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
@@ -25,6 +26,7 @@ BR.Export = L.Class.extend({
 
         this.exportButton.on('click', L.bind(this._generateTrackname, this));
         L.DomUtil.get('submitExport').onclick = L.bind(this._export, this);
+        L.DomUtil.get('submitQRCode').onclick = L.bind(this._qrcode, this);
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
@@ -56,6 +58,96 @@ BR.Export = L.Class.extend({
         var link = document.createElement('a');
         link.href = uri;
         link.dispatchEvent(evt);
+    },
+
+    /**
+     * Renders QR Code for a direct link to the GPX export of the current route.
+     *
+     * - hides the export modal dialog (QR Code is shown in a new dialog)
+     * - creates the GPX request URL for the BRouter engine
+     * - renders the QR Code into the dialog
+     */
+    _qrcode: function (e) {
+        e.preventDefault();
+
+        $('#export').modal('toggle');
+
+        var exportForm = document.forms['export'];
+
+        var gpxUrl = this._fixQrCodeUrl(
+            this.router.getUrl(
+                this.latLngs,
+                this.pois.getMarkers(),
+                this.circlego ? this.circlego.getCircle() : null,
+                'gpx',
+                encodeURIComponent(exportForm['trackname'].value),
+                exportForm['include-waypoints'].checked
+            )
+        );
+
+        this._renderQrCode('qrcode-img', gpxUrl, this._getQrCodeSizeForUrl(gpxUrl));
+
+        $('.qrcode-size-button').on('click', { export: this, url: gpxUrl }, function (event) {
+            event.data.export._renderQrCode('qrcode-img', event.data.url, $(this).data('qrcodeSize'));
+        });
+    },
+
+    /**
+     * Replaces BRouter engine URL for local installations. Ensures HTTPS is used for brouter.de URLs.
+     *
+     * @param url
+     */
+    _fixQrCodeUrl: function (url) {
+        if (url.indexOf('http://brouter.de') === 0) {
+            return url.replace('http://', 'https://');
+        }
+
+        if (url.indexOf('//localhost') === -1) {
+            return url;
+        }
+
+        return 'https://brouter.de/brouter?' + url.split('?')[1];
+    },
+
+    _getQrCodeSizeForUrl: function (url) {
+        if (url.length < 500) {
+            return 256;
+        }
+
+        if (url.length < 1700) {
+            return 384;
+        }
+
+        return 512;
+    },
+
+    _renderQrCode: function (elementId, url, size) {
+        $('#qrcode-img').empty();
+        $('#qrcode-buttons').show();
+        $('#qrcode-msg-unknown-error').hide();
+        $('#qrcode-msg-too-long').hide();
+
+        try {
+            new QRCode(document.getElementById(elementId), {
+                text: url,
+                width: size,
+                height: size,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.M,
+            });
+        } catch (exception) {
+            $('#qrcode-img').empty();
+            $('#qrcode-buttons').hide();
+            if (exception.message === 'Too long data') {
+                $('#qrcode-msg-too-long').show();
+
+                return;
+            }
+
+            console.error('Cannot create QR Code', exception);
+            $('#qrcode-msg-unknown-error').show();
+        }
     },
 
     _validationMessage: function () {

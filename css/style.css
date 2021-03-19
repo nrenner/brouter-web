@@ -438,6 +438,22 @@ button.btn {
     margin: -6px 0 6px 20px;
 }
 
+/* QR Code Dialog */
+
+#qrcode-img img {
+    max-width: 100%;
+}
+
+#qrcode-create-large {
+    display: none;
+}
+
+@media screen and (min-width: 500px) {
+    #qrcode-create-large {
+        display: inline-block;
+    }
+}
+
 /*
 * DataTables
 */
