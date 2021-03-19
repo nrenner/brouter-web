@@ -281,7 +281,7 @@ BR.CircleGoArea = L.Control.extend({
                     this._applyStateRules(center);
                 }
             } else if (name === 'Metropolitan France') {
-                this.radius = 20000;
+                this.radius = 10000;
                 this._setNogoCircle(center);
             } else {
                 console.error('unhandled country: ' + name);
