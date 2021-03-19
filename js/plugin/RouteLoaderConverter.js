@@ -156,13 +156,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             if (typeof isBusy === undefined) {
                 isBusy = false;
             }
-            if (isBusy === true) $('#loadedittrackdlg #msg_busy').removeClass('invisible');
-            else $('#loadedittrackdlg #msg_busy').addClass('invisible');
+            if (isBusy === true) $('#loadedittrack #msg_busy').removeClass('invisible');
+            else $('#loadedittrack #msg_busy').addClass('invisible');
         },
 
         onManualCollapse: function (e) {
             //workaround for starting with closed collapse
-            if ($('#loadedittrackdlg').is(':hidden')) return;
+            if ($('#loadedittrack').is(':hidden')) return;
             this._options.isTestMode = $(e.target).hasClass('show');
 
             if (this._options.isTestMode) {
@@ -172,13 +172,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
         },
 
         onAdd: function (map) {
-            $('#loadedittrackdlg').on(
+            $('#loadedittrack').on(
                 'hidden.bs.modal',
                 function (e) {
                     this.cleanup();
                 }.bind(this)
             );
-            $('#loadedittrackdlg').on(
+            $('#loadedittrack').on(
                 'show.bs.modal',
                 function (e) {
                     $('#manual_collapse').collapse('hide');
@@ -195,7 +195,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                         function () {
                             this.addRoutingPoints();
                             this.onBusyChanged(false);
-                            $('#loadedittrackdlg').modal('hide');
+                            $('#loadedittrack').modal('hide');
                         }.bind(this),
                         0
                     );
@@ -203,7 +203,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                     setTimeout(
                         function () {
                             this.convertTrackLocal();
-                            $('#loadedittrackdlg').modal('hide');
+                            $('#loadedittrack').modal('hide');
                         }.bind(this),
                         0
                     );
@@ -214,7 +214,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             L.DomUtil.get('loadedittrackFile').onchange = L.bind(this.onFileChanged, this);
             this.onFileChanged({ target: L.DomUtil.get('loadedittrackFile') });
 
-            this.setDialogDraggable($('#loadedittrackdlg .modal-header'));
+            this.setDialogDraggable($('#loadedittrack .modal-header'));
 
             $('#manual_collapse').collapse('hide');
             $('#manual_collapse').on(

@@ -78,14 +78,14 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File (.geojson): ",
+    "file": "File (.geojson)",
     "load": "Load",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go weight (-1 means impassable): ",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Source",
     "title": "Load no-go areas",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap contributors",
@@ -266,10 +266,11 @@
   },
   "title": "BRouter web client",
   "trackasroute": {
+    "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
-    "fuzziness": "fuzziness",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Please wait!",
     "showpois": "POI's",
     "title": "Load Track as Route",
