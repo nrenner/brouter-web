@@ -49,6 +49,7 @@ BR.Gpx = {
         const gpxTransform = new GpxTransform(voiceHintsTransform);
 
         let gpx = togpx(geoJson, {
+            creator: 'BRouter-Web ' + BR.version,
             featureTitle: function () {},
             featureDescription: function () {},
             featureCoordTimes: function () {},

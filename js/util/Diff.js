@@ -95,7 +95,7 @@ BR.Diff.diffPrettyHtml = function (diffs, contextLen = 2) {
 // TODO remove
 // copied from Gpx.test.js
 BR.Diff.adoptGpx = function (gpx, replaceCreator = true) {
-    const creator = 'togpx';
+    const creator = 'BRouter-Web 0.15.1';
     const name = 'Track';
     const newline = '\n';
 

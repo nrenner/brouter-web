@@ -286,6 +286,7 @@ gulp.task('bump:html', function () {
     return gulp
         .src('./index.html')
         .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + pkg.version + '</sup>'))
+        .pipe(replace(/BR.version = '(.*?)';/, "BR.version = '" + pkg.version + "';"))
         .pipe(gulp.dest('.'));
 });
 

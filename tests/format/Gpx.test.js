@@ -1,4 +1,5 @@
 BR = {};
+BR.version = '1.5.1';
 turf = require('@turf/turf');
 togpx = require('togpx');
 require('leaflet');
@@ -15,7 +16,7 @@ const path = 'tests/format/data/';
 
 // resolve intended/accepted differences before comparing
 function adoptGpx(gpx, replaceCreator = true) {
-    const creator = 'togpx';
+    const creator = 'BRouter-Web 1.5.1';
     const name = 'Track';
     const newline = '\n';
 

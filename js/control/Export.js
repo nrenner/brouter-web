@@ -46,13 +46,14 @@ BR.Export = L.Class.extend({
     _export: function (e) {
         var exportForm = document.forms['export'];
         var format = exportForm['format'].value || $('#export-format input:radio:checked').val();
-        var name = encodeURIComponent(exportForm['trackname'].value);
+        var name = exportForm['trackname'].value;
+        var nameUri = encodeURIComponent(name);
         var includeWaypoints = exportForm['include-waypoints'].checked;
 
         e.preventDefault();
 
         if (true) {
-            var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, name, includeWaypoints);
+            var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, nameUri, includeWaypoints);
 
             // var evt = document.createEvent('MouseEvents');
             // evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
@@ -69,6 +70,9 @@ BR.Export = L.Class.extend({
 
     _formatTrack: function (format, name, includeWaypoints) {
         const track = BR.Export._concatTotalTrack(this.segments);
+        if (name) {
+            track.features[0].properties.name = name;
+        }
         this._addPois(track);
         if (includeWaypoints) {
             this._addRouteWaypoints(track);
