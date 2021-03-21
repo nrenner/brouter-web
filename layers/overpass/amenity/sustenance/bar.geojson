@@ -5,7 +5,7 @@
     "id": "bar",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=bar]; way[amenity=bar];);"
+    "query": "nwr[amenity=bar];"
   },
   "type": "Feature"
 }

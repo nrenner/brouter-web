@@ -5,7 +5,7 @@
     "id": "parking_entrance",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=parking_entrance];"
+    "query": "nwr[amenity=parking_entrance];"
   },
   "type": "Feature"
 }

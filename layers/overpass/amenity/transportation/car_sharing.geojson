@@ -5,7 +5,7 @@
     "id": "car_sharing",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=car_sharing]; way[amenity=car_sharing];);"
+    "query": "nwr[amenity=car_sharing];"
   },
   "type": "Feature"
 }

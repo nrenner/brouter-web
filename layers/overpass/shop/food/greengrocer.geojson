@@ -5,7 +5,7 @@
     "id": "greengrocer",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop=greengrocer]; way[shop=greengrocer];);"
+    "query": "nwr[shop=greengrocer];"
   },
   "type": "Feature"
 }

@@ -5,7 +5,7 @@
     "id": "ice_cream",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=ice_cream]; way[amenity=ice_cream];);"
+    "query": "nwr[amenity=ice_cream];"
   },
   "type": "Feature"
 }

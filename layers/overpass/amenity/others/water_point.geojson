@@ -5,7 +5,7 @@
     "id": "water_point",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=water_point];"
+    "query": "nwr[amenity=water_point];"
   },
   "type": "Feature"
 }

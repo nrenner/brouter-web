@@ -5,7 +5,7 @@
     "id": "motorcycle_parking",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=motorcycle_parking]; way[amenity=motorcycle_parking];);"
+    "query": "nwr[amenity=motorcycle_parking];"
   },
   "type": "Feature"
 }

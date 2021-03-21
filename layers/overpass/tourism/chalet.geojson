@@ -5,7 +5,7 @@
     "id": "chalet",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=chalet]; way[tourism=chalet];);"
+    "query": "nwr[tourism=chalet];"
   },
   "type": "Feature"
 }

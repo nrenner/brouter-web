@@ -5,7 +5,7 @@
     "id": "bench",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=bench];"
+    "query": "nwr[amenity=bench];"
   },
   "type": "Feature"
 }

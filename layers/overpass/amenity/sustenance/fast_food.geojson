@@ -5,7 +5,7 @@
     "id": "fast_food",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=fast_food]; way[amenity=fast_food];);"
+    "query": "nwr[amenity=fast_food];"
   },
   "type": "Feature"
 }

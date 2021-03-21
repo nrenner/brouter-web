@@ -5,7 +5,7 @@
     "id": "motel",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=motel]; way[tourism=motel];);"
+    "query": "nwr[tourism=motel];"
   },
   "type": "Feature"
 }

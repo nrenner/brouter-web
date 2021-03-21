@@ -5,7 +5,7 @@
     "id": "information",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=information]; way[tourism=information];);"
+    "query": "nwr[tourism=information];"
   },
   "type": "Feature"
 }

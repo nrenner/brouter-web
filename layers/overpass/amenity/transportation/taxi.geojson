@@ -5,7 +5,7 @@
     "id": "taxi",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=taxi]; way[amenity=taxi];);"
+    "query": "nwr[amenity=taxi];"
   },
   "type": "Feature"
 }

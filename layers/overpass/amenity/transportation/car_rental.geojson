@@ -5,7 +5,7 @@
     "id": "car_rental",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=car_rental]; way[amenity=car_rental];);"
+    "query": "nwr[amenity=car_rental];"
   },
   "type": "Feature"
 }

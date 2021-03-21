@@ -5,7 +5,7 @@
     "id": "cheese",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop=cheese]; way[shop=cheese];);"
+    "query": "nwr[shop=cheese];"
   },
   "type": "Feature"
 }

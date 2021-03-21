@@ -5,7 +5,7 @@
     "id": "coffee",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop=coffee]; way[shop=coffee];);"
+    "query": "nwr[shop=coffee];"
   },
   "type": "Feature"
 }

@@ -5,7 +5,7 @@
     "id": "ferry_terminal",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=ferry_terminal]; way[amenity=ferry_terminal];);"
+    "query": "nwr[amenity=ferry_terminal];"
   },
   "type": "Feature"
 }

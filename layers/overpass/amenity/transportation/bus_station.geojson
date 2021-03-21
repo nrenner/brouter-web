@@ -5,7 +5,7 @@
     "id": "bus_station",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=bus_station]; way[amenity=bus_station];);"
+    "query": "nwr[amenity=bus_station];"
   },
   "type": "Feature"
 }

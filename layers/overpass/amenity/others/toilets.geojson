@@ -5,7 +5,7 @@
     "id": "toilets",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=toilets]; way[amenity=toilets];);"
+    "query": "nwr[amenity=toilets];"
   },
   "type": "Feature"
 }

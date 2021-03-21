@@ -5,7 +5,7 @@
     "id": "telephone",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=telephone];"
+    "query": "nwr[amenity=telephone];"
   },
   "type": "Feature"
 }

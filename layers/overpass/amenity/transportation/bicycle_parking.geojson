@@ -5,7 +5,7 @@
     "id": "bicycle_parking",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=bicycle_parking]; way[amenity=bicycle_parking];);"
+    "query": "nwr[amenity=bicycle_parking];"
   },
   "type": "Feature"
 }

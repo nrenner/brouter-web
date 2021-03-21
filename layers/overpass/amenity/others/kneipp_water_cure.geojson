@@ -5,7 +5,7 @@
     "id": "kneipp_water_cure",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=kneipp_water_cure]; way[amenity=kneipp_water_cure];);"
+    "query": "nwr[amenity=kneipp_water_cure];"
   },
   "type": "Feature"
 }

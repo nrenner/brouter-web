@@ -5,7 +5,7 @@
     "id": "wilderness_hut",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=wilderness_hut]; way[tourism=wilderness_hut];);"
+    "query": "nwr[tourism=wilderness_hut];"
   },
   "type": "Feature"
 }

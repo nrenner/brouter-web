@@ -5,7 +5,7 @@
     "id": "convenience",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop=convenience]; way[shop=convenience];);"
+    "query": "nwr[shop=convenience];"
   },
   "type": "Feature"
 }

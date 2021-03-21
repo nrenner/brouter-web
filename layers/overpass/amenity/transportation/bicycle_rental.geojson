@@ -5,7 +5,7 @@
     "id": "bicycle_rental",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=bicycle_rental]; way[amenity=bicycle_rental];);"
+    "query": "nwr[amenity=bicycle_rental];"
   },
   "type": "Feature"
 }

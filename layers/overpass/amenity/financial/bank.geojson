@@ -5,7 +5,7 @@
     "id": "bank",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=bank]; way[amenity=bank];);"
+    "query": "nwr[amenity=bank];"
   },
   "type": "Feature"
 }

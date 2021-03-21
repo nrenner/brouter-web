@@ -5,7 +5,7 @@
     "id": "viewpoint",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[tourism=viewpoint];"
+    "query": "nwr[tourism=viewpoint];"
   },
   "type": "Feature"
 }

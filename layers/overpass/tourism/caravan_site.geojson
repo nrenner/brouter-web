@@ -5,7 +5,7 @@
     "id": "caravan_site",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=caravan_site]; way[tourism=caravan_site];);"
+    "query": "nwr[tourism=caravan_site];"
   },
   "type": "Feature"
 }

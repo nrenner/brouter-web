@@ -5,7 +5,7 @@
     "id": "biergarten",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=biergarten]; way[amenity=biergarten];);"
+    "query": "nwr[amenity=biergarten];"
   },
   "type": "Feature"
 }

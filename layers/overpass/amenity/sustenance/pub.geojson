@@ -5,7 +5,7 @@
     "id": "pub",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=pub]; way[amenity=pub];);"
+    "query": "nwr[amenity=pub];"
   },
   "type": "Feature"
 }

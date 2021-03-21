@@ -5,7 +5,7 @@
     "id": "restaurant",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=restaurant]; way[amenity=restaurant];);"
+    "query": "nwr[amenity=restaurant];"
   },
   "type": "Feature"
 }

@@ -5,7 +5,7 @@
     "id": "bakery",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop=bakery]; way[shop=bakery];);"
+    "query": "nwr[shop=bakery];"
   },
   "type": "Feature"
 }

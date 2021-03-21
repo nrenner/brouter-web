@@ -5,7 +5,7 @@
     "id": "grit_bin",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=grit_bin];"
+    "query": "nwr[amenity=grit_bin];"
   },
   "type": "Feature"
 }

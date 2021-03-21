@@ -5,7 +5,7 @@
     "id": "drinking_water",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "node[amenity=drinking_water];"
+    "query": "nwr[amenity=drinking_water];"
   },
   "type": "Feature"
 }

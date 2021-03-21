@@ -5,7 +5,7 @@
     "id": "shelter",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=shelter]; way[amenity=shelter];);"
+    "query": "nwr[amenity=shelter];"
   },
   "type": "Feature"
 }

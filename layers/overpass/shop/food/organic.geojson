@@ -5,7 +5,7 @@
     "id": "organic",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[shop~'supermarket|convenience'][organic][organic!=no]; way[shop~'supermarket|convenience'][organic][organic!=no];);"
+    "query": "nwr[shop~'supermarket|convenience'][organic][organic!=no];"
   },
   "type": "Feature"
 }

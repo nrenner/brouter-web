@@ -5,7 +5,7 @@
     "id": "car_wash",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=car_wash]; way[amenity=car_wash];);"
+    "query": "nwr[amenity=car_wash];"
   },
   "type": "Feature"
 }

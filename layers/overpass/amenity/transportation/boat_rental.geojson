@@ -5,7 +5,7 @@
     "id": "boat_rental",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=boat_rental]; way[amenity=boat_rental];);"
+    "query": "nwr[amenity=boat_rental];"
   },
   "type": "Feature"
 }

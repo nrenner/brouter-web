@@ -5,7 +5,7 @@
     "id": "boat_sharing",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=boat_sharing]; way[amenity=boat_sharing];);"
+    "query": "nwr[amenity=boat_sharing];"
   },
   "type": "Feature"
 }

@@ -5,7 +5,7 @@
     "id": "fuel",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=fuel]; way[amenity=fuel];);"
+    "query": "nwr[amenity=fuel];"
   },
   "type": "Feature"
 }

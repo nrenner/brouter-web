@@ -5,7 +5,7 @@
     "id": "food_court",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[amenity=food_court]; way[amenity=food_court];);"
+    "query": "nwr[amenity=food_court];"
   },
   "type": "Feature"
 }

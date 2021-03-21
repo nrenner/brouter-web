@@ -5,7 +5,7 @@
     "id": "picnic_site",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "query": "(node[tourism=picnic_site]; way[tourism=picnic_site];);"
+    "query": "nwr[tourism=picnic_site];"
   },
   "type": "Feature"
 }
