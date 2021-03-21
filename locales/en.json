@@ -71,10 +71,13 @@
     "add-base": "Add base layer",
     "add-overlay": "Add overlay",
     "add-overpass": "Add overpass query",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Custom layer name",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
-    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
     "remove-selection": "Remove selection"
   },
   "loadNogos": {
@@ -244,7 +247,7 @@
       "overlay-opacity": "Overlay transparency",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Query",
         "empty": "No custom layer configured yet.",
         "name": "Name",
         "type": "Type",
