@@ -78,6 +78,7 @@
     "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
+    "overpass-loading-indicator": "Running Overpass API query ...",
     "remove-selection": "Remove selection"
   },
   "loadNogos": {
