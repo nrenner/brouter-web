@@ -1,4 +1,7 @@
 BR.LayersConfig = L.Class.extend({
+    overpassFrontend: new OverpassFrontend(
+        (BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter').replace('?data=', '')
+    ),
     defaultBaseLayers: BR.confLayers.defaultBaseLayers,
     defaultOverlays: BR.confLayers.defaultOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
@@ -7,6 +10,8 @@ BR.LayersConfig = L.Class.extend({
 
     initialize: function (map) {
         this._map = map;
+        this._overpassLoadingIndicator = new BR.Message('overpass_loading_indicator', { alert: false });
+        this._overpassActiveRequestCount = 0;
 
         this._addLeafletProvidersLayers();
         this._customizeLayers();
@@ -169,6 +174,37 @@ BR.LayersConfig = L.Class.extend({
         return result;
     },
 
+    _showOverpassLoadingIndicator: function () {
+        this._overpassActiveRequestCount++;
+        this._overpassLoadingIndicator.showInfo(i18next.t('layers.overpass-loading-indicator'));
+    },
+
+    _hideOverpassLoadingIndicator: function () {
+        if (--this._overpassActiveRequestCount === 0) {
+            this._overpassLoadingIndicator.hide();
+        }
+    },
+
+    createOverpassLayer: function (query) {
+        return Object.assign(
+            new OverpassLayer({
+                overpassFrontend: this.overpassFrontend,
+                query: query,
+                minZoom: 12,
+                feature: {
+                    title: '{{ tags.name }}',
+                    body:
+                        '<table class="overpass-tags">{% for k, v in tags %}{% if k[:5] != "addr:" %}<tr><th>{{ k }}</th><td>{% if k matches "/email/" %}<a href="mailto:{{ v }}">{{ v }}</a>{% elseif v matches "/^http/" %}<a href="{{ v }}">{{ v }}</a>{% elseif v matches "/^www/" %}<a href="http://{{ v }}">{{ v }}</a>{% else %}{{ v }}{% endif %}</td></tr>{% endif %}{% endfor %}</table>',
+                    markerSymbol: null,
+                },
+            }),
+            {
+                onLoadStart: this._showOverpassLoadingIndicator.bind(this),
+                onLoadEnd: this._hideOverpassLoadingIndicator.bind(this),
+            }
+        );
+    },
+
     createLayer: function (layerData) {
         var props = layerData.properties;
         var url = props.url;
@@ -251,6 +287,8 @@ BR.LayersConfig = L.Class.extend({
             if (props.subdomains) {
                 layer.subdomains = props.subdomains;
             }
+        } else if (props.dataSource === 'OverpassAPI') {
+            layer = this.createOverpassLayer(props.query);
         } else {
             // JOSM
             var josmUrl = url;

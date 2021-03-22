@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Taxi",
+    "id": "taxi",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=taxi];"
+  },
+  "type": "Feature"
+}

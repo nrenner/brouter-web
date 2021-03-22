@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "BBQ",
+    "id": "bbq",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=bbq];"
+  },
+  "type": "Feature"
+}

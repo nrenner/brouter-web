@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Chalet",
+    "id": "chalet",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[tourism=chalet];"
+  },
+  "type": "Feature"
+}

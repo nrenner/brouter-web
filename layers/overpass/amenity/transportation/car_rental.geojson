@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Car rental",
+    "id": "car_rental",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=car_rental];"
+  },
+  "type": "Feature"
+}

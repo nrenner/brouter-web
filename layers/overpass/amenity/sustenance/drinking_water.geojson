@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Drinking water",
+    "id": "drinking_water",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=drinking_water];"
+  },
+  "type": "Feature"
+}

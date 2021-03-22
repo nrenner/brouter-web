@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Car wash",
+    "id": "car_wash",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=car_wash];"
+  },
+  "type": "Feature"
+}

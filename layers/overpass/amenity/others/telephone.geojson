@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Telephone",
+    "id": "telephone",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=telephone];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Information",
+    "id": "information",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[tourism=information];"
+  },
+  "type": "Feature"
+}

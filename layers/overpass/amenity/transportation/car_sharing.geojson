@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Car sharing",
+    "id": "car_sharing",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=car_sharing];"
+  },
+  "type": "Feature"
+}

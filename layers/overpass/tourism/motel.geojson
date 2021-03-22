@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Motel",
+    "id": "motel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[tourism=motel];"
+  },
+  "type": "Feature"
+}

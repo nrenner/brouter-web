@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Water point",
+    "id": "water_point",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=water_point];"
+  },
+  "type": "Feature"
+}

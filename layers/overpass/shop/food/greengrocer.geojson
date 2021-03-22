@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Greengrocer",
+    "id": "greengrocer",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[shop=greengrocer];"
+  },
+  "type": "Feature"
+}

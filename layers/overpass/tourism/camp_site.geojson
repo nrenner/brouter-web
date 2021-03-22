@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Camp site",
+    "id": "camp_site",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[tourism=camp_site];"
+  },
+  "type": "Feature"
+}

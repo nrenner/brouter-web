@@ -208,24 +208,26 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="layer_name"
-                            spellcheck="true"
-                            wrap="off"
-                            data-i18n="[placeholder]layers.placeholder-layer-name"
-                            placeholder="Custom layer name. (ex: OpenStreetMap)"
-                        />
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="layer_url"
-                            spellcheck="false"
-                            wrap="off"
-                            data-i18n="[placeholder]layers.placeholder-layer-url"
-                            placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"
-                        />
+                        <div class="form-group">
+                            <label for="layer_name" data-i18n="layers.custom-layer-name-label">Custom layer name</label>
+                            <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" />
+                            <p class="help-block" data-i18n="layers.custom-layer-name-helptext">ex: OpenStreetMap</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="layer_name" data-i18n="layers.custom-layer-url-label"
+                                >Custom layer URL/Query</label
+                            >
+                            <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" />
+                            <p class="help-block">
+                                <span data-i18n="layers.custom-layer-url-helptext-normal"
+                                    >URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span
+                                ><br />
+                                <span data-i18n="layers.custom-layer-url-helptext-overpass"
+                                    >Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];</span
+                                >
+                            </p>
+                        </div>
 
                         <button
                             type="button"
@@ -242,6 +244,14 @@
                             data-i18n="layers.add-overlay"
                         >
                             Add overlay
+                        </button>
+                        <button
+                            type="button"
+                            id="custom_layers_add_overpass"
+                            class="btn btn-success"
+                            data-i18n="layers.add-overpass"
+                        >
+                            Add overpass query
                         </button>
                         <button
                             type="button"
@@ -898,7 +908,10 @@
 
             <div class="leaflet-sidebar-flex-row flexgrow">
                 <div id="map" class="leaflet-sidebar-map">
-                    <div id="message"></div>
+                    <div id="notification_jar">
+                        <div id="message"></div>
+                        <div id="overpass_loading_indicator"></div>
+                    </div>
                     <div id="preview" hidden data-i18n="map.preview">Preview</div>
                 </div>
 

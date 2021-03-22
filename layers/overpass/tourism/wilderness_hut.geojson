@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Wilderness hut",
+    "id": "wilderness_hut",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[tourism=wilderness_hut];"
+  },
+  "type": "Feature"
+}

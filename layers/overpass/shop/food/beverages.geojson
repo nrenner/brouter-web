@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Beverages",
+    "id": "beverages",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[shop=beverages];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Grit bin",
+    "id": "grit_bin",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=grit_bin];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Restaurant",
+    "id": "restaurant",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=restaurant];"
+  },
+  "type": "Feature"
+}

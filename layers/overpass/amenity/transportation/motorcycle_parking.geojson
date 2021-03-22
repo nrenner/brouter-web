@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Motorcycle parking",
+    "id": "motorcycle_parking",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=motorcycle_parking];"
+  },
+  "type": "Feature"
+}

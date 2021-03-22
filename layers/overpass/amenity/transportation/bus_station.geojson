@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bus station",
+    "id": "bus_station",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=bus_station];"
+  },
+  "type": "Feature"
+}

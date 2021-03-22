@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Parking entrance",
+    "id": "parking_entrance",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=parking_entrance];"
+  },
+  "type": "Feature"
+}

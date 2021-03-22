@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Food court",
+    "id": "food_court",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=food_court];"
+  },
+  "type": "Feature"
+}
