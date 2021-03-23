@@ -18,12 +18,16 @@ BR.Message = L.Class.extend({
             case 'error':
                 iconClass = 'fa-times-circle';
                 alertClass = 'alert-danger';
+                break;
             case 'warning':
                 iconClass = 'fa-exclamation-triangle';
                 alertClass = 'alert-warning';
+                break;
+            default:
             case 'info':
                 iconClass = 'fa-info-circle';
                 alertClass = 'alert-info';
+                break;
         }
 
         L.DomEvent.disableClickPropagation(ele);
