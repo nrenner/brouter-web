@@ -157,7 +157,8 @@
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"
+    "close": "Close",
+    "or": ""
   },
   "navbar": {
     "about": "About",
