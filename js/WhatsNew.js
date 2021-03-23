@@ -26,7 +26,7 @@ BR.WhatsNew = {
 
         var currentVersion = localStorage.getItem('changelogVersion');
 
-        return !currentVersion || currentVersion < this.getLatestVersion();
+        return currentVersion && currentVersion < this.getLatestVersion();
     },
 
     prepare: function (newOnly) {
