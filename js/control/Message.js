@@ -3,6 +3,7 @@ BR.Message = L.Class.extend({
         // true to manually attach click event to close button,
         // Bootstrap data-api's auto-initialization doesn't work in Controls because of stopPropagation
         alert: false,
+        onClosed: null,
     },
 
     initialize: function (id, options) {
@@ -44,6 +45,10 @@ BR.Message = L.Class.extend({
             '" aria-hidden="true"/></span>' +
             msg +
             '</div>';
+
+        if (this.options.onClosed) {
+            $('#' + this.id + ' .alert').on('closed.bs.alert', this.options.onClosed);
+        }
 
         if (this.options.alert) {
             $('#' + this.id + ' .alert').alert();
