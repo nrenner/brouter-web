@@ -153,6 +153,9 @@
                     },
                 ],
                 value: ['route'],
+                onShown: function () {
+                    $('button.bootbox-accept', $(this)).focus();
+                },
                 callback: function (result) {
                     if (result !== null) {
                         if (result.indexOf('route') !== -1) {
