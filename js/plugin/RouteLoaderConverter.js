@@ -15,6 +15,9 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             simplifyTolerance: -1,
             isTestMode: false,
             simplifyLastKnownGood: 0.001,
+            shortcut: {
+                open: 82, // char code for 'r'
+            },
         },
 
         setDialogDraggable: function (jqDlgHeader) {
@@ -90,6 +93,9 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 simplifyTolerance: -1,
                 isTestMode: false,
                 simplifyLastKnownGood: 0.001,
+                shortcut: {
+                    open: 82, // char code for 'r'
+                },
             };
         },
 
@@ -223,6 +229,8 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                     this.onManualCollapse(e);
                 }.bind(this)
             );
+
+            L.DomEvent.addListener(document, 'keydown', this.keydownListener, this);
 
             // dummy, no own representation, delegating to EasyButton
             var dummy = L.DomUtil.create('div');
@@ -382,6 +390,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
 
             this.onBusyChanged(false);
         },
+
+        keydownListener: function (e) {
+            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this._options.shortcut.open) {
+                $('#navbarLoadEditTracks').click();
+            }
+        },
+
     });
 
     RouteLoader.include(L.Evented.prototype);
