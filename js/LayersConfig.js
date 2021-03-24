@@ -174,7 +174,7 @@ BR.LayersConfig = L.Class.extend({
 
     _showOverpassLoadingIndicator: function () {
         this._overpassActiveRequestCount++;
-        this._overpassLoadingIndicator.showInfo(i18next.t('layers.overpass-loading-indicator'));
+        this._overpassLoadingIndicator.showLoading(i18next.t('layers.overpass-loading-indicator'));
     },
 
     _hideOverpassLoadingIndicator: function () {

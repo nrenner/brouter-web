@@ -24,6 +24,10 @@ BR.Message = L.Class.extend({
                 iconClass = 'fa-exclamation-triangle';
                 alertClass = 'alert-warning';
                 break;
+            case 'loading':
+                iconClass = 'fa-spinner fa-pulse';
+                alertClass = 'alert-secondary';
+                break;
             default:
             case 'info':
                 iconClass = 'fa-info-circle';
@@ -82,6 +86,10 @@ BR.Message = L.Class.extend({
 
     showInfo: function (msg) {
         this._show(msg, 'info');
+    },
+
+    showLoading: function (msg) {
+        this._show(msg, 'loading');
     },
 });
 
