@@ -87,7 +87,6 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             (this._bounds = undefined), (this._trackPoints = []);
             this._currentGeoJSON = {};
             this._options = {
-                ext: 'gpx',
                 showTrackLayer: true,
                 showPointAsPoi: true,
                 simplifyTolerance: -1,
@@ -396,7 +395,6 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 $('#navbarLoadEditTracks').click();
             }
         },
-
     });
 
     RouteLoader.include(L.Evented.prototype);
