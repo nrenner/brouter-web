@@ -1,7 +1,5 @@
 BR.LayersConfig = L.Class.extend({
-    overpassFrontend: new OverpassFrontend(
-        (BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter').replace('?data=', '')
-    ),
+    overpassFrontend: new OverpassFrontend(BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter'),
     defaultBaseLayers: BR.confLayers.defaultBaseLayers,
     defaultOverlays: BR.confLayers.defaultOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
@@ -176,7 +174,7 @@ BR.LayersConfig = L.Class.extend({
 
     _showOverpassLoadingIndicator: function () {
         this._overpassActiveRequestCount++;
-        this._overpassLoadingIndicator.showInfo(i18next.t('layers.overpass-loading-indicator'));
+        this._overpassLoadingIndicator.showLoading(i18next.t('layers.overpass-loading-indicator'));
     },
 
     _hideOverpassLoadingIndicator: function () {
@@ -196,6 +194,9 @@ BR.LayersConfig = L.Class.extend({
                     body:
                         '<table class="overpass-tags">{% for k, v in tags %}{% if k[:5] != "addr:" %}<tr><th>{{ k }}</th><td>{% if k matches "/email/" %}<a href="mailto:{{ v }}">{{ v }}</a>{% elseif v matches "/^http/" %}<a href="{{ v }}">{{ v }}</a>{% elseif v matches "/^www/" %}<a href="http://{{ v }}">{{ v }}</a>{% else %}{{ v }}{% endif %}</td></tr>{% endif %}{% endfor %}</table>',
                     markerSymbol: null,
+                    style: function (overpassObject) {
+                        return this.defaultBaseLayers?.[0] === 'cyclosm' ? { color: 'darkorange' } : {};
+                    }.bind(this),
                 },
             }),
             {

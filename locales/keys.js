@@ -61,4 +61,5 @@ i18next.t('sidebar.layers.category.overlays', 'Overlays');
 i18next.t('sidebar.layers.category.worldwide', 'Worldwide');
 i18next.t('sidebar.layers.category.worldwide-international', 'Worldwide international');
 i18next.t('sidebar.layers.category.worldwide-monolingual', 'Worldwide monolingual');
+i18next.t('sidebar.layers.category.overpass', 'Locations (POIs)');
 i18next.t('sidebar.layers.tooltip');
