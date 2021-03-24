@@ -11,7 +11,7 @@ BR.CircleGoArea = L.Control.extend({
     options: {
         countriesUrl: BR.conf.countriesUrl || 'dist/boundaries/countries.topo.json',
         statesUrl: BR.conf.statesUrl || 'dist/boundaries/germany-states.topo.json',
-        overpassBaseUrl: BR.conf.overpassBaseUrl || 'https://overpass-api.de/api/interpreter?data=',
+        overpassDataUrl: (BR.conf.overpassBaseUrl || 'https://overpass-api.de/api/interpreter') + '?data=',
         shortcut: {
             draw: {
                 enable: 73, // char code for 'i'
@@ -137,7 +137,7 @@ BR.CircleGoArea = L.Control.extend({
             query += '(area.a[admin_level="' + adminLevelFallback + '"];)->.p; relation(pivot.p); out geom;';
         }
 
-        var url = this.options.overpassBaseUrl + encodeURIComponent(query);
+        var url = this.options.overpassDataUrl + encodeURIComponent(query);
 
         this.marker.setIcon(this.iconSpinner);
         BR.Util.getJson(

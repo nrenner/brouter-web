@@ -1,7 +1,5 @@
 BR.LayersConfig = L.Class.extend({
-    overpassFrontend: new OverpassFrontend(
-        (BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter').replace('?data=', '')
-    ),
+    overpassFrontend: new OverpassFrontend(BR.conf.overpassBaseUrl || '//overpass-api.de/api/interpreter'),
     defaultBaseLayers: BR.confLayers.defaultBaseLayers,
     defaultOverlays: BR.confLayers.defaultOverlays,
     legacyNameToIdMap: BR.confLayers.legacyNameToIdMap,
