@@ -129,6 +129,11 @@
                     L.bind(function (obj, index, array) {
                         if (obj) {
                             layersControl.activateLayer(obj);
+                            if (obj.layer instanceof OverpassLayer) {
+                                // hack to select overlay (mark checked) in the layers control
+                                // (OverpassLayer._layerAdd does not fire 'add' event)
+                                layersControl._update();
+                            }
                             if (obj && !obj.overlay) {
                                 added = true;
                             }
