@@ -56,6 +56,10 @@ BR.Map = {
 
         $('#credits').on('show.bs.modal', function (event) {
             BR.Map._renderLayerCredits(layersControl._layers);
+            const overpassUrl = new URL(BR.conf.overpassBaseUrl || 'https://overpass-api.de').origin;
+            for (const link of document.getElementsByClassName('overpass-url')) {
+                link.href = overpassUrl;
+            }
         });
 
         new L.Control.PermalinkAttribution().addTo(map);
