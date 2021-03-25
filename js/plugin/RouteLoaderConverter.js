@@ -16,7 +16,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             isTestMode: false,
             simplifyLastKnownGood: 0.001,
             shortcut: {
-                open: 82, // char code for 'r'
+                open: 79, // char code for 'O'; used in conjunction with 'shift'
             },
         },
 
@@ -93,7 +93,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 isTestMode: false,
                 simplifyLastKnownGood: 0.001,
                 shortcut: {
-                    open: 82, // char code for 'r'
+                    open: 79, // char code for 'O'; used in conjunction with 'shift'
                 },
             };
         },
@@ -391,7 +391,11 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
         },
 
         keydownListener: function (e) {
-            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this._options.shortcut.open) {
+            if (
+                BR.Util.keyboardShortcutsAllowed(e) &&
+                e.keyCode === this._options.shortcut.open &&
+                true === e.shiftKey
+            ) {
                 $('#navbarLoadEditTracks').click();
             }
         },
