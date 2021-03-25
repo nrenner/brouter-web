@@ -447,11 +447,6 @@ button.btn {
 }
 
 /* "What's new?" (Change Log) */
-#whatsnew h1 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
 #whatsnew h2 {
     margin: 2rem 0;
     border-bottom: 1px solid #dee2e6;
