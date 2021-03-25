@@ -13,7 +13,7 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
             layerOptions: BR.Track.getGeoJsonOptions(layersControl),
             addToMap: false,
             // File size limit in kb (default: 1024) ?
-            fileSizeLimit: 1024,
+            fileSizeLimit: BR.conf.trackSizeLimit || 1024 * 10,
             shortcut: {
                 open: 79, // char code for 'o'
             },

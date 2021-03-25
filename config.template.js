@@ -129,4 +129,7 @@
     BR.conf.tracknameAllowedChars = 'a-zA-Z0-9 \\._\\-';
 
     BR.conf.overpassBaseUrl = 'https://overpass.kumi.systems/api/interpreter';
+
+    // File size limit in kb for loading tracks
+    BR.conf.trackSizeLimit = 1024 * 10;
 })();
