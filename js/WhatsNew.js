@@ -4,7 +4,9 @@ BR.WhatsNew = {
         self.dismissableMessage = new BR.Message('whats_new_message', {
             onClosed: function () {
                 document.getElementsByClassName('version')[0].classList.remove('version-new');
-                localStorage.setItem('changelogVersion', self.getLatestVersion());
+                if (BR.Util.localStorageAvailable()) {
+                    localStorage.setItem('changelogVersion', self.getLatestVersion());
+                }
                 // next time popup is open, by default we will see everything
                 self.prepare(false);
             },
@@ -12,7 +14,7 @@ BR.WhatsNew = {
         $('#whatsnew').on('shown.bs.modal', function () {
             self.dismissableMessage.hide();
         });
-        if (!self.getCurrentVersion()) {
+        if (!self.getCurrentVersion() && BR.Util.localStorageAvailable()) {
             localStorage.setItem('changelogVersion', self.getLatestVersion());
         }
         self.prepare(self.hasNewVersions());
@@ -28,12 +30,12 @@ BR.WhatsNew = {
     },
 
     getCurrentVersion: function () {
+        if (!BR.Util.localStorageAvailable()) return null;
+
         return localStorage.getItem('changelogVersion');
     },
 
     hasNewVersions: function () {
-        if (!BR.Util.localStorageAvailable()) return false;
-
         return this.getCurrentVersion() && this.getCurrentVersion() < this.getLatestVersion();
     },
 
