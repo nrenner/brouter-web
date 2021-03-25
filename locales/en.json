@@ -175,8 +175,7 @@
       "nogos": "Load no-go areas",
       "title": "Load",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks",
-      "trackAsRoute": "Load Track as Route"
+      "tracks": "Load tracks"
     },
     "profile": {
       "car-eco": "Car (economic)",
