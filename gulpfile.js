@@ -189,6 +189,7 @@ gulp.task('boundaries', function () {
 
 gulp.task('changelog', function (cb) {
     var content = 'BR.changelog = `' + marked(fs.readFileSync('./CHANGELOG.md', 'utf-8')) + '`';
+    content = content.replace(/<h1.*<\/h1>/i, '');
     fs.writeFile(paths.dest + '/changelog.js', content, cb);
 });
 

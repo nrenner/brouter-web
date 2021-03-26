@@ -446,6 +446,19 @@ button.btn {
     margin: -6px 0 6px 20px;
 }
 
+/* "What's new?" (Change Log) */
+#whatsnew h2 {
+    margin: 2rem 0;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+#whatsnew h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
 /*
 * DataTables
 */
