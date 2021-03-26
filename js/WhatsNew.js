@@ -1,4 +1,6 @@
 BR.WhatsNew = {
+    newOnly: undefined,
+
     init: function () {
         var self = this;
         self.dismissableMessage = new BR.Message('whats_new_message', {
@@ -7,12 +9,14 @@ BR.WhatsNew = {
                 if (BR.Util.localStorageAvailable()) {
                     localStorage.setItem('changelogVersion', self.getLatestVersion());
                 }
-                // next time popup is open, by default we will see everything
-                self.prepare(false);
             },
         });
         $('#whatsnew').on('shown.bs.modal', function () {
             self.dismissableMessage.hide();
+        });
+        $('#whatsnew').on('hidden.bs.modal', function () {
+            // next time popup is open, by default we will see everything
+            self.prepare(false);
         });
         if (!self.getCurrentVersion() && BR.Util.localStorageAvailable()) {
             localStorage.setItem('changelogVersion', self.getLatestVersion());
@@ -36,15 +40,21 @@ BR.WhatsNew = {
     },
 
     hasNewVersions: function () {
-        return this.getCurrentVersion() && this.getCurrentVersion() < this.getLatestVersion();
+        return this.getCurrentVersion() && this.getCurrentVersion() !== this.getLatestVersion();
     },
 
     prepare: function (newOnly) {
+        if (newOnly === this.newOnly) {
+            // do not rebuild modal content unnecessarily
+            return;
+        }
+        this.newOnly = newOnly;
         var container = document.querySelector('#whatsnew .modal-body');
         var cl = BR.changelog;
         if (newOnly && this.getCurrentVersion()) {
             var head = '<h2 id="' + this.getCurrentVersion() + '">';
-            cl = cl.substring(0, cl.indexOf(head));
+            var idx = cl.indexOf(head);
+            if (idx >= 0) cl = cl.substring(0, idx);
         }
         container.innerHTML = cl;
     },
