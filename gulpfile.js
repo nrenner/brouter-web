@@ -80,6 +80,7 @@ var paths = {
         .concat('css/*.css'),
     images: mainNpmFiles().filter((f) => RegExp('.*.+(png|gif|svg)', 'i').test(f)),
     fonts: mainNpmFiles().filter((f) => RegExp('font-awesome/fonts/.*', 'i').test(f)),
+    changelog: 'CHANGELOG.md',
     locales: 'locales/*.json',
     layers: 'layers/**/*.geojson',
     layersDestName: 'layers.js',
@@ -188,7 +189,7 @@ gulp.task('boundaries', function () {
 });
 
 gulp.task('changelog', function (cb) {
-    var content = 'BR.changelog = `' + marked(fs.readFileSync('./CHANGELOG.md', 'utf-8')) + '`';
+    var content = 'BR.changelog = `' + marked(fs.readFileSync(paths.changelog, 'utf-8')) + '`';
     content = content.replace(/<h1.*<\/h1>/i, '');
     fs.writeFile(paths.dest + '/changelog.js', content, cb);
 });
@@ -207,6 +208,7 @@ gulp.task('watch', function () {
             remember.forget('scripts', event.path);
         }
     });
+    gulp.watch(paths.changelog, gulp.series('changelog', 'reload'));
     gulp.watch(paths.locales, gulp.series('locales', 'reload'));
     gulp.watch(paths.styles, gulp.series('styles', 'reload'));
     gulp.watch(paths.layersConfig, gulp.series('layers_config', 'reload'));
