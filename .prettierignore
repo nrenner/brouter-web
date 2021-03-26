@@ -1,11 +1,14 @@
 LICENSE
+Dockerfile
 dist/
 *.zip
 yarn.lock
 .idea
 .gitignore
+.eslintignore
 .prettierignore
 .tx/
 layers/
 locales/*.json
 resources/boundaries/
+resources/standalone/*.sh
