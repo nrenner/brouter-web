@@ -47,7 +47,7 @@ BR.Search = class extends L.Control.Geocoder {
 
     _keydownListener(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.search) {
-            $('#map .leaflet-control-geocoder')[0].dispatchEvent(new MouseEvent('mousedown'));
+            $('#map .leaflet-control-geocoder')[0].dispatchEvent(new MouseEvent('click'));
             e.preventDefault();
         }
     }
