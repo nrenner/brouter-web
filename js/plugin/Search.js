@@ -10,6 +10,7 @@ BR.Search = class extends L.Control.Geocoder {
                         sizeInMeters: 800,
                     }),
                     position: 'topleft',
+                    expand: 'click',
                     shortcut: {
                         search: 70, // char code for 'f'
                     },
