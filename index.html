@@ -427,7 +427,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form name="export">
+                        <form name="export" id="exportForm">
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-2" data-i18n="export.trackname">Name</label>
                                 <div class="col-sm-10">
@@ -519,7 +519,7 @@
                             type="submit"
                             class="btn btn-primary"
                             data-i18n="export.title"
-                            form="export"
+                            form="exportForm"
                             id="submitExport"
                         >
                             Export route
@@ -712,7 +712,7 @@
                     </div>
                     <div class="modal-body">
                         <p id="nogoError" class="invalid-feedback" style="display: none"></p>
-                        <form name="loadNogosForm">
+                        <form name="loadNogosForm" id="loadNogosForm">
                             <fieldset>
                                 <legend data-i18n="loadNogos.source">Source</legend>
                                 <div>
