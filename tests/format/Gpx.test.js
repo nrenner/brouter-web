@@ -38,7 +38,7 @@ function adoptGpx(gpx, replaceCreator = true) {
 }
 
 function read(fileName, replaceCreator) {
-    return BR.Gpx.pretty(adoptGpx(fs.readFileSync(path + fileName, 'utf8'), replaceCreator));
+    return adoptGpx(fs.readFileSync(path + fileName, 'utf8'), replaceCreator);
 }
 
 test('simple track', () => {
@@ -48,14 +48,14 @@ test('simple track', () => {
 });
 
 test('waypoints', () => {
-    const brouterGpx = read('waypoints.gpx');
+    const brouterGpx = BR.Gpx.pretty(read('waypoints.gpx'));
     const gpx = BR.Gpx.format(waypointsGeoJson, 5);
     expect(gpx).toEqual(brouterGpx);
 });
 
 describe('voice hints', () => {
     test('2-locus', () => {
-        let brouterGpx = read('2-locus.gpx');
+        let brouterGpx = BR.Gpx.pretty(read('2-locus.gpx'));
         brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
         // ignore float rounding differences
         brouterGpx = brouterGpx.replace(
@@ -68,7 +68,7 @@ describe('voice hints', () => {
     });
 
     test('3-osmand', () => {
-        const brouterGpx = read('3-osmand.gpx', false);
+        const brouterGpx = BR.Gpx.pretty(read('3-osmand.gpx', false));
         const gpx = BR.Gpx.format(geoJson, 3);
         expect(gpx).toEqual(brouterGpx);
     });
@@ -88,7 +88,7 @@ describe('voice hints', () => {
     });
 
     test('6-orux', () => {
-        let brouterGpx = read('6-orux.gpx');
+        let brouterGpx = BR.Gpx.pretty(read('6-orux.gpx'));
         const gpx = BR.Gpx.format(geoJson, 6);
         expect(gpx).toEqual(brouterGpx);
     });

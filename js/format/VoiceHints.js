@@ -259,8 +259,7 @@
             let comment = `
 <!-- $transport-mode$${this.transportMode}$ -->
 <!--          cmd    idx        lon        lat d2next  geometry -->
-<!-- $turn-instruction-start$
-`;
+<!-- $turn-instruction-start$`;
 
             this._loopHints((hint, cmd, coord) => {
                 const pad = (obj = '', len) => {
@@ -276,8 +275,7 @@
                 turn += hint.geometry;
 
                 comment += `
-     $turn$${turn}$
-`;
+     $turn$${turn}$`;
             });
 
             comment += `
