@@ -1,5 +1,30 @@
 # BRouter-Web Changelog
 
+## 0.16.0 (2021-03-30)
+
+### New Features
+
+-   Locations (POIs) layers powered by Overpass API available in optional layers (under "More") and as custom query in "Custom layers" - by [@stesie](https://github.com/stesie) ([#106](https://github.com/nrenner/brouter-web/issues/106), [#384](https://github.com/nrenner/brouter-web/pull/384))
+-   Message informs about new versions since last visit, "What's new?" button in "About" - by [@bagage](https://github.com/bagage) ([#372](https://github.com/nrenner/brouter-web/pull/372))
+
+### Improvements
+
+-   Confirm "Delete Route" with Enter key (after opening "Clear" dialog with Backspace key) - by [@mjaschen](https://github.com/mjaschen) ([#385](https://github.com/nrenner/brouter-web/issues/385))
+-   Improve mobile responsivity (full screen dialogs and more) - by [@bagage](https://github.com/bagage) ([#296](https://github.com/nrenner/brouter-web/issues/296))
+-   Gray out unselectable layers below minimum zoom - by [@bagage](https://github.com/bagage) ([#381](https://github.com/nrenner/brouter-web/pull/381))
+-   Add message if no elevation data is available - by [@bagage](https://github.com/bagage) ([#365](https://github.com/nrenner/brouter-web/issues/365))
+-   Size limit for loading a track increased to 10 MiB ([dd34064](https://github.com/nrenner/brouter-web/commit/dd34064e8c09f1bc6b11e2e14e1bb83d41a61ed9))
+-   Update France Go area to 10km - by [@bagage](https://github.com/bagage) ([1c13587](https://github.com/nrenner/brouter-web/commit/1c135879746f670b1a854fcbe55ab5dabacfa0a9))
+
+### Bugfixes
+
+-   Flickering search field on Firefox @ Android - by [@mjaschen](https://github.com/mjaschen) ([#393](https://github.com/nrenner/brouter-web/issues/393))
+-   Custom layers table width and type translations added - by [@bagage](https://github.com/bagage) ([#379](https://github.com/nrenner/brouter-web/pull/379))
+
+### Local installation / development
+
+-   New config entries `overpassBaseUrl` and `trackSizeLimit` ([config.template.js](https://github.com/nrenner/brouter-web/blob/a2717ac10298f5e9689b420a0af0eb310eababd3/config.template.js#L131-L134))
+
 ## 0.15.1 (2021-01-25)
 
 ### Improvements [de, fr]
