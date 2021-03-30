@@ -15,7 +15,7 @@
     "tooltip": "További információk megjelenítése a BRouter-Webről"
   },
   "credits": {
-    "boundaries": "Közigazgatási határok: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-határok</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Közigazgatási határok: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-határok</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Magassági adatok",
@@ -25,6 +25,7 @@
     "map-tiles": "Map tiles",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Alkotók"
   },
   "export": {
@@ -70,22 +71,27 @@
   "layers": {
     "add-base": "Alapréteg hozzáadása",
     "add-overlay": "Rátétréteg hozzáadása",
+    "add-overpass": "Overpass-lekérdezés hozzáadása",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Egyéni réteg neve",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Egyéni réteg URL-je/lekérdezése",
     "customize": "Rétegek személyre szabása",
     "opacity-slider": "Átlátszósági csúszka",
-    "placeholder-layer-name": "Egyedi rétegnév (pl. OpenStreetMap)",
-    "placeholder-layer-url": "Egyedi réteg URL-je (pl. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Overpass API-lekérdezés futtatása…",
     "remove-selection": "Kijelölés eltávolítása"
   },
   "loadNogos": {
     "defaultProperties": "Alapértelmezett tulajdonságok",
-    "file": "Fájl (.geojson):",
+    "file": "Fájl (.geojson)",
     "load": "Betöltés",
-    "nogoBuffer": "Elkerülendő területek körüli távolság (méter)",
-    "nogoRadius": "Elkerülendő pontok körüli sugár (méter):",
-    "nogoWeight": "Elkerülendő területek súlyozása (-1 = áthatolhatatlan):",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Forrás",
     "title": "Elkerülendő területek betöltése",
-    "url": "URL:"
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap közreműködők",
@@ -152,8 +158,7 @@
     "zoomOutTitle": "Kicsinyítés"
   },
   "modal": {
-    "close": "Bezárás"
-  },
+    "close": "Bezárás"},
   "navbar": {
     "about": "Névjegy",
     "alternative": {
@@ -167,7 +172,7 @@
     "load": {
       "nogos": "Elkerülendő területek betöltése",
       "title": "Betöltés",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} billentyű)\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} ({{tracksKey}} billentyű)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Nyomvonalak betöltése"
     },
     "profile": {
@@ -230,6 +235,7 @@
         "europe": "Európa",
         "europe-monolingual": "Európa (egynyelvű)",
         "overlays": "Rátétrétegek",
+        "overpass": "Locations (POIs)",
         "worldwide": "Világ",
         "worldwide-international": "Világ (nemzetközi)",
         "worldwide-monolingual": "Világ (egynyelvű)"
@@ -243,12 +249,13 @@
       "overlay-opacity": "Rátétréteg átlászósága",
       "overlay-opacity_plural": "Rátétrétegek átlátszósága",
       "table": {
-        "URL": "URL",
+        "URL": "URL/lekérdezés",
         "empty": "Még nincs beállítva egyedi réteg",
         "name": "Név",
         "type": "Típus",
         "type_layer": "Réteg",
-        "type_overlay": "Rátétréteg"
+        "type_overlay": "Rátétréteg",
+        "type_overpass_query": "Overpass-lekérdezés"
       },
       "title": "Rétegek",
       "tooltip": "Rétegek kijelölése"
@@ -266,10 +273,11 @@
   },
   "title": "BRouter webkliens",
   "trackasroute": {
+    "browse": "Böngészése",
     "explainpoi": "(útpontok megjelenítése érdekes pontként [POI-ként])",
     "explaintracklayer": "(nyomvonal megjelenítés különálló rétegként)",
     "file": "Nyomvonalfájl",
-    "fuzziness": "homályosság",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Kérjük, várjon",
     "showpois": "Érdekes pontok (POI-k)",
     "title": "Nyomvonal betöltése útvonalként",

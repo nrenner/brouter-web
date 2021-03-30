@@ -15,7 +15,7 @@
     "tooltip": "Mostra més informació sobre BRouter-Web"
   },
   "credits": {
-    "boundaries": "Fronteres administratives: <a href=\"https://osm-boundaries.com\" target=\"_blank\">Fronteres-OSM</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">API d'Overpass</a>",
+    "boundaries": "Fronteres administratives: <a href=\"https://osm-boundaries.com\" target=\"_blank\">Fronteres-OSM</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">API d'Overpass</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dades d'elevació",
@@ -25,6 +25,7 @@
     "map-tiles": "Tessel·les del mapa",
     "nominatim": "Cerca per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Crèdits"
   },
   "export": {
@@ -70,22 +71,27 @@
   "layers": {
     "add-base": "Afegeix una capa base",
     "add-overlay": "Afegeix superposició",
+    "add-overpass": "Add overpass query",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Custom layer name",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Personalitza les capes",
     "opacity-slider": "Control lliscant de l'opacitat",
-    "placeholder-layer-name": "Nom de la capa personalitzada. (eg: OpenStreetMap)",
-    "placeholder-layer-url": "URL de la capa personalitzada. (eg: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Running Overpass API query ...",
     "remove-selection": "Elimina la selecció"
   },
   "loadNogos": {
     "defaultProperties": "Propietats per defecte",
-    "file": "Fitxer (.geojson):",
+    "file": "File (.geojson)",
     "load": "Carrega",
-    "nogoBuffer": "Zona d'influència de les àrees omeses (en metres):",
-    "nogoRadius": "Radi de les àrees omeses per punts (en metres)",
-    "nogoWeight": "Pes de les àrees omeses (-1 vol dir inaccessible)",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Font",
     "title": "Carrega les àrees omeses",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "Contribuidors de l'OpenStreetMap",
@@ -152,8 +158,7 @@
     "zoomOutTitle": "Allunya"
   },
   "modal": {
-    "close": "Tanca"
-  },
+    "close": "Tanca"},
   "navbar": {
     "about": "Quant a",
     "alternative": {
@@ -167,7 +172,7 @@
     "load": {
       "nogos": "Carrega les àrees omeses",
       "title": "Carrega",
-      "tooltip": "{{tracksAction}} (tecla {{tracksKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} (tecla {{tracksKey}})\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Carrega traces"
     },
     "profile": {
@@ -230,6 +235,7 @@
         "europe": "Europa",
         "europe-monolingual": "Europa monolingüe",
         "overlays": "Superposicions",
+        "overpass": "Locations (POIs)",
         "worldwide": "Arreu del món",
         "worldwide-international": "Arreu del món internacional",
         "worldwide-monolingual": "Arreu del món monolígüe"
@@ -243,12 +249,13 @@
       "overlay-opacity": "Transparència de la superposició",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Query",
         "empty": "Encara no hi ha cap capa personalitzada configurada.",
         "name": "Nom",
         "type": "Tipus",
         "type_layer": "Layer",
-        "type_overlay": "Overlay"
+        "type_overlay": "Overlay",
+        "type_overpass_query": "Overpass Query"
       },
       "title": "Capes",
       "tooltip": "Seleccioneu capes"
@@ -266,10 +273,11 @@
   },
   "title": "Client web de BRouter",
   "trackasroute": {
+    "browse": "Browse",
     "explainpoi": "(mostra les fites com a PDI)",
     "explaintracklayer": "(mostra traces com a capa separada)",
     "file": "Fitxer de traça",
-    "fuzziness": "grau d'aproximació",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Espereu si us plau.",
     "showpois": "PDI",
     "title": "Carrega una traça com a ruta",

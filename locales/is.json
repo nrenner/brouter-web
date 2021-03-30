@@ -15,7 +15,7 @@
     "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Hæðargögn",
@@ -25,6 +25,7 @@
     "map-tiles": "Kortatíglar",
     "nominatim": "Leita eftir <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap þátttakendur</a> með <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
   "export": {
@@ -70,22 +71,27 @@
   "layers": {
     "add-base": "Bæta við grunnlagi",
     "add-overlay": "Bæta við þekjulagi",
+    "add-overpass": "Add overpass query",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Custom layer name",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Sérsníða lög",
     "opacity-slider": "Ógegnsæissleði",
-    "placeholder-layer-name": "Heiti sérsniðins lags. (t.d: OpenStreetMap)",
-    "placeholder-layer-url": "URL-slóð sérsniðins lags. (t.d: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Running Overpass API query ...",
     "remove-selection": "Fjarlægja valið"
   },
   "loadNogos": {
     "defaultProperties": "Sjálfgefnir eiginleikar",
-    "file": "Skrá (.geojson): ",
+    "file": "File (.geojson)",
     "load": "Hlaða",
-    "nogoBuffer": "Útjaðar bannsvæða (í metrum):",
-    "nogoRadius": "Radíus bannsvæða í kringum punkt (í metrum):",
-    "nogoWeight": "Mikilvægi bannsvæðis (-1 þýðir ófært): ",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Uppruni",
     "title": "Hlaða inn bannsvæðum",
-    "url": "Slóð:"
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap þátttakendurnir",
@@ -152,8 +158,7 @@
     "zoomOutTitle": "Renna frá"
   },
   "modal": {
-    "close": "Loka"
-  },
+    "close": "Loka"},
   "navbar": {
     "about": "Um hugbúnaðinn",
     "alternative": {
@@ -167,7 +172,7 @@
     "load": {
       "nogos": "Hlaða inn bannsvæðum",
       "title": "Hlaða",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
     },
     "profile": {
@@ -230,6 +235,7 @@
         "europe": "Evrópa",
         "europe-monolingual": "Eitt tungumál í Evrópu",
         "overlays": "Þekjulög (yfirlög)",
+        "overpass": "Locations (POIs)",
         "worldwide": "Á heimsvísu",
         "worldwide-international": "Alþjóðlegt á heimsvísu",
         "worldwide-monolingual": "Eitt tungumál á heimsvísu"
@@ -243,12 +249,13 @@
       "overlay-opacity": "Gegnsæi þekjulags",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
-        "URL": "Slóð",
+        "URL": "URL/Query",
         "empty": "Ekkert sérsniðið lag ennþá uppsett.",
         "name": "Nafn",
         "type": "Tegund",
         "type_layer": "Layer",
-        "type_overlay": "Overlay"
+        "type_overlay": "Overlay",
+        "type_overpass_query": "Overpass Query"
       },
       "title": "Lög",
       "tooltip": "Select layers"
@@ -266,10 +273,11 @@
   },
   "title": "BRouter vefforrit",
   "trackasroute": {
+    "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
-    "fuzziness": "fuzziness",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Please wait!",
     "showpois": "POI's",
     "title": "Load Track as Route",

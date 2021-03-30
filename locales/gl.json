@@ -15,7 +15,7 @@
     "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Elevation data",
@@ -25,6 +25,7 @@
     "map-tiles": "Map tiles",
     "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
   "export": {
@@ -70,22 +71,27 @@
   "layers": {
     "add-base": "Add base layer",
     "add-overlay": "Add overlay",
+    "add-overpass": "Add overpass query",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Custom layer name",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
-    "placeholder-layer-name": "Custom layer name. (ex: OpenStreetMap)",
-    "placeholder-layer-url": "Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Running Overpass API query ...",
     "remove-selection": "Remove selection"
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File (.geojson): ",
+    "file": "File (.geojson)",
     "load": "Load",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go weight (-1 means impassable): ",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Source",
     "title": "Load no-go areas",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap contributors",
@@ -152,8 +158,7 @@
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"
-  },
+    "close": "Close"},
   "navbar": {
     "about": "About",
     "alternative": {
@@ -167,7 +172,7 @@
     "load": {
       "nogos": "Load no-go areas",
       "title": "Load",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
     },
     "profile": {
@@ -230,6 +235,7 @@
         "europe": "Europe",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
+        "overpass": "Locations (POIs)",
         "worldwide": "Worldwide",
         "worldwide-international": "Worldwide international",
         "worldwide-monolingual": "Worldwide monolingual"
@@ -243,12 +249,13 @@
       "overlay-opacity": "Overlay transparency",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Query",
         "empty": "No custom layer configured yet.",
         "name": "Name",
         "type": "Type",
         "type_layer": "Layer",
-        "type_overlay": "Overlay"
+        "type_overlay": "Overlay",
+        "type_overpass_query": "Overpass Query"
       },
       "title": "Layers",
       "tooltip": "Select layers"
@@ -266,10 +273,11 @@
   },
   "title": "BRouter web client",
   "trackasroute": {
+    "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
-    "fuzziness": "fuzziness",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Please wait!",
     "showpois": "POI's",
     "title": "Load Track as Route",

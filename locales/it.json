@@ -15,7 +15,7 @@
     "tooltip": "Mostra più informazioni su BRouter-Web"
   },
   "credits": {
-    "boundaries": "Limiti amministrativi: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Limiti amministrativi: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dati d'elevazione",
@@ -25,6 +25,7 @@
     "map-tiles": "Sezioni di mappa",
     "nominatim": "Ricerca con <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> in <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Posizioni (PDI): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
   "export": {
@@ -55,7 +56,7 @@
     "mean-cost-factor": "fattore di costo medio",
     "meter": "metri",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "Nessuna elevazione disponibile per questo tragitto.",
     "plain-ascend": "Salita leggera",
     "stats-info": "Crea un percorso per ottenere statistiche",
     "total-energy": "Energia totale",
@@ -70,22 +71,27 @@
   "layers": {
     "add-base": "Aggungi mappa di base",
     "add-overlay": "Aggungi sovvraposizione",
+    "add-overpass": "Aggiungi richiesta overpass",
+    "custom-layer-name-helptext": "ad es.: OpenStreetMap",
+    "custom-layer-name-label": "nome livello personalizzato",
+    "custom-layer-url-helptext-normal": "URL per livelli normali, ad es.: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Richiesta Overpass, ad es.: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Livello URL/Richiesta personalizzato",
     "customize": "Personalizza i layer",
     "opacity-slider": "Barra di scorrimento per l'opacità",
-    "placeholder-layer-name": "Nome del layer personalizzato. (es: OpenStreetMap)",
-    "placeholder-layer-url": "URL del layer personalizzato. (es: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Esecuzione della richiesta alle API Overpass…",
     "remove-selection": "Annulla selezione"
   },
   "loadNogos": {
     "defaultProperties": "Proprietà di default",
-    "file": "File (.geojson): ",
+    "file": "File (.geojson)",
     "load": "Carica",
-    "nogoBuffer": "Tampone delle zone no-go (in metri):",
-    "nogoRadius": "Raggio no-go per punti (in metri):",
-    "nogoWeight": "Peso no-go (-1 significa intransitabile)",
+    "nogoBuffer": "Cuscinetto delle aree vietate (in metri)",
+    "nogoRadius": "Raggio vietato per i punti (in metri)",
+    "nogoWeight": "Peso vietato (-1 significa impraticabile)",
     "source": "Fonte",
     "title": "Carica zone no-go",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "Contributori OpenStreetMap",
@@ -143,8 +149,8 @@
     "route-quality-cost": "Codificazione costo",
     "route-quality-incline": "Codificazione pendenza",
     "route-quality-shortcut": "{{action}} (tasto {{key}} per dis-/attivare)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
-    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
+    "route-tooltip-segment": "Trascina per creare un nuovo waypoint",
+    "route-tooltip-waypoint": "Waypoint. Trascina per spostarlo. Clicca per rimuoverlo.",
     "strava-biking": "Visualizza segmenti Strava bici",
     "strava-running": "Visualizza segmenti Strava corsa",
     "strava-shortcut": "{{action}}\n(tasto {{key}} per dis-/attivare layer, clicca per ricarichare la zona in vista)",
@@ -152,8 +158,7 @@
     "zoomOutTitle": "Zoom indietro"
   },
   "modal": {
-    "close": "Chiudi"
-  },
+    "close": "Chiudi"},
   "navbar": {
     "about": "A proposito",
     "alternative": {
@@ -167,7 +172,7 @@
     "load": {
       "nogos": "Carica zone no-go",
       "title": "Carica",
-      "tooltip": "{{tracksAction}} (tasto {{tracksKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} (tasto {{tracksKey}})\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Carica traccie"
     },
     "profile": {
@@ -230,6 +235,7 @@
         "europe": "Europa",
         "europe-monolingual": "Europa monolingua",
         "overlays": "Sovvraposizioni",
+        "overpass": "Posizioni (PDI)",
         "worldwide": "Mondiale",
         "worldwide-international": "Mondiale internazionale",
         "worldwide-monolingual": "Mondiale monolingua"
@@ -241,14 +247,15 @@
       "optional": "Aggiungi o rimuovi layer opzionali",
       "optional-layers": "Più",
       "overlay-opacity": "Trasparenza sovvraposizione",
-      "overlay-opacity_plural": "Overlays transparency",
+      "overlay-opacity_plural": "Trasparenza delle sovrapposizioni",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Richiesta",
         "empty": "Nessun layer personalizzato definito finora.",
         "name": "Nome",
         "type": "Tipo",
-        "type_layer": "Layer",
-        "type_overlay": "Overlay"
+        "type_layer": "Livello",
+        "type_overlay": "Sovrapposizione",
+        "type_overpass_query": "Richiesta Overpass"
       },
       "title": "Layer",
       "tooltip": "Scegli layer"
@@ -266,10 +273,11 @@
   },
   "title": "BRouter web client",
   "trackasroute": {
+    "browse": "Sfoglia",
     "explainpoi": "(visualizza waypoints come POI's)",
     "explaintracklayer": "(visualizza traccia come layer distinto)",
     "file": "File traccia",
-    "fuzziness": "sfocatura",
+    "fuzziness": "Sfocatura",
     "pleasewait": "Attendere prego!",
     "showpois": "POI",
     "title": "Carica traccia come percorso",
@@ -286,10 +294,10 @@
     "strava-error": "Errore nel recupero dei segmenti Strava: {{error}}",
     "temporary-profile": "<strong>Nota:</strong> Profili personalizzati carichati si trovano solo temporaneamente nel cache del server. <br/>Si prega di salvare le modificazioni localmente sul suo PC.",
     "tracks-load-error": "Errore caricando traccie: {{error}}",
-    "upload-error": "Upload error: {{error}}"
+    "upload-error": "Errore di caricamento: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Dalla tua ultima visita è stata rilasciata una nuova versione. Clicca <a href='.' data-toggle='modal' data-target='#whatsnew'>qua</a> per sapere cosa è cambiato!",
+    "title": "Novità"
   }
 }
