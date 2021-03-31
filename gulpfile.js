@@ -287,9 +287,16 @@ gulp.task('bump:json', function () {
 gulp.task('bump:html', function () {
     return gulp
         .src('./index.html')
-        .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + pkg.version + '</sup>'))
+        .pipe(
+            replace(
+                /<sup class="version">(.*)<\/sup>/,
+                '<sup class="version">' + (nextVersion || pkg.version) + '</sup>'
+            )
+        )
         .pipe(gulp.dest('.'));
 });
+
+gulp.task('bump', gulp.series('bump:json', 'bump:html'));
 
 gulp.task('release:commit', function () {
     return gulp.src(['./index.html', './package.json']).pipe(git.commit('release: ' + nextVersion));
@@ -469,7 +476,7 @@ gulp.task(
     'release',
     gulp.series(
         'release:init',
-        'bump:json',
+        'bump',
         'release:commit',
         'release:tag',
         'release:push',
