@@ -82,9 +82,10 @@ BR.Export = L.Class.extend({
                 const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
                 const transportMode = this.profile.getTransportMode();
                 return BR.Gpx.format(track, turnInstructionMode, transportMode);
+            case 'kml':
+                return BR.Kml.format(track);
             case 'geojson':
                 return JSON.stringify(track, null, 2);
-            case 'kml':
             default:
                 break;
         }
