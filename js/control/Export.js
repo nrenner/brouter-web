@@ -15,7 +15,8 @@ BR.Export = L.Class.extend({
         var trackname = (this.trackname = document.getElementById('trackname'));
         this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
 
-        if (this.tracknameAllowedChars) {
+        // a.download attribute automatically replaces invalid characters
+        if (!BR.Browser.download && this.tracknameAllowedChars) {
             this.tracknameMessage = document.getElementById('trackname-message');
             var patternRegex = new RegExp('[' + this.tracknameAllowedChars + ']+');
 
@@ -52,19 +53,33 @@ BR.Export = L.Class.extend({
 
         e.preventDefault();
 
-        if (true) {
-            var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, nameUri, includeWaypoints);
-
-            // var evt = document.createEvent('MouseEvents');
-            // evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            // var link = document.createElement('a');
-            // link.href = uri;
-            // link.dispatchEvent(evt);
-            //} else {
-
+        if (BR.Browser.download) {
             const track = this._formatTrack(format, name, includeWaypoints);
-            console.log('track: ', track);
-            BR.Diff.diff(uri, track, format);
+
+            const mimeTypeMap = {
+                gpx: 'application/gpx+xml',
+                kml: 'application/vnd.google-earth.kml+xml',
+                geojson: 'application/vnd.geo+json',
+                csv: 'text/tab-separated-values',
+            };
+
+            const mimeType = mimeTypeMap[format];
+
+            const blob = new Blob([track], {
+                type: mimeType + ';charset=utf-8',
+            });
+            const objectUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = objectUrl;
+            link.download = (name || 'brouter') + '.' + format;
+            link.click();
+        } else {
+            var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, nameUri, includeWaypoints);
+            var evt = document.createEvent('MouseEvents');
+            evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            var link = document.createElement('a');
+            link.href = uri;
+            link.dispatchEvent(evt);
         }
     },
 
@@ -134,7 +149,6 @@ BR.Export = L.Class.extend({
     },
 
     _generateTrackname: function () {
-        return; // TODO remove
         var trackname = this.trackname;
         this._getCityAtPosition(
             this.latLngs[0],
@@ -143,7 +157,7 @@ BR.Export = L.Class.extend({
                     this.latLngs[this.latLngs.length - 1],
                     L.bind(function (to) {
                         var distance = document.getElementById('distance').innerHTML;
-                        if (this.tracknameAllowedChars) {
+                        if (!BR.Browser.download && this.tracknameAllowedChars) {
                             distance = distance.replace(',', '.'); // temp. fix (#202)
                         }
                         if (!from || !to) {
@@ -161,7 +175,7 @@ BR.Export = L.Class.extend({
                             });
                         }
 
-                        if (this.tracknameAllowedChars) {
+                        if (!BR.Browser.download && this.tracknameAllowedChars) {
                             // temp. fix: replace and remove characters that will get removed by server quick fix (#194)
                             trackname.value = trackname.value.replace(/[>)]/g, '').replace(/ \(/g, ' - ');
                             this._validationMessage();

@@ -22,5 +22,6 @@
         touchScreen: touchScreen,
         touchScreenDetectable: touchScreenDetectable,
         touch: touch,
+        download: 'Blob' in window && 'createObjectURL' in URL && 'download' in document.createElement('a'),
     };
 })();

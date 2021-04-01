@@ -3,6 +3,7 @@ BR.conf = {};
 $ = require('jquery');
 require('leaflet');
 turf = require('@turf/turf');
+require('../../js/Browser.js');
 require('../../js/control/Export.js');
 const fs = require('fs');
 

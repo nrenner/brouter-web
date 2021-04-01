@@ -3,6 +3,7 @@ BR.version = '1.5.1';
 turf = require('@turf/turf');
 togpx = require('togpx');
 require('leaflet');
+require('../../js/Browser.js');
 require('../../js/format/VoiceHints.js');
 require('../../js/format/Xml.js');
 require('../../js/format/Gpx.js');
