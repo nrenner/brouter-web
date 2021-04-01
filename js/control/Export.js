@@ -86,6 +86,8 @@ BR.Export = L.Class.extend({
                 return BR.Kml.format(track);
             case 'geojson':
                 return JSON.stringify(track, null, 2);
+            case 'csv':
+                return BR.Csv.format(track);
             default:
                 break;
         }
