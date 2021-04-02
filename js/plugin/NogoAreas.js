@@ -98,6 +98,8 @@ BR.NogoAreas = L.Control.extend({
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
+        L.DomUtil.get('nogoFile').onchange = L.bind(this.onFileChanged, this);
+
         this.editTools.on(
             'editable:drawing:end',
             function (e) {
@@ -168,6 +170,11 @@ BR.NogoAreas = L.Control.extend({
     displayUploadError: function (message) {
         $('#nogoError').text(message ? message : '');
         $('#nogoError').css('display', message ? 'block' : 'none');
+    },
+
+    onFileChanged: function (e) {
+        if (!e.target.files[0]) return;
+        $(e.target).next('label').text(e.target.files[0].name);
     },
 
     uploadNogos: function () {

@@ -191,7 +191,8 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 }.bind(this)
             );
 
-            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function () {
+            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function (e) {
+                e.preventDefault(); // prevent page reload on form submission
                 this._closeCanceled = false;
                 this.onBusyChanged(true);
                 if (this._testLayer.getLayers().length > 0) {

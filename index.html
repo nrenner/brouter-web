@@ -427,7 +427,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form name="export">
+                        <form name="export" id="exportForm">
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-2" data-i18n="export.trackname">Name</label>
                                 <div class="col-sm-10">
@@ -519,7 +519,7 @@
                             type="submit"
                             class="btn btn-primary"
                             data-i18n="export.title"
-                            form="export"
+                            form="exportForm"
                             id="submitExport"
                         >
                             Export route
@@ -680,7 +680,7 @@
                             Close
                         </button>
                         <button
-                            type="button"
+                            type="submit"
                             class="btn btn-primary"
                             form="loadedittrackForm"
                             data-i18n="trackasroute.title"
@@ -712,7 +712,7 @@
                     </div>
                     <div class="modal-body">
                         <p id="nogoError" class="invalid-feedback" style="display: none"></p>
-                        <form name="loadNogosForm">
+                        <form name="loadNogosForm" id="loadNogosForm">
                             <fieldset>
                                 <legend data-i18n="loadNogos.source">Source</legend>
                                 <div>
@@ -727,10 +727,7 @@
                                     </div>
                                     <p data-i18n="modal.or">or</p>
                                     <div class="form-group row">
-                                        <label
-                                            class="col-form-label col-sm-3"
-                                            for="loadNogosFile"
-                                            data-i18n="loadNogos.file"
+                                        <label class="col-form-label col-sm-3" for="nogoFile" data-i18n="loadNogos.file"
                                             >File (.geojson)</label
                                         >
                                         <div class="col-sm-9">
@@ -738,12 +735,12 @@
                                                 <input
                                                     type="file"
                                                     accept=".geojson"
-                                                    name="loadNogosFile"
-                                                    id="loadNogosFile"
+                                                    name="nogoFile"
+                                                    id="nogoFile"
                                                     class="custom-file-input"
                                                 />
                                                 <label
-                                                    for="loadNogosFile"
+                                                    for="nogoFile"
                                                     class="custom-file-label"
                                                     data-i18n="[data-browse]trackasroute.browse"
                                                     style="
@@ -803,7 +800,7 @@
                         </button>
 
                         <button
-                            type="button"
+                            type="submit"
                             class="btn btn-primary"
                             form="loadNogosForm"
                             data-i18n="loadNogos.load"
