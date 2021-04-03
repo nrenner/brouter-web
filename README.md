@@ -132,3 +132,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-present, Facebook, Inc.; [MIT License](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/LICENSE)
 -   [overpass-layer](https://github.com/plepe/overpass-layer)
     Copyright (c) 2020 Stephan Bösch-Plepelits; [MIT License](https://github.com/plepe/overpass-layer/blob/master/LICENSE)
+-   [maki](https://github.com/mapbox/maki)
+    [CC0-1.0 License](https://github.com/mapbox/maki/blob/master/LICENSE.txt)
+-   [temaki](https://github.com/ideditor/temaki)
+    [CC0-1.0 License](https://github.com/ideditor/temaki/blob/main/LICENSE.md)
