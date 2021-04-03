@@ -206,8 +206,13 @@ BR.LayersConfig = L.Class.extend({
                     markerSign,
                     style: function (overpassObject) {
                         return {
-                            nodeFeature: 'Marker',
-                            color: this.defaultBaseLayers?.[0] === 'cyclosm' ? 'darkorange' : '#3388ff',
+                            // nodeFeature: 'Marker' isn't currently working well, hence use transparent circle color for nodes
+                            color:
+                                overpassObject.type === 'node'
+                                    ? '#00000000'
+                                    : this.defaultBaseLayers?.[0] === 'cyclosm'
+                                    ? 'darkorange'
+                                    : '#3388ff',
                         };
                     }.bind(this),
                 },
