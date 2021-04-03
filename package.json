@@ -36,6 +36,7 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
+        "@ideditor/temaki": "^5.0.0",
         "@mapbox/maki": "^6.2.0",
         "@mapbox/polyline": "^0.2.0",
         "@mapbox/togeojson": "^0.16.0",
@@ -313,6 +314,30 @@
                 "icons/star-11.svg",
                 "icons/toilet-11.svg",
                 "icons/water-11.svg"
+            ]
+        },
+        "@ideditor/temaki": {
+            "main": [
+                "icons/bench.svg",
+                "icons/shower.svg",
+                "icons/bicycle_rental.svg",
+                "icons/bicycle_repair.svg",
+                "icons/boat_rental.svg",
+                "icons/bus.svg",
+                "icons/sign_and_car.svg",
+                "icons/car_wash.svg",
+                "icons/ferry.svg",
+                "icons/car_parked.svg",
+                "icons/parking_space.svg",
+                "icons/bottles.svg",
+                "icons/cleaver.svg",
+                "icons/coffee.svg",
+                "icons/camper_trailer.svg",
+                "icons/cabin.svg",
+                "icons/bunk_beds.svg",
+                "icons/museum.svg",
+                "icons/spotting_scope.svg",
+                "icons/cabin.svg"
             ]
         }
     }

@@ -188,6 +188,8 @@ BR.LayersConfig = L.Class.extend({
 
         if (icon && icon.startsWith('maki-')) {
             markerSign = `<img class="icon-invert" src="dist/images/${icon.substr(5)}-11.svg" />`;
+        } else if (icon && icon.startsWith('temaki-')) {
+            markerSign = `<img class="icon-invert" src="dist/images/${icon.substr(7)}.svg" width="11" />`;
         }
 
         return Object.assign(

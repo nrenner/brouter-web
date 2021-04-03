@@ -884,6 +884,11 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
+"@ideditor/temaki@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@ideditor/temaki/-/temaki-5.0.0.tgz#8351b3c47de59e9b98396c2cca49bc3dc2049e0a"
+  integrity sha512-doBSdSEr03uGx+hpe14ELxUkCoJexjwZ4/bPyMaBJjMHXlb8lKtCr7oG7YZTZsuzcFZCYGxfCTQsgpoO42vZnQ==
+
 "@mapbox/geojson-area@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
