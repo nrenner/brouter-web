@@ -5,6 +5,7 @@
     "id": "car_rental",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-car-rental",
     "query": "nwr[amenity=car_rental];"
   },
   "type": "Feature"

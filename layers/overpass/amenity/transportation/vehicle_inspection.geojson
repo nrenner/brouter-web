@@ -5,6 +5,7 @@
     "id": "vehicle_inspection",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-car",
     "query": "nwr[amenity=vehicle_inspection];"
   },
   "type": "Feature"

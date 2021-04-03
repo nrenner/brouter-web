@@ -5,6 +5,7 @@
     "id": "bbq",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-bbq",
     "query": "nwr[amenity=bbq];"
   },
   "type": "Feature"

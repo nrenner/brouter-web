@@ -5,6 +5,7 @@
     "id": "caravan_site",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-camper_trailer",
     "query": "nwr[tourism=caravan_site];"
   },
   "type": "Feature"

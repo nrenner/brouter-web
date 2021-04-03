@@ -5,6 +5,7 @@
     "id": "cheese",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "fas-cheese",
     "query": "nwr[shop=cheese];"
   },
   "type": "Feature"

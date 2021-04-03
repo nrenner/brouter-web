@@ -5,6 +5,7 @@
     "id": "gallery",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-art-gallery",
     "query": "nwr[tourism=gallery];"
   },
   "type": "Feature"

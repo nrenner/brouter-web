@@ -5,6 +5,7 @@
     "id": "bus_station",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-bus",
     "query": "nwr[amenity=bus_station];"
   },
   "type": "Feature"

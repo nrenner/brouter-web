@@ -5,6 +5,7 @@
     "id": "shower",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-shower",
     "query": "nwr[amenity=shower];"
   },
   "type": "Feature"

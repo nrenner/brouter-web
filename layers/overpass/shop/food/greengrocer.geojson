@@ -5,6 +5,7 @@
     "id": "greengrocer",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "fas-carrot",
     "query": "nwr[shop=greengrocer];"
   },
   "type": "Feature"

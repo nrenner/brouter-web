@@ -5,6 +5,7 @@
     "id": "pub",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-beer",
     "query": "nwr[amenity=pub];"
   },
   "type": "Feature"

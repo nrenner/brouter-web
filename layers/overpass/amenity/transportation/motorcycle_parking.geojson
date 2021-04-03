@@ -5,6 +5,7 @@
     "id": "motorcycle_parking",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "fas-motorcycle",
     "query": "nwr[amenity=motorcycle_parking];"
   },
   "type": "Feature"

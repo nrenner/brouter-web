@@ -5,6 +5,7 @@
     "id": "bicycle_rental",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-bicycle_rental",
     "query": "nwr[amenity=bicycle_rental];"
   },
   "type": "Feature"
