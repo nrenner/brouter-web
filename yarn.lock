@@ -901,6 +901,11 @@
     minimist "1.2.0"
     sharkdown "^0.1.0"
 
+"@mapbox/maki@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-6.2.0.tgz#b61b3e8e7fc7637493e511ac40de0eea62cd1f8b"
+  integrity sha512-iFIRNT3ZpTOw69p2BFFOmQppujpav2PQTLPyL4+bZ5ZIUfdyB5Qtw45CTfPqzzHpP2AZGjEDbSNhGDRcG9/2fw==
+
 "@mapbox/polyline@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@mapbox/polyline/-/polyline-0.2.0.tgz#6e25980744aa22331f94b645a542c02d3fcfee97"
