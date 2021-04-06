@@ -5,6 +5,7 @@
     "id": "parking_space",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-parking_space",
     "query": "nwr[amenity=parking_space];"
   },
   "type": "Feature"

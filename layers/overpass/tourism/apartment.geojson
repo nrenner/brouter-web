@@ -5,6 +5,7 @@
     "id": "apartment",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-lodging",
     "query": "nwr[tourism=apartment];"
   },
   "type": "Feature"

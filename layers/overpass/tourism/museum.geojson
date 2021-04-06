@@ -5,6 +5,7 @@
     "id": "museum",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-museum",
     "query": "nwr[tourism=museum];"
   },
   "type": "Feature"

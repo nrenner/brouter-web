@@ -5,6 +5,7 @@
     "id": "ice_cream",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "fas-ice-cream",
     "query": "nwr[amenity=ice_cream];"
   },
   "type": "Feature"

@@ -5,6 +5,7 @@
     "id": "cafe",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-cafe",
     "query": "nwr[amenity=cafe];"
   },
   "type": "Feature"

@@ -5,6 +5,7 @@
     "id": "drinking_water",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-drinking-water",
     "query": "nwr[amenity=drinking_water];"
   },
   "type": "Feature"

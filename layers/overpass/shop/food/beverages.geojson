@@ -5,6 +5,7 @@
     "id": "beverages",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-bottles",
     "query": "nwr[shop=beverages];"
   },
   "type": "Feature"

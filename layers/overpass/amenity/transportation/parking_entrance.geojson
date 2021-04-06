@@ -5,6 +5,7 @@
     "id": "parking_entrance",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-entrance-alt1",
     "query": "nwr[amenity=parking_entrance];"
   },
   "type": "Feature"

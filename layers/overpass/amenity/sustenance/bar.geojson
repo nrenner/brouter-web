@@ -5,6 +5,7 @@
     "id": "bar",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-bar",
     "query": "nwr[amenity=bar];"
   },
   "type": "Feature"

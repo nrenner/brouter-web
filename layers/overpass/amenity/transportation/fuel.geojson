@@ -5,6 +5,7 @@
     "id": "fuel",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-fuel",
     "query": "nwr[amenity=fuel];"
   },
   "type": "Feature"

@@ -5,6 +5,7 @@
     "id": "car_wash",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-car_wash",
     "query": "nwr[amenity=car_wash];"
   },
   "type": "Feature"

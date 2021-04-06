@@ -5,6 +5,7 @@
     "id": "bank",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-bank",
     "query": "nwr[amenity=bank];"
   },
   "type": "Feature"

@@ -5,6 +5,7 @@
     "id": "coffee",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "temaki-coffee",
     "query": "nwr[shop=coffee];"
   },
   "type": "Feature"

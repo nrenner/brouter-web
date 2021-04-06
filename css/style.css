@@ -54,6 +54,23 @@ table.dataTable {
     vertical-align: top;
 }
 
+.overpass-layer-icon .sign > * {
+    position: absolute;
+    top: -34px;
+    margin: auto;
+    display: inline-block;
+    font-size: 11px;
+}
+
+.overpass-layer-icon .icon-white {
+    color: white;
+}
+
+.overpass-layer-icon .icon-invert {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+
 /* wrap toolbar controls */
 .leaflet-top.leaflet-left {
     bottom: 0;

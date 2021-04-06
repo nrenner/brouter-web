@@ -5,6 +5,7 @@
     "id": "food_court",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-restaurant",
     "query": "nwr[amenity=food_court];"
   },
   "type": "Feature"

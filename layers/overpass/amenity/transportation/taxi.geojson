@@ -5,6 +5,7 @@
     "id": "taxi",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "fas-taxi",
     "query": "nwr[amenity=taxi];"
   },
   "type": "Feature"

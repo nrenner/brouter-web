@@ -5,6 +5,7 @@
     "id": "shelter",
     "overlay": true,
     "dataSource": "OverpassAPI",
+    "icon": "maki-shelter",
     "query": "nwr[amenity=shelter];"
   },
   "type": "Feature"
