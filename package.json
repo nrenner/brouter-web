@@ -36,6 +36,7 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
+        "@fortawesome/fontawesome-free": "^5.15.3",
         "@ideditor/temaki": "^5.0.0",
         "@mapbox/maki": "^6.2.0",
         "@mapbox/polyline": "^0.2.0",
@@ -338,6 +339,21 @@
                 "icons/museum.svg",
                 "icons/spotting_scope.svg",
                 "icons/cabin.svg"
+            ]
+        },
+        "@fortawesome/fontawesome-free": {
+            "main": [
+                "svgs/solid/shopping-basket.svg",
+                "svgs/solid/ice-cream.svg",
+                "svgs/solid/carrot.svg",
+                "svgs/solid/cheese.svg",
+                "svgs/solid/concierge-bell.svg",
+                "svgs/solid/motorcycle.svg",
+                "svgs/solid/charging-station.svg",
+                "svgs/solid/box.svg",
+                "svgs/solid/taxi.svg",
+                "svgs/solid/phone-alt.svg",
+                "svgs/solid/beer.svg"
             ]
         }
     }
