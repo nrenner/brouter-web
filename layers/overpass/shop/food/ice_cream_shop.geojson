@@ -2,7 +2,7 @@
   "geometry": null,
   "properties": {
     "name": "Ice cream",
-    "id": "ice_cream",
+    "id": "ice_cream_shop",
     "overlay": true,
     "dataSource": "OverpassAPI",
     "icon": "fas-ice-cream",

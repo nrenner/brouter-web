@@ -144,7 +144,7 @@ BR.confLayers.tree = {
                 'convenience',
                 'greengrocer',
                 'health_food',
-                'ice_cream',
+                'ice_cream_shop',
                 'organic',
             ]
         },
