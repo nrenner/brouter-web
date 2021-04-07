@@ -170,7 +170,7 @@ BR.LayersTab = BR.ControlLayers.extend({
                 core: {
                     multiple: false,
                     themes: {
-                        icons: false,
+                        icons: true,
                         dots: false,
                     },
                     data: treeData,
@@ -188,6 +188,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         function createRootNode(name) {
             var rootNode = {
                 text: i18next.t('sidebar.layers.category.' + name, name),
+                icon: false,
                 state: {
                     disabled: true,
                 },
@@ -218,6 +219,7 @@ BR.LayersTab = BR.ControlLayers.extend({
                 childNode = {
                     id: id,
                     text: getText(props, parent),
+                    icon: self.layersConfig.getOverpassIconUrl(props.icon) || false,
                     state: {
                         checked: self.layersConfig.isDefaultLayer(id, props.overlay),
                     },

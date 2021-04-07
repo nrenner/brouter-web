@@ -71,6 +71,11 @@ table.dataTable {
     filter: invert(1);
 }
 
+.jstree-themeicon-custom {
+    background-size: 11px !important;
+    width: 15px !important;
+}
+
 /* wrap toolbar controls */
 .leaflet-top.leaflet-left {
     bottom: 0;

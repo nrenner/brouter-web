@@ -183,15 +183,25 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
+    getOverpassIconUrl: function (icon) {
+        const iconPrefix = /^(maki|temaki|fas)-/;
+        let iconUrl = null;
+
+        if (icon && iconPrefix.test(icon)) {
+            const iconName = icon.replace(iconPrefix, '');
+            const postfix = icon.startsWith('maki-') ? '-11' : '';
+            iconUrl = `dist/images/${iconName}${postfix}.svg`;
+        }
+
+        return iconUrl;
+    },
+
     createOverpassLayer: function (query, icon) {
         let markerSign = '<i class="fa fa-search icon-white" style="width: 25px;"></i>';
 
-        if (icon && icon.startsWith('maki-')) {
-            markerSign = `<img class="icon-invert" src="dist/images/${icon.substr(5)}-11.svg" />`;
-        } else if (icon && icon.startsWith('temaki-')) {
-            markerSign = `<img class="icon-invert" src="dist/images/${icon.substr(7)}.svg" width="11" />`;
-        } else if (icon && icon.startsWith('fas-')) {
-            markerSign = `<img class="icon-invert" src="dist/images/${icon.substr(4)}.svg" width="11" />`;
+        const iconUrl = this.getOverpassIconUrl(icon);
+        if (iconUrl) {
+            markerSign = `<img class="icon-invert" src="${iconUrl}" width="11" />`;
         }
 
         return Object.assign(
