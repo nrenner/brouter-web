@@ -1,3 +1,4 @@
+// derived from BRouter btools.router.OsmTrack.formatAsGpx
 BR.Gpx = {
     format: function (geoJson, turnInstructionMode = 0, transportMode = 'bike') {
         if (!geoJson?.features) return '';
@@ -72,7 +73,6 @@ BR.Gpx = {
         comment += ' plain-ascend = ' + props['plain-ascend'];
         comment += ' cost=' + props['cost'];
         if (props['total-energy']) {
-            // TODO 'wh'? (also for stats, see issue),
             // see brouter OsmTrack.getFormattedEnergy
             comment += ' energy=' + (props['total-energy'] / 3600000).toFixed(1) + 'kwh';
         }

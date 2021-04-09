@@ -111,6 +111,7 @@
         }
     }
 
+    // from BRouter btools.router.VoiceHint
     VoiceHints.commands = (function () {
         return {
             1: new Command('C', 1, 1002, 'Straight', 'straight'),

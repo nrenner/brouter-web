@@ -230,7 +230,6 @@ BR.Export._concatTotalTrack = function (segments) {
     let coordinates = [];
     let properties;
 
-    //console.time('_concatTotalTrack');
     for (const [segmentIndex, segment] of segments.entries()) {
         const feature = segment.feature;
         if (!feature) continue;
@@ -284,7 +283,6 @@ BR.Export._concatTotalTrack = function (segments) {
         }
         coordinates = coordinates.concat(featureCoordinates);
     }
-    //console.timeEnd('_concatTotalTrack');
 
     return turf.featureCollection([turf.lineString(coordinates, properties)]);
 };

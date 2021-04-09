@@ -130,3 +130,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-2021 Denis Pushkarev; [MIT License](https://github.com/zloirock/core-js/blob/master/LICENSE)
 -   [regenerator-runtime](https://github.com/facebook/regenerator/tree/master/packages/regenerator-runtime)  
     Copyright (c) 2014-present, Facebook, Inc.; [MIT License](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/LICENSE)
+-   [tokml](https://github.com/mapbox/tokml)  
+    Copyright (c) 2015, Mapbox All rights reserved; [BSD-2-Clause License](https://github.com/mapbox/tokml/blob/master/LICENSE.md)
+-   [Jest](https://github.com/facebook/jest)  
+    Copyright (c) Facebook, Inc. and its affiliates; [MIT License](https://github.com/facebook/jest/blob/master/LICENSE)
