@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Toilets",
+    "id": "toilets",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-toilet",
+    "query": "nwr[amenity=toilets];"
+  },
+  "type": "Feature"
+}

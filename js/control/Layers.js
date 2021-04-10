@@ -5,7 +5,7 @@ BR.Layers = L.Class.extend({
         if (BR.Util.localStorageAvailable()) {
             var layers = JSON.parse(localStorage.getItem('map/customLayers'));
             for (a in layers) {
-                this._addLayer(a, layers[a].layer, layers[a].isOverlay);
+                this._addLayer(a, layers[a].layer, layers[a].isOverlay, layers[a].dataSource);
             }
         }
     },
@@ -13,14 +13,22 @@ BR.Layers = L.Class.extend({
     _loadTable: function () {
         var layersData = [];
         for (layer in this._customLayers) {
-            var isOverlay = this._customLayers[layer].isOverlay;
-            layersData.push([
-                layer,
-                this._customLayers[layer].layer._url,
-                isOverlay
-                    ? i18next.t('sidebar.layers.table.type_overlay')
-                    : i18next.t('sidebar.layers.table.type_layer'),
-            ]);
+            if (this._customLayers[layer].dataSource === 'OverpassAPI') {
+                layersData.push([
+                    layer,
+                    this._customLayers[layer].layer.options.query,
+                    i18next.t('sidebar.layers.table.type_overpass_query'),
+                ]);
+            } else {
+                var isOverlay = this._customLayers[layer].isOverlay;
+                layersData.push([
+                    layer,
+                    this._customLayers[layer].layer._url,
+                    isOverlay
+                        ? i18next.t('sidebar.layers.table.type_overlay')
+                        : i18next.t('sidebar.layers.table.type_layer'),
+                ]);
+            }
         }
         if (this._layersTable != null) {
             this._layersTable.destroy();
@@ -51,6 +59,7 @@ BR.Layers = L.Class.extend({
 
         L.DomUtil.get('custom_layers_add_base').onclick = L.bind(this._addBaseLayer, this);
         L.DomUtil.get('custom_layers_add_overlay').onclick = L.bind(this._addOverlay, this);
+        L.DomUtil.get('custom_layers_add_overpass').onclick = L.bind(this._addOverpassQuery, this);
         L.DomUtil.get('custom_layers_remove').onclick = L.bind(this._remove, this);
 
         this._loadLayers();
@@ -83,10 +92,10 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _addFromInput: function (isOverlay) {
+    _addFromInput: function (isOverlay, dataSource) {
         var layer_name = L.DomUtil.get('layer_name').value;
         var layer_url = L.DomUtil.get('layer_url').value;
-        if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layer_name, layer_url, isOverlay);
+        if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layer_name, layer_url, isOverlay, dataSource);
     },
 
     _addBaseLayer: function (evt) {
@@ -95,18 +104,28 @@ BR.Layers = L.Class.extend({
     _addOverlay: function (evt) {
         this._addFromInput(true);
     },
+    _addOverpassQuery: function (evt) {
+        this._addFromInput(true, 'OverpassAPI');
+    },
 
-    _addLayer: function (layerName, layerUrl, isOverlay) {
+    _addLayer: function (layerName, layerUrl, isOverlay, dataSource) {
         if (layerName in this._layers) return;
 
         if (layerName in this._customLayers) return;
 
         try {
-            var layer = L.tileLayer(layerUrl);
+            var layer;
+
+            if (dataSource === 'OverpassAPI') {
+                layer = this._layersControl.layersConfig.createOverpassLayer(layerUrl);
+            } else {
+                layer = L.tileLayer(layerUrl);
+            }
 
             this._customLayers[layerName] = {
                 layer: layer,
                 isOverlay: isOverlay,
+                dataSource: dataSource,
             };
 
             if (isOverlay) {
@@ -128,6 +147,18 @@ BR.Layers = L.Class.extend({
             localStorage.setItem(
                 'map/customLayers',
                 JSON.stringify(this._customLayers, function (k, v) {
+                    if (v === undefined) {
+                        return undefined;
+                    }
+
+                    if (v.dataSource === 'OverpassAPI') {
+                        return {
+                            dataSource: 'OverpassAPI',
+                            isOverlay: true,
+                            layer: v.layer.options.query,
+                        };
+                    }
+
                     // dont write Leaflet.Layer in localStorage; simply keep the URL
                     return v._url || v;
                 })

@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Car sharing",
+    "id": "car_sharing",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-sign_and_car",
+    "query": "nwr[amenity=car_sharing];"
+  },
+  "type": "Feature"
+}

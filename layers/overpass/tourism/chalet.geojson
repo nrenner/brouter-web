@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Chalet",
+    "id": "chalet",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-cabin",
+    "query": "nwr[tourism=chalet];"
+  },
+  "type": "Feature"
+}

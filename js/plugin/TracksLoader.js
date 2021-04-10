@@ -13,7 +13,7 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
             layerOptions: BR.Track.getGeoJsonOptions(layersControl),
             addToMap: false,
             // File size limit in kb (default: 1024) ?
-            fileSizeLimit: 1024,
+            fileSizeLimit: BR.conf.trackSizeLimit || 1024 * 10,
             shortcut: {
                 open: 79, // char code for 'o'
             },
@@ -61,12 +61,12 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
         },
 
         _keydownListener: function (e) {
-            if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.open) {
-                if (e.shiftKey) {
-                    $('#loadNogos').modal('show');
-                } else {
-                    $('#navbarLoadTracks')[0].click();
-                }
+            if (
+                BR.Util.keyboardShortcutsAllowed(e) &&
+                e.keyCode === this.options.shortcut.open &&
+                false === e.shiftKey
+            ) {
+                $('#navbarLoadTracks')[0].click();
             }
         },
     });

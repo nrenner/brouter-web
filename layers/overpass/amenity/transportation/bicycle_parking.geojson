@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bicycle parking",
+    "id": "bicycle_parking",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-bicycle",
+    "query": "nwr[amenity=bicycle_parking];"
+  },
+  "type": "Feature"
+}

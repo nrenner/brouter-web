@@ -15,6 +15,9 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             simplifyTolerance: -1,
             isTestMode: false,
             simplifyLastKnownGood: 0.001,
+            shortcut: {
+                open: 79, // char code for 'O'; used in conjunction with 'shift'
+            },
         },
 
         setDialogDraggable: function (jqDlgHeader) {
@@ -84,12 +87,14 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             (this._bounds = undefined), (this._trackPoints = []);
             this._currentGeoJSON = {};
             this._options = {
-                ext: 'gpx',
                 showTrackLayer: true,
                 showPointAsPoi: true,
                 simplifyTolerance: -1,
                 isTestMode: false,
                 simplifyLastKnownGood: 0.001,
+                shortcut: {
+                    open: 79, // char code for 'O'; used in conjunction with 'shift'
+                },
             };
         },
 
@@ -156,13 +161,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             if (typeof isBusy === undefined) {
                 isBusy = false;
             }
-            if (isBusy === true) $('#loadedittrackdlg #msg_busy').removeClass('invisible');
-            else $('#loadedittrackdlg #msg_busy').addClass('invisible');
+            if (isBusy === true) $('#loadedittrack #msg_busy').removeClass('invisible');
+            else $('#loadedittrack #msg_busy').addClass('invisible');
         },
 
         onManualCollapse: function (e) {
             //workaround for starting with closed collapse
-            if ($('#loadedittrackdlg').is(':hidden')) return;
+            if ($('#loadedittrack').is(':hidden')) return;
             this._options.isTestMode = $(e.target).hasClass('show');
 
             if (this._options.isTestMode) {
@@ -172,13 +177,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
         },
 
         onAdd: function (map) {
-            $('#loadedittrackdlg').on(
+            $('#loadedittrack').on(
                 'hidden.bs.modal',
                 function (e) {
                     this.cleanup();
                 }.bind(this)
             );
-            $('#loadedittrackdlg').on(
+            $('#loadedittrack').on(
                 'show.bs.modal',
                 function (e) {
                     $('#manual_collapse').collapse('hide');
@@ -186,7 +191,8 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                 }.bind(this)
             );
 
-            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function () {
+            L.DomUtil.get('submitLoadEditTrack').onclick = L.bind(function (e) {
+                e.preventDefault(); // prevent page reload on form submission
                 this._closeCanceled = false;
                 this.onBusyChanged(true);
                 if (this._testLayer.getLayers().length > 0) {
@@ -195,7 +201,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                         function () {
                             this.addRoutingPoints();
                             this.onBusyChanged(false);
-                            $('#loadedittrackdlg').modal('hide');
+                            $('#loadedittrack').modal('hide');
                         }.bind(this),
                         0
                     );
@@ -203,7 +209,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                     setTimeout(
                         function () {
                             this.convertTrackLocal();
-                            $('#loadedittrackdlg').modal('hide');
+                            $('#loadedittrack').modal('hide');
                         }.bind(this),
                         0
                     );
@@ -214,7 +220,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             L.DomUtil.get('loadedittrackFile').onchange = L.bind(this.onFileChanged, this);
             this.onFileChanged({ target: L.DomUtil.get('loadedittrackFile') });
 
-            this.setDialogDraggable($('#loadedittrackdlg .modal-header'));
+            this.setDialogDraggable($('#loadedittrack .modal-header'));
 
             $('#manual_collapse').collapse('hide');
             $('#manual_collapse').on(
@@ -223,6 +229,8 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
                     this.onManualCollapse(e);
                 }.bind(this)
             );
+
+            L.DomEvent.addListener(document, 'keydown', this.keydownListener, this);
 
             // dummy, no own representation, delegating to EasyButton
             var dummy = L.DomUtil.create('div');
@@ -381,6 +389,16 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             if (!this._options.isTestMode) this.addRoutingPoints();
 
             this.onBusyChanged(false);
+        },
+
+        keydownListener: function (e) {
+            if (
+                BR.Util.keyboardShortcutsAllowed(e) &&
+                e.keyCode === this._options.shortcut.open &&
+                true === e.shiftKey
+            ) {
+                $('#navbarLoadEditTracks').click();
+            }
         },
     });
 

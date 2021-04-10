@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Picnic site",
+    "id": "picnic_site",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-picnic-site",
+    "query": "nwr[tourism=picnic_site];"
+  },
+  "type": "Feature"
+}

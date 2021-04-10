@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Restaurant",
+    "id": "restaurant",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-restaurant",
+    "query": "nwr[amenity=restaurant];"
+  },
+  "type": "Feature"
+}

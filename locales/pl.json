@@ -5,7 +5,7 @@
     "bug-reports-front": "klient przeglądarkowy / interfejs.",
     "chat": "Czat z użytkownikami i twórcami",
     "contact": "Kontakt:",
-    "contact-language": "Preferowanym językiem jest angielski, ponieważ mamy zarówno międzynarodowych edytorów jak i użytkowników.",
+    "contact-language": "Preferowanym językiem jest angielski, ponieważ mamy zarówno międzynarodowych edytorów, jak i użytkowników.",
     "data": "Dane:",
     "data-description": "Oparta jest na <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Zazwyczaj aktualizowana jest codziennie, zobacz daty <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">plików z danymi</a>.",
     "description": "Dostęp online do silnika wyznaczania tras BRouter. Aplikację offline na Androida i więcej informacji znajdziesz na <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
@@ -15,7 +15,7 @@
     "tooltip": "Pokaż więcej informacji o BRouter-Web"
   },
   "credits": {
-    "boundaries": "Granice Administracyjne: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Granice Administracyjne: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dane wysokościowe",
@@ -25,6 +25,7 @@
     "map-tiles": "Kafelki mapy",
     "nominatim": "Wyszukaj przez <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Autorzy OpenStreetMap</a> na licencji <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Punkty zainteresowań (POI): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Wkład"
   },
   "export": {
@@ -55,6 +56,7 @@
     "mean-cost-factor": "Średni współczynnik kosztów",
     "meter": "metrów",
     "meter-abbrev": "m",
+    "no-elevation-data": "Dla tej trasy nie są dostępne informacje o wysokości.",
     "plain-ascend": "Różnica wysokości",
     "stats-info": "Zacznij rysować trasę, aby zobaczyć statystyki.",
     "total-energy": "Całkowita energia",
@@ -69,22 +71,27 @@
   "layers": {
     "add-base": "Dodaj warstwę bazową",
     "add-overlay": "Dodaj nakładkę",
+    "add-overpass": "Dodaj zapytanie overpass",
+    "custom-layer-name-helptext": "np: OpenStreetMap",
+    "custom-layer-name-label": "Nazwa warstwy",
+    "custom-layer-url-helptext-normal": "URL warstw podstawowych, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Zapytanie Overpass, np. nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "URL/zapytanie warstwy użytkownika",
     "customize": "Dostosuj warstwy",
     "opacity-slider": "Suwak pokrycia",
-    "placeholder-layer-name": "Nazwa warstwy (np. OpenStreetMap)",
-    "placeholder-layer-url": "URL warstwy (np. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Zapytanie Overpass API w trakcie ...",
     "remove-selection": "Usuń zaznaczenie"
   },
   "loadNogos": {
     "defaultProperties": "Domyślne właściwości",
-    "file": "Plik (.geojson): ",
+    "file": "Plik (.geojson)",
     "load": "Wczytaj",
-    "nogoBuffer": "Bufor obszarów omijania (w metrach):",
-    "nogoRadius": "Promień punktów (w metrach):",
-    "nogoWeight": "Waga obszaru omijania (-1 to nieprzejezdne):",
+    "nogoBuffer": "Zakres ładowania obszarów omijania (w metrach)",
+    "nogoRadius": "Promień obszaru omijania dla punktów (w metrach)",
+    "nogoWeight": "Waga obszaru omijania (-1 oznacza całkowicie nieprzejezdny)",
     "source": "Źródło",
     "title": "Wczytaj obszary omijania",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "Autorzy OpenStreetMap",
@@ -96,8 +103,8 @@
     "delete-nogo-areas": "Usuń wszystkie obszary omijania",
     "delete-pois": "Usuń wszystkie punkty zainteresowania",
     "delete-route": "Usuń trasę",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
+    "draw-circlego-start": "Rysuj obszar ograniczenia trasy",
+    "draw-circlego-stop": "Zakończ rysowanie obszaru ograniczenia trasy",
     "draw-poi-start": "Rysuj punkty zainteresowania",
     "draw-poi-stop": "Przestań rysować punkty zainteresowania",
     "draw-route-start": "Rysuj trasę",
@@ -134,23 +141,24 @@
     },
     "not-applicable-here": "tutaj niemożliwe",
     "opacity-slider": "Ustaw przezroczystość trasy i wskaźników",
-    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
+    "opacity-slider-shortcut": "{{action}}\n(prztrzymaj klawisz {{key}} aby czasowo ukryć)",
     "preview": "Podgląd",
     "privacy": "Prywatność",
     "reverse-route": "Odwróć trasę",
     "route-quality-altitude": "Kodowanie wysokości",
     "route-quality-cost": "Kodowanie kosztów",
     "route-quality-incline": "Kodowanie nachylenia",
-    "route-quality-shortcut": "{{action}} (naciśnij {{key}}, aby przełączyć)",
+    "route-quality-shortcut": "{{action}} (naciśnij {{key}} aby przełączyć)",
+    "route-tooltip-segment": "Przeciągnij aby dodać punkt trasy",
+    "route-tooltip-waypoint": "Punkt trasy. Przeciągnij aby przenieść; Kliknij aby usunąć.",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
-    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "strava-shortcut": "{{action}}\n(klawisz {{key}} aby przełączyć widoczność warstwy, kliknij aby odświeżyć w bieżącym obszarze)",
     "zoomInTitle": "Przybliż",
     "zoomOutTitle": "Oddal"
   },
   "modal": {
-    "close": "Zamknij"
-  },
+    "close": "Zamknij"},
   "navbar": {
     "about": "Informacje",
     "alternative": {
@@ -164,7 +172,7 @@
     "load": {
       "nogos": "Wczytaj obszary omijania",
       "title": "Wczytaj",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} (klawisz {{tracksKey}})\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Wczytaj ślady"
     },
     "profile": {
@@ -189,7 +197,7 @@
       "vm-forum-liegerad-schnell": "Rower poziomy (szosowy)",
       "vm-forum-velomobil-schnell": "Velomobile (szosowy)"
     },
-    "profile-tooltip": "\n({{key}} key to switch)"
+    "profile-tooltip": "\n(naciśnij {{key}} aby przełączyć)"
   },
   "sidebar": {
     "analysis": {
@@ -205,7 +213,7 @@
         "unknown": "Nieznana"
       },
       "title": "Analiza",
-      "tooltip": "Analyse route"
+      "tooltip": "Analizuj trasę"
     },
     "customize-profile": {
       "title": "Dostosuj profil",
@@ -214,11 +222,11 @@
     "data": {
       "sync-map": "Synchronizacja mapy",
       "title": "Dane",
-      "tooltip": "Show detailed route data table"
+      "tooltip": "Pokaż szczegółową tabelę trasy"
     },
     "itinerary": {
       "title": "Plan podróży",
-      "tooltip": "Show itinerary"
+      "tooltip": "Pokaż plan podróży"
     },
     "layers": {
       "category": {
@@ -227,6 +235,7 @@
         "europe": "Europa",
         "europe-monolingual": "Europa (mapy jednojęzyczne)",
         "overlays": "Nakładki",
+        "overpass": "Punkty zainteresowań (POI)",
         "worldwide": "Cały świat",
         "worldwide-international": "Świat",
         "worldwide-monolingual": "Świat (mapy jednojęzyczne)"
@@ -238,11 +247,15 @@
       "optional": "Dodaj lub usuń opcjonalne warstwy",
       "optional-layers": "Więcej",
       "overlay-opacity": "Przezroczystość nakładki",
+      "overlay-opacity_plural": "Przezroczystość nakładek",
       "table": {
-        "URL": "URL",
+        "URL": "URL/zapytanie",
         "empty": "Nie skonfigurowano jeszcze niestandardowych warstw.",
         "name": "Nazwa",
-        "type": "Rodzaj"
+        "type": "Rodzaj",
+        "type_layer": "Warstwa",
+        "type_overlay": "Nakładka",
+        "type_overpass_query": "Zapytanie Overpass"
       },
       "title": "Warstwy",
       "tooltip": "Wybierz warstwy"
@@ -256,14 +269,15 @@
       "placeholder": "Zapisz tutaj swój własny profil.",
       "profile": "Profil"
     },
-    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
+    "tab-tooltip": "{{action}}\n(klawisz {{toggleKey}} aby przełączyć, klawisz {{switchKey}} aby przejść do następnej karty)"
   },
   "title": "Klient przeglądarkowy BRouter",
   "trackasroute": {
+    "browse": "Przeglądaj",
     "explainpoi": "(pokaż punkty trasy jako POI)",
     "explaintracklayer": "(pokaż ślad jako osobną warstwę)",
     "file": "Plik śladu",
-    "fuzziness": "rozmycie",
+    "fuzziness": "Dopasowanie",
     "pleasewait": "Proszę czekać!",
     "showpois": "Interesujące punkty",
     "title": "Wczytaj ślad jako trasę",
@@ -283,7 +297,7 @@
     "upload-error": "Błąd przesyłania: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Od momentu twojej ostatniej wizyty pojawiłą się nowsza wersja. kliknij <a href='.' data-toggle='modal' data-target='#whatsnew'>tutaj</a> aby sprawdzić co nowego!",
+    "title": "Co nowego?"
   }
 }

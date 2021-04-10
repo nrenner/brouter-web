@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Public bath",
+    "id": "public_bath",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-water",
+    "query": "nwr[amenity=public_bath];"
+  },
+  "type": "Feature"
+}

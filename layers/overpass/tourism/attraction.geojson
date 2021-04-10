@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Attraction",
+    "id": "attraction",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-star",
+    "query": "nwr[tourism=attraction];"
+  },
+  "type": "Feature"
+}

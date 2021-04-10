@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Organic",
+    "id": "organic",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-grocery",
+    "query": "nwr[shop~'supermarket|convenience'][organic][organic!=no];"
+  },
+  "type": "Feature"
+}

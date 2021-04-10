@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Artwork",
+    "id": "artwork",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-art-gallery",
+    "query": "nwr[tourism=artwork];"
+  },
+  "type": "Feature"
+}

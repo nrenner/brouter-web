@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bakery",
+    "id": "bakery",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-bakery",
+    "query": "nwr[shop=bakery];"
+  },
+  "type": "Feature"
+}

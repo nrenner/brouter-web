@@ -15,7 +15,7 @@
     "tooltip": "Afficher plus d'informations à propos de BRouter-Web"
   },
   "credits": {
-    "boundaries": "limites administratives: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "limites administratives: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Données d'élévation",
@@ -25,6 +25,7 @@
     "map-tiles": "Tuiles de carte",
     "nominatim": "Recherche par <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributeurs OpenStreetMap</a> sous <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Lieux (PIs) : <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">API Overpass</a>",
     "title": "Crédits"
   },
   "export": {
@@ -55,8 +56,9 @@
     "mean-cost-factor": "Facteur coût moyen",
     "meter": "mètres",
     "meter-abbrev": "m",
+    "no-elevation-data": "Aucune donnée d'élévation pour ce parcours.",
     "plain-ascend": "faux plat",
-    "stats-info": "Commencer un itinéraire pour voir ses stats.",
+    "stats-info": "Tracer un itinéraire pour voir ses stats.",
     "total-energy": "Énergie totale",
     "travel-time": "Temps de trajet"
   },
@@ -68,23 +70,28 @@
   },
   "layers": {
     "add-base": "Ajouter un fond de carte ",
-    "add-overlay": "Ajouter un calque superposable",
+    "add-overlay": "Ajouter une surcouche",
+    "add-overpass": "Ajouter une requête overpass",
+    "custom-layer-name-helptext": "ex : OpenStreetMap",
+    "custom-layer-name-label": "Nom du calque",
+    "custom-layer-url-helptext-normal": "URL du calque, ex : https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Requête Overpass, ex : nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "URL ou requête du calque",
     "customize": "Personnaliser les calques",
     "opacity-slider": "Curseur d'opacité",
-    "placeholder-layer-name": "Nom du calque (p. ex. OpenStreetMap).",
-    "placeholder-layer-url": "URL du calque (p. ex. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png).",
+    "overpass-loading-indicator": "Exécution de la requête Overpass",
     "remove-selection": "Supprimer la sélection"
   },
   "loadNogos": {
     "defaultProperties": "Propriétés par défaut",
     "file": "Fichier (.geojson)",
     "load": "Charger",
-    "nogoBuffer": "Tampon des zones interdites (en mètres) :",
-    "nogoRadius": "Rayon des zones interdites pour les points (en mètres) :",
+    "nogoBuffer": "Tampon des zones interdites (en mètres)",
+    "nogoRadius": "Rayon des zones interdites pour les points (en mètres)",
     "nogoWeight": "Poids des zones interdites (-1 signifie infranchissable)",
     "source": "Source",
     "title": "Charger les zones interdites",
-    "url": "URL :"
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "Contributeurs OpenStreetMap",
@@ -142,6 +149,8 @@
     "route-quality-cost": "Chiffrage du coût",
     "route-quality-incline": "Chiffrage d'inclinaison",
     "route-quality-shortcut": "{{action}} (touche {{key}} pour basculer)",
+    "route-tooltip-segment": "Laisser appuyer et déplacer pour ajouter un nouveau point de passage",
+    "route-tooltip-waypoint": "Point de passage. Laisser appuyer pour déplacer ; cliquer pour supprimer.",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
     "strava-shortcut": "{{action}}\n(touche {{key}} pour basculer de calque, cliquer pour recharger la zone actuelle)",
@@ -149,8 +158,7 @@
     "zoomOutTitle": "Dézoomer"
   },
   "modal": {
-    "close": "Fermer"
-  },
+    "close": "Fermer"},
   "navbar": {
     "about": "À propos",
     "alternative": {
@@ -164,7 +172,7 @@
     "load": {
       "nogos": "Charger des zones interdites",
       "title": "Charger",
-      "tooltip": "{{tracksAction}} (touche {{tracksKey}} )\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} (touche {{tracksKey}})\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Charger des traces"
     },
     "profile": {
@@ -226,7 +234,8 @@
         "country": "Pays",
         "europe": "Europe",
         "europe-monolingual": "Europe monolingue",
-        "overlays": "Calques superposables",
+        "overlays": "Surcouches",
+        "overpass": "Lieux (PIs)",
         "worldwide": "Mondial",
         "worldwide-international": "Mondial international",
         "worldwide-monolingual": "Mondial monolingue"
@@ -240,10 +249,13 @@
       "overlay-opacity": "Transparence de la surcouche",
       "overlay-opacity_plural": "Transparence des surcouches",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Requête",
         "empty": "Aucun calque personnel trouvé.",
         "name": "Nom",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Calque",
+        "type_overlay": "Surcouche",
+        "type_overpass_query": "Requête Overpass"
       },
       "title": "Calques",
       "tooltip": "Sélection des calques"
@@ -261,10 +273,11 @@
   },
   "title": "Client web BRouter",
   "trackasroute": {
+    "browse": "Parcourir",
     "explainpoi": "(afficher les points de passage comme des PIs)",
     "explaintracklayer": "(afficher la piste comme un calque distinct)",
     "file": "Fichier de piste",
-    "fuzziness": "flou",
+    "fuzziness": "Lissage",
     "pleasewait": "Merci de patienter !",
     "showpois": "PIs",
     "title": "Charger la trace comme itinéraire",

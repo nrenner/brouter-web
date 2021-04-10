@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Boat rental",
+    "id": "boat_rental",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-boat_rental",
+    "query": "nwr[amenity=boat_rental];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Viewpoint",
+    "id": "viewpoint",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-spotting_scope",
+    "query": "nwr[tourism=viewpoint];"
+  },
+  "type": "Feature"
+}

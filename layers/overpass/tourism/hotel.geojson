@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Hotel",
+    "id": "hotel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "fas-concierge-bell",
+    "query": "nwr[tourism=hotel];"
+  },
+  "type": "Feature"
+}

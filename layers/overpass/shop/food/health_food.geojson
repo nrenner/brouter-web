@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Health food",
+    "id": "health_food",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-shop",
+    "query": "nwr[shop=health_food];"
+  },
+  "type": "Feature"
+}

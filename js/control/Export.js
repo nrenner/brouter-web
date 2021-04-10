@@ -148,6 +148,10 @@ BR.Export = L.Class.extend({
         }
     },
 
+    _selectTrackname: function () {
+        trackname.setSelectionRange(0, trackname.value.lastIndexOf(BR.Browser.download ? ' (' : ' - '));
+    },
+
     _generateTrackname: function () {
         var trackname = this.trackname;
         this._getCityAtPosition(
@@ -180,6 +184,8 @@ BR.Export = L.Class.extend({
                             trackname.value = trackname.value.replace(/[>)]/g, '').replace(/ \(/g, ' - ');
                             this._validationMessage();
                         }
+
+                        this._selectTrackname();
                     }, this)
                 );
             }, this)

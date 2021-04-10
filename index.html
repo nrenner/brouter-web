@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="dist/brouter-web.css" />
         <!-- endinject -->
     </head>
+
     <body class="flexcolumn">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <button
@@ -25,7 +26,7 @@
                 <span class="fa fa-bars"></span>
             </button>
             <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
-                >BRouter-Web <sup class="version">0.15.1</sup></a
+                >BRouter-Web <sup class="version">0.16.0</sup></a
             >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
@@ -70,7 +71,6 @@
                     <div class="nav-item dropdown">
                         <a
                             class="nav-link dropdown-toggle"
-                            href=""
                             data-toggle="dropdown"
                             href="#"
                             role="button"
@@ -81,8 +81,10 @@
                             data-i18n-options='{
                                 "tracksAction": "$t(navbar.load.tracks)",
                                 "tracksKey": "O",
+                                "trackAsRouteAction": "$t(trackasroute.title)",
+                                "trackAsRouteKey": "$t(keyboard.shift)+O",
                                 "nogosAction": "$t(navbar.load.nogos)",
-                                "nogosKey": "$t(keyboard.shift)+O"
+                                "nogosKey": "$t(keyboard.shift)+N"
                             }'
                             title="Load route"
                         >
@@ -100,7 +102,7 @@
                                     class="dropdown-item"
                                     data-i18n="trackasroute.title"
                                     data-toggle="modal"
-                                    data-target="#loadedittrackdlg"
+                                    data-target="#loadedittrack"
                                     href="#"
                                     id="navbarLoadEditTracks"
                                     >Track as Route</a
@@ -140,7 +142,7 @@
             aria-labelledby="Credits window"
             aria-hidden="true"
         >
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="credits.title">Credits</h4>
@@ -171,7 +173,11 @@
                             <dd data-i18n="[html]credits.boundaries">
                                 Administrative Boundaries:
                                 <a href="https://osm-boundaries.com" target="_blank">OSM-Boundaries</a>,
-                                <a href="https://overpass-api.de/" target="_blank">Overpass API</a>
+                                <a href="https://overpass-api.de/" class="overpass-url" target="_blank">Overpass API</a>
+                            </dd>
+                            <dd data-i18n="[html]credits.pois">
+                                Locations (POIs):
+                                <a href="https://overpass-api.de/" class="overpass-url" target="_blank">Overpass API</a>
                             </dd>
                             <dt data-i18n="credits.elevation-data">Elevation data</dt>
                             <dd>
@@ -180,6 +186,11 @@
                         </dl>
                         <h5 data-i18n="credits.map-tiles">Map tiles</h5>
                         <dl id="credits-maps"></dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>
@@ -194,7 +205,7 @@
             aria-labelledby="Layers window"
             aria-hidden="true"
         >
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="layers.customize">Customize layers</h4>
@@ -203,24 +214,26 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="layer_name"
-                            spellcheck="true"
-                            wrap="off"
-                            data-i18n="[placeholder]layers.placeholder-layer-name"
-                            placeholder="Custom layer name. (ex: OpenStreetMap)"
-                        />
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="layer_url"
-                            spellcheck="false"
-                            wrap="off"
-                            data-i18n="[placeholder]layers.placeholder-layer-url"
-                            placeholder="Custom layer URL. (ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)"
-                        />
+                        <div class="form-group">
+                            <label for="layer_name" data-i18n="layers.custom-layer-name-label">Custom layer name</label>
+                            <input class="form-control" type="text" id="layer_name" spellcheck="true" wrap="off" />
+                            <p class="help-block" data-i18n="layers.custom-layer-name-helptext">ex: OpenStreetMap</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="layer_name" data-i18n="layers.custom-layer-url-label"
+                                >Custom layer URL/Query</label
+                            >
+                            <input class="form-control" type="text" id="layer_url" spellcheck="false" wrap="off" />
+                            <p class="help-block">
+                                <span data-i18n="layers.custom-layer-url-helptext-normal"
+                                    >URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</span
+                                ><br />
+                                <span data-i18n="layers.custom-layer-url-helptext-overpass"
+                                    >Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];</span
+                                >
+                            </p>
+                        </div>
 
                         <button
                             type="button"
@@ -237,6 +250,14 @@
                             data-i18n="layers.add-overlay"
                         >
                             Add overlay
+                        </button>
+                        <button
+                            type="button"
+                            id="custom_layers_add_overpass"
+                            class="btn btn-success"
+                            data-i18n="layers.add-overpass"
+                        >
+                            Add overpass query
                         </button>
                         <button
                             type="button"
@@ -261,7 +282,7 @@
             aria-labelledby="About window"
             aria-hidden="true"
         >
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="about.title">About</h4>
@@ -341,7 +362,7 @@
                             on the client.
                         </p>
                     </div>
-                    <div class="modal-footer mt-4">
+                    <div class="modal-footer">
                         <button
                             type="button"
                             class="btn btn-secondary"
@@ -368,7 +389,7 @@
             aria-labelledby="What's new window"
             aria-hidden="true"
         >
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="whatsnew.title">What's new?</h4>
@@ -379,87 +400,10 @@
                     <div class="modal-body">
                         <!-- will be filled automatically -->
                     </div>
-                    <div class="modal-footer mt-4">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
                             Close
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Load nogos modal window -->
-        <div
-            class="modal fade"
-            id="loadNogos"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="Load nogos window"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" data-i18n="loadNogos.title">Load no-go areas</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="nogoError" class="invalid-feedback" style="display: none"></p>
-                        <form>
-                            <fieldset>
-                                <legend data-i18n="loadNogos.source">Source</legend>
-                                <p>
-                                    <input type="text" id="nogoJSON" hidden />
-                                    <label for="nogoURL" data-i18n="loadNogos.url">URL: </label>
-                                    <input type="text" name="nogoURL" id="nogoURL" /><br />
-                                    or<br />
-                                    <label for="nogoFile" data-i18n="loadNogos.file">File (.geojson): </label>
-                                    <input type="file" accept=".geojson" name="nogoFile" id="nogoFile" />
-                                </p>
-                            </fieldset>
-                            <fieldset>
-                                <legend data-i18n="loadNogos.defaultProperties">Default properties</legend>
-                                <p>
-                                    <label for="nogoWeight" data-i18n="loadNogos.nogoWeight"
-                                        >No-go weight (-1 means impassable):
-                                    </label>
-                                    <input type="number" name="nogoWeight" id="nogoWeight" value="-1" min="-1" />
-                                </p>
-                                <p>
-                                    <label for="nogoRadius" data-i18n="loadNogos.nogoRadius"
-                                        >No-go radius for points (in meters):
-                                    </label>
-                                    <input type="number" name="nogoRadius" id="nogoRadius" value="20" min="0" />
-                                </p>
-                                <p>
-                                    <label for="nogoBuffer" data-i18n="loadNogos.nogoBuffer"
-                                        >Buffer no-go areas (in meters):
-                                    </label>
-                                    <input type="number" name="nogoBuffer" id="nogoBuffer" value="0" min="0" />
-                                </p>
-                            </fieldset>
-                            <div class="modal-footer">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-i18n="[value]modal.close"
-                                    data-dismiss="modal"
-                                >
-                                    Close
-                                </button>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    data-i18n="[value]loadNogos.load"
-                                    id="submitNogos"
-                                >
-                                    Load
-                                </button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -474,7 +418,7 @@
             aria-labelledby="Export route window"
             aria-hidden="true"
         >
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="export.title">Export route</h4>
@@ -483,7 +427,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form name="export">
+                        <form name="export" id="exportForm">
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-2" data-i18n="export.trackname">Name</label>
                                 <div class="col-sm-10">
@@ -565,25 +509,21 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <div class="modal-footer">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-i18n="modal.close"
-                                    data-dismiss="modal"
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary"
-                                    data-i18n="export.title"
-                                    id="submitExport"
-                                >
-                                    Export route
-                                </button>
-                            </div>
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            data-i18n="export.title"
+                            form="exportForm"
+                            id="submitExport"
+                        >
+                            Export route
+                        </button>
                     </div>
                 </div>
             </div>
@@ -592,13 +532,13 @@
         <!-- Track to Route modal window -->
         <div
             class="modal fade"
-            id="loadedittrackdlg"
+            id="loadedittrack"
             tabindex="-1"
             role="dialog"
             aria-labelledby="Load Track as route"
             aria-hidden="true"
         >
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg modal-fullscreen-md-down" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" data-i18n="trackasroute.title">Load Track as Route</h4>
@@ -609,65 +549,81 @@
                     </div>
                     <div class="modal-body">
                         <form name="loadedittrackForm" id="loadedittrackForm">
-                            <div class="form-group row mt-4">
-                                <label class="col-sm-3" for="loadedittrackFile" data-i18n="trackasroute.file"
+                            <div class="form-group row">
+                                <label
+                                    class="col-form-label col-sm-3"
+                                    for="loadedittrackFile"
+                                    data-i18n="trackasroute.file"
                                     >Trackfile</label
                                 >
-                                <div class="custom-control custom-file col-sm-8">
-                                    <input
-                                        type="file"
-                                        accept=".gpx,.kml,.geojson,*.*"
-                                        name="loadedittrackFile"
-                                        id="loadedittrackFile"
-                                        class="custom-file-input"
-                                    />
-                                    <label
-                                        for="loadedittrackFile"
-                                        class="custom-file-label"
-                                        style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
-                                    >
-                                    </label
-                                    ><br />
+                                <div class="col-sm-9">
+                                    <div class="custom-control custom-file">
+                                        <input
+                                            type="file"
+                                            accept=".gpx,.kml,.geojson,*.*"
+                                            name="loadedittrackFile"
+                                            id="loadedittrackFile"
+                                            class="custom-file-input"
+                                        />
+                                        <label
+                                            for="loadedittrackFile"
+                                            class="custom-file-label"
+                                            data-i18n="[data-browse]trackasroute.browse"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis"
+                                        >
+                                        </label
+                                        ><br />
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-4">
-                                <label class="col-sm-3" for="cb_showtracklayer" data-i18n="trackasroute.tracklayer"
+                            <div class="form-group row">
+                                <label
+                                    class="col-form-label col-sm-3"
+                                    for="cb_showtracklayer"
+                                    data-i18n="trackasroute.tracklayer"
                                     >Track Layer</label
                                 >
-                                <div class="custom-control custom-switch">
-                                    <input
-                                        type="checkbox"
-                                        class="custom-control-input"
-                                        id="cb_showtracklayer"
-                                        checked="checked"
-                                    />
-                                    <label
-                                        class="custom-control-label"
-                                        for="cb_showtracklayer"
-                                        data-i18n="trackasroute.explaintracklayer"
-                                        >(show Track as separate Layer)</label
-                                    >
+                                <div class="col-sm-9">
+                                    <div class="custom-control custom-switch">
+                                        <input
+                                            type="checkbox"
+                                            class="custom-control-input"
+                                            id="cb_showtracklayer"
+                                            checked="checked"
+                                        />
+                                        <label
+                                            class="custom-control-label"
+                                            for="cb_showtracklayer"
+                                            data-i18n="trackasroute.explaintracklayer"
+                                            >(show Track as separate Layer)</label
+                                        >
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group row mt-4">
-                                <label class="col-sm-3" for="cb_showpois" data-i18n="trackasroute.showpois"
+                            <div class="form-group row">
+                                <label
+                                    class="col-form-label col-sm-3"
+                                    for="cb_showpois"
+                                    data-i18n="trackasroute.showpois"
                                     >POI's</label
                                 >
-                                <div class="custom-control custom-switch">
-                                    <input
-                                        type="checkbox"
-                                        class="custom-control-input"
-                                        id="cb_showpois"
-                                        checked="checked"
-                                    />
-                                    <label
-                                        class="custom-control-label"
-                                        for="cb_showpois"
-                                        data-i18n="trackasroute.explainpoi"
-                                        >(show waypoints as POI's)</label
-                                    >
+                                <div class="col-sm-9">
+                                    <div class="custom-control custom-switch">
+                                        <input
+                                            type="checkbox"
+                                            class="custom-control-input"
+                                            id="cb_showpois"
+                                            checked="checked"
+                                        />
+                                        <label
+                                            class="custom-control-label"
+                                            for="cb_showpois"
+                                            data-i18n="trackasroute.explainpoi"
+                                            >(show waypoints as POI's)</label
+                                        >
+                                    </div>
                                 </div>
                             </div>
 
@@ -693,17 +649,19 @@
                                             for="simplify_tolerance"
                                             class="col-sm-3"
                                             data-i18n="trackasroute.fuzziness"
-                                            >fuzziness</label
+                                            >Fuzziness</label
                                         >
-                                        <input
-                                            type="range"
-                                            class="custom-range col-sm-8"
-                                            id="simplify_tolerance"
-                                            min="-500"
-                                            max="500"
-                                            step="any"
-                                            value="0"
-                                        />
+                                        <div class="col-sm-9">
+                                            <input
+                                                type="range"
+                                                class="custom-range"
+                                                id="simplify_tolerance"
+                                                min="-500"
+                                                max="500"
+                                                step="any"
+                                                value="0"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -715,25 +673,141 @@
                             >
                                 Please wait!
                             </div>
-                            <div class="modal-footer mt-4">
-                                <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-i18n="modal.close"
-                                    data-dismiss="modal"
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-primary"
-                                    data-i18n="trackasroute.title"
-                                    id="submitLoadEditTrack"
-                                >
-                                    Import Track
-                                </button>
-                            </div>
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            form="loadedittrackForm"
+                            data-i18n="trackasroute.title"
+                            id="submitLoadEditTrack"
+                        >
+                            Import Track
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load nogos modal window -->
+        <div
+            class="modal fade"
+            id="loadNogos"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="Load nogos window"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg modal-fullscreen-md-down" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="loadNogos.title">Load no-go areas</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="nogoError" class="invalid-feedback" style="display: none"></p>
+                        <form name="loadNogosForm" id="loadNogosForm">
+                            <fieldset>
+                                <legend data-i18n="loadNogos.source">Source</legend>
+                                <div>
+                                    <input type="text" id="nogoJSON" hidden />
+                                    <div class="form-group row">
+                                        <label for="nogoURL" class="col-form-label col-sm-3" data-i18n="loadNogos.url"
+                                            >URL</label
+                                        >
+                                        <div class="col-sm-9">
+                                            <input type="text" name="nogoURL" id="nogoURL" />
+                                        </div>
+                                    </div>
+                                    <p data-i18n="modal.or">or</p>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3" for="nogoFile" data-i18n="loadNogos.file"
+                                            >File (.geojson)</label
+                                        >
+                                        <div class="col-sm-9">
+                                            <div class="custom-control custom-file">
+                                                <input
+                                                    type="file"
+                                                    accept=".geojson"
+                                                    name="nogoFile"
+                                                    id="nogoFile"
+                                                    class="custom-file-input"
+                                                />
+                                                <label
+                                                    for="nogoFile"
+                                                    class="custom-file-label"
+                                                    data-i18n="[data-browse]trackasroute.browse"
+                                                    style="
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                    "
+                                                >
+                                                </label
+                                                ><br />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend data-i18n="loadNogos.defaultProperties">Default properties</legend>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-sm-8"
+                                        for="nogoWeight"
+                                        data-i18n="loadNogos.nogoWeight"
+                                        >No-go weight (-1 means impassable):
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <input type="number" name="nogoWeight" id="nogoWeight" value="-1" min="-1" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-sm-8"
+                                        for="nogoRadius"
+                                        data-i18n="loadNogos.nogoRadius"
+                                        >No-go radius for points (in meters):
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <input type="number" name="nogoRadius" id="nogoRadius" value="20" min="0" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-form-label col-sm-8"
+                                        for="nogoBuffer"
+                                        data-i18n="loadNogos.nogoBuffer"
+                                        >Buffer no-go areas (in meters):
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <input type="number" name="nogoBuffer" id="nogoBuffer" value="0" min="0" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            form="loadNogosForm"
+                            data-i18n="loadNogos.load"
+                            id="submitNogos"
+                        >
+                            Load
+                        </button>
                     </div>
                 </div>
             </div>
@@ -763,7 +837,7 @@
                                 class="fa"
                                 width="1em"
                                 height="1em"
-                                viewBox="0 0 24 24"
+                                viewbox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="2.2"
@@ -837,7 +911,11 @@
 
             <div class="leaflet-sidebar-flex-row flexgrow">
                 <div id="map" class="leaflet-sidebar-map">
-                    <div id="message"></div>
+                    <div id="notification_jar">
+                        <div id="message"></div>
+                        <div id="whats_new_message"></div>
+                        <div id="overpass_loading_indicator"></div>
+                    </div>
                     <div id="preview" hidden data-i18n="map.preview">Preview</div>
                 </div>
 
@@ -846,7 +924,8 @@
                         <div class="leaflet-sidebar-pane" id="tab_layers_control">
                             <h1 class="leaflet-sidebar-header">
                                 <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
+                                ><span class="d-none d-md-block leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i></span
                                 ><span data-i18n="sidebar.layers.title">Layers</span>
                             </h1>
                             <div id="layers-control-wrapper"></div>
@@ -910,7 +989,8 @@
                         <div class="leaflet-sidebar-pane" id="tab_profile">
                             <h1 class="leaflet-sidebar-header">
                                 <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span
+                                ><span class="d-none d-md-block leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i></span
                                 ><span data-i18n="sidebar.customize-profile.title">Customize profile</span>
                             </h1>
                             <form class="flexcolumn flexgrow">
@@ -951,7 +1031,7 @@
                                         aria-labelledby="params-tab"
                                     >
                                         <div id="profile_params"></div>
-                                        <div class="form-group" id="profile_buttons">
+                                        <div class="form-group pt-1">
                                             <button id="save" type="button" class="btn btn-primary btn-sm">
                                                 <span class="fa fa-cloud-upload"></span>
                                                 <span data-i18n="sidebar.profile.apply">Apply</span>
@@ -973,7 +1053,7 @@
                                             placeholder="Write your custom profile here."
                                         ></textarea>
                                         <div id="profile_message"></div>
-                                        <div class="form-group" id="profile_buttons">
+                                        <div class="form-group pt-1">
                                             <button id="upload" type="button" class="btn btn-primary btn-sm">
                                                 <span class="fa fa-cloud-upload"></span>
                                                 <span data-i18n="sidebar.profile.apply">Apply</span>
@@ -998,7 +1078,9 @@
                         <div class="leaflet-sidebar-pane" id="tab_data">
                             <h1 class="leaflet-sidebar-header">
                                 <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
-                                <span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>
+                                <span class="d-none d-md-block leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i
+                                ></span>
                                 <span
                                     id="data-sync-map"
                                     class="sync-map active"
@@ -1015,7 +1097,9 @@
                             <h1 class="leaflet-sidebar-header">
                                 <span data-i18n="sidebar.itinerary.title">Itinerary</span
                                 ><span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span
-                                ><span class="leaflet-sidebar-expand"><i class="fa fa-expand"></i></span>
+                                ><span class="d-none d-md-block leaflet-sidebar-expand"
+                                    ><i class="fa fa-expand"></i
+                                ></span>
                             </h1>
                             <div id="itinerary" class="flexcolumn flexgrow"></div>
                         </div>
@@ -1143,7 +1227,7 @@
         <script>
             // global package prefix for BRouter web application
             BR = {};
-            BR.version = '0.15.1';
+            BR.version = '0.16.0';
 
             console.log(
                 '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'

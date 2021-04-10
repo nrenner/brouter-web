@@ -15,7 +15,7 @@
     "tooltip": "Mehr Informationen über BRouter-Web anzeigen"
   },
   "credits": {
-    "boundaries": "Verwaltungsgrenzen: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Verwaltungsgrenzen: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Höhendaten",
@@ -25,6 +25,7 @@
     "map-tiles": "Kartendarstellung",
     "nominatim": "Suchen mit <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> unter <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Orte (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
   "export": {
@@ -55,6 +56,7 @@
     "mean-cost-factor": "durchschnittlicher Kostenfaktor",
     "meter": "Meter",
     "meter-abbrev": "m",
+    "no-elevation-data": "Keine Höhendaten für diese Route verfügbar",
     "plain-ascend": "einfach aufsteigend",
     "stats-info": "Route zeichnen, um Statistiken zu sehen.",
     "total-energy": "Gesamtenergie",
@@ -69,22 +71,27 @@
   "layers": {
     "add-base": "Basisebene hinzufügen",
     "add-overlay": "Overlay hinzufügen",
+    "add-overpass": "Overpass Abfrage hinzufügen",
+    "custom-layer-name-helptext": "Bsp: OpenStreetMap",
+    "custom-layer-name-label": "Name der benutzerdefinierten Ebene",
+    "custom-layer-url-helptext-normal": "URL für normale Ebenen, z.B.: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Abfrage, z.B.: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "URL/Abfrage der benutzerdefinierten Ebene",
     "customize": "Ebenen anpassen",
     "opacity-slider": "Regler für Deckkraft",
-    "placeholder-layer-name": "angepasster Ebenenname (Bsp: OpenStreetMap)",
-    "placeholder-layer-url": "angepasste Ebenen-URL (Bsp: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Overpass API Abfrage läuft ...",
     "remove-selection": "Auswahl entfernen"
   },
   "loadNogos": {
     "defaultProperties": "Standardeigenschaften",
-    "file": "Datei (.geojson):",
+    "file": "Datei (.geojson)",
     "load": "Laden",
-    "nogoBuffer": "Puffer um No-go-Areas (in Metern):",
-    "nogoRadius": "No-go Radius für Punkte (in Meter):",
-    "nogoWeight": "No-go Gewichtung (-1 bedeutet unpassierbar):",
+    "nogoBuffer": "Puffer um No-go-Areas (in Metern)",
+    "nogoRadius": "No-go Radius für Punkte (in Meter)",
+    "nogoWeight": "No-go Gewichtung (-1 bedeutet unpassierbar)",
     "source": "Quelle",
     "title": "No-go-Areas laden",
-    "url": "URL:"
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap-Mitwirkende",
@@ -142,6 +149,8 @@
     "route-quality-cost": "Kostencodierung",
     "route-quality-incline": "Steigungscodierung",
     "route-quality-shortcut": "{{action}} ({{key}} Taste zum Ein-/Ausschalten)",
+    "route-tooltip-segment": "Ziehen, um einen neuen Wegpunkt anzulegen",
+    "route-tooltip-waypoint": "Wegpunkt. Zum Verschieben ziehen; zum Löschen klicken",
     "strava-biking": "Zeige Strava Radfahrsegmente",
     "strava-running": "Zeige Strava Läufersegmente",
     "strava-shortcut": "{{action}}\n({{key}} Taste um Ebene ein-/auszublenden, Klicken um aktuellen Ausschnitt neu zu laden)",
@@ -149,8 +158,7 @@
     "zoomOutTitle": "Herauszoomen"
   },
   "modal": {
-    "close": "Schließen"
-  },
+    "close": "Schließen"},
   "navbar": {
     "about": "Über",
     "alternative": {
@@ -164,8 +172,8 @@
     "load": {
       "nogos": "No-go-Areas laden",
       "title": "Laden",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} Taste)\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Touren laden"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} Taste)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Track laden"
     },
     "profile": {
       "car-eco": "Auto (effizient)",
@@ -227,6 +235,7 @@
         "europe": "Europa",
         "europe-monolingual": "Europa einsprachig",
         "overlays": "Überlagerungen",
+        "overpass": "Orte (POIs)",
         "worldwide": "Weltweit",
         "worldwide-international": "Weltweit international",
         "worldwide-monolingual": "Weltweit einsprachig"
@@ -238,11 +247,15 @@
       "optional": "Optionale Ebenen hinzufügen oder entfernen",
       "optional-layers": "Mehr",
       "overlay-opacity": "Transparenz der Überlagerung",
+      "overlay-opacity_plural": "Transparenz der Überlagerung",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Abfrage",
         "empty": "Noch keine benutzerdefinierte Ebene definiert.",
         "name": "Name",
-        "type": "Typ"
+        "type": "Typ",
+        "type_layer": "Ebene",
+        "type_overlay": "Überlagerung",
+        "type_overpass_query": "Overpass Abfrage"
       },
       "title": "Ebenen",
       "tooltip": "Ebenen auswählen"
@@ -260,13 +273,14 @@
   },
   "title": "BRouter Web Client",
   "trackasroute": {
+    "browse": "Durchsuchen",
     "explainpoi": "(Wegpunkte als POIs anzeigen)",
     "explaintracklayer": "(Tour als separate Ebene anzeigen)",
-    "file": "Tourdatei",
+    "file": "Track-Datei",
     "fuzziness": "Unschärfe",
     "pleasewait": "Bitte warten!",
     "showpois": "POIs",
-    "title": "Tour als Route laden",
+    "title": "Track als Route laden",
     "tracklayer": "Tour-Ebene",
     "tuning": "Justierung"
   },
@@ -279,11 +293,11 @@
     "profile-error": "Profil-Fehler: keine oder leere Antwort vom Server",
     "strava-error": "Fehler beim Laden der Strava Segmente: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Hochgeladene benutzerdefinierte Profile nur verübergehend auf dem Server zwischengespeichert. <br/>Bitte Bearbeitungen auf dem lokalen PC speichern.",
-    "tracks-load-error": "Fehler beim Laden der Touren: {{error}}",
+    "tracks-load-error": "Fehler beim Laden von tracks: {{error}}",
     "upload-error": "Fehler beim Hochladen: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Seit dem letzten Besuch wurde eine neue Version veröffentlicht. <a href='.' data-toggle='modal' data-target='#whatsnew'>Hier</a> klicken, um zu sehen, was neu ist!",
+    "title": "Was ist neu?"
   }
 }

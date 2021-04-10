@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Information",
+    "id": "information",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-information",
+    "query": "nwr[tourism=information];"
+  },
+  "type": "Feature"
+}

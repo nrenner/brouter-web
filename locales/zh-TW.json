@@ -12,33 +12,34 @@
     "details": "用戸端上的<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">隱私政策</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">開發人員名單</a></i>、\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">更新日誌</a></i> 及\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">更多資訊</a></i> ",
     "support": "一般討論/提問及技術支援",
     "title": "關於",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "顯示關於 BRouter-Web 更多的資訊"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Elevation data",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, 來源: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, 以及 GIS 使用者社群",
     "esri-tiles": "Esri World Imagery",
     "map-data": "地圖資料",
-    "map-tiles": "Map tiles",
+    "map-tiles": "圖磚",
     "nominatim": "搜尋服務由 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>提供",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap 貢獻者</a> 基於 <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>釋出",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
   "export": {
-    "format": "Format",
+    "format": "格式",
     "format_csv": "CSV",
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
     "include": "Include",
-    "include_waypoints": "Waypoints",
+    "include_waypoints": "航點",
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
-    "title": "Export route",
-    "trackname": "Name"
+    "title": "匯出路徑",
+    "trackname": "名稱"
   },
   "footer": {
     "ascend": "Ascend",
@@ -55,6 +56,7 @@
     "mean-cost-factor": "Mean cost factor",
     "meter": "meters",
     "meter-abbrev": "m",
+    "no-elevation-data": "No elevation data available for this route.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
     "total-energy": "Total Energy",
@@ -69,22 +71,27 @@
   "layers": {
     "add-base": "添加底層圖",
     "add-overlay": "添加疊圖",
+    "add-overpass": "Add overpass query",
+    "custom-layer-name-helptext": "ex: OpenStreetMap",
+    "custom-layer-name-label": "Custom layer name",
+    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "自定義圖層",
     "opacity-slider": "Opacity slider",
-    "placeholder-layer-name": "自定義圖層名稱 (如: OpenStreetMap)",
-    "placeholder-layer-url": "自定義圖層 URL (如: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "overpass-loading-indicator": "Running Overpass API query ...",
     "remove-selection": "移除所選項目"
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
-    "file": "File (.geojson): ",
+    "file": "File (.geojson)",
     "load": "Load",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go weight (-1 means impassable): ",
+    "nogoBuffer": "Buffer no-go areas (in meters)",
+    "nogoRadius": "No-go radius for points (in meters)",
+    "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Source",
     "title": "Load no-go areas",
-    "url": "URL: "
+    "url": "URL"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap 貢獻者",
@@ -142,6 +149,8 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "顯示 Strava 自行車區段",
     "strava-running": "顯示 Strava 跑步區段",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -149,8 +158,7 @@
     "zoomOutTitle": "縮小"
   },
   "modal": {
-    "close": "Close"
-  },
+    "close": "Close"},
   "navbar": {
     "about": "關於",
     "alternative": {
@@ -164,7 +172,7 @@
     "load": {
       "nogos": "Load no-go areas",
       "title": "Load",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
     },
     "profile": {
@@ -227,6 +235,7 @@
         "europe": "Europe",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
+        "overpass": "Locations (POIs)",
         "worldwide": "Worldwide",
         "worldwide-international": "Worldwide international",
         "worldwide-monolingual": "Worldwide monolingual"
@@ -238,11 +247,15 @@
       "optional": "Add or remove optional layers",
       "optional-layers": "More",
       "overlay-opacity": "Overlay transparency",
+      "overlay-opacity_plural": "Overlays transparency",
       "table": {
-        "URL": "URL",
+        "URL": "URL/Query",
         "empty": "尚未設定自訂圖層。",
         "name": "名稱",
-        "type": "類型"
+        "type": "類型",
+        "type_layer": "Layer",
+        "type_overlay": "Overlay",
+        "type_overpass_query": "Overpass Query"
       },
       "title": "圖層",
       "tooltip": "Select layers"
@@ -260,10 +273,11 @@
   },
   "title": "BRouter 網頁用戶端",
   "trackasroute": {
+    "browse": "Browse",
     "explainpoi": "(show waypoints as POI's)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
-    "fuzziness": "fuzziness",
+    "fuzziness": "Fuzziness",
     "pleasewait": "Please wait!",
     "showpois": "POI's",
     "title": "Load Track as Route",

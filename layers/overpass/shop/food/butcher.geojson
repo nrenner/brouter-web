@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Butcher",
+    "id": "butcher",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-cleaver",
+    "query": "nwr[shop=butcher];"
+  },
+  "type": "Feature"
+}

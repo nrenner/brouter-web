@@ -1,6 +1,6 @@
 {
     "name": "brouter-web",
-    "version": "0.15.1",
+    "version": "0.16.0",
     "description": "Web client for BRouter",
     "main": "js/index.js",
     "scripts": {
@@ -36,14 +36,17 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
+        "@fortawesome/fontawesome-free": "^5.15.3",
+        "@ideditor/temaki": "^5.0.0",
+        "@mapbox/maki": "^6.2.0",
         "@mapbox/polyline": "^0.2.0",
         "@mapbox/togeojson": "^0.16.0",
         "@turf/turf": "^6.2.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
         "async": "~0.9.2",
-        "bootbox": "~5.3.4",
+        "bootbox": "~5.5.2",
         "bootstrap": "4.3.1",
-        "bootstrap-select": "1.13.6",
+        "bootstrap-select": "1.13.18",
         "bootstrap-slider": "^9.8.1",
         "codemirror": "^5.35.0",
         "core-js-bundle": "^3.8.3",
@@ -57,7 +60,7 @@
         "jquery-i18next": "^1.2.1",
         "jstree": "^3.3.8",
         "leaflet": "~1.6.0",
-        "leaflet-control-geocoder": "^1.13.0",
+        "leaflet-control-geocoder": "^2.2.0",
         "leaflet-easybutton": "*",
         "leaflet-editable": "^1.1.0",
         "leaflet-filelayer": "^1.2.0",
@@ -74,6 +77,7 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "osmtogeojson": "^3.0.0-beta.4",
+        "overpass-layer": "^3.0.0",
         "regenerator-runtime": "^0.13.7",
         "togpx": "nrenner/togpx#722d291",
         "tokml": "^0.4.0",
@@ -283,6 +287,80 @@
         "tokml": {
             "main": [
                 "tokml.js"
+            ]
+        },
+        "overpass-layer": {
+            "main": [
+                "dist/overpass-layer.js"
+            ]
+        },
+        "@mapbox/maki": {
+            "main": [
+                "icons/art-gallery-11.svg",
+                "icons/bakery-11.svg",
+                "icons/bank-11.svg",
+                "icons/bar-11.svg",
+                "icons/bbq-11.svg",
+                "icons/beer-11.svg",
+                "icons/bicycle-11.svg",
+                "icons/cafe-11.svg",
+                "icons/campsite-11.svg",
+                "icons/car-11.svg",
+                "icons/car-rental-11.svg",
+                "icons/drinking-water-11.svg",
+                "icons/entrance-alt1-11.svg",
+                "icons/fast-food-11.svg",
+                "icons/fuel-11.svg",
+                "icons/grocery-11.svg",
+                "icons/hospital-11.svg",
+                "icons/information-11.svg",
+                "icons/lodging-11.svg",
+                "icons/picnic-site-11.svg",
+                "icons/restaurant-11.svg",
+                "icons/shelter-11.svg",
+                "icons/shop-11.svg",
+                "icons/star-11.svg",
+                "icons/toilet-11.svg",
+                "icons/water-11.svg"
+            ]
+        },
+        "@ideditor/temaki": {
+            "main": [
+                "icons/bench.svg",
+                "icons/shower.svg",
+                "icons/bicycle_rental.svg",
+                "icons/bicycle_repair.svg",
+                "icons/boat_rental.svg",
+                "icons/bus.svg",
+                "icons/sign_and_car.svg",
+                "icons/car_wash.svg",
+                "icons/ferry.svg",
+                "icons/car_parked.svg",
+                "icons/parking_space.svg",
+                "icons/bottles.svg",
+                "icons/cleaver.svg",
+                "icons/coffee.svg",
+                "icons/camper_trailer.svg",
+                "icons/cabin.svg",
+                "icons/bunk_beds.svg",
+                "icons/museum.svg",
+                "icons/spotting_scope.svg",
+                "icons/cabin.svg"
+            ]
+        },
+        "@fortawesome/fontawesome-free": {
+            "main": [
+                "svgs/solid/shopping-basket.svg",
+                "svgs/solid/ice-cream.svg",
+                "svgs/solid/carrot.svg",
+                "svgs/solid/cheese.svg",
+                "svgs/solid/concierge-bell.svg",
+                "svgs/solid/motorcycle.svg",
+                "svgs/solid/charging-station.svg",
+                "svgs/solid/box.svg",
+                "svgs/solid/taxi.svg",
+                "svgs/solid/phone-alt.svg",
+                "svgs/solid/beer.svg"
             ]
         }
     }

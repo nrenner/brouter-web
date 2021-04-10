@@ -3,6 +3,7 @@ BR.Message = L.Class.extend({
         // true to manually attach click event to close button,
         // Bootstrap data-api's auto-initialization doesn't work in Controls because of stopPropagation
         alert: false,
+        onClosed: null,
     },
 
     initialize: function (id, options) {
@@ -18,12 +19,20 @@ BR.Message = L.Class.extend({
             case 'error':
                 iconClass = 'fa-times-circle';
                 alertClass = 'alert-danger';
+                break;
             case 'warning':
                 iconClass = 'fa-exclamation-triangle';
                 alertClass = 'alert-warning';
+                break;
+            case 'loading':
+                iconClass = 'fa-spinner fa-pulse';
+                alertClass = 'alert-secondary';
+                break;
+            default:
             case 'info':
                 iconClass = 'fa-info-circle';
                 alertClass = 'alert-info';
+                break;
         }
 
         L.DomEvent.disableClickPropagation(ele);
@@ -40,6 +49,10 @@ BR.Message = L.Class.extend({
             '" aria-hidden="true"/></span>' +
             msg +
             '</div>';
+
+        if (this.options.onClosed) {
+            $('#' + this.id + ' .alert').on('closed.bs.alert', this.options.onClosed);
+        }
 
         if (this.options.alert) {
             $('#' + this.id + ' .alert').alert();
@@ -73,6 +86,10 @@ BR.Message = L.Class.extend({
 
     showInfo: function (msg) {
         this._show(msg, 'info');
+    },
+
+    showLoading: function (msg) {
+        this._show(msg, 'loading');
     },
 });
 

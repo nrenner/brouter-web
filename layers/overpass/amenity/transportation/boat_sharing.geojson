@@ -1,0 +1,11 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Boat sharing",
+    "id": "boat_sharing",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "query": "nwr[amenity=boat_sharing];"
+  },
+  "type": "Feature"
+}

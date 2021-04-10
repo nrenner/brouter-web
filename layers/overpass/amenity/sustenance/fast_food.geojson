@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Fast food",
+    "id": "fast_food",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-fast-food",
+    "query": "nwr[amenity=fast_food];"
+  },
+  "type": "Feature"
+}

@@ -1,31 +1,32 @@
 {
   "about": {
     "bug-reports": "Foutrapporten en verzoeken:",
-    "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
-    "bug-reports-front": "web client / frontend.",
+    "bug-reports-back": "server / backend, routebepaling, Android app, profielen, brouter.de site",
+    "bug-reports-front": "website / frontend.",
     "chat": "Chat met gebruikers en ontwikkelaars",
     "contact": "Contact:",
     "contact-language": "Bij voorkeur in Engels omdat we internationale ontwikkelaars en gebruikers hebben",
-    "data": "Data:",
-    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
-    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
+    "data": "Gegevens:",
+    "data-description": "Dit is gebaseerd op <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Het wordt normaal gesproken dagelijks geüpdated, zie data van <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">gegevensbestanden</a>.",
+    "description": "Online dienst van de BRouter routebepaling. Voor de offline Android app en meer informatie, zie <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacybeleid</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Dank aan</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Wijzigingen</a></i> en\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">meer informatie</a></i> over de website.",
     "support": "Algemene discussies/vragen, ondersteuning",
     "title": "Over",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Toon meer informatie over BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administratieve Grenzen: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Grenzen</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Hoogtedata",
-    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">Satellietfotografie</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, bronnen: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, en de GIS User Community",
     "esri-tiles": "Esri World Imagery",
-    "map-data": "Map data",
-    "map-tiles": "Map tiles",
+    "map-data": "Kaartgegevens",
+    "map-tiles": "Kaarttegels",
     "nominatim": "Zoek met <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "title": "Credits"
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap bijdragers</a> onder <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Locaties (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "title": "Dank aan"
   },
   "export": {
     "format": "Formaat",
@@ -33,8 +34,8 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Include",
-    "include_waypoints": "Waypoints",
+    "include": "Inclusief",
+    "include_waypoints": "Routepunten",
     "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Exporteer route",
@@ -47,7 +48,7 @@
     "elevation-chart": "Hoogtekaart aan/uit",
     "energy-per-100km": "Energie per 100 km",
     "hours": "uren",
-    "hours-abbrev": "h",
+    "hours-abbrev": " uur",
     "kilometer": "kilometers",
     "kilometer-abbrev": "km",
     "kilowatthour": "kilowattuur",
@@ -55,58 +56,64 @@
     "mean-cost-factor": "Gemiddelde kosten",
     "meter": "meters",
     "meter-abbrev": "m",
-    "plain-ascend": "Plain ascend",
-    "stats-info": "Start drawing a route to get stats.",
+    "no-elevation-data": "Geen hoogtegegevens beschikbaar voor deze route.",
+    "plain-ascend": "Vlakke stijging",
+    "stats-info": "Teken een route om gegevens te zien.",
     "total-energy": "Totale energie",
     "travel-time": "Reistijd"
   },
   "keyboard": {
     "backspace": "Backspace",
     "escape": "Escape",
-    "generic-shortcut": "{{action}} ({{key}} key)",
+    "generic-shortcut": "{{action}} ({{key}} toets)",
     "shift": "Shift"
   },
   "layers": {
     "add-base": "Voeg basislaag toe",
-    "add-overlay": "Add overlay",
+    "add-overlay": "Voeg overlaag toe",
+    "add-overpass": "Voeg Overpass aanvraag toe",
+    "custom-layer-name-helptext": "bijv.: OpenStreetMap",
+    "custom-layer-name-label": "Eigen laag naam",
+    "custom-layer-url-helptext-normal": "URL voor normale lagen, bijv.: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass aanvraag, bijv.: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "Eigen laag URL/Aanvraag",
     "customize": "Pas lagen aan",
-    "opacity-slider": "Opacity slider",
-    "placeholder-layer-name": "Eigen laag naam. (bijv: OpenStreetMap)",
-    "placeholder-layer-url": "Eigen laag URL. (bijv: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png)",
+    "opacity-slider": "Transparantie",
+    "overpass-loading-indicator": "Overpass API aanvraag draaien...",
     "remove-selection": "Verwijder selectie"
   },
   "loadNogos": {
-    "defaultProperties": "Default properties",
+    "defaultProperties": "Standaard eigenschappen",
     "file": "Bestand (.geojson)",
     "load": "Laad",
-    "nogoBuffer": "Buffer no-go areas (in meters): ",
-    "nogoRadius": "No-go radius for points (in meters): ",
-    "nogoWeight": "No-go gewicht (-1 betekent nooit doorheen):",
-    "source": "Source",
+    "nogoBuffer": "Buffer no-go gebieden (in meter)",
+    "nogoRadius": "no-go radius voor punten (in meter)",
+    "nogoWeight": "No-go gewicht (-1 betekent nooit doorheen)",
+    "source": "Bron",
     "title": "Laad no-go gebieden",
-    "url": "URL:"
+    "url": "URL"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-long": "OpenStreetMap bijdragers",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Wis route data",
     "copyright": "Copyright",
     "cycling": "Fietsen",
     "delete-last-point": "Verwijder laatste punt",
     "delete-nogo-areas": "Verwijder alle no-go gebieden",
-    "delete-pois": "Delete all points of interest",
+    "delete-pois": "Verwijder alle locaties",
     "delete-route": "Verwijder route",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
-    "draw-poi-start": "Draw points of interest",
-    "draw-poi-stop": "Stop drawing points of interest",
+    "draw-circlego-start": "Teken beperkte ga-naar zone",
+    "draw-circlego-stop": "Beëindig tekenen van beperkte ga-naar zone",
+    "draw-poi-start": "Teken locaties",
+    "draw-poi-stop": "Beëindig tekenen van locaties",
     "draw-route-start": "Teken route",
     "draw-route-stop": "Beëindig tekenen",
-    "enter-poi-name": "Enter Point of Interest name",
+    "enter-poi-name": "Voer naam in van locatie",
     "geocoder": "Zoek",
     "geocoder-placeholder": "Zoek...",
     "hikebike-hillshading": "Bergschaduw",
-    "hiking": "Hiking",
+    "hiking": "Wandelen",
     "layer": {
       "bing": "Bing Aerial",
       "cycle": "OpenCycleMap (Thunderf.)",
@@ -120,37 +127,38 @@
       "outdoors": "Outdoors (Thunderforest)",
       "route-quality": "Routekwaliteitscodering",
       "stamen-terrain": "Terrain (Stamen)",
-      "strava-segments": "Strava segments",
+      "strava-segments": "Strava segmenten",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
+    "loading": "Laden…",
     "locate-me": "Laat zien waar ik ben",
     "nogo": {
-      "cancel": "Cancel drawing no-go area",
+      "cancel": "Beëinig tekenen no-go gebied",
       "click-drag": "Klik en sleep om een cirkel te tekenen",
       "draw": "Teken rond no-go gebied",
-      "edit": "Click to edit",
-      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
+      "edit": "Klik om te wijzigen",
+      "help": "&square; = verplaats / wijzig formaat, <span class=\"fa fa-trash-o\"></span> = verwijder,<br>klik de cirkel om wijzigen te beëindig"
     },
-    "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
-    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
+    "not-applicable-here": "hier niet mogelijk",
+    "opacity-slider": "Stel transparantie van route track en punten in",
+    "opacity-slider-shortcut": "{{action}}\n(Houd {{key}} toets om tijdelijk te dempen)",
     "preview": "Voorvertoning",
     "privacy": "Privacy",
     "reverse-route": "Draai route om",
     "route-quality-altitude": "Hoogtecodering",
     "route-quality-cost": "Kostencodering",
     "route-quality-incline": "Stijgingcodering",
-    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "strava-biking": "Show Strava biking segments",
-    "strava-running": "Show Strava running segments",
-    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "route-quality-shortcut": "{{action}} ({{key}} toets om te schakelen)",
+    "route-tooltip-segment": "Sleep om een nieuw routepunt te maken",
+    "route-tooltip-waypoint": "Routepunt. Sleep om te verplaatsen; klik om te verwijderen.",
+    "strava-biking": "Toon Strava fietssegmenten",
+    "strava-running": "Toon Strava hardloopsegmenten",
+    "strava-shortcut": "{{action}}\n({{key}} toets om laag te schakelen, klik om huidig gebied opnieuw te laden)",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom uit"
   },
   "modal": {
-    "close": "Afsluiten"
-  },
+    "close": "Afsluiten"},
   "navbar": {
     "about": "Over",
     "alternative": {
@@ -159,22 +167,22 @@
       "second": "2e alternatief",
       "third": "3e alternatief"
     },
-    "export": "Export",
-    "export-tooltip": "Export route",
+    "export": "Exporteer",
+    "export-tooltip": "Exporteer route",
     "load": {
       "nogos": "Laad no-go gebieden",
       "title": "Laad",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} toets)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Laad tracks"
     },
     "profile": {
       "car-eco": "Auto (economisch)",
       "car-fast": "Auto (snel)",
       "car-test": "Auto (test)",
       "custom": "Aangepast",
-      "fastbike": "Fastbike",
-      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
+      "fastbike": "Snelfiets",
+      "fastbike-asia-pacific": "Snelfiets (Azië Stille Oceaan)",
+      "fastbike-lowtraffic": "Snelfiets (weinig verkeer)",
       "hiking-beta": "Wandelen (beta)",
       "moped": "Bromfiets",
       "rail": "Trein",
@@ -189,13 +197,13 @@
       "vm-forum-liegerad-schnell": "Ligfiets (snel)",
       "vm-forum-velomobil-schnell": "Ligfiets (snel)"
     },
-    "profile-tooltip": "\n({{key}} key to switch)"
+    "profile-tooltip": "\n({{key}} toets om te schakelen)"
   },
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
+        "highway": "Weg",
+        "smoothness": "Gladheid",
         "surface": "Oppervlakte"
       },
       "table": {
@@ -213,8 +221,8 @@
     },
     "data": {
       "sync-map": "Synchroniseer kaart",
-      "title": "Data",
-      "tooltip": "Show detailed route data table"
+      "title": "Gegevens",
+      "tooltip": "Toon gedetaileerde routegegevenstabel"
     },
     "itinerary": {
       "title": "Routebeschrijving",
@@ -225,24 +233,29 @@
         "base-layers": "Basislagen",
         "country": "Land",
         "europe": "Europa",
-        "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
+        "europe-monolingual": "Europees eentalig",
+        "overlays": "Overlagen",
+        "overpass": "Locaties (POIs)",
         "worldwide": "Wereldwijd",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
+        "worldwide-international": "Wereldwijd internationaal",
+        "worldwide-monolingual": "Wereldwijd eentalig"
       },
-      "collapse": "Collapse all",
-      "custom-layers": "Custom layers",
-      "customize": "Add or remove custom layers",
-      "expand": "Expand all",
-      "optional": "Add or remove optional layers",
-      "optional-layers": "More",
-      "overlay-opacity": "Overlay transparency",
+      "collapse": "Klap alles in",
+      "custom-layers": "Eigen lagen",
+      "customize": "Voeg toe of verwijder eigen lagen",
+      "expand": "Klap alles uit",
+      "optional": "Voeg toe of verwijder optionele lagen",
+      "optional-layers": "Meer",
+      "overlay-opacity": "Overlaag transparantie",
+      "overlay-opacity_plural": "Overlagen transparantie",
       "table": {
-        "URL": "URL",
-        "empty": "No custom layer configured yet.",
+        "URL": "URL/Aanvraag",
+        "empty": "Nog geen eigen laag geconfigureerd.",
         "name": "Naam",
-        "type": "Type"
+        "type": "Type",
+        "type_layer": "Laag",
+        "type_overlay": "Overlaag",
+        "type_overpass_query": "Overpass Aanvraag"
       },
       "title": "Lagen",
       "tooltip": "Selecteer lagen"
@@ -251,39 +264,40 @@
       "apply": "Pas toe",
       "clear": "Wis",
       "help": "Help",
-      "no_easy_configuration_warning": "No easy configuration is available for this profile.",
+      "no_easy_configuration_warning": "Geen gemakkelijke configuratie gevonden voor dit profiel",
       "options": "Opties",
       "placeholder": "Schrijf je eigen profiel hier.",
       "profile": "Profiel"
     },
-    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
+    "tab-tooltip": "{{action}}\n({{toggleKey}} toets om te schakelen, {{switchKey}} om naar volgende tab te wisselen)"
   },
-  "title": "BRouter web client",
+  "title": "BRouter website",
   "trackasroute": {
-    "explainpoi": "(show waypoints as POI's)",
-    "explaintracklayer": "(show Track as separate Layer)",
-    "file": "Trackfile",
-    "fuzziness": "fuzziness",
-    "pleasewait": "Please wait!",
+    "browse": "Bladeren",
+    "explainpoi": "(toon routepunten als POI's)",
+    "explaintracklayer": "(toon Track als losse Laag)",
+    "file": "Trackbestand",
+    "fuzziness": "Onnauwkeurigheid",
+    "pleasewait": "Wacht alstublieft!",
     "showpois": "POI's",
-    "title": "Load Track as Route",
-    "tracklayer": "Track Layer",
-    "tuning": "Tuning"
+    "title": "Laad Track als Route",
+    "tracklayer": "Track Laag",
+    "tuning": "Afstelling"
   },
   "warning": {
     "cannot-get-route": "Fout bij ophalen route URL",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "Beginpunt is te ver van een route.",
+    "invalid-route-to": "Eindpunt is te ver van een route.",
     "no-response": "geen antwoord van server",
     "no-route-found": "Fout: Kan geen route vinden voor de gegeven punten.\nProbeer de punten dichter bij wegen te plaatsen",
     "profile-error": "Profielfout: geen of leeg antwoord van server",
-    "strava-error": "Error getting Strava segments: {{error}}",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "tracks-load-error": "Error loading tracks: {{error}}",
-    "upload-error": "Upload error: {{error}}"
+    "strava-error": "Fout tijdens ophalen Strava segmenten: {{error}}",
+    "temporary-profile": "<strong>Belangrijk:</strong> Geüploade aanpepaste profielen worden slechts tijdelijk op de server opgeslagen.<br/>Sla uw wijzigingen lokaal op op uw PC.",
+    "tracks-load-error": "Fout tijdens laden tracks: {{error}}",
+    "upload-error": "Uploadfout: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Een nieuwe versie is gepubliceerd sinds uw laatste bezoek. Klik <a href='.' data-toggle='modal' data-target='#whatsnew'>hier</a> om te zien wat er is veranderd!",
+    "title": "Wat is er veranderd?"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Bench",
+    "id": "bench",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-bench",
+    "query": "nwr[amenity=bench];"
+  },
+  "type": "Feature"
+}

@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Cafe",
+    "id": "cafe",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-cafe",
+    "query": "nwr[amenity=cafe];"
+  },
+  "type": "Feature"
+}

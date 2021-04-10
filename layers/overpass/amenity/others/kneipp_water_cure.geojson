@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Kneipp water cure",
+    "id": "kneipp_water_cure",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-hospital",
+    "query": "nwr[amenity=kneipp_water_cure];"
+  },
+  "type": "Feature"
+}

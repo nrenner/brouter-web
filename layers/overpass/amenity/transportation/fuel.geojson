@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Fuel",
+    "id": "fuel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "maki-fuel",
+    "query": "nwr[amenity=fuel];"
+  },
+  "type": "Feature"
+}

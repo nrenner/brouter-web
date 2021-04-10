@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Hostel",
+    "id": "hostel",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-bunk_beds",
+    "query": "nwr[tourism=hostel];"
+  },
+  "type": "Feature"
+}

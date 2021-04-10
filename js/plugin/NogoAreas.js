@@ -5,6 +5,7 @@ BR.NogoAreas = L.Control.extend({
                 enable: 78, // char code for 'n'
                 disable: 27, // char code for 'ESC'
             },
+            import: 78, // char code for 'n'; used in conjunction with 'shift'
         },
     },
 
@@ -97,6 +98,8 @@ BR.NogoAreas = L.Control.extend({
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
+        L.DomUtil.get('nogoFile').onchange = L.bind(this.onFileChanged, this);
+
         this.editTools.on(
             'editable:drawing:end',
             function (e) {
@@ -147,6 +150,13 @@ BR.NogoAreas = L.Control.extend({
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
+
+        if (true === e.shiftKey && e.keyCode === this.options.shortcut.import) {
+            $('#loadNogos').modal('show');
+
+            return;
+        }
+
         if (e.keyCode === this.options.shortcut.draw.disable && this.button.state() === BR.NogoAreas.STATE_CANCEL) {
             this.stopDrawing(this.button);
         } else if (
@@ -160,6 +170,11 @@ BR.NogoAreas = L.Control.extend({
     displayUploadError: function (message) {
         $('#nogoError').text(message ? message : '');
         $('#nogoError').css('display', message ? 'block' : 'none');
+    },
+
+    onFileChanged: function (e) {
+        if (!e.target.files[0]) return;
+        $(e.target).next('label').text(e.target.files[0].name);
     },
 
     uploadNogos: function () {
