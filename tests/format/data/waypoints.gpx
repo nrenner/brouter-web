@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- track-length = 388 filtered ascend = 1 plain-ascend = 0 cost=703 energy=.0kwh time=44s -->
+<gpx 
+ xmlns="http://www.topografix.com/GPX/1/1" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" 
+ creator="BRouter-1.6.1" version="1.1">
+ <wpt lon="8.468340" lat="49.488794"><name>right</name><sym>right</sym><type>Right</type></wpt>
+ <wpt lon="8.469971" lat="49.488151"><name>left</name><sym>left</sym><type>Left</type></wpt>
+ <wpt lon="8.470671" lat="49.488909"><name>left</name><sym>left</sym><type>Left</type></wpt>
+ <wpt lon="8.469279" lat="49.487399">
+  <name>poi 1</name>
+ </wpt>
+ <wpt lon="8.469021" lat="49.489532">
+  <name>poi 2</name>
+ </wpt>
+ <wpt lon="8.467712" lat="49.488117">
+  <name>from</name>
+  <type>from</type>
+ </wpt>
+ <wpt lon="8.469354" lat="49.488394">
+  <name>via1</name>
+  <type>via</type>
+ </wpt>
+ <wpt lon="8.470556" lat="49.488946">
+  <name>via2</name>
+  <type>via</type>
+ </wpt>
+ <wpt lon="8.469982" lat="49.489176">
+  <name>to</name>
+  <type>to</type>
+ </wpt>
+ <trk>
+  <name>waypoints + 5-gpsies</name>
+  <trkseg>
+   <trkpt lon="8.467714" lat="49.488115"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468340" lat="49.488794"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468586" lat="49.488698"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468743" lat="49.488636"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.469161" lat="49.488473"><ele>101.75</ele></trkpt>
+   <trkpt lon="8.469355" lat="49.488395"><ele>102.0</ele></trkpt>
+   <trkpt lon="8.469971" lat="49.488151"><ele>103.5</ele></trkpt>
+   <trkpt lon="8.470671" lat="49.488909"><ele>99.5</ele></trkpt>
+   <trkpt lon="8.470561" lat="49.488951"><ele>99.5</ele></trkpt>
+   <trkpt lon="8.469984" lat="49.489178"><ele>100.0</ele></trkpt>
+  </trkseg>
+ </trk>
+</gpx>

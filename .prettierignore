@@ -12,3 +12,6 @@ layers/
 locales/*.json
 resources/boundaries/
 resources/standalone/*.sh
+profiles2/
+tests/**/*.json
+tests/**/*.gpx

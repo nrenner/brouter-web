@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- track-length = 319 filtered ascend = 2 plain-ascend = -1 cost=533 energy=.0kwh time=44s -->
+<gpx 
+ xmlns="http://www.topografix.com/GPX/1/1" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" 
+ creator="BRouter-1.6.1" version="1.1">
+ <wpt lat="49.488794" lon="8.468340"><ele>101.5</ele><extensions>
+<om:oruxmapsextensions xmlns:om="http://www.oruxmaps.com/oruxmapsextensions/1/0">
+<om:ext type="ICON" subtype="0">1001</om:ext>
+</om:oruxmapsextensions>
+</extensions>
+</wpt> <wpt lat="49.488151" lon="8.469971"><ele>103.5</ele><extensions>
+<om:oruxmapsextensions xmlns:om="http://www.oruxmaps.com/oruxmapsextensions/1/0">
+<om:ext type="ICON" subtype="0">1000</om:ext>
+</om:oruxmapsextensions>
+</extensions>
+</wpt> <trk>
+  <name>6-orux</name>
+  <trkseg>
+   <trkpt lon="8.467714" lat="49.488115"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468340" lat="49.488794"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468586" lat="49.488698"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.468743" lat="49.488636"><ele>101.5</ele></trkpt>
+   <trkpt lon="8.469161" lat="49.488473"><ele>101.75</ele></trkpt>
+   <trkpt lon="8.469971" lat="49.488151"><ele>103.5</ele></trkpt>
+   <trkpt lon="8.470610" lat="49.488842"><ele>99.75</ele></trkpt>
+  </trkseg>
+ </trk>
+</gpx>

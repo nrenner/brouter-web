@@ -71,6 +71,7 @@ var paths = {
             'js/LayersConfig.js',
             'js/router/BRouter.js',
             'js/util/*.js',
+            'js/format/*.js',
             'js/plugin/*.js',
             'js/control/*.js',
             'js/index.js',
@@ -285,14 +286,11 @@ gulp.task('bump:json', function () {
 });
 
 gulp.task('bump:html', function () {
+    const version = nextVersion || pkg.version;
     return gulp
         .src('./index.html')
-        .pipe(
-            replace(
-                /<sup class="version">(.*)<\/sup>/,
-                '<sup class="version">' + (nextVersion || pkg.version) + '</sup>'
-            )
-        )
+        .pipe(replace(/<sup class="version">(.*)<\/sup>/, '<sup class="version">' + version + '</sup>'))
+        .pipe(replace(/BR.version = '(.*?)';/, "BR.version = '" + version + "';"))
         .pipe(gulp.dest('.'));
 });
 
