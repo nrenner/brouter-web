@@ -59,3 +59,25 @@ From time to time (eg. when preparing releases), we can update translated conten
 ## License
 
 BRouter is licensed under [MIT](LICENSE). Please make sure before adding any library that it is compatible with that. (GPL licenses are incompatible for instance).
+
+## Tests
+
+[Jest](https://jestjs.io/) is used for unit tests.
+
+Tests are located in the `tests` directory in the project root. The idea is to mirror the structure in the `js` directory and to have a test file for each file there with the same name, but with a `.test.js` suffix (which is how tests are found).
+
+Examples for running tests (see [CLI Options](https://jestjs.io/docs/cli)):
+
+```sh
+# run all tests
+yarn test
+
+# watch to run affected tests for changed files while developing
+yarn test --watch
+
+# run specific test file only (while watching or without)
+yarn test --watch tests/format/Gpx.test.js
+
+# run a single test by name (regex for name passed to describe/test functions)
+yarn test --verbose -t="2-locus"
+```
