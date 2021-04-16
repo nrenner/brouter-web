@@ -267,7 +267,7 @@
 
         exportRoute = new BR.Export(router, pois, profile);
 
-        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd', function (evt) {
+        routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
             onUpdate(evt && evt.err);
         });

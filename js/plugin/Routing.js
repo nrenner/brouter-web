@@ -185,7 +185,9 @@ BR.Routing = L.Routing.extend({
     },
 
     _addSegmentCasing: function (e) {
-        var casing = L.polyline(e.layer.getLatLngs(), this.options.styles.trackCasing);
+        // extend layer style to inherit beeline dashArray
+        const casingStyle = Object.assign({}, e.layer.options, this.options.styles.trackCasing);
+        const casing = L.polyline(e.layer.getLatLngs(), casingStyle);
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
         this._segments.bringToFront();
@@ -308,7 +310,7 @@ BR.Routing = L.Routing.extend({
         this._eachSegment(function (m1, m2, line) {
             // omit if null (still calculating) or error
             // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
-            if (line && line.feature) {
+            if (line && (line.feature || m1._routing.beeline)) {
                 latLngs = latLngs.concat(line.getLatLngs());
             }
         });
