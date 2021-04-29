@@ -28,6 +28,11 @@ BR.Routing = L.Routing.extend({
             draw: {
                 enable: 68, // char code for 'd'
                 disable: 27, // char code for 'ESC'
+                beelineMode: 66, // char code for 'b'
+                // char code for 'Shift', same key as `beelineModifierName`
+                beelineModifier: 16,
+                // modifier key to draw straight line on click [shiftKey|null] (others don't work everywhere)
+                beelineModifierName: 'shiftKey',
             },
             reverse: 82, // char code for 'r'
             deleteLastPoint: 90, // char code for 'z'
@@ -174,6 +179,11 @@ BR.Routing = L.Routing.extend({
             },
             this._draw
         );
+
+        // remove listeners registered in super.onAdd, keys not working when map container lost focus
+        // (by navbar/sidebar interaction), use document instead
+        L.DomEvent.removeListener(this._container, 'keydown', this._keydownListener, this);
+        L.DomEvent.removeListener(this._container, 'keyup', this._keyupListener, this);
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
         L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
@@ -376,14 +386,16 @@ BR.Routing = L.Routing.extend({
             this.reverse();
         } else if (e.keyCode === this.options.shortcut.deleteLastPoint) {
             this.deleteLastPoint();
+        } else if (e.keyCode === this.options.shortcut.draw.beelineMode) {
+            this.toggleBeelineDrawing();
+        } else if (e.keyCode === this.options.shortcut.draw.beelineModifier) {
+            this._draw._setTrailerStyle(true);
         }
     },
 
     _keyupListener: function (e) {
-        // Prevent Leaflet from triggering drawing a second time on keyup,
-        // since this is already done in _keydownListener
-        if (e.keyCode === this.options.shortcut.draw.enable) {
-            return;
+        if (e.keyCode === this.options.shortcut.draw.beelineModifier) {
+            this._draw._setTrailerStyle(false);
         }
     },
 

@@ -100,6 +100,18 @@
         nodata: {
             color: 'darkred',
         },
+        beeline: {
+            weight: 5,
+            dashArray: [1, 10],
+            color: 'magenta',
+            opacity: BR.conf.defaultOpacity,
+        },
+        beelineTrailer: {
+            weight: 5,
+            dashArray: [1, 10],
+            opacity: 0.6,
+            color: 'magenta',
+        },
     };
 
     BR.conf.markerColors = {
