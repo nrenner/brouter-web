@@ -180,6 +180,16 @@ BR.Routing = L.Routing.extend({
             this._draw
         );
 
+        // avoid accidental shift-drag zooms while drawing beeline with shift-click
+        this._map.boxZoom.disable();
+        this._map.addHandler('boxZoom', BR.ClickTolerantBoxZoom);
+        this._draw.on('enabled', function () {
+            this._map.boxZoom.tolerant = true;
+        });
+        this._draw.on('disabled', function () {
+            this._map.boxZoom.tolerant = false;
+        });
+
         // remove listeners registered in super.onAdd, keys not working when map container lost focus
         // (by navbar/sidebar interaction), use document instead
         L.DomEvent.removeListener(this._container, 'keydown', this._keydownListener, this);
