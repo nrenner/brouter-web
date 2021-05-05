@@ -83,6 +83,40 @@
             ],
         });
 
+        // https://github.com/Templarian/MaterialDesign/blob/d0b28330af6648ca4c50c14d55043d71f813b3ae/svg/vector-line.svg
+        // Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0), https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
+        const svg = `
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" 
+                id="mdi-vector-line" width="24" height="24" viewBox="0 0 24 24" class="mdi active">
+                <path d="M15,3V7.59L7.59,15H3V21H9V16.42L16.42,9H21V3M17,5H19V7H17M5,17H7V19H5" />
+            </svg>`;
+        const beelineClickHandler = function (control) {
+            const enabled = routing.toggleBeelineDrawing();
+            control.state(enabled ? 'deactivate-beeline' : 'activate-beeline');
+        };
+        const title = i18next.t('keyboard.generic-shortcut', {
+            action: '$t(map.toggle-beeline)',
+            key: 'B',
+        });
+        const beelineButton = L.easyButton({
+            states: [
+                {
+                    stateName: 'activate-beeline',
+                    icon: svg.replace(' active', ''),
+                    onClick: beelineClickHandler,
+                    title: title,
+                },
+                {
+                    stateName: 'deactivate-beeline',
+                    icon: svg,
+                    onClick: beelineClickHandler,
+                    title: title,
+                },
+            ],
+        });
+        map.on('routing:beeline-start', () => beelineButton.state('deactivate-beeline'));
+        map.on('routing:beeline-end', () => beelineButton.state('activate-beeline'));
+
         var reverseRouteButton = L.easyButton(
             'fa-random',
             function () {
@@ -273,9 +307,11 @@
         });
         map.on('routing:draw-start', function () {
             drawButton.state('deactivate-draw');
+            beelineButton.enable();
         });
         map.on('routing:draw-end', function () {
             drawButton.state('activate-draw');
+            beelineButton.disable();
         });
 
         function onUpdate(err) {
@@ -330,7 +366,7 @@
             circlego.addTo(map);
         }
 
-        var buttons = [drawButton, reverseRouteButton, nogos.getButton()];
+        var buttons = [drawButton, beelineButton, reverseRouteButton, nogos.getButton()];
         if (circlego) buttons.push(circlego.getButton());
         buttons.push(deletePointButton, deleteRouteButton);
 

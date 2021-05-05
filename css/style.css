@@ -443,6 +443,22 @@ button.btn {
     line-height: 30px;
 }
 
+button.activate-beeline-active,
+button.deactivate-beeline-active {
+    transition-duration: 0.3s;
+}
+button.activate-beeline-active.disabled,
+button.deactivate-beeline-active.disabled {
+    height: 0;
+    border-bottom-width: 0px;
+}
+.mdi.active {
+    fill: #2074b6;
+}
+.mdi {
+    width: 18px;
+}
+
 /* smaller tab height */
 .nav > li > a {
     padding: 2px 15px;

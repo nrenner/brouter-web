@@ -154,6 +154,7 @@
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom out"
   },
