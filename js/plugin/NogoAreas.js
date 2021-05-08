@@ -189,9 +189,7 @@ BR.NogoAreas = L.Control.extend({
             $('#nogoJSON').val(undefined);
         } else if (nogoURL) {
             // TODO: Handle {{bbox}}
-            geoJSONPromise = fetch(nogoURL).then(function (response) {
-                response.json();
-            });
+            geoJSONPromise = fetch(nogoURL).then((response) => response.json());
         } else if (nogoFile) {
             geoJSONPromise = new Promise(function (resolve, reject) {
                 var reader = new FileReader();
