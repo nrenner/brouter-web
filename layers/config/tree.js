@@ -146,6 +146,7 @@ BR.confLayers.tree = {
                 'health_food',
                 'ice_cream_shop',
                 'organic',
+                'supermarket',
             ]
         },
         'tourism': [
