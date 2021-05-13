@@ -84,6 +84,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "File (.geojson)",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters)",
