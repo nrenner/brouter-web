@@ -101,7 +101,7 @@ BR.PoiMarkers = L.Control.extend({
         content += "<button id='remove-poi-marker' class='btn btn-secondary'><i class='fa fa-trash'></i></button>";
 
         var self = this;
-        var marker = L.marker(latlng, { icon: icon, draggable: true, name: name })
+        var marker = L.marker(latlng, { icon: icon, draggable: true, name: name, title: name })
             .bindPopup(content)
             .on('dragend', function () {
                 self.fire('update');
