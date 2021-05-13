@@ -197,7 +197,9 @@ BR.NogoAreas = L.Control.extend({
                     resolve(reader.result);
                 };
                 reader.onerror = function () {
-                    self.displayUploadError('Could not load file: ' + reader.error.message);
+                    self.displayUploadError(
+                        i18next.t('loadNogos.error.loading-file-error', { err: reader.error.message })
+                    );
                 };
 
                 reader.readAsText(nogoFile);
@@ -206,25 +208,25 @@ BR.NogoAreas = L.Control.extend({
             });
         } else {
             // FIXME: use form validator instead
-            self.displayUploadError('Missing file or URL.');
+            self.displayUploadError(i18next.t('loadNogos.error.missing-file-url'));
             return false;
         }
         var nogoWeight = parseFloat($('#nogoWeight').val());
         if (isNaN(nogoWeight)) {
             // FIXME: use form validator instead
-            self.displayUploadError('Missing default nogo weight.');
+            self.displayUploadError(i18next.t('loadNogos.error.missing-default-nogo-weight'));
             return false;
         }
         var nogoRadius = parseFloat($('#nogoRadius').val());
         if (isNaN(nogoRadius) || nogoRadius < 0) {
             // FIXME: use form validator instead
-            self.displayUploadError('Invalid default nogo radius.');
+            self.displayUploadError(i18next.t('loadNogos.error.invalid-default-nogo-radius'));
             return false;
         }
         var nogoBuffer = parseFloat($('#nogoBuffer').val());
         if (isNaN(nogoBuffer)) {
             // FIXME: use form validator instead
-            self.displayUploadError('Invalid nogo buffering radius.');
+            self.displayUploadError(i18next.t('loadNogos.error.invalid-nogo-buffering-radius'));
             return false;
         }
 
@@ -243,7 +245,7 @@ BR.NogoAreas = L.Control.extend({
             });
 
             if (cleanedGeoJSONFeatures.length === 0) {
-                self.displayUploadError('No valid area found in provided input.');
+                self.displayUploadError(i18next.t('loadNogos.error.no-valid-area'));
                 return false;
             }
 
@@ -268,18 +270,31 @@ BR.NogoAreas = L.Control.extend({
             nogosPoints = nogosPoints.filter(function (e) {
                 return e;
             });
-            self.setOptions({
-                nogos: nogosPoints,
-                polygons: geoJSON.getLayers().filter(function (e) {
-                    return e.feature.geometry.type === 'Polygon';
-                }),
-                polylines: geoJSON.getLayers().filter(function (e) {
-                    return e.feature.geometry.type === 'LineString';
-                }),
-            });
-            self._fireUpdate();
-            self.displayUploadError(undefined);
-            $('#loadNogos').modal('hide');
+            try {
+                self.setOptions({
+                    nogos: nogosPoints,
+                    polygons: geoJSON.getLayers().filter(function (e) {
+                        return e.feature.geometry.type === 'Polygon';
+                    }),
+                    polylines: geoJSON.getLayers().filter(function (e) {
+                        return e.feature.geometry.type === 'LineString';
+                    }),
+                });
+                self._fireUpdate();
+                self.displayUploadError(undefined);
+                $('#loadNogos').modal('hide');
+            } catch (err) {
+                if (err.name === 'NS_ERROR_MALFORMED_URI') {
+                    self.displayUploadError(i18next.t('loadNogos.error.loading-file-too-big'));
+                } else {
+                    self.displayUploadError(i18next.t('loadNogos.error.loading-file-unexpected'));
+                }
+                // fire a fake empty nogos before removing layers from map
+                // because it will automatically refresh the URL, and that will
+                // fail if we do not empty nogos first
+                self.fire('update', { options: { nogos: [], polygons: [], polylines: [] } });
+                self._clear();
+            }
         });
         return false;
     },
