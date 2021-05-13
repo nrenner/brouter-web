@@ -1,0 +1,12 @@
+{
+    "geometry": null,
+    "properties": {
+        "name": "Supermarket",
+        "id": "supermarket",
+        "overlay": true,
+        "dataSource": "OverpassAPI",
+        "icon": "fas-shopping-cart",
+        "query": "nwr[shop=supermarket];"
+    },
+    "type": "Feature"
+}

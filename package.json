@@ -351,6 +351,7 @@
         "@fortawesome/fontawesome-free": {
             "main": [
                 "svgs/solid/shopping-basket.svg",
+                "svgs/solid/shopping-cart.svg",
                 "svgs/solid/ice-cream.svg",
                 "svgs/solid/carrot.svg",
                 "svgs/solid/cheese.svg",
