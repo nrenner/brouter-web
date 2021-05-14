@@ -97,23 +97,37 @@ BR.PoiMarkers = L.Control.extend({
             markerColor: BR.conf.markerColors.poi,
         });
 
-        var content = '<p>' + BR.Util.sanitizeHTMLContent(name) + '</p>';
-        content += "<button id='remove-poi-marker' class='btn btn-secondary'><i class='fa fa-trash'></i></button>";
+        var content = BR.Util.sanitizeHTMLContent(name);
+        var contentWithAction =
+            '<p>' +
+            content +
+            '</p>' +
+            '<p><button id="remove-poi-marker" class="btn btn-secondary"><i class="fa fa-trash"></i></button></p>';
 
         var self = this;
-        var marker = L.marker(latlng, { icon: icon, draggable: true, name: name, title: name })
-            .bindPopup(content)
+        var marker = L.marker(latlng, { icon: icon, draggable: true, name: name })
+            .bindPopup(contentWithAction)
             .on('dragend', function () {
                 self.fire('update');
             })
             .on('popupopen', function () {
+                this.unbindTooltip();
                 $('#remove-poi-marker').on('click', function (e) {
                     self.markersLayer.removeLayer(marker);
                     e.preventDefault();
                     self.fire('update');
                 });
             })
+            .on('popupclose', function () {
+                if (false === BR.Browser.touch) {
+                    this.bindTooltip(content);
+                }
+            })
             .addTo(this.markersLayer);
+
+        if (false === BR.Browser.touch) {
+            marker.bindTooltip(content);
+        }
     },
 
     clear: function () {
