@@ -287,6 +287,7 @@ BR.NogoAreas = L.Control.extend({
                 if (err.name === 'NS_ERROR_MALFORMED_URI') {
                     self.displayUploadError(i18next.t('loadNogos.error.loading-file-too-big'));
                 } else {
+                    console.warn('Error loading nogos', err);
                     self.displayUploadError(i18next.t('loadNogos.error.loading-file-unexpected'));
                 }
                 // fire a fake empty nogos before removing layers from map

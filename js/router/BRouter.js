@@ -8,6 +8,7 @@ L.BRouter = L.Class.extend({
         PRECISION: 6,
         NUMBER_SEPARATOR: ',',
         GROUP_SEPARATOR: '|',
+        ENC_GROUP_SEPARATOR: ';',
         ABORTED_ERROR: 'aborted',
         CUSTOM_PREFIX: 'custom_',
         isCustomProfile: function (profileName) {
@@ -389,9 +390,9 @@ L.BRouter = L.Class.extend({
 
     _getNogosPolylinesString: function (nogos) {
         var s = '';
-        for (var i = 0, polyline, vertices; i < nogos.length; i++) {
+        for (var i = 0; i < nogos.length; i++) {
             polylineItem = nogos[i];
-            s += polyline.encode(polylineItem.toGeoJSON().geometry.coordinates[0]);
+            s += polyline.encode(polylineItem.toGeoJSON().geometry.coordinates);
             // -1 is default nogo exclusion, it should not be passed as a URL parameter.
             if (
                 polylineItem.options.nogoWeight !== undefined &&
@@ -402,7 +403,7 @@ L.BRouter = L.Class.extend({
                 s += polylineItem.options.nogoWeight;
             }
             if (i < nogos.length - 1) {
-                s += L.BRouter.GROUP_SEPARATOR;
+                s += L.BRouter.ENC_GROUP_SEPARATOR;
             }
         }
         return s;
@@ -414,59 +415,92 @@ L.BRouter = L.Class.extend({
             latlngs,
             nogos = [];
 
-        groups = s.split(L.BRouter.GROUP_SEPARATOR);
-        for (var i = 0; i < groups.length; i++) {
-            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
-            if (numbers) {
-                latlngs = polyline.decode(numbers[0]);
-                var nogoWeight;
-                if (numbers.length > 1) {
-                    nogoWeight = Number.parseFloat(numbers[1]);
+        if (s.indexOf(L.BRouter.ENC_GROUP_SEPARATOR) !== -1) {
+            groups = s.split(L.BRouter.ENC_GROUP_SEPARATOR);
+            for (var i = 0; i < groups.length; i++) {
+                numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+                if (numbers) {
+                    latlngs = polyline.decode(numbers[0]).map((lonlat) => [lonlat[1], lonlat[0]]);
+                    var nogoWeight;
+                    if (numbers.length > 1) {
+                        nogoWeight = Number.parseFloat(numbers[1]);
+                    }
+                    var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
+                    nogos.push(L.polyline(latlngs, options));
                 }
-                var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
-                nogos.push(L.polyline(latlngs, options));
+            }
+        } else {
+            // old url style - we keep it to not break any existing URL but
+            // this should be removed at some point (eg. May 2022)
+            groups = s.split(L.BRouter.GROUP_SEPARATOR);
+            for (var i = 0; i < groups.length; i++) {
+                numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+                if (numbers.length > 1) {
+                    latlngs = [];
+                    for (var j = 0; j < numbers.length - 1; ) {
+                        var lng = Number.parseFloat(numbers[j++]);
+                        var lat = Number.parseFloat(numbers[j++]);
+                        latlngs.push([lat, lng]);
+                    }
+                    var nogoWeight;
+                    if (j < numbers.length) {
+                        nogoWeight = Number.parseFloat(numbers[j++]);
+                    }
+                    var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
+                    nogos.push(L.polyline(latlngs, options));
+                }
             }
         }
         return nogos;
     },
 
     _getNogosPolygonsString: function (nogos) {
-        var s = '';
-        for (var i = 0, polygon, vertices; i < nogos.length; i++) {
+        var polygonsStr = [];
+        for (var i = 0, polygon; i < nogos.length; i++) {
             polygon = nogos[i];
-            s += polyline.encode(polygon.toGeoJSON().geometry.coordinates[0]);
+            polygonsStr.push(polyline.encode(polygon.toGeoJSON().geometry.coordinates[0]));
             // -1 is default nogo exclusion, it should not be passed as a URL parameter.
-            if (
-                polygon.options.nogoWeight !== undefined &&
-                polygon.options.nogoWeight !== null &&
-                polygon.options.nogoWeight !== -1
-            ) {
-                s += L.BRouter.NUMBER_SEPARATOR;
-                s += polygon.options.nogoWeight;
-            }
-            if (i < nogos.length - 1) {
-                s += L.BRouter.GROUP_SEPARATOR;
+            if (polygon.options.nogoWeight >= 0) {
+                polygonsStr[i] += L.BRouter.NUMBER_SEPARATOR;
+                polygonsStr[i] += polygon.options.nogoWeight;
             }
         }
-        return s;
+        return polygonsStr.join(L.BRouter.ENC_GROUP_SEPARATOR);
     },
 
     _parseNogosPolygons: function (s) {
-        var groups,
-            numbers,
-            latlngs,
-            nogos = [];
-
-        groups = s.split(L.BRouter.GROUP_SEPARATOR);
-        for (var i = 0; i < groups.length; i++) {
-            numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
-            if (numbers) {
-                latlngs = polyline.decode(numbers[0]);
+        var nogos = [];
+        if (s.indexOf(L.BRouter.ENC_GROUP_SEPARATOR) !== -1) {
+            var groups = s.split(L.BRouter.ENC_GROUP_SEPARATOR);
+            groups.forEach((polygonStr) => {
+                var parts = polygonStr.split(L.BRouter.NUMBER_SEPARATOR);
+                var latlngs = polyline.decode(parts[0]).map((lonlat) => [lonlat[1], lonlat[0]]);
                 var nogoWeight;
-                if (numbers.length > 1) {
-                    nogoWeight = Number.parseFloat(numbers[1]);
+                if (parts.length > 1) {
+                    nogoWeight = Number.parseFloat(parts[1]);
                 }
                 nogos.push(L.polygon(latlngs, { nogoWeight: nogoWeight }));
+            });
+        } else {
+            // old url style - we keep it to not break any existing URL but
+            // this should be removed at some point (eg. May 2022)
+            var groups = s.split(L.BRouter.GROUP_SEPARATOR);
+            for (var i = 0; i < groups.length; i++) {
+                var numbers = groups[i].split(L.BRouter.NUMBER_SEPARATOR);
+                if (numbers.length > 1) {
+                    var latlngs = [];
+                    for (var j = 0; j < numbers.length - 1; ) {
+                        var lng = Number.parseFloat(numbers[j++]);
+                        var lat = Number.parseFloat(numbers[j++]);
+                        latlngs.push([lat, lng]);
+                    }
+                    var nogoWeight;
+                    if (j < numbers.length) {
+                        nogoWeight = Number.parseFloat(numbers[j++]);
+                    }
+                    var options = L.extend(BR.NogoAreas.prototype.polylineOptions, { nogoWeight: nogoWeight });
+                    nogos.push(L.polyline(latlngs, options));
+                }
             }
         }
         return nogos;
