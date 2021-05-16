@@ -12,6 +12,15 @@
             "webRoot": "${workspaceFolder}"
         },
         {
+            "name": "Launch Firefox against localhost",
+            "type": "firefox",
+            "reAttach": true,
+            "request": "launch",
+            "profile": "default-release",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
             "name": "Debug Chromium (Snap) localhost",
             "type": "chrome",
             "request": "launch",
