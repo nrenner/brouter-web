@@ -70,7 +70,7 @@ BR.Routing = L.Routing.extend({
                     return;
                 }
 
-                this._mouseMarker.setOpacity(0.0);
+                this._hideMouseMarker();
                 this._map.off('mousemove', this._segmentOnMousemove, this);
                 this._suspended = true;
             },
