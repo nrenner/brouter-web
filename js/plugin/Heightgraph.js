@@ -63,6 +63,16 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             },
         },
 
+        onAdd(map) {
+            // As we're using canvas, initialize an `svg` root that is needed for map marker,
+            // see `Heightgraph._showMapMarker`
+            if (!document.querySelector('.leaflet-overlay-pane svg')) {
+                L.svg().addTo(map);
+            }
+
+            return L.Control.Heightgraph.prototype.onAdd.call(this, map);
+        },
+
         addBelow: function (map) {
             // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
             // this.width($('#map').outerWidth());

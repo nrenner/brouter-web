@@ -12,7 +12,12 @@ BR.Map = {
 
         var maxZoom = 19;
 
+        if (BR.Browser.touch) {
+            L.Draggable.prototype.options.clickTolerance = 10;
+        }
+
         map = new L.Map('map', {
+            renderer: L.canvas({ tolerance: BR.Browser.touch ? 10 : 5 }),
             zoomControl: false, // add it manually so that we can translate it
             worldCopyJump: true,
             minZoom: 0,

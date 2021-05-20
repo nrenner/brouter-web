@@ -207,7 +207,7 @@ BR.Routing = L.Routing.extend({
     _addSegmentCasing: function (e) {
         // extend layer style to inherit beeline dashArray
         const casingStyle = Object.assign({}, e.layer.options, this.options.styles.trackCasing);
-        const casing = L.polyline(e.layer.getLatLngs(), casingStyle);
+        const casing = L.polyline(e.layer.getLatLngs(), Object.assign({}, casingStyle, { interactive: false }));
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
         this._segments.bringToFront();
