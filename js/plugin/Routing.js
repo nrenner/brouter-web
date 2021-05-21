@@ -146,22 +146,27 @@ BR.Routing = L.Routing.extend({
                 this._show();
             }
         }
-        function hide() {
+        var hide = function () {
             if (!this._hidden && this._parent._waypoints._first) {
                 this._hide();
             }
+        }.bind(this._draw);
+        function hideOverControl(e) {
+            hide();
+            // prevent showing trailer when clicking state buttons (causes event that propagates to map)
+            L.DomEvent.stopPropagation(e);
         }
         this._draw.on('enabled', function () {
             this._map.on('mouseout', hide, this);
             this._map.on('mouseover', show, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseout', show, this);
-            L.DomEvent.on(this._map._controlContainer, 'mouseover', hide, this);
+            L.DomEvent.on(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
         this._draw.on('disabled', function () {
             this._map.off('mouseout', hide, this);
             this._map.off('mouseover', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
-            L.DomEvent.off(this._map._controlContainer, 'mouseover', hide, this);
+            L.DomEvent.off(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
 
         // Call show after deleting last waypoint, but hide trailer.
