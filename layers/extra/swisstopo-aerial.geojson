@@ -1,0 +1,17 @@
+{
+    "geometry": null,
+    "properties": {
+        "attribution": {
+            "html": "© <a href='https://www.swisstopo.ch/' target='_blank'>Swisstopo</a>"
+        },
+        "id": "swisstopo-aerial",
+        "max_zoom": 28,
+        "name": "Swisstopo Aerial Photographs",
+        "type": "tms",
+        "url": "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg",
+        "layers": "web",
+        "format": "image/jpeg"
+    },
+    "type": "Feature"
+}
+  

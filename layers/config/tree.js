@@ -39,7 +39,13 @@ BR.confLayers.tree = {
                     'osmbe-nl',
                 ]
             },
-            'OpenStreetMap.CH',
+            {
+                'CH': [
+                    'OpenStreetMap.CH',
+                    'swisstopo-landeskarte',
+                    'swisstopo-aerial',
+                ]
+            },
             'topplus-open',
             {
                 'IL': [
