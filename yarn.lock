@@ -7806,9 +7806,9 @@ leaflet-providers@^1.10.2:
   resolved "https://registry.yarnpkg.com/leaflet-providers/-/leaflet-providers-1.10.2.tgz#763c8e6655f26caf1afe3a1ef4add6c3e32de663"
   integrity sha512-1l867LObxwuFBeyPeBewip8PAXKOnvEoujq4/9y2TKTiZNHH76ksBD6dfktGjgUrOF+IdjsGHkpASPE+v2DQLw==
 
-leaflet-routing@nrenner/leaflet-routing#9fa0cd2:
-  version "0.1.4-alpha"
-  resolved "https://codeload.github.com/nrenner/leaflet-routing/tar.gz/9fa0cd22984a206518c6e20b7a53255531763e88"
+leaflet-routing@nrenner/leaflet-routing#a8213a4:
+  version "0.1.4-alpha.2"
+  resolved "https://codeload.github.com/nrenner/leaflet-routing/tar.gz/a8213a4089c8be24a725a8f575880b0c20f64e54"
 
 leaflet-sidebar-v2@nrenner/leaflet-sidebar-v2#dev:
   version "3.0.2"
