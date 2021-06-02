@@ -47,7 +47,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
 ### Credits and Licenses
 
 -   [BRouter](https://github.com/abrensch/brouter) (not included)  
-    by abrensch; [GNU General Public License, version 3.0 (GPLv3)](https://github.com/abrensch/brouter/blob/master/LICENSE)
+    by abrensch; [MIT License](https://github.com/abrensch/brouter/blob/master/LICENSE)
 -   [Leaflet](https://leafletjs.com/)  
     Copyright (c) 2010-2014, Vladimir Agafonkin; Copyright (c) 2010-2011, CloudMade; [2-clause BSD License](https://github.com/Leaflet/Leaflet/blob/master/LICENSE)
 -   [leaflet-routing](https://github.com/Turistforeningen/leaflet-routing)  
