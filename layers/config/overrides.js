@@ -139,11 +139,11 @@ BR.confLayers.getPropertyOverrides = function() {
         },
         'swisstopo-landeskarte': {
             'country_code': 'CH',
-            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}',
+            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}&bgLayer=ch.swisstopo.pixelkarte-farbe',
         },
         'swisstopo-aerial': {
             'country_code': 'CH',
-            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}',
+            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}&bgLayer=ch.swisstopo.swissimage',
         },
         'topplus-open': {
             'country_code': 'DE',
