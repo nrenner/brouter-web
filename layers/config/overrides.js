@@ -137,6 +137,14 @@ BR.confLayers.getPropertyOverrides = function() {
             'mapUrl': 'https://osm.ch/#{zoom}/{lat}/{lon}',
             'worldTiles': true
         },
+        'swisstopo-landeskarte': {
+            'country_code': 'CH',
+            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}',
+        },
+        'swisstopo-aerial': {
+            'country_code': 'CH',
+            'mapUrl': 'https://map.geo.admin.ch/?swisssearch={lat},{lon}',
+        },
         'topplus-open': {
             'country_code': 'DE',
             'mapUrl': 'http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_user_id=0&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=41',

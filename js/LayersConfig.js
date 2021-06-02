@@ -78,6 +78,8 @@ BR.LayersConfig = L.Class.extend({
         BR.layerIndex['1069'].geometry = BR.confLayers.europeGeofabrik;
 
         BR.layerIndex['OpenStreetMap.CH'].geometry = BR.confLayers.switzerlandPadded;
+        BR.layerIndex['swisstopo-landeskarte'].geometry = BR.confLayers.switzerlandPadded;
+        BR.layerIndex['swisstopo-aerial'].geometry = BR.confLayers.switzerlandPadded;
 
         BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
     },
