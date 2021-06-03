@@ -45,6 +45,7 @@ BR.Routing = L.Routing.extend({
 
         this._segmentsCasing = new L.FeatureGroup().addTo(map);
         this._loadingTrailerGroup = new L.FeatureGroup().addTo(map);
+        this._loadingTrailerRenderer = L.svg(); // CSS animation based on SVG path element
 
         var container = L.Routing.prototype.onAdd.call(this, map);
 
@@ -358,6 +359,7 @@ BR.Routing = L.Routing.extend({
                 opacity: this.options.styles.trailer.opacity,
                 dashArray: [10, 10],
                 className: 'loading-trailer',
+                renderer: this._loadingTrailerRenderer,
             });
             this._loadingTrailerGroup.addLayer(loadingTrailer);
         }
