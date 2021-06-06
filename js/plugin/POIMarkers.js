@@ -83,6 +83,7 @@ BR.PoiMarkers = L.Control.extend({
         var self = this;
         bootbox.prompt({
             title: i18next.t('map.enter-poi-name'),
+            required: true,
             callback: function (result) {
                 if (result !== null) {
                     self.addMarker(e.latlng, result);
