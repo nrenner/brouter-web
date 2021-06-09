@@ -448,4 +448,25 @@ BR.Routing = L.Routing.extend({
             this._map.addLayer(this._distanceMarkers);
         }
     },
+
+    createBeeline: function (latLng1, latLng2) {
+        const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
+        const props = {
+            cost: 0,
+            'filtered ascend': 0,
+            'plain-ascend': 0,
+            'total-energy': 0,
+            'total-time': 0,
+            'track-length': 0,
+            messages: [],
+        };
+        layer.feature = turf.lineString(
+            [
+                [latLng1.lng, latLng1.lat],
+                [latLng2.lng, latLng2.lat],
+            ],
+            props
+        );
+        return layer;
+    },
 });
