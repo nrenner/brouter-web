@@ -284,8 +284,15 @@ BR.Export._concatTotalTrack = function (segments) {
 
         let featureCoordinates = feature.geometry.coordinates;
         if (segmentIndex > 0) {
-            // remove first segment coordinate, same as previous last
-            featureCoordinates = featureCoordinates.slice(1);
+            // remove duplicate coordinate: first segment coordinate same as previous last,
+            // remove the one without ele value (e.g. beeline)
+            const prevLast = coordinates[coordinates.length - 1];
+            const first = featureCoordinates[0];
+            if (prevLast.length < first.length) {
+                coordinates.pop();
+            } else {
+                featureCoordinates = featureCoordinates.slice(1);
+            }
         }
         coordinates = coordinates.concat(featureCoordinates);
     }
