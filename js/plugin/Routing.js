@@ -458,7 +458,21 @@ BR.Routing = L.Routing.extend({
             'total-energy': 0,
             'total-time': 0,
             'track-length': 0,
-            messages: [],
+            messages: [
+                [
+                    'Longitude',
+                    'Latitude',
+                    'Elevation',
+                    'Distance',
+                    'CostPerKm',
+                    'ElevCost',
+                    'TurnCost',
+                    'NodeCost',
+                    'InitialCost',
+                    'WayTags',
+                    'NodeTags',
+                ],
+            ],
         };
         layer.feature = turf.lineString(
             [
