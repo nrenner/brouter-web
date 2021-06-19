@@ -74,7 +74,15 @@ BR.Export = L.Class.extend({
             link.download = (name || 'brouter') + '.' + format;
             link.click();
         } else {
-            var uri = this.router.getUrl(this.latLngs, this.pois.getMarkers(), null, format, nameUri, includeWaypoints);
+            var uri = this.router.getUrl(
+                this.latLngs,
+                null,
+                this.pois.getMarkers(),
+                null,
+                format,
+                nameUri,
+                includeWaypoints
+            );
             var evt = document.createEvent('MouseEvents');
             evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             var link = document.createElement('a');

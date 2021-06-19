@@ -432,7 +432,7 @@
             if (opts.lonlats) {
                 routing.draw(false);
                 routing.clear();
-                routing.setWaypoints(opts.lonlats);
+                routing.setWaypoints(opts.lonlats, opts.beelineFlags);
             }
             if (opts.pois) {
                 pois.setMarkers(opts.pois);
@@ -455,7 +455,13 @@
         // this callback is used to append anything in URL after L.Hash wrote #map=zoom/lat/lng/layer
         urlHash.additionalCb = function () {
             var url = router
-                .getUrl(routing.getWaypoints(), pois.getMarkers(), circlego ? circlego.getCircle() : null, null)
+                .getUrl(
+                    routing.getWaypoints(),
+                    routing.getBeelineFlags(),
+                    pois.getMarkers(),
+                    circlego ? circlego.getCircle() : null,
+                    null
+                )
                 .substr('brouter?'.length + 1);
 
             // by default brouter use | as separator. To make URL more human-readable, we remplace them with ; for users

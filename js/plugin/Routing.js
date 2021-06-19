@@ -290,7 +290,7 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    setWaypoints: function (latLngs, cb) {
+    setWaypoints: function (latLngs, beelineFlags, cb) {
         var i;
         var callbackCount = 0;
         var firstErr;
@@ -319,7 +319,8 @@ BR.Routing = L.Routing.extend({
         this._loadingTrailerGroup._map = null;
 
         for (i = 0; latLngs && i < latLngs.length; i++) {
-            this.addWaypoint(latLngs[i], this._waypoints._last, null, callback);
+            const beeline = beelineFlags && i < beelineFlags.length ? beelineFlags[i] : null;
+            this.addWaypoint(latLngs[i], beeline, this._waypoints._last, null, callback);
         }
 
         this._loadingTrailerGroup._map = this._map;
