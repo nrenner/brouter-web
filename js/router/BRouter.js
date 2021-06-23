@@ -90,7 +90,7 @@ L.BRouter = L.Class.extend({
             opts.lonlats = this._parseLonLats(params.lonlats);
         }
         if (params.straight) {
-            opts.beelineFlags = this._parseBeelines(params.straight);
+            opts.beelineFlags = this._parseBeelines(params.straight, opts.lonlats);
         }
         if (params.nogos) {
             opts.nogos = this._parseNogos(params.nogos);
@@ -315,17 +315,22 @@ L.BRouter = L.Class.extend({
     },
 
     _getBeelineString: function (beelineFlags) {
-        var s = '';
+        var indexes = [];
         for (var i = 0; i < beelineFlags.length; i++) {
-            s += beelineFlags[i] ? '1' : '0';
+            if (beelineFlags[i]) {
+                indexes.push(i);
+            }
         }
-        return s;
+        return indexes.join(',');
     },
 
-    _parseBeelines: function (s) {
-        const beelineFlags = [];
-        for (const c of s) {
-            beelineFlags.push(!!+c);
+    _parseBeelines: function (s, lonlats) {
+        if (!lonlats || lonlats.length < 2) return [];
+
+        const beelineFlags = new Array(lonlats.length - 1);
+        beelineFlags.fill(false);
+        for (const i of s.split(',')) {
+            beelineFlags[i] = true;
         }
         return beelineFlags;
     },
