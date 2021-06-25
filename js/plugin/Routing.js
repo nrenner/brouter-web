@@ -452,6 +452,7 @@ BR.Routing = L.Routing.extend({
 
     createBeeline: function (latLng1, latLng2) {
         const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
+        const distance = Math.round(latLng1.distanceTo(latLng2));
         const props = {
             cost: 0,
             'filtered ascend': 0,
@@ -473,6 +474,7 @@ BR.Routing = L.Routing.extend({
                     'WayTags',
                     'NodeTags',
                 ],
+                [latLng2.lng * 1000000, latLng2.lat * 1000000, 0, distance, 0, 0, 0, 0, 0, '', ''],
             ],
         };
         layer.feature = turf.lineString(
@@ -482,6 +484,14 @@ BR.Routing = L.Routing.extend({
             ],
             props
         );
+
+        // corresponding to BRouter._assignFeatures
+        for (const latLng of layer.getLatLngs()) {
+            const featureMessage = props.messages[1];
+            latLng.feature = BR.TrackEdges.getFeature(featureMessage);
+            latLng.message = featureMessage;
+        }
+
         return layer;
     },
 });

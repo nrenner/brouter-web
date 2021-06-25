@@ -237,7 +237,7 @@ L.BRouter = L.Class.extend({
                     var segmentLatLng = segmentLatLngs[fi],
                         featureMessage = featureMessages[mi];
 
-                    segmentLatLng.feature = this._getFeature(featureMessage);
+                    segmentLatLng.feature = BR.TrackEdges.getFeature(featureMessage);
                     segmentLatLng.message = featureMessage;
 
                     if (featureLatLng.equals(segmentLatLngs[fi])) {
@@ -248,22 +248,6 @@ L.BRouter = L.Class.extend({
             }
         }
         return segment;
-    },
-
-    _getFeature: function (featureMessage) {
-        //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
-        return {
-            cost: {
-                perKm: parseInt(featureMessage[4]),
-                elev: parseInt(featureMessage[5]),
-                turn: parseInt(featureMessage[6]),
-                node: parseInt(featureMessage[7]),
-                initial: parseInt(featureMessage[8]),
-            },
-            distance: parseInt(featureMessage[3]),
-            wayTags: featureMessage[9],
-            nodeTags: featureMessage[10],
-        };
     },
 
     _getFeatureLatLng: function (message) {
