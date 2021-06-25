@@ -1,0 +1,12 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "net.damsy.brouter",
+            "sha256_cert_fingerprints": [
+                "9F:A2:95:0F:B7:6B:F8:A1:04:24:47:9A:D0:23:CA:BA:A5:98:37:6C:67:DE:01:AD:3E:AF:4A:9E:1E:0A:D6:D1"
+            ]
+        }
+    }
+]

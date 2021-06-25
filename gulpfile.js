@@ -96,6 +96,7 @@ var paths = {
     zip: ['dist/**', 'index.html', 'config.template.js', 'keys.template.js'],
     dest: 'dist',
     destName: 'brouter-web',
+    sw: 'pwabuilder-sw.js',
 };
 
 gulp.task('clean', function (cb) {
@@ -187,6 +188,10 @@ gulp.task('locales', function () {
 
 gulp.task('boundaries', function () {
     return gulp.src(paths.boundaries).pipe(gulp.dest(paths.dest + '/boundaries'));
+});
+
+gulp.task('sw', function () {
+    return gulp.src(paths.sw).pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('changelog', function (cb) {
@@ -358,6 +363,7 @@ gulp.task(
     gulp.series(
         'clean',
         'scripts_config',
+        'sw',
         'layers_config',
         'layers',
         'bump:html',
