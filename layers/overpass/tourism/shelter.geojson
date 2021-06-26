@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Shelter",
+    "id": "shelter",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-picnic_shelter",
+    "query": "nwr[amenity=shelter];"
+  },
+  "type": "Feature"
+}
