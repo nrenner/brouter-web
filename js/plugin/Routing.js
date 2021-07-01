@@ -422,10 +422,12 @@ BR.Routing = L.Routing.extend({
     },
 
     reverse: function () {
-        var waypoints = this.getWaypoints();
+        const waypoints = this.getWaypoints();
+        const beelineFlags = this.getBeelineFlags();
         waypoints.reverse();
+        beelineFlags.reverse();
         this.clear();
-        this.setWaypoints(waypoints);
+        this.setWaypoints(waypoints, beelineFlags);
     },
 
     deleteLastPoint: function () {
