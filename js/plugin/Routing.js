@@ -476,7 +476,7 @@ BR.Routing = L.Routing.extend({
                     'WayTags',
                     'NodeTags',
                 ],
-                [latLng2.lng * 1000000, latLng2.lat * 1000000, 0, distance, 0, 0, 0, 0, 0, '', ''],
+                [latLng2.lng * 1000000, latLng2.lat * 1000000, null, distance, null, null, null, null, null, '', ''],
             ],
         };
         layer.feature = turf.lineString(
