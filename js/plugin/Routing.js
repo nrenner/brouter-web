@@ -54,13 +54,36 @@ BR.Routing = L.Routing.extend({
 
         this._waypoints.on('layeradd', this._setMarkerOpacity, this);
 
-        this.on('routing:routeWaypointStart routing:rerouteAllSegmentsStart', function (evt) {
-            this._removeDistanceMarkers();
+        // flag if (re-)routing of all segments is ongoing
+        this._routingAll = false;
+        this.on('routing:rerouteAllSegmentsStart routing:setWaypointsStart', function (evt) {
+            this._routingAll = true;
+        });
+        this.on('routing:rerouteAllSegmentsEnd routing:setWaypointsEnd', function (evt) {
+            this._routingAll = false;
         });
 
-        this.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd', function (evt) {
-            this._updateDistanceMarkers(evt);
-        });
+        this.on(
+            'routing:routeWaypointStart routing:rerouteAllSegmentsStart routing:rerouteSegmentStart',
+            function (evt) {
+                if (!this._routingAll || evt.type === 'routing:rerouteAllSegmentsStart') {
+                    this._removeDistanceMarkers();
+                }
+            }
+        );
+
+        this.on(
+            'routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd routing:rerouteSegmentEnd',
+            function (evt) {
+                if (
+                    !this._routingAll ||
+                    evt.type === 'routing:rerouteAllSegmentsEnd' ||
+                    evt.type === 'routing:setWaypointsEnd'
+                ) {
+                    this._updateDistanceMarkers(evt);
+                }
+            }
+        );
 
         // turn line mouse marker off while over waypoint marker
         this.on(
