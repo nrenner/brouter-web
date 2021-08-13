@@ -62,15 +62,15 @@ BR.Gpx = {
         return gpx;
     },
 
-    // <!-- track-length = 319 filtered ascend = 2 plain-ascend = -1 cost=533 energy=.0kwh time=44s -->
+    // <!-- track-length=319 filtered-ascend=2 plain-ascend=-1 cost=533 energy=.0kwh time=44s -->
     _statsComment: function (geoJson) {
         const props = geoJson.features?.[0].properties;
         if (!props) return '';
 
         let comment = '<!--';
-        comment += ' track-length = ' + props['track-length'];
-        comment += ' filtered ascend = ' + props['filtered ascend'];
-        comment += ' plain-ascend = ' + props['plain-ascend'];
+        comment += ' track-length=' + props['track-length'];
+        comment += ' filtered-ascend=' + props['filtered ascend'];
+        comment += ' plain-ascend=' + props['plain-ascend'];
         comment += ' cost=' + props['cost'];
         if (props['total-energy']) {
             // see brouter OsmTrack.getFormattedEnergy
