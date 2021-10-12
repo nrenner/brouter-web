@@ -296,6 +296,14 @@
     "tracklayer": "Track Layer",
     "tuning": "Tuning"
   },
+  "searchfav": {
+	  "addfavorite": "add as favorite",
+	  "openfavorites": "open favorite list",
+	  "removeall": "delete all favorites",
+	  "export": "export favorites to file",
+	  "import": "import favorites from file",
+	  "ask_removeall": "Do you want to delete all search favorites?"
+  },
   "warning": {
     "cannot-get-route": "Error getting route URL",
     "invalid-route-from": "Start marker is too far from a route.",
