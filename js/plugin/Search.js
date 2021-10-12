@@ -68,18 +68,20 @@ BR.Search = class extends L.Control.Geocoder {
 
 
 class SearchFavorites {
-	searchInput=undefined;
-	autocompleteContainer=undefined;
-	autocompleteSelect=undefined;
-	autocompleteMenu=undefined;
-	geocoderForm=undefined;
-	geocoder=undefined;
-	favElements=undefined;
-	isFiltered=true;
-	arFavitems=[];
-	arFavitemsLC=[];
 	
 	constructor(geocoder,container) {
+		//because eslint does not support instance var declaration
+		this.searchInput=undefined;
+		this.autocompleteContainer=undefined;
+		this.autocompleteSelect=undefined;
+		this.autocompleteMenu=undefined;
+		this.geocoderForm=undefined;
+		this.geocoder=undefined;
+		this.favElements=undefined;
+		this.isFiltered=true;
+		this.arFavitems=[];
+		this.arFavitemsLC=[];
+
 		this.geocoder=geocoder;
 		this.searchInput=$(container).find(".leaflet-control-geocoder-form input[type=text]");
 		this.searchInput.after(`<span class="search-fav-ctrls btn-group btn-group-sm">
@@ -172,7 +174,7 @@ class SearchFavorites {
 		
 		this.searchInput.on("keyup",(e) => this.onInput(e));
 		
-	}
+	}	
 	
 	updateFavList() {
 		if(this.arFavitems.length > 0){
