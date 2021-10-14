@@ -1,7 +1,5 @@
 (function () {
     // Calculates time and energy stats
-    //
-    // from BRouter btools.router.StdPath
 
     class BExpressionContextWay {
         getMaxspeed() {
@@ -18,6 +16,7 @@
         }
     }
 
+    // from BRouter btools.router.RoutingContext
     class RoutingContext {
         constructor() {
             this.expctxGlobal = new BExpressionContext();
@@ -32,6 +31,7 @@
         }
     }
 
+    // from BRouter btools.router.StdPath
     class StdPath {
         constructor() {
             this.totalTime = 0;
@@ -143,4 +143,5 @@
     StdPath.GRAVITY = 9.81;
 
     BR.StdPath = StdPath;
+    BR.RoutingContext = RoutingContext;
 })();

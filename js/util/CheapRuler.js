@@ -107,3 +107,10 @@ btools = {};
     })((util = btools.util || (btools.util = {})));
 })(btools || (btools = {}));
 btools.util.CheapRuler.__static_initialize();
+
+btools.util.CheapRuler.toIntegerLngLat = (coordinate) => {
+    const ilon = (coordinate[0] + 180) * 1e6;
+    const ilat = (coordinate[1] + 90) * 1e6;
+
+    return [ilon, ilat];
+};
