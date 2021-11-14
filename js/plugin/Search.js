@@ -191,6 +191,9 @@ class SearchFavorites {
     }
 
     appendFavorite(strFav) {
+        if (strFav === '') {
+            return;
+        }
         this.arFavitems.push(strFav);
 
         this.arFavitems = [...new Set(this.arFavitems)]; //remove duplicates
