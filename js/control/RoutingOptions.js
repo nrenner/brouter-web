@@ -8,6 +8,9 @@ BR.RoutingOptions = L.Evented.extend({
     initialize: function () {
         $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
+        var remembered_profile = this.getRememberedProfile();
+        var remembered_profile_was_selected = false;
+
         // build option list from config
         var profiles = BR.conf.profiles;
         var profiles_list = L.DomUtil.get('profile');
@@ -15,12 +18,18 @@ BR.RoutingOptions = L.Evented.extend({
             var option = document.createElement('option');
             option.value = profiles[i];
             option.text = i18next.t('navbar.profile.' + profiles[i]);
+            if (remembered_profile !== null && remembered_profile === profiles[i]) {
+                option.selected = true;
+                remembered_profile_was_selected = true;
+            }
             profiles_list.appendChild(option);
         }
         // set default value, used as indicator for empty custom profile
         profiles_list.children[0].value = 'Custom';
-        // <custom> profile is empty at start, select next one
-        profiles_list.children[1].selected = true;
+        if (!remembered_profile_was_selected) {
+            // <custom> profile is empty at start, select next one
+            profiles_list.children[1].selected = true;
+        }
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
@@ -113,8 +122,29 @@ BR.RoutingOptions = L.Evented.extend({
         return profile;
     },
 
+    rememberProfile: function (profile) {
+        if (!BR.Util.localStorageAvailable()) {
+            return;
+        }
+
+        if (L.BRouter.isCustomProfile(profile)) {
+            return;
+        }
+
+        localStorage.setItem('routingprofile', profile);
+    },
+
+    getRememberedProfile: function () {
+        if (!BR.Util.localStorageAvailable()) {
+            return null;
+        }
+
+        return localStorage.getItem('routingprofile');
+    },
+
     _getChangeHandler: function () {
         return L.bind(function (evt) {
+            this.rememberProfile(evt.target.options[evt.target.options.selectedIndex].value);
             this.fire('update', { options: this.getOptions() });
         }, this);
     },
