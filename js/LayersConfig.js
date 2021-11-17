@@ -238,6 +238,10 @@ BR.LayersConfig = L.Class.extend({
         );
     },
 
+    createOpenStreetMapNotesLayer: function () {
+        return new leafletOsmNotes();
+    },
+
     createLayer: function (layerData) {
         var props = layerData.properties;
         var url = props.url;
@@ -322,6 +326,8 @@ BR.LayersConfig = L.Class.extend({
             }
         } else if (props.dataSource === 'OverpassAPI') {
             layer = this.createOverpassLayer(props.query, props.icon);
+        } else if (props.dataSource === 'OpenStreetMapNotesAPI') {
+            layer = this.createOpenStreetMapNotesLayer();
         } else {
             // JOSM
             var josmUrl = url;
