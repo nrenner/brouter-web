@@ -59,7 +59,7 @@ BR.LayersConfig = L.Class.extend({
     _customizeLayers: function () {
         var propertyOverrides = BR.confLayers.getPropertyOverrides();
 
-        for (id in propertyOverrides) {
+        for (var id in propertyOverrides) {
             var layer = BR.layerIndex[id];
 
             if (layer) {
