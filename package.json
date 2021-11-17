@@ -66,6 +66,7 @@
         "leaflet-filelayer": "^1.2.0",
         "leaflet-geometryutil": "^0.9.1",
         "leaflet-hotline": "^0.4.0",
+        "leaflet-osm-notes": "osmlab/leaflet-osm-notes#af2aa811",
         "leaflet-plugins": "~3.0.0",
         "leaflet-providers": "^1.10.2",
         "leaflet-routing": "nrenner/leaflet-routing#e94e153",
@@ -198,6 +199,11 @@
                 "dist/Control.Geocoder.js",
                 "dist/Control.Geocoder.css",
                 "images/*.+(png|gif)"
+            ]
+        },
+        "leaflet-osm-notes": {
+            "main": [
+                "leaflet-osm-notes.js"
             ]
         },
         "url-search-params": {

@@ -220,6 +220,10 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'Mapillary',
             'mapUrl': 'https://www.mapillary.com/app/?lat={lat}&lng={lon}&z={zoom}&menu=false'
         },
+        'osm-notes': {
+            'nameShort': 'OSM Notes',
+            'mapUrl': 'https://www.openstreetmap.org/#map={zoom}/{lat}/{lon}&layers=N'
+        },
         'openpt_map': {
             'nameShort': 'openptmap',
             'mapUrl': 'http://openptmap.org/?zoom={zoom}&lat={lat}&lon={lon}&layers=B0000TFT'

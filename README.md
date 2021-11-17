@@ -140,3 +140,5 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     [CC0-1.0 License](https://github.com/mapbox/maki/blob/master/LICENSE.txt)
 -   [temaki](https://github.com/ideditor/temaki)
     [CC0-1.0 License](https://github.com/ideditor/temaki/blob/main/LICENSE.md)
+-   [leaflet-osm-notes](https://github.com/osmlab/leaflet-osm-notes)
+    [The Unlicense](https://github.com/osmlab/leaflet-osm-notes/blob/gh-pages/LICENSE)

@@ -7784,6 +7784,13 @@ leaflet-hotline@^0.4.0:
   resolved "https://registry.yarnpkg.com/leaflet-hotline/-/leaflet-hotline-0.4.0.tgz#e01069836a9d2e2c78b1fa1db2013bd03c8ff8d9"
   integrity sha1-4BBpg2qdLix4sfodsgE70DyP+Nk=
 
+leaflet-osm-notes@osmlab/leaflet-osm-notes#af2aa811:
+  version "0.0.1"
+  resolved "https://codeload.github.com/osmlab/leaflet-osm-notes/tar.gz/af2aa8116ee693c1d818df53f57809391c08f514"
+  dependencies:
+    moment "~2.0.0"
+    reqwest "~0.7.2"
+
 leaflet-plugins@~3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.0.3.tgz#7c727ac79a37636b245dd1adc64e10c61b425864"
@@ -8390,6 +8397,11 @@ mkdirp@^0.5.1, mkdirp@^0.5.5, "mkdirp@~0.3 || 0.4 || 0.5", mkdirp@~0.5.0:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+moment@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.0.0.tgz#2bbc5b44c321837693ab6efcadbd46ed946211fe"
+  integrity sha1-K7xbRMMhg3aTq278rb1G7ZRiEf4=
 
 mothership@~0.2.0:
   version "0.2.0"
@@ -9952,6 +9964,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reqwest@~0.7.2:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/reqwest/-/reqwest-0.7.3.tgz#d7e249ba42690fc70dc9901f36ce4e33b0d43d85"
+  integrity sha1-1+JJukJpD8cNyZAfNs5OM7DUPYU=
 
 resolve-cwd@^3.0.0:
   version "3.0.0"

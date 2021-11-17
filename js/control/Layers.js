@@ -118,6 +118,8 @@ BR.Layers = L.Class.extend({
 
             if (dataSource === 'OverpassAPI') {
                 layer = this._layersControl.layersConfig.createOverpassLayer(layerUrl);
+            } else if (dataSource === 'OpenStreetMapNotesAPI') {
+                layer = this._layersControl.layersConfig.createOpenStreetMapNotesLayer();
             } else {
                 layer = L.tileLayer(layerUrl);
             }

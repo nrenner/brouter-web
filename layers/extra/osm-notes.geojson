@@ -1,0 +1,14 @@
+{
+    "geometry": null,
+    "properties": {
+        "attribution": {
+            "text": "© OpenStreetMap contributors",
+            "url": "https://www.openstreetmap.org/"
+        },
+        "id": "osm-notes",
+        "name": "OpenStreetMap Notes",
+        "overlay": true,
+        "dataSource": "OpenStreetMapNotesAPI"
+    },
+    "type": "Feature"
+}
