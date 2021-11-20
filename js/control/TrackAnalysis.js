@@ -500,20 +500,29 @@ BR.TrackAnalysis = L.Class.extend({
 
                 return parsed.highway === dataName;
             case 'surface':
-                if (dataName === 'internal-unknown' && typeof parsed.surface !== 'string') {
-                    return true;
-                }
-
-                return typeof parsed.surface === 'string' && parsed.surface === dataName;
+                return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
-                if (dataName === 'internal-unknown' && typeof parsed.smoothness !== 'string') {
-                    return true;
-                }
-
-                return typeof parsed.smoothness === 'string' && parsed.smoothness === dataName;
+                return this.singleWayTagMatchesData('smoothness', parsed, dataName);
         }
 
         return false;
+    },
+
+    singleWayTagMatchesData: function (category, parsedData, lookupValue) {
+        var foundValue = null;
+
+        for (var iterationKey in parsedData) {
+            if (iterationKey.indexOf(category) !== -1) {
+                foundValue = parsedData[iterationKey];
+                break;
+            }
+        }
+
+        if (lookupValue === 'internal-unknown' && foundValue === null) {
+            return true;
+        }
+
+        return foundValue === lookupValue;
     },
 
     /**
