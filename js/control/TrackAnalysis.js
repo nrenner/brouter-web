@@ -142,7 +142,8 @@ BR.TrackAnalysis = L.Class.extend({
                 var wayTags = segments[segmentIndex].feature.properties.messages[messageIndex][9].split(' ');
                 for (var wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
                     var wayTagParts = wayTags[wayTagIndex].split('=');
-                    switch (wayTagParts[0]) {
+                    var tagName = this.normalizeTagName(wayTagParts[0]);
+                    switch (tagName) {
                         case 'highway':
                             var highwayType = wayTagParts[1];
                             var trackType = '';
@@ -167,10 +168,10 @@ BR.TrackAnalysis = L.Class.extend({
                             break;
                         case 'surface':
                         case 'smoothness':
-                            if (typeof analysis[wayTagParts[0]][wayTagParts[1]] === 'undefined') {
-                                analysis[wayTagParts[0]][wayTagParts[1]] = {
+                            if (typeof analysis[tagName][wayTagParts[1]] === 'undefined') {
+                                analysis[tagName][wayTagParts[1]] = {
                                     formatted_name: i18next.t(
-                                        'sidebar.analysis.data.' + wayTagParts[0] + '.' + wayTagParts[1],
+                                        'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
                                         wayTagParts[1]
                                     ),
                                     name: wayTagParts[1],
@@ -178,7 +179,7 @@ BR.TrackAnalysis = L.Class.extend({
                                     distance: 0.0,
                                 };
                             }
-                            analysis[wayTagParts[0]][wayTagParts[1]].distance += parseFloat(
+                            analysis[tagName][wayTagParts[1]].distance += parseFloat(
                                 segments[segmentIndex].feature.properties.messages[messageIndex][3]
                             );
                             break;
@@ -188,6 +189,31 @@ BR.TrackAnalysis = L.Class.extend({
         }
 
         return this.sortAnalysisData(analysis);
+    },
+
+    /**
+     * Normalize the tag name.
+     *
+     * Motivation: The `surface` tag comes in different variations,
+     * e.g. `surface`, `cycleway:surface` etc. We're only interested
+     * in the main tag so all other variations are normalized.
+     *
+     * @param {string} tagName
+     * @returns {string}
+     */
+    normalizeTagName: function (tagName) {
+        // we assume that a tag belongs to the category `surface`,
+        // if that string is contained anywhere in the tag name:
+        if (tagName.indexOf('surface') !== -1) {
+            return 'surface';
+        }
+
+        // the same applies to `smoothness`
+        if (tagName.indexOf('smoothness') !== -1) {
+            return 'smoothness';
+        }
+
+        return tagName;
     },
 
     /**
