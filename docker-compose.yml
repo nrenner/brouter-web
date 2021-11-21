@@ -7,7 +7,7 @@ services:
         command: yarn serve
         image: node:lts
         ports:
-            - 3000:3000
+            - '3000:3000'
         user: '1000'
         volumes:
             - ./:/src

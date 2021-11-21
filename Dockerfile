@@ -1,4 +1,4 @@
-FROM node:10-buster as build
+FROM node:lts as build
 RUN mkdir /tmp/brouter-web
 WORKDIR /tmp/brouter-web
 COPY . .
