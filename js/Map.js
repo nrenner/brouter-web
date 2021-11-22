@@ -120,6 +120,10 @@ BR.Map = {
                 'keydown',
                 function (e) {
                     if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.locate) {
+                        if (locationControl._active) {
+                            locationControl.stop();
+                            return;
+                        }
                         locationControl.start();
                     }
                 },
