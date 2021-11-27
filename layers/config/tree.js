@@ -48,6 +48,12 @@ BR.confLayers.tree = {
             },
             'topplus-open',
             {
+                'FR': [
+                    'ignf-aerial',
+                    'ignf-map',
+                ]
+            },
+            {
                 'IL': [
                     'Israel_Hiking',
                     'Israel_MTB',
@@ -77,6 +83,11 @@ BR.confLayers.tree = {
         ],
         'country': [
             'historic-place-contours',
+            {
+                'FR': [
+                    'ignf-boundaries',
+                ]
+            },
             {
                 'HU': [
                     'hu-hillshade',

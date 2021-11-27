@@ -150,7 +150,18 @@ BR.confLayers.getPropertyOverrides = function() {
             'mapUrl': 'http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_user_id=0&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=41',
             'worldTiles': true // World -z9, Europe -z14
         },
-
+        'ignf-aerial': {
+            'country_code': 'FR',
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
+        },
+        'ignf-boundaries': {
+            'country_code': 'FR',
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=LIMITES_ADMINISTRATIVES_EXPRESS.LATEST::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
+        },
+        'ignf-map': {
+            'country_code': 'FR',
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
+        },
         'OpenStreetMap-turistautak': {
             'nameShort': 'OSM Turistautak',
             'mapUrl': 'https://turistautak.openstreetmap.hu/?zoom={zoom}&lat={lat}&lon={lon}&layers=0B00F'
