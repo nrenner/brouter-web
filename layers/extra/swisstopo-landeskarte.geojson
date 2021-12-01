@@ -4,7 +4,7 @@
         "attribution": {
             "html": "© <a href='https://www.swisstopo.ch/' target='_blank'>Swisstopo</a>"
         },
-        "id": "swisstopo",
+        "id": "swisstopo-landeskarte",
         "max_zoom": 28,
         "name": "Swisstopo Landeskarte",
         "type": "tms",
