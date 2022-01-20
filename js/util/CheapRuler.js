@@ -109,8 +109,17 @@ btools = {};
 btools.util.CheapRuler.__static_initialize();
 
 btools.util.CheapRuler.toIntegerLngLat = (coordinate) => {
-    const ilon = (coordinate[0] + 180) * 1e6;
-    const ilat = (coordinate[1] + 90) * 1e6;
+    const ilon = Math.round((coordinate[0] + 180) * 1e6);
+    const ilat = Math.round((coordinate[1] + 90) * 1e6);
 
     return [ilon, ilat];
+};
+
+btools.util.CheapRuler.calcDistance = (ilon1, ilat1, ilon2, ilat2) => {
+    const distanceFloat = btools.util.CheapRuler.distance(ilon1, ilat1, ilon2, ilat2);
+
+    // Convert to integer (no decimals) values to match BRouter OsmPathElement.calcDistance:
+    // `(int)(CheapRuler.distance(ilon, ilat, p.getILon(), p.getILat()) + 1.0 );`
+    // https://github.com/abrensch/brouter/blob/1640bafa800f8bab7aebde797edc99fdbeea3b07/brouter-core/src/main/java/btools/router/OsmPathElement.java#L81
+    return Math.trunc(distanceFloat + 1.0);
 };

@@ -30,7 +30,7 @@ test('total distance', () => {
         const [ilon1, ilat1] = btools.util.CheapRuler.toIntegerLngLat(coord1);
         const [ilon2, ilat2] = btools.util.CheapRuler.toIntegerLngLat(coord2);
 
-        const distance = btools.util.CheapRuler.distance(ilon1, ilat1, ilon2, ilat2);
+        const distance = btools.util.CheapRuler.calcDistance(ilon1, ilat1, ilon2, ilat2);
         totalDistance += distance;
     }
 

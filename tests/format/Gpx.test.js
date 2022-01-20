@@ -10,6 +10,7 @@ require('../../js/format/Gpx.js');
 
 const fs = require('fs');
 
+// lonlats=8.467712,49.488117;8.470598,49.488849 + turnInstructionMode = 5 (gpsies-style)
 const geoJson = require('./data/track.json');
 // lonlats=8.467712,49.488117;8.469354,49.488394;8.470556,49.488946;8.469982,49.489176 + turnInstructionMode = 5
 // console log in Export._formatTrack
