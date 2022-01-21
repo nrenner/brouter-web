@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "creator": "BRouter-1.1",
+        "creator": "BRouter-1.6.3",
         "name": "Track",
         "track-length": "319",
         "filtered ascend": "2",
@@ -17,11 +17,11 @@
           [5,2,0,90.0,-90," 6(-89)6 (0)6 (89)6"]
         ],
         "messages": [
-          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
-          ["8468340", "49488794", "101", "89", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes", ""],
-          ["8470671", "49488909", "99", "230", "1150", "0", "180", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
+          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
+          ["8468340", "49488794", "101", "89", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes", "", "9", "959"],
+          ["8470671", "49488909", "99", "230", "1150", "0", "180", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", "", "44", "4412"]
         ],
-        "times": [0.0,9.592433,12.270765,14.129882,19.406338,34.50238,44.117233]
+        "times": [0,9.592,12.271,14.13,19.406,34.502,44.117]
       },
       "geometry": {
         "type": "LineString",
