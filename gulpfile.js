@@ -28,7 +28,7 @@ var rename = require('gulp-rename');
 var browserSync = require('browser-sync');
 var merge = require('merge-stream');
 var babel = require('gulp-babel');
-var marked = require('marked');
+var { marked } = require('marked');
 var fs = require('fs');
 
 const server = browserSync.create();
