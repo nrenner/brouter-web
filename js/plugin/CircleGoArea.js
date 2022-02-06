@@ -1,5 +1,5 @@
 BR.CircleGoArea = L.Control.extend({
-    radius: null, // in meters
+    radius: 10000, // in meters
     circleLayer: null,
     boundaryLayer: null,
     maskRenderer: L.svg({ padding: 2 }),
@@ -280,12 +280,10 @@ BR.CircleGoArea = L.Control.extend({
                 } else {
                     this._applyStateRules(center);
                 }
-            } else if (name === 'Metropolitan France') {
-                this.radius = 10000;
-                this._setNogoCircle(center);
             } else {
-                console.error('unhandled country: ' + name);
-                this.radius = null;
+                // TODO: Make this work with all countries
+                // this.radius = 10000;
+                this._setNogoCircle(center);
             }
         } else {
             // NOOP, no rules implemented for this location
@@ -350,6 +348,7 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     _loadCountries: function () {
+        // TODO
         BR.Util.getJson(
             this.options.countriesUrl,
             'countries',
@@ -402,6 +401,7 @@ BR.CircleGoArea = L.Control.extend({
 
     _setNogoCircle: function (center) {
         var polygon = this.circleToPolygon(center, this.radius);
+        this.center = center;
         this._setNogo(polygon);
         this.setOutsideArea(polygon);
     },
@@ -409,7 +409,7 @@ BR.CircleGoArea = L.Control.extend({
     setNogoRing: function (center) {
         this._clearLayers();
         this._removeNogo();
-
+        this.center = center;
         if (center) {
             if (!this.countries) {
                 // wait for countries to be loaded (when circlego hash parameter without polylines)
@@ -558,7 +558,7 @@ BR.CircleGoArea = L.Control.extend({
             }
             var radiusText = (this.radius / 1000).toFixed();
             exportName += radiusText + ' km';
-            html += radiusText + '&#8239;km';
+            html += '<input id="ringgo-radius-spinbox" type="number" min="0" value="' + radiusText + '"> km';
             if (this.nogoPolylines) {
                 html += '</p><p>';
                 html +=
@@ -589,6 +589,16 @@ BR.CircleGoArea = L.Control.extend({
             );
         }
 
+        // Adjusting radius
+        $('#ringgo-radius-spinbox').on(
+            'input',
+            L.bind(function (e) {
+                this.radius = e.target.value * 1000;
+                this.setNogoRing(this.center);
+            }, this)
+        );
+
+        // Deleting the marker
         $('#remove-ringgo-marker').on(
             'click',
             L.bind(function (e) {

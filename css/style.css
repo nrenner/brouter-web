@@ -234,6 +234,12 @@ input#trackname:focus:invalid {
 .circlego-outside {
     cursor: not-allowed;
 }
+#ringgo-radius-spinbox {
+    width: 50px;
+}
+#remove-ringgo-marker {
+    width: 100%;
+}
 .leaflet-popup-content p {
     margin: 0.5em 0;
 }
@@ -854,67 +860,71 @@ table.dataTable.display tbody tr:hover.selected {
     border-radius: 0;
 }
 
-
 /**
  * Autocompleter styles
  */
-.leaflet-control-geocoder-form.stayvisible { display: inline-block; } 
-.leaflet-control-geocoder-alternatives{ 
-	/* display: block;  */
-	position: absolute;
-	background-color: white;
-	left: 2rem;	
-} 
+.leaflet-control-geocoder-form.stayvisible {
+    display: inline-block;
+}
+.leaflet-control-geocoder-alternatives {
+    /* display: block;  */
+    position: absolute;
+    background-color: white;
+    left: 2rem;
+}
 
-.leaflet-control-geocoder-alternatives{ 
-	background-color: rgb(255, 255, 255);
+.leaflet-control-geocoder-alternatives {
+    background-color: rgb(255, 255, 255);
 }
 
 .autocomplete-container {
-	position:absolute;
-	left: 2rem;
-	width: calc( 100% - 3rem );
-	z-index: 100;
+    position: absolute;
+    left: 2rem;
+    width: calc(100% - 3rem);
+    z-index: 100;
 }
 
 .autocomplete-select-container {
-	max-height: 15vh;
-	overflow-y: auto;
+    max-height: 15vh;
+    overflow-y: auto;
 }
 
-.autocomplete-container .autocomplete-select button{
-	text-align: left;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	width: 100%;
+.autocomplete-container .autocomplete-select button {
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
 }
 
 #search-fav-menu-toggle {
-	text-align: right;
-	padding-right: 2rem;
-	line-height: 100%;
-	cursor: pointer;
+    text-align: right;
+    padding-right: 2rem;
+    line-height: 100%;
+    cursor: pointer;
 }
 
 #search-fav-menu-toggle > span {
-	font-weight: bold;
-	line-height: 0;
-	font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 0;
+    font-size: 1.2rem;
 }
 
-.autocomplete-container.filtered .autocomplete-select button{ display: none; }
-.autocomplete-container.filtered .autocomplete-select button.match{ display: inherit; }
+.autocomplete-container.filtered .autocomplete-select button {
+    display: none;
+}
+.autocomplete-container.filtered .autocomplete-select button.match {
+    display: inherit;
+}
 
 @media (max-width: 320.98px) {
-	.leaflet-control-geocoder-form > input[type=text] {
-		max-width: 50vw;
-	}
-	
-	.leaflet-control-geocoder-alternatives {
-		max-width: 65vw;
-	}
-}
+    .leaflet-control-geocoder-form > input[type='text'] {
+        max-width: 50vw;
+    }
 
+    .leaflet-control-geocoder-alternatives {
+        max-width: 65vw;
+    }
+}
 
 @media (max-width: 575.98px) {
     .modal-fullscreen-sm-down {
