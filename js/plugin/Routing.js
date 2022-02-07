@@ -475,16 +475,34 @@ BR.Routing = L.Routing.extend({
         }
     },
 
+    _distance: function (latLng1, latLng2) {
+        //return Math.round(latLng1.distanceTo(latLng2));
+        const [ilon1, ilat1] = btools.util.CheapRuler.toIntegerLngLat([latLng1.lng, latLng1.lat]);
+        const [ilon2, ilat2] = btools.util.CheapRuler.toIntegerLngLat([latLng2.lng, latLng2.lat]);
+
+        return btools.util.CheapRuler.calcDistance(ilon1, ilat1, ilon2, ilat2);
+    },
+
+    _computeKinematic: function (distance, deltaHeight) {
+        const rc = new BR.RoutingContext();
+        const stdPath = new BR.StdPath();
+
+        stdPath.computeKinematic(rc, distance, deltaHeight, true);
+        return stdPath;
+    },
+
     createBeeline: function (latLng1, latLng2) {
         const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
-        const distance = Math.round(latLng1.distanceTo(latLng2));
+        const distance = this._distance(latLng1, latLng2);
+        const deltaHeight = (latLng2.alt ?? 0) - (latLng1.alt ?? 0);
+        const stdPath = this._computeKinematic(distance, deltaHeight);
         const props = {
             cost: 0,
             'filtered ascend': 0,
             'plain-ascend': 0,
-            'total-energy': 0,
-            'total-time': 0,
-            'track-length': 0,
+            'total-energy': stdPath.getTotalEnergy(),
+            'total-time': stdPath.getTotalTime(),
+            'track-length': distance,
             messages: [
                 [
                     'Longitude',
