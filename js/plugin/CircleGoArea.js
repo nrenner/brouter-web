@@ -262,8 +262,6 @@ BR.CircleGoArea = L.Control.extend({
             var name = country.properties.name;
 
             if (name === 'Germany') {
-                this.radius = 15000;
-
                 if (!this.states) {
                     this.marker.setIcon(this.iconSpinner);
                     this.once(
@@ -281,13 +279,12 @@ BR.CircleGoArea = L.Control.extend({
                     this._applyStateRules(center);
                 }
             } else {
-                // TODO: Make this work with all countries
-                // this.radius = 10000;
+                // A country other than Germany
                 this._setNogoCircle(center);
             }
         } else {
-            // NOOP, no rules implemented for this location
-            this.radius = null;
+            // No country found
+            this._setNogoCircle(center);
         }
     },
 
@@ -348,40 +345,13 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     _loadCountries: function () {
-        // TODO
         BR.Util.getJson(
             this.options.countriesUrl,
             'countries',
             L.bind(function (err, data) {
                 if (err) return;
-
                 var key = Object.keys(data.objects)[0];
                 this.countries = topojson.feature(data, data.objects[key]);
-
-                var union = topojson.merge(data, [data.objects[key]]);
-                this.countriesMask = L.geoJson(union, {
-                    renderer: this.maskRenderer,
-                    // use Leaflet.snogylop plugin here, turf.mask too slow (~4s) for some reason
-                    invert: true,
-                    style: function (feature) {
-                        return {
-                            weight: 1,
-                            color: 'darkgreen',
-                            opacity: 0.8,
-                            fillColor: '#020',
-                            fillOpacity: 0.2,
-                            className: 'circlego-outside',
-                        };
-                    },
-                });
-                this.countriesMask.on('click', L.DomEvent.stop);
-                this.countriesMask.bindTooltip(i18next.t('map.not-applicable-here'), {
-                    sticky: true,
-                    offset: [10, 0],
-                    direction: 'right',
-                    opacity: 0.8,
-                });
-
                 this.fire('countries:loaded');
             }, this)
         );
@@ -558,7 +528,8 @@ BR.CircleGoArea = L.Control.extend({
             }
             var radiusText = (this.radius / 1000).toFixed();
             exportName += radiusText + ' km';
-            html += '<input id="ringgo-radius-spinbox" type="number" min="0" value="' + radiusText + '"> km';
+            html +=
+                '<input id="ringgo-radius-spinbox" type="number" min="0.5" step="0.5" value="' + radiusText + '"> km'; // TODO: Add more options for Germany / use of state boundaries?
             if (this.nogoPolylines) {
                 html += '</p><p>';
                 html +=
@@ -593,8 +564,11 @@ BR.CircleGoArea = L.Control.extend({
         $('#ringgo-radius-spinbox').on(
             'input',
             L.bind(function (e) {
-                this.radius = e.target.value * 1000;
-                this.setNogoRing(this.center);
+                radius = e.target.value * 1000;
+                if (radius > 0) {
+                    this.radius = radius;
+                    this.setNogoRing(this.center);
+                }
             }, this)
         );
 
