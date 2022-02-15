@@ -38,11 +38,12 @@ BR.Profile = L.Evented.extend({
         button.blur();
     },
 
-    update: function (options) {
+    update: function (options, cb) {
         var profileName = options.profile,
             profileUrl,
             empty = !this.editor.getValue(),
-            clean = this.editor.isClean();
+            clean = this.editor.isClean(),
+            loading = false;
 
         if (profileName && BR.conf.profilesUrl) {
             // only synchronize profile editor/parameters with selection if no manual changes in full editor,
@@ -51,11 +52,13 @@ BR.Profile = L.Evented.extend({
                 this.profileName = profileName;
                 if (!(profileName in this.cache)) {
                     profileUrl = BR.conf.profilesUrl + profileName + '.brf';
+                    loading = true;
                     BR.Util.get(
                         profileUrl,
                         L.bind(function (err, profileText) {
                             if (err) {
                                 console.warn('Error getting profile from "' + profileUrl + '": ' + err);
+                                if (cb) cb();
                                 return;
                             }
 
@@ -65,6 +68,7 @@ BR.Profile = L.Evented.extend({
                             if (!this.profileName || this.profileName === profileName) {
                                 this._setValue(profileText);
                             }
+                            if (cb) cb();
                         }, this)
                     );
                 } else {
@@ -80,6 +84,8 @@ BR.Profile = L.Evented.extend({
                 }
             }
         }
+
+        if (cb && !loading) cb();
     },
 
     show: function () {

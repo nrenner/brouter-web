@@ -226,9 +226,12 @@
         }
 
         routingOptions = new BR.RoutingOptions();
-        routingOptions.on('update', updateRoute);
         routingOptions.on('update', function (evt) {
-            profile.update(evt.options);
+            if (urlHash.movingMap) return;
+
+            profile.update(evt.options, () => {
+                updateRoute(evt);
+            });
         });
 
         BR.NogoAreas.MSG_BUTTON = i18next.t('keyboard.generic-shortcut', {
@@ -290,7 +293,7 @@
 
         routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
 
-        routing = new BR.Routing({
+        routing = new BR.Routing(profile, {
             routing: {
                 router: L.bind(router.getRouteSegment, router),
             },
@@ -399,11 +402,12 @@
         // initial option settings (after controls are added and initialized with onAdd)
         router.setOptions(nogos.getOptions());
         router.setOptions(routingOptions.getOptions());
-        profile.update(routingOptions.getOptions());
 
-        // restore active layers from local storage when called without hash
         // (check before hash plugin init)
         if (!location.hash) {
+            profile.update(routingOptions.getOptions());
+
+            // restore active layers from local storage when called without hash
             layersControl.loadActiveLayers();
         }
 
@@ -427,13 +431,16 @@
             router.setOptions(opts);
             routingOptions.setOptions(opts);
             nogos.setOptions(opts);
-            profile.update(opts);
 
-            if (opts.lonlats) {
-                routing.draw(false);
-                routing.clear();
-                routing.setWaypoints(opts.lonlats, opts.beelineFlags);
-            }
+            const optsOrDefault = Object.assign({}, routingOptions.getOptions(), opts);
+            profile.update(optsOrDefault, () => {
+                if (opts.lonlats) {
+                    routing.draw(false);
+                    routing.clear();
+                    routing.setWaypoints(opts.lonlats, opts.beelineFlags);
+                }
+            });
+
             if (opts.pois) {
                 pois.setMarkers(opts.pois);
             }

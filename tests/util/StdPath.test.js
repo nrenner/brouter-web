@@ -7,7 +7,13 @@ const geoJson = require('../format/data/track.json');
 test('simple track', () => {
     const coordinates = geoJson.features[0].geometry.coordinates;
     const properties = geoJson.features[0].properties;
-    const rc = new BR.RoutingContext();
+    const dummyProfileVars = {
+        getProfileVar(name) {
+            const vars = { validForBikes: 1 };
+            return vars[name];
+        },
+    };
+    const rc = new BR.RoutingContext(dummyProfileVars);
     const stdPath = new BR.StdPath();
 
     for (let i = 0; i < coordinates.length; i++) {

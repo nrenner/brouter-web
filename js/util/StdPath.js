@@ -11,18 +11,30 @@
     }
 
     class BExpressionContext {
+        constructor(profile) {
+            this.profile = profile;
+        }
+
         getVariableValue(name, defaultValue) {
-            return defaultValue;
+            let value = this.profile?.getProfileVar(name) ?? defaultValue;
+            if (value === 'true') {
+                value = 1;
+            } else if (value === 'false') {
+                value = 0;
+            }
+            return +value;
         }
     }
 
     // from BRouter btools.router.RoutingContext
     class RoutingContext {
-        constructor() {
-            this.expctxGlobal = new BExpressionContext();
+        constructor(profile) {
+            this.expctxGlobal = new BExpressionContext(profile);
             this.expctxWay = new BExpressionContextWay();
-            this.bikeMode = true;
-            this.footMode = false;
+
+            this.bikeMode = 0 !== this.expctxGlobal.getVariableValue('validForBikes', 0);
+            this.footMode = 0 !== this.expctxGlobal.getVariableValue('validForFoot', 0);
+
             this.totalMass = this.expctxGlobal.getVariableValue('totalMass', 90.0);
             this.maxSpeed = this.expctxGlobal.getVariableValue('maxSpeed', this.footMode ? 6.0 : 45.0) / 3.6;
             this.S_C_x = this.expctxGlobal.getVariableValue('S_C_x', 0.5 * 0.45);

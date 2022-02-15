@@ -39,6 +39,12 @@ BR.Routing = L.Routing.extend({
         },
     },
 
+    initialize: function (profile, options) {
+        L.Routing.prototype.initialize.call(this, options);
+
+        this.profile = profile;
+    },
+
     onAdd: function (map) {
         this.options.tooltips.waypoint = i18next.t('map.route-tooltip-waypoint');
         this.options.tooltips.segment = i18next.t('map.route-tooltip-segment');
@@ -484,7 +490,7 @@ BR.Routing = L.Routing.extend({
     },
 
     _computeKinematic: function (distance, deltaHeight) {
-        const rc = new BR.RoutingContext();
+        const rc = new BR.RoutingContext(this.profile);
         const stdPath = new BR.StdPath();
 
         stdPath.computeKinematic(rc, distance, deltaHeight, true);
