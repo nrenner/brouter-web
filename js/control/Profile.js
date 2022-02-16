@@ -41,47 +41,34 @@ BR.Profile = L.Evented.extend({
     update: function (options, cb) {
         var profileName = options.profile,
             profileUrl,
-            empty = !this.editor.getValue(),
-            clean = this.editor.isClean(),
             loading = false;
 
         if (profileName && BR.conf.profilesUrl) {
-            // only synchronize profile editor/parameters with selection if no manual changes in full editor,
-            // else keep custom profile pinned - to prevent changes in another profile overwriting previous ones
-            if (empty || clean) {
-                this.profileName = profileName;
-                if (!(profileName in this.cache)) {
-                    profileUrl = BR.conf.profilesUrl + profileName + '.brf';
-                    loading = true;
-                    BR.Util.get(
-                        profileUrl,
-                        L.bind(function (err, profileText) {
-                            if (err) {
-                                console.warn('Error getting profile from "' + profileUrl + '": ' + err);
-                                if (cb) cb();
-                                return;
-                            }
+            this.selectedProfileName = profileName;
 
-                            this.cache[profileName] = profileText;
-
-                            // don't set when option has changed while loading
-                            if (!this.profileName || this.profileName === profileName) {
-                                this._setValue(profileText);
-                            }
+            if (!(profileName in this.cache)) {
+                profileUrl = BR.conf.profilesUrl + profileName + '.brf';
+                loading = true;
+                BR.Util.get(
+                    profileUrl,
+                    L.bind(function (err, profileText) {
+                        if (err) {
+                            console.warn('Error getting profile from "' + profileUrl + '": ' + err);
                             if (cb) cb();
-                        }, this)
-                    );
-                } else {
-                    this._setValue(this.cache[profileName]);
-                }
+                            return;
+                        }
 
-                if (!this.pinned.hidden) {
-                    this.pinned.hidden = true;
-                }
+                        this.cache[profileName] = profileText;
+
+                        // don't set when option has changed while loading
+                        if (!this.profileName || this.selectedProfileName === profileName) {
+                            this._updateProfile(profileName, profileText);
+                        }
+                        if (cb) cb();
+                    }, this)
+                );
             } else {
-                if (this.pinned.hidden) {
-                    this.pinned.hidden = false;
-                }
+                this._updateProfile(profileName, this.cache[profileName]);
             }
         }
 
@@ -107,7 +94,7 @@ BR.Profile = L.Evented.extend({
             }
         }
 
-        const profileText = this._getProfileText();
+        const profileText = this._getSelectedProfileText();
         if (!profileText) return value;
 
         const regex = new RegExp(`assign\\s*${name}\\s*=?\\s*([\\w\\.]*)`);
@@ -192,6 +179,26 @@ BR.Profile = L.Evented.extend({
                 }
             },
         });
+    },
+
+    _updateProfile: function (profileName, profileText) {
+        const empty = !this.editor.getValue();
+        const clean = this.editor.isClean();
+
+        // only synchronize profile editor/parameters with selection if no manual changes in full editor,
+        // else keep custom profile pinned - to prevent changes in another profile overwriting previous ones
+        if (empty || clean) {
+            this.profileName = profileName;
+            this._setValue(profileText);
+
+            if (!this.pinned.hidden) {
+                this.pinned.hidden = true;
+            }
+        } else {
+            if (this.pinned.hidden) {
+                this.pinned.hidden = false;
+            }
+        }
     },
 
     _setValue: function (profileText) {
@@ -368,5 +375,9 @@ BR.Profile = L.Evented.extend({
 
     _getProfileText: function () {
         return this.editor.getValue();
+    },
+
+    _getSelectedProfileText: function () {
+        return this.cache[this.selectedProfileName] ?? this.editor.getValue();
     },
 });
