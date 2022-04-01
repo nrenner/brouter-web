@@ -497,17 +497,62 @@ BR.Routing = L.Routing.extend({
         return stdPath;
     },
 
+    _interpolateBeelines(serialBeelines) {
+        let altStart = serialBeelines[0].getLatLngs()[0].alt;
+        const altEnd = serialBeelines[serialBeelines.length - 1].getLatLngs()[1].alt ?? altStart;
+        altStart ??= altEnd;
+
+        let serialDelta = 0;
+        if (altStart != null && altEnd != null) {
+            serialDelta = altEnd - altStart;
+        }
+        const serialDistance = serialBeelines.reduce(
+            (dist, line) => (dist += line.feature.properties['track-length']),
+            0
+        );
+
+        for (const beeline of serialBeelines) {
+            const props = beeline.feature.properties;
+            const distance = props['track-length'];
+            const deltaHeight = (serialDelta * distance) / serialDistance;
+
+            const stdPath = this._computeKinematic(distance, deltaHeight);
+            props['total-energy'] = stdPath.getTotalEnergy();
+            props['total-time'] = stdPath.getTotalTime();
+            // do not set interpolated alt value, to explicitly show missing data, e.g. in height graph
+        }
+    },
+
+    _updateBeelines: function () {
+        L.Routing.prototype._updateBeelines.call(this);
+
+        let serialBeelines = [];
+
+        this._eachSegment(function (m1, m2, line) {
+            if (line?._routing?.beeline) {
+                serialBeelines.push(line);
+            } else {
+                if (serialBeelines.length > 0) {
+                    this._interpolateBeelines(serialBeelines);
+                }
+                serialBeelines = [];
+            }
+        });
+
+        if (serialBeelines.length > 0) {
+            this._interpolateBeelines(serialBeelines);
+        }
+    },
+
     createBeeline: function (latLng1, latLng2) {
         const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
         const distance = this._distance(latLng1, latLng2);
-        const deltaHeight = (latLng2.alt ?? 0) - (latLng1.alt ?? 0);
-        const stdPath = this._computeKinematic(distance, deltaHeight);
         const props = {
             cost: 0,
             'filtered ascend': 0,
             'plain-ascend': 0,
-            'total-energy': stdPath.getTotalEnergy(),
-            'total-time': stdPath.getTotalTime(),
+            'total-energy': 0,
+            'total-time': 0,
             'track-length': distance,
             messages: [
                 [
