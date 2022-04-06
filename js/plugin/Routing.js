@@ -519,6 +519,14 @@ BR.Routing = L.Routing.extend({
             const stdPath = this._computeKinematic(distance, deltaHeight);
             props['total-energy'] = stdPath.getTotalEnergy();
             props['total-time'] = stdPath.getTotalTime();
+
+            // match BRouter/Java rounding where `(int)` cast truncates decimals
+            // https://github.com/abrensch/brouter/blob/14d5a2c4e6b101a2eab711e70151142881df95c6/brouter-core/src/main/java/btools/router/RoutingEngine.java#L1216-L1217
+            if (deltaHeight > 0) {
+                // no filtering for simplicity for now
+                props['filtered ascend'] = Math.trunc(deltaHeight);
+            }
+            props['plain-ascend'] = Math.trunc(deltaHeight + 0.5);
             // do not set interpolated alt value, to explicitly show missing data, e.g. in height graph
         }
     },
