@@ -497,7 +497,20 @@ BR.Routing = L.Routing.extend({
         return stdPath;
     },
 
-    _interpolateBeelines(serialBeelines) {
+    _getCostFactor: function (line) {
+        let costFactor = null;
+        if (line) {
+            const props = line.feature.properties;
+            const length = props['track-length'];
+            const cost = props['cost'];
+            if (length) {
+                costFactor = cost / length;
+            }
+        }
+        return costFactor;
+    },
+
+    _interpolateBeelines: function (serialBeelines, before, after) {
         let altStart = serialBeelines[0].getLatLngs()[0].alt;
         const altEnd = serialBeelines[serialBeelines.length - 1].getLatLngs()[1].alt ?? altStart;
         altStart ??= altEnd;
@@ -510,6 +523,15 @@ BR.Routing = L.Routing.extend({
             (dist, line) => (dist += line.feature.properties['track-length']),
             0
         );
+
+        let beforeCostFactor = this._getCostFactor(before);
+        let afterCostFactor = this._getCostFactor(after);
+        let costFactor;
+        if (beforeCostFactor != null && afterCostFactor != null) {
+            costFactor = Math.max(beforeCostFactor, afterCostFactor);
+        } else {
+            costFactor = beforeCostFactor ?? afterCostFactor ?? 0;
+        }
 
         for (const beeline of serialBeelines) {
             const props = beeline.feature.properties;
@@ -528,6 +550,8 @@ BR.Routing = L.Routing.extend({
             }
             props['plain-ascend'] = Math.trunc(deltaHeight + 0.5);
             // do not set interpolated alt value, to explicitly show missing data, e.g. in height graph
+
+            props['cost'] = Math.round(distance * costFactor);
         }
     },
 
@@ -535,20 +559,22 @@ BR.Routing = L.Routing.extend({
         L.Routing.prototype._updateBeelines.call(this);
 
         let serialBeelines = [];
+        let before = null;
 
         this._eachSegment(function (m1, m2, line) {
             if (line?._routing?.beeline) {
                 serialBeelines.push(line);
             } else {
                 if (serialBeelines.length > 0) {
-                    this._interpolateBeelines(serialBeelines);
+                    this._interpolateBeelines(serialBeelines, before, line);
                 }
+                before = line;
                 serialBeelines = [];
             }
         });
 
         if (serialBeelines.length > 0) {
-            this._interpolateBeelines(serialBeelines);
+            this._interpolateBeelines(serialBeelines, before, null);
         }
     },
 
