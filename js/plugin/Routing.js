@@ -513,7 +513,7 @@ BR.Routing = L.Routing.extend({
     _interpolateBeelines: function (serialBeelines, before, after) {
         let altStart = serialBeelines[0].getLatLngs()[0].alt;
         const altEnd = serialBeelines[serialBeelines.length - 1].getLatLngs()[1].alt ?? altStart;
-        altStart ??= altEnd;
+        altStart ?? (altStart = altEnd);
 
         let serialDelta = 0;
         if (altStart != null && altEnd != null) {
