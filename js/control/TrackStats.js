@@ -9,6 +9,9 @@ BR.TrackStats = L.Class.extend({
         $('#stats-container').show();
         $('#stats-info').hide();
 
+        const hasBeeline = segments.filter((line) => line?._routing?.beeline).length > 0;
+        document.getElementById('beeline-warning').hidden = !hasBeeline;
+
         var stats = this.calcStats(polyline, segments),
             length1 = L.Util.formatNum(stats.trackLength / 1000, 1).toLocaleString(),
             length3 = L.Util.formatNum(stats.trackLength / 1000, 3).toLocaleString(undefined, {

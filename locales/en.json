@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Ascend",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
     "distance": "Distance",
     "elevation-chart": "Toggle elevation chart",
