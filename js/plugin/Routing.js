@@ -489,8 +489,9 @@ BR.Routing = L.Routing.extend({
         return btools.util.CheapRuler.calcDistance(ilon1, ilat1, ilon2, ilat2);
     },
 
-    _computeKinematic: function (distance, deltaHeight) {
+    _computeKinematic: function (distance, deltaHeight, costFactor) {
         const rc = new BR.RoutingContext(this.profile);
+        rc.expctxWay = new BR.BExpressionContextWay(undefined, costFactor);
         const stdPath = new BR.StdPath();
 
         stdPath.computeKinematic(rc, distance, deltaHeight, true);
@@ -498,7 +499,7 @@ BR.Routing = L.Routing.extend({
     },
 
     _getCostFactor: function (line) {
-        let costFactor = null;
+        let costFactor;
         if (line) {
             const props = line.feature.properties;
             const length = props['track-length'];
@@ -530,7 +531,7 @@ BR.Routing = L.Routing.extend({
         if (beforeCostFactor != null && afterCostFactor != null) {
             costFactor = Math.max(beforeCostFactor, afterCostFactor);
         } else {
-            costFactor = beforeCostFactor ?? afterCostFactor ?? 0;
+            costFactor = beforeCostFactor ?? afterCostFactor;
         }
 
         for (const beeline of serialBeelines) {
@@ -538,7 +539,7 @@ BR.Routing = L.Routing.extend({
             const distance = props['track-length'];
             const deltaHeight = (serialDelta * distance) / serialDistance;
 
-            const stdPath = this._computeKinematic(distance, deltaHeight);
+            const stdPath = this._computeKinematic(distance, deltaHeight, costFactor);
             props['total-energy'] = stdPath.getTotalEnergy();
             props['total-time'] = stdPath.getTotalTime();
 
@@ -551,7 +552,7 @@ BR.Routing = L.Routing.extend({
             props['plain-ascend'] = Math.trunc(deltaHeight + 0.5);
             // do not set interpolated alt value, to explicitly show missing data, e.g. in height graph
 
-            props['cost'] = Math.round(distance * costFactor);
+            props['cost'] = Math.round(distance * (costFactor ?? 0));
         }
     },
 

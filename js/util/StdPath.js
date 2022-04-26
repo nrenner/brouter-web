@@ -2,11 +2,15 @@
     // Calculates time and energy stats
 
     class BExpressionContextWay {
+        constructor(maxspeed = 45.0, costfactor = 1.0) {
+            this.maxspeed = maxspeed;
+            this.costfactor = costfactor;
+        }
         getMaxspeed() {
-            return 45.0;
+            return this.maxspeed;
         }
         getCostfactor() {
-            return 1.0;
+            return this.costfactor;
         }
     }
 
@@ -156,4 +160,5 @@
 
     BR.StdPath = StdPath;
     BR.RoutingContext = RoutingContext;
+    BR.BExpressionContextWay = BExpressionContextWay;
 })();
