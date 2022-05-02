@@ -512,8 +512,8 @@ BR.Routing = L.Routing.extend({
     },
 
     _interpolateBeelines: function (serialBeelines, before, after) {
-        let altStart = serialBeelines[0].getLatLngs()[0].alt;
-        const altEnd = serialBeelines[serialBeelines.length - 1].getLatLngs()[1].alt ?? altStart;
+        let altStart = before?.getLatLngs()[before.getLatLngs().length - 1].alt;
+        const altEnd = after?.getLatLngs()[0].alt ?? altStart;
         altStart ?? (altStart = altEnd);
 
         let serialDelta = 0;
@@ -581,6 +581,9 @@ BR.Routing = L.Routing.extend({
 
     createBeeline: function (latLng1, latLng2) {
         const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
+        // remove alt from cloned LatLngs to show gap in elevation graph to indicate no data inbetween
+        delete layer.getLatLngs()[0].alt;
+        delete layer.getLatLngs()[1].alt;
         const distance = this._distance(latLng1, latLng2);
         const props = {
             cost: 0,
