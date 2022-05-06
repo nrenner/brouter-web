@@ -365,7 +365,7 @@ BR.Routing = L.Routing.extend({
         this._eachSegment(function (m1, m2, line) {
             // omit if null (still calculating) or error
             // NOTE: feature check specific to BRouter GeoJSON response, workaround to detect error line
-            if (line && (line.feature || m1._routing.beeline)) {
+            if (line && line.feature) {
                 latLngs = latLngs.concat(line.getLatLngs());
             }
         });
