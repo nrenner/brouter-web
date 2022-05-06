@@ -227,6 +227,7 @@ var HotLineQualityProvider = L.Class.extend({
             var flatLines = [];
             for (var i = 0; segments && i < segments.length; i++) {
                 var segment = segments[i];
+                if (segment._routing?.beeline) continue;
                 var vals = this._computeLatLngVals(segment);
                 segmentLatLngs.push(vals);
                 Array.prototype.push.apply(flatLines, vals);
