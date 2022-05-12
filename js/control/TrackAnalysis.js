@@ -496,9 +496,11 @@ BR.TrackAnalysis = L.Class.extend({
                     }
 
                     return typeof parsed.tracktype === 'string' && parsed.tracktype === trackType;
+                } else if (dataName === 'internal-unknown' && typeof parsed.highway !== 'string') {
+                    return true;
                 }
 
-                return parsed.highway === dataName;
+                return typeof parsed.highway === 'string' && parsed.highway === dataName;
             case 'surface':
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':

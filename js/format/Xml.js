@@ -25,7 +25,11 @@ BR.Xml = {
                 }
             } else {
                 if (singleLineTagList.includes(tag)) {
-                    singleLineTag = tag;
+                    const closeIndex = xml.indexOf('>', match.index + 1);
+                    const selfClosing = xml.charAt(closeIndex - 1) === '/';
+                    if (!selfClosing) {
+                        singleLineTag = tag;
+                    }
                 }
                 let endIndex = match.index + 1;
                 lines.push(xml.substring(startIndex, endIndex));

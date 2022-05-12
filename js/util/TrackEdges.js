@@ -5,6 +5,24 @@
  * @type {L.Class}
  */
 BR.TrackEdges = L.Class.extend({
+    statics: {
+        getFeature: function (featureMessage) {
+            //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
+            return {
+                cost: {
+                    perKm: parseInt(featureMessage[4]),
+                    elev: parseInt(featureMessage[5]),
+                    turn: parseInt(featureMessage[6]),
+                    node: parseInt(featureMessage[7]),
+                    initial: parseInt(featureMessage[8]),
+                },
+                distance: parseInt(featureMessage[3]),
+                wayTags: featureMessage[9],
+                nodeTags: featureMessage[10],
+            };
+        },
+    },
+
     /**
      * List of indexes for the track array where
      * a segment with different features ends

@@ -70,6 +70,11 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
             }
         },
     });
+
+    // make sure tracks are always shown below route by adding a custom pane below `leaflet-overlay-pane`
+    map.createPane('tracks');
+    map.getPane('tracks').style.zIndex = 350;
+
     var tracksLoaderControl = new TracksLoader();
     tracksLoaderControl.addTo(map);
 

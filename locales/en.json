@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Ascend",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
     "distance": "Distance",
     "elevation-chart": "Toggle elevation chart",
@@ -159,11 +160,12 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom out"
   },

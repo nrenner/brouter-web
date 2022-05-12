@@ -13,6 +13,7 @@ i18next.t('map.draw-poi-start');
 i18next.t('map.draw-poi-stop');
 i18next.t('map.draw-route-start');
 i18next.t('map.draw-route-stop');
+i18next.t('map.toggle-beeline');
 i18next.t('map.geocoder');
 i18next.t('map.locate-me');
 i18next.t('map.nogo.cancel');

@@ -28,10 +28,21 @@ BR.Routing = L.Routing.extend({
             draw: {
                 enable: 68, // char code for 'd'
                 disable: 27, // char code for 'ESC'
+                beelineMode: 66, // char code for 'b'
+                // char code for 'Shift', same key as `beelineModifierName`
+                beelineModifier: 16,
+                // modifier key to draw straight line on click [shiftKey|null] (others don't work everywhere)
+                beelineModifierName: 'shiftKey',
             },
             reverse: 82, // char code for 'r'
             deleteLastPoint: 90, // char code for 'z'
         },
+    },
+
+    initialize: function (profile, options) {
+        L.Routing.prototype.initialize.call(this, options);
+
+        this.profile = profile;
     },
 
     onAdd: function (map) {
@@ -48,13 +59,36 @@ BR.Routing = L.Routing.extend({
 
         this._waypoints.on('layeradd', this._setMarkerOpacity, this);
 
-        this.on('routing:routeWaypointStart routing:rerouteAllSegmentsStart', function (evt) {
-            this._removeDistanceMarkers();
+        // flag if (re-)routing of all segments is ongoing
+        this._routingAll = false;
+        this.on('routing:rerouteAllSegmentsStart routing:setWaypointsStart', function (evt) {
+            this._routingAll = true;
+        });
+        this.on('routing:rerouteAllSegmentsEnd routing:setWaypointsEnd', function (evt) {
+            this._routingAll = false;
         });
 
-        this.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd', function (evt) {
-            this._updateDistanceMarkers(evt);
-        });
+        this.on(
+            'routing:routeWaypointStart routing:rerouteAllSegmentsStart routing:rerouteSegmentStart',
+            function (evt) {
+                if (!this._routingAll || evt.type === 'routing:rerouteAllSegmentsStart') {
+                    this._removeDistanceMarkers();
+                }
+            }
+        );
+
+        this.on(
+            'routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteAllSegmentsEnd routing:rerouteSegmentEnd',
+            function (evt) {
+                if (
+                    !this._routingAll ||
+                    evt.type === 'routing:rerouteAllSegmentsEnd' ||
+                    evt.type === 'routing:setWaypointsEnd'
+                ) {
+                    this._updateDistanceMarkers(evt);
+                }
+            }
+        );
 
         // turn line mouse marker off while over waypoint marker
         this.on(
@@ -65,7 +99,7 @@ BR.Routing = L.Routing.extend({
                     return;
                 }
 
-                this._mouseMarker.setOpacity(0.0);
+                this._hideMouseMarker();
                 this._map.off('mousemove', this._segmentOnMousemove, this);
                 this._suspended = true;
             },
@@ -141,22 +175,27 @@ BR.Routing = L.Routing.extend({
                 this._show();
             }
         }
-        function hide() {
+        var hide = function () {
             if (!this._hidden && this._parent._waypoints._first) {
                 this._hide();
             }
+        }.bind(this._draw);
+        function hideOverControl(e) {
+            hide();
+            // prevent showing trailer when clicking state buttons (causes event that propagates to map)
+            L.DomEvent.stopPropagation(e);
         }
         this._draw.on('enabled', function () {
             this._map.on('mouseout', hide, this);
             this._map.on('mouseover', show, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseout', show, this);
-            L.DomEvent.on(this._map._controlContainer, 'mouseover', hide, this);
+            L.DomEvent.on(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
         this._draw.on('disabled', function () {
             this._map.off('mouseout', hide, this);
             this._map.off('mouseover', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
-            L.DomEvent.off(this._map._controlContainer, 'mouseover', hide, this);
+            L.DomEvent.off(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
 
         // Call show after deleting last waypoint, but hide trailer.
@@ -175,6 +214,21 @@ BR.Routing = L.Routing.extend({
             this._draw
         );
 
+        // avoid accidental shift-drag zooms while drawing beeline with shift-click
+        this._map.boxZoom.disable();
+        this._map.addHandler('boxZoom', BR.ClickTolerantBoxZoom);
+        this._draw.on('enabled', function () {
+            this._map.boxZoom.tolerant = true;
+        });
+        this._draw.on('disabled', function () {
+            this._map.boxZoom.tolerant = false;
+        });
+
+        // remove listeners registered in super.onAdd, keys not working when map container lost focus
+        // (by navbar/sidebar interaction), use document instead
+        L.DomEvent.removeListener(this._container, 'keydown', this._keydownListener, this);
+        L.DomEvent.removeListener(this._container, 'keyup', this._keyupListener, this);
+
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
         L.DomEvent.addListener(document, 'keyup', this._keyupListener, this);
 
@@ -185,7 +239,9 @@ BR.Routing = L.Routing.extend({
     },
 
     _addSegmentCasing: function (e) {
-        var casing = L.polyline(e.layer.getLatLngs(), this.options.styles.trackCasing);
+        // extend layer style to inherit beeline dashArray
+        const casingStyle = Object.assign({}, e.layer.options, this.options.styles.trackCasing);
+        const casing = L.polyline(e.layer.getLatLngs(), Object.assign({}, casingStyle, { interactive: false }));
         this._segmentsCasing.addLayer(casing);
         e.layer._casing = casing;
         this._segments.bringToFront();
@@ -262,7 +318,7 @@ BR.Routing = L.Routing.extend({
         }
     },
 
-    setWaypoints: function (latLngs, cb) {
+    setWaypoints: function (latLngs, beelineFlags, cb) {
         var i;
         var callbackCount = 0;
         var firstErr;
@@ -291,7 +347,8 @@ BR.Routing = L.Routing.extend({
         this._loadingTrailerGroup._map = null;
 
         for (i = 0; latLngs && i < latLngs.length; i++) {
-            this.addWaypoint(latLngs[i], this._waypoints._last, null, callback);
+            const beeline = beelineFlags && i < beelineFlags.length ? beelineFlags[i] : null;
+            this.addWaypoint(latLngs[i], beeline, this._waypoints._last, null, callback);
         }
 
         this._loadingTrailerGroup._map = this._map;
@@ -374,14 +431,16 @@ BR.Routing = L.Routing.extend({
             this.reverse();
         } else if (e.keyCode === this.options.shortcut.deleteLastPoint) {
             this.deleteLastPoint();
+        } else if (e.keyCode === this.options.shortcut.draw.beelineMode) {
+            this.toggleBeelineDrawing();
+        } else if (e.keyCode === this.options.shortcut.draw.beelineModifier) {
+            this._draw._setTrailerStyle(true);
         }
     },
 
     _keyupListener: function (e) {
-        // Prevent Leaflet from triggering drawing a second time on keyup,
-        // since this is already done in _keydownListener
-        if (e.keyCode === this.options.shortcut.draw.enable) {
-            return;
+        if (e.keyCode === this.options.shortcut.draw.beelineModifier) {
+            this._draw._setTrailerStyle(false);
         }
     },
 
@@ -390,10 +449,12 @@ BR.Routing = L.Routing.extend({
     },
 
     reverse: function () {
-        var waypoints = this.getWaypoints();
+        const waypoints = this.getWaypoints();
+        const beelineFlags = this.getBeelineFlags();
         waypoints.reverse();
+        beelineFlags.reverse();
         this.clear();
-        this.setWaypoints(waypoints);
+        this.setWaypoints(waypoints, beelineFlags);
     },
 
     deleteLastPoint: function () {
@@ -416,5 +477,167 @@ BR.Routing = L.Routing.extend({
             this._distanceMarkers = new L.DistanceMarkers(this.toPolyline(), this._map, distanceMarkersOpts);
             this._map.addLayer(this._distanceMarkers);
         }
+    },
+
+    _distance: function (latLng1, latLng2) {
+        //return Math.round(latLng1.distanceTo(latLng2));
+        const [ilon1, ilat1] = btools.util.CheapRuler.toIntegerLngLat([latLng1.lng, latLng1.lat]);
+        const [ilon2, ilat2] = btools.util.CheapRuler.toIntegerLngLat([latLng2.lng, latLng2.lat]);
+
+        return btools.util.CheapRuler.calcDistance(ilon1, ilat1, ilon2, ilat2);
+    },
+
+    _computeKinematic: function (distance, deltaHeight, costFactor) {
+        const rc = new BR.RoutingContext(this.profile);
+        rc.expctxWay = new BR.BExpressionContextWay(undefined, costFactor);
+        const stdPath = new BR.StdPath();
+
+        stdPath.computeKinematic(rc, distance, deltaHeight, true);
+        return stdPath;
+    },
+
+    _getCostFactor: function (line) {
+        let costFactor;
+        if (line) {
+            const props = line.feature.properties;
+            const length = props['track-length'];
+            const cost = props['cost'];
+            if (length) {
+                costFactor = cost / length;
+            }
+        }
+        return costFactor;
+    },
+
+    _interpolateBeelines: function (serialBeelines, before, after) {
+        let altStart = before?.getLatLngs()[before.getLatLngs().length - 1].alt;
+        const altEnd = after?.getLatLngs()[0].alt ?? altStart;
+        altStart ?? (altStart = altEnd);
+
+        let serialDelta = 0;
+        if (altStart != null && altEnd != null) {
+            serialDelta = altEnd - altStart;
+        }
+        const serialDistance = serialBeelines.reduce(
+            (dist, line) => (dist += line.feature.properties['track-length']),
+            0
+        );
+
+        let beforeCostFactor = this._getCostFactor(before);
+        let afterCostFactor = this._getCostFactor(after);
+        let costFactor;
+        if (beforeCostFactor != null && afterCostFactor != null) {
+            costFactor = Math.max(beforeCostFactor, afterCostFactor);
+        } else {
+            costFactor = beforeCostFactor ?? afterCostFactor;
+        }
+
+        for (const beeline of serialBeelines) {
+            const props = beeline.feature.properties;
+            const distance = props['track-length'];
+            const deltaHeight = (serialDelta * distance) / serialDistance;
+
+            const stdPath = this._computeKinematic(distance, deltaHeight, costFactor);
+            props['total-energy'] = stdPath.getTotalEnergy();
+            props['total-time'] = stdPath.getTotalTime();
+
+            // match BRouter/Java rounding where `(int)` cast truncates decimals
+            // https://github.com/abrensch/brouter/blob/14d5a2c4e6b101a2eab711e70151142881df95c6/brouter-core/src/main/java/btools/router/RoutingEngine.java#L1216-L1217
+            if (deltaHeight > 0) {
+                // no filtering for simplicity for now
+                props['filtered ascend'] = Math.trunc(deltaHeight);
+            }
+            props['plain-ascend'] = Math.trunc(deltaHeight + 0.5);
+            // do not set interpolated alt value, to explicitly show missing data, e.g. in height graph
+
+            props['cost'] = Math.round(distance * (costFactor ?? 0));
+        }
+    },
+
+    _updateBeelines: function () {
+        L.Routing.prototype._updateBeelines.call(this);
+
+        let serialBeelines = [];
+        let before = null;
+
+        this._eachSegment(function (m1, m2, line) {
+            if (line?._routing?.beeline) {
+                serialBeelines.push(line);
+            } else {
+                if (serialBeelines.length > 0) {
+                    this._interpolateBeelines(serialBeelines, before, line);
+                }
+                before = line;
+                serialBeelines = [];
+            }
+        });
+
+        if (serialBeelines.length > 0) {
+            this._interpolateBeelines(serialBeelines, before, null);
+        }
+    },
+
+    createBeeline: function (latLng1, latLng2) {
+        const layer = L.Routing.prototype.createBeeline.call(this, latLng1, latLng2);
+        // remove alt from cloned LatLngs to show gap in elevation graph to indicate no data inbetween
+        delete layer.getLatLngs()[0].alt;
+        delete layer.getLatLngs()[1].alt;
+        const distance = this._distance(latLng1, latLng2);
+        const props = {
+            cost: 0,
+            'filtered ascend': 0,
+            'plain-ascend': 0,
+            'total-energy': 0,
+            'total-time': 0,
+            'track-length': distance,
+            messages: [
+                [
+                    'Longitude',
+                    'Latitude',
+                    'Elevation',
+                    'Distance',
+                    'CostPerKm',
+                    'ElevCost',
+                    'TurnCost',
+                    'NodeCost',
+                    'InitialCost',
+                    'WayTags',
+                    'NodeTags',
+                    'Time',
+                    'Energy',
+                ],
+                [
+                    latLng2.lng * 1000000,
+                    latLng2.lat * 1000000,
+                    null,
+                    distance,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    '',
+                    '',
+                    null,
+                    null,
+                ],
+            ],
+        };
+        layer.feature = turf.lineString(
+            [
+                [latLng1.lng, latLng1.lat],
+                [latLng2.lng, latLng2.lat],
+            ],
+            props
+        );
+
+        // corresponding to BRouter._assignFeatures
+        for (const latLng of layer.getLatLngs()) {
+            const featureMessage = props.messages[1];
+            latLng.feature = BR.TrackEdges.getFeature(featureMessage);
+            latLng.message = featureMessage;
+        }
+
+        return layer;
     },
 });
