@@ -68,7 +68,7 @@
         "leaflet-hotline": "^0.4.0",
         "leaflet-plugins": "~3.0.0",
         "leaflet-providers": "^1.10.2",
-        "leaflet-routing": "nrenner/leaflet-routing#d10c9f5",
+        "leaflet-routing": "nrenner/leaflet-routing#773314a",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "^1.0.2",
         "leaflet.heightgraph": "nrenner/Leaflet.Heightgraph#0757b2a",
