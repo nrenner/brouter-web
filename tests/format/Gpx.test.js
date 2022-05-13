@@ -59,7 +59,6 @@ test('waypoints', () => {
 describe('voice hints', () => {
     test('2-locus', () => {
         let brouterGpx = BR.Xml.pretty(read('2-locus.gpx'));
-        brouterGpx = brouterGpx.replace(/\n\s*<\/extensions>\n\s*<extensions>/, ''); // ignore (invalid) double tag
         // ignore float rounding differences
         brouterGpx = brouterGpx.replace(
             /:(rteTime|rteSpeed)>([\d.]*)<\//g,
