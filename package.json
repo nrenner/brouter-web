@@ -80,7 +80,7 @@
         "osmtogeojson": "^3.0.0-beta.4",
         "overpass-layer": "^3.0.0",
         "regenerator-runtime": "^0.13.7",
-        "togpx": "nrenner/togpx#722d291",
+        "togpx": "nrenner/togpx#ad56b38",
         "tokml": "^0.4.0",
         "topojson-client": "^3.1.0",
         "url-search-params": "~0.5.0"
