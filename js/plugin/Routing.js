@@ -188,12 +188,15 @@ BR.Routing = L.Routing.extend({
         this._draw.on('enabled', function () {
             this._map.on('mouseout', hide, this);
             this._map.on('mouseover', show, this);
+            // prevent showing trailer on segment hover because of bubbling to map with canvas, calling show above
+            this._parent._segments.on('mouseover', L.DomEvent.stopPropagation, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseout', show, this);
             L.DomEvent.on(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
         this._draw.on('disabled', function () {
             this._map.off('mouseout', hide, this);
             this._map.off('mouseover', show, this);
+            this._parent._segments.off('mouseover', L.DomEvent.stopPropagation, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseout', show, this);
             L.DomEvent.off(this._map._controlContainer, 'mouseover', hideOverControl, this);
         });
