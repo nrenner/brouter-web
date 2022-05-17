@@ -11998,10 +11998,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-url-search-params@~0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/url-search-params/-/url-search-params-0.5.0.tgz#4152e38f1c8b755eaf19559b02fe09aa44e40d5d"
-  integrity sha1-QVLjjxyLdV6vGVWbAv4JqkTkDV0=
+url-search-params@~0.10.0:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/url-search-params/-/url-search-params-0.10.2.tgz#e9da69646e48c6140c6732e1f07fb669525f5a4e"
+  integrity sha512-d6GYsr992Bo9rzTZFc9BUw3UFAAg3prE9JGVBgW2TLTbI3rSvg4VDa0BFXHMzKkWbAuhrmaFWpucpRJl+3W7Jg==
 
 use@^3.1.0:
   version "3.1.1"
