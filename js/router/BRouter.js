@@ -26,16 +26,6 @@ L.BRouter = L.Class.extend({
             }, this),
             1
         );
-
-        // patch to call callbacks on kill for cleanup (loadingTrailer)
-        this.queue.kill = function () {
-            var aborted = this.tasks;
-            this.drain = null;
-            this.tasks = [];
-            aborted.forEach(function (task) {
-                task.callback(L.BRouter.ABORTED_ERROR);
-            });
-        };
     },
 
     setOptions: function (options) {

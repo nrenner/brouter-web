@@ -213,7 +213,10 @@
 
             // abort pending requests from previous rerouteAllSegments
             if (!router.queue.idle()) {
-                router.queue.kill();
+                router.queue.remove((task) => {
+                    task.callback(L.BRouter.ABORTED_ERROR);
+                    return true;
+                });
             }
             routing.rerouteAllSegments(onUpdate);
         }

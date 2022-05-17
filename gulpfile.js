@@ -50,7 +50,7 @@ var paths = {
         ]),
     scripts: [
         'node_modules/jquery/dist/jquery.js',
-        'node_modules/async/lib/async.js',
+        'node_modules/async/dist/async.js',
         'node_modules/leaflet/dist/leaflet-src.js',
     ]
         .concat(
