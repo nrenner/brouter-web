@@ -6422,13 +6422,13 @@ gulp-inject@5.0.5:
     stream-to-array "^2.3.0"
     through2 "^3.0.1"
 
-gulp-json-concat@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/gulp-json-concat/-/gulp-json-concat-0.1.1.tgz#b66cda73fbb8cfc3d23de601a3e72fc52432ec5d"
-  integrity sha512-6E9HBFUIvdFYrqmO8j2+e0DcJ2uuY7qxQcrxZ4eFNvhYy+M34+vKjv272OuA7NSnt0G2EPITBazmjv8hszJpgQ==
+gulp-json-concat@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gulp-json-concat/-/gulp-json-concat-0.2.0.tgz#931908e321bc0f6017a5b7174b7909d8cde0f0ad"
+  integrity sha512-N0uRcTRidE4pICEcX99CO1pvSsudWgSVJmDW5Jt4RnSvWtofnwtrO7RuV3kBDRjhMX20MuzvMDTqZ4t00FHPiw==
   dependencies:
     gulp-util "^3.0.8"
-    jsonlint "^1.6.2"
+    jsonlint "^1.6.3"
     through "^2.3.8"
 
 gulp-match@^1.1.0:
@@ -7917,7 +7917,7 @@ jsonfile@^3.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jsonlint@^1.6.2:
+jsonlint@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/jsonlint/-/jsonlint-1.6.3.tgz#cb5e31efc0b78291d0d862fbef05900adf212988"
   integrity sha512-jMVTMzP+7gU/IyC6hvKyWpUU8tmTkK5b3BPNuMI9U8Sit+YAWLlZwB6Y6YrdCxfg2kNz05p3XY3Bmm4m26Nv3A==
