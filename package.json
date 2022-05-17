@@ -106,7 +106,7 @@
         "gulp-github-release": "1.2.1",
         "gulp-if": "3.0.0",
         "gulp-inject": "5.0.5",
-        "gulp-json-concat": "0.1.1",
+        "gulp-json-concat": "0.2.0",
         "gulp-modify-css-urls": "2.0.0",
         "gulp-postcss": "9.0.0",
         "gulp-remember": "1.0.1",
