@@ -39,7 +39,7 @@
         "@fortawesome/fontawesome-free": "^6.0.0",
         "@ideditor/temaki": "^5.0.0",
         "@mapbox/maki": "^7.0.0",
-        "@mapbox/polyline": "^0.2.0",
+        "@mapbox/polyline": "^1.0.0",
         "@mapbox/togeojson": "^0.16.0",
         "@turf/turf": "^6.2.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",

@@ -1496,11 +1496,6 @@
   resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-7.1.0.tgz#bfc213c7b06bfe7fd0e5dfdddceaa93d2195b21d"
   integrity sha512-/jaBOsbafUDOiP9re7Wlbaftk6eNoUPk3zc5HCLnyn3SfU7XfhBBsRsEjmSowAAIu7SlcQCNyN6UDvkyTCD2uA==
 
-"@mapbox/polyline@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@mapbox/polyline/-/polyline-0.2.0.tgz#6e25980744aa22331f94b645a542c02d3fcfee97"
-  integrity sha1-biWYB0SqIjMflLZFpULALT/P7pc=
-
 "@mapbox/polyline@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@mapbox/polyline/-/polyline-1.0.0.tgz#b6f1c3cf61f8dddcf9ac6dce0b2e50e5f4e965bc"
