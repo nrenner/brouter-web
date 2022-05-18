@@ -1491,10 +1491,10 @@
     minimist "1.2.0"
     sharkdown "^0.1.0"
 
-"@mapbox/maki@^6.2.0":
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-6.2.0.tgz#b61b3e8e7fc7637493e511ac40de0eea62cd1f8b"
-  integrity sha512-iFIRNT3ZpTOw69p2BFFOmQppujpav2PQTLPyL4+bZ5ZIUfdyB5Qtw45CTfPqzzHpP2AZGjEDbSNhGDRcG9/2fw==
+"@mapbox/maki@^7.0.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-7.1.0.tgz#bfc213c7b06bfe7fd0e5dfdddceaa93d2195b21d"
+  integrity sha512-/jaBOsbafUDOiP9re7Wlbaftk6eNoUPk3zc5HCLnyn3SfU7XfhBBsRsEjmSowAAIu7SlcQCNyN6UDvkyTCD2uA==
 
 "@mapbox/polyline@^0.2.0":
   version "0.2.0"
