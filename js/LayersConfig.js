@@ -191,8 +191,7 @@ BR.LayersConfig = L.Class.extend({
 
         if (icon && iconPrefix.test(icon)) {
             const iconName = icon.replace(iconPrefix, '');
-            const postfix = icon.startsWith('maki-') ? '-11' : '';
-            iconUrl = `dist/images/${iconName}${postfix}.svg`;
+            iconUrl = `dist/images/${iconName}.svg`;
         }
 
         return iconUrl;
