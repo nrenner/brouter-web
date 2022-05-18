@@ -8073,10 +8073,10 @@ leaflet-osm-notes@osmlab/leaflet-osm-notes#af2aa811:
     moment "~2.0.0"
     reqwest "~0.7.2"
 
-leaflet-plugins@~3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.0.3.tgz#7c727ac79a37636b245dd1adc64e10c61b425864"
-  integrity sha512-J2dfJxrq7ETmciGq01syYmB0zG1Ogzy5FioIFJjJB82jFqxHZJDFUMiPFGJn+gfJnWhv/LobbPQYqHdaJSxR9w==
+leaflet-plugins@~3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet-plugins/-/leaflet-plugins-3.4.0.tgz#72435a07098c1b850eca01f525fe54a93a2ff3f4"
+  integrity sha512-CjsQKaW545tNY4JVm4v3WhbFcUa2QzWQQzEysQ0eY/ThYYMqIL5DnQNgcHCvAFZtEwlj7MlTtI7BFuKiNuqyJA==
 
 leaflet-providers@^1.10.2:
   version "1.10.2"
