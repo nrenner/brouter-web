@@ -83,7 +83,7 @@
         "togpx": "nrenner/togpx#722d291",
         "tokml": "^0.4.0",
         "topojson-client": "^3.1.0",
-        "url-search-params": "~0.5.0"
+        "url-search-params": "~0.10.0"
     },
     "devDependencies": {
         "@babel/cli": "7.17.10",
