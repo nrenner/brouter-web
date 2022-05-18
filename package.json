@@ -358,17 +358,17 @@
         },
         "@fortawesome/fontawesome-free": {
             "main": [
-                "svgs/solid/shopping-basket.svg",
-                "svgs/solid/shopping-cart.svg",
+                "svgs/solid/basket-shopping.svg",
+                "svgs/solid/cart-shopping.svg",
                 "svgs/solid/ice-cream.svg",
                 "svgs/solid/carrot.svg",
                 "svgs/solid/cheese.svg",
-                "svgs/solid/concierge-bell.svg",
+                "svgs/solid/bell-concierge.svg",
                 "svgs/solid/motorcycle.svg",
                 "svgs/solid/charging-station.svg",
                 "svgs/solid/box.svg",
                 "svgs/solid/taxi.svg",
-                "svgs/solid/phone-alt.svg",
+                "svgs/solid/phone-flip.svg",
                 "svgs/solid/beer.svg"
             ]
         }

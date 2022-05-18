@@ -5,7 +5,7 @@
         "id": "supermarket",
         "overlay": true,
         "dataSource": "OverpassAPI",
-        "icon": "fas-shopping-cart",
+        "icon": "fas-cart-shopping",
         "query": "nwr[shop=supermarket];"
     },
     "type": "Feature"
