@@ -3564,7 +3564,7 @@ async@^1.2.1:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-async@^2.6.0:
+async@^2.6.0, async@~2.6.0:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
   integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
@@ -3575,11 +3575,6 @@ async@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
   integrity sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw==
-
-async@~3.2.0:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
-  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -8094,10 +8089,10 @@ leaflet.heightgraph@nrenner/Leaflet.Heightgraph#0757b2a:
   dependencies:
     leaflet "^1.6.0"
 
-leaflet.locatecontrol@^0.76.0:
-  version "0.76.1"
-  resolved "https://registry.yarnpkg.com/leaflet.locatecontrol/-/leaflet.locatecontrol-0.76.1.tgz#03eb8e98e0c54fee457f930a63624479a6177de0"
-  integrity sha512-qA92Mxs2N1jgVx+EdmxtDrdzFD+f2llPJbqaKvmW1epZMSIvD6KNsBjpQYUIxz4XtJkOleqRSwWQcrm5P5NnYw==
+leaflet.locatecontrol@^0.72.0:
+  version "0.72.2"
+  resolved "https://registry.yarnpkg.com/leaflet.locatecontrol/-/leaflet.locatecontrol-0.72.2.tgz#513787f983bce029c100a79aedc9eb98383100e0"
+  integrity sha512-MNi7m+TlQFwiz5jq5W9vcGjwBHsh1PGxjKjONYd0NezuSLdj9dNjRsupLXtF2fNnX+s+tPNzP7V+Nmg6TKvhHA==
 
 leaflet.snogylop@^0.4.0:
   version "0.4.0"
