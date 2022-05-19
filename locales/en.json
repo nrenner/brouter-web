@@ -213,6 +213,14 @@
     },
     "profile-tooltip": "\n({{key}} key to switch)"
   },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
+  },
   "sidebar": {
     "analysis": {
       "header": {
@@ -297,14 +305,6 @@
     "title": "Load Track as Route",
     "tracklayer": "Track Layer",
     "tuning": "Tuning"
-  },
-  "searchfav": {
-	  "addfavorite": "add as favorite",
-	  "openfavorites": "open favorite list",
-	  "removeall": "delete all favorites",
-	  "export": "export favorites to file",
-	  "import": "import favorites from file",
-	  "ask_removeall": "Do you want to delete all search favorites?"
   },
   "warning": {
     "cannot-get-route": "Error getting route URL",
