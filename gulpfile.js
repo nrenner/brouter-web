@@ -98,8 +98,8 @@ var paths = {
     destName: 'brouter-web',
 };
 
-gulp.task('clean', function (cb) {
-    del(paths.dest + '/**/*', cb);
+gulp.task('clean', function () {
+    return del(paths.dest + '/**/*');
 });
 
 // libs that require loading before config.js
