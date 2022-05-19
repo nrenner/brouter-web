@@ -47,7 +47,7 @@
         "bootbox": "~5.5.2",
         "bootstrap": "4.6.1",
         "bootstrap-select": "1.13.18",
-        "bootstrap-slider": "^9.8.1",
+        "bootstrap-slider": "^11.0.0",
         "codemirror": "^5.61.0",
         "core-js-bundle": "^3.8.3",
         "datatables": "~1.10.18",
