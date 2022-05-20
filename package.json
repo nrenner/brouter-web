@@ -12,7 +12,7 @@
         "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
         "serve": "gulp serve watch",
-        "standalone": "mvn clean install -f ../brouter -pl '!brouter-routing-app' -Dmaven.javadoc.skip=true && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
+        "standalone": "../brouter/gradlew -p ../brouter clean build && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
     },
     "husky": {
         "hooks": {

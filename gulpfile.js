@@ -421,18 +421,12 @@ gulp.task('release:zip_standalone', function () {
     var root = gulp.src(['resources/standalone/run.sh', 'resources/standalone/segments4']);
 
     var serverRoot = gulp
-        .src(
-            [
-                'misc/readmes/profile_developers_guide.txt',
-                'brouter-server/target/brouter-server-*-jar-with-dependencies.jar',
-            ],
-            {
-                cwd: path.join(process.cwd(), '../brouter'),
-            }
-        )
+        .src(['misc/readmes/profile_developers_guide.txt', 'brouter-server/build/libs/brouter-*-all.jar'], {
+            cwd: path.join(process.cwd(), '../brouter'),
+        })
         .pipe(
             rename(function (path) {
-                if (path.basename.startsWith('brouter-server-')) {
+                if (path.basename.startsWith('brouter-') && path.basename.endsWith('-all')) {
                     path.basename = 'brouter';
                 }
             })
