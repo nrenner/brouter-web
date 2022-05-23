@@ -95,7 +95,7 @@ L.BRouter = L.Class.extend({
             opts.alternative = params.alternativeidx;
         }
         if (params.profile) {
-            opts.profile = params.profile;
+            opts.profile = this._parseProfile(params.profile);
         }
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
@@ -496,6 +496,14 @@ L.BRouter = L.Class.extend({
             }
         }
         return nogos;
+    },
+
+    _parseProfile: function (profile) {
+        if (BR.conf.profilesRename?.[profile]) {
+            return BR.conf.profilesRename[profile];
+        }
+
+        return profile;
     },
 
     // formats L.LatLng object as lng,lat string

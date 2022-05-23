@@ -36,7 +36,7 @@ i18next.t('navbar.profile.fastbike');
 i18next.t('navbar.profile.fastbike-asia-pacific');
 i18next.t('navbar.profile.fastbike-asia-pacific');
 i18next.t('navbar.profile.fastbike-lowtraffic');
-i18next.t('navbar.profile.hiking-beta');
+i18next.t('navbar.profile.hiking-mountain');
 i18next.t('navbar.profile.moped');
 i18next.t('navbar.profile.rail');
 i18next.t('navbar.profile.river');
