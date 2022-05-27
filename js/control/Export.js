@@ -44,6 +44,26 @@ BR.Export = L.Class.extend({
         }
     },
 
+    _getMimeType: function (format) {
+        const mimeTypeMap = {
+            gpx: 'application/gpx+xml',
+            kml: 'application/vnd.google-earth.kml+xml',
+            geojson: 'application/vnd.geo+json',
+            csv: 'text/tab-separated-values',
+        };
+
+        return mimeTypeMap[format];
+    },
+
+    _triggerDownload: function (url, name) {
+        const link = document.createElement('a');
+        link.href = url;
+        if (name) {
+            link.download = name;
+        }
+        link.click();
+    },
+
     _export: function (e) {
         var exportForm = document.forms['export'];
         var format = exportForm['format'].value || $('#export-format input:radio:checked').val();
@@ -55,26 +75,17 @@ BR.Export = L.Class.extend({
 
         if (BR.Browser.download) {
             const track = this._formatTrack(format, name, includeWaypoints);
+            const fileName = (name || 'brouter') + '.' + format;
 
-            const mimeTypeMap = {
-                gpx: 'application/gpx+xml',
-                kml: 'application/vnd.google-earth.kml+xml',
-                geojson: 'application/vnd.geo+json',
-                csv: 'text/tab-separated-values',
-            };
-
-            const mimeType = mimeTypeMap[format];
-
+            const mimeType = this._getMimeType(format);
             const blob = new Blob([track], {
                 type: mimeType + ';charset=utf-8',
             });
             const objectUrl = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = objectUrl;
-            link.download = (name || 'brouter') + '.' + format;
-            link.click();
+
+            this._triggerDownload(objectUrl, fileName);
         } else {
-            var uri = this.router.getUrl(
+            var serverUrl = this.router.getUrl(
                 this.latLngs,
                 null,
                 this.pois.getMarkers(),
@@ -83,11 +94,8 @@ BR.Export = L.Class.extend({
                 nameUri,
                 includeWaypoints
             );
-            var evt = document.createEvent('MouseEvents');
-            evt.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            var link = document.createElement('a');
-            link.href = uri;
-            link.dispatchEvent(evt);
+
+            this._triggerDownload(serverUrl);
         }
     },
 
