@@ -27,8 +27,11 @@ BR.Export = L.Class.extend({
 
         this.exportButton.on('click', L.bind(this._generateTrackname, this));
         L.DomUtil.get('submitExport').onclick = L.bind(this._export, this);
+        L.DomUtil.get('serverExport').onclick = L.bind(this._exportServer, this);
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
+
+        $('#export').on('show.bs.modal', this._warnStraightLine.bind(this));
 
         this.update([]);
     },
@@ -42,6 +45,16 @@ BR.Export = L.Class.extend({
         } else {
             this.exportButton.removeClass('disabled');
         }
+    },
+
+    _warnStraightLine: function () {
+        const hasBeeline = BR.Routing.hasBeeline(this.segments);
+        document.getElementById('export-beeline-warning').hidden = !hasBeeline;
+        let title = 'Download from server (deprecated)';
+        if (hasBeeline) {
+            title = '[Warning: straight lines not supported] ' + title;
+        }
+        document.getElementById('serverExport').title = title;
     },
 
     _getMimeType: function (format) {
@@ -64,7 +77,11 @@ BR.Export = L.Class.extend({
         link.click();
     },
 
-    _export: function (e) {
+    _exportServer: function (e) {
+        this._export(e, true);
+    },
+
+    _export: function (e, server = false) {
         var exportForm = document.forms['export'];
         var format = exportForm['format'].value || $('#export-format input:radio:checked').val();
         var name = exportForm['trackname'].value;
@@ -73,7 +90,7 @@ BR.Export = L.Class.extend({
 
         e.preventDefault();
 
-        if (BR.Browser.download) {
+        if (!server && BR.Browser.download) {
             const track = this._formatTrack(format, name, includeWaypoints);
             const fileName = (name || 'brouter') + '.' + format;
 
@@ -81,9 +98,10 @@ BR.Export = L.Class.extend({
             const blob = new Blob([track], {
                 type: mimeType + ';charset=utf-8',
             });
-            const objectUrl = URL.createObjectURL(blob);
 
-            this._triggerDownload(objectUrl, fileName);
+            const reader = new FileReader();
+            reader.onload = (e) => this._triggerDownload(reader.result, fileName);
+            reader.readAsDataURL(blob);
         } else {
             var serverUrl = this.router.getUrl(
                 this.latLngs,

@@ -5,6 +5,9 @@ L.Routing.Draw.prototype._hideTrailer = function () {
 };
 
 BR.Routing = L.Routing.extend({
+    statics: {
+        hasBeeline: (segments) => segments?.filter((line) => line?._routing?.beeline).length > 0,
+    },
     options: {
         position: 'topright',
         icons: {
