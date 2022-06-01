@@ -74,9 +74,9 @@ BR.CircleGoArea = L.Control.extend({
         this._loadCountries();
 
         // preload states in parallel, before clicked country is known, using browser language as indicator
-        if (BR.Util.isCountry('DE')) {
-            this._loadStates();
-        }
+        // if (BR.Util.isCountry('DE')) {
+        //     this._loadStates();
+        // }
 
         map.on('routing:draw-start', function () {
             self.draw(false);
