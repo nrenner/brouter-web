@@ -421,7 +421,7 @@ gulp.task('release:zip_standalone', function () {
     var root = gulp.src(['resources/standalone/run.sh', 'resources/standalone/segments4']);
 
     var serverRoot = gulp
-        .src(['misc/readmes/profile_developers_guide.txt', 'brouter-server/build/libs/brouter-*-all.jar'], {
+        .src(['docs/developers/profile_developers_guide.md', 'brouter-server/build/libs/brouter-*-all.jar'], {
             cwd: path.join(process.cwd(), '../brouter'),
         })
         .pipe(
