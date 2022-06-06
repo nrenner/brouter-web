@@ -14,10 +14,11 @@ BR.Track = {
             style: function (geoJsonFeature) {
                 var currentLayerId = layersControl.getActiveBaseLayer().layer.id;
                 return {
-                    color: currentLayerId === 'cyclosm' ? 'yellow' : 'blue',
+                    color: currentLayerId === 'cyclosm' ? '#ffff00' : '#0000ff',
                     weight: 4,
                 };
             },
+            opacity: 1,
             interactive: false,
             filter: function (geoJsonFeature) {
                 // remove POIs, added separately
