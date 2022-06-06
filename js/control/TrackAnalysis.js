@@ -206,7 +206,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {*[]}
      */
     normalizeWayTags: function (wayTags, routingType) {
-        let normalizedWayTags = [];
+        let normalizedWayTags = {};
         let surfaceTags = {};
         let smoothnessTags = {};
         for (let wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
@@ -215,7 +215,7 @@ BR.TrackAnalysis = L.Class.extend({
             const tagValue = wayTagParts[1];
 
             if (tagName === 'surface') {
-                surfaceTags['default'] = tagValue;
+                surfaceTags.default = tagValue;
                 continue;
             }
             if (tagName.indexOf(':surface') !== -1) {
@@ -225,7 +225,7 @@ BR.TrackAnalysis = L.Class.extend({
             }
 
             if (tagName === 'smoothness') {
-                smoothnessTags['default'] = tagValue;
+                smoothnessTags.default = tagValue;
                 continue;
             }
             if (tagName.indexOf(':smoothness') !== -1) {
@@ -239,23 +239,27 @@ BR.TrackAnalysis = L.Class.extend({
 
         switch (routingType) {
             case 'cycling':
-                if (typeof surfaceTags['cycleway'] === 'string') {
-                    normalizedWayTags['surface'] = surfaceTags['cycleway'];
+                if (typeof surfaceTags.cycleway === 'string') {
+                    normalizedWayTags.surface = surfaceTags.cycleway;
+                } else if (typeof surfaceTags.default === 'string') {
+                    normalizedWayTags.surface = surfaceTags.default;
                 }
-                if (typeof smoothnessTags['cycleway'] === 'string') {
-                    normalizedWayTags['smoothness'] = smoothnessTags['cycleway'];
+                if (typeof smoothnessTags.cycleway === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.cycleway;
+                } else if (typeof smoothnessTags.default === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.default;
                 }
                 break;
             default:
-                if (typeof surfaceTags['default'] === 'string') {
-                    normalizedWayTags['surface'] = surfaceTags['default'];
+                if (typeof surfaceTags.default === 'string') {
+                    normalizedWayTags.surface = surfaceTags.default;
                 }
-                if (typeof smoothnessTags['default'] === 'string') {
-                    normalizedWayTags['smoothness'] = smoothnessTags['default'];
+                if (typeof smoothnessTags.default === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.default;
                 }
         }
 
-        return normalizedWayTags;
+        return this.wayTagsToArray(normalizedWayTags);
     },
 
     /**
@@ -528,7 +532,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {boolean}
      */
     wayTagsMatchesData: function (wayTags, dataType, dataName, trackType) {
-        var parsed = this.parseWayTags(wayTags);
+        const parsed = this.wayTagsToObject(wayTags);
 
         switch (dataType) {
             case 'highway':
@@ -579,15 +583,33 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {object}
      */
-    parseWayTags: function (wayTags) {
-        var result = {};
-        var wayTagPairs = wayTags.feature.wayTags.split(' ');
+    wayTagsToObject: function (wayTags) {
+        let result = {};
+        const wayTagPairs = wayTags.feature.wayTags.split(' ');
 
-        for (var j = 0; j < wayTagPairs.length; j++) {
-            var wayTagParts = wayTagPairs[j].split('=');
+        for (let j = 0; j < wayTagPairs.length; j++) {
+            const wayTagParts = wayTagPairs[j].split('=');
             result[wayTagParts[0]] = wayTagParts[1];
         }
 
         return result;
+    },
+
+    /**
+     * Transform a way tags object into an array representation, for example:
+     *
+     * { 'highway' : 'path', 'surface' : 'sand' } => ['highway=path', 'surface=sand']
+     *
+     * @param wayTags The way tags in object representation
+     *
+     * @returns {object}
+     */
+    wayTagsToArray: function (wayTags) {
+        let wayTagsArray = [];
+        for (let wayTagKey in wayTags) {
+            wayTagsArray.push(wayTagKey + '=' + wayTags[wayTagKey]);
+        }
+
+        return wayTagsArray;
     },
 });
