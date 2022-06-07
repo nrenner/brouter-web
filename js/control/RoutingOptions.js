@@ -18,7 +18,8 @@ BR.RoutingOptions = L.Evented.extend({
             var option = document.createElement('option');
             option.value = profiles[i];
             option.text = i18next.t('navbar.profile.' + profiles[i]);
-            if (remembered_profile !== null && remembered_profile === profiles[i]) {
+            // set remembered profile, only when no URL hash (assumes fullHash plugin not initialised yet)
+            if (!location.hash && remembered_profile !== null && remembered_profile === profiles[i]) {
                 option.selected = true;
                 remembered_profile_was_selected = true;
             }
