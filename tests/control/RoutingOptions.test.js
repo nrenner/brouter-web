@@ -5,7 +5,7 @@ require('bootstrap');
 require('bootstrap-select');
 require('leaflet');
 
-require('../../config.js');
+require('../../config.template.js');
 require('../../js/Util.js');
 require('../../js/router/BRouter.js');
 require('../../js/control/RoutingOptions.js');
