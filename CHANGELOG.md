@@ -1,5 +1,45 @@
 # BRouter-Web Changelog
 
+## 0.17.0 (2022-06-08)
+
+### New Features
+
+-   Allow straight lines - by [@nrenner](https://github.com/nrenner) ([#68](https://github.com/nrenner/brouter-web/issues/68))
+    -   Draw a direct line between two route points ("as the crow flies") when there are no roads:
+        -   Append straight lines by activating the toggle button (`B` key) that appears when drawing is active or by holding `Shift` key while clicking
+        -   Change an existing route segment beween two markers to a straight line (and back) by clicking/tapping on it (or rather the edit handle)
+    -   Mobile behaviour will change a bit:
+        -   increased touch tolerance, so it's easier to hit the route line for dragging and tapping
+        -   for adding a via point, you previously needed to tap on the route first to make the edit handle appear then drag that. Now you can drag the route right away
+        -   previously a tap on the route made the height graph map marker appear, now a tap switches the segment into a straight line, the height marker can still be shown after a long press
+-   Add OpenStreetMap Notes Layer - by [@mjaschen](https://github.com/mjaschen) ([#458](https://github.com/nrenner/brouter-web/pull/458))
+
+### Improvements
+
+-   Improve keyboard handling and dialog UIs - by [@rkflx](https://github.com/rkflx) ([#395](https://github.com/nrenner/brouter-web/pull/395))
+-   Use marker for locations layers and add icons - by [@stesie](https://github.com/stesie) ([#397](https://github.com/nrenner/brouter-web/pull/397))
+-   Complete icons of locations layers and add to layer tree - by [@nrenner](https://github.com/nrenner) ([#398](https://github.com/nrenner/brouter-web/pull/398))
+-   Client-side track formatting - by [@nrenner](https://github.com/nrenner) ([#399](https://github.com/nrenner/brouter-web/pull/399))
+-   Handle nogo areas file upload error - by [@bagage](https://github.com/bagage) ([#413](https://github.com/nrenner/brouter-web/pull/413))
+-   Add tooltip with POI name to POI icons - by [@mjaschen](https://github.com/mjaschen) ([#414](https://github.com/nrenner/brouter-web/pull/414), [#415](https://github.com/nrenner/brouter-web/pull/415))
+-   Add SwissTopo tile layers - by [@phylor](https://github.com/phylor) ([#422](https://github.com/nrenner/brouter-web/pull/422))
+-   Add `supermarket` to locations layers - by [@mjaschen](https://github.com/mjaschen) ([#412](https://github.com/nrenner/brouter-web/pull/412))
+-   Add `amenity=shelter` to locations layers - by [@mjaschen](https://github.com/mjaschen) ([#433](https://github.com/nrenner/brouter-web/pull/433))
+-   Favorite list for search (geocode control) - by [@printpagestopdf](https://github.com/printpagestopdf) ([#451](https://github.com/nrenner/brouter-web/issues/451))
+-   remember and recall last used (non-custom) profile - by [@mjaschen](https://github.com/mjaschen) ([#456](https://github.com/nrenner/brouter-web/pull/456))
+-   Toggle "locate" state with keyboard shortcut - by [@mjaschen](https://github.com/mjaschen) ([#462](https://github.com/nrenner/brouter-web/pull/462))
+-   Support `surface` and `smoothness` variants like `cycleway:surface` in analysis - by [@mjaschen](https://github.com/mjaschen) ([#460](https://github.com/nrenner/brouter-web/pull/460))
+
+### Bugfixes
+
+-   Fix loading no-go areas - by [@rkflx](https://github.com/rkflx) ([#395](https://github.com/nrenner/brouter-web/pull/395))
+-   Error when exporting route with empty POI name - by [@bagage](https://github.com/bagage) ([#427](https://github.com/nrenner/brouter-web/issues/427))
+
+### Local installation / development
+
+-   config.js
+    -   rename `hiking-beta.brf` -> `hiking-mountain.brf`
+
 ## 0.16.0 (2021-03-30)
 
 ### New Features
