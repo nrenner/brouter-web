@@ -1,6 +1,6 @@
 {
   "about": {
-    "bug-reports": "Rapporter un problème ou une amélioration :",
+    "bug-reports": "Rapporter un problème ou suggérer une amélioration :",
     "bug-reports-back": "serveur, moteur de routage, appli Android, profils, site brouter.de ;",
     "bug-reports-front": "client web.",
     "chat": "Discuter avec d'autres utilisateurs et développeurs ;",
@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Dénivelé cumulé",
+    "beeline-warning": "Attention : il n'y a pas de données pour les lignes directes, les données sont générées par interpolation",
     "cost": "Coût",
     "distance": "Distance",
     "elevation-chart": "Inverser l'affichage du profil altimétrique",
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Propriétés par défaut",
+    "error": {
+      "invalid-default-nogo-radius": "Rayon de zone interdite invalide",
+      "invalid-nogo-buffering-radius": "Rayon de buffer de zone interdite invalide",
+      "loading-file-error": "Chargement du fichier impossible : {{err}}",
+      "loading-file-too-big": "Trop de zones interdites dans ce fichier ! Veuillez simplifier la géométrie ou réduire le nombre de zones.",
+      "loading-file-unexpected": "Une erreur inattendue est survenue au chargement du fichier",
+      "missing-default-nogo-weight": "Poids par défaut de zone interdite manquant.",
+      "missing-file-url": "Fichier ou URL manquant",
+      "no-valid-area": "Pas de zone valide trouvée dans les données fournies."
+    },
     "file": "Fichier (.geojson)",
     "load": "Charger",
     "nogoBuffer": "Tampon des zones interdites (en mètres)",
@@ -149,16 +160,19 @@
     "route-quality-cost": "Chiffrage du coût",
     "route-quality-incline": "Chiffrage d'inclinaison",
     "route-quality-shortcut": "{{action}} (touche {{key}} pour basculer)",
-    "route-tooltip-segment": "Laisser appuyer et déplacer pour ajouter un nouveau point de passage",
-    "route-tooltip-waypoint": "Point de passage. Laisser appuyer pour déplacer ; cliquer pour supprimer.",
+    "route-tooltip-segment": "Glisser-déplacer pour un nouveau point de passage. Cliquer pour basculer ligne directe.",
+    "route-tooltip-waypoint": "Point de passage. Faire glisser pour déplacer ; cliquer pour supprimer.",
     "strava-biking": "Afficher les segments Strava vélo",
     "strava-running": "Afficher les segments Strava à pied",
     "strava-shortcut": "{{action}}\n(touche {{key}} pour basculer de calque, cliquer pour recharger la zone actuelle)",
+    "toggle-beeline": "Bascule ligne directe",
     "zoomInTitle": "Zoomer",
     "zoomOutTitle": "Dézoomer"
   },
   "modal": {
-    "close": "Fermer"},
+    "close": "Fermer",
+    "or": ""
+  },
   "navbar": {
     "about": "À propos",
     "alternative": {
@@ -183,7 +197,7 @@
       "fastbike": "Vélo de route",
       "fastbike-asia-pacific": "Vélo de route (Asie Pacifique)",
       "fastbike-lowtraffic": "Vélo de route (faible traffic)",
-      "hiking-beta": "Randonnée (beta)",
+      "hiking-mountain": "Randonnée",
       "moped": "Mobylette",
       "rail": "Train",
       "river": "Fluvial",
@@ -198,6 +212,14 @@
       "vm-forum-velomobil-schnell": "Vélomobile (rapide)"
     },
     "profile-tooltip": "\n(touche {{key}} pour échanger)"
+  },
+  "searchfav": {
+    "addfavorite": "Ajouter comme favori",
+    "ask_removeall": "Voulez-vous supprimer tous les favoris de recherche ?",
+    "export": "Exporter les favoris dans un fichier",
+    "import": "Importer un fichier de favoris",
+    "openfavorites": "ouvre liste favoris",
+    "removeall": "Supprimer tous les favoris"
   },
   "sidebar": {
     "analysis": {
@@ -241,7 +263,7 @@
         "worldwide-monolingual": "Mondial monolingue"
       },
       "collapse": "Tout réduire",
-      "custom-layers": "Calques personels",
+      "custom-layers": "Calques personnels",
       "customize": "Ajouter ou supprimer des calques",
       "expand": "Tout ouvrir",
       "optional": "Ajouter ou supprimer des calques optionnels",

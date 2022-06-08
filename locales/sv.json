@@ -1,30 +1,30 @@
 {
   "about": {
-    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports": "Buggrapporter och önskemål om funktioner",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
-    "chat": "Chat with users and developers",
-    "contact": "Contacto:",
+    "chat": "Chatta med användare och utvecklare",
+    "contact": "Kontakt:",
     "contact-language": "Preferred language is English, as we have both international contributors and users.",
-    "data": "Datos:",
+    "data": "Data",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "General discussions/questions, support",
-    "title": "Sobre nós",
+    "title": "Om",
     "tooltip": "Show more information about BRouter-Web"
   },
   "credits": {
     "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "elevation-data": "Elevation data",
+    "elevation-data": "Höjddata",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
-    "map-data": "Map data",
-    "map-tiles": "Map tiles",
+    "map-data": "Kartdata",
+    "map-tiles": "Kartrutor",
     "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMaps bidragsgivare</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
     "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Credits"
   },
@@ -34,34 +34,34 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Include",
+    "include": "Inkludera",
     "include_waypoints": "Waypoints",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
-    "route-loop": "{{from}} ({{distance}}km)",
-    "title": "Export route",
-    "trackname": "Name"
+    "route-from-to": "{{from}}->{{to}}({{distance}}km)",
+    "route-loop": "{{from}}({{distance}}km)",
+    "title": "Exportera rutt",
+    "trackname": "Namn"
   },
   "footer": {
     "ascend": "Ascend",
     "beeline-warning": "Warning: no data for straight lines, values interpolated",
-    "cost": "Cost",
-    "distance": "Distance",
+    "cost": "Kostnad",
+    "distance": "Avstånd",
     "elevation-chart": "Toggle elevation chart",
-    "energy-per-100km": "Energy per 100 km",
-    "hours": "hours",
+    "energy-per-100km": "Energi per 100 km",
+    "hours": "timmar",
     "hours-abbrev": "h",
-    "kilometer": "kilometers",
+    "kilometer": "kilometer",
     "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
+    "kilowatthour": "kilowattimmar",
     "kilowatthour-abbrev": "kWh",
     "mean-cost-factor": "Mean cost factor",
-    "meter": "meters",
+    "meter": "meter",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "Ingen höjddata tillgänglig för den här rutten.",
     "plain-ascend": "Plain ascend",
     "stats-info": "Start drawing a route to get stats.",
-    "total-energy": "Total Energy",
-    "travel-time": "Travel time"
+    "total-energy": "Total energi",
+    "travel-time": "Restid"
   },
   "keyboard": {
     "backspace": "Backspace",
@@ -81,7 +81,7 @@
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
     "overpass-loading-indicator": "Running Overpass API query ...",
-    "remove-selection": "Remove selection"
+    "remove-selection": "Ta bort markering"
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
@@ -96,7 +96,7 @@
       "no-valid-area": "No valid area found in provided input."
     },
     "file": "File (.geojson)",
-    "load": "Load",
+    "load": "Läs in",
     "nogoBuffer": "Buffer no-go areas (in meters)",
     "nogoRadius": "No-go radius for points (in meters)",
     "nogoWeight": "No-go weight (-1 means impassable)",
@@ -105,15 +105,15 @@
     "url": "URL"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-long": "OpenStreetMaps bidragsgivare",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
-    "copyright": "Copyright",
+    "copyright": "Upphovsrätt",
     "cycling": "Cycling",
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
-    "delete-route": "Delete route",
+    "delete-route": "Radera rutt",
     "draw-circlego-start": "Draw limited go-to zone",
     "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Draw points of interest",
@@ -141,13 +141,13 @@
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
+    "loading": "Läser in …",
     "locate-me": "Show me where I am",
     "nogo": {
       "cancel": "Cancel drawing no-go area",
       "click-drag": "Click and drag to draw circle",
       "draw": "Draw circular no-go area",
-      "edit": "Click to edit",
+      "edit": "Klicka för att redigera",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
     "not-applicable-here": "not applicable here",
@@ -155,7 +155,7 @@
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privacy",
-    "reverse-route": "Reverse route",
+    "reverse-route": "Omvänd rutt",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
@@ -166,43 +166,43 @@
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "toggle-beeline": "Toggle straight line",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "zoomInTitle": "Zooma in",
+    "zoomOutTitle": "Zooma ut"
   },
   "modal": {
-    "close": "Close",
+    "close": "Stäng",
     "or": ""
   },
   "navbar": {
-    "about": "About",
+    "about": "Om",
     "alternative": {
-      "first": "1st alternative",
+      "first": "1:a alternativet",
       "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+      "second": "2:a alternativet",
+      "third": "3:e alternativet"
     },
-    "export": "Export",
-    "export-tooltip": "Export route",
+    "export": "Exportera",
+    "export-tooltip": "Exportera rutt",
     "load": {
       "nogos": "Load no-go areas",
-      "title": "Load",
+      "title": "Läs in",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tracks": "Läs in spår"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
+      "car-eco": "Bil (ekonomisk)",
+      "car-fast": "Bil (snabb)",
+      "car-test": "Bil (test)",
+      "custom": "Anpassad",
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
       "hiking-mountain": "Hiking",
       "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
+      "rail": "Järnväg",
+      "river": "Älv",
+      "safety": "Säkerhet",
+      "shortest": "Kortaste",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
@@ -226,16 +226,16 @@
       "header": {
         "highway": "Highway",
         "smoothness": "Smoothness",
-        "surface": "Surface"
+        "surface": "Yta"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
+        "category": "Kategori",
+        "length": "Längd",
         "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "unknown": "Okänd"
       },
-      "title": "Analysis",
-      "tooltip": "Analyse route"
+      "title": "Analys",
+      "tooltip": "Analysera rutt"
     },
     "customize-profile": {
       "title": "Customize profile",
@@ -253,8 +253,8 @@
     "layers": {
       "category": {
         "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
+        "country": "Land",
+        "europe": "Europa",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
         "overpass": "Locations (POIs)",
@@ -263,29 +263,29 @@
         "worldwide-monolingual": "Worldwide monolingual"
       },
       "collapse": "Collapse all",
-      "custom-layers": "Custom layers",
+      "custom-layers": "Anpassade lager",
       "customize": "Add or remove custom layers",
       "expand": "Expand all",
       "optional": "Add or remove optional layers",
-      "optional-layers": "More",
+      "optional-layers": "Mer",
       "overlay-opacity": "Overlay transparency",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL/Query",
         "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type",
-        "type_layer": "Layer",
+        "name": "Namn",
+        "type": "Typ",
+        "type_layer": "Lager",
         "type_overlay": "Overlay",
-        "type_overpass_query": "Overpass Query"
+        "type_overpass_query": "Overpassfråga"
       },
-      "title": "Layers",
-      "tooltip": "Select layers"
+      "title": "Lager",
+      "tooltip": "Välj lager"
     },
     "profile": {
       "apply": "Apply",
-      "clear": "Clear",
-      "help": "Help",
+      "clear": "Rensa",
+      "help": "Hjälp",
       "no_easy_configuration_warning": "No easy configuration is available for this profile.",
       "options": "Options",
       "placeholder": "Write your custom profile here.",
@@ -310,7 +310,7 @@
     "cannot-get-route": "Error getting route URL",
     "invalid-route-from": "Start marker is too far from a route.",
     "invalid-route-to": "Destination marker is too far from a route.",
-    "no-response": "no response from server",
+    "no-response": "inget svar från servern",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
     "profile-error": "Profile error: no or empty response from server",
     "strava-error": "Error getting Strava segments: {{error}}",
@@ -320,6 +320,6 @@
   },
   "whatsnew": {
     "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "title": "Vad är nytt?"
   }
 }

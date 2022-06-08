@@ -42,7 +42,8 @@
     "trackname": "Name"
   },
   "footer": {
-    "ascend": "Aufsteigend",
+    "ascend": "Anstieg",
+    "beeline-warning": "Achtung: Keine Daten für gerade Linien,  interpolierte Werte",
     "cost": "Kosten",
     "distance": "Entfernung",
     "elevation-chart": "Höhendiagramm ein-/ausblenden",
@@ -57,7 +58,7 @@
     "meter": "Meter",
     "meter-abbrev": "m",
     "no-elevation-data": "Keine Höhendaten für diese Route verfügbar",
-    "plain-ascend": "einfach aufsteigend",
+    "plain-ascend": "Höhenunterschied",
     "stats-info": "Route zeichnen, um Statistiken zu sehen.",
     "total-energy": "Gesamtenergie",
     "travel-time": "Reisezeit"
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Standardeigenschaften",
+    "error": {
+      "invalid-default-nogo-radius": "Ungültige Vorgabe für No-go-Radius.",
+      "invalid-nogo-buffering-radius": "Ungültiger No-go Pufferradius",
+      "loading-file-error": "{{err}} konnte nicht geladen werden.",
+      "loading-file-too-big": "Es sind zu viele No-go-Areas in dieser Datei! Bitte die Geometrie vereinfachen und/oder die Anzahl der Zonen verringern.",
+      "loading-file-unexpected": "Unerwarteter Fehler beim Laden der Datei.",
+      "missing-default-nogo-weight": "Fehlende Vorgabe für No-go-Gewichtung.",
+      "missing-file-url": "Fehlende Datei oder URL.",
+      "no-valid-area": "Kein gültiger Bereich in angegebener Eingabe gefunden."
+    },
     "file": "Datei (.geojson)",
     "load": "Laden",
     "nogoBuffer": "Puffer um No-go-Areas (in Metern)",
@@ -149,16 +160,19 @@
     "route-quality-cost": "Kostencodierung",
     "route-quality-incline": "Steigungscodierung",
     "route-quality-shortcut": "{{action}} ({{key}} Taste zum Ein-/Ausschalten)",
-    "route-tooltip-segment": "Ziehen, um einen neuen Wegpunkt anzulegen",
+    "route-tooltip-segment": "Ziehen um neuen Wegpunkt zu erstellen. Klicken um auf gerade Linie umzuschalten.",
     "route-tooltip-waypoint": "Wegpunkt. Zum Verschieben ziehen; zum Löschen klicken",
     "strava-biking": "Zeige Strava Radfahrsegmente",
     "strava-running": "Zeige Strava Läufersegmente",
     "strava-shortcut": "{{action}}\n({{key}} Taste um Ebene ein-/auszublenden, Klicken um aktuellen Ausschnitt neu zu laden)",
+    "toggle-beeline": "Gerade Linie ein-/ausschalten",
     "zoomInTitle": "Hineinzoomen",
     "zoomOutTitle": "Herauszoomen"
   },
   "modal": {
-    "close": "Schließen"},
+    "close": "Schließen",
+    "or": ""
+  },
   "navbar": {
     "about": "Über",
     "alternative": {
@@ -183,7 +197,7 @@
       "fastbike": "Rennrad",
       "fastbike-asia-pacific": "Rennrad (Asien Pazifik)",
       "fastbike-lowtraffic": "Rennrad (Routen mit wenig Verkehr)",
-      "hiking-beta": "Wandern (beta)",
+      "hiking-mountain": "Wandern",
       "moped": "Moped",
       "rail": "Eisenbahn",
       "river": "Fluss",
@@ -198,6 +212,14 @@
       "vm-forum-velomobil-schnell": "Velomobil (schnell)"
     },
     "profile-tooltip": "\n({{key}} Taste zum Umschalten)"
+  },
+  "searchfav": {
+    "addfavorite": "Als Favorit hinzufügen",
+    "ask_removeall": "Alle Suchfavoriten löschen?",
+    "export": "Favoriten in Datei exportieren",
+    "import": "Favoriten aus Datei importieren",
+    "openfavorites": "Favoritenliste öffnen",
+    "removeall": "Alle Favoriten löschen"
   },
   "sidebar": {
     "analysis": {
@@ -216,7 +238,7 @@
       "tooltip": "Route analysieren"
     },
     "customize-profile": {
-      "title": "Profil personalisieren",
+      "title": "Profil anpassen",
       "tooltip": "Profil anpassen"
     },
     "data": {

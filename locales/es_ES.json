@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Ascensión",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Coste",
     "distance": "Distancia",
     "elevation-chart": "Toggle elevation chart",
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Propiedades por defecto",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "File (.geojson)",
     "load": "Cargar",
     "nogoBuffer": "Buffer no-go areas (in meters)",
@@ -149,16 +160,19 @@
     "route-quality-cost": "Codificación de costos",
     "route-quality-incline": "Codificación de inclinación",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Mostrar segmentos de ciclismo de Strava",
     "strava-running": "Mostrar segmentos de carrera de Strava",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Acercarse",
     "zoomOutTitle": "Alejarse"
   },
   "modal": {
-    "close": "Cerrar"},
+    "close": "Cerrar",
+    "or": ""
+  },
   "navbar": {
     "about": "Acerca de",
     "alternative": {
@@ -183,7 +197,7 @@
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacífico)",
       "fastbike-lowtraffic": "Fastbike (poco tráfico)",
-      "hiking-beta": "Senderismo (beta)",
+      "hiking-mountain": "Senderismo",
       "moped": "Ciclomotor",
       "rail": "Ferrocarril",
       "river": "Fluvial",
@@ -198,6 +212,14 @@
       "vm-forum-velomobil-schnell": "Velomobile (rápido)"
     },
     "profile-tooltip": "\n({{key}} key to switch)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {

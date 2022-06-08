@@ -25,7 +25,7 @@
     "map-tiles": "Map tiles",
     "nominatim": "Keresés: <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap közreműködők</a>, <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a> licenc szerint",
-    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "pois": "Helyek  (érdekes pontok): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overapass API</a>",
     "title": "Alkotók"
   },
   "export": {
@@ -34,7 +34,7 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Belefoglalás",
+    "include": "Tartalmazza:",
     "include_waypoints": "Útpontok",
     "route-from-to": "{{from}} -> {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Összes szintkülönbség",
+    "beeline-warning": "Figyelmeztetés: az egyenes vonalaknál nincs adat, az értékek interpolálva vannak.",
     "cost": "Ráfordítás",
     "distance": "Távolság",
     "elevation-chart": "Magassági grafikon be-/kikapcsolása",
@@ -70,12 +71,12 @@
   },
   "layers": {
     "add-base": "Alapréteg hozzáadása",
-    "add-overlay": "Rátétréteg hozzáadása",
+    "add-overlay": "Fedőréteg hozzáadása",
     "add-overpass": "Overpass-lekérdezés hozzáadása",
     "custom-layer-name-helptext": "ex: OpenStreetMap",
     "custom-layer-name-label": "Egyéni réteg neve",
-    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-helptext-normal": "URL normál rétegekhez, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Overpass lekérdezés, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
     "custom-layer-url-label": "Egyéni réteg URL-je/lekérdezése",
     "customize": "Rétegek személyre szabása",
     "opacity-slider": "Átlátszósági csúszka",
@@ -84,11 +85,21 @@
   },
   "loadNogos": {
     "defaultProperties": "Alapértelmezett tulajdonságok",
+    "error": {
+      "invalid-default-nogo-radius": "Érvénytelen az elkerülendő terület sugara.",
+      "invalid-nogo-buffering-radius": "Érvénytelen az elkerülendő terület körül pufferzóna sugara.",
+      "loading-file-error": "Nem sikerült betölteni ezt a fájlt: {{err}}.",
+      "loading-file-too-big": "Túl sok az elkerülendő terület a fájlban. Egyszerűsítse az alakjukat és/vagy csökkentse a számukat.",
+      "loading-file-unexpected": "Váratlan hiba történt a fájl betöltésekor.",
+      "missing-default-nogo-weight": "Hiányzik az elkerülendő terület súlyozása.",
+      "missing-file-url": "Hiányzó fájl vagy URL.",
+      "no-valid-area": "A megadott bemenetben nem található érvényes terület."
+    },
     "file": "Fájl (.geojson)",
     "load": "Betöltés",
-    "nogoBuffer": "Buffer no-go areas (in meters)",
-    "nogoRadius": "No-go radius for points (in meters)",
-    "nogoWeight": "No-go weight (-1 means impassable)",
+    "nogoBuffer": "Elkerülendő terület körüli pufferzóna (méter)",
+    "nogoRadius": "Elkerülendő terület sugara pont körül (méter)",
+    "nogoWeight": "Elkerülendő terület súlyozása (–1 = járhatatlan)",
     "source": "Forrás",
     "title": "Elkerülendő területek betöltése",
     "url": "URL"
@@ -149,16 +160,19 @@
     "route-quality-cost": "Ráfordítás kódolása",
     "route-quality-incline": "Lejtés kódolása",
     "route-quality-shortcut": "{{action}} (be-/kikapcsolás: {{key}} billentyű)",
-    "route-tooltip-segment": "Húzza el új útpont létrehozásához",
+    "route-tooltip-segment": "Húzza el új útpont létrehozásához. Kattintson az egyenes vonalra való átkapcsoláshoz.",
     "route-tooltip-waypoint": "Útpont: mozgatáshoz húzza el, eltávolításhoz kattintson rá.",
     "strava-biking": "Strava motoros útvonalszakaszok megjelenítése",
     "strava-running": "Strava futó útvonalszakaszok megjelenítése",
     "strava-shortcut": "{{action}}\n({{key}} billentyű a réteg be-/kikapcsolásához, kattintás az adott terület újratöltéséhez)",
+    "toggle-beeline": "Egyenes vonal bekapcsolása",
     "zoomInTitle": "Nagyítás",
     "zoomOutTitle": "Kicsinyítés"
   },
   "modal": {
-    "close": "Bezárás"},
+    "close": "Bezárás",
+    "or": ""
+  },
   "navbar": {
     "about": "Névjegy",
     "alternative": {
@@ -183,7 +197,7 @@
       "fastbike": "Versenykerékpár",
       "fastbike-asia-pacific": "Versenykerékpár (ázsiai-csendes-óceáni térség)",
       "fastbike-lowtraffic": "Versenykerékpár (kis forgalom)",
-      "hiking-beta": "Túrázás (béta)",
+      "hiking-mountain": "Túrázás",
       "moped": "Robogó",
       "rail": "Vasút",
       "river": "Hajózás",
@@ -198,6 +212,14 @@
       "vm-forum-velomobil-schnell": "Velomobil (aerodinamikus kerékpár, gyors)"
     },
     "profile-tooltip": "\n({{key}} billentyűvel váltás)"
+  },
+  "searchfav": {
+    "addfavorite": "hozzáadás kedvencként",
+    "ask_removeall": "Törölni szeretné az összes keresési kedvencet?",
+    "export": "kedvencek exportálásba fájlba",
+    "import": "kedvencek importálása fájlból",
+    "openfavorites": "kedvencek listájának megnyitása",
+    "removeall": "az összes kedvenc törlése"
   },
   "sidebar": {
     "analysis": {
@@ -234,8 +256,8 @@
         "country": "Ország",
         "europe": "Európa",
         "europe-monolingual": "Európa (egynyelvű)",
-        "overlays": "Rátétrétegek",
-        "overpass": "Locations (POIs)",
+        "overlays": "Fedőrétegek",
+        "overpass": "Helyek (érdekes pontok)",
         "worldwide": "Világ",
         "worldwide-international": "Világ (nemzetközi)",
         "worldwide-monolingual": "Világ (egynyelvű)"
@@ -246,15 +268,15 @@
       "expand": "Minden kibontása",
       "optional": "Rétegek hozzáadása vagy eltávolítása",
       "optional-layers": "Több",
-      "overlay-opacity": "Rátétréteg átlászósága",
-      "overlay-opacity_plural": "Rátétrétegek átlátszósága",
+      "overlay-opacity": "Fedőréteg átlászósága",
+      "overlay-opacity_plural": "Fedőrétegek átlátszósága",
       "table": {
         "URL": "URL/lekérdezés",
         "empty": "Még nincs beállítva egyedi réteg",
         "name": "Név",
         "type": "Típus",
         "type_layer": "Réteg",
-        "type_overlay": "Rátétréteg",
+        "type_overlay": "Fedőréteg",
         "type_overpass_query": "Overpass-lekérdezés"
       },
       "title": "Rétegek",
@@ -277,7 +299,7 @@
     "explainpoi": "(útpontok megjelenítése érdekes pontként [POI-ként])",
     "explaintracklayer": "(nyomvonal megjelenítés különálló rétegként)",
     "file": "Nyomvonalfájl",
-    "fuzziness": "Fuzziness",
+    "fuzziness": "Homályosság",
     "pleasewait": "Kérjük, várjon",
     "showpois": "Érdekes pontok (POI-k)",
     "title": "Nyomvonal betöltése útvonalként",

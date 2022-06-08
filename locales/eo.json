@@ -4,9 +4,9 @@
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
     "chat": "Chat with users and developers",
-    "contact": "Contact:",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
-    "data": "Data:",
+    "contact": "Kontakto:",
+    "contact-language": "Preferita lingvo estas la angla, ĉar ni havas ambaŭ internaciajn kontribuantojn kaj uzantojn.",
+    "data": "Datumoj:",
     "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
     "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
@@ -21,12 +21,12 @@
     "elevation-data": "Elevation data",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
-    "map-data": "Map data",
-    "map-tiles": "Map tiles",
-    "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "map-data": "Mapaj Datumoj",
+    "map-tiles": "Mapaj kaheloj",
+    "nominatim": "Serĉu per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
     "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
-    "title": "Credits"
+    "title": "Kreditoj"
   },
   "export": {
     "format": "Format",
@@ -34,38 +34,39 @@
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
-    "include": "Include",
-    "include_waypoints": "Waypoints",
+    "include": "Inkluzivi",
+    "include_waypoints": "Vojpunktoj",
     "route-from-to": "{{from}} → {{to}} ({{distance}} km)",
     "route-loop": "{{from}} ({{distance}} km)",
-    "title": "Export route",
+    "title": "Eksporti Itinero",
     "trackname": "Nomo"
   },
   "footer": {
     "ascend": "Ascend",
-    "cost": "Cost",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
+    "cost": "Kosto",
     "distance": "Distanco",
     "elevation-chart": "Toggle elevation chart",
-    "energy-per-100km": "Energy per 100 km",
+    "energy-per-100km": "Energio po 100 km",
     "hours": "horoj",
     "hours-abbrev": "h",
     "kilometer": "kilometroj",
     "kilometer-abbrev": "km",
     "kilowatthour": "kilovathoroj",
     "kilowatthour-abbrev": "kWh",
-    "mean-cost-factor": "Mean cost factor",
+    "mean-cost-factor": "Meza kosta faktoro",
     "meter": "metroj",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "Neniuj altecaj datumoj haveblaj por ĉi tiu itinero.",
     "plain-ascend": "Plain ascend",
-    "stats-info": "Start drawing a route to get stats.",
-    "total-energy": "Total Energy",
-    "travel-time": "Travel time"
+    "stats-info": "Komencu desegni itineron por akiri statistikojn.",
+    "total-energy": "Tuta energio",
+    "travel-time": "Vojaĝtempo"
   },
   "keyboard": {
     "backspace": "Backspace",
     "escape": "Escape",
-    "generic-shortcut": "{{action}} ({{key}} key)",
+    "generic-shortcut": "{{action}} ({{key}} klavo)",
     "shift": "Shift"
   },
   "layers": {
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "File (.geojson)",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters)",
@@ -98,8 +109,8 @@
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
     "copyright": "Copyright",
-    "cycling": "Cycling",
-    "delete-last-point": "Delete last point",
+    "cycling": "Biciklado",
+    "delete-last-point": "Forigi lastan punkton",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
     "delete-route": "Delete route",
@@ -113,7 +124,7 @@
     "geocoder": "Search",
     "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
-    "hiking": "Hiking",
+    "hiking": "Migrado",
     "layer": {
       "bing": "Bing Aerial",
       "cycle": "OpenCycleMap (Thunderf.)",
@@ -125,70 +136,73 @@
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
-      "route-quality": "Route quality coding",
+      "route-quality": "Itinerkvalita kodado",
       "stamen-terrain": "Terrain (Stamen)",
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
+    "loading": "Ŝarĝante...",
     "locate-me": "Show me where I am",
     "nogo": {
       "cancel": "Cancel drawing no-go area",
       "click-drag": "Click and drag to draw circle",
       "draw": "Draw circular no-go area",
-      "edit": "Click to edit",
+      "edit": "Alklaku por redakti",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
-    "not-applicable-here": "not applicable here",
+    "not-applicable-here": "ne aplikebla ĉi tie",
     "opacity-slider": "Set transparency of route track and markers",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Antaŭvidi",
-    "privacy": "Privacy",
-    "reverse-route": "Reverse route",
+    "privacy": "Privateco",
+    "reverse-route": "Inversa itinero",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Pligrandigi",
     "zoomOutTitle": "Malgrandigi"
   },
   "modal": {
-    "close": "Fermi"},
+    "close": "Fermi",
+    "or": ""
+  },
   "navbar": {
     "about": "Pri",
     "alternative": {
-      "first": "1st alternative",
-      "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+      "first": "1-a alternativo",
+      "original": "Originala",
+      "second": "2-a alternativo",
+      "third": "3-a alternativo"
     },
-    "export": "Export",
-    "export-tooltip": "Export route",
+    "export": "Eksporti",
+    "export-tooltip": "Eksporti itineron",
     "load": {
       "nogos": "Load no-go areas",
       "title": "Load",
-      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tooltip": "{{tracksAction}} ({{tracksKey}} klavo)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tracks": "Ŝarĝaj spuroj"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
-      "fastbike": "Fastbike",
-      "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
-      "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
+      "car-eco": "Aŭto (ekonomia)",
+      "car-fast": "Aŭto (rapida)",
+      "car-test": "Aŭto (testo)",
+      "custom": "Propra",
+      "fastbike": "Rapidbicikla",
+      "fastbike-asia-pacific": "Rapidbicikla (Azia Pacifiko)",
+      "fastbike-lowtraffic": "Rapidbicikla (malalta trafiko)",
+      "hiking-mountain": "Migrado",
       "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
-      "safety": "Safety",
-      "shortest": "Shortest",
+      "rail": "Fervojo",
+      "river": "Rivero",
+      "safety": "Sekureco",
+      "shortest": "Plej mallonga",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
@@ -197,31 +211,39 @@
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
     },
-    "profile-tooltip": "\n({{key}} key to switch)"
+    "profile-tooltip": "\n({{key}} klavo por ŝanĝi)"
+  },
+  "searchfav": {
+    "addfavorite": "Aldoni kiel plej ŝatata",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
-        "surface": "Surface"
+        "highway": "Vojo",
+        "smoothness": "Glateco",
+        "surface": "Surfaco"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Kategorio",
+        "length": "Longeco",
+        "total_known": "Entute konata:",
+        "unknown": "Nekonata"
       },
-      "title": "Analysis",
-      "tooltip": "Analyse route"
+      "title": "Analizo",
+      "tooltip": "Analizi itineron"
     },
     "customize-profile": {
       "title": "Customize profile",
       "tooltip": "Customize profile"
     },
     "data": {
-      "sync-map": "Synchronize map",
-      "title": "Data",
+      "sync-map": "Sinkronigi mapon",
+      "title": "Datumoj",
       "tooltip": "Show detailed route data table"
     },
     "itinerary": {
@@ -236,9 +258,9 @@
         "europe-monolingual": "Europe monolingual",
         "overlays": "Tegiloj",
         "overpass": "Locations (POIs)",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
-        "worldwide-monolingual": "Worldwide monolingual"
+        "worldwide": "Tutmonde",
+        "worldwide-international": "Tutmonda Internacia",
+        "worldwide-monolingual": "Tutmonde Monolingva"
       },
       "collapse": "Collapse all",
       "custom-layers": "Custom layers",
@@ -252,7 +274,7 @@
         "URL": "URL/Query",
         "empty": "No custom layer configured yet.",
         "name": "Nomo",
-        "type": "Type",
+        "type": "Tipo",
         "type_layer": "Layer",
         "type_overlay": "Overlay",
         "type_overpass_query": "Overpass Query"
@@ -262,12 +284,12 @@
     },
     "profile": {
       "apply": "Apply",
-      "clear": "Clear",
+      "clear": "Klari",
       "help": "Helpo",
       "no_easy_configuration_warning": "No easy configuration is available for this profile.",
-      "options": "Options",
+      "options": "Agordoj",
       "placeholder": "Write your custom profile here.",
-      "profile": "Profile"
+      "profile": "Profilo"
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },

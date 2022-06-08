@@ -1,9 +1,9 @@
 {
   "about": {
-    "bug-reports": "Bug reports and feature requests:",
+    "bug-reports": "Hata raporları ve özellik istekleri:",
     "bug-reports-back": "server / backend, routing engine, Android app, profiles, brouter.de site",
     "bug-reports-front": "web client / frontend.",
-    "chat": "Chat with users and developers",
+    "chat": "Kullanıcılar ve geliştiricilerle sohbet edin",
     "contact": "İrtibat:",
     "contact-language": "Preferred language is English, as we have both international contributors and users.",
     "data": "Veri",
@@ -18,7 +18,7 @@
     "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
-    "elevation-data": "Elevation data",
+    "elevation-data": "Yükseklik verileri",
     "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Harita verisi",
@@ -43,15 +43,16 @@
   },
   "footer": {
     "ascend": "Ascend",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
-    "distance": "Distance",
-    "elevation-chart": "Toggle elevation chart",
-    "energy-per-100km": "Energy per 100 km",
+    "distance": "Mesafe",
+    "elevation-chart": "Yükseklik grafiğini aç/kapat",
+    "energy-per-100km": "100 km'de enerji",
     "hours": "saatler",
     "hours-abbrev": "s",
     "kilometer": "kilometreler",
     "kilometer-abbrev": "km",
-    "kilowatthour": "kilowatt hours",
+    "kilowatthour": "kilovat saat",
     "kilowatthour-abbrev": "kWh",
     "mean-cost-factor": "Mean cost factor",
     "meter": "metreler",
@@ -84,17 +85,27 @@
   },
   "loadNogos": {
     "defaultProperties": "Varsayılan özellikler",
-    "file": "File (.geojson)",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Eksik dosya veya URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
+    "file": "Dosya (.geojson)",
     "load": "Yükle",
     "nogoBuffer": "Buffer no-go areas (in meters)",
     "nogoRadius": "No-go radius for points (in meters)",
     "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Kaynak",
     "title": "Load no-go areas",
-    "url": "URL"
+    "url": "Bağlantı"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap contributors",
+    "attribution-osm-long": "OpenStreetMap katkıda bulunanlar",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Clear route data",
     "copyright": "Telif",
@@ -102,15 +113,15 @@
     "delete-last-point": "Delete last point",
     "delete-nogo-areas": "Delete all no-go areas",
     "delete-pois": "Delete all points of interest",
-    "delete-route": "Delete route",
+    "delete-route": "Rotayı sil",
     "draw-circlego-start": "Draw limited go-to zone",
     "draw-circlego-stop": "Stop drawing limited go-to zone",
     "draw-poi-start": "Draw points of interest",
     "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
+    "draw-route-start": "Rota çiz",
     "draw-route-stop": "Stop drawing route",
     "enter-poi-name": "Enter Point of Interest name",
-    "geocoder": "Search",
+    "geocoder": "Ara",
     "geocoder-placeholder": "Search…",
     "hikebike-hillshading": "Hillshading",
     "hiking": "Hiking",
@@ -130,65 +141,68 @@
       "strava-segments": "Strava segments",
       "topo": "OpenTopoMap"
     },
-    "loading": "Loading…",
-    "locate-me": "Show me where I am",
+    "loading": "Yükleniyor…",
+    "locate-me": "Bana nerede olduğumu göster",
     "nogo": {
       "cancel": "Cancel drawing no-go area",
       "click-drag": "Click and drag to draw circle",
       "draw": "Draw circular no-go area",
-      "edit": "Click to edit",
+      "edit": "Düzenlemek için tıkla",
       "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
     "not-applicable-here": "not applicable here",
     "opacity-slider": "Set transparency of route track and markers",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
-    "preview": "Preview",
-    "privacy": "Privacy",
-    "reverse-route": "Reverse route",
+    "preview": "Ön izleme",
+    "privacy": "Mahremiyet",
+    "reverse-route": "Ters rota",
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
-    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
+    "route-tooltip-waypoint": "Ara nokta. Taşımak için sürükleyin; Kaldırmak için tıklayın.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
-    "zoomInTitle": "Zoom in",
-    "zoomOutTitle": "Zoom out"
+    "toggle-beeline": "Toggle straight line",
+    "zoomInTitle": "Yakınlaştır",
+    "zoomOutTitle": "Uzaklaştır"
   },
   "modal": {
-    "close": "Close"},
+    "close": "Kapat",
+    "or": ""
+  },
   "navbar": {
-    "about": "About",
+    "about": "Hakkında",
     "alternative": {
-      "first": "1st alternative",
-      "original": "Original",
-      "second": "2nd alternative",
-      "third": "3rd alternative"
+      "first": "1. alternatif",
+      "original": "Orijinal",
+      "second": "2. alternatif",
+      "third": "3. alternatif"
     },
     "export": "Export",
     "export-tooltip": "Export route",
     "load": {
-      "nogos": "Load no-go areas",
-      "title": "Load",
+      "nogos": "Kullanılmayan alanları yükle",
+      "title": "Yükle",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tracks": "Parçaları yükle"
     },
     "profile": {
-      "car-eco": "Car (economic)",
-      "car-fast": "Car (fast)",
-      "car-test": "Car (test)",
-      "custom": "Custom",
+      "car-eco": "Araba (ekonomik)",
+      "car-fast": "Araba (hızlı)",
+      "car-test": "Araba (test)",
+      "custom": "Özel",
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
+      "hiking-mountain": "Hiking",
       "moped": "Moped",
-      "rail": "Rail",
-      "river": "River",
+      "rail": "Demiryolu",
+      "river": "Nehir",
       "safety": "Safety",
-      "shortest": "Shortest",
+      "shortest": "En kısa",
       "trekking": "Trekking bike",
       "trekking-ignore-cr": "Trekking bike (ignore cycle routes)",
       "trekking-noferries": "Trekking bike (no ferries)",
@@ -199,6 +213,14 @@
     },
     "profile-tooltip": "\n({{key}} key to switch)"
   },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
+  },
   "sidebar": {
     "analysis": {
       "header": {
@@ -207,79 +229,79 @@
         "surface": "Surface"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
+        "category": "Kategori",
+        "length": "Uzunluk",
         "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "unknown": "Bilinmeyen"
       },
       "title": "Analysis",
       "tooltip": "Analyse route"
     },
     "customize-profile": {
-      "title": "Customize profile",
-      "tooltip": "Customize profile"
+      "title": "Profili özelleştir",
+      "tooltip": "Profili özelleştir"
     },
     "data": {
-      "sync-map": "Synchronize map",
-      "title": "Data",
-      "tooltip": "Show detailed route data table"
+      "sync-map": "Haritayı senkronize et",
+      "title": "Veri",
+      "tooltip": "Ayrıntılı rota veri tablosunu göster"
     },
     "itinerary": {
-      "title": "Itinerary",
-      "tooltip": "Show itinerary"
+      "title": "Güzergah",
+      "tooltip": "Güzergahı göster"
     },
     "layers": {
       "category": {
         "base-layers": "Base layers",
-        "country": "Country",
-        "europe": "Europe",
+        "country": "Ülke",
+        "europe": "Avrupa",
         "europe-monolingual": "Europe monolingual",
         "overlays": "Overlays",
-        "overpass": "Locations (POIs)",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
+        "overpass": "Konumlar (POI'ler)",
+        "worldwide": "Dünya çapında",
+        "worldwide-international": "Dünya çapında uluslararası",
         "worldwide-monolingual": "Worldwide monolingual"
       },
-      "collapse": "Collapse all",
+      "collapse": "Hepsini daralt",
       "custom-layers": "Custom layers",
       "customize": "Add or remove custom layers",
-      "expand": "Expand all",
+      "expand": "Hepsini genişlet",
       "optional": "Add or remove optional layers",
-      "optional-layers": "More",
+      "optional-layers": "Daha",
       "overlay-opacity": "Overlay transparency",
       "overlay-opacity_plural": "Overlays transparency",
       "table": {
         "URL": "URL/Query",
         "empty": "No custom layer configured yet.",
-        "name": "Name",
-        "type": "Type",
-        "type_layer": "Layer",
-        "type_overlay": "Overlay",
+        "name": "İsim",
+        "type": "Tip",
+        "type_layer": "Katman",
+        "type_overlay": "Kaplama",
         "type_overpass_query": "Overpass Query"
       },
-      "title": "Layers",
+      "title": "Katmanlar",
       "tooltip": "Select layers"
     },
     "profile": {
-      "apply": "Apply",
-      "clear": "Clear",
-      "help": "Help",
+      "apply": "Uygula",
+      "clear": "Temizle",
+      "help": "Yardım",
       "no_easy_configuration_warning": "No easy configuration is available for this profile.",
-      "options": "Options",
+      "options": "Seçenekler",
       "placeholder": "Write your custom profile here.",
-      "profile": "Profile"
+      "profile": "Profil"
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter web client",
   "trackasroute": {
-    "browse": "Browse",
-    "explainpoi": "(show waypoints as POI's)",
+    "browse": "Göz at",
+    "explainpoi": "(yol noktalarını POI'ler olarak göster)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
     "fuzziness": "Fuzziness",
     "pleasewait": "Please wait!",
-    "showpois": "POI's",
+    "showpois": "POI'ler",
     "title": "Load Track as Route",
     "tracklayer": "Track Layer",
     "tuning": "Tuning"
@@ -290,14 +312,14 @@
     "invalid-route-to": "Destination marker is too far from a route.",
     "no-response": "no response from server",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
-    "strava-error": "Error getting Strava segments: {{error}}",
-    "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
-    "tracks-load-error": "Error loading tracks: {{error}}",
-    "upload-error": "Upload error: {{error}}"
+    "profile-error": "Profil hatası: sunucudan yanıt yok veya boş yanıt",
+    "strava-error": "Strava segmentleri alınırken hata oluştu: {{error}}",
+    "temporary-profile": "<strong>Not: Yüklenen özel profiller yalnızca sunucuda geçici olarak ön belleğe alınır. Lütfen düzenlemelerinizi yerel bilgisayarınıza kaydedin.",
+    "tracks-load-error": "Parça yüklenirken hata oluştu: {{error}}",
+    "upload-error": "Yükleme hatası: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Son ziyaretinizden bu yana yeni bir sürüm yayınlandı. Yenilikleri görmek için buraya tıklayın!",
+    "title": "Yenilikler"
   }
 }

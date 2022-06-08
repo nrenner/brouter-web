@@ -5,7 +5,7 @@
     "bug-reports-front": "website / frontend.",
     "chat": "Chat met gebruikers en ontwikkelaars",
     "contact": "Contact:",
-    "contact-language": "Bij voorkeur in Engels omdat we internationale ontwikkelaars en gebruikers hebben",
+    "contact-language": "Bij voorkeur in Engels omdat we internationale bijdragers en gebruikers hebben",
     "data": "Gegevens:",
     "data-description": "Dit is gebaseerd op <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Het wordt normaal gesproken dagelijks geüpdated, zie data van <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">gegevensbestanden</a>.",
     "description": "Online dienst van de BRouter routebepaling. Voor de offline Android app en meer informatie, zie <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
@@ -24,7 +24,7 @@
     "map-data": "Kaartgegevens",
     "map-tiles": "Kaarttegels",
     "nominatim": "Zoek met <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap bijdragers</a> onder <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap-bijdragers</a> onder <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
     "pois": "Locaties (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Dank aan"
   },
@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Helling",
+    "beeline-warning": "Waarschuwing: geen gegevens voor rechte lijnen, waarden geïnterpoleerd",
     "cost": "Kosten",
     "distance": "Afstand",
     "elevation-chart": "Hoogtekaart aan/uit",
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Standaard eigenschappen",
+    "error": {
+      "invalid-default-nogo-radius": "Ongeldige standaard-no-go-straal.",
+      "invalid-nogo-buffering-radius": "Ongeldige no-go-befferingstraal.",
+      "loading-file-error": "Kon bestand niet laden: {{err}}.",
+      "loading-file-too-big": "Te veel no-go-gebeiden in dit bestand! Verweenvoudig a.u.b. de geometrie en/of verminder het aantal zones.",
+      "loading-file-unexpected": "Onverwachte fout tijdens het laden van dit bestand.",
+      "missing-default-nogo-weight": "Ontbrekend standaard-no-go-gewicht.",
+      "missing-file-url": "Bestand of URL ontbreekt.",
+      "no-valid-area": "Geen geldig gebied gevonden in de aangeboden input."
+    },
     "file": "Bestand (.geojson)",
     "load": "Laad",
     "nogoBuffer": "Buffer no-go gebieden (in meter)",
@@ -94,7 +105,7 @@
     "url": "URL"
   },
   "map": {
-    "attribution-osm-long": "OpenStreetMap bijdragers",
+    "attribution-osm-long": "OpenStreetMap-bijdragers",
     "attribution-osm-short": "OpenStreetMap",
     "clear-route": "Wis route data",
     "copyright": "Copyright",
@@ -149,16 +160,19 @@
     "route-quality-cost": "Kostencodering",
     "route-quality-incline": "Stijgingcodering",
     "route-quality-shortcut": "{{action}} ({{key}} toets om te schakelen)",
-    "route-tooltip-segment": "Sleep om een nieuw routepunt te maken",
+    "route-tooltip-segment": "Sleep om een nieuw routepunt aan te maken. Klik om rechte lijn aan/uit te schakelen.",
     "route-tooltip-waypoint": "Routepunt. Sleep om te verplaatsen; klik om te verwijderen.",
     "strava-biking": "Toon Strava fietssegmenten",
     "strava-running": "Toon Strava hardloopsegmenten",
     "strava-shortcut": "{{action}}\n({{key}} toets om laag te schakelen, klik om huidig gebied opnieuw te laden)",
+    "toggle-beeline": "Rechte lijn aan/uit",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom uit"
   },
   "modal": {
-    "close": "Afsluiten"},
+    "close": "Afsluiten",
+    "or": ""
+  },
   "navbar": {
     "about": "Over",
     "alternative": {
@@ -183,7 +197,7 @@
       "fastbike": "Snelfiets",
       "fastbike-asia-pacific": "Snelfiets (Azië Stille Oceaan)",
       "fastbike-lowtraffic": "Snelfiets (weinig verkeer)",
-      "hiking-beta": "Wandelen (beta)",
+      "hiking-mountain": "Wandelen",
       "moped": "Bromfiets",
       "rail": "Trein",
       "river": "Rivier",
@@ -199,12 +213,20 @@
     },
     "profile-tooltip": "\n({{key}} toets om te schakelen)"
   },
+  "searchfav": {
+    "addfavorite": "als favoriet toevoegen",
+    "ask_removeall": "Wil je alle zoek-favorieten verwijderen?",
+    "export": "favorieten naar bestand exporteren",
+    "import": "favorieten vanaf bestand importeren",
+    "openfavorites": "favorietenlijst openen",
+    "removeall": "alle favorieten verwijderen"
+  },
   "sidebar": {
     "analysis": {
       "header": {
         "highway": "Weg",
         "smoothness": "Gladheid",
-        "surface": "Oppervlakte"
+        "surface": "Oppervlak"
       },
       "table": {
         "category": "Catagorie",
