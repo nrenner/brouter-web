@@ -240,6 +240,21 @@ BR.LayersConfig = L.Class.extend({
         return new leafletOsmNotes();
     },
 
+    createMvtLayer: function (props) {
+        const options = {};
+
+        if (props.url in BR.layerIndex) {
+            // url is key to style in local layers bundle (file name without '.json'),
+            // suggested file naming convention: `<layer id>-style.json`
+            options.style = BR.layerIndex[props.url];
+        } else {
+            // external URL to style.json
+            options.style = props.url;
+        }
+
+        return BR.maplibreGlLazyLoader(options);
+    },
+
     createLayer: function (layerData) {
         var props = layerData.properties;
         var url = props.url;
@@ -326,6 +341,8 @@ BR.LayersConfig = L.Class.extend({
             layer = this.createOverpassLayer(props.query, props.icon);
         } else if (props.dataSource === 'OpenStreetMapNotesAPI') {
             layer = this.createOpenStreetMapNotesLayer();
+        } else if (props.type === 'mvt') {
+            layer = this.createMvtLayer(props);
         } else {
             // JOSM
             var josmUrl = url;

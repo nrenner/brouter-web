@@ -68,7 +68,7 @@ BR.confLayers.tree = {
     },
     'overlays': {
         'worldwide': [
-            'HikeBike.HillShading',
+            'terrarium-hillshading',
             'Waymarked_Trails-Cycling',
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',

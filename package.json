@@ -41,6 +41,7 @@
         "@mapbox/maki": "^7.0.0",
         "@mapbox/polyline": "^1.0.0",
         "@mapbox/togeojson": "^0.16.0",
+        "@maplibre/maplibre-gl-leaflet": "^0.0.17",
         "@turf/turf": "^6.2.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
         "async": "~2.6.0",
@@ -77,6 +78,7 @@
         "leaflet.snogylop": "^0.4.0",
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
+        "maplibre-gl": "^2.1.9",
         "osmtogeojson": "^3.0.0-beta.4",
         "overpass-layer": "^3.1.0",
         "regenerator-runtime": "^0.13.7",
@@ -370,6 +372,13 @@
                 "svgs/solid/taxi.svg",
                 "svgs/solid/phone-flip.svg",
                 "svgs/solid/beer.svg"
+            ]
+        },
+        "maplibre-gl": {
+            "main": [
+                "dist/maplibre-gl.js",
+                "dist/maplibre-gl.js.map",
+                "dist/maplibre-gl.css"
             ]
         }
     }

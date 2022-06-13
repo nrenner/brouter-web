@@ -92,6 +92,11 @@ table.dataTable {
     z-index: 999;
 }
 
+/* Ensure z-index layer order works for Maplibre overlays, otherwise gets below base map after switch */
+.leaflet-gl-layer {
+    position: absolute;
+}
+
 .navbar {
     /* align with leaflet-control */
     padding: 0.5rem 10px;

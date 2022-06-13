@@ -1,0 +1,15 @@
+{
+    "geometry": null,
+    "properties": {
+        "attribution": {
+            "text": "Terrain Tiles from AWS",
+            "url": "https://registry.opendata.aws/terrain-tiles/"
+        },
+        "id": "terrarium-hillshading",
+        "name": "Hillshading",
+        "overlay": true,
+        "type": "mvt",
+        "url": "terrarium-hillshading-style"
+    },
+    "type": "Feature"
+}
