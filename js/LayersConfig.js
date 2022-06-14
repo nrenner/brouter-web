@@ -22,8 +22,8 @@ BR.LayersConfig = L.Class.extend({
             var item = localStorage.getItem('map/defaultLayers');
             if (item) {
                 var defaultLayers = JSON.parse(item);
-                this.defaultBaseLayers = defaultLayers.baseLayers;
-                this.defaultOverlays = defaultLayers.overlays;
+                this.defaultBaseLayers = this._replaceLegacyIds(defaultLayers.baseLayers);
+                this.defaultOverlays = this._replaceLegacyIds(defaultLayers.overlays);
             }
         }
     },
@@ -36,6 +36,10 @@ BR.LayersConfig = L.Class.extend({
             };
             localStorage.setItem('map/defaultLayers', JSON.stringify(defaultLayers));
         }
+    },
+
+    _replaceLegacyIds: function (idList) {
+        return idList.map((id) => (id in this.legacyNameToIdMap ? this.legacyNameToIdMap[id] : id));
     },
 
     _addLeafletProvidersLayers: function () {

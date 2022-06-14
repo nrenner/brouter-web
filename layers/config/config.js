@@ -26,7 +26,8 @@ BR.confLayers.legacyNameToIdMap = {
     'OpenTopoMap': 'OpenTopoMap',
     'Esri World Imagery': 'Esri.WorldImagery',
     'Cycling (Waymarked Trails)': 'Waymarked_Trails-Cycling',
-    'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking'
+    'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking',
+    'HikeBike.HillShading': 'terrarium-hillshading'
 };
 
 BR.confLayers.leafletProvidersIncludeList = [
