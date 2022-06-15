@@ -248,5 +248,8 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'CyclOSM',
             'mapUrl': 'https://www.cyclosm.org/#map={zoom}/{lat}/{lon}/cyclosm'
         },
+        'terrarium-hillshading': {
+            'name': i18next.t('map.layer.hillshading')
+        }
     };
 };

@@ -1,15 +1,12 @@
 {
     "geometry": null,
     "properties": {
-        "attribution": {
-            "text": "Terrain Tiles from AWS",
-            "url": "https://registry.opendata.aws/terrain-tiles/"
-        },
         "id": "terrarium-hillshading",
-        "name": "Hillshading",
         "overlay": true,
         "type": "mvt",
-        "url": "terrarium-hillshading-style"
+        "url": "terrarium-hillshading-style",
+        "mapUrl": "https://registry.opendata.aws/terrain-tiles/",
+        "attribution": "<a target=\"_blank\" rel=\"noopener\" href=\"https://registry.opendata.aws/terrain-tiles/\">Terrain Tiles at Registry of Open Data on AWS</a>: <ul><li>ArcticDEM terrain data DEM(s) were created from DigitalGlobe, Inc., imagery and funded under National Science Foundation awards 1043681, 1559691, and 1542736 </li><li> Australia terrain data © Commonwealth of Australia (Geoscience Australia) 2017 </li><li> Austria terrain data © offene Daten Österreichs – Digitales Geländemodell (DGM) Österreich </li><li> Canada terrain data contains information licensed under the Open Government Licence – Canada </li><li> Europe terrain data produced using Copernicus data and information funded by the European Union - EU-DEM layers </li><li> Global ETOPO1 terrain data U.S. National Oceanic and Atmospheric Administration</li><li> Mexico terrain data source: INEGI, Continental relief, 2016 </li><li> New Zealand terrain data Copyright 2011 Crown copyright (c) Land Information New Zealand and the New Zealand Government (All rights reserved) </li><li> Norway terrain data © Kartverket </li><li> United Kingdom terrain data © Environment Agency copyright and/or database right 2015. All rights reserved </li><li> United States 3DEP (formerly NED) and global GMTED2010 and SRTM terrain data courtesy of the U.S. Geological Survey.</li></ul>"
     },
     "type": "Feature"
 }

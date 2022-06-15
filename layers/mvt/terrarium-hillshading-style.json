@@ -15,7 +15,13 @@
         {
             "id": "hillshading",
             "source": "dem",
-            "type": "hillshade"
+            "type": "hillshade",
+            "paint": {
+                "hillshade-exaggeration": 0.5,
+                "hillshade-shadow-color": "#000000",
+                "hillshade-highlight-color": "#FFFFFF",
+                "hillshade-accent-color": "rgba(0, 0, 0, 1)"
+            }
         }
     ]
 }

@@ -244,9 +244,7 @@ BR.LayersConfig = L.Class.extend({
         return new leafletOsmNotes();
     },
 
-    createMvtLayer: function (props) {
-        const options = {};
-
+    createMvtLayer: function (props, options) {
         if (props.url in BR.layerIndex) {
             // url is key to style in local layers bundle (file name without '.json'),
             // suggested file naming convention: `<layer id>-style.json`
@@ -346,7 +344,7 @@ BR.LayersConfig = L.Class.extend({
         } else if (props.dataSource === 'OpenStreetMapNotesAPI') {
             layer = this.createOpenStreetMapNotesLayer();
         } else if (props.type === 'mvt') {
-            layer = this.createMvtLayer(props);
+            layer = this.createMvtLayer(props, options);
         } else {
             // JOSM
             var josmUrl = url;

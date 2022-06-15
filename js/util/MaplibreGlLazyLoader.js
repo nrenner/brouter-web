@@ -47,6 +47,10 @@ BR.MaplibreGlLazyLoader = L.Layer.extend({
 
     _addGlLayer: function () {
         this.glLayer = L.maplibreGL(this.options);
+        // see LayersConfig.createLayer
+        this.glLayer.getAttribution = function () {
+            return this.options.mapLink;
+        };
         this._map.addLayer(this.glLayer);
 
         this._updateZIndex();
