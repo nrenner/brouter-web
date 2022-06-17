@@ -245,16 +245,34 @@ BR.LayersConfig = L.Class.extend({
     },
 
     createMvtLayer: function (props, options) {
-        if (props.url in BR.layerIndex) {
+        // remove key, only provided with local style to not add layer when not configured, see _getLayers
+        const styleId = props.url?.split('?')[0];
+        if (styleId in BR.layerIndex) {
             // url is key to style in local layers bundle (file name without '.json'),
             // suggested file naming convention: `<layer id>-style.json`
-            options.style = BR.layerIndex[props.url];
+            options.style = BR.layerIndex[styleId];
+
+            this._replaceMvtTileKey(options.style);
         } else {
             // external URL to style.json
             options.style = props.url;
         }
 
         return BR.maplibreGlLazyLoader(options);
+    },
+
+    _replaceMvtTileKey: function (style) {
+        if (!style) return;
+
+        for (const source of Object.values(style.sources)) {
+            const tiles = source.tiles;
+            for (const [i, url] of tiles?.entries()) {
+                var keyObj = this.getKeyName(url);
+                if (keyObj && BR.keys[keyObj.name]) {
+                    tiles[i] = url.replace(`{${keyObj.urlVar}}`, BR.keys[keyObj.name]);
+                }
+            }
+        }
     },
 
     createLayer: function (layerData) {
