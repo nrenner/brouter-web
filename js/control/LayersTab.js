@@ -231,7 +231,7 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         function walkTree(inTree, outTree) {
             function walkObject(obj) {
-                for (name in obj) {
+                for (const name in obj) {
                     var value = obj[name];
                     var rootNode = createRootNode(name);
 

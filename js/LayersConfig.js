@@ -69,7 +69,7 @@ BR.LayersConfig = L.Class.extend({
             if (layer) {
                 var properties = propertyOverrides[id];
 
-                for (key in properties) {
+                for (const key in properties) {
                     var value = properties[key];
                     layer.properties[key] = value;
                 }
