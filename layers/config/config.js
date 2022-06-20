@@ -27,7 +27,8 @@ BR.confLayers.legacyNameToIdMap = {
     'Esri World Imagery': 'Esri.WorldImagery',
     'Cycling (Waymarked Trails)': 'Waymarked_Trails-Cycling',
     'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking',
-    'HikeBike.HillShading': 'terrarium-hillshading'
+    'HikeBike.HillShading': 'terrarium-hillshading',
+    'mapillary-coverage-raster': 'mapillary-coverage'
 };
 
 BR.confLayers.leafletProvidersIncludeList = [
