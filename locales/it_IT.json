@@ -7,25 +7,25 @@
     "contact": "Contatti:",
     "contact-language": "La lingua preferita è l'inglese, dato che abbiamo sia utilizzatori che contributori internazionali.",
     "data": "Dati:",
-    "data-description": "Basato su <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Di solito viene aggiornato quotidianamente, leggi la data dei <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">file dati</a>.",
-    "description": "Servizio online del motore di routing BRouter. Per l'app Android offline ed altri informazioni vedere <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
-    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Informativa sulla privacy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Ringraziamenti</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> ed\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">altre info</a></i> sul client.",
+    "data-description": "This is based on <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. It is usually updated daily, see dates of <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">data files</a>.",
+    "description": "Online service of the BRouter routing engine. For the offline Android app and more information see <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
+    "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Privacy Policy</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Credits</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> and\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">more info</a></i> on the client.",
     "support": "Discussioni/domande generali, assistenza",
     "title": "Informazioni",
     "tooltip": "Mostra più informazioni su BRouter-Web"
   },
   "credits": {
-    "boundaries": "Confini amministrativi: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Dati d'elevazione",
-    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, fonti: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, e la comunità di utilizzatori GIS",
+    "esri-license": "<a target=\"_blank\" href=\"http://goto.arcgisonline.com/maps/World_Imagery\">World Imagery</a> &copy; <a target=\"_blank\" href=\"https://www.esri.com/\">Esri</a>, sources: Esri, DigitalGlobe, Earthstar Geographics, CNES/Airbus DS, GeoEye, USDA FSA, USGS, Getmapping, Aerogrid, IGN, IGP, and the GIS User Community",
     "esri-tiles": "Esri World Imagery",
     "map-data": "Dati mappa",
     "map-tiles": "Sezioni di mappa",
-    "nominatim": "Ricerca con <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
-    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contributori OpenStreetMap</a> in <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "pois": "Posizioni (PDI): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "nominatim": "Search by <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
+    "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap contributors</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
+    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
     "title": "Ringraziamenti"
   },
   "export": {
@@ -149,11 +149,11 @@
       "click-drag": "Clicca e trascina per creare un cerchio",
       "draw": "Crea zona no-go rotonda",
       "edit": "Clicca per modificare",
-      "help": "&square; = sposta / ridimensiona, <span class=\"fa fa-trash-o\"></span> = cancella, <br>clicca cerchio per finire le modifiche"
+      "help": "&square; = move / resize, <span class=\"fa fa-trash-o\"></span> = delete,<br>click circle to quit editing"
     },
     "not-applicable-here": "non applicabile qui",
     "opacity-slider": "regola la trasparenza della traccia percorso e dei marcatori",
-    "opacity-slider-shortcut": "{{action}}\n(Tieni premuto il tasto {{key}} per disattivare temporaneamente)",
+    "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Anteprima",
     "privacy": "Privacy",
     "reverse-route": "Inverti il percorso",
@@ -165,7 +165,7 @@
     "route-tooltip-waypoint": "Waypoint. Trascina per spostarlo. Clicca per rimuoverlo.",
     "strava-biking": "Visualizza segmenti Strava bici",
     "strava-running": "Visualizza segmenti Strava corsa",
-    "strava-shortcut": "{{action}}\n(tasto {{key}} per dis-/attivare livelli, clicca per ricarichare la zona in vista)",
+    "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
     "toggle-beeline": "Dis-/attiva linea retta",
     "zoomInTitle": "Aumenta zoom",
     "zoomOutTitle": "Diminuisci zoom"
@@ -187,7 +187,7 @@
     "load": {
       "nogos": "Carica zone no-go",
       "title": "Carica",
-      "tooltip": "{{tracksAction}} (tasto {{tracksKey}})\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
+      "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Carica tracce"
     },
     "profile": {
@@ -212,7 +212,7 @@
       "vm-forum-liegerad-schnell": "Bici reclinata (rapido)",
       "vm-forum-velomobil-schnell": "Velomobile (rapido)"
     },
-    "profile-tooltip": "\n(tasto {{key}} per cambiare)"
+    "profile-tooltip": "\n({{key}} key to switch)"
   },
   "searchfav": {
     "addfavorite": "aggiungi come favorito",
@@ -292,7 +292,7 @@
       "placeholder": "Crea tuo profilo personalizzato qui.",
       "profile": "Profilo"
     },
-    "tab-tooltip": "{{action}}\n(tasto {{toggleKey}} per dis-/attivare, {{switchKey}} per cambiare alla prossima tab)"
+    "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
   "title": "BRouter web client",
   "trackasroute": {

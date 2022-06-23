@@ -102,7 +102,7 @@
     "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Uppruni",
     "title": "Hlaða inn bannsvæðum",
-    "url": "URL"
+    "url": "Slóð"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap þátttakendurnir",
@@ -133,6 +133,7 @@
       "esri": "Esri World Imagery heimsmyndasafnið",
       "hikebike-hillshading": "Hæðaskygging (göngu- og hjólakort)",
       "hiking": "Gangandi (Waymarked Trails)",
+      "hillshading": "Hæðaskygging",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Útivist (Thunderforest)",
@@ -151,7 +152,7 @@
       "help": "&square; = færa / breyta stærð, <span class=\"fa fa-trash-o\"></span> = eyða,<br>smella á hring til að hætta breytingum"
     },
     "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider": "Stilla gegnsæi leiða og merkja",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Forskoðun",
     "privacy": "Persónuvernd",
@@ -239,7 +240,7 @@
     },
     "customize-profile": {
       "title": "Sérsníða notkunarsnið",
-      "tooltip": "Customize profile"
+      "tooltip": "Sérsníða notkunarsnið"
     },
     "data": {
       "sync-map": "Samstilla kort",

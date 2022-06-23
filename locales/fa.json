@@ -133,6 +133,7 @@
       "esri": "Esri World Imagery",
       "hikebike-hillshading": "تپه‌ها (نقشه پیاده‌روی و دوچرخه‌سواری)",
       "hiking": "پیاده‌روی (مسیرهای علامت‌گذاری شده)",
+      "hillshading": "سایه زنی",
       "osm": "اوپن‌استریت‌مپ",
       "osmde": "OpenStreetMap.de",
       "outdoors": "در فضای باز (Thanderforest)",
@@ -174,7 +175,7 @@
     "or": ""
   },
   "navbar": {
-    "about": "About",
+    "about": "درباره",
     "alternative": {
       "first": "1st alternative",
       "original": "Original",
@@ -182,10 +183,10 @@
       "third": "3rd alternative"
     },
     "export": "Export",
-    "export-tooltip": "Export route",
+    "export-tooltip": "مسیر صادرات",
     "load": {
-      "nogos": "Load no-go areas",
-      "title": "Load",
+      "nogos": "مناطق ممنوعه را بارگیری کنید",
+      "title": "بارگذاری",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
     },

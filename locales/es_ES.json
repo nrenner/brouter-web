@@ -5,14 +5,14 @@
     "bug-reports-front": "cliente web / frontend.",
     "chat": "Chatea con usuarios y desarrolladores",
     "contact": "Contacto:",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
+    "contact-language": "El idioma preferido es el inglés, ya que contamos con colaboradores y usuarios internacionales.",
     "data": "Datos:",
     "data-description": "Esta basado en <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Por lo general se actualiza a diario, consulte las fechas <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">de los archivos</a>.",
     "description": "Servicio en línea del motor de enrutamiento BRouter. Para la aplicación de Android sin conexión y más información, consulte  <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Política de privacidad</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Creditos</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Changelog</a></i> y\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">más información</a></i> en el cliente.",
     "support": "General discusiones/preguntas, soporte",
     "title": "Acerca de",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Mostrar más información sobre BRouter-Web"
   },
   "credits": {
     "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
@@ -26,7 +26,7 @@
     "nominatim": "Búsqueda por <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >Colaboradores de OpenStreetMap</a> bajo <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
     "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
-    "title": "Credits"
+    "title": "Créditos"
   },
   "export": {
     "format": "Formato",
@@ -46,7 +46,7 @@
     "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Coste",
     "distance": "Distancia",
-    "elevation-chart": "Toggle elevation chart",
+    "elevation-chart": "Alternar gráfico de elevación",
     "energy-per-100km": "Energía por 100 km",
     "hours": "horas",
     "hours-abbrev": "h",
@@ -57,30 +57,30 @@
     "mean-cost-factor": "Factor de costo medio",
     "meter": "metros",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "No hay datos de elevación disponibles para esta ruta.",
     "plain-ascend": "Ascenso llano",
-    "stats-info": "Start drawing a route to get stats.",
+    "stats-info": "Empiece a trazar una ruta para obtener estadísticas.",
     "total-energy": "Energia total",
     "travel-time": "Tiempo de viaje"
   },
   "keyboard": {
-    "backspace": "Backspace",
+    "backspace": "Retroceso",
     "escape": "Escape",
-    "generic-shortcut": "{{action}} ({{key}} key)",
-    "shift": "Shift"
+    "generic-shortcut": "{{action}} (tecla {{key}})",
+    "shift": "Mayús"
   },
   "layers": {
     "add-base": "Añadir capa base",
     "add-overlay": "Añadir superposición",
-    "add-overpass": "Add overpass query",
-    "custom-layer-name-helptext": "ex: OpenStreetMap",
-    "custom-layer-name-label": "Custom layer name",
-    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
-    "custom-layer-url-label": "Custom layer URL/Query",
+    "add-overpass": "Agregar consulta de overpass",
+    "custom-layer-name-helptext": "por ejemplo: OpenStreetMap",
+    "custom-layer-name-label": "Nombre de la capa personalizada",
+    "custom-layer-url-helptext-normal": "URL para capas normales, por ejemplo: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Consulta de Overpass, por ejemplo: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "URL / consulta de capa personalizada",
     "customize": "Personalizar capas",
     "opacity-slider": "Control deslizante de opacidad",
-    "overpass-loading-indicator": "Running Overpass API query ...",
+    "overpass-loading-indicator": "Ejecutando la consulta de la API de Overpass ...",
     "remove-selection": "Eliminar selección"
   },
   "loadNogos": {
@@ -95,11 +95,11 @@
       "missing-file-url": "Missing file or URL.",
       "no-valid-area": "No valid area found in provided input."
     },
-    "file": "File (.geojson)",
+    "file": "Archivo (.geojson)",
     "load": "Cargar",
-    "nogoBuffer": "Buffer no-go areas (in meters)",
-    "nogoRadius": "No-go radius for points (in meters)",
-    "nogoWeight": "No-go weight (-1 means impassable)",
+    "nogoBuffer": "Buffer de áreas prohibidas (en metros)",
+    "nogoRadius": "Radio de prohibición de puntos (en metros)",
+    "nogoWeight": "Peso de prohibición (-1 significa intransitable)",
     "source": "Fuente",
     "title": "Cargar áreas prohibidas",
     "url": "URL"
@@ -114,15 +114,15 @@
     "delete-nogo-areas": "Eliminar todas las áreas prohibidas",
     "delete-pois": "Eliminar todos los Puntos de Interés",
     "delete-route": "Eliminar ruta",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
-    "draw-poi-start": "Draw points of interest",
-    "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
-    "draw-route-stop": "Stop drawing route",
+    "draw-circlego-start": "Dibujar zona prohibida",
+    "draw-circlego-stop": "Dejar de dibujar una zona prohibida",
+    "draw-poi-start": "Dibujar puntos de interés",
+    "draw-poi-stop": "Deja de dibujar puntos de interés",
+    "draw-route-start": "Dibujar ruta",
+    "draw-route-stop": "Dejar de dibujar la ruta",
     "enter-poi-name": "Ingrese el nombre del Punto de Interés",
-    "geocoder": "Search",
-    "geocoder-placeholder": "Search…",
+    "geocoder": "Buscar",
+    "geocoder-placeholder": "Buscar...",
     "hikebike-hillshading": "Sombreado",
     "hiking": "Senderismo",
     "layer": {
@@ -133,6 +133,7 @@
       "esri": "Imágenes del mundo de Esri",
       "hikebike-hillshading": "Sombreado de colinas (mapa de senderismo y bicicleta)",
       "hiking": "Senderismo (senderos marcados)",
+      "hillshading": "Sombreado",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Al aire libre (Thunderforest)",
@@ -146,12 +147,12 @@
     "nogo": {
       "cancel": "Cancelar el dibujo del área prohibida",
       "click-drag": "Haz clic y arrastra para dibujar un círculo.",
-      "draw": "Draw circular no-go area",
+      "draw": "Dibujar un área circular prohibida",
       "edit": "Click para editar",
       "help": "&square; = mover / cambiar el tamaño, <span class=\"fa fa-trash-o\"></span>= eliminar, <br> haga clic en el círculo para salir de la edición"
     },
-    "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
+    "not-applicable-here": "no aplicable aquí",
+    "opacity-slider": "Establecer transparencia de ruta y marcadores",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Preview",
     "privacy": "Privado",
@@ -159,9 +160,9 @@
     "route-quality-altitude": "Codificación de altitud",
     "route-quality-cost": "Codificación de costos",
     "route-quality-incline": "Codificación de inclinación",
-    "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-quality-shortcut": "{{action}} (tecla {{key}} para alternar)",
     "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
-    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
+    "route-tooltip-waypoint": "Waypoint. Arrastre para mover; Haga clic para eliminar.",
     "strava-biking": "Mostrar segmentos de ciclismo de Strava",
     "strava-running": "Mostrar segmentos de carrera de Strava",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
@@ -182,12 +183,12 @@
       "third": "3ª Alternativa"
     },
     "export": "Exportar",
-    "export-tooltip": "Export route",
+    "export-tooltip": "Exportar ruta",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Cargar áreas prohibidas",
       "title": "Cargar",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
-      "tracks": "Load tracks"
+      "tracks": "Cargar pistas"
     },
     "profile": {
       "car-eco": "Coche (económico)",
@@ -224,31 +225,31 @@
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
-        "surface": "Surface"
+        "highway": "Carretera",
+        "smoothness": "Suavidad",
+        "surface": "Superficie"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Categoría",
+        "length": "Longitud",
+        "total_known": "Total conocido:",
+        "unknown": "Desconocido"
       },
-      "title": "Analysis",
-      "tooltip": "Analyse route"
+      "title": "Análisis",
+      "tooltip": "Analizar ruta"
     },
     "customize-profile": {
       "title": "Personalizar perfil",
-      "tooltip": "Customize profile"
+      "tooltip": "Personalizar perfil"
     },
     "data": {
       "sync-map": "Sincronizar mapa",
       "title": "Datos",
-      "tooltip": "Show detailed route data table"
+      "tooltip": "Mostrar tabla de datos de ruta detallada"
     },
     "itinerary": {
       "title": "Iitinerario",
-      "tooltip": "Show itinerary"
+      "tooltip": "Mostrar itinerario"
     },
     "layers": {
       "category": {
@@ -257,7 +258,7 @@
         "europe": "Europa",
         "europe-monolingual": "Monolingüe Europa",
         "overlays": "Superposiciones",
-        "overpass": "Locations (POIs)",
+        "overpass": "Ubicaciones (PDI)",
         "worldwide": "Mundial",
         "worldwide-international": "Internacional mundial",
         "worldwide-monolingual": "Monolingüe mundial"
@@ -269,18 +270,18 @@
       "optional": "Añadir o eliminar capas opcionales",
       "optional-layers": "Más",
       "overlay-opacity": "Transparencia de superposición",
-      "overlay-opacity_plural": "Overlays transparency",
+      "overlay-opacity_plural": "Transparencia de superposiciones",
       "table": {
-        "URL": "URL/Query",
+        "URL": "URL/Consulta",
         "empty": "No hay una capa personalizada configurada todavía.",
         "name": "Nombre",
         "type": "Tipo",
-        "type_layer": "Layer",
-        "type_overlay": "Overlay",
-        "type_overpass_query": "Overpass Query"
+        "type_layer": "Capa",
+        "type_overlay": "Superposición",
+        "type_overpass_query": "Consulta de Overpass"
       },
       "title": "Capas",
-      "tooltip": "Select layers"
+      "tooltip": "Seleccionar capas"
     },
     "profile": {
       "apply": "Aplicar",
@@ -295,21 +296,21 @@
   },
   "title": "BRoute web cliente",
   "trackasroute": {
-    "browse": "Browse",
-    "explainpoi": "(show waypoints as POI's)",
-    "explaintracklayer": "(show Track as separate Layer)",
+    "browse": "Navegar",
+    "explainpoi": "(mostrar waypoints como PDI)",
+    "explaintracklayer": "(mostrar la pista como una capa separada)",
     "file": "Trackfile",
-    "fuzziness": "Fuzziness",
-    "pleasewait": "Please wait!",
-    "showpois": "POI's",
-    "title": "Load Track as Route",
-    "tracklayer": "Track Layer",
-    "tuning": "Tuning"
+    "fuzziness": "Borrosidad",
+    "pleasewait": "Espere",
+    "showpois": "PDI",
+    "title": "Cargar pista como ruta",
+    "tracklayer": "Capa de pista",
+    "tuning": "Afinación"
   },
   "warning": {
     "cannot-get-route": "Error al obtener la URL de ruta",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "El marcador de inicio está demasiado lejos de una ruta.",
+    "invalid-route-to": "El marcador de destino está demasiado lejos de una ruta.",
     "no-response": "sin respuesta del servidor",
     "no-route-found": "Error: no se puede encontrar una ruta para los puntos dados. ¿Quizás intentando acercarlos a las carreteras?",
     "profile-error": "Error de perfil: no o respuesta vacía del servidor",
@@ -319,7 +320,7 @@
     "upload-error": "Error de carga: {{error}}"
   },
   "whatsnew": {
-    "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "new-version": "Se lanzó una nueva versión desde su última visita. Haga clic <a href='.' data-toggle='modal' data-target='#whatsnew'>aquí</a> para ver las novedades.",
+    "title": "Novedades"
   }
 }

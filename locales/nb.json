@@ -133,6 +133,7 @@
       "esri": "Esri World ortofoto",
       "hikebike-hillshading": "Høydeskygging (Kart for gå- og sykkeltur)",
       "hiking": "Gåtur (markerte stier)",
+      "hillshading": "Høydeskygger",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Utendørs (Thunderforest)",
@@ -184,7 +185,7 @@
     "export": "Eksporter",
     "export-tooltip": "Exporter rute",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Last no-go områder",
       "title": "Last",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"

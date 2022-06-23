@@ -133,6 +133,7 @@
       "esri": "Esri World Imagery",
       "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Hiking (Waymarked Trails)",
+      "hillshading": "Hillshading",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
@@ -174,7 +175,7 @@
     "or": ""
   },
   "navbar": {
-    "about": "About",
+    "about": "О сервисе",
     "alternative": {
       "first": "1st alternative",
       "original": "Original",
