@@ -134,7 +134,7 @@ gulp.task('scripts', function () {
         .src(paths.scripts, { base: '.' })
         .pipe(sourcemaps.init())
         .pipe(cached('scripts'))
-        .pipe(gulpif(!debug, babel()))
+        .pipe(gulpif(!debug, babel({ caller: { supportsDynamicImport: true } })))
         .pipe(gulpif(!debug, uglify()))
         .pipe(remember('scripts'))
         .pipe(concat(paths.destName + '.js'))
