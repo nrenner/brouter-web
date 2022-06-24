@@ -1,5 +1,19 @@
 # BRouter-Web Changelog
 
+## 0.18.0 (2022-06-24)
+
+### Bugfixes
+
+-   Layer "Mapillary" is currently not populated with coverage - by [@nrenner](https://github.com/nrenner) ([#432](https://github.com/nrenner/brouter-web/issues/432))
+-   Hillshading and Hike&Bike layers show tile "Contact [[User:TheDJ]] ..." - by [@nrenner](https://github.com/nrenner) ([#475](https://github.com/nrenner/brouter-web/issues/475))
+-   Route drawing stops working by random - by [@nrenner](https://github.com/nrenner) ([#561](https://github.com/nrenner/brouter-web/issues/561))
+
+### Local installation / development
+
+-   access token required for Mapillary layer in `keys.js` (merge from `keys.template.js`)
+-   vector-tile support - by [@nrenner](https://github.com/nrenner) ([#289](https://github.com/nrenner/brouter-web/issues/289))
+    -   see documentation [in CONTRIBUTING.md](https://github.com/nrenner/brouter-web/blob/master/CONTRIBUTING.md#vector-tiles--dem)
+
 ## 0.17.0 (2022-06-08)
 
 ### New Features
