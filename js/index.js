@@ -415,7 +415,7 @@
         }
 
         var onHashChangeCb = function (url) {
-            var url2params = function (s) {
+            var url2params = function (s = '') {
                 s = s.replace(/;/g, '|');
                 var p = {};
                 var sep = '&';
@@ -428,7 +428,6 @@
                 }
                 return p;
             };
-            if (url == null) return;
 
             var opts = router.parseUrlParams(url2params(url));
             router.setOptions(opts);
