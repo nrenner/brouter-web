@@ -264,12 +264,24 @@ BR.LayersConfig = L.Class.extend({
     _replaceMvtTileKey: function (style) {
         if (!style) return;
 
+        // Sources can be specified by `url` (string) or `tiles` (array), we handle
+        // both variants here.
+        // see specification:
+        // https://maplibre.org/maplibre-gl-js-docs/style-spec/sources/
         for (const source of Object.values(style.sources)) {
-            const tiles = source.tiles;
-            for (const [i, url] of tiles?.entries()) {
-                var keyObj = this.getKeyName(url);
+            if (source.url) {
+                let keyObj = this.getKeyName(source.url);
                 if (keyObj && BR.keys[keyObj.name]) {
-                    tiles[i] = url.replace(`{${keyObj.urlVar}}`, BR.keys[keyObj.name]);
+                    source.url = source.url.replace(`{${keyObj.urlVar}}`, BR.keys[keyObj.name]);
+                }
+            }
+            if (source.tiles) {
+                const tiles = source.tiles;
+                for (const [i, url] of tiles?.entries()) {
+                    let keyObj = this.getKeyName(url);
+                    if (keyObj && BR.keys[keyObj.name]) {
+                        tiles[i] = url.replace(`{${keyObj.urlVar}}`, BR.keys[keyObj.name]);
+                    }
                 }
             }
         }
