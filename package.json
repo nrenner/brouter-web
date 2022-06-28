@@ -28,6 +28,7 @@
         "> 0.5%",
         "last 2 versions",
         "Firefox ESR",
+        "Firefox >= 56",
         "not dead",
         "Explorer >= 10",
         "Android >= 4.1",
@@ -44,6 +45,7 @@
         "@maplibre/maplibre-gl-leaflet": "^0.0.17",
         "@turf/turf": "^6.2.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
+        "abortcontroller-polyfill": "^1.7.3",
         "async": "~2.6.0",
         "bootbox": "~5.5.2",
         "bootstrap": "4.6.1",
@@ -379,6 +381,11 @@
                 "dist/maplibre-gl.js",
                 "dist/maplibre-gl.js.map",
                 "dist/maplibre-gl.css"
+            ]
+        },
+        "abortcontroller-polyfill": {
+            "main": [
+                "dist/polyfill-patch-fetch.js"
             ]
         }
     }
