@@ -1,5 +1,17 @@
 # BRouter-Web Changelog
 
+## 0.18.1 (2022-06-29)
+
+### Bugfixes
+
+-   Fix error on load for old browser versions (SyntaxError: expected expression, got keyword 'import') - by [@nrenner](https://github.com/nrenner) ([#571](https://github.com/nrenner/brouter-web/issues/571))
+-   Fix download click for Firefox < 75 (attach to DOM) - by [@nrenner](https://github.com/nrenner) ([4a31ebe](https://github.com/nrenner/brouter-web/commit/4a31ebe112df004fc4207d00278c8b3dad27f52f))
+
+### Local installation / development
+
+-   add support for vector sources specified by `url` - by [@mjaschen](https://github.com/mjaschen) ([#566](https://github.com/nrenner/brouter-web/pull/566))
+-   enable reloading when contents of `layers` are changed (in serve mode) - by [@mjaschen](https://github.com/mjaschen) ([#567](https://github.com/nrenner/brouter-web/pull/567))
+
 ## 0.18.0 (2022-06-24)
 
 ### Bugfixes
