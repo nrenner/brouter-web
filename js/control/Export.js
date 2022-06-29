@@ -74,7 +74,11 @@ BR.Export = L.Class.extend({
         if (name) {
             link.download = name;
         }
+        link.hidden = true;
+        // in Firefox < 75 click() only works when element is attached to DOM tree
+        document.body.appendChild(link);
         link.click();
+        link.remove();
     },
 
     _exportServer: function (e) {
