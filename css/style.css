@@ -50,8 +50,46 @@ table.dataTable {
     font-size: 1.2rem;
 }
 
-.overpass-tags th {
+.overpass-tags th,
+.overpass-tags td {
+    padding: 0.25em 0.5em;
     vertical-align: top;
+}
+
+.overpass-tags thead {
+    text-transform: uppercase;
+    color: #666;
+}
+
+.overpass-tags thead tr {
+    background-color: #ddd;
+}
+
+.overpass-tags thead th.overpass-label-key {
+    text-align: right;
+}
+
+.overpass-tags tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.overpass-tags tbody tr:last-child {
+    border-bottom: 1px solid #eee;
+}
+
+.overpass-tags tbody th {
+    text-align: right;
+    font-weight: normal;
+}
+
+.overpass-osm-link {
+    margin-top: 0.5rem;
+    text-align: right;
+    font-size: 80%;
+}
+.overpass-osm-link::before {
+    content: '🔎';
+    margin-right: 0.25em;
 }
 
 .overpass-layer-icon .sign > * {
