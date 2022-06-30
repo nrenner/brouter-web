@@ -260,8 +260,8 @@ BR.LayersConfig = L.Class.extend({
                 continue;
             }
 
-            key = BR.Util.sanitizeHTMLContent(key);
             let value = BR.Util.sanitizeHTMLContent(overpassData.tags[key]);
+            key = BR.Util.sanitizeHTMLContent(key);
 
             if (key.match(/email/)) {
                 value = '<a href="mailto:' + value + '">' + value + '</a>';
