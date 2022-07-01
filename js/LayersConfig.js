@@ -255,12 +255,14 @@ BR.LayersConfig = L.Class.extend({
         output += '</thead>';
 
         output += '<tbody>';
-        for (const key in overpassData.tags) {
+        for (let key in overpassData.tags) {
             if (key.substring(0, 5) === 'addr:') {
                 continue;
             }
-            // `new Option().innerHTML` escapes HTML entities for XSS protection
-            let value = new Option(overpassData.tags[key]).innerHTML;
+
+            let value = BR.Util.sanitizeHTMLContent(overpassData.tags[key]);
+            key = BR.Util.sanitizeHTMLContent(key);
+
             if (key.match(/email/)) {
                 value = '<a href="mailto:' + value + '">' + value + '</a>';
             }
