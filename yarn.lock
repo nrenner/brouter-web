@@ -1628,10 +1628,10 @@
   resolved "https://registry.yarnpkg.com/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz#ce56e539f83552b58d10d672ea4d6fc9adc7b234"
   integrity sha512-rY0o9A5ECsTQRVhv7tL/OyDpGAoUB4tTvLiW1DSzQGq4bvTPhNw1VpSNjDJc5GFZ2XuyOtSWSVN05qOtcD71qQ==
 
-"@mapbox/maki@^7.0.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-7.1.0.tgz#bfc213c7b06bfe7fd0e5dfdddceaa93d2195b21d"
-  integrity sha512-/jaBOsbafUDOiP9re7Wlbaftk6eNoUPk3zc5HCLnyn3SfU7XfhBBsRsEjmSowAAIu7SlcQCNyN6UDvkyTCD2uA==
+"@mapbox/maki@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/maki/-/maki-8.0.0.tgz#75aefbb76d3deac64fa09480d4b17f86e10ea589"
+  integrity sha512-wLX6c/pD7qN2JRVR4Kp3inBxxn3KMnc3nAe0BHsI6nVA0FKBSz2hZkZeAmCXh99UyyOJ1hstSU3u2mPTX2VUag==
 
 "@mapbox/mapbox-gl-supported@^2.0.1":
   version "2.0.1"
