@@ -450,6 +450,7 @@ BR.LayersConfig = L.Class.extend({
                     L.Util.extend(josmOptions, {
                         layers: props.layers,
                         format: props.format,
+                        transparent: props.transparent || false,
                     })
                 );
             } else {
