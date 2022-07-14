@@ -6,7 +6,7 @@
       "text": "© waymarkedtrails.org, OpenStreetMap contributors, CC by-SA 3.0",
       "url": "https://cycling.waymarkedtrails.org/help/legal"
     },
-    "category": "other",
+    "category": "osmbasedmap",
     "icon": "https://static.waymarkedtrails.org/img/map_cycling.png",
     "id": "Waymarked_Trails-Cycling",
     "max_zoom": 18,

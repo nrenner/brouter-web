@@ -180,6 +180,7 @@
     "max_zoom": 16,
     "min_zoom": 7,
     "name": "Israel MTB",
+    "privacy_policy_url": "https://github.com/IsraelHikingMap/Site/wiki/Privacy-Policy-and-Terms-of-Service",
     "type": "tms",
     "url": "https://israelhiking.osm.org.il/MTBTiles/{zoom}/{x}/{y}.png",
     "dataSource": "JOSM"

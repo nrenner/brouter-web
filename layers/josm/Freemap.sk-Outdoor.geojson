@@ -35,32 +35,40 @@
           47.58764167942
         ],
         [
-          5.59753417969,
-          46.29761098988
+          5.5959892273,
+          46.29749238675
         ],
         [
-          6.860962,
-          44.203866
+          5.0039263916,
+          45.2122799013
         ],
         [
-          7.558594,
-          43.564472
+          5.00517393317,
+          43.33975593618
         ],
         [
-          9.239502,
-          43.564472
+          7.72338871875,
+          38.4277739576
         ],
         [
-          10.184326,
-          42.195969
+          11.29668914795,
+          37.26312626931
         ],
         [
-          13.64501953125,
-          40.40513069753
+          11.56859802246,
+          36.46547630448
         ],
         [
-          21.10473632813,
-          40.63896734382
+          15.20506713867,
+          36.48314944975
+        ],
+        [
+          20.17639160156,
+          39.31092541213
+        ],
+        [
+          21.31896972657,
+          40.69729900864
         ],
         [
           23.642578125,
@@ -93,14 +101,15 @@
   "properties": {
     "attribution": {
       "required": true,
-      "text": "Copyright ©2019 Freemap Slovakia (www.freemap.sk). Some rights reserved."
+      "text": "Map © Freemap Slovakia, data © OpenStreetMap contributors and SRTM",
+      "url": "https://www.freemap.sk/?layers=X"
     },
     "category": "osmbasedmap",
     "country_code": "SK",
     "icon": "https://raw.githubusercontent.com/FreemapSlovakia/freemap-v3-react/master/src/images/freemap-logo-small.png",
     "id": "Freemap.sk-Outdoor",
     "max_zoom": 19,
-    "min_zoom": 7,
+    "min_zoom": 6,
     "name": "Freemap.sk Outdoor",
     "type": "tms",
     "url": "https://outdoor.tiles.freemap.sk/{zoom}/{x}/{y}",
