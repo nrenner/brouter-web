@@ -1,8 +1,12 @@
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+import { fileURLToPath } from 'url';
 
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
+import vm from 'vm';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const outDir = __dirname;
 
 var includeList = [
@@ -18,7 +22,7 @@ var includeList = [
 ];
 
 function extract(constantsJs) {
-    eval(constantsJs);
+    const getLayerDataByID = vm.runInNewContext(constantsJs + '; getLayerDataByID');
 
     for (let i = 0; i < includeList.length; i++) {
         let id = includeList[i];
