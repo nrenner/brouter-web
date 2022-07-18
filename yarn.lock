@@ -12092,7 +12092,7 @@ tokml@^0.4.0:
     rw "0.0.4"
     strxml "0.0.0"
 
-topojson-client@3, topojson-client@^3.1.0:
+topojson-client@3:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/topojson-client/-/topojson-client-3.1.0.tgz#22e8b1ed08a2b922feeb4af6f53b6ef09a467b99"
   integrity sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==

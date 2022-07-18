@@ -366,7 +366,8 @@
 
         nogos.addTo(map);
 
-        circlego = BR.circleGoArea(routing, nogos, pois);
+        // disabled for now, to be removed later
+        // circlego = BR.circleGoArea(routing, nogos, pois);
         if (circlego != null) {
             pois.circlego = circlego;
             circlego.addTo(map);

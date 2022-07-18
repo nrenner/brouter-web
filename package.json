@@ -81,12 +81,10 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "maplibre-gl": "^2.1.9",
-        "osmtogeojson": "^3.0.0-beta.4",
         "overpass-layer": "^3.1.0",
         "regenerator-runtime": "^0.13.7",
         "togpx": "nrenner/togpx#722d291",
         "tokml": "^0.4.0",
-        "topojson-client": "^3.1.0",
         "url-search-params": "~1.1.0"
     },
     "devDependencies": {
@@ -273,11 +271,6 @@
             "main": [
                 "dist/leaflet-vector-markers.js",
                 "dist/leaflet-vector-markers.css"
-            ]
-        },
-        "osmtogeojson": {
-            "main": [
-                "osmtogeojson.js"
             ]
         },
         "@turf/turf": {
