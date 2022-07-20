@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 BR = {};
 BR.version = '1.5.1';
 turf = require('@turf/turf');

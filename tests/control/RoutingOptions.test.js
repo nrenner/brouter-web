@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 BR = {};
 $ = require('jquery');
 i18next = require('i18next');
