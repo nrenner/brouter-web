@@ -12,12 +12,8 @@
         "lint": "eslint .",
         "prettier": "prettier --write '**/*'",
         "serve": "gulp serve watch",
-        "standalone": "../brouter/gradlew -p ../brouter clean build && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "pretty-quick --bail && yarn lint"
-        }
+        "standalone": "../brouter/gradlew -p ../brouter clean build && ../brouter/misc/scripts/generate_profile_variants.sh && gulp release:zip_standalone",
+        "prepare": "husky install"
     },
     "repository": {
         "type": "git",
