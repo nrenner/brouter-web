@@ -7,7 +7,7 @@
     "packageRules": [
         {
             "matchDepTypes": ["devDependencies"],
-            "extends": ["schedule:weekly"]
+            "schedule": ["on Monday every 2 weeks"]
         }
     ]
 }
