@@ -4,6 +4,7 @@
 
 BR = {};
 BR.version = '1.5.1';
+BR.conf = {};
 turf = require('@turf/turf');
 togpx = require('togpx');
 require('leaflet');
@@ -48,15 +49,21 @@ function read(fileName, replaceCreator) {
     return adoptGpx(fs.readFileSync(path + fileName, 'utf8'), replaceCreator);
 }
 
+function format(geoJson, turnInstructionMode) {
+    let gpx = BR.Gpx.format(geoJson, turnInstructionMode);
+    gpx = gpx.replace(/\s*?<link [\s\S]*?<\/link>/, '');
+    return gpx;
+}
+
 test('simple track', () => {
     const brouterGpx = read('track.gpx');
-    const gpx = BR.Gpx.format(geoJson);
+    const gpx = format(geoJson);
     expect(gpx).toEqual(brouterGpx);
 });
 
 test('waypoints', () => {
     const brouterGpx = BR.Xml.pretty(read('waypoints.gpx'));
-    const gpx = BR.Gpx.format(waypointsGeoJson, 5);
+    const gpx = format(waypointsGeoJson, 5);
     expect(gpx).toEqual(brouterGpx);
 });
 
@@ -71,13 +78,13 @@ describe('voice hints', () => {
         // ignore off by one due to times passed with 3 decimals
         brouterGpx = brouterGpx.replace('rteSpeed>9.361<', 'rteSpeed>9.360<');
 
-        const gpx = BR.Gpx.format(geoJson, 2);
+        const gpx = format(geoJson, 2);
         expect(gpx).toEqual(brouterGpx);
     });
 
     test('3-osmand', () => {
         const brouterGpx = BR.Xml.pretty(read('3-osmand.gpx', false));
-        const gpx = BR.Gpx.format(geoJson, 3);
+        const gpx = format(geoJson, 3);
         expect(gpx).toEqual(brouterGpx);
     });
 
@@ -85,19 +92,19 @@ describe('voice hints', () => {
         let brouterGpx = read('4-comment.gpx');
         brouterGpx = brouterGpx.replace(/;\s*([-0-9]+.[0-9]+?)0+;/g, (match, p1) => `;${p1.padStart(10)};`); // remove trailing zeros
 
-        const gpx = BR.Gpx.format(geoJson, 4);
+        const gpx = format(geoJson, 4);
         expect(gpx).toEqual(brouterGpx);
     });
 
     test('5-gpsies', () => {
         const brouterGpx = read('5-gpsies.gpx');
-        const gpx = BR.Gpx.format(geoJson, 5);
+        const gpx = format(geoJson, 5);
         expect(gpx).toEqual(brouterGpx);
     });
 
     test('6-orux', () => {
         let brouterGpx = BR.Xml.pretty(read('6-orux.gpx'));
-        const gpx = BR.Gpx.format(geoJson, 6);
+        const gpx = format(geoJson, 6);
         expect(gpx).toEqual(brouterGpx);
     });
 });

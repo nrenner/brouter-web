@@ -30,6 +30,8 @@
         //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
 
+    // name of the web app/instance, e.g. used as GPX creator and link text
+    BR.conf.appName = 'BRouter-Web';
     BR.conf.privacyPolicyUrl = '/privacypolicy.html';
 
     // Set the initial position and zoom level of the map
