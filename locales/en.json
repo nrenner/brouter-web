@@ -36,7 +36,7 @@
     "format_kml": "KML",
     "include": "Include",
     "include_waypoints": "Waypoints",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-from-to": "{{from}} - {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
     "trackname": "Name"
