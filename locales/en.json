@@ -80,11 +80,11 @@
     "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
+    "overpass-inspect-at-openstreetmap": "Inspect Object at OpenStreetMap",
     "overpass-loading-indicator": "Running Overpass API query ...",
+    "overpass-osm": "OSM",
     "overpass-table-key": "Key",
     "overpass-table-value": "Value",
-    "overpass-inspect-at-openstreetmap": "Inspect Object at OpenStreetMap",
-    "overpass-osm": "OSM",
     "remove-selection": "Remove selection"
   },
   "loadNogos": {
