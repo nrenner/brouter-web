@@ -3934,10 +3934,10 @@ async@^2.6.0, async@~2.6.0:
   dependencies:
     lodash "^4.17.14"
 
-async@^3.2.2:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
-  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
+async@^3.2.3:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
+  integrity sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -4210,7 +4210,7 @@ bops@0.0.6:
     base64-js "0.0.2"
     to-utf8 "0.0.1"
 
-boundingbox@^1.2.5, boundingbox@^1.4.0:
+boundingbox@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/boundingbox/-/boundingbox-1.4.0.tgz#f2e87b5bc52b171689f17fce05d332805e0ee5c2"
   integrity sha512-ym1llbweCJwjSI65dE6ncWS0mM/tcMpZYr0nQ4GVgtPSOMSZT5cyOIoBbjcGCUyK9+pgtPCvNpECaBlCbXq7Wg==
@@ -9676,10 +9676,10 @@ osmtogeojson@^3.0.0-beta.4:
   optionalDependencies:
     "@types/geojson" "^1.0.2"
 
-overpass-frontend@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/overpass-frontend/-/overpass-frontend-2.7.0.tgz#1511deaf658ac3d920b1a92cbc4aca51853ad17f"
-  integrity sha512-kOs71UJ/tkJusKQsetfOe+XaxsXkjthz6Z7n0PlJWCDHFUTL/m1aXkfbEH5XjBIT00zPvwN8ruWOc3Lu+GilBg==
+overpass-frontend@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/overpass-frontend/-/overpass-frontend-2.7.2.tgz#106c9783f64c21e7cb8d657ee039f480e0f43713"
+  integrity sha512-x2aWXEn9A6R5ZouuNKxu79RkZfTvM0j9nuyk2k+BxiNTPttnwD2jAFVaxdiQC3xkvst0dI9JYfWNedLM99fP6w==
   dependencies:
     "@turf/bbox-clip" "^6.5.0"
     "@turf/boolean-intersects" "^6.5.0"
@@ -9687,7 +9687,7 @@ overpass-frontend@^2.7.0:
     "@turf/difference" "^6.5.0"
     "@turf/intersect" "^6.5.0"
     "@turf/union" "^6.5.0"
-    async "^3.2.2"
+    async "^3.2.3"
     boundingbox "^1.4.0"
     browserify-shim "^3.8.14"
     bzip2 "^0.1.1"
@@ -9699,21 +9699,21 @@ overpass-frontend@^2.7.0:
     weight-sort "^1.3.1"
     xmlhttprequest "*"
 
-overpass-layer@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.1.0.tgz#ade7a00f01ad216a6d43f38fed13d2f12016b45b"
-  integrity sha512-K03DRsIeFbX42e/ysq7cLa5dwGiS5nkSSjQEMHZ8S81utqkxenmUcsd2+p4OM2ViX8ieipXPtd3SEfs6QxGO/g==
+overpass-layer@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.1.1.tgz#6e405ce10fa5a284223d79f04a402553e7594d41"
+  integrity sha512-pbX2j7aM5lz4Xsl0aCsg7VjN146J/ie753voBI9wDO93PKuX6KmUPOfDCiLj/D8nipLSUO8zZ5qaILS/LDisRA==
   dependencies:
     "@turf/along" "^6.5.0"
     "@turf/intersect" "^6.5.0"
     "@turf/length" "^6.5.0"
     "@turf/point-on-feature" "^5.1.5"
-    boundingbox "^1.2.5"
+    boundingbox "^1.4.0"
     browserify-css "^0.15.0"
     event-emitter "^0.3.5"
     html-escape "^2.0.0"
     nearest-point-on-geometry "^1.0.1"
-    overpass-frontend "^2.7.0"
+    overpass-frontend "^2.7.2"
     twig "^1.15.4"
 
 p-limit@^2.2.0:
