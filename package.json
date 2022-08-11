@@ -34,7 +34,7 @@
     ],
     "dependencies": {
         "@bagage/leaflet.restoreview": "1.0.1",
-        "@fortawesome/fontawesome-free": "^6.0.0",
+        "@fortawesome/fontawesome-free": "6.1.1",
         "@ideditor/temaki": "^5.0.0",
         "@mapbox/maki": "^8.0.0",
         "@mapbox/polyline": "^1.0.0",
