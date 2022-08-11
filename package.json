@@ -2,6 +2,7 @@
     "name": "brouter-web",
     "version": "0.18.1",
     "description": "Web client for BRouter",
+    "private": true,
     "main": "js/index.js",
     "scripts": {
         "build": "gulp",
