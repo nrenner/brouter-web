@@ -44,7 +44,7 @@
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
         "abortcontroller-polyfill": "^1.7.3",
         "async": "~2.6.0",
-        "bootbox": "~5.5.2",
+        "bootbox": "5.5.3",
         "bootstrap": "4.6.2",
         "bootstrap-select": "1.13.18",
         "bootstrap-slider": "^11.0.0",
