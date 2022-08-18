@@ -79,6 +79,7 @@
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "maplibre-gl": "^2.1.9",
         "overpass-layer": "3.1.1",
+        "popper.js": "1.16.1",
         "regenerator-runtime": "0.13.9",
         "togpx": "nrenner/togpx#722d291",
         "tokml": "^0.4.0",
