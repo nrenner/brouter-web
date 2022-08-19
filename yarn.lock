@@ -8467,10 +8467,10 @@ lead@^1.0.0:
   dependencies:
     flush-write-stream "^1.0.2"
 
-leaflet-control-geocoder@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/leaflet-control-geocoder/-/leaflet-control-geocoder-2.2.0.tgz#c2ebf1913acae683d995769f8652f61b0508122f"
-  integrity sha512-OSnKVIeSZQUXGsErunUBhLbXf2YPRBADaStKipkD3/yrtsZAhLiyFoNHmhjP1nAqD6KO63A98xGfVs4EroFvFA==
+leaflet-control-geocoder@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/leaflet-control-geocoder/-/leaflet-control-geocoder-2.4.0.tgz#f6c00ae00b53d2ac5908e874a9aefd414f615f22"
+  integrity sha512-b2QlxuFd40uIDbnoUI3U9fzfnB4yKUYlmsXjquJ2d2YjoJqnyVYcIJeErAVv3kPvX3nI0gzvBq1XHMgSVFrGkQ==
   optionalDependencies:
     open-location-code "^1.0.0"
 
