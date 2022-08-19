@@ -68,7 +68,7 @@
         "leaflet-hotline": "0.4.0",
         "leaflet-osm-notes": "osmlab/leaflet-osm-notes#af2aa811",
         "leaflet-plugins": "3.4.0",
-        "leaflet-providers": "1.10.2",
+        "leaflet-providers": "1.13.0",
         "leaflet-routing": "nrenner/leaflet-routing#773314a",
         "leaflet-sidebar-v2": "nrenner/leaflet-sidebar-v2#dev",
         "leaflet-triangle-marker": "1.0.2",
