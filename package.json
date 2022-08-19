@@ -40,7 +40,7 @@
         "@mapbox/polyline": "1.1.1",
         "@mapbox/togeojson": "0.16.0",
         "@maplibre/maplibre-gl-leaflet": "0.0.17",
-        "@turf/turf": "6.2.0",
+        "@turf/turf": "6.5.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
         "abortcontroller-polyfill": "1.7.3",
         "async": "2.6.4",
