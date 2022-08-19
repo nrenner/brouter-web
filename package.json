@@ -59,7 +59,7 @@
         "jquery": "3.6.0",
         "jquery-i18next": "1.2.1",
         "jstree": "3.3.12",
-        "leaflet": "1.7.1",
+        "leaflet": "1.8.0",
         "leaflet-control-geocoder": "2.2.0",
         "leaflet-easybutton": "*",
         "leaflet-editable": "1.2.0",
