@@ -54,7 +54,7 @@
         "font-awesome": "4.7.0",
         "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
         "i18next": "19.9.2",
-        "i18next-browser-languagedetector": "6.0.1",
+        "i18next-browser-languagedetector": "6.1.5",
         "i18next-xhr-backend": "3.2.2",
         "jquery": "3.6.0",
         "jquery-i18next": "1.2.1",
