@@ -8340,10 +8340,9 @@ leaflet-geometryutil@0.10.1:
   dependencies:
     leaflet "^1.6.0"
 
-leaflet-hotline@0.4.0:
+leaflet-hotline@tbsmark86/Leaflet.hotline#25b2457:
   version "0.4.0"
-  resolved "https://registry.yarnpkg.com/leaflet-hotline/-/leaflet-hotline-0.4.0.tgz#e01069836a9d2e2c78b1fa1db2013bd03c8ff8d9"
-  integrity sha512-+In6c8WxMsRKMmwQ1m2GmbNxbXvA3WsrOilJGK7l4Sj+mUDh1gdyGMYCIoRBtUeX7lMvBc4KKeEVAlwQERKpxg==
+  resolved "https://codeload.github.com/tbsmark86/Leaflet.hotline/tar.gz/25b24572b99ac66203d857e0fb27f430e2f68448"
 
 leaflet-osm-notes@osmlab/leaflet-osm-notes#af2aa811:
   version "0.0.1"
