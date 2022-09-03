@@ -5,13 +5,11 @@
             "text": "Mapillary, CC BY",
             "url": "https://www.mapillary.com"
         },
-        "id": "mapillary-coverage-raster",
-        "max_zoom": 17,
+        "id": "mapillary-coverage",
         "name": "Mapillary Coverage",
         "overlay": true,
-        "type": "tms",
-        "url": "https://d6a1v2w10ny40.cloudfront.net/v0.1/{z}/{x}/{y}.png"
+        "type": "mvt",
+        "url": "mapillary-coverage-style?{keys_mapillary}"
     },
     "type": "Feature"
 }
-  

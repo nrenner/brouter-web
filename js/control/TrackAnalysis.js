@@ -122,7 +122,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {Object}
      */
     calcStats: function (polyline, segments) {
-        var analysis = {
+        const analysis = {
             highway: {},
             surface: {},
             smoothness: {},
@@ -130,23 +130,24 @@ BR.TrackAnalysis = L.Class.extend({
 
         this.totalRouteDistance = 0.0;
 
-        for (var segmentIndex = 0; segments && segmentIndex < segments.length; segmentIndex++) {
+        for (let segmentIndex = 0; segments && segmentIndex < segments.length; segmentIndex++) {
             for (
-                var messageIndex = 1;
+                let messageIndex = 1;
                 messageIndex < segments[segmentIndex].feature.properties.messages.length;
                 messageIndex++
             ) {
                 this.totalRouteDistance += parseFloat(
                     segments[segmentIndex].feature.properties.messages[messageIndex][3]
                 );
-                var wayTags = segments[segmentIndex].feature.properties.messages[messageIndex][9].split(' ');
-                for (var wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
-                    var wayTagParts = wayTags[wayTagIndex].split('=');
-                    var tagName = this.normalizeTagName(wayTagParts[0]);
+                let wayTags = segments[segmentIndex].feature.properties.messages[messageIndex][9].split(' ');
+                wayTags = this.normalizeWayTags(wayTags, 'cycling');
+                for (let wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
+                    let wayTagParts = wayTags[wayTagIndex].split('=');
+                    let tagName = wayTagParts[0];
                     switch (tagName) {
                         case 'highway':
-                            var highwayType = wayTagParts[1];
-                            var trackType = '';
+                            let highwayType = wayTagParts[1];
+                            let trackType = '';
                             if (highwayType === 'track') {
                                 trackType = this.getTrackType(wayTags);
                                 highwayType = 'Track ' + trackType;
@@ -194,26 +195,71 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Normalize the tag name.
      *
-     * Motivation: The `surface` tag comes in different variations,
+     * Motivation: The `surface` and `smoothness` tags come in different variations,
      * e.g. `surface`, `cycleway:surface` etc. We're only interested
-     * in the main tag so all other variations are normalized.
+     * in the tag which matches the given routing type. All other variations
+     * are dropped. If no specialized surface/smoothness tag is found, the default value
+     * is returned, i.e. `smoothness` or `surface`.
      *
-     * @param {string} tagName
-     * @returns {string}
+     * @param wayTags tags + values for a way segment
+     * @param routingType currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
+     * @returns {*[]}
      */
-    normalizeTagName: function (tagName) {
-        // we assume that a tag belongs to the category `surface`,
-        // if that string is contained anywhere in the tag name:
-        if (tagName.indexOf('surface') !== -1) {
-            return 'surface';
+    normalizeWayTags: function (wayTags, routingType) {
+        let normalizedWayTags = {};
+        let surfaceTags = {};
+        let smoothnessTags = {};
+        for (let wayTagIndex = 0; wayTagIndex < wayTags.length; wayTagIndex++) {
+            let wayTagParts = wayTags[wayTagIndex].split('=');
+            const tagName = wayTagParts[0];
+            const tagValue = wayTagParts[1];
+
+            if (tagName === 'surface') {
+                surfaceTags.default = tagValue;
+                continue;
+            }
+            if (tagName.indexOf(':surface') !== -1) {
+                let tagNameParts = tagName.split(':');
+                surfaceTags[tagNameParts[0]] = tagValue;
+                continue;
+            }
+
+            if (tagName === 'smoothness') {
+                smoothnessTags.default = tagValue;
+                continue;
+            }
+            if (tagName.indexOf(':smoothness') !== -1) {
+                let tagNameParts = tagName.split(':');
+                smoothnessTags[tagNameParts[0]] = tagValue;
+                continue;
+            }
+
+            normalizedWayTags[tagName] = tagValue;
         }
 
-        // the same applies to `smoothness`
-        if (tagName.indexOf('smoothness') !== -1) {
-            return 'smoothness';
+        switch (routingType) {
+            case 'cycling':
+                if (typeof surfaceTags.cycleway === 'string') {
+                    normalizedWayTags.surface = surfaceTags.cycleway;
+                } else if (typeof surfaceTags.default === 'string') {
+                    normalizedWayTags.surface = surfaceTags.default;
+                }
+                if (typeof smoothnessTags.cycleway === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.cycleway;
+                } else if (typeof smoothnessTags.default === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.default;
+                }
+                break;
+            default:
+                if (typeof surfaceTags.default === 'string') {
+                    normalizedWayTags.surface = surfaceTags.default;
+                }
+                if (typeof smoothnessTags.default === 'string') {
+                    normalizedWayTags.smoothness = smoothnessTags.default;
+                }
         }
 
-        return tagName;
+        return this.wayTagsToArray(normalizedWayTags);
     },
 
     /**
@@ -486,7 +532,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {boolean}
      */
     wayTagsMatchesData: function (wayTags, dataType, dataName, trackType) {
-        var parsed = this.parseWayTags(wayTags);
+        const parsed = this.wayTagsToObject(wayTags);
 
         switch (dataType) {
             case 'highway':
@@ -496,9 +542,11 @@ BR.TrackAnalysis = L.Class.extend({
                     }
 
                     return typeof parsed.tracktype === 'string' && parsed.tracktype === trackType;
+                } else if (dataName === 'internal-unknown' && typeof parsed.highway !== 'string') {
+                    return true;
                 }
 
-                return parsed.highway === dataName;
+                return typeof parsed.highway === 'string' && parsed.highway === dataName;
             case 'surface':
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
@@ -535,15 +583,33 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {object}
      */
-    parseWayTags: function (wayTags) {
-        var result = {};
-        var wayTagPairs = wayTags.feature.wayTags.split(' ');
+    wayTagsToObject: function (wayTags) {
+        let result = {};
+        const wayTagPairs = wayTags.feature.wayTags.split(' ');
 
-        for (var j = 0; j < wayTagPairs.length; j++) {
-            var wayTagParts = wayTagPairs[j].split('=');
+        for (let j = 0; j < wayTagPairs.length; j++) {
+            const wayTagParts = wayTagPairs[j].split('=');
             result[wayTagParts[0]] = wayTagParts[1];
         }
 
         return result;
+    },
+
+    /**
+     * Transform a way tags object into an array representation, for example:
+     *
+     * { 'highway' : 'path', 'surface' : 'sand' } => ['highway=path', 'surface=sand']
+     *
+     * @param wayTags The way tags in object representation
+     *
+     * @returns {object}
+     */
+    wayTagsToArray: function (wayTags) {
+        let wayTagsArray = [];
+        for (let wayTagKey in wayTags) {
+            wayTagsArray.push(wayTagKey + '=' + wayTags[wayTagKey]);
+        }
+
+        return wayTagsArray;
     },
 });

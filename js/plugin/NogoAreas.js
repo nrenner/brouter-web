@@ -55,12 +55,15 @@ BR.NogoAreas = L.Control.extend({
             e.layer.toggleEdit();
         });
 
-        var editTools = (this.editTools = map.editTools = new BR.Editable(map, {
-            circleEditorClass: BR.DeletableCircleEditor,
-            // FeatureGroup instead of LayerGroup to propagate events to members
-            editLayer: new L.FeatureGroup().addTo(map),
-            featuresLayer: this.drawnItems,
-        }));
+        var editTools =
+            (this.editTools =
+            map.editTools =
+                new BR.Editable(map, {
+                    circleEditorClass: BR.DeletableCircleEditor,
+                    // FeatureGroup instead of LayerGroup to propagate events to members
+                    editLayer: new L.FeatureGroup().addTo(map),
+                    featuresLayer: this.drawnItems,
+                }));
 
         this.startDrawing = function (control) {
             // initial radius of 0 to detect click, see DeletableCircleEditor.onDrawingMouseUp

@@ -26,7 +26,7 @@
                 <span class="fa fa-bars"></span>
             </button>
             <a class="navbar-brand order-md-last" href="#" data-toggle="modal" data-target="#about"
-                >BRouter-Web <sup class="version">0.16.0</sup></a
+                >BRouter-Web <sup class="version">0.18.1</sup></a
             >
             <div class="collapse navbar-collapse" id="collapsingNavbar">
                 <div class="navbar-nav">
@@ -64,7 +64,7 @@
                             data-i18n-options='{ "action": "$t(navbar.export-tooltip)", "key": "X" }'
                             title="Export route"
                         >
-                            <span class="fa fa-lg fa-cloud-download" aria-hidden="true"> </span>
+                            <span class="fa fa-lg fa-download" aria-hidden="true"> </span>
                             <span data-i18n="navbar.export">Export</span>
                         </a>
                     </div>
@@ -88,7 +88,7 @@
                             }'
                             title="Load route"
                         >
-                            <span class="fa fa-lg fa-cloud-upload" aria-hidden="true"> </span>
+                            <span class="fa fa-lg fa-upload" aria-hidden="true"> </span>
                             <span data-i18n="navbar.load.title">Load</span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarLoadDropdown">
@@ -515,14 +515,20 @@
                         <button type="button" class="btn btn-secondary" data-i18n="modal.close" data-dismiss="modal">
                             Close
                         </button>
-                        <button
-                            type="submit"
-                            class="btn btn-primary"
-                            data-i18n="export.title"
-                            form="exportForm"
-                            id="submitExport"
-                        >
-                            Export route
+                        <button type="button" class="btn btn-secondary" id="serverExport">
+                            <span>
+                                <i class="fa fa-cloud-download"></i>
+                                <i
+                                    hidden
+                                    id="export-beeline-warning"
+                                    class="fa fa-exclamation-triangle"
+                                    style="font-size: 10px; position: absolute; margin-top: -3px; margin-left: -1px"
+                                ></i>
+                            </span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" form="exportForm" id="submitExport">
+                            <span class="fa fa-download"></span>
+                            <span data-i18n="export.title">Export route</span>
                         </button>
                     </div>
                 </div>
@@ -919,7 +925,6 @@
                     </div>
                     <div id="preview" hidden data-i18n="map.preview">Preview</div>
                 </div>
-
                 <div id="sidebar" class="leaflet-sidebar collapsed">
                     <div class="leaflet-sidebar-content">
                         <div class="leaflet-sidebar-pane" id="tab_layers_control">
@@ -1132,6 +1137,16 @@
             </div>
             <div id="stats-container" class="flexrow flexgrow">
                 <ul id="stats">
+                    <li id="beeline-warning" hidden>
+                        <div class="text-muted small d-none d-md-block">&#8239;</div>
+                        <p class="stats-label">
+                            <abbr
+                                class="fa fa-exclamation-triangle"
+                                data-i18n="[title]footer.beeline-warning"
+                                title="Warning: no data for straight lines, values interpolated"
+                            ></abbr>
+                        </p>
+                    </li>
                     <li>
                         <div class="text-muted small d-none d-md-block" data-i18n="footer.distance">Distance</div>
                         <p class="stats-label">
@@ -1228,7 +1243,7 @@
         <script>
             // global package prefix for BRouter web application
             BR = {};
-            BR.version = '0.16.0';
+            BR.version = '0.18.1';
 
             console.log(
                 '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'

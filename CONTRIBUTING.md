@@ -81,3 +81,24 @@ yarn test --watch tests/format/Gpx.test.js
 # run a single test by name (regex for name passed to describe/test functions)
 yarn test --verbose -t="2-locus"
 ```
+
+## Layers
+
+### Vector Tiles / DEM
+
+[MapLibre GL JS](https://maplibre.org/projects/maplibre-gl-js/) and [MapLibre GL Leaflet](https://github.com/maplibre/maplibre-gl-leaflet) are used to render vector tile layers. Their bundles are [only loaded](https://github.com/nrenner/brouter-web/blob/master/js/util/MaplibreGlLazyLoader.js) if the first mvt layer is actually added to the map.
+
+-   [layers/mvt](https://github.com/nrenner/brouter-web/tree/master/layers/mvt) folder for layer descriptions (\*.geojson) and local styles (not a requirement)
+-   `"type": "mvt"` in layer description
+-   `"url": ` is for style.json (instead of tile URL), either as:
+    -   file name of local style file without `.json` (= key in dist/layers.js bundle),
+        -   suggested file naming convention: `<layer-id>-style.json`  
+            (stored next to description `<layer-id>.geojson`)
+    -   URL to remote style
+-   access token for tile URLs
+    -   configure in `keys.js` / `keys.template.js`:  
+        `<provider>: 'mykey'`
+    -   add template to tile url in style source, e.g.:  
+        `...?access_token={keys_<provider>}`
+    -   when also appended after `?` to local style url, the layer is not added when key is not defined:  
+        `"url": "<layer-id>-style?{keys_<provider>}"`

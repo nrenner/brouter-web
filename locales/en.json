@@ -36,13 +36,14 @@
     "format_kml": "KML",
     "include": "Include",
     "include_waypoints": "Waypoints",
-    "route-from-to": "{{from}} -> {{to}} ({{distance}}km)",
+    "route-from-to": "{{from}} - {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
     "trackname": "Name"
   },
   "footer": {
     "ascend": "Ascend",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
     "distance": "Distance",
     "elevation-chart": "Toggle elevation chart",
@@ -79,7 +80,11 @@
     "custom-layer-url-label": "Custom layer URL/Query",
     "customize": "Customize layers",
     "opacity-slider": "Opacity slider",
+    "overpass-inspect-at-openstreetmap": "Inspect Object at OpenStreetMap",
     "overpass-loading-indicator": "Running Overpass API query ...",
+    "overpass-osm": "OSM",
+    "overpass-table-key": "Key",
+    "overpass-table-value": "Value",
     "remove-selection": "Remove selection"
   },
   "loadNogos": {
@@ -132,6 +137,7 @@
       "esri": "Esri World Imagery",
       "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Hiking (Waymarked Trails)",
+      "hillshading": "Hillshading",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
@@ -159,11 +165,12 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom out"
   },
@@ -195,7 +202,7 @@
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
+      "hiking-mountain": "Hiking",
       "moped": "Moped",
       "rail": "Rail",
       "river": "River",
@@ -210,6 +217,14 @@
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
     },
     "profile-tooltip": "\n({{key}} key to switch)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {
@@ -295,14 +310,6 @@
     "title": "Load Track as Route",
     "tracklayer": "Track Layer",
     "tuning": "Tuning"
-  },
-  "searchfav": {
-	  "addfavorite": "add as favorite",
-	  "openfavorites": "open favorite list",
-	  "removeall": "delete all favorites",
-	  "export": "export favorites to file",
-	  "import": "import favorites from file",
-	  "ask_removeall": "Do you want to delete all search favorites?"
   },
   "warning": {
     "cannot-get-route": "Error getting route URL",

@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Ascend",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
     "distance": "Distance",
     "elevation-chart": "Toggle elevation chart",
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Default properties",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "File (.geojson)",
     "load": "Load",
     "nogoBuffer": "Buffer no-go areas (in meters)",
@@ -122,6 +133,7 @@
       "esri": "Esri World Imagery",
       "hikebike-hillshading": "Hillshading (Hike & Bike Map)",
       "hiking": "Hiking (Waymarked Trails)",
+      "hillshading": "Hillshading",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Outdoors (Thunderforest)",
@@ -149,18 +161,21 @@
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
     "strava-running": "Show Strava running segments",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Zoom in",
     "zoomOutTitle": "Zoom out"
   },
   "modal": {
-    "close": "Close"},
+    "close": "Close",
+    "or": ""
+  },
   "navbar": {
-    "about": "About",
+    "about": "Sobre nós",
     "alternative": {
       "first": "1st alternative",
       "original": "Original",
@@ -183,7 +198,7 @@
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
+      "hiking-mountain": "Hiking",
       "moped": "Moped",
       "rail": "Rail",
       "river": "River",
@@ -198,6 +213,14 @@
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
     },
     "profile-tooltip": "\n({{key}} key to switch)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {

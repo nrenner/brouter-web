@@ -36,6 +36,10 @@ BR.Gpx = {
                 return Object.assign(
                     {
                         name: feature.properties.name,
+                        link: {
+                            '@href': location.href,
+                            text: BR.conf.appName || 'BRouter-Web',
+                        },
                     },
                     trk
                 );
@@ -50,7 +54,7 @@ BR.Gpx = {
         const gpxTransform = new GpxTransform(voiceHintsTransform);
 
         let gpx = togpx(geoJson, {
-            creator: 'BRouter-Web ' + BR.version,
+            creator: (BR.conf.appName || 'BRouter-Web') + ' ' + BR.version,
             featureTitle: function () {},
             featureDescription: function () {},
             featureCoordTimes: function () {},

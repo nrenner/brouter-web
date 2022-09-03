@@ -25,7 +25,7 @@
     "map-tiles": "Tessel·les del mapa",
     "nominatim": "Cerca per <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >contribuïdors d'OpenStreetMap</a> sota <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
-    "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "pois": "Ubicacions (PDI): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">API d'Overpass</a>",
     "title": "Crèdits"
   },
   "export": {
@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Desnivell acumulat",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Cost",
     "distance": "Distància",
     "elevation-chart": "Commuta el gràfic d'elevació",
@@ -56,7 +57,7 @@
     "mean-cost-factor": "Factor de cost mitjà",
     "meter": "metres",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "No hi ha dades d'elevació disponibles per aquesta ruta.",
     "plain-ascend": "Desnivell final",
     "stats-info": "Comenceu a dibuixar una ruta per obtenir les estadístiques",
     "total-energy": "Energia total",
@@ -71,24 +72,34 @@
   "layers": {
     "add-base": "Afegeix una capa base",
     "add-overlay": "Afegeix superposició",
-    "add-overpass": "Add overpass query",
-    "custom-layer-name-helptext": "ex: OpenStreetMap",
-    "custom-layer-name-label": "Custom layer name",
-    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-    "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
-    "custom-layer-url-label": "Custom layer URL/Query",
+    "add-overpass": "Afegeix una consulta d'Overpass",
+    "custom-layer-name-helptext": "eg.: OpenStreetMap",
+    "custom-layer-name-label": "Nom de la capa personalitzada",
+    "custom-layer-url-helptext-normal": "URL de la capes normals, eg.: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-overpass": "Exemple de consulta d'Overpass: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
+    "custom-layer-url-label": "URL/Consulta de la capa personalitzada",
     "customize": "Personalitza les capes",
     "opacity-slider": "Control lliscant de l'opacitat",
-    "overpass-loading-indicator": "Running Overpass API query ...",
+    "overpass-loading-indicator": "S'està executant la consulta a l'API d'Overpass ...",
     "remove-selection": "Elimina la selecció"
   },
   "loadNogos": {
     "defaultProperties": "Propietats per defecte",
-    "file": "File (.geojson)",
+    "error": {
+      "invalid-default-nogo-radius": "El radi per defecte de la zona omesa no és vàlid.",
+      "invalid-nogo-buffering-radius": "El radi de l'àrea d'influència de la zona omesa no és vàlid.",
+      "loading-file-error": "No es pot carregar el fitxer: {{err}}.",
+      "loading-file-too-big": "Hi ha massa àrees omeses en aquest fitxer! Simplifiqueu la geometria i/o reduïu el nombre de zones.",
+      "loading-file-unexpected": "Error inesperat en carregar aquest fitxer.",
+      "missing-default-nogo-weight": "Falta el pes per defecte de les zones omeses.",
+      "missing-file-url": "Falta un fitxer o una URL",
+      "no-valid-area": "No s'ha trobat una àrea vàlida a l'entrada que heu proporcionat."
+    },
+    "file": "Fitxer (.geojson)",
     "load": "Carrega",
-    "nogoBuffer": "Buffer no-go areas (in meters)",
-    "nogoRadius": "No-go radius for points (in meters)",
-    "nogoWeight": "No-go weight (-1 means impassable)",
+    "nogoBuffer": "Zona d'influència de les àrees omeses (en metres)",
+    "nogoRadius": "Radi de les àrees omeses per punts (en metres)",
+    "nogoWeight": "Pes de les àrees omeses (-1 vol dir inaccessible)",
     "source": "Font",
     "title": "Carrega les àrees omeses",
     "url": "URL"
@@ -122,6 +133,7 @@
       "esri": "Imatgeria del món d'Esri",
       "hikebike-hillshading": "Ombreig del relleu (mapa per caminades i bici)",
       "hiking": "Caminada (camins marcats)",
+      "hillshading": "Ombreig del relleu ",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Aire lliure (Thunderforest)",
@@ -149,16 +161,19 @@
     "route-quality-cost": "Codificació del cost",
     "route-quality-incline": "Codificació de la inclinació",
     "route-quality-shortcut": "{{action}} (tecla {{key}} per commutar)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
-    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
+    "route-tooltip-waypoint": "Fita. Arrossegueu per moure-la; cliqueu per eliminar-la.",
     "strava-biking": "Mostra els segments de bici de Strava",
     "strava-running": "Mostra els segments de córrer de Strava",
     "strava-shortcut": "{{action}}\n(tecla {{key}} per commutar les capes, cliqueu per recarregar l'àrea actual)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Apropa",
     "zoomOutTitle": "Allunya"
   },
   "modal": {
-    "close": "Tanca"},
+    "close": "Tanca",
+    "or": ""
+  },
   "navbar": {
     "about": "Quant a",
     "alternative": {
@@ -183,7 +198,7 @@
       "fastbike": "Bici ràpida",
       "fastbike-asia-pacific": "Bici ràpida (Àsia Pacífic)",
       "fastbike-lowtraffic": "Bici ràpida (poc trànsit)",
-      "hiking-beta": "Excursionisme (beta)",
+      "hiking-mountain": "Excursionisme",
       "moped": "Ciclomotor",
       "rail": "Via",
       "river": "Riu",
@@ -198,6 +213,14 @@
       "vm-forum-velomobil-schnell": "Velomobile (ràpid)"
     },
     "profile-tooltip": "\n(tecla {{key}} per canviar)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {
@@ -235,7 +258,7 @@
         "europe": "Europa",
         "europe-monolingual": "Europa monolingüe",
         "overlays": "Superposicions",
-        "overpass": "Locations (POIs)",
+        "overpass": "Ubicacions (PDI)",
         "worldwide": "Arreu del món",
         "worldwide-international": "Arreu del món internacional",
         "worldwide-monolingual": "Arreu del món monolígüe"
@@ -247,15 +270,15 @@
       "optional": "Afegeix o elimina capes opcionals",
       "optional-layers": "Més",
       "overlay-opacity": "Transparència de la superposició",
-      "overlay-opacity_plural": "Overlays transparency",
+      "overlay-opacity_plural": "Transparència de la superposicions",
       "table": {
-        "URL": "URL/Query",
+        "URL": "URL/Consulta",
         "empty": "Encara no hi ha cap capa personalitzada configurada.",
         "name": "Nom",
         "type": "Tipus",
-        "type_layer": "Layer",
-        "type_overlay": "Overlay",
-        "type_overpass_query": "Overpass Query"
+        "type_layer": "Capa",
+        "type_overlay": "Superposició",
+        "type_overpass_query": "Consulta d'Overpass"
       },
       "title": "Capes",
       "tooltip": "Seleccioneu capes"
@@ -273,11 +296,11 @@
   },
   "title": "Client web de BRouter",
   "trackasroute": {
-    "browse": "Browse",
+    "browse": "Navega",
     "explainpoi": "(mostra les fites com a PDI)",
     "explaintracklayer": "(mostra traces com a capa separada)",
     "file": "Fitxer de traça",
-    "fuzziness": "Fuzziness",
+    "fuzziness": "Grau d'aproximació",
     "pleasewait": "Espereu si us plau.",
     "showpois": "PDI",
     "title": "Carrega una traça com a ruta",

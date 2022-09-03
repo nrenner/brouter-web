@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 BR = {};
 BR.conf = {};
 $ = require('jquery');

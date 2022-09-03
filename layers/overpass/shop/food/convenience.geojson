@@ -5,7 +5,7 @@
     "id": "convenience",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "icon": "fas-shopping-basket",
+    "icon": "fas-basket-shopping",
     "query": "nwr[shop=convenience];"
   },
   "type": "Feature"

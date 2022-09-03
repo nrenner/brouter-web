@@ -26,25 +26,20 @@ L.BRouter = L.Class.extend({
             }, this),
             1
         );
-
-        // patch to call callbacks on kill for cleanup (loadingTrailer)
-        this.queue.kill = function () {
-            var aborted = this.tasks;
-            this.drain = null;
-            this.tasks = [];
-            aborted.forEach(function (task) {
-                task.callback(L.BRouter.ABORTED_ERROR);
-            });
-        };
     },
 
     setOptions: function (options) {
         L.setOptions(this, options);
     },
 
-    getUrlParams: function (latLngs, pois, circlego, format) {
+    getUrlParams: function (latLngs, beelineFlags, pois, circlego, format) {
         params = {};
         if (this._getLonLatsString(latLngs) != null) params.lonlats = this._getLonLatsString(latLngs);
+
+        if (beelineFlags && beelineFlags.length > 0) {
+            const beelineString = this._getBeelineString(beelineFlags);
+            if (beelineString.length > 0) params.straight = beelineString;
+        }
 
         if (this.options.nogos && this._getNogosString(this.options.nogos).length > 0)
             params.nogos = this._getNogosString(this.options.nogos);
@@ -84,6 +79,9 @@ L.BRouter = L.Class.extend({
         if (params.lonlats) {
             opts.lonlats = this._parseLonLats(params.lonlats);
         }
+        if (params.straight) {
+            opts.beelineFlags = this._parseBeelines(params.straight, opts.lonlats);
+        }
         if (params.nogos) {
             opts.nogos = this._parseNogos(params.nogos);
         }
@@ -97,7 +95,7 @@ L.BRouter = L.Class.extend({
             opts.alternative = params.alternativeidx;
         }
         if (params.profile) {
-            opts.profile = params.profile;
+            opts.profile = this._parseProfile(params.profile);
         }
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
@@ -117,11 +115,12 @@ L.BRouter = L.Class.extend({
         return opts;
     },
 
-    getUrl: function (latLngs, pois, circlego, format, trackname, exportWaypoints) {
-        var urlParams = this.getUrlParams(latLngs, pois, circlego, format);
+    getUrl: function (latLngs, beelineFlags, pois, circlego, format, trackname, exportWaypoints) {
+        var urlParams = this.getUrlParams(latLngs, beelineFlags, pois, circlego, format);
         var args = [];
         if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
             args.push(L.Util.template('lonlats={lonlats}', urlParams));
+        if (urlParams.straight != null) args.push(L.Util.template('straight={straight}', urlParams));
         if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
         if (urlParams.circlego != null) args.push(L.Util.template('ringgo={circlego}', urlParams));
         if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
@@ -144,7 +143,7 @@ L.BRouter = L.Class.extend({
     },
 
     getRoute: function (latLngs, cb) {
-        var url = this.getUrl(latLngs, null, null, 'geojson'),
+        var url = this.getUrl(latLngs, null, null, null, 'geojson'),
             xhr = new XMLHttpRequest();
 
         if (!url) {
@@ -228,7 +227,7 @@ L.BRouter = L.Class.extend({
                     var segmentLatLng = segmentLatLngs[fi],
                         featureMessage = featureMessages[mi];
 
-                    segmentLatLng.feature = this._getFeature(featureMessage);
+                    segmentLatLng.feature = BR.TrackEdges.getFeature(featureMessage);
                     segmentLatLng.message = featureMessage;
 
                     if (featureLatLng.equals(segmentLatLngs[fi])) {
@@ -239,22 +238,6 @@ L.BRouter = L.Class.extend({
             }
         }
         return segment;
-    },
-
-    _getFeature: function (featureMessage) {
-        //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
-        return {
-            cost: {
-                perKm: parseInt(featureMessage[4]),
-                elev: parseInt(featureMessage[5]),
-                turn: parseInt(featureMessage[6]),
-                node: parseInt(featureMessage[7]),
-                initial: parseInt(featureMessage[8]),
-            },
-            distance: parseInt(featureMessage[3]),
-            wayTags: featureMessage[9],
-            nodeTags: featureMessage[10],
-        };
     },
 
     _getFeatureLatLng: function (message) {
@@ -303,6 +286,27 @@ L.BRouter = L.Class.extend({
         }
 
         return lonlats;
+    },
+
+    _getBeelineString: function (beelineFlags) {
+        var indexes = [];
+        for (var i = 0; i < beelineFlags.length; i++) {
+            if (beelineFlags[i]) {
+                indexes.push(i);
+            }
+        }
+        return indexes.join(',');
+    },
+
+    _parseBeelines: function (s, lonlats) {
+        if (!lonlats || lonlats.length < 2) return [];
+
+        const beelineFlags = new Array(lonlats.length - 1);
+        beelineFlags.fill(false);
+        for (const i of s.split(',')) {
+            beelineFlags[i] = true;
+        }
+        return beelineFlags;
     },
 
     _getLonLatsNameString: function (latLngNames) {
@@ -492,6 +496,14 @@ L.BRouter = L.Class.extend({
             }
         }
         return nogos;
+    },
+
+    _parseProfile: function (profile) {
+        if (BR.conf.profilesRename?.[profile]) {
+            return BR.conf.profilesRename[profile];
+        }
+
+        return profile;
     },
 
     // formats L.LatLng object as lng,lat string

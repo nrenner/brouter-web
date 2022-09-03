@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Przewyższenie",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Koszt",
     "distance": "Odległość",
     "elevation-chart": "Przełącz wykres wysokości",
@@ -72,23 +73,33 @@
     "add-base": "Dodaj warstwę bazową",
     "add-overlay": "Dodaj nakładkę",
     "add-overpass": "Dodaj zapytanie overpass",
-    "custom-layer-name-helptext": "np: OpenStreetMap",
+    "custom-layer-name-helptext": "np. OpenStreetMap",
     "custom-layer-name-label": "Nazwa warstwy",
-    "custom-layer-url-helptext-normal": "URL warstw podstawowych, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-url-helptext-normal": "URL warstw podstawowych, np. https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     "custom-layer-url-helptext-overpass": "Zapytanie Overpass, np. nwr[shop]['diet:vegan']['diet:vegan'!=no];",
     "custom-layer-url-label": "URL/zapytanie warstwy użytkownika",
     "customize": "Dostosuj warstwy",
     "opacity-slider": "Suwak pokrycia",
-    "overpass-loading-indicator": "Zapytanie Overpass API w trakcie ...",
+    "overpass-loading-indicator": "Zapytanie Overpass API w trakcie...",
     "remove-selection": "Usuń zaznaczenie"
   },
   "loadNogos": {
     "defaultProperties": "Domyślne właściwości",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "Plik (.geojson)",
     "load": "Wczytaj",
     "nogoBuffer": "Zakres ładowania obszarów omijania (w metrach)",
     "nogoRadius": "Promień obszaru omijania dla punktów (w metrach)",
-    "nogoWeight": "Waga obszaru omijania (-1 oznacza całkowicie nieprzejezdny)",
+    "nogoWeight": "Waga obszaru omijania (-1 to nieprzejezdne)",
     "source": "Źródło",
     "title": "Wczytaj obszary omijania",
     "url": "URL"
@@ -122,6 +133,7 @@
       "esri": "Esri",
       "hikebike-hillshading": "Cieniowanie (Mapa wspinaczkowo-rowerowa)",
       "hiking": "Wspinaczka (oznaczone szlaki)",
+      "hillshading": "Cieniowanie",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Na zewnątrz (Thunderforest)",
@@ -149,16 +161,19 @@
     "route-quality-cost": "Kodowanie kosztów",
     "route-quality-incline": "Kodowanie nachylenia",
     "route-quality-shortcut": "{{action}} (naciśnij {{key}} aby przełączyć)",
-    "route-tooltip-segment": "Przeciągnij aby dodać punkt trasy",
-    "route-tooltip-waypoint": "Punkt trasy. Przeciągnij aby przenieść; Kliknij aby usunąć.",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
+    "route-tooltip-waypoint": "Punkt trasy. Przeciągnij, aby przenieść; Kliknij, aby usunąć.",
     "strava-biking": "Pokaż rowerowe segmenty Strava ",
     "strava-running": "Pokaż biegowe segmenty Strava",
     "strava-shortcut": "{{action}}\n(klawisz {{key}} aby przełączyć widoczność warstwy, kliknij aby odświeżyć w bieżącym obszarze)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Przybliż",
     "zoomOutTitle": "Oddal"
   },
   "modal": {
-    "close": "Zamknij"},
+    "close": "Zamknij",
+    "or": ""
+  },
   "navbar": {
     "about": "Informacje",
     "alternative": {
@@ -183,7 +198,7 @@
       "fastbike": "Rower szosowy",
       "fastbike-asia-pacific": "Rower szosowy (Azja Pacyfik)",
       "fastbike-lowtraffic": "Rower szosowy (mały ruch)",
-      "hiking-beta": "Wspinaczka (beta)",
+      "hiking-mountain": "Wspinaczka",
       "moped": "Motorower",
       "rail": "Kolej",
       "river": "Rzeka",
@@ -198,6 +213,14 @@
       "vm-forum-velomobil-schnell": "Velomobile (szosowy)"
     },
     "profile-tooltip": "\n(naciśnij {{key}} aby przełączyć)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {
@@ -297,7 +320,7 @@
     "upload-error": "Błąd przesyłania: {{error}}"
   },
   "whatsnew": {
-    "new-version": "Od momentu twojej ostatniej wizyty pojawiłą się nowsza wersja. kliknij <a href='.' data-toggle='modal' data-target='#whatsnew'>tutaj</a> aby sprawdzić co nowego!",
+    "new-version": "Od twojej ostatniej wizyty pojawiła się nowsza wersja. Kliknij <a href='.' data-toggle='modal' data-target='#whatsnew'>tutaj</a>, aby sprawdzić, co nowego!",
     "title": "Co nowego?"
   }
 }

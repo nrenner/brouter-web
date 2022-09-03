@@ -1,0 +1,13 @@
+{
+    "extends": ["config:base"],
+    "digest": {
+        "enabled": false
+    },
+    "labels": ["dependencies"],
+    "packageRules": [
+        {
+            "matchDepTypes": ["devDependencies"],
+            "schedule": ["on Monday every 2 weeks"]
+        }
+    ]
+}

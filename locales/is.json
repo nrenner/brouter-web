@@ -43,6 +43,7 @@
   },
   "footer": {
     "ascend": "Uppsöfnuð hækkun",
+    "beeline-warning": "Warning: no data for straight lines, values interpolated",
     "cost": "Kostnaður",
     "distance": "Vegalengd",
     "elevation-chart": "Toggle elevation chart",
@@ -84,6 +85,16 @@
   },
   "loadNogos": {
     "defaultProperties": "Sjálfgefnir eiginleikar",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Could not load file: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Missing file or URL.",
+      "no-valid-area": "No valid area found in provided input."
+    },
     "file": "File (.geojson)",
     "load": "Hlaða",
     "nogoBuffer": "Buffer no-go areas (in meters)",
@@ -91,7 +102,7 @@
     "nogoWeight": "No-go weight (-1 means impassable)",
     "source": "Uppruni",
     "title": "Hlaða inn bannsvæðum",
-    "url": "URL"
+    "url": "Slóð"
   },
   "map": {
     "attribution-osm-long": "OpenStreetMap þátttakendurnir",
@@ -122,6 +133,7 @@
       "esri": "Esri World Imagery heimsmyndasafnið",
       "hikebike-hillshading": "Hæðaskygging (göngu- og hjólakort)",
       "hiking": "Gangandi (Waymarked Trails)",
+      "hillshading": "Hæðaskygging",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Útivist (Thunderforest)",
@@ -140,7 +152,7 @@
       "help": "&square; = færa / breyta stærð, <span class=\"fa fa-trash-o\"></span> = eyða,<br>smella á hring til að hætta breytingum"
     },
     "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
+    "opacity-slider": "Stilla gegnsæi leiða og merkja",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Forskoðun",
     "privacy": "Persónuvernd",
@@ -149,16 +161,19 @@
     "route-quality-cost": "Kóði fyrir kostnað",
     "route-quality-incline": "Kóði fyrir halla",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Sýna Strava hjólabúta",
     "strava-running": "Sýna Strava hlaupabúta",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Toggle straight line",
     "zoomInTitle": "Renna að",
     "zoomOutTitle": "Renna frá"
   },
   "modal": {
-    "close": "Loka"},
+    "close": "Loka",
+    "or": ""
+  },
   "navbar": {
     "about": "Um hugbúnaðinn",
     "alternative": {
@@ -183,7 +198,7 @@
       "fastbike": "Hröð hjól (fastbike)",
       "fastbike-asia-pacific": "Hröð hjól (fastbike - Kyrrahafs-Asía)",
       "fastbike-lowtraffic": "Hröð hjól (fastbike - lítil umferð)",
-      "hiking-beta": "Gangandi (prufuútgáfa)",
+      "hiking-mountain": "Gangandi",
       "moped": "Skellinöðrur",
       "rail": "Lestir",
       "river": "Á",
@@ -198,6 +213,14 @@
       "vm-forum-velomobil-schnell": "Hjúphjól (velomobile - hratt)"
     },
     "profile-tooltip": "\n({{key}} key to switch)"
+  },
+  "searchfav": {
+    "addfavorite": "add as favorite",
+    "ask_removeall": "Do you want to delete all search favorites?",
+    "export": "export favorites to file",
+    "import": "import favorites from file",
+    "openfavorites": "open favorite list",
+    "removeall": "delete all favorites"
   },
   "sidebar": {
     "analysis": {
@@ -217,7 +240,7 @@
     },
     "customize-profile": {
       "title": "Sérsníða notkunarsnið",
-      "tooltip": "Customize profile"
+      "tooltip": "Sérsníða notkunarsnið"
     },
     "data": {
       "sync-map": "Samstilla kort",

@@ -32,6 +32,7 @@ BR.Track = {
                     zIndexOffset: -1000,
                 });
             },
+            pane: 'tracks',
         };
     },
 

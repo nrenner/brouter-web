@@ -5,7 +5,7 @@
     "id": "telephone",
     "overlay": true,
     "dataSource": "OverpassAPI",
-    "icon": "fas-phone-alt",
+    "icon": "fas-phone-flip",
     "query": "nwr[amenity=telephone];"
   },
   "type": "Feature"

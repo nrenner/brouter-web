@@ -5,17 +5,17 @@
     "bug-reports-front": "webklient / for-ende",
     "chat": "Chat med brukere og utviklere",
     "contact": "Kontakt:",
-    "contact-language": "Preferred language is English, as we have both international contributors and users.",
+    "contact-language": "Foretrukket språk er engelsk, da vi har både internasjonale bidragsytere og brukere.",
     "data": "Data:",
     "data-description": "Dette er basert på <a href=\"https://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>. Vanligvis blir det oppdatert daglig. Se dato på <a href=\"https://brouter.de/brouter/segments4/\" target=\"_blank\">datafilene</a>.",
     "description": "Online-tjenesten til BRounter rutemotoren. For offline Android-app og mer informasjon, se <a href=\"https://brouter.de/\" target=\"_blank\">brouter.de</a>",
     "details": "<i><a href=\"{{privacyPolicyUrl}}\" target=\"_blank\">Personvernerklæring</a></i>, \n<i><a href=\"https://github.com/nrenner/brouter-web#credits-and-licenses\" target=\"_blank\">Kreditt</a></i>,\n<i><a href=\"https://github.com/nrenner/brouter-web/blob/master/CHANGELOG.md\" target=\"_blank\">Endringslogg</a></i> og\n<i><a href=\"https://github.com/nrenner/brouter-web#readme\" target=\"_blank\">mer informasjon</a></i> om klienten.",
     "support": "Generelle diskusjoner/spørsmål, støtte",
     "title": "Om",
-    "tooltip": "Show more information about BRouter-Web"
+    "tooltip": "Vis mer informasjon om BRouter-Web"
   },
   "credits": {
-    "boundaries": "Administrative Boundaries: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
+    "boundaries": "Administrative grenser: <a href=\"https://osm-boundaries.com\" target=\"_blank\">OSM-Boundaries</a>, <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API",
     "brouter": "BRouter",
     "brouter-license": "<a target=\"_blank\" href=\"https://brouter.de/brouter\">BRouter</a> &copy; Arndt Brenschede",
     "elevation-data": "Høydedata",
@@ -26,7 +26,7 @@
     "nominatim": "Søk av <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\" target=\"_blank\" data-i18n=\"credits.nominatim\">Nominatim</a>",
     "openstreetmap": "&copy; <a target=\"_blank\" href=\"https://www.openstreetmap.org/copyright\" >OpenStreetMap-bidragsytere</a> under <a target=\"_blank\" href=\"https://opendatacommons.org/licenses/odbl/\" >ODbL</a>",
     "pois": "Locations (POIs): <a href=\"https://overpass-api.de/\" class=\"overpass-url\" target=\"_blank\">Overpass API</a>",
-    "title": "Credits"
+    "title": "Kreditering"
   },
   "export": {
     "format": "Format",
@@ -43,9 +43,10 @@
   },
   "footer": {
     "ascend": "Stigning",
+    "beeline-warning": "Advarsel: ingen data for rette linjer, verdier interpolert",
     "cost": "Kostnad",
     "distance": "Distanse",
-    "elevation-chart": "Toggle elevation chart",
+    "elevation-chart": "Bytt høydediagram",
     "energy-per-100km": "Energi per 100 km",
     "hours": "timer",
     "hours-abbrev": "t",
@@ -56,14 +57,14 @@
     "mean-cost-factor": "Gjennomsnittelig kostnadsfaktor",
     "meter": "meter",
     "meter-abbrev": "m",
-    "no-elevation-data": "No elevation data available for this route.",
+    "no-elevation-data": "Ingen høydedata tilgjengelig for denne ruten.",
     "plain-ascend": "Stigning",
-    "stats-info": "Start drawing a route to get stats.",
+    "stats-info": "Begynn å tegne en rute for å få statistikk.",
     "total-energy": "Total energi",
     "travel-time": "Reisetid"
   },
   "keyboard": {
-    "backspace": "Backspace",
+    "backspace": "Tilbaketast",
     "escape": "Escape",
     "generic-shortcut": "{{action}} ({{key}} key)",
     "shift": "Shift"
@@ -73,10 +74,10 @@
     "add-overlay": "Legg til overlag",
     "add-overpass": "Add overpass query",
     "custom-layer-name-helptext": "ex: OpenStreetMap",
-    "custom-layer-name-label": "Custom layer name",
-    "custom-layer-url-helptext-normal": "URL for normal layers, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "custom-layer-name-label": "Egendefinert lagnavn",
+    "custom-layer-url-helptext-normal": "URL for normale lag, ex: https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     "custom-layer-url-helptext-overpass": "Overpass Query, ex: nwr[shop]['diet:vegan']['diet:vegan'!=no];",
-    "custom-layer-url-label": "Custom layer URL/Query",
+    "custom-layer-url-label": "Egendefinert lags URL/søk",
     "customize": "Tilpass lag",
     "opacity-slider": "Gjennomsiktelighet",
     "overpass-loading-indicator": "Running Overpass API query ...",
@@ -84,7 +85,17 @@
   },
   "loadNogos": {
     "defaultProperties": "Standardegenskaper",
-    "file": "File (.geojson)",
+    "error": {
+      "invalid-default-nogo-radius": "Invalid default nogo radius.",
+      "invalid-nogo-buffering-radius": "Invalid nogo buffering radius.",
+      "loading-file-error": "Kunne ikke laste fil: {{err}}.",
+      "loading-file-too-big": "Too many nogo areas in this file! Please simplify the geometry and/or reduce the number of zones.",
+      "loading-file-unexpected": "Unexpected error when loading this file.",
+      "missing-default-nogo-weight": "Missing default nogo weight.",
+      "missing-file-url": "Manglende fil eller URL.",
+      "no-valid-area": "Ingen gyldig område funnet i i gitt innspill."
+    },
+    "file": "Fil (.geojson)",
     "load": "Last",
     "nogoBuffer": "Buffer no-go areas (in meters)",
     "nogoRadius": "No-go radius for points (in meters)",
@@ -103,15 +114,15 @@
     "delete-nogo-areas": "Slett alle no-go områder",
     "delete-pois": "Slett alle interessepunkter",
     "delete-route": "Slett rute",
-    "draw-circlego-start": "Draw limited go-to zone",
-    "draw-circlego-stop": "Stop drawing limited go-to zone",
-    "draw-poi-start": "Draw points of interest",
-    "draw-poi-stop": "Stop drawing points of interest",
-    "draw-route-start": "Draw route",
-    "draw-route-stop": "Stop drawing route",
+    "draw-circlego-start": "Trekk begrenset gå-til-sone",
+    "draw-circlego-stop": "Slutt å tegne begrenset gå-til-sone",
+    "draw-poi-start": "Tegn interessepunkter",
+    "draw-poi-stop": "Slutt å tegne interessepunkter",
+    "draw-route-start": "Tegn rute",
+    "draw-route-stop": "Slutt å tegne rute",
     "enter-poi-name": "Angi interessepunktets navn",
-    "geocoder": "Search",
-    "geocoder-placeholder": "Search…",
+    "geocoder": "Søk",
+    "geocoder-placeholder": "Søk…",
     "hikebike-hillshading": "Høydeskygger",
     "hiking": "Gåtur",
     "layer": {
@@ -122,6 +133,7 @@
       "esri": "Esri World ortofoto",
       "hikebike-hillshading": "Høydeskygging (Kart for gå- og sykkeltur)",
       "hiking": "Gåtur (markerte stier)",
+      "hillshading": "Høydeskygger",
       "osm": "OpenStreetMap",
       "osmde": "OpenStreetMap.de",
       "outdoors": "Utendørs (Thunderforest)",
@@ -135,12 +147,12 @@
     "nogo": {
       "cancel": "Avbryt tegning av no-go område",
       "click-drag": "Klikk og dra for å tegne sirkel",
-      "draw": "Draw circular no-go area",
+      "draw": "Tegn sirkulært forbudt område",
       "edit": "Klikk for å redigere",
       "help": "&square; = flytt / endre størrelse, <span class=\"fa fa-trash-o\"></span> = slett,<br>klikk på sirkelen for å avslutte redigering"
     },
-    "not-applicable-here": "not applicable here",
-    "opacity-slider": "Set transparency of route track and markers",
+    "not-applicable-here": "ikke aktuelt her",
+    "opacity-slider": "Still inn gjennomsiktighet for rutespor og markører",
     "opacity-slider-shortcut": "{{action}}\n(Hold {{key}} key to mute temporarily)",
     "preview": "Forhåndsvisning",
     "privacy": "Personvern",
@@ -149,16 +161,19 @@
     "route-quality-cost": "Kostnad-koding",
     "route-quality-incline": "Stigning-koding",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
-    "route-tooltip-segment": "Drag to create a new waypoint",
-    "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
+    "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
+    "route-tooltip-waypoint": "Veipunkt. Dra for å flytte; Klikk for å fjerne.",
     "strava-biking": "Vis Strava sykkel-segmenter",
     "strava-running": "Vis Strava løpe-segmenter",
     "strava-shortcut": "{{action}}\n({{key}} key to toggle layer, click to reload for current area)",
+    "toggle-beeline": "Slå på rett linje",
     "zoomInTitle": "Zoom inn",
     "zoomOutTitle": "Zoom ut"
   },
   "modal": {
-    "close": "Lukk"},
+    "close": "Lukk",
+    "or": ""
+  },
   "navbar": {
     "about": "Om",
     "alternative": {
@@ -168,9 +183,9 @@
       "third": "Tredje alternativ"
     },
     "export": "Eksporter",
-    "export-tooltip": "Export route",
+    "export-tooltip": "Exporter rute",
     "load": {
-      "nogos": "Load no-go areas",
+      "nogos": "Last no-go områder",
       "title": "Last",
       "tooltip": "{{tracksAction}} ({{tracksKey}} key)\n{{trackAsRouteAction}} ({{trackAsRouteKey}})\n{{nogosAction}} ({{nogosKey}})",
       "tracks": "Load tracks"
@@ -183,9 +198,9 @@
       "fastbike": "Fastbike",
       "fastbike-asia-pacific": "Fastbike (Asia Pacific)",
       "fastbike-lowtraffic": "Fastbike (low traffic)",
-      "hiking-beta": "Hiking (beta)",
+      "hiking-mountain": "Gåtur",
       "moped": "Moped",
-      "rail": "Rail",
+      "rail": "Skinne",
       "river": "Elv",
       "safety": "Sikkerhet",
       "shortest": "Kortest",
@@ -194,75 +209,83 @@
       "trekking-noferries": "Trekking bike (no ferries)",
       "trekking-nosteps": "Trekking bike (no steps)",
       "trekking-steep": "Trekking bike (steep)",
-      "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
-      "vm-forum-velomobil-schnell": "Velomobile (fast)"
+      "vm-forum-liegerad-schnell": "Liggesykkel (fast)",
+      "vm-forum-velomobil-schnell": "Velomobil (fast)"
     },
     "profile-tooltip": "\n({{key}} key to switch)"
+  },
+  "searchfav": {
+    "addfavorite": "legg til som favoritt",
+    "ask_removeall": "Vil du slette alle søkefavoritter?",
+    "export": "eksportere favoritter til fil",
+    "import": "importer favoritter fra fil",
+    "openfavorites": "åpne favorittliste",
+    "removeall": "slett alle favoritter"
   },
   "sidebar": {
     "analysis": {
       "header": {
-        "highway": "Highway",
-        "smoothness": "Smoothness",
-        "surface": "Surface"
+        "highway": "Motorvei",
+        "smoothness": "Jevnhet",
+        "surface": "Underlag"
       },
       "table": {
-        "category": "Category",
-        "length": "Length",
-        "total_known": "Total Known:",
-        "unknown": "Unknown"
+        "category": "Kategori",
+        "length": "Lengde",
+        "total_known": "Totalt kjent:",
+        "unknown": "Ukjent"
       },
-      "title": "Analysis",
-      "tooltip": "Analyse route"
+      "title": "Analyse",
+      "tooltip": "Analyser rute"
     },
     "customize-profile": {
-      "title": "Customize profile",
-      "tooltip": "Customize profile"
+      "title": "Tilpass profil",
+      "tooltip": "Tilpass profil"
     },
     "data": {
-      "sync-map": "Synchronize map",
+      "sync-map": "Synkroniser kart",
       "title": "Data",
       "tooltip": "Show detailed route data table"
     },
     "itinerary": {
-      "title": "Itinerary",
-      "tooltip": "Show itinerary"
+      "title": "Reiserute",
+      "tooltip": "Vis Reiserute"
     },
     "layers": {
       "category": {
-        "base-layers": "Base layers",
+        "base-layers": "Baselag",
         "country": "Land",
         "europe": "Europa",
         "europe-monolingual": "Europe monolingual",
-        "overlays": "Overlays",
-        "overpass": "Locations (POIs)",
-        "worldwide": "Worldwide",
-        "worldwide-international": "Worldwide international",
+        "overlays": "Ooverlegg",
+        "overpass": "Steder (POIer)",
+        "worldwide": "Verdensomspennende",
+        "worldwide-international": "Verdensomspennende internasjonal",
         "worldwide-monolingual": "Worldwide monolingual"
       },
-      "collapse": "Collapse all",
+      "collapse": "Skjul alt",
       "custom-layers": "Tilpassede lag",
       "customize": "Add or remove custom layers",
       "expand": "Utvid alt",
-      "optional": "Add or remove optional layers",
+      "optional": "Legg til eller fjern valgfrie lag",
       "optional-layers": "Mer",
       "overlay-opacity": "Overleggs transparens",
-      "overlay-opacity_plural": "Overlays transparency",
+      "overlay-opacity_plural": "Overlegg gjennomsiktighet",
       "table": {
         "URL": "URL/Query",
         "empty": "Ingen tilpasset lag konfigurert ennå.",
         "name": "Navn",
         "type": "Type",
-        "type_layer": "Layer",
-        "type_overlay": "Overlay",
+        "type_layer": "Lag",
+        "type_overlay": "Overlegg",
         "type_overpass_query": "Overpass Query"
       },
       "title": "Lag",
-      "tooltip": "Select layers"
+      "tooltip": "Velg lag"
     },
     "profile": {
       "apply": "Anvende",
-      "clear": "Clear",
+      "clear": "Klar",
       "help": "Hjelp",
       "no_easy_configuration_warning": "Ingen enkel konfigurasjon er tilgjengelig for denne profilen.",
       "options": "Alternativer",
@@ -271,14 +294,14 @@
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} key to toggle, {{switchKey}} to switch to next tab)"
   },
-  "title": "BRouter web client",
+  "title": "BRouter nettklient",
   "trackasroute": {
-    "browse": "Browse",
+    "browse": "Bla gjennom",
     "explainpoi": "(show waypoints as POI's)",
     "explaintracklayer": "(show Track as separate Layer)",
     "file": "Trackfile",
     "fuzziness": "Fuzziness",
-    "pleasewait": "Please wait!",
+    "pleasewait": "Vennligst vent!",
     "showpois": "POI's",
     "title": "Load Track as Route",
     "tracklayer": "Track Layer",
@@ -286,11 +309,11 @@
   },
   "warning": {
     "cannot-get-route": "Feil under mottak av rute-URL",
-    "invalid-route-from": "Start marker is too far from a route.",
-    "invalid-route-to": "Destination marker is too far from a route.",
+    "invalid-route-from": "Startmarkøren er for langt fra en rute.",
+    "invalid-route-to": "Destinasjonsmarkøren er for langt fra en rute.",
     "no-response": "ingen svar fra serveren",
     "no-route-found": "Error: cannot find a route for given points. Maybe try to move them closer to roads?",
-    "profile-error": "Profile error: no or empty response from server",
+    "profile-error": "Profilfeil: ingen eller tom respons fra serveren",
     "strava-error": "Feil ved å skaffe Strava-segmenter: {{error}}",
     "temporary-profile": "<strong>Note:</strong> Uploaded custom profiles are only cached temporarily on the server.<br/>Please save your edits to your local PC.",
     "tracks-load-error": "Feil ved lasting av spor: {{error}}",
@@ -298,6 +321,6 @@
   },
   "whatsnew": {
     "new-version": "A new version was released since your last visit. Click <a href='.' data-toggle='modal' data-target='#whatsnew'>here</a> to see what's new!",
-    "title": "What's new?"
+    "title": "Hva er nytt?"
   }
 }

@@ -15,7 +15,7 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    'HikeBike.HillShading',
+    'terrarium-hillshading',
     'Waymarked_Trails-Cycling',
     'Waymarked_Trails-Hiking'
 ];
@@ -26,7 +26,9 @@ BR.confLayers.legacyNameToIdMap = {
     'OpenTopoMap': 'OpenTopoMap',
     'Esri World Imagery': 'Esri.WorldImagery',
     'Cycling (Waymarked Trails)': 'Waymarked_Trails-Cycling',
-    'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking'
+    'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking',
+    'HikeBike.HillShading': 'terrarium-hillshading',
+    'mapillary-coverage-raster': 'mapillary-coverage'
 };
 
 BR.confLayers.leafletProvidersIncludeList = [

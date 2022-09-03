@@ -341,7 +341,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
 
             if (routingPoints.length > 0) {
-                routing.setWaypoints(routingPoints, function (event) {
+                routing.setWaypoints(routingPoints, null, function (event) {
                     if (!event) return;
                     var err = event.error;
                     BR.message.showError(

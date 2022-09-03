@@ -16,5 +16,8 @@
 
         // OpenMapSurfer (OpenRouteService API), https://openrouteservice.org/plans/
         openrouteservice: '',
+
+        // Mapillary, https://www.mapillary.com/dashboard/developers
+        mapillary: ``,
     };
 })();

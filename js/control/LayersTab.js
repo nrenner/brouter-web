@@ -46,13 +46,14 @@ BR.LayersTab = BR.ControlLayers.extend({
             title: i18next.t('layers.opacity-slider'),
             callback: function (opacity) {
                 for (var i = 0; i < self._layers.length; i++) {
-                    if (!self._layers[i].overlay || !map.hasLayer(self._layers[i].layer)) {
+                    const layer = self._layers[i].layer;
+                    if (!self._layers[i].overlay || !map.hasLayer(layer)) {
                         continue;
                     }
-                    if (self._layers[i].layer.setOpacity) {
-                        self._layers[i].layer.setOpacity(opacity);
-                    } else {
-                        self._layers[i].layer.setStyle({ opacity: opacity });
+                    if (layer.setOpacity) {
+                        layer.setOpacity(opacity);
+                    } else if (layer.setStyle) {
+                        layer.setStyle({ opacity: opacity });
                     }
                 }
             },
@@ -230,7 +231,7 @@ BR.LayersTab = BR.ControlLayers.extend({
 
         function walkTree(inTree, outTree) {
             function walkObject(obj) {
-                for (name in obj) {
+                for (const name in obj) {
                     var value = obj[name];
                     var rootNode = createRootNode(name);
 

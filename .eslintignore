@@ -1,5 +1,5 @@
-layers/josm/extract.js
-layers/collection/extract.js
+layers/josm/extract.mjs
+layers/collection/extract.mjs
 gulpfile.js
 dist/brouter-web.js
 dist/turf.min.js

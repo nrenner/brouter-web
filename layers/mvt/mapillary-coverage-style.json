@@ -1,0 +1,69 @@
+{
+    "version": 8,
+    "sources": {
+        "mapillary-coverage": {
+            "type": "vector",
+            "tiles": [
+                "https://tiles.mapillary.com/maps/vtp/mly1_public/2/{z}/{x}/{y}?access_token={keys_mapillary}"
+            ],
+            "minzoom": 0,
+            "maxzoom": 14
+        }
+    },
+    "layers": [
+        {
+            "id": "mapillary-sequence",
+            "type": "line",
+            "source": "mapillary-coverage",
+            "source-layer": "sequence",
+            "minzoom": 6,
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-opacity": 1,
+                "line-color": "rgb(53, 175, 109)",
+                "line-width": 2
+            }
+        },
+        {
+            "id": "mapillary-image",
+            "type": "circle",
+            "source": "mapillary-coverage",
+            "source-layer": "image",
+            "interactive": true,
+            "minzoom": 14,
+            "paint": { 
+                "circle-radius": 3, 
+                "circle-opacity": 1,
+                "circle-color": "rgb(53, 175, 109)"
+            }
+        },
+        {
+            "filter": ["==", "is_pano", true],
+            "id": "mapillary-pano",
+            "type": "circle",
+            "source": "mapillary-coverage",
+            "source-layer": "image",
+            "minzoom": 17,
+            "paint": { 
+                "circle-radius": 9,
+                "circle-opacity": 0.2, 
+                "circle-color": "rgb(53, 175, 109)"
+            }
+        },
+        {
+            "id": "mapillary-overview",
+            "type": "circle",
+            "source": "mapillary-coverage",
+            "source-layer": "overview",
+            "maxzoom": 6,
+            "paint": { 
+                "circle-radius": 2, 
+                "circle-opacity": 0.5, 
+                "circle-color": "rgb(53, 175, 109)"
+            }
+        }
+    ]
+}

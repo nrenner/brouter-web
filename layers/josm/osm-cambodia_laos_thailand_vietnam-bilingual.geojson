@@ -160,6 +160,7 @@
     "id": "osm-cambodia_laos_thailand_vietnam-bilingual",
     "max_zoom": 20,
     "name": "Cambodia, Laos, Thailand, Vietnam, Malaysia, Myanmar bilingual",
+    "privacy_policy_url": "https://www.osm-tools.org",
     "type": "tms",
     "url": "https://{switch:a,b,c,d}.tile.osm-tools.org/osm/{zoom}/{x}/{y}.png",
     "valid-georeference": true,

@@ -50,8 +50,46 @@ table.dataTable {
     font-size: 1.2rem;
 }
 
-.overpass-tags th {
+.overpass-tags th,
+.overpass-tags td {
+    padding: 0.25em 0.5em;
     vertical-align: top;
+}
+
+.overpass-tags thead {
+    text-transform: uppercase;
+    color: #666;
+}
+
+.overpass-tags thead tr {
+    background-color: #ddd;
+}
+
+.overpass-tags thead th.overpass-label-key {
+    text-align: right;
+}
+
+.overpass-tags tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+.overpass-tags tbody tr:last-child {
+    border-bottom: 1px solid #eee;
+}
+
+.overpass-tags tbody th {
+    text-align: right;
+    font-weight: normal;
+}
+
+.overpass-osm-link {
+    margin-top: 0.5rem;
+    text-align: right;
+    font-size: 80%;
+}
+.overpass-osm-link::before {
+    content: '🔎';
+    margin-right: 0.25em;
 }
 
 .overpass-layer-icon .sign > * {
@@ -90,6 +128,11 @@ table.dataTable {
 /* bottom underneath top controls when overlapping */
 .leaflet-bottom {
     z-index: 999;
+}
+
+/* Ensure z-index layer order works for Maplibre overlays, otherwise gets below base map after switch */
+.leaflet-gl-layer {
+    position: absolute;
 }
 
 .navbar {
@@ -441,6 +484,22 @@ button.btn {
 .leaflet-touch .leaflet-bar .fa {
     font-size: 16px;
     line-height: 30px;
+}
+
+button.activate-beeline-active,
+button.deactivate-beeline-active {
+    transition-duration: 0.3s;
+}
+button.activate-beeline-active.disabled,
+button.deactivate-beeline-active.disabled {
+    height: 0;
+    border-bottom-width: 0px;
+}
+.mdi.active {
+    fill: #2074b6;
+}
+.mdi {
+    width: 18px;
 }
 
 /* smaller tab height */
@@ -854,67 +913,71 @@ table.dataTable.display tbody tr:hover.selected {
     border-radius: 0;
 }
 
-
 /**
  * Autocompleter styles
  */
-.leaflet-control-geocoder-form.stayvisible { display: inline-block; } 
-.leaflet-control-geocoder-alternatives{ 
-	/* display: block;  */
-	position: absolute;
-	background-color: white;
-	left: 2rem;	
-} 
+.leaflet-control-geocoder-form.stayvisible {
+    display: inline-block;
+}
+.leaflet-control-geocoder-alternatives {
+    /* display: block;  */
+    position: absolute;
+    background-color: white;
+    left: 2rem;
+}
 
-.leaflet-control-geocoder-alternatives{ 
-	background-color: rgb(255, 255, 255);
+.leaflet-control-geocoder-alternatives {
+    background-color: rgb(255, 255, 255);
 }
 
 .autocomplete-container {
-	position:absolute;
-	left: 2rem;
-	width: calc( 100% - 3rem );
-	z-index: 100;
+    position: absolute;
+    left: 2rem;
+    width: calc(100% - 3rem);
+    z-index: 100;
 }
 
 .autocomplete-select-container {
-	max-height: 15vh;
-	overflow-y: auto;
+    max-height: 15vh;
+    overflow-y: auto;
 }
 
-.autocomplete-container .autocomplete-select button{
-	text-align: left;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	width: 100%;
+.autocomplete-container .autocomplete-select button {
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
 }
 
 #search-fav-menu-toggle {
-	text-align: right;
-	padding-right: 2rem;
-	line-height: 100%;
-	cursor: pointer;
+    text-align: right;
+    padding-right: 2rem;
+    line-height: 100%;
+    cursor: pointer;
 }
 
 #search-fav-menu-toggle > span {
-	font-weight: bold;
-	line-height: 0;
-	font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 0;
+    font-size: 1.2rem;
 }
 
-.autocomplete-container.filtered .autocomplete-select button{ display: none; }
-.autocomplete-container.filtered .autocomplete-select button.match{ display: inherit; }
+.autocomplete-container.filtered .autocomplete-select button {
+    display: none;
+}
+.autocomplete-container.filtered .autocomplete-select button.match {
+    display: inherit;
+}
 
 @media (max-width: 320.98px) {
-	.leaflet-control-geocoder-form > input[type=text] {
-		max-width: 50vw;
-	}
-	
-	.leaflet-control-geocoder-alternatives {
-		max-width: 65vw;
-	}
-}
+    .leaflet-control-geocoder-form > input[type='text'] {
+        max-width: 50vw;
+    }
 
+    .leaflet-control-geocoder-alternatives {
+        max-width: 65vw;
+    }
+}
 
 @media (max-width: 575.98px) {
     .modal-fullscreen-sm-down {

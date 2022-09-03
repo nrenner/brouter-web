@@ -15,7 +15,7 @@
     "name": "OpenCycleMap",
     "privacy_policy_url": "https://www.thunderforest.com/privacy",
     "type": "tms",
-    "url": "https://{switch:a,b,c}.tile.thunderforest.com/cycle/{zoom}/{x}/{y}.png?apikey=7bd5ed2197cf4da29fa26de0ba6530cc",
+    "url": "https://{switch:a,b,c}.tile.thunderforest.com/cycle/{zoom}/{x}/{y}.png?apikey={apikey}",
     "valid-georeference": true,
     "dataSource": "JOSM"
   },
