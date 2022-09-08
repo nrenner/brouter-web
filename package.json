@@ -49,7 +49,7 @@
         "bootstrap-select": "1.13.18",
         "bootstrap-slider": "11.0.2",
         "codemirror": "5.65.8",
-        "core-js-bundle": "3.25.0",
+        "core-js-bundle": "3.25.1",
         "datatables": "1.10.18",
         "font-awesome": "4.7.0",
         "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
