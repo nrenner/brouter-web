@@ -1,0 +1,21 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "Rendering: OpenRailwayMap, © Map data OpenStreetMap contributors",
+      "url": "https://www.openrailwaymap.org/"
+    },
+    "category": "osmbasedmap",
+    "icon": "https://www.openrailwaymap.org/img/openrailwaymap-64.png",
+    "id": "OpenRailwayMap",
+    "max_zoom": 20,
+    "min_zoom": 0,
+    "name": "OpenRailwayMap",
+    "overlay": true,
+    "type": "tms",
+    "url": "https://{switch:a,b,c}.tiles.openrailwaymap.org/standard/{zoom}/{x}/{y}.png",
+    "valid-georeference": true
+  },
+  "type": "Feature"
+}
