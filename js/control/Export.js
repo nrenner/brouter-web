@@ -59,10 +59,11 @@ BR.Export = L.Class.extend({
 
     _getMimeType: function (format) {
         const mimeTypeMap = {
-            gpx: 'application/gpx+xml',
-            kml: 'application/vnd.google-earth.kml+xml',
-            geojson: 'application/vnd.geo+json',
-            csv: 'text/tab-separated-values',
+            gpx: 'application/gpx+xml;charset=utf-8',
+            kml: 'application/vnd.google-earth.kml+xml;charset=utf-8',
+            geojson: 'application/vnd.geo+json;charset=utf-8',
+            csv: 'text/tab-separated-values;charset=utf-8',
+            fit: 'application/vnd.ant.fit',
         };
 
         return mimeTypeMap[format];
@@ -98,15 +99,21 @@ BR.Export = L.Class.extend({
             const track = this._formatTrack(format, name, includeWaypoints);
             const fileName = (name || 'brouter') + '.' + format;
 
-            const mimeType = this._getMimeType(format);
             const blob = new Blob([track], {
-                type: mimeType + ';charset=utf-8',
+                type: this._getMimeType(format),
             });
 
             const reader = new FileReader();
             reader.onload = (e) => this._triggerDownload(reader.result, fileName);
             reader.readAsDataURL(blob);
         } else {
+            if (format === 'fit') {
+                // Server can't handle fit - downgrade to gpx
+                // Maybe it's better to show a Info to the user e.g.:
+                //   BR.message.showWarning(i18next.t('warning.fit-not-possible-from-server'));
+                // but the warning stays invisible behind the dialog :)
+                format = 'gpx';
+            }
             var serverUrl = this.router.getUrl(
                 this.latLngs,
                 null,
@@ -141,6 +148,8 @@ BR.Export = L.Class.extend({
                 return JSON.stringify(track, null, 2);
             case 'csv':
                 return BR.Csv.format(track);
+            case 'fit':
+                return BR.Fit.format(track);
             default:
                 break;
         }

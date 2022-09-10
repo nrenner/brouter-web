@@ -51,6 +51,7 @@
         "codemirror": "5.65.8",
         "core-js-bundle": "3.25.1",
         "datatables": "1.10.18",
+        "fit-file-writer": "tbsmark86/fit-file-writer#3eebe13",
         "font-awesome": "4.7.0",
         "geo-data-exchange": "alexcojocaru/geo-data-exchange#v1.1.0",
         "i18next": "19.9.2",

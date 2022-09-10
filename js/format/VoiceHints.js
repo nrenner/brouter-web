@@ -1,11 +1,11 @@
 (function () {
     class Command {
-        constructor(name, locus, orux, symbol, message) {
+        constructor(name, locus, orux, symbol, fit, message) {
             this.name = name;
             this.locus = locus;
             this.orux = orux;
             this.symbol = symbol;
-            this.message = message;
+            (this.fit = fit), (this.message = message);
         }
     }
 
@@ -16,6 +16,7 @@
                 command.locus + exitNumber,
                 command.orux + exitNumber,
                 command.symbol + exitNumber,
+                command.fit,
                 command.message + exitNumber
             );
         }
@@ -28,6 +29,7 @@
                 command.locus + -exitNumber,
                 command.orux + exitNumber,
                 command.symbol + -exitNumber,
+                command.fit,
                 command.message + -exitNumber
             );
         }
@@ -114,20 +116,20 @@
     // from BRouter btools.router.VoiceHint
     VoiceHints.commands = (function () {
         return {
-            1: new Command('C', 1, 1002, 'Straight', 'straight'),
-            2: new Command('TL', 4, 1000, 'Left', 'left'),
-            3: new Command('TSLL', 3, 1017, 'TSLL', 'slight left'),
-            4: new Command('TSHL', 5, 1019, 'TSHL', 'sharp left'),
-            5: new Command('TR', 7, 1001, 'Right', 'right'),
-            6: new Command('TSLR', 6, 1016, 'TSLR', 'slight right'),
-            7: new Command('TSHR', 8, 1018, 'TSHR', 'sharp right'),
-            8: new Command('KL', 9, 1015, 'TSLL', 'keep left'),
-            9: new Command('KR', 10, 1014, 'TSLR', 'keep right'),
-            10: new Command('TU', 13, 1003, 'TU', 'u-turn'),
-            11: new Command('TRU', 14, 1003, 'TU', 'u-turn'), // Right U-turn
-            12: new Command('OFFR'), // Off route
-            13: new Command('RNDB', 26, 1008, 'RNDB', 'Take exit '), // Roundabout
-            14: new Command('RNLB', 26, 1008, 'RNLB', 'Take exit '), // Roundabout left
+            1: new Command('C', 1, 1002, 'Straight', 'straight', 'straight'),
+            2: new Command('TL', 4, 1000, 'Left', 'left', 'left'),
+            3: new Command('TSLL', 3, 1017, 'TSLL', 'slight_left', 'slight left'),
+            4: new Command('TSHL', 5, 1019, 'TSHL', 'sharp_left', 'sharp left'),
+            5: new Command('TR', 7, 1001, 'Right', 'right', 'right'),
+            6: new Command('TSLR', 6, 1016, 'TSLR', 'slight_right', 'slight right'),
+            7: new Command('TSHR', 8, 1018, 'TSHR', 'sharp_right', 'sharp right'),
+            8: new Command('KL', 9, 1015, 'TSLL', 'left_fork', 'keep left'),
+            9: new Command('KR', 10, 1014, 'TSLR', 'right_fork', 'keep right'),
+            10: new Command('TU', 13, 1003, 'TU', 'u_turn', 'u-turn'),
+            11: new Command('TRU', 14, 1003, 'TU', 'u_turn', 'u-turn'), // Right U-turn
+            12: new Command('OFFR', undefined, undefined, undefined, 'danger', undefined), // Off route
+            13: new Command('RNDB', 26, 1008, 'RNDB', 'generic', 'Take exit '), // Roundabout
+            14: new Command('RNLB', 26, 1008, 'RNLB', 'generic', 'Take exit '), // Roundabout left
         };
     })();
 
