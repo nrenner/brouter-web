@@ -31,7 +31,9 @@ BR.Export = L.Class.extend({
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
 
-        $('#export').on('show.bs.modal', this._warnStraightLine.bind(this));
+        $('#export').on('show.bs.modal', this._warnDownload.bind(this));
+        $('#export input[name=format]').on('change', this._warnDownload.bind(this));
+        $('#export').on('show.bs.modal', this._turnInstructionInfo.bind(this));
 
         this.update([]);
     },
@@ -47,14 +49,25 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _warnStraightLine: function () {
+    _warnDownload: function () {
         const hasBeeline = BR.Routing.hasBeeline(this.segments);
-        document.getElementById('export-beeline-warning').hidden = !hasBeeline;
+        const isFit = $('#format-fit').prop('checked');
+        $('#export-download-warning').prop('hidden', !hasBeeline && !isFit);
         let title = 'Download from server (deprecated)';
         if (hasBeeline) {
             title = '[Warning: straight lines not supported] ' + title;
         }
+        if (isFit) {
+            title = '[Warning: FIT not supported] ' + title;
+        }
         document.getElementById('serverExport').title = title;
+    },
+
+    _turnInstructionInfo: function () {
+        const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
+        $('.format-turns-enabled')
+            .prop('hidden', turnInstructionMode <= 1)
+            .attr('title', i18next.t('export.turns_enabled'));
     },
 
     _getMimeType: function (format) {
@@ -109,9 +122,6 @@ BR.Export = L.Class.extend({
         } else {
             if (format === 'fit') {
                 // Server can't handle fit - downgrade to gpx
-                // Maybe it's better to show a Info to the user e.g.:
-                //   BR.message.showWarning(i18next.t('warning.fit-not-possible-from-server'));
-                // but the warning stays invisible behind the dialog :)
                 format = 'gpx';
             }
             var serverUrl = this.router.getUrl(
