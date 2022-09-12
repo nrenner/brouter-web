@@ -154,10 +154,6 @@ BR.confLayers.getPropertyOverrides = function() {
             'country_code': 'FR',
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
         },
-        'ignf-boundaries': {
-            'country_code': 'FR',
-            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=LIMITES_ADMINISTRATIVES_EXPRESS.LATEST::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
-        },
         'ignf-map': {
             'country_code': 'FR',
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'

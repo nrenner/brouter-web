@@ -84,11 +84,6 @@ BR.confLayers.tree = {
         'country': [
             'historic-place-contours',
             {
-                'FR': [
-                    'ignf-boundaries',
-                ]
-            },
-            {
                 'HU': [
                     'hu-hillshade',
                     'OpenStreetMap-turistautak',
