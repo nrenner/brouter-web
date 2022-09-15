@@ -1,0 +1,23 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "Rendering: OpenRailwayMap, © Map data OpenStreetMap contributors",
+      "url": "https://www.openrailwaymap.org/"
+    },
+    "category": "osmbasedmap",
+    "description": "Overlay imagery showing railway infrastructure based on OpenStreetMap data",
+    "icon": "https://www.openrailwaymap.org/img/openrailwaymap-64.png",
+    "id": "openrailwaymap",
+    "max_zoom": 20,
+    "name": "OpenRailwayMap - Default",
+    "overlay": true,
+    "privacy_policy_url": "https://www.openrailwaymap.org/en/imprint",
+    "type": "tms",
+    "url": "https://{switch:a,b,c}.tiles.openrailwaymap.org/standard/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

@@ -216,6 +216,10 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'MTB',
             'mapUrl': 'http://mtb.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
         },
+        'openrailwaymap': {
+            'name': 'OpenRailwayMap',
+            'mapUrl': 'https://www.openrailwaymap.org/?style=standard&lat={lat}&lon={lon}&zoom={zoom}' 
+        },
         'mapillary-coverage': {
             'nameShort': 'Mapillary',
             'mapUrl': 'https://www.mapillary.com/app/?lat={lat}&lng={lon}&z={zoom}&menu=false'

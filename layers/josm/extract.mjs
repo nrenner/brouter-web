@@ -35,7 +35,8 @@ const includeList = [
     "Waymarked_Trails-Cycling",
     "Waymarked_Trails-MTB",
     "wikimedia-map",
-    "openpt_map"
+    "openpt_map",
+    "openrailwaymap"
 ];
 
 function extract(layersJosm) {
