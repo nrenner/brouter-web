@@ -89,6 +89,7 @@ BR.LayersConfig = L.Class.extend({
 
         BR.layerIndex['ignf-aerial'].geometry = BR.confLayers.franceBbox;
         BR.layerIndex['ignf-map'].geometry = BR.confLayers.franceBbox;
+        BR.layerIndex['ignf-scan25'].geometry = BR.confLayers.franceBbox;
     },
 
     _addLanguageDefaultLayer: function () {
