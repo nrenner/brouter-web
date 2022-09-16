@@ -152,11 +152,13 @@ BR.confLayers.getPropertyOverrides = function() {
         },
         'ignf-aerial': {
             'country_code': 'FR',
-            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
+            'worldTiles': true // -z12
         },
         'ignf-map': {
             'country_code': 'FR',
-            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes'
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
+            'worldTiles': true // -z7
         },
         'OpenStreetMap-turistautak': {
             'nameShort': 'OSM Turistautak',

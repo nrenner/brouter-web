@@ -86,6 +86,9 @@ BR.LayersConfig = L.Class.extend({
         BR.layerIndex['swisstopo-aerial'].geometry = BR.confLayers.switzerlandPadded;
 
         BR.layerIndex['1017'].geometry = BR.confLayers.osmapaPl;
+
+        BR.layerIndex['ignf-aerial'].geometry = BR.confLayers.franceBbox;
+        BR.layerIndex['ignf-map'].geometry = BR.confLayers.franceBbox;
     },
 
     _addLanguageDefaultLayer: function () {
