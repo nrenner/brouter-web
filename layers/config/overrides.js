@@ -216,6 +216,12 @@ BR.confLayers.getPropertyOverrides = function() {
             'nameShort': 'MTB',
             'mapUrl': 'http://mtb.waymarkedtrails.org/#?map={zoom}!{lat}!{lon}'
         },
+        'strava_cycling_heatmap': {
+            'overlay': true
+        },
+        'strava_running_heatmap': {
+            'overlay': true
+        },
         'openrailwaymap': {
             'name': 'OpenRailwayMap',
             'mapUrl': 'https://www.openrailwaymap.org/?style=standard&lat={lat}&lon={lon}&zoom={zoom}' 

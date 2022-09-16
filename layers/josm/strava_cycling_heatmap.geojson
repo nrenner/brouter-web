@@ -1,0 +1,23 @@
+{
+  "geometry": null,
+  "properties": {
+    "attribution": {
+      "required": true,
+      "text": "https://www.strava.com/heatmap",
+      "url": "https://www.strava.com/heatmap"
+    },
+    "category": "other",
+    "icon": "https://d3nn82uaxijpm6.cloudfront.net/assets/website/mobile/icon-app-81cc8ba60200bed099176eb699e218ab.png",
+    "id": "strava_cycling_heatmap",
+    "max_zoom": 11,
+    "min_zoom": 3,
+    "name": "Strava cycling heatmap",
+    "tile-size": "512",
+    "tile_size": 512,
+    "type": "tms",
+    "url": "https://heatmap-external-{switch:a,b,c}.strava.com/tiles/ride/bluered/{zoom}/{x}/{y}.png",
+    "valid-georeference": true,
+    "dataSource": "JOSM"
+  },
+  "type": "Feature"
+}

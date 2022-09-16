@@ -36,7 +36,9 @@ const includeList = [
     "Waymarked_Trails-MTB",
     "wikimedia-map",
     "openpt_map",
-    "openrailwaymap"
+    "openrailwaymap",
+    "strava_cycling_heatmap",
+    "strava_running_heatmap"
 ];
 
 function extract(layersJosm) {

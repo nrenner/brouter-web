@@ -73,6 +73,8 @@ BR.confLayers.tree = {
             'Waymarked_Trails-Hiking',
             'Waymarked_Trails-MTB',
             'openrailwaymap',
+            'strava_cycling_heatmap',
+            'strava_running_heatmap',
             'mapillary-coverage',
             'osm-notes'
         ],
