@@ -68,8 +68,9 @@ BR.RoutingPathQuality = L.Control.extend({
                         renderer: renderer,
                         palette: {
                             // normal range
-                            0.0: '#ff0000',
-                            0.95: '#00ff00',
+                            0.0: 'red',
+                            0.45: 'yellow',
+                            0.9: 'green',
                             // special value for unknown
                             1.0: '#888888',
                         },
@@ -92,6 +93,7 @@ BR.RoutingPathQuality = L.Control.extend({
                             let surface = null;
                             switch (data.get('surface')) {
                                 case 'paved':
+                                case 'chipseal':
                                     surface = 0.8;
                                     break;
                                 case 'asphalt':
@@ -104,6 +106,7 @@ BR.RoutingPathQuality = L.Control.extend({
                                 case 'sett':
                                 case 'gravel':
                                 case 'pebblestone':
+                                case 'unpaved':
                                     surface = 0.5;
                                     break;
                                 case 'paving_stones':
@@ -129,9 +132,9 @@ BR.RoutingPathQuality = L.Control.extend({
                                     break;
                                 case null:
                                     break;
-                                default:
+                                /*default:
                                     console.warn('unhandled surface type', data.get('surface'));
-                                    break;
+                                    break;*/
                             }
 
                             // modifier tracktype; also sometimes only tracktype is available
@@ -141,8 +144,8 @@ BR.RoutingPathQuality = L.Control.extend({
                                         if (surface === null) {
                                             surface = 0.9;
                                         } /* else {
-					    don't change
-					} */
+                                            don't change
+                                        } */
                                         break;
                                     case 'grade2':
                                         if (surface === null) {
@@ -179,10 +182,10 @@ BR.RoutingPathQuality = L.Control.extend({
                                 // modifier for surface quality
                                 switch (data.get('smoothness')) {
                                     case 'excellent':
-                                        surface = Math.max(surface * 1.1, 1.0);
+                                        surface = Math.min(surface * 1.1, 1.0);
                                         break;
                                     case 'good':
-                                        surface = Math.max(surface * 1.05, 1.0);
+                                        surface = Math.min(surface * 1.05, 1.0);
                                         break;
                                     case 'intermediate':
                                         surface *= 0.9;
