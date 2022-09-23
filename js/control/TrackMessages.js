@@ -36,6 +36,8 @@ BR.TrackMessages = L.Class.extend({
      */
     trackPolyline: null,
 
+    segments: null,
+
     initialize: function (map, options) {
         L.setOptions(this, options);
         this._map = map;
@@ -46,9 +48,12 @@ BR.TrackMessages = L.Class.extend({
 
         var syncButton = document.getElementById('data-sync-map');
         L.DomEvent.on(syncButton, 'click', this._toggleSyncMap, this);
+
+        this._mapMouseMoveHandlerBound = this.mapMouseMoveHandler.bind(this);
+        this._mapMouseOutHandlerBound = this.mapMouseOutHandler.bind(this);
     },
 
-    update: function (polyline, segments) {
+    update: function (polyline, segments, layer) {
         var i,
             messages,
             columns,
@@ -56,11 +61,13 @@ BR.TrackMessages = L.Class.extend({
             data = [];
 
         if (!this.active) {
+            this.listenMapEvents(layer, false);
             return;
         }
 
         this.trackPolyline = polyline;
         this.trackEdges = new BR.TrackEdges(segments);
+        this.segments = segments;
 
         for (i = 0; segments && i < segments.length; i++) {
             messages = segments[i].feature.properties.messages;
@@ -72,6 +79,7 @@ BR.TrackMessages = L.Class.extend({
         this._destroyTable();
 
         if (data.length === 0) {
+            this.listenMapEvents(layer, false);
             return;
         }
 
@@ -96,6 +104,20 @@ BR.TrackMessages = L.Class.extend({
 
         $('#datatable tbody tr').hover(L.bind(this._handleHover, this), L.bind(this._handleHoverOut, this));
         $('#datatable tbody').on('click', 'tr', L.bind(this._toggleSelected, this));
+
+        this.listenMapEvents(layer, true);
+    },
+
+    listenMapEvents: function (layer, on) {
+        if (layer) {
+            if (on) {
+                layer.on('mousemove', this._mapMouseMoveHandlerBound);
+                layer.on('mouseout', this._mapMouseOutHandlerBound);
+            } else {
+                layer.off('mousemove', this._mapMouseMoveHandlerBound);
+                layer.off('mouseout', this._mapMouseOutHandlerBound);
+            }
+        }
     },
 
     show: function () {
@@ -208,5 +230,69 @@ BR.TrackMessages = L.Class.extend({
 
         button.classList.toggle('active');
         this.options.syncMap = !this.options.syncMap;
+    },
+
+    mapMouseMoveHandler: function (evt) {
+        // initialize the vars for the closest item calculation
+        let closestPointIdx = null;
+        // large enough to be trumped by any point on the chart
+        let closestDistance = 2 * Math.pow(100, 2);
+        // consider a good enough match if the given point (lat and lng) is within
+        // 1.1 meters of a point on the chart (there are 111,111 meters in a degree)
+        const exactMatchRounding = 1.1 / 111111;
+
+        let idx = 0;
+        outer: for (let segment of this.segments) {
+            for (let coord of segment.feature.geometry.coordinates) {
+                let latDiff = evt.latlng.lat - coord[1];
+                let lngDiff = evt.latlng.lng - coord[0];
+                // first check for an almost exact match; it's simple and avoid further calculations
+                if (Math.abs(latDiff) < exactMatchRounding && Math.abs(lngDiff) < exactMatchRounding) {
+                    closestPointIdx = idx;
+                    break outer;
+                }
+                // calculate the squared distance from the current to the given;
+                // it's the squared distance, to avoid the expensive square root
+                const distance = Math.pow(latDiff, 2) + Math.pow(lngDiff, 2);
+                if (distance < closestDistance) {
+                    closestPointIdx = idx;
+                    closestDistance = distance;
+                }
+                idx++;
+            }
+        }
+
+        if (closestPointIdx) {
+            // Now map point to next data row
+            let rowIdx = -1;
+            for (let i = 0; i < this.trackEdges.edges.length; i++) {
+                if (closestPointIdx <= this.trackEdges.edges[i]) {
+                    rowIdx = i;
+                    break;
+                }
+            }
+            if (rowIdx != -1) {
+                // highlight found row
+                const rowObj = this._table.row(rowIdx);
+                if (rowObj && rowObj != this._mapHoveredRow) {
+                    if (this._mapHoveredRow) {
+                        this._mapHoveredRow.classList.remove('hoverRoute');
+                    }
+                    this._mapHoveredRow = rowObj.node();
+                    this._mapHoveredRow.classList.add('hoverRoute');
+                    this._mapHoveredRow.scrollIntoView(false);
+                }
+            }
+        } else {
+            if (this._mapHoveredRow) {
+                this._mapHoveredRow.classList.remove('hoverRoute');
+            }
+        }
+    },
+
+    mapMouseOutHandler: function () {
+        if (this._mapHoveredRow) {
+            this._mapHoveredRow.classList.remove('hoverRoute');
+        }
     },
 });

@@ -567,6 +567,7 @@ table.dataTable thead .sorting {
 
 table.track-analysis-table tbody tr:hover,
 table.dataTable.hover tbody tr:hover,
+table.dataTable.hover tbody tr.hoverRoute,
 table.dataTable.display tbody tr:hover {
     background-color: rgba(255, 255, 0, 0.3);
 }
