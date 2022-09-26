@@ -40,7 +40,7 @@ BR.RoutingPathQuality = L.Control.extend({
                     valueFunction: function (latLng, prevLatLng) {
                         var deltaAltitude = latLng.alt - prevLatLng.alt, // in m
                             distance = prevLatLng.distanceTo(latLng); // in m
-                        if (distance === 0) {
+                        if (distance === 0 || isNaN(deltaAltitude)) {
                             return 0;
                         }
                         return (Math.atan(deltaAltitude / distance) * 180) / Math.PI;
@@ -56,7 +56,7 @@ BR.RoutingPathQuality = L.Control.extend({
                         renderer: renderer,
                     },
                     valueFunction: function (latLng) {
-                        return latLng.alt;
+                        return latLng.alt || 0;
                     },
                 }),
             },
