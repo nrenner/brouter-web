@@ -160,6 +160,10 @@ BR.confLayers.getPropertyOverrides = function() {
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
             'worldTiles': true // -z7
         },
+        'ignf-scan25': {
+            'country_code': 'FR',
+            'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
+        },
         'OpenStreetMap-turistautak': {
             'nameShort': 'OSM Turistautak',
             'mapUrl': 'https://turistautak.openstreetmap.hu/?zoom={zoom}&lat={lat}&lon={lon}&layers=0B00F'

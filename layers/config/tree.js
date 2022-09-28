@@ -51,6 +51,7 @@ BR.confLayers.tree = {
                 'FR': [
                     'ignf-aerial',
                     'ignf-map',
+                    'ignf-scan25',
                 ]
             },
             {
