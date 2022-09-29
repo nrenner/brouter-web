@@ -152,16 +152,19 @@ BR.confLayers.getPropertyOverrides = function() {
         },
         'ignf-aerial': {
             'country_code': 'FR',
+            'nameShort': 'IGNF Photos',
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
             'worldTiles': true // -z12
         },
         'ignf-map': {
             'country_code': 'FR',
+            'nameShort': 'IGNF Plan',
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
             'worldTiles': true // -z7
         },
         'ignf-scan25': {
             'country_code': 'FR',
+            'nameShort': 'IGNF Topo',
             'mapUrl': 'https://www.geoportail.gouv.fr/carte?c={lon},{lat}&z={zoom}&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN25TOUR::GEOPORTAIL:OGC:WMTS(1)&permalink=yes',
         },
         'OpenStreetMap-turistautak': {
