@@ -39,7 +39,8 @@
     "route-from-to": "{{from}} - {{to}} ({{distance}}km)",
     "route-loop": "{{from}} ({{distance}}km)",
     "title": "Export route",
-    "trackname": "Name"
+    "trackname": "Name",
+    "turns_enabled": "Includes turn instructions"
   },
   "footer": {
     "ascend": "Ascend",

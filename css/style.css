@@ -590,6 +590,10 @@ table.dataTable.display tbody tr:hover.selected {
     line-height: 24px;
 }
 
+.format-turns-enabled {
+    font-size: 0.8em;
+}
+
 /* tooltip */
 
 .editing-tooltip,
