@@ -4925,10 +4925,10 @@ copy-props@^2.0.1:
     each-props "^1.3.2"
     is-plain-object "^5.0.0"
 
-core-js-bundle@3.25.1:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.25.1.tgz#72e3b3a11d2d9f671e5ff740135223394c5fcb85"
-  integrity sha512-f1FcTJFuKTJNSfpKAOJY/ehGLIPhQMUlQwJHGmIdEHROgcntQqRU6LGpyuIfJVjHlypY9A2DhG9qkT+uRwvwGQ==
+core-js-bundle@3.25.3:
+  version "3.25.3"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.25.3.tgz#412642d00ffc2c023f5ac79146533ee40c3ed4d8"
+  integrity sha512-OvE71vZEQ7m+9iVHIwMvf8bsHcnx+YmEcWHLgz/CEXC4i1L6jrbtkIxrM+yWa+rZfKrv6Zebu6CoTG5v8iRIFg==
 
 core-js-compat@^3.25.1:
   version "3.25.3"
