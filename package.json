@@ -121,7 +121,7 @@
         "i18next-scanner": "4.0.0",
         "jest": "29.1.2",
         "jest-environment-jsdom": "29.1.2",
-        "marked": "4.0.19",
+        "marked": "4.1.1",
         "merge-stream": "2.0.0",
         "node-fetch": "3.2.10",
         "npmfiles": "0.1.3",
