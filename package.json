@@ -49,7 +49,7 @@
         "bootstrap-select": "1.13.18",
         "bootstrap-slider": "11.0.2",
         "codemirror": "5.65.9",
-        "core-js-bundle": "3.25.3",
+        "core-js-bundle": "3.25.5",
         "datatables": "1.10.18",
         "fit-file-writer": "tbsmark86/fit-file-writer#3eebe13",
         "font-awesome": "4.7.0",
