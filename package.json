@@ -42,7 +42,7 @@
         "@maplibre/maplibre-gl-leaflet": "0.0.17",
         "@turf/turf": "6.5.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
-        "abortcontroller-polyfill": "1.7.3",
+        "abortcontroller-polyfill": "1.7.5",
         "async": "2.6.4",
         "bootbox": "5.5.3",
         "bootstrap": "4.6.2",
