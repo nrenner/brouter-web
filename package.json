@@ -79,7 +79,7 @@
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
         "maplibre-gl": "2.4.0",
-        "overpass-layer": "3.1.1",
+        "overpass-layer": "3.3.1",
         "popper.js": "1.16.1",
         "regenerator-runtime": "0.13.9",
         "togpx": "nrenner/togpx#722d291",
