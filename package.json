@@ -81,7 +81,7 @@
         "maplibre-gl": "2.4.0",
         "overpass-layer": "3.3.1",
         "popper.js": "1.16.1",
-        "regenerator-runtime": "0.13.9",
+        "regenerator-runtime": "0.13.10",
         "togpx": "nrenner/togpx#722d291",
         "tokml": "0.4.0",
         "url-search-params": "1.1.0"
