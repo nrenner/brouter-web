@@ -241,32 +241,22 @@ BR.TrackMessages = L.Class.extend({
         // 1.1 meters of a point on the chart (there are 111,111 meters in a degree)
         const exactMatchRounding = 1.1 / 111111;
 
-        let idx = 0;
+        const point = turf.point([evt.latlng.lng, evt.latlng.lat]);
+        let idxOffset = 0;
         outer: for (let segment of this.segments) {
-            for (let coord of segment.feature.geometry.coordinates) {
-                let latDiff = evt.latlng.lat - coord[1];
-                let lngDiff = evt.latlng.lng - coord[0];
-                // first check for an almost exact match; it's simple and avoid further calculations
-                if (Math.abs(latDiff) < exactMatchRounding && Math.abs(lngDiff) < exactMatchRounding) {
-                    closestPointIdx = idx;
-                    break outer;
-                }
-                // calculate the squared distance from the current to the given;
-                // it's the squared distance, to avoid the expensive square root
-                const distance = Math.pow(latDiff, 2) + Math.pow(lngDiff, 2);
-                if (distance < closestDistance) {
-                    closestPointIdx = idx;
-                    closestDistance = distance;
-                }
-                idx++;
+            const bestPointForSegement = turf.nearestPointOnLine(segment.feature, point);
+            if (bestPointForSegement.properties.dist < closestDistance) {
+                closestPointIdx = idxOffset + bestPointForSegement.properties.index;
+                closestDistance = bestPointForSegement.properties.dist;
             }
+            idxOffset += segment.feature.geometry.coordinates.length;
         }
 
-        if (closestPointIdx) {
+        if (closestPointIdx !== null) {
             // Now map point to next data row
             let rowIdx = -1;
             for (let i = 0; i < this.trackEdges.edges.length; i++) {
-                if (closestPointIdx <= this.trackEdges.edges[i]) {
+                if (closestPointIdx < this.trackEdges.edges[i]) {
                     rowIdx = i;
                     break;
                 }
