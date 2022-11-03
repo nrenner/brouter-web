@@ -165,6 +165,7 @@
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
+    "route-quality-surface": "Road surface/quality",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
     "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",

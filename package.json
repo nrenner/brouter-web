@@ -66,7 +66,7 @@
         "leaflet-editable": "1.2.0",
         "leaflet-filelayer": "1.2.0",
         "leaflet-geometryutil": "0.10.1",
-        "leaflet-hotline": "0.4.0",
+        "leaflet-hotline": "tbsmark86/Leaflet.hotline#25b2457",
         "leaflet-osm-notes": "osmlab/leaflet-osm-notes#af2aa811",
         "leaflet-plugins": "3.4.0",
         "leaflet-providers": "1.13.0",
