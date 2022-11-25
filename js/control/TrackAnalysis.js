@@ -91,6 +91,14 @@ BR.TrackAnalysis = L.Class.extend({
 
         if (segments.length === 0) {
             $('#track_statistics').html('');
+            if (this.highlightedSegments) {
+                this.map.removeLayer(this.highlightedSegments);
+                this.highlightedSegments = null;
+            }
+            if (this.highlightedSegment) {
+                this.map.removeLayer(this.highlightedSegment);
+                this.highlightedSegment = null;
+            }
             return;
         }
 

@@ -77,6 +77,7 @@ BR.TrackMessages = L.Class.extend({
         }
 
         this._destroyTable();
+        this._destroyEdges();
 
         if (data.length === 0) {
             this.listenMapEvents(layer, false);
@@ -144,6 +145,17 @@ BR.TrackMessages = L.Class.extend({
         }
 
         return ele || document.getElementById('datatable');
+    },
+
+    _destroyEdges: function () {
+        if (this._selectedEdge) {
+            this._map.removeLayer(this._selectedEdge);
+            this._selectedEdge = null;
+        }
+        if (this._hoveredEdge) {
+            this._map.removeLayer(this._hoveredEdge);
+            this._hoveredEdge = null;
+        }
     },
 
     _getColumns: function (headings, data) {
