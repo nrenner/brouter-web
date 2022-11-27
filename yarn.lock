@@ -4203,10 +4203,10 @@ bl@~0.9.4:
   dependencies:
     readable-stream "~1.0.26"
 
-bootbox@5.5.3:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-5.5.3.tgz#6b32da9c401a22b089e1544797cc9a91f1c35b23"
-  integrity sha512-B4mnm1DYgNHzoNtD7I0L/fixqvya4EEQy5bFF/yNmGI2Eq3WwVVwdfWf3hoF8KS+EaV4f0uIMqtxB1EAZwZPhQ==
+bootbox@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/bootbox/-/bootbox-6.0.0.tgz#a5f1074faab38b881e79e009ea4d625c7e8c536d"
+  integrity sha512-+Calbj1v5UvxAXXDAHfoBlsx63Hcz1JqHaZdJ5EjIcOlkyAbZLCreVScx0Em6ZUvsMCqynuz/3nGDyd9FtFrNQ==
 
 bootstrap-select@1.13.18:
   version "1.13.18"
