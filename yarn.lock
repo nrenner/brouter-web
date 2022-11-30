@@ -8561,10 +8561,10 @@ leaflet.heightgraph@nrenner/Leaflet.Heightgraph#0757b2a:
   dependencies:
     leaflet "^1.6.0"
 
-leaflet.locatecontrol@0.78.0:
-  version "0.78.0"
-  resolved "https://registry.yarnpkg.com/leaflet.locatecontrol/-/leaflet.locatecontrol-0.78.0.tgz#fa87ac57fa79d2797f8f3e673d9eb3f104688310"
-  integrity sha512-3cElL7dBPOMkzHTOWUA/SLogrWrmfqYkbIXAikbRD0QcEef4jJRYYVhkcUUTprS2cOQzg2UiR475v8jemJiXRg==
+leaflet.locatecontrol@0.79.0:
+  version "0.79.0"
+  resolved "https://registry.yarnpkg.com/leaflet.locatecontrol/-/leaflet.locatecontrol-0.79.0.tgz#0236b87c699a49f9ddb2f289941fbc0d3c3f8b62"
+  integrity sha512-h64QIHFkypYdr90lkSfjKvPvvk8/b8UnP3m9WuoWdp5p2AaCWC0T1NVwyuj4rd5U4fBW3tQt4ppmZ2LceHMIDg==
 
 leaflet.snogylop@0.4.0:
   version "0.4.0"
