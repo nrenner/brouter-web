@@ -24,6 +24,7 @@ BR.TrackStats = L.Class.extend({
                 : '0',
             formattedTime =
                 Math.trunc(stats.totalTime / 3600) + ':' + ('0' + Math.trunc((stats.totalTime % 3600) / 60)).slice(-2),
+            formattedTimeHMS = formattedTime + ':' + ('0' + Math.trunc(stats.totalTime % 60)).slice(-2),
             formattedEnergy = L.Util.formatNum(stats.totalEnergy / 3600000, 2).toLocaleString(),
             meanEnergy = stats.trackLength
                 ? L.Util.formatNum(stats.totalEnergy / 36 / stats.trackLength, 2).toLocaleString()
@@ -37,6 +38,8 @@ BR.TrackStats = L.Class.extend({
         $('#cost').html(formattedCost);
         $('#meancostfactor').html(meanCostFactor);
         $('#totaltime').html(formattedTime);
+        // alternative time format with seconds display as tooltip
+        $('#totaltime').attr('title', formattedTimeHMS + ' h');
         $('#totalenergy').html(formattedEnergy);
         $('#meanenergy').html(meanEnergy);
     },
