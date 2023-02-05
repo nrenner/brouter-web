@@ -75,6 +75,7 @@ var paths = {
             'js/Util.js',
             'js/Map.js',
             'js/LayersConfig.js',
+            'js/ProfileData.js',
             'js/router/BRouter.js',
             'js/util/*.js',
             'js/format/*.js',

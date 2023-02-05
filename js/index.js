@@ -28,6 +28,7 @@
             elevation,
             exportRoute,
             profile,
+            profileData = new BR.ProfileData(),
             trackMessages,
             trackAnalysis,
             sidebar,
@@ -51,7 +52,7 @@
             key: 'F',
         });
 
-        router = L.bRouter(); //brouterCgi dummyRouter
+        router = L.bRouter(null, profileData); //brouterCgi dummyRouter
 
         drawButton = L.easyButton({
             states: [
@@ -228,7 +229,7 @@
             updatable.update(track, segments, segmentsLayer);
         }
 
-        routingOptions = new BR.RoutingOptions();
+        routingOptions = new BR.RoutingOptions(profileData);
         routingOptions.on('update', function (evt) {
             if (urlHash.movingMap) return;
 
@@ -260,20 +261,15 @@
 
         elevation = new BR.Heightgraph();
 
-        profile = new BR.Profile();
+        profile = new BR.Profile(profileData);
         profile.on('update', function (evt) {
             BR.message.hide();
-            var profileId = routingOptions.getCustomProfile();
-            router.uploadProfile(profileId, evt.profileText, function (err, profileId) {
+            router.uploadProfile(evt.profileText, function (err, profileId) {
                 if (!err) {
-                    routingOptions.setCustomProfile(profileId, true);
-                    updateRoute({
-                        options: routingOptions.getOptions(),
-                    });
+                    updateRoute({});
                 } else {
                     profile.message.showError(err);
                     if (profileId) {
-                        routingOptions.setCustomProfile(profileId, true);
                         router.setOptions(routingOptions.getOptions());
                     }
                 }
@@ -282,10 +278,12 @@
                     evt.callback(err, profileId, evt.profileText);
                 }
             });
+            // update url as soon as user saves profile
+            urlHash.onMapMove();
         });
         profile.on('clear', function (evt) {
             profile.message.hide();
-            routingOptions.setCustomProfile(null);
+            this.profileData.selectProfile(null);
         });
         trackMessages = new BR.TrackMessages(map, {
             requestUpdate: requestUpdate,
@@ -431,8 +429,12 @@
             };
 
             var opts = router.parseUrlParams(url2params(url));
-            router.setOptions(opts);
+            if (opts.profile) {
+                profileData.selectProfile(opts.profile);
+                delete opts.profile;
+            }
             routingOptions.setOptions(opts);
+            router.setOptions(opts);
             nogos.setOptions(opts);
 
             const optsOrDefault = Object.assign({}, routingOptions.getOptions(), opts);
