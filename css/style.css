@@ -209,7 +209,7 @@ p.stats-label {
     font-weight: bold;
 }
 .stats-label abbr[title],
-#distance {
+.stats-label span[title] {
     text-decoration: none;
     border-bottom: 1px dotted #818a91;
 }
