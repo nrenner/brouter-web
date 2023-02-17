@@ -6,7 +6,7 @@ As an alternative to the [online version](https://brouter.de/brouter-web/), the 
 
 1.  download and unzip latest standalone archive (`brouter-web-standalone.<version>.zip`) from https://github.com/nrenner/brouter-web/releases e.g. for Linux (replace `~/opt/` with your preferred install directory and `0.11.0` with latest version):
 
-            mkdir ~/opt/brouter
+            mkdir -p ~/opt/brouter
             cd ~/opt/brouter
             wget https://github.com/nrenner/brouter-web/releases/download/0.11.0/brouter-web-standalone.0.11.0.zip
             unzip brouter-web-standalone.0.11.0.zip
