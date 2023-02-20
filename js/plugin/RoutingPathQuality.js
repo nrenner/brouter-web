@@ -221,7 +221,12 @@ BR.RoutingPathQuality = L.Control.extend({
                 icon: 'fa-usd',
                 provider: new HotLineQualityProvider({
                     hotlineOptions: {
-                        pct: 0.95, // skip (1 - pct) percent of largest values when calculating maximum
+                        // skip (1 - pct) percent of largest values when calculating maximum
+                        pct: 0.95,
+                        // turns off gradients as they wash out colors of shorter segments
+                        discreteStrokes: true,
+                        // disables line simplification, so short segments won't disappear on some zoom levels
+                        smoothFactor: 0,
                         outlineColor: 'dimgray',
                         renderer: renderer,
                     },
@@ -432,7 +437,9 @@ var HotLineQualityProvider = L.Class.extend({
     },
 
     _calcMinMaxValues: function (lines, pct) {
-        lines.sort(function(a, b){return a[2] - b[2]});
+        lines.sort(function (a, b) {
+            return a[2] - b[2];
+        });
         var min = lines[0][2];
         var max = lines[Math.ceil(pct * lines.length) - 1][2];
         if (min === max) {
