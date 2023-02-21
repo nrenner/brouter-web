@@ -21,8 +21,8 @@ https://brouter.de
 
 General BRouter discussions/questions, support:
 
--   [`#brouter` on IRC OFTC](https://webchat.oftc.net/?channels=#brouter). You can also use [Riot](https://riot.im/app/#/room/#_oftc_#brouter:matrix.org).
 -   [Google Group](https://groups.google.com/group/osm-android-bikerouting)
+-   [`#brouter` on Matrix](https://matrix.to/#/#_oftc_#brouter:matrix.org) ([Element](https://app.element.io/#/room/#_oftc_#brouter:matrix.org)).
 
 ## Translating
 
