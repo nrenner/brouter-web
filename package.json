@@ -48,7 +48,7 @@
         "bootstrap": "4.6.2",
         "bootstrap-select": "1.13.18",
         "bootstrap-slider": "11.0.2",
-        "codemirror": "5.65.10",
+        "codemirror": "5.65.12",
         "core-js-bundle": "3.28.0",
         "datatables": "1.10.18",
         "fit-file-writer": "tbsmark86/fit-file-writer#3eebe13",
