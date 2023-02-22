@@ -9770,10 +9770,10 @@ osmtogeojson@^3.0.0-beta.5:
   optionalDependencies:
     "@types/geojson" "^7946.0"
 
-overpass-frontend@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/overpass-frontend/-/overpass-frontend-3.0.1.tgz#e0f9db8b5435f389b0e9260b207b916bdc3d9391"
-  integrity sha512-TFMgZkfimz+GT5QX8q1XeSze1i0VBusCr26NjNW2an5EYOb9lKB3fcZ57bpPhV0qmvclk30YlI8L6TcbxK/WUw==
+overpass-frontend@^3.1.1:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/overpass-frontend/-/overpass-frontend-3.1.2.tgz#ffe1438610e51b7f5f0fe30b54ec5141def7974e"
+  integrity sha512-AMen1toigdfD9bEKSYlq4vFh0YEZ/L4DtWgy4sXHOIEZSJj7NUTR4YohvQEs9L71CJoYTbCUsJYzJrrXVyD/ZA==
   dependencies:
     "@turf/bbox-clip" "^6.5.0"
     "@turf/boolean-intersects" "^6.5.0"
@@ -9796,10 +9796,10 @@ overpass-frontend@^3.0.0:
     weight-sort "^1.3.1"
     xmlhttprequest "*"
 
-overpass-layer@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.3.1.tgz#ed90a729b5a6002152093954db3bbf08453213cf"
-  integrity sha512-rFfCusPsoj/zsQgmJTMGRUZ4rfLxV33wMRoCtrXvNh5Yg8uwMvYu1uvgstsjukMz0VnMNR0S7peWM60z3+Ykiw==
+overpass-layer@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.4.0.tgz#7d97b8811fb8fb558dcd8d761aadfd2502c52f4b"
+  integrity sha512-nGosUpMQGkQ/P3Ydki3iw89UmeGjuik1xwWfknG7KjdBB1q50uS5/dwvyvKckGGv7ewdwQOhhnO3WP0j+9+EtA==
   dependencies:
     "@turf/along" "^6.5.0"
     "@turf/intersect" "^6.5.0"
@@ -9810,7 +9810,7 @@ overpass-layer@3.3.1:
     event-emitter "^0.3.5"
     html-escape "^2.0.0"
     nearest-point-on-geometry "^1.0.1"
-    overpass-frontend "^3.0.0"
+    overpass-frontend "^3.1.1"
     twig "^1.15.4"
 
 p-limit@^2.2.0:
