@@ -17,7 +17,7 @@ jobs:
               with:
                   node-version: '16'
             - run: |
-                echo "actor: ${{ github.github.actor }}"
+                echo "actor: ${{ github.actor }}"
                 echo "event_name: ${{ github.event_name }}"
                 echo "result: ${{ !('renovate' == 'renovate' && 'pull_request' == 'pull_request') }}"
             - run: yarn --frozen-lockfile
