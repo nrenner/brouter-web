@@ -9,17 +9,13 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
-        if: ${{ !(github.actor == 'renovate' && github.event_name == 'pull_request') }}
+        if: ${{ !(github.actor == 'renovate[bot]' && github.event_name == 'pull_request') }}
 
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
                   node-version: '16'
-            - run: |
-                echo "actor: ${{ github.actor }}"
-                echo "event_name: ${{ github.event_name }}"
-                echo "result: ${{ !('renovate' == 'renovate' && 'pull_request' == 'pull_request') }}"
             - run: yarn --frozen-lockfile
             - run: yarn test
             - run: yarn lint
