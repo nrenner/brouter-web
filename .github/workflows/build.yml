@@ -1,6 +1,10 @@
 name: build
 
-on: [push, pull_request]
+on:
+    push:
+        branches-ignore: 
+            - 'renovate/**'
+    pull_request:
 
 concurrency:
     group: ${{ github.head_ref || github.ref_name }}
@@ -9,7 +13,6 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
-        if: ${{ !(github.actor == 'renovate[bot]' && github.event_name == 'pull_request') }}
 
         steps:
             - uses: actions/checkout@v3
