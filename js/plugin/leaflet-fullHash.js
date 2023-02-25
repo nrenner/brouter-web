@@ -39,6 +39,11 @@
         }
     };
 
+    // exclude vector layers (loaded tracks), but not when id set (route quality coding)
+    L.Hash._isHashRelevantLayer = function (layer) {
+        return layer instanceof L.GridLayer || layer.id;
+    };
+
     (L.Hash.formatHash = function (map) {
         var center = map.getCenter(),
             zoom = map.getZoom(),
@@ -149,10 +154,7 @@
 
             formatLayers: function () {
                 var objList = this.options.layersControl.getActiveLayers();
-                // exclude vector layers (loaded tracks), but not when id set (route quality coding)
-                objList = objList.filter(function (obj) {
-                    return obj.layer instanceof L.GridLayer || obj.layer.id;
-                });
+                objList = objList.filter((obj) => L.Hash._isHashRelevantLayer(obj.layer));
                 var layerList = objList.map(
                     L.bind(function (obj) {
                         return encodeURIComponent(this.options.layersControl.toLayerString(obj));
@@ -174,12 +176,18 @@
                 this.map = null;
             },
 
-            onMapMove: function () {
+            onMapMove: function (event) {
                 // bail if we're moving the map (updating from a hash),
                 // or if the map is not yet loaded
-
                 if (this.movingMap || !this.map._loaded) {
                     return false;
+                }
+
+                // bail if a layer was changed that don't affect the hash
+                if (event && (event.type === 'layeradd' || event.type === 'layerremove')) {
+                    if (!L.Hash._isHashRelevantLayer(event.layer)) {
+                        return false;
+                    }
                 }
 
                 var hash = this.formatHash(this.map);
