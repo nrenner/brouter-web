@@ -1,4 +1,6 @@
-BR.Profile = L.Evented.extend({
+/* Sidebar for detail edit of profile: Options and free-text
+ * Tightly coupled with ProfileData */
+BR.ProfileEditor = L.Evented.extend({
     cache: {},
     saveWarningShown: false,
     profileData: null,

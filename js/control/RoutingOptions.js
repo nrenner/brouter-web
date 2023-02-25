@@ -51,7 +51,7 @@ BR.RoutingOptions = L.Evented.extend({
                 if (!profileData.isDefault) {
                     this.setCustomProfile(profileName, true);
                 }
-                this.setOptions({profile: profileName});
+                this.setOptions({ profile: profileName });
             });
             this.on('update', (evt) => {
                 profileData.selectProfile(evt.options.profile);

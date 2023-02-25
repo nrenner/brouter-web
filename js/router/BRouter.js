@@ -516,14 +516,6 @@ L.BRouter = L.Class.extend({
         return nogos;
     },
 
-    _parseProfile: function (profile) {
-        if (BR.conf.profilesRename?.[profile]) {
-            return BR.conf.profilesRename[profile];
-        }
-
-        return profile;
-    },
-
     // formats L.LatLng object as lng,lat string
     _formatLatLng: function (latLng) {
         var s = '';

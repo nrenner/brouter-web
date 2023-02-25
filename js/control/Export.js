@@ -7,10 +7,10 @@ BR.Export = L.Class.extend({
         },
     },
 
-    initialize: function (router, pois, profile) {
+    initialize: function (router, pois, profileEditor) {
         this.router = router;
         this.pois = pois;
-        this.profile = profile;
+        this.profileEditor = profileEditor;
         this.exportButton = $('#exportButton');
         var trackname = (this.trackname = document.getElementById('trackname'));
         this.tracknameAllowedChars = BR.conf.tracknameAllowedChars;
@@ -64,7 +64,7 @@ BR.Export = L.Class.extend({
     },
 
     _turnInstructionInfo: function () {
-        const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
+        const turnInstructionMode = +this.profileEditor.getProfileVar('turnInstructionMode');
         $('.format-turns-enabled')
             .prop('hidden', turnInstructionMode <= 1)
             .attr('title', i18next.t('export.turns_enabled'));
@@ -149,8 +149,8 @@ BR.Export = L.Class.extend({
         }
         switch (format) {
             case 'gpx':
-                const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
-                const transportMode = this.profile.getTransportMode();
+                const turnInstructionMode = +this.profileEditor.getProfileVar('turnInstructionMode');
+                const transportMode = this.profileEditor.getTransportMode();
                 return BR.Gpx.format(track, turnInstructionMode, transportMode);
             case 'kml':
                 return BR.Kml.format(track);

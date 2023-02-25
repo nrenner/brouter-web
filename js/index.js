@@ -27,7 +27,7 @@
             itinerary,
             elevation,
             exportRoute,
-            profile,
+            profileEditor,
             profileData = new BR.ProfileData(),
             trackMessages,
             trackAnalysis,
@@ -233,7 +233,7 @@
         routingOptions.on('update', function (evt) {
             if (urlHash.movingMap) return;
 
-            profile.update(evt.options, () => {
+            profileEditor.update(evt.options, () => {
                 updateRoute(evt);
             });
         });
@@ -261,14 +261,14 @@
 
         elevation = new BR.Heightgraph();
 
-        profile = new BR.Profile(profileData);
-        profile.on('update', function (evt) {
+        profileEditor = new BR.ProfileEditor(profileData);
+        profileEditor.on('update', function (evt) {
             BR.message.hide();
             router.uploadProfile(evt.profileText, function (err, profileId) {
                 if (!err) {
                     updateRoute({});
                 } else {
-                    profile.message.showError(err);
+                    profileEditor.message.showError(err);
                     if (profileId) {
                         router.setOptions(routingOptions.getOptions());
                     }
@@ -281,8 +281,8 @@
             // update url as soon as user saves profile
             urlHash.onMapMove();
         });
-        profile.on('clear', function (evt) {
-            profile.message.hide();
+        profileEditor.on('clear', function (evt) {
+            profileEditor.message.hide();
             this.profileData.selectProfile(null);
         });
         trackMessages = new BR.TrackMessages(map, {
@@ -294,7 +294,7 @@
 
         routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
 
-        routing = new BR.Routing(profile, {
+        routing = new BR.Routing(profileEditor, {
             routing: {
                 router: L.bind(router.getRouteSegment, router),
             },
@@ -303,7 +303,7 @@
 
         pois = new BR.PoiMarkers(routing);
 
-        exportRoute = new BR.Export(router, pois, profile);
+        exportRoute = new BR.Export(router, pois, profileEditor);
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
@@ -353,7 +353,7 @@
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
-                tab_profile: profile,
+                tab_profile: profileEditor,
                 tab_data: trackMessages,
                 tab_analysis: trackAnalysis,
             },
@@ -407,7 +407,7 @@
 
         // (check before hash plugin init)
         if (!location.hash) {
-            profile.update(routingOptions.getOptions());
+            profileEditor.update(routingOptions.getOptions());
 
             // restore active layers from local storage when called without hash
             layersControl.loadActiveLayers();
@@ -438,7 +438,7 @@
             nogos.setOptions(opts);
 
             const optsOrDefault = Object.assign({}, routingOptions.getOptions(), opts);
-            profile.update(optsOrDefault, () => {
+            profileEditor.update(optsOrDefault, () => {
                 if (opts.lonlats) {
                     routing.draw(false);
                     routing.clear();
