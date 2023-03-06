@@ -3384,11 +3384,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
   integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
 
-"@types/node@^14.14.41":
-  version "14.18.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.18.tgz#5c9503030df484ccffcbb935ea9a9e1d6fad1a20"
-  integrity sha512-B9EoJFjhqcQ9OmQrNorItO+OwEOORNn3S31WuiHvZY/dm9ajkB7AKD/8toessEtHHNL+58jofbq7hMMY9v4yig==
-
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -6930,12 +6925,12 @@ gulp-rename@2.0.0:
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-2.0.0.tgz#9bbc3962b0c0f52fc67cd5eaff6c223ec5b9cf6c"
   integrity sha512-97Vba4KBzbYmR5VBs9mWmK+HwIf5mj+/zioxfZhOKeXtx5ZjBk57KFlePf5nxq9QsTtFl0ejnHE3zTC9MHXqyQ==
 
-gulp-replace@1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/gulp-replace/-/gulp-replace-1.1.3.tgz#8641cdca78e683e8573ca4a012e7e4ebb7e4db60"
-  integrity sha512-HcPHpWY4XdF8zxYkDODHnG2+7a3nD/Y8Mfu3aBgMiCFDW3X2GiOKXllsAmILcxe3KZT2BXoN18WrpEFm48KfLQ==
+gulp-replace@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/gulp-replace/-/gulp-replace-1.1.4.tgz#06a0e9ee36f30e343c1e0a2dd760ec32c8a3d3b2"
+  integrity sha512-SVSF7ikuWKhpAW4l4wapAqPPSToJoiNKsbDoUnRrSgwZHH7lH8pbPeQj1aOVYQrbZKhfSVBxVW+Py7vtulRktw==
   dependencies:
-    "@types/node" "^14.14.41"
+    "@types/node" "*"
     "@types/vinyl" "^2.0.4"
     istextorbinary "^3.0.0"
     replacestream "^4.0.3"
