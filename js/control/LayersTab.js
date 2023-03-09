@@ -3,9 +3,8 @@ BR.LayersTab = BR.ControlLayers.extend({
     previewBounds: null,
     saveLayers: [],
 
-    initialize: function (layersConfig, baseLayers, overlays, options) {
-        L.Control.Layers.prototype.initialize.call(this, baseLayers, overlays, options);
-
+    initialize: function (layersConfig, baseLayers, overlays) {
+        L.Control.Appearance.prototype.initialize.call(this, baseLayers, overlays, [], { color: true, opacity: true });
         this.layersConfig = layersConfig;
     },
 
@@ -13,7 +12,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this._map = map;
         this.onAdd(map);
 
-        L.DomUtil.get('layers-control-wrapper').appendChild(this._section);
+        L.DomUtil.get('layers-control-wrapper').appendChild(this._container);
 
         this.initOpacitySlider(map);
         this.initButtons();

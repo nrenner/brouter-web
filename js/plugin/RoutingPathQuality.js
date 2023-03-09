@@ -17,7 +17,7 @@ BR.RoutingPathQuality = L.Control.extend({
 
         this._routingSegments = L.featureGroup();
         this._routingSegments.id = 'route-quality'; // for URL hash instead of language name
-        layersControl.addOverlay(this._routingSegments, i18next.t('map.layer.route-quality'));
+        layersControl.addOverlay(this._routingSegments, i18next.t('map.layer.route-quality'), true);
 
         this.providers = {
             incline: {
