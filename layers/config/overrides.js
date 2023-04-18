@@ -147,7 +147,7 @@ BR.confLayers.getPropertyOverrides = function() {
         },
         'topplus-open': {
             'country_code': 'DE',
-            'mapUrl': 'http://www.geodatenzentrum.de/geodaten/gdz_rahmen.gdz_div?gdz_spr=deu&gdz_user_id=0&gdz_akt_zeile=5&gdz_anz_zeile=1&gdz_unt_zeile=41',
+            'mapUrl': 'https://gdz.bkg.bund.de/index.php/default/wmts-topplusopen-wmts-topplus-open.html',
             'worldTiles': true // World -z9, Europe -z14
         },
         'ignf-aerial': {

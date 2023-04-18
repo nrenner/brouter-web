@@ -28,12 +28,13 @@
     },
     "properties": {
         "attribution": {
-            "html": "© <a href=\"http://www.bkg.bund.de\" target=\"_blank\" rel=\"noopener\">Bundesamt für Kartographie und Geodäsie</a> 2018, <a href=\"http://sg.geodatenzentrum.de/web_public/Datenquellen_TopPlus_Open.pdf\" target=\"_blank\" rel=\"noopener\">Datenquellen</a>"
+            "html": "© <a href=\"http://www.bkg.bund.de\" target=\"_blank\" rel=\"noopener\">Bundesamt für Kartographie und Geodäsie</a> (2023), <a href=\"https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/Datenquellen_TopPlusOpen.html\" target=\"_blank\" rel=\"noopener\">Datenquellen</a>"
         },
         "id": "topplus-open",
         "name": "TopPlusOpen",
-        "type": "wms",
-        "url": "http://sgx.geodatenzentrum.de/wms_topplus_web_open",
+        "type": "tms",
+        "url": "https://sgx.geodatenzentrum.de/wmts_topplus_open/tile/1.0.0/web/default/WEBMERCATOR/{zoom}/{y}/{x}.png",
+        "max_zoom": 19,
         "layers": "web",
         "format": "image/png"
     },
