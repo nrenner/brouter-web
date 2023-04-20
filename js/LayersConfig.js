@@ -349,7 +349,7 @@ BR.LayersConfig = L.Class.extend({
     },
 
     createGeoJsonLayer: function (props) {
-        const layer = L.geoJSON(undefined);
+        const layer = L.geoJSON(undefined, BR.Track.getGeoJsonOptions());
         fetch(props.url).then(async (response) => {
             const geojson = await response.json();
             layer.addData(geojson);
