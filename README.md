@@ -142,3 +142,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     [CC0-1.0 License](https://github.com/ideditor/temaki/blob/main/LICENSE.md)
 -   [leaflet-osm-notes](https://github.com/osmlab/leaflet-osm-notes)
     [The Unlicense](https://github.com/osmlab/leaflet-osm-notes/blob/gh-pages/LICENSE)
+-   [qrcodejs](https://github.com/llyys/qrcodejs)
+    Copyright (c) 2012 davidshimjs [The MIT License](https://github.com/llyys/qrcodejs/blob/master/LICENSE)
+-   [URLSearchParams Polyfill](https://github.com/jerrybendy/url-search-params-polyfill)
+    Copyright (c) 2016 Jerry Bendy [The MIT License](https://github.com/jerrybendy/url-search-params-polyfill/blob/master/LICENSE)

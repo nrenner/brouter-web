@@ -85,7 +85,7 @@
         // https://github.com/Templarian/MaterialDesign/blob/d0b28330af6648ca4c50c14d55043d71f813b3ae/svg/vector-line.svg
         // Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0), https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
         const svg = `
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" 
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                 id="mdi-vector-line" width="24" height="24" viewBox="0 0 24 24" class="mdi active">
                 <path d="M15,3V7.59L7.59,15H3V21H9V16.42L16.42,9H21V3M17,5H19V7H17M5,17H7V19H5" />
             </svg>`;
@@ -306,11 +306,22 @@
         pois = new BR.PoiMarkers(routing);
 
         exportRoute = new BR.Export(router, pois, profile);
+        new BR.ShareRoute();
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
             onUpdate(evt && evt.err);
         });
+
+        // Open export dialog immediately when the `export` query parameter is set;
+        // this is used for the QR code export:
+        var searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('export') && searchParams.get('export') === 'dialog') {
+            routing.once('routing:setWaypointsEnd', () => {
+                $('#exportButton').trigger('click');
+            });
+        }
+
         map.on('routing:draw-start', function () {
             drawButton.state('deactivate-draw');
             beelineButton.enable();
