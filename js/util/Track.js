@@ -10,13 +10,27 @@ BR.Track = {
      * @returns {Object} to pass as `options` parameter to `L.geoJson`
      */
     getGeoJsonOptions: function (layersControl) {
+        // https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0
+        const styleMapping = [
+            ['stroke', 'color'],
+            ['stroke-width', 'weight'],
+            ['stroke-opacity', 'opacity'],
+            ['fill', 'fillColor'],
+            ['fill-opacity', 'fillOpacity'],
+        ];
         return {
             style: function (geoJsonFeature) {
-                var currentLayerId = layersControl.getActiveBaseLayer().layer.id;
-                return {
+                var currentLayerId = layersControl?.getActiveBaseLayer().layer.id;
+                const featureStyle = {
                     color: currentLayerId === 'cyclosm' ? 'yellow' : 'blue',
                     weight: 4,
                 };
+                for (const [simpleStyle, leafletStyle] of styleMapping) {
+                    if (geoJsonFeature?.properties?.[simpleStyle]) {
+                        featureStyle[leafletStyle] = geoJsonFeature.properties[simpleStyle];
+                    }
+                }
+                return featureStyle;
             },
             interactive: false,
             filter: function (geoJsonFeature) {

@@ -348,6 +348,15 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
+    createGeoJsonLayer: function (props) {
+        const layer = L.geoJSON(undefined, BR.Track.getGeoJsonOptions());
+        fetch(props.url).then(async (response) => {
+            const geojson = await response.json();
+            layer.addData(geojson);
+        });
+        return layer;
+    },
+
     createLayer: function (layerData) {
         var props = layerData.properties;
         var url = props.url;
@@ -436,6 +445,8 @@ BR.LayersConfig = L.Class.extend({
             layer = this.createOpenStreetMapNotesLayer();
         } else if (props.type === 'mvt') {
             layer = this.createMvtLayer(props, options);
+        } else if (props.type === 'geojson') {
+            layer = this.createGeoJsonLayer(props);
         } else {
             // JOSM
             var josmUrl = url;
