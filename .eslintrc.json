@@ -5,6 +5,15 @@
         "es2021": true
     },
     "settings": {
-        "polyfills": ["URL", "Promise", "navigator", "Uint8Array", "performance", "location.hostname", "document.body"]
+        "polyfills": [
+            "URL",
+            "Promise",
+            "navigator",
+            "Uint8Array",
+            "performance",
+            "location.hostname",
+            "document.body",
+            "fetch"
+        ]
     }
 }
