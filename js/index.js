@@ -27,7 +27,8 @@
             itinerary,
             elevation,
             exportRoute,
-            profile,
+            profileEditor,
+            profileData = new BR.ProfileData(),
             trackMessages,
             trackAnalysis,
             sidebar,
@@ -51,7 +52,7 @@
             key: 'F',
         });
 
-        router = L.bRouter(); //brouterCgi dummyRouter
+        router = L.bRouter(null, profileData); //brouterCgi dummyRouter
 
         drawButton = L.easyButton({
             states: [
@@ -228,11 +229,11 @@
             updatable.update(track, segments, segmentsLayer);
         }
 
-        routingOptions = new BR.RoutingOptions();
+        routingOptions = new BR.RoutingOptions(profileData);
         routingOptions.on('update', function (evt) {
             if (urlHash.movingMap) return;
 
-            profile.update(evt.options, () => {
+            profileEditor.update(evt.options, () => {
                 updateRoute(evt);
             });
         });
@@ -260,20 +261,15 @@
 
         elevation = new BR.Heightgraph();
 
-        profile = new BR.Profile();
-        profile.on('update', function (evt) {
+        profileEditor = new BR.ProfileEditor(profileData);
+        profileEditor.on('update', function (evt) {
             BR.message.hide();
-            var profileId = routingOptions.getCustomProfile();
-            router.uploadProfile(profileId, evt.profileText, function (err, profileId) {
+            router.uploadProfile(evt.profileText, function (err, profileId) {
                 if (!err) {
-                    routingOptions.setCustomProfile(profileId, true);
-                    updateRoute({
-                        options: routingOptions.getOptions(),
-                    });
+                    updateRoute({});
                 } else {
-                    profile.message.showError(err);
+                    profileEditor.message.showError(err);
                     if (profileId) {
-                        routingOptions.setCustomProfile(profileId, true);
                         router.setOptions(routingOptions.getOptions());
                     }
                 }
@@ -282,10 +278,12 @@
                     evt.callback(err, profileId, evt.profileText);
                 }
             });
+            // update url as soon as user saves profile
+            urlHash.onMapMove();
         });
-        profile.on('clear', function (evt) {
-            profile.message.hide();
-            routingOptions.setCustomProfile(null);
+        profileEditor.on('clear', function (evt) {
+            profileEditor.message.hide();
+            this.profileData.selectProfile(null);
         });
         trackMessages = new BR.TrackMessages(map, {
             requestUpdate: requestUpdate,
@@ -296,7 +294,7 @@
 
         routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
 
-        routing = new BR.Routing(profile, {
+        routing = new BR.Routing(profileEditor, {
             routing: {
                 router: L.bind(router.getRouteSegment, router),
             },
@@ -305,7 +303,7 @@
 
         pois = new BR.PoiMarkers(routing);
 
-        exportRoute = new BR.Export(router, pois, profile);
+        exportRoute = new BR.Export(router, pois, profileEditor);
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
@@ -355,7 +353,7 @@
         sidebar = BR.sidebar({
             defaultTabId: BR.conf.transit ? 'tab_itinerary' : 'tab_profile',
             listeningTabs: {
-                tab_profile: profile,
+                tab_profile: profileEditor,
                 tab_data: trackMessages,
                 tab_analysis: trackAnalysis,
             },
@@ -409,7 +407,7 @@
 
         // (check before hash plugin init)
         if (!location.hash) {
-            profile.update(routingOptions.getOptions());
+            profileEditor.update(routingOptions.getOptions());
 
             // restore active layers from local storage when called without hash
             layersControl.loadActiveLayers();
@@ -431,12 +429,16 @@
             };
 
             var opts = router.parseUrlParams(url2params(url));
-            router.setOptions(opts);
+            if (opts.profile) {
+                profileData.selectProfile(opts.profile);
+                delete opts.profile;
+            }
             routingOptions.setOptions(opts);
+            router.setOptions(opts);
             nogos.setOptions(opts);
 
             const optsOrDefault = Object.assign({}, routingOptions.getOptions(), opts);
-            profile.update(optsOrDefault, () => {
+            profileEditor.update(optsOrDefault, () => {
                 if (opts.lonlats) {
                     routing.draw(false);
                     routing.clear();

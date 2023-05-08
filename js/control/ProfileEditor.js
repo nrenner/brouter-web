@@ -1,8 +1,12 @@
-BR.Profile = L.Evented.extend({
+/* Sidebar for detail edit of profile: Options and free-text
+ * Tightly coupled with ProfileData */
+BR.ProfileEditor = L.Evented.extend({
     cache: {},
     saveWarningShown: false,
+    profileData: null,
 
-    initialize: function () {
+    initialize: function (profileData) {
+        this.profileData = profileData;
         var textArea = L.DomUtil.get('profile_upload');
         this.editor = CodeMirror.fromTextArea(textArea, {
             lineNumbers: true,
@@ -24,6 +28,10 @@ BR.Profile = L.Evented.extend({
         this.message = new BR.Message('profile_message', {
             alert: true,
         });
+
+        this.profileData.on('changed', () => {
+            this.update();
+        });
     },
 
     clear: function (evt) {
@@ -38,16 +46,25 @@ BR.Profile = L.Evented.extend({
         button.blur();
     },
 
-    update: function (options, cb) {
-        var profileName = options.profile,
+    update: function (_, cb) {
+        var profileName = this.profileData.id,
             profileUrl,
             loading = false;
+
+        var profileNameBase = profileName;
+        if (!this.profileData.isDefault) {
+            profileNameBase = this.profileData.baseId;
+        }
 
         if (profileName && BR.conf.profilesUrl) {
             this.selectedProfileName = profileName;
 
-            if (!(profileName in this.cache)) {
-                profileUrl = BR.conf.profilesUrl + profileName + '.brf';
+            if (!(profileNameBase in this.cache)) {
+                if (this.profileData.isExternal) {
+                    throw new Error('NYI');
+                } else {
+                    profileUrl = BR.conf.profilesUrl + profileNameBase + '.brf';
+                }
                 loading = true;
                 BR.Util.get(
                     profileUrl,
@@ -68,7 +85,7 @@ BR.Profile = L.Evented.extend({
                     }, this)
                 );
             } else {
-                this._updateProfile(profileName, this.cache[profileName]);
+                this._updateProfile(profileName, this.cache[profileNameBase]);
             }
         }
 
@@ -136,8 +153,10 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _buildCustomProfile: function (profileText) {
-        const formValues = this._getFormValues();
+    _buildCustomProfile: function (profileText, formValues) {
+        if (!formValues) {
+            formValues = this._getFormValues();
+        }
         Object.keys(formValues).forEach((name) => {
             const value = formValues[name];
             var re = new RegExp(
@@ -169,13 +188,16 @@ BR.Profile = L.Evented.extend({
 
     _save: function (evt) {
         var profileText = this._buildCustomProfile(this._getProfileText());
-        var that = this;
+        this.profileData.setOptions(this.pendingOptions);
+        this.pendingOptions = {};
+
+        this.profileData._profileText = profileText;
         this.fire('update', {
             profileText: profileText,
-            callback: function (err, profileId, profileText) {
+            callback: (err, profileId, profileText) => {
                 if (!err) {
-                    that.profileName = profileId;
-                    that.cache[profileId] = profileText;
+                    this.profileName = profileId;
+                    this.cache[profileId] = profileText;
                 }
             },
         });
@@ -184,6 +206,17 @@ BR.Profile = L.Evented.extend({
     _updateProfile: function (profileName, profileText) {
         const empty = !this.editor.getValue();
         const clean = this.editor.isClean();
+        this.pendingOptions = {};
+
+        // apply current/initial options
+        profileText = this._buildCustomProfile(profileText, this.profileData.getOptions());
+        if (!this.profileData.isDefault) {
+            // upload the profile to backend
+            // TODO: Currently this happens twice during page load need to fix this
+            this.fire('update', { profileText: profileText });
+        }
+
+        this.profileData._profileText = profileText;
 
         // only synchronize profile editor/parameters with selection if no manual changes in full editor,
         // else keep custom profile pinned - to prevent changes in another profile overwriting previous ones
@@ -236,7 +269,6 @@ BR.Profile = L.Evented.extend({
             var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
             global.forEach(function (item) {
                 var match = item.match(assignRegex);
-                var value;
                 if (match) {
                     var name = match[1];
                     var value = match[2];
@@ -293,7 +325,7 @@ BR.Profile = L.Evented.extend({
             paramsSection.append(i18next.t('sidebar.profile.no_easy_configuration_warning'));
         }
 
-        Object.keys(params).forEach(function (param) {
+        Object.keys(params).forEach((param) => {
             var div = document.createElement('div');
             var label = document.createElement('label');
 
@@ -321,6 +353,9 @@ BR.Profile = L.Evented.extend({
                 label.append(paramName);
                 div.appendChild(label);
                 div.appendChild(select);
+                $(select).on('change', () => {
+                    this.pendingOptions[paramName] = $(select).val();
+                });
             } else {
                 var input = document.createElement('input');
                 input.name = paramName;
@@ -334,6 +369,9 @@ BR.Profile = L.Evented.extend({
                     div.appendChild(label);
                     div.appendChild(input);
                     div.className = 'form-group';
+                    $(input).on('change', () => {
+                        this.pendingOptions[paramName] = $(input).val();
+                    });
                 } else if (paramType == 'boolean') {
                     input.type = 'checkbox';
                     input.checked = params[param].value;
@@ -341,6 +379,9 @@ BR.Profile = L.Evented.extend({
                     div.appendChild(input);
                     label.append(paramName);
                     div.appendChild(label);
+                    $(input).on('change', () => {
+                        this.pendingOptions[paramName] = String($(input).is(':checked'));
+                    });
                 } else {
                     // Unknown parameter type, skip it
                     return;

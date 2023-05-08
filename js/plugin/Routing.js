@@ -42,10 +42,10 @@ BR.Routing = L.Routing.extend({
         },
     },
 
-    initialize: function (profile, options) {
+    initialize: function (profileEditor, options) {
         L.Routing.prototype.initialize.call(this, options);
 
-        this.profile = profile;
+        this.profileEditor = profileEditor;
     },
 
     onAdd: function (map) {
@@ -496,7 +496,7 @@ BR.Routing = L.Routing.extend({
     },
 
     _computeKinematic: function (distance, deltaHeight, costFactor) {
-        const rc = new BR.RoutingContext(this.profile);
+        const rc = new BR.RoutingContext(this.profileEditor);
         rc.expctxWay = new BR.BExpressionContextWay(undefined, costFactor);
         const stdPath = new BR.StdPath();
 

@@ -5,7 +5,7 @@ BR.RoutingOptions = L.Evented.extend({
         },
     },
 
-    initialize: function () {
+    initialize: function (profileData) {
         $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
         var remembered_profile = this.getRememberedProfile();
@@ -14,6 +14,16 @@ BR.RoutingOptions = L.Evented.extend({
         // build option list from config
         var profiles = BR.conf.profiles;
         var profiles_list = L.DomUtil.get('profile');
+        // set default value, used as indicator for empty custom profile
+        profiles_list.children[0].value = 'Custom';
+
+        if (!location.hash && remembered_profile) {
+            profileData.selectProfile(remembered_profile);
+            if (!profileData.isDefault) {
+                profiles_list.children[0].value = profileData.toProfileName();
+            }
+        }
+
         for (var i = 0; i < profiles.length; i++) {
             var option = document.createElement('option');
             option.value = profiles[i];
@@ -25,14 +35,28 @@ BR.RoutingOptions = L.Evented.extend({
             }
             profiles_list.appendChild(option);
         }
-        // set default value, used as indicator for empty custom profile
-        profiles_list.children[0].value = 'Custom';
         if (!remembered_profile_was_selected) {
             // <custom> profile is empty at start, select next one
             profiles_list.children[1].selected = true;
         }
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
+
+        if (profileData) {
+            if (remembered_profile_was_selected) {
+                profileData.selectProfile(remembered_profile);
+            }
+            profileData.on('changed', () => {
+                let profileName = profileData.toProfileName();
+                if (!profileData.isDefault) {
+                    this.setCustomProfile(profileName, true);
+                }
+                this.setOptions({ profile: profileName });
+            });
+            this.on('update', (evt) => {
+                profileData.selectProfile(evt.options.profile);
+            });
+        }
     },
 
     refreshUI: function () {
@@ -79,11 +103,6 @@ BR.RoutingOptions = L.Evented.extend({
         ];
         $('.selectpicker').selectpicker('val', values);
         this.refreshUI();
-
-        if (options.profile && L.BRouter.isCustomProfile(options.profile)) {
-            // custom profile passed with permalink
-            this.setCustomProfile(options.profile, true);
-        }
     },
 
     setCustomProfile: function (profile, noUpdate) {
@@ -105,9 +124,8 @@ BR.RoutingOptions = L.Evented.extend({
             profiles_grp.children[1].selected = true;
         }
 
-        option.selected = !!profile;
-
         if (!noUpdate) {
+            option.selected = !!profile;
             this.fire('update', { options: this.getOptions() });
         }
     },

@@ -16,9 +16,11 @@ L.BRouter = L.Class.extend({
     },
 
     options: {},
+    profileData: null,
 
-    initialize: function (options) {
+    initialize: function (options, profileData) {
         L.setOptions(this, options);
+        this.profileData = profileData;
 
         this.queue = async.queue(
             L.bind(function (task, callback) {
@@ -50,8 +52,6 @@ L.BRouter = L.Class.extend({
         if (this.options.polygons && this._getNogosPolygonsString(this.options.polygons).length > 0)
             params.polygons = this._getNogosPolygonsString(this.options.polygons);
 
-        if (this.options.profile != null) params.profile = this.options.profile;
-
         if (pois && this._getLonLatsNameString(pois) != null) params.pois = this._getLonLatsNameString(pois);
 
         if (circlego) params.circlego = circlego;
@@ -59,16 +59,17 @@ L.BRouter = L.Class.extend({
         params.alternativeidx = this.options.alternative;
 
         if (format != null) {
+            params.profile = this.profileData.id;
             params.format = format;
         } else {
             // do not put values in URL if this is the default value (format===null)
-            if (params.profile === BR.conf.profiles[0]) delete params.profile;
-            if (params.alternativeidx == 0) delete params.alternativeidx;
+            if (!this.profileData.isInitialProfile()) {
+                params.profile = this.profileData.toProfileName();
 
-            // don't add custom profile, as these are only stored temporarily
-            if (params.profile && L.BRouter.isCustomProfile(params.profile)) {
-                delete params.profile;
+                params.profile = encodeURIComponent(params.profile);
             }
+
+            if (params.alternativeidx == 0) delete params.alternativeidx;
         }
 
         return params;
@@ -95,7 +96,7 @@ L.BRouter = L.Class.extend({
             opts.alternative = params.alternativeidx;
         }
         if (params.profile) {
-            opts.profile = this._parseProfile(params.profile);
+            opts.profile = params.profile;
         }
         if (params.pois) {
             opts.pois = this._parseLonLatNames(params.pois);
@@ -143,6 +144,16 @@ L.BRouter = L.Class.extend({
     },
 
     getRoute: function (latLngs, cb) {
+        if (!this.profileData.isDefault && this.profileData.id === L.BRouter.CUSTOM_PREFIX) {
+            // TODO: Known problem because of callback&load order when opening
+            // a url that contains profile with options.
+            // Need to refactor this load order for now use a simple workaround
+            console.warn('Use workaround for not yet availabe profile ID');
+            window.setTimeout(() => {
+                this.getRoute(latLngs, cb);
+            }, 100);
+            return;
+        }
         var url = this.getUrl(latLngs, null, null, null, 'geojson'),
             xhr = new XMLHttpRequest();
 
@@ -193,13 +204,17 @@ L.BRouter = L.Class.extend({
         this.queue.push({ segment: [l1, l2] }, cb);
     },
 
-    uploadProfile: function (profileId, profileText, cb) {
+    uploadProfile: function (profileText, cb) {
         var url = L.BRouter.URL_PROFILE_UPLOAD;
         xhr = new XMLHttpRequest();
 
-        // reuse existing profile file
-        if (profileId) {
-            url += '/' + profileId;
+        if (this.profileData.isDefault) {
+            throw new Error('Unexpected state: Trying to upload default Profile');
+        } else if (this.profileData.id === L.BRouter.CUSTOM_PREFIX) {
+            // custom but first upload
+        } else if (isCustomProfile(this.profileData.id)) {
+            // reuse existing profile file
+            url += '/' + this.profileData.id;
         }
 
         xhr.open('POST', url, true);
@@ -252,6 +267,9 @@ L.BRouter = L.Class.extend({
 
         if (xhr.status === 200 && xhr.responseText && xhr.responseText.length > 0) {
             response = JSON.parse(xhr.responseText);
+            // TODO: the user may have already changed the profile while waiting
+            // for the upload add some validation
+            this.profileData.id = response.profileid;
             cb(response.error, response.profileid);
         } else {
             cb(i18next.t('warning.profile-error'));
@@ -498,14 +516,6 @@ L.BRouter = L.Class.extend({
         return nogos;
     },
 
-    _parseProfile: function (profile) {
-        if (BR.conf.profilesRename?.[profile]) {
-            return BR.conf.profilesRename[profile];
-        }
-
-        return profile;
-    },
-
     // formats L.LatLng object as lng,lat string
     _formatLatLng: function (latLng) {
         var s = '';
@@ -516,6 +526,6 @@ L.BRouter = L.Class.extend({
     },
 });
 
-L.bRouter = function (options) {
-    return new L.BRouter(options);
+L.bRouter = function (options, profileData) {
+    return new L.BRouter(options, profileData);
 };
