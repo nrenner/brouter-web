@@ -13,7 +13,8 @@
             "Uint8Array",
             "performance",
             "location.hostname",
-            "document.body"
+            "document.body",
+            "fetch"
         ]
     }
 }

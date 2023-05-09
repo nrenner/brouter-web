@@ -86,7 +86,8 @@
         "togpx": "nrenner/togpx#722d291",
         "tokml": "0.4.0",
         "url-search-params": "1.1.0",
-        "url-search-params-polyfill": "^8.1.1"
+        "url-search-params-polyfill": "^8.1.1",
+        "whatwg-fetch": "^3.6.2"
     },
     "devDependencies": {
         "@babel/cli": "7.19.3",
