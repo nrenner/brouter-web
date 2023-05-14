@@ -146,5 +146,3 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2014-2016 GitHub, Inc.; [MIT License](https://github.com/github/fetch/blob/master/LICENSE)
 -   [qrcodejs](https://github.com/llyys/qrcodejs)
     Copyright (c) 2012 davidshimjs [The MIT License](https://github.com/llyys/qrcodejs/blob/master/LICENSE)
--   [URLSearchParams Polyfill](https://github.com/jerrybendy/url-search-params-polyfill)
-    Copyright (c) 2016 Jerry Bendy [The MIT License](https://github.com/jerrybendy/url-search-params-polyfill/blob/master/LICENSE)
