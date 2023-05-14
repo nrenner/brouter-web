@@ -52,11 +52,12 @@ BR.ShareRoute = L.Class.extend({
     },
 
     /**
-     * Renders QR Code for the currect route:
+     * Renders QR Code for the current route:
      *
-     * - hides the export modal dialog (QR Code is shown in a new dialog)
      * - add query parameter `?export=dialog` to the current URL
-     * - displays QR Code for that URL in the dialog
+     * - displays QR Code for that URL in the dialog, size is automatically adjusted
+     *   to the length of the URL
+     * - displays buttons to change the size of the QR Code (small, medium, large)
      */
     qrcode: function () {
         const exportUrl = this.createQrCodeUrl();
@@ -120,7 +121,7 @@ BR.ShareRoute = L.Class.extend({
         // URLSearchParams uses a list of tuples internally where the
         // value part of such a tuple isn't optional. For now the value
         // is 'dialog', but it's possible to add support for other values
-        // later, e.g. for start a download directly after opening the link:
+        // later, e.g. for starting a download directly after opening the link:
         searchParams.set('export', 'dialog');
         exportLocation.search = searchParams.toString();
 
