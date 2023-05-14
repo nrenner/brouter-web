@@ -306,7 +306,7 @@
         pois = new BR.PoiMarkers(routing);
 
         exportRoute = new BR.Export(router, pois, profile);
-        new BR.ShareRoute();
+        shareRoute = new BR.ShareRoute();
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
@@ -357,6 +357,7 @@
             trackAnalysis.update(track, segments);
 
             exportRoute.update(latLngs, segments);
+            shareRoute.update(latLngs);
         }
 
         routing.addTo(map);
