@@ -306,21 +306,12 @@
         pois = new BR.PoiMarkers(routing);
 
         exportRoute = new BR.Export(router, pois, profile);
-        shareRoute = new BR.ShareRoute();
+        new BR.ShareRoute();
 
         routing.on('routing:routeWaypointEnd routing:setWaypointsEnd routing:rerouteSegmentEnd', function (evt) {
             search.clear();
             onUpdate(evt && evt.err);
         });
-
-        // Open export dialog immediately when the `export` query parameter is set;
-        // this is used for the QR code export:
-        var searchParams = new URLSearchParams(window.location.search);
-        if (searchParams.has('export') && searchParams.get('export') === 'dialog') {
-            routing.once('routing:setWaypointsEnd', () => {
-                $('#exportButton').trigger('click');
-            });
-        }
 
         map.on('routing:draw-start', function () {
             drawButton.state('deactivate-draw');
@@ -357,7 +348,17 @@
             trackAnalysis.update(track, segments);
 
             exportRoute.update(latLngs, segments);
-            shareRoute.update(latLngs);
+
+            // Open export dialog immediately when the `export` query parameter is set;
+            // this is used for the QR code export:
+            var searchParams = new URLSearchParams(window.location.search);
+            if (searchParams.has('export') && searchParams.get('export') === 'dialog') {
+                routing.once('routing:setWaypointsEnd', () => {
+                    if (latLngs.length > 1) {
+                        $('#exportButton').trigger('click');
+                    }
+                });
+            }
         }
 
         routing.addTo(map);

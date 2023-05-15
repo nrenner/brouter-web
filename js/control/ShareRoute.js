@@ -16,18 +16,6 @@ BR.ShareRoute = L.Class.extend({
     initialize: function () {
         L.DomUtil.get('shareButton').onclick = L.bind(this.share, this);
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
-
-        this.shareButton = $('#shareButton');
-        this.update([]);
-    },
-
-    update: function (latLngs) {
-        if (latLngs.length < 2) {
-            this.shareButton.addClass('disabled');
-            return;
-        }
-
-        this.shareButton.removeClass('disabled');
     },
 
     share: function (event) {
