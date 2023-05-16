@@ -313,6 +313,20 @@
             onUpdate(evt && evt.err);
         });
 
+        // Open export dialog immediately when the `export` query parameter is set;
+        // this is used for the QR code export:
+        var searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('export') && searchParams.get('export') === 'dialog') {
+            // event won't get called without lonlats
+            if (new URLSearchParams(window.location.hash).has('lonlats')) {
+                routing.once('routing:setWaypointsEnd', (evt) => {
+                    if (!evt.err && routing.getWaypoints().length > 1) {
+                        $('#exportButton').trigger('click');
+                    }
+                });
+            }
+        }
+
         map.on('routing:draw-start', function () {
             drawButton.state('deactivate-draw');
             beelineButton.enable();
@@ -348,17 +362,6 @@
             trackAnalysis.update(track, segments);
 
             exportRoute.update(latLngs, segments);
-
-            // Open export dialog immediately when the `export` query parameter is set;
-            // this is used for the QR code export:
-            var searchParams = new URLSearchParams(window.location.search);
-            if (searchParams.has('export') && searchParams.get('export') === 'dialog') {
-                routing.once('routing:setWaypointsEnd', () => {
-                    if (latLngs.length > 1) {
-                        $('#exportButton').trigger('click');
-                    }
-                });
-            }
         }
 
         routing.addTo(map);
