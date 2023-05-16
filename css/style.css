@@ -527,6 +527,68 @@ button.deactivate-beeline-active.disabled {
     margin: -6px 0 6px 20px;
 }
 
+/* Share Dialog */
+
+#share-qrcode-img img {
+    max-width: 100%;
+}
+
+.btn-group-xs > .btn,
+.btn-xs {
+    padding: 0.1rem 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    border-color: #3b5998;
+    color: #fff;
+}
+
+.btn-facebook:hover {
+    background-color: #2d4373;
+    border-color: #2d4373;
+    color: #fff;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    border-color: #25d366;
+    color: #fff;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1da851;
+    border-color: #1da851;
+    color: #fff;
+}
+
+.btn-email {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-email:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+    color: #fff;
+}
+
+.btn-mastodon {
+    background-color: #2b90d9;
+    border-color: #2b90d9;
+    color: #fff;
+}
+
+.btn-mastodon:hover {
+    background-color: #1d5bbf;
+    border-color: #1d5bbf;
+    color: #fff;
+}
+
 /* "What's new?" (Change Log) */
 #whatsnew h2 {
     margin: 2rem 0;

@@ -144,3 +144,7 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     [The Unlicense](https://github.com/osmlab/leaflet-osm-notes/blob/gh-pages/LICENSE)
 -   [Fetch polyfill](https://github.com/Github/fetch)  
     Copyright (c) 2014-2016 GitHub, Inc.; [MIT License](https://github.com/github/fetch/blob/master/LICENSE)
+-   [qrcodejs](https://github.com/llyys/qrcodejs)
+    Copyright (c) 2012 davidshimjs [The MIT License](https://github.com/llyys/qrcodejs/blob/master/LICENSE)
+-   [Bootstrap Icons](https://github.com/twbs/icons)
+    Copyright (c) 2019-2023 The Bootstrap Authors [The MIT License](https://github.com/twbs/icons/blob/main/LICENSE)
