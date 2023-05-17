@@ -5,11 +5,12 @@ BR.Track = {
     /**
      * Returns common options for styling and appearance of tracks
      *
-     * @param {BR.ControlLayers} layersControl Layers control instance
+     * @param {BR.ControlLayers} [layersControl] Layers control instance
+     * @param {boolean} [filterPois=false] exclude points not of type from/via/to, set true when also calling `addPoiMarkers`
      *
      * @returns {Object} to pass as `options` parameter to `L.geoJson`
      */
-    getGeoJsonOptions: function (layersControl) {
+    getGeoJsonOptions: function (layersControl, filterPois = false) {
         // https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0
         const styleMapping = [
             ['stroke', 'color'],
@@ -34,8 +35,11 @@ BR.Track = {
             },
             interactive: false,
             filter: function (geoJsonFeature) {
-                // remove POIs, added separately
-                return !BR.Track.isPoiPoint(geoJsonFeature);
+                if (filterPois) {
+                    // remove POIs, added separately, see `addPoiMarkers`
+                    return !BR.Track.isPoiPoint(geoJsonFeature);
+                }
+                return true;
             },
             pointToLayer: function (geoJsonPoint, latlng) {
                 // route waypoint (type=from/via/to)
