@@ -509,9 +509,9 @@ L.BRouter = L.Class.extend({
     // formats L.LatLng object as lng,lat string
     _formatLatLng: function (latLng) {
         var s = '';
-        s += L.Util.formatNum(latLng.lng || latLng[1], L.BRouter.PRECISION);
+        s += L.Util.formatNum(latLng.lng ?? latLng[1], L.BRouter.PRECISION);
         s += L.BRouter.NUMBER_SEPARATOR;
-        s += L.Util.formatNum(latLng.lat || latLng[0], L.BRouter.PRECISION);
+        s += L.Util.formatNum(latLng.lat ?? latLng[0], L.BRouter.PRECISION);
         return s;
     },
 });
