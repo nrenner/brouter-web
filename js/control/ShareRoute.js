@@ -99,6 +99,7 @@ BR.ShareRoute = L.Class.extend({
         } catch (exception) {
             $('#share-qrcode-img').empty();
             $('#qrcode-buttons').hide();
+            $('#qrcode-size-buttons').hide();
             if (exception.message === 'Too long data') {
                 $('#qrcode-msg-too-long').show();
 
