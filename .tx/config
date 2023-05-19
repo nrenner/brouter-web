@@ -1,10 +1,10 @@
 [main]
-host = https://www.transifex.com
-minimum_perc = 1
-lang_map = fr_CA:fr-CA,pt_BR:pt-BR,zh_CN:zh-CN,zh_HK:zh-HK,zh_TW:zh-TW,da_DK:da-DK,sv_SE:sv-SE,kn_IN:kn-IN,nl_NL:nl-NL,en_NL:en-NL,gl_ES:gl-ES
+host     = https://www.transifex.com
+lang_map = pt_BR: pt-BR, zh_HK: zh-HK, nl_NL: nl-NL, da_DK: da-DK, sv_SE: sv-SE, kn_IN: kn-IN, en_NL: en-NL, gl_ES: gl-ES, fr_CA: fr-CA, zh_CN: zh-CN, zh_TW: zh-TW
 
-[brouter-web.brouter-website]
+[o:openstreetmap:p:brouter-web:r:brouter-website]
 file_filter = locales/<lang>.json
 source_file = locales/en.json
 source_lang = en
-type = JSON
+type        = JSON
+
