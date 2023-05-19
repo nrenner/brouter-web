@@ -31,6 +31,7 @@
   "export": {
     "format": "Format",
     "format_csv": "CSV",
+    "format_fit": "FIT",
     "format_geojson": "GeoJSON",
     "format_gpx": "GPX",
     "format_kml": "KML",
@@ -165,8 +166,8 @@
     "route-quality-altitude": "Altitude coding",
     "route-quality-cost": "Cost coding",
     "route-quality-incline": "Incline coding",
-    "route-quality-surface": "Road surface/quality",
     "route-quality-shortcut": "{{action}} ({{key}} key to toggle)",
+    "route-quality-surface": "Road surface/quality",
     "route-tooltip-segment": "Drag to create a new waypoint. Click to toggle straight line.",
     "route-tooltip-waypoint": "Waypoint. Drag to move; Click to remove.",
     "strava-biking": "Show Strava biking segments",
@@ -218,7 +219,16 @@
       "vm-forum-liegerad-schnell": "Recumbent bike (fast)",
       "vm-forum-velomobil-schnell": "Velomobile (fast)"
     },
-    "profile-tooltip": "\n({{key}} key to switch)"
+    "profile-tooltip": "\n({{key}} key to switch)",
+    "share": "Share",
+    "share-tooltip": "Share Route"
+  },
+  "qrcode": {
+    "large": "Large",
+    "medium": "Medium",
+    "msg-too-long": "Cannot create QR Code: Route definition is too long. Removing some waypoints may help fit all data into the QR Code.",
+    "msg-unknown-error": "Cannot create QR Code: An unknown error occurred. See the browser console for details. Maybe the route definition is too long. Removing some waypoints may help fit all data into the QR Code.",
+    "small": "Small"
   },
   "searchfav": {
     "addfavorite": "add as favorite",
@@ -227,6 +237,16 @@
     "import": "import favorites from file",
     "openfavorites": "open favorite list",
     "removeall": "delete all favorites"
+  },
+  "share": {
+    "copy-link": "Copy Link to this Route",
+    "introduction": "Share this route using a QR Code or by copying the link to the clipboard. The QR Code opens the route on your smartphone browser for viewing, changing or exporting.",
+    "mastodon-enter-server-name": "Enter Mastodon server name",
+    "title": "Share Route",
+    "tooltip-email": "Share by email",
+    "tooltip-facebook": "Share on Facebook",
+    "tooltip-mastodon": "Share on Mastodon",
+    "tooltip-whatsapp": "Share on WhatsApp"
   },
   "sidebar": {
     "analysis": {

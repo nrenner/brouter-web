@@ -49,6 +49,7 @@ i18next.t('navbar.profile.trekking-nosteps');
 i18next.t('navbar.profile.trekking-steep');
 i18next.t('navbar.profile.vm-forum-liegerad-schnell');
 i18next.t('navbar.profile.vm-forum-velomobil-schnell');
+i18next.t('navbar.share-tooltip');
 
 i18next.t('sidebar.analysis.tooltip');
 i18next.t('sidebar.customize-profile.tooltip');
