@@ -750,6 +750,12 @@ table.dataTable.display tbody tr:hover.selected {
     height: 23px;
 }
 
+.custom_layers_url {
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
 #layers-button-group {
     display: flex;
     justify-content: space-between;

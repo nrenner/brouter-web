@@ -44,7 +44,7 @@ BR.Layers = L.Class.extend({
             },
             columns: [
                 { title: i18next.t('sidebar.layers.table.name') },
-                { title: i18next.t('sidebar.layers.table.URL') },
+                { title: i18next.t('sidebar.layers.table.URL'), className: 'custom_layers_url' },
                 { title: i18next.t('sidebar.layers.table.type') },
             ],
         });
