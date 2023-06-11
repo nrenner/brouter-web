@@ -1,0 +1,12 @@
+{
+    "geometry": null,
+    "properties": {
+        "name": "Bicycle Charging Station",
+        "id": "bicycle_charging_station",
+        "overlay": true,
+        "dataSource": "OverpassAPI",
+        "icon": "fas-charging-station",
+        "query": "nwr[amenity=charging_station][bicycle=yes];"
+    },
+    "type": "Feature"
+}
