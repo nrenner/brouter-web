@@ -128,6 +128,7 @@ BR.confLayers.tree = {
                 'restaurant',
             ],
             'transportation': [
+                'bicycle_charging_station',
                 'bicycle_parking',
                 'bicycle_rental',
                 'bicycle_repair_station',
