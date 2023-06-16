@@ -160,6 +160,8 @@
                     } else if (e.keyCode === 72) {
                         // char code for 'h'
                         $('#about').modal('show');
+                    } else if (e.key === '?') {
+                        $('#help').modal('show');
                     }
                 }
             },

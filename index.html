@@ -395,12 +395,205 @@
                         <button
                             type="button"
                             class="btn btn-secondary"
+                            data-i18n="keyboard-shortcuts.title"
+                            data-toggle="modal"
+                            data-target="#help"
+                        >
+                            Help/Keyboard shortcuts
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
                             data-i18n="whatsnew.title"
                             data-toggle="modal"
                             data-target="#whatsnew"
                         >
                             What's new?
                         </button>
+                        <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help modal window -->
+        <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="Help window" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-md-down" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" data-i18n="help.title">Help</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5 data-i18n="help.keyboard-shortcuts">Keyboard Shortcuts</h5>
+                        <ul class="keyboard-shortcuts">
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-draw">
+                                    Enter draw mode
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>d</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-exit-draw">
+                                    Exit draw mode or close dialog
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Esc</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-undo">
+                                    Remove last point from route (“undo”)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>z</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-mute-route">
+                                    Hide route temporarily (as long as key is down, “mute”)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>m</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-add-poi">
+                                    Add “Point of Interest” (<kbd>Esc</kbd> exits this mode)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>p</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-zoom-map">Zoom map</div>
+                                <div class="keyboard-shortcuts-key"><kbd>+</kbd> <kbd>-</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-move-map">Move map</div>
+                                <div class="keyboard-shortcuts-key">
+                                    <kbd>←</kbd> <kbd>→</kbd> <kbd>↓</kbd> <kbd>↑</kbd>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-undo">
+                                    Center current position (geolocation)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>l</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-undo">
+                                    Search for locations
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>f</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-undo">Reverse route</div>
+                                <div class="keyboard-shortcuts-key"><kbd>r</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-nogo">
+                                    Draw no-go area (<kbd>Esc</kbd> exits this mode)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>n</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-nogo-load">
+                                    Load no-go area
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Shift</kbd> <kbd>n</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-delete-route">
+                                    Delete route
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Backspace</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-color-coding">
+                                    Cycle through color-coding modes
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>c</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-strava-layer">
+                                    Toggle Strava layer
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>s</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-elevation-profile">
+                                    Toggle elevation profile
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>e</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-profile-select">
+                                    Select routing profile
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>g</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-export">Export route</div>
+                                <div class="keyboard-shortcuts-key"><kbd>x</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-share" data-i18n="help.shortcut-share">Share route</div>
+                                <div class="keyboard-shortcuts-key"><kbd>a</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-load-track">
+                                    Load track
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>o</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-load-track-as-route">
+                                    Load track as route
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Shift</kbd> <kbd>o</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-about">
+                                    Show “About” dialog
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>h</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-sidebar-toggle">
+                                    Toggle sidebar
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>t</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-sidebar-switch-tabs">
+                                    Cycle through tabs in sidebar
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Shift</kbd> <kbd>t</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-allowed-zone">
+                                    Draw allowed zone
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>i</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-straight-line-toggle">
+                                    Toggle straight line (in draw mode)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>b</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-desc" data-i18n="help.shortcut-straight-line-append">
+                                    Append straight line (in draw mode)
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>Shift</kbd> <kbd>click</kbd></div>
+                            </li>
+                            <li>
+                                <div class="keyboard-shortcuts-help" data-i18n="help.shortcut-help-dialog">
+                                    Open this help dialog
+                                </div>
+                                <div class="keyboard-shortcuts-key"><kbd>?</kbd></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-i18n="modal.close" data-dismiss="modal">
                             Close
                         </button>
