@@ -65,11 +65,46 @@
     "total-energy": "Total Energy",
     "travel-time": "Travel time"
   },
+  "help": {
+    "keyboard-shortcuts": "Keyboard Shortcuts",
+    "shortcut-about": "Show “About” dialog",
+    "shortcut-add-poi": "Add “Point of Interest” (Esc exits this mode)",
+    "shortcut-allowed-zone": "Draw allowed zone",
+    "shortcut-color-coding": "Cycle through color-coding modes",
+    "shortcut-delete-route": "Delete route",
+    "shortcut-draw": "Enter draw mode",
+    "shortcut-elevation-profile": "Toggle elevation profile",
+    "shortcut-exit-draw": "Exit draw mode or close dialog",
+    "shortcut-export": "Export route",
+    "shortcut-help-dialog": "Open this help dialog",
+    "shortcut-load-track": "Load track",
+    "shortcut-load-track-as-route": "Load track as route",
+    "shortcut-locate": "Center current position (geolocation)",
+    "shortcut-move-map": "Move map",
+    "shortcut-mute-route": "Hide route temporarily (as long as key is down, “mute”)",
+    "shortcut-nogo": "Draw no-go area (Esc exits this mode)",
+    "shortcut-nogo-load": "Load no-go area",
+    "shortcut-profile-select": "Select routing profile",
+    "shortcut-reverse": "Reverse route",
+    "shortcut-search": "Search for locations",
+    "shortcut-share": "Share route",
+    "shortcut-sidebar-switch-tabs": "Cycle through tabs in sidebar",
+    "shortcut-sidebar-toggle": "Toggle sidebar",
+    "shortcut-straight-line-append": "Append straight line (in draw mode)",
+    "shortcut-straight-line-toggle": "Toggle straight line (in draw mode)",
+    "shortcut-strava-layer": "Toggle Strava layer",
+    "shortcut-undo": "Remove last point from route (“undo”)",
+    "shortcut-zoom-map": "Zoom map",
+    "title": "Help"
+  },
   "keyboard": {
     "backspace": "Backspace",
     "escape": "Escape",
     "generic-shortcut": "{{action}} ({{key}} key)",
     "shift": "Shift"
+  },
+  "keyboard-shortcuts": {
+    "title": "Help/Keyboard shortcuts"
   },
   "layers": {
     "add-base": "Add base layer",
