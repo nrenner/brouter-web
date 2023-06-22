@@ -8433,10 +8433,10 @@ leaflet-filelayer@1.2.0:
   resolved "https://registry.yarnpkg.com/leaflet-filelayer/-/leaflet-filelayer-1.2.0.tgz#9f822e68a06072b0b0a8f328ba9419ba96bbccb1"
   integrity sha512-H3HrOOM9bpkrRUacdnWISV0MKZXLBYsX24H4XV+55QbcGCvd9In6oPzANEnhsokHAwNWd9qP6GfiHEFCfn+qkA==
 
-leaflet-geometryutil@0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.10.1.tgz#d9e7f662991dac71d234faf2db9c7641abf57523"
-  integrity sha512-xfyBxv0Ls2H45V4nrzn5ASi/qw0VXgEVAkbXZqQE2Qhs52fMqmWyl7egA5ht2xbyPHqjTN9ssr9lXrmXWE91yw==
+leaflet-geometryutil@0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.10.2.tgz#da418bf90b7b792ba5bd037081c79fd38ce83b94"
+  integrity sha512-NBKO0dW6+Ur0LKa6t5JMBd242lAMjRek23O8awlpvoDmTrb7fqgZC608YLwpZ4TYJZ/RbLu9fclIN8M4pIVwTQ==
   dependencies:
     leaflet "^1.6.0"
 
