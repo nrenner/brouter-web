@@ -1,8 +1,3 @@
 {
-    "recommendations": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
-        "ms-azuretools.vscode-docker",
-        "msjsdiag.debugger-for-chrome"
-    ]
+    "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "ms-azuretools.vscode-docker"]
 }
