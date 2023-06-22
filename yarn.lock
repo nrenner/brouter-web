@@ -7715,12 +7715,7 @@ leaflet.stravasegments@2.3.2:
     leaflet-easybutton "^2.3.0"
     leaflet-triangle-marker "^1.0.1"
 
-leaflet@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
-  integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
-
-leaflet@^1.0.1, leaflet@^1.3.4, leaflet@^1.5.0, leaflet@^1.6.0:
+leaflet@1.9.4, leaflet@^1.0.1, leaflet@^1.3.4, leaflet@^1.5.0, leaflet@^1.6.0:
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.4.tgz#23fae724e282fa25745aff82ca4d394748db7d8d"
   integrity sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==
