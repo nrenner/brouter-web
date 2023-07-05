@@ -116,6 +116,7 @@
     // from BRouter btools.router.VoiceHint
     VoiceHints.commands = (function () {
         return {
+            //     Command(name, locus, orux, symbol, fit, message)
             1: new Command('C', 1, 1002, 'Straight', 'straight', 'straight'),
             2: new Command('TL', 4, 1000, 'Left', 'left', 'left'),
             3: new Command('TSLL', 3, 1017, 'TSLL', 'slight_left', 'slight left'),
@@ -125,11 +126,19 @@
             7: new Command('TSHR', 8, 1018, 'TSHR', 'sharp_right', 'sharp right'),
             8: new Command('KL', 9, 1015, 'TSLL', 'left_fork', 'keep left'),
             9: new Command('KR', 10, 1014, 'TSLR', 'right_fork', 'keep right'),
-            10: new Command('TU', 13, 1003, 'TU', 'u_turn', 'u-turn'),
+            // According to getCommandString() in BRouter, Command.name==TU for index TLU
+            // "should be changed to TLU when osmand uses new voice hint constants"
+            // According to getMessageString() in BRouter, Command.message==u-turn for index TLU
+            // "should be changed to u-turn-left when osmand uses new voice hint constants"
+            10: new Command('TU', 13, 1003, 'TU', 'u_turn', 'u-turn'), // Left U-turn
+            // According to getMessageString() in BRouter, Command.message==u-turn for index TRU
+            // "should be changed to u-turn-right when osmand uses new voice hint constants"
             11: new Command('TRU', 14, 1003, 'TU', 'u_turn', 'u-turn'), // Right U-turn
-            12: new Command('OFFR', undefined, undefined, undefined, 'danger', undefined), // Off route
+            12: new Command('OFFR', undefined, undefined, 'OFFR', 'danger', undefined), // Off route
             13: new Command('RNDB', 26, 1008, 'RNDB', 'generic', 'Take exit '), // Roundabout
             14: new Command('RNLB', 26, 1008, 'RNLB', 'generic', 'Take exit '), // Roundabout left
+            15: new Command('TU', 12, 1003, 'TU', 'u_turn', 'u-turn'), // 180 degree u-turn
+            16: new Command('BL', undefined, undefined, 'BL', 'danger', undefined), // Beeline
         };
     })();
 
