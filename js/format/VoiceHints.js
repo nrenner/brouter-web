@@ -203,7 +203,7 @@
         }
     }
 
-    class LocusVoiceHints extends WaypointVoiceHints {
+    class LocusOldVoiceHints extends WaypointVoiceHints {
         _addToTransform(transform) {
             transform.gpx = function (gpx, features) {
                 // hack to insert attribute after the other `xmlns`s
@@ -364,7 +364,10 @@
     BR.voiceHints = function (geoJson, turnInstructionMode, transportMode) {
         switch (turnInstructionMode) {
             case 2:
-                return new LocusVoiceHints(geoJson, turnInstructionMode, transportMode);
+                // TODO:
+                // Use locus-old-style voice hints for now (same style as returned by BRouter 1.6.3
+                // for turnInstructionMode=2), implementation for new-style locus still missing.
+                return new LocusOldVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 3:
                 return new OsmAndVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 4:
@@ -373,6 +376,10 @@
                 return new GpsiesVoiceHints(geoJson, turnInstructionMode, transportMode);
             case 6:
                 return new OruxVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 7:
+                return new LocusOldVoiceHints(geoJson, turnInstructionMode, transportMode);
+            case 8: // Cruiser export, not exposed in the web UI through profiles yet
+            case 9: // BRouter internal export, not exposed in the web UI through profiles yet
             default:
                 console.error('unhandled turnInstructionMode: ' + turnInstructionMode);
                 return new VoiceHints(geoJson, turnInstructionMode, transportMode);
