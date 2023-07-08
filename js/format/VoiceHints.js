@@ -179,7 +179,7 @@
 
     class GpsiesVoiceHints extends WaypointVoiceHints {
         _getWpt(hint, cmd, coord) {
-            return { name: cmd.message, sym: cmd.symbol.toLowerCase(), type: cmd.symbol };
+            return { name: cmd.message, sym: cmd.symbol?.toLowerCase(), type: cmd.symbol };
         }
     }
 
