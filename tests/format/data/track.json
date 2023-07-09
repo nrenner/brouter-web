@@ -13,8 +13,8 @@
         "total-energy": "4412",
         "cost": "533",
         "voicehints": [
-          [1,5,0,140.0,89," 6(90)6 (0)6 (-89)2"],
-          [5,2,0,90.0,-90," 6(-89)6 (0)6 (89)6"]
+          [1,"TR",0,140.0,89," 6(90)6 (0)6 (-89)2"],
+          [5,"TL",0,90.0,-90," 6(-89)6 (0)6 (89)6"]
         ],
         "messages": [
           ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
