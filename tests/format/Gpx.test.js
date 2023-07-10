@@ -69,15 +69,7 @@ test('waypoints', () => {
 
 describe('voice hints', () => {
     test('2-locus', () => {
-        let brouterGpx = BR.Xml.pretty(read('2-locus.gpx'));
-        // ignore float rounding differences
-        brouterGpx = brouterGpx.replace(
-            /:(rteTime|rteSpeed)>([\d.]*)<\//g,
-            (match, p1, p2) => `:${p1}>${(+p2).toFixed(3)}</`
-        );
-        // ignore off by one due to times passed with 3 decimals
-        brouterGpx = brouterGpx.replace('rteSpeed>9.361<', 'rteSpeed>9.360<');
-
+        let brouterGpx = read('2-locus.gpx');
         const gpx = format(geoJson, 2);
         expect(gpx).toEqual(brouterGpx);
     });
@@ -105,6 +97,20 @@ describe('voice hints', () => {
     test('6-orux', () => {
         let brouterGpx = BR.Xml.pretty(read('6-orux.gpx'));
         const gpx = format(geoJson, 6);
+        expect(gpx).toEqual(brouterGpx);
+    });
+
+    test('7-locus-old', () => {
+        let brouterGpx = BR.Xml.pretty(read('7-locus-old.gpx'));
+        // ignore float rounding differences
+        brouterGpx = brouterGpx.replace(
+            /:(rteTime|rteSpeed)>([\d.]*)<\//g,
+            (match, p1, p2) => `:${p1}>${(+p2).toFixed(3)}</`
+        );
+        // ignore off by one due to times passed with 3 decimals
+        brouterGpx = brouterGpx.replace('rteSpeed>9.361<', 'rteSpeed>9.360<');
+
+        const gpx = format(geoJson, 7);
         expect(gpx).toEqual(brouterGpx);
     });
 });
