@@ -121,7 +121,7 @@ BR.Layers = L.Class.extend({
             } else if (dataSource === 'OpenStreetMapNotesAPI') {
                 layer = this._layersControl.layersConfig.createOpenStreetMapNotesLayer();
             } else {
-                layer = L.tileLayer(layerUrl);
+                layer = L.tileLayer(layerUrl, { maxZoom: this._map.getMaxZoom() });
             }
 
             this._customLayers[layerName] = {
