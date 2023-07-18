@@ -21,6 +21,7 @@ BR.Map = {
             worldCopyJump: true,
             minZoom: 0,
             maxZoom: maxZoom,
+            attributionEditLink: true,
         });
 
         if (BR.Util.getResponsiveBreakpoint() >= '3md') {
