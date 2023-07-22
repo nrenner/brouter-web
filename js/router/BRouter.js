@@ -10,6 +10,7 @@ L.BRouter = L.Class.extend({
         GROUP_SEPARATOR: '|',
         ABORTED_ERROR: 'aborted',
         CUSTOM_PREFIX: 'custom_',
+        SUPPORTED_BROUTER_VERSIONS: '< 1.7.0 || >=1.7.2', // compatibility string should be in npm package versioning format
         isCustomProfile: function (profileName) {
             return profileName && profileName.substring(0, 7) === L.BRouter.CUSTOM_PREFIX;
         },
@@ -178,6 +179,7 @@ L.BRouter = L.Class.extend({
             try {
                 geojson = JSON.parse(xhr.responseText);
                 layer = this._assignFeatures(L.geoJSON(geojson).getLayers()[0]);
+                this.checkBRouterVersion(layer.feature.properties.creator);
 
                 return cb(null, layer);
             } catch (e) {
@@ -186,6 +188,31 @@ L.BRouter = L.Class.extend({
             }
         } else {
             cb(BR.Util.getError(xhr));
+        }
+    },
+
+    versionCheckDone: false,
+    checkBRouterVersion: function (creator) {
+        if (this.versionCheckDone) {
+            return;
+        }
+        this.versionCheckDone = true;
+
+        try {
+            const actualBRouterVersion = creator.replace(/^BRouter-/, '');
+            if (!compareVersions.satisfies(actualBRouterVersion, L.BRouter.SUPPORTED_BROUTER_VERSIONS)) {
+                console.warn(
+                    'BRouter-Web ' +
+                        BR.version +
+                        ' requires BRouter versions ' +
+                        L.BRouter.SUPPORTED_BROUTER_VERSIONS +
+                        ', but only ' +
+                        creator +
+                        ' was found.'
+                );
+            }
+        } catch (e) {
+            console.error(e);
         }
     },
 

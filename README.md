@@ -148,3 +148,5 @@ Copyright (c) 2018 Norbert Renner and [contributors](https://github.com/nrenner/
     Copyright (c) 2012 davidshimjs [The MIT License](https://github.com/llyys/qrcodejs/blob/master/LICENSE)
 -   [Bootstrap Icons](https://github.com/twbs/icons)
     Copyright (c) 2019-2023 The Bootstrap Authors [The MIT License](https://github.com/twbs/icons/blob/main/LICENSE)
+-   [compare-versions](https://github.com/omichelsen/compare-versions)
+    Copyright (c) 2015-2021 Ole Michelsen [The MIT License](https://github.com/omichelsen/compare-versions/blob/main/LICENSE)
