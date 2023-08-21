@@ -94,13 +94,13 @@ BR.Map = {
         }
         for (i in BR.conf.baseLayers) {
             if (BR.conf.baseLayers.hasOwnProperty(i)) {
-                baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i]);
+                baseLayers[i] = L.tileLayer(BR.conf.baseLayers[i], { maxZoom });
             }
         }
 
         for (i in BR.conf.overlays) {
             if (BR.conf.overlays.hasOwnProperty(i)) {
-                overlays[i] = L.tileLayer(BR.conf.overlays[i]);
+                overlays[i] = L.tileLayer(BR.conf.overlays[i], { maxZoom });
             }
         }
 
