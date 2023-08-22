@@ -544,8 +544,8 @@ BR.TrackAnalysis = L.Class.extend({
 
         switch (dataType) {
             case 'highway':
-                if (dataName === 'track') {
-                    if (trackType === 'unknown' && parsed.highway === 'track' && !parsed.tracktype) {
+                if (dataName === 'track' && parsed.highway === 'track') {
+                    if (trackType === 'unknown' && !parsed.tracktype) {
                         return true;
                     }
 
