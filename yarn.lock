@@ -7400,10 +7400,15 @@ jquery@3.6.4:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.4.tgz#ba065c188142100be4833699852bf7c24dc0252f"
   integrity sha512-v28EW9DWDFpzcD9O5iyJXg3R3+q+mET5JhnjJzQUZMHOv67bpSIHq81GEYpPNZHG+XXHsfSme3nxp/hndKEcsQ==
 
-jquery@>=1.7, jquery@>=1.9.1:
+jquery@>=1.7:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
   integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
+
+jquery@^3.5.0:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 js-base64@^2.1.9:
   version "2.6.4"
@@ -7542,12 +7547,12 @@ jsprim@^1.2.2:
     json-schema "0.4.0"
     verror "1.10.0"
 
-jstree@3.3.12:
-  version "3.3.12"
-  resolved "https://registry.yarnpkg.com/jstree/-/jstree-3.3.12.tgz#cf206bc85dcf4a4664ed6617eaae3bd5983d8601"
-  integrity sha512-vHNLWkUr02ZYH7RcIckvhtLUtneWCVEtIKpIp2G9WtRh01ITv18EoNtNQcFG3ozM+oK6wp1Z300gSLXNQWCqGA==
+jstree@3.3.16:
+  version "3.3.16"
+  resolved "https://registry.yarnpkg.com/jstree/-/jstree-3.3.16.tgz#43e3a8a1ee270ddff514317250d5e85b95d63c52"
+  integrity sha512-yeeIJffi2WAqyMeHufXj/Ozy7GqgKdDkxfN8L8lwbG0h1cw/TgDafWmyhroH4AKgDSk9yW1W6jiJZu4zXAqzXw==
   dependencies:
-    jquery ">=1.9.1"
+    jquery "^3.5.0"
 
 just-debounce@^1.0.0:
   version "1.1.0"
