@@ -60,7 +60,7 @@
         "i18next-xhr-backend": "3.2.2",
         "jquery": "3.6.4",
         "jquery-i18next": "1.2.1",
-        "jstree": "3.3.12",
+        "jstree": "3.3.16",
         "leaflet": "1.7.1",
         "leaflet-control-geocoder": "2.4.0",
         "leaflet-easybutton": "*",
