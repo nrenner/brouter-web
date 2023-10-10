@@ -4,8 +4,26 @@ BR.Layers = L.Class.extend({
 
         if (BR.Util.localStorageAvailable()) {
             var layers = JSON.parse(localStorage.getItem('map/customLayers'));
-            for (a in layers) {
-                this._addLayer(a, layers[a].layer, layers[a].isOverlay, layers[a].dataSource);
+            if (layers?.type == 'FeatureCollection') {
+                for (const layerData of layers.features) {
+                    this._addLayer(layerData);
+                }
+            }
+            // convert legacy custom format to GeoJSON Feature
+            else {
+                for (a in layers) {
+                    var layerData = {
+                        geometry: null,
+                        properties: {
+                            name: a,
+                            overlay: layers[a].isOverlay,
+                            dataSource: layers[a].dataSource,
+                            query: layers[a].dataSource === 'OverpassAPI' ? layers[a].layer : undefined,
+                            url: layers[a].layer,
+                        },
+                    };
+                    this._addLayer(layerData);
+                }
             }
         }
     },
@@ -13,17 +31,14 @@ BR.Layers = L.Class.extend({
     _loadTable: function () {
         var layersData = [];
         for (layer in this._customLayers) {
-            if (this._customLayers[layer].dataSource === 'OverpassAPI') {
-                layersData.push([
-                    layer,
-                    this._customLayers[layer].layer.options.query,
-                    i18next.t('sidebar.layers.table.type_overpass_query'),
-                ]);
+            var layerProps = this._customLayers[layer].layerData.properties;
+            if (layerProps.dataSource === 'OverpassAPI') {
+                layersData.push([layer, layerProps.query, i18next.t('sidebar.layers.table.type_overpass_query')]);
             } else {
-                var isOverlay = this._customLayers[layer].isOverlay;
+                var isOverlay = layerProps.overlay;
                 layersData.push([
                     layer,
-                    this._customLayers[layer].layer._url,
+                    layerProps.url,
                     isOverlay
                         ? i18next.t('sidebar.layers.table.type_overlay')
                         : i18next.t('sidebar.layers.table.type_layer'),
@@ -92,45 +107,71 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _addFromInput: function (isOverlay, dataSource) {
+    _addFromInput: function (layerProps) {
         var layer_name = L.DomUtil.get('layer_name').value;
         var layer_url = L.DomUtil.get('layer_url').value;
-        if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layer_name, layer_url, isOverlay, dataSource);
+
+        var layerData = {
+            geometry: null,
+            properties: {
+                ...layerProps,
+                name: L.DomUtil.get('layer_name').value,
+            },
+            type: 'Feature',
+        };
+
+        if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layerData);
     },
 
     _addBaseLayer: function (evt) {
-        this._addFromInput(false);
+        var layerProps = {
+            type: 'tms',
+            url: L.DomUtil.get('layer_url').value,
+        };
+        this._addFromInput(layerProps);
     },
     _addOverlay: function (evt) {
-        this._addFromInput(true);
+        var layerProps = {
+            type: 'tms',
+            url: L.DomUtil.get('layer_url').value,
+            overlay: true,
+        };
+        this._addFromInput(layerProps);
     },
     _addOverpassQuery: function (evt) {
-        this._addFromInput(true, 'OverpassAPI');
+        var layerProps = {
+            overlay: true,
+            dataSource: 'OverpassAPI',
+            query: L.DomUtil.get('layer_url').value,
+        };
+        this._addFromInput(layerProps);
     },
 
-    _addLayer: function (layerName, layerUrl, isOverlay, dataSource) {
+    _createTmsProps: function (props) {
+        var tmsProps = {
+            type: 'tms',
+            ...props,
+        };
+        return tmsProps;
+    },
+
+    _addLayer: function (layerData) {
+        var props = layerData.properties;
+        var layerName = props.name;
+
         if (layerName in this._layers) return;
 
         if (layerName in this._customLayers) return;
 
         try {
-            var layer;
-
-            if (dataSource === 'OverpassAPI') {
-                layer = this._layersControl.layersConfig.createOverpassLayer(layerUrl);
-            } else if (dataSource === 'OpenStreetMapNotesAPI') {
-                layer = this._layersControl.layersConfig.createOpenStreetMapNotesLayer();
-            } else {
-                layer = L.tileLayer(layerUrl);
-            }
+            var layer = this._layersControl.layersConfig.createLayer(layerData);
 
             this._customLayers[layerName] = {
                 layer: layer,
-                isOverlay: isOverlay,
-                dataSource: dataSource,
+                layerData: layerData,
             };
 
-            if (isOverlay) {
+            if (props.overlay) {
                 this._layersControl.addOverlay(layer, layerName);
             } else {
                 this._layersControl.addBaseLayer(layer, layerName);
@@ -146,25 +187,11 @@ BR.Layers = L.Class.extend({
 
     _sync: function () {
         if (BR.Util.localStorageAvailable()) {
-            localStorage.setItem(
-                'map/customLayers',
-                JSON.stringify(this._customLayers, function (k, v) {
-                    if (v === undefined) {
-                        return undefined;
-                    }
-
-                    if (v.dataSource === 'OverpassAPI') {
-                        return {
-                            dataSource: 'OverpassAPI',
-                            isOverlay: true,
-                            layer: v.layer.options.query,
-                        };
-                    }
-
-                    // dont write Leaflet.Layer in localStorage; simply keep the URL
-                    return v._url || v;
-                })
-            );
+            var geojson = {
+                type: 'FeatureCollection',
+                features: Object.values(this._customLayers).map((layer) => layer.layerData),
+            };
+            localStorage.setItem('map/customLayers', JSON.stringify(geojson));
         }
     },
 });
