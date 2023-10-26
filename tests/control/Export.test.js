@@ -18,6 +18,11 @@ const indexHtml = new DOMParser().parseFromString(indexHtmlString, 'text/html');
 const segments = require('./data/segments.json');
 const brouterTotal = require('./data/brouterTotal.json');
 
+// fix turn instruction distance
+// This is buggy on the backend when request a route with a waypoint
+brouterTotal.features[0].properties.voicehints[0][3] += 53;
+brouterTotal.features[0].properties.voicehints[2][3] += 49;
+
 // resolve intended/accepted differences before comparing
 function adopt(total, brouterTotal) {
     // BRouter total aggregates messages over segments, client total does not,
@@ -64,6 +69,17 @@ test('total track', () => {
     total = BR.Export._concatTotalTrack(segments);
     adopt(total, brouterTotal);
     expect(total).toEqual(brouterTotal);
+});
+
+test('hint distance fix', () => {
+    const segmentsCopy = JSON.parse(JSON.stringify(segments, null, 2));
+
+    // general case already tested
+
+    // special case: second segment without hint
+    segmentsCopy[1].feature.properties.voicehints = null;
+    let total = BR.Export._concatTotalTrack(segmentsCopy);
+    expect(total.features[0].properties.voicehints[0][3]).toEqual(299);
 });
 
 test('include route points', () => {
