@@ -43,7 +43,7 @@
         "@turf/turf": "6.5.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
         "abortcontroller-polyfill": "1.7.5",
-        "async": "2.6.4",
+        "async": "3.2.5",
         "bootbox": "5.5.3",
         "bootstrap": "4.6.2",
         "bootstrap-select": "1.13.18",
