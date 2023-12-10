@@ -167,7 +167,30 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                 } else {
                     $('#no-elevation-data').hide();
                 }
-                var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs());
+                var chartWidth;
+                if (document.getElementsByClassName('heightgraph-container').length > 0) {
+                    var hgElement = document.getElementsByClassName('heightgraph-container')[0];
+                    if (hgElement.getElementsByTagName('g').length > 0) {
+                        hgGElement = hgElement.getElementsByTagName('g')[0];
+                        if (hgGElement.getElementsByClassName('grid').length > 1) {
+                            hgGRectElement = hgGElement.getElementsByClassName('grid')[1];
+                            chartWidth = hgGRectElement.getBoundingClientRect().width;
+                        }
+                    }
+                }
+                // if I cannot get the chart width (e.g. the chart is not visible),
+                // get the width of the content element - that's close enough
+                if (typeof chartWidth === 'undefined' || chartWidth === 0) {
+                    var contentElement = document.getElementById('content');
+                    if (contentElement) {
+                        chartWidth = contentElement.getBoundingClientRect().width;
+                    }
+                }
+                var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs(), {
+                    interpolate: false,
+                    normalize: true,
+                    chartWidthInPixels: chartWidth,
+                });
                 this.addData(geojsonFeatures);
 
                 // re-add handlers

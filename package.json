@@ -54,7 +54,7 @@
         "datatables": "1.10.18",
         "fit-file-writer": "tbsmark86/fit-file-writer#3eebe13",
         "font-awesome": "4.7.0",
-        "geo-data-exchange": "alexcojocaru/geo-data-exchange#v2.0.0",
+        "geo-data-exchange": "alexcojocaru/geo-data-exchange#v2.1.0",
         "i18next": "19.9.2",
         "i18next-browser-languagedetector": "7.0.2",
         "i18next-xhr-backend": "3.2.2",
