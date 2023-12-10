@@ -5636,9 +5636,9 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
-geo-data-exchange@alexcojocaru/geo-data-exchange#v2.0.0:
-  version "2.0.0"
-  resolved "https://codeload.github.com/alexcojocaru/geo-data-exchange/tar.gz/f3964028483ce194700f98c3d9c241818b54062b"
+geo-data-exchange@alexcojocaru/geo-data-exchange#v2.1.0:
+  version "2.1.0"
+  resolved "https://codeload.github.com/alexcojocaru/geo-data-exchange/tar.gz/aa1a0bc98f0b3f7233ea3dcbc038bf46a99702d9"
   dependencies:
     leaflet "^1.5.0"
 
