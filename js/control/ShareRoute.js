@@ -48,7 +48,11 @@ BR.ShareRoute = L.Class.extend({
                     }
 
                     if (BR.Util.localStorageAvailable()) {
-                        localStorage.setItem('share/mastodonInstance', new URL(mastodonServer).hostname);
+                        try {
+                            localStorage.setItem('share/mastodonInstance', new URL(mastodonServer).hostname);
+                        } catch (exception) {
+                            console.error('Cannot store Mastodon instance', exception);
+                        }
                     }
 
                     window.open(mastodonServer + '/share?text=' + encodeURIComponent(self.getShareUrl()), '_blank');
