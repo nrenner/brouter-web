@@ -1,12 +1,7 @@
 BR.ShareRoute = L.Class.extend({
-    /**
-     * Sharing via Mastodon is currently disabled by default, because
-     * the share intent fails when the current route URL is longer
-     * than the post character limit for that instance.
-     */
     options: {
         services: {
-            mastodon: false,
+            mastodon: true,
         },
         shortcut: {
             share_action: 65, // char code for 'a' ("action")
