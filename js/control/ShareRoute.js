@@ -31,16 +31,26 @@ BR.ShareRoute = L.Class.extend({
         });
 
         if (this.options.services.mastodon === true) {
+            let storedMastodonInstance;
+            if (BR.Util.localStorageAvailable()) {
+                storedMastodonInstance = localStorage.getItem('share/mastodonInstance');
+            }
             $('.share-service-mastodon')
                 .removeAttr('hidden')
                 .on('click', function () {
                     let mastodonServer = window.prompt(
                         i18next.t('share.mastodon-enter-server-name'),
-                        'mastodon.social'
+                        storedMastodonInstance ?? 'mastodon.social'
                     );
+
                     if (mastodonServer.indexOf('http') !== 0) {
                         mastodonServer = 'https://' + mastodonServer;
                     }
+
+                    if (BR.Util.localStorageAvailable()) {
+                        localStorage.setItem('share/mastodonInstance', new URL(mastodonServer).hostname);
+                    }
+
                     window.open(mastodonServer + '/share?text=' + encodeURIComponent(self.getShareUrl()), '_blank');
                 });
         }
