@@ -796,96 +796,111 @@
                             the route on your smartphone browser for viewing, changing or exporting.
                         </p>
 
-                        <p>
-                            <button class="share-copy-link btn btn-sm btn-primary">
-                                <i class="fa fa-copy"></i>
-                                <span data-i18n="share.copy-link">Copy Link to this Route</span>
-                            </button>
-                            <a
-                                href="https://www.facebook.com/sharer/sharer.php?u={url}"
-                                class="share-service share-service-facebook btn btn-sm btn-facebook"
-                                target="_blank"
-                                data-i18n="[title]share.tooltip-facebook"
-                                title="Share on Facebook"
-                                ><i class="fa fa-facebook"></i
-                            ></a>
-                            <a
-                                href="whatsapp://send?text={url}"
-                                class="share-service share-service-whatsapp btn btn-sm btn-whatsapp"
-                                data-i18n="[title]share.tooltip-whatsapp"
-                                title="Share on WhatsApp"
-                                target="_blank"
-                                ><i class="fa fa-whatsapp"></i
-                            ></a>
-                            <a
-                                href="mailto:?subject=Planned Route&body={url}"
-                                class="share-service share-service-email btn btn-sm btn-email"
-                                data-i18n="[title]share.tooltip-email"
-                                title="Share by email"
-                                ><i class="fa fa-envelope"></i
-                            ></a>
-                            <button
-                                class="share-service-mastodon btn btn-sm btn-mastodon"
-                                data-i18n="[title]share.tooltip-mastodon"
-                                title="Share on Mastodon"
-                                hidden
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="15"
-                                    height="15"
-                                    fill="currentColor"
-                                    viewBox="0 0 16 16"
-                                >
-                                    <path
-                                        d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
-                                    />
-                                </svg>
-                            </button>
-                        </p>
+                        <div class="d-flex flex-column flex-lg-row">
+                            <div class="mb-3 mb-lg-0 order-1 order-lg-0 mr-lg-5">
+                                <p id="share-qrcode-img" style="margin-right: 1em"></p>
 
-                        <p id="share-qrcode-img" style="margin-right: 1em"></p>
-
-                        <p class="alert alert-danger hide" id="qrcode-msg-too-long" data-i18n="qrcode.msg-too-long">
-                            Cannot create QR Code: Route definition is too long. Removing some waypoints may help fit
-                            all data into the QR Code.
-                        </p>
-                        <p
-                            class="alert alert-danger hide"
-                            id="qrcode-msg-unknown-error"
-                            data-i18n="qrcode.msg-unknown-error"
-                        >
-                            Cannot create QR Code: An unknown error occurred. See the browser console for details. Maybe
-                            the route definition is too long. Removing some waypoints may help fit all data into the QR
-                            Code.
-                        </p>
-                        <div id="qrcode-buttons">
-                            <div class="mt-2"><small>QR Code Size:</small></div>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="Change size of QR Code">
-                                <button
-                                    class="btn btn-secondary qrcode-size-button"
-                                    id="qrcode-create-small"
-                                    data-qrcode-size="256"
-                                    data-i18n="qrcode.small"
+                                <p
+                                    class="alert alert-danger hide"
+                                    id="qrcode-msg-too-long"
+                                    data-i18n="qrcode.msg-too-long"
                                 >
-                                    Small
-                                </button>
-                                <button
-                                    class="btn btn-secondary qrcode-size-button"
-                                    id="qrcode-create-medium"
-                                    data-qrcode-size="384"
-                                    data-i18n="qrcode.medium"
+                                    Cannot create QR Code: Route definition is too long. Removing some waypoints may
+                                    help fit all data into the QR Code.
+                                </p>
+                                <p
+                                    class="alert alert-danger hide"
+                                    id="qrcode-msg-unknown-error"
+                                    data-i18n="qrcode.msg-unknown-error"
                                 >
-                                    Medium
-                                </button>
-                                <button
-                                    class="btn btn-secondary qrcode-size-button"
-                                    id="qrcode-create-large"
-                                    data-qrcode-size="512"
-                                    data-i18n="qrcode.large"
-                                >
-                                    Large
-                                </button>
+                                    Cannot create QR Code: An unknown error occurred. See the browser console for
+                                    details. Maybe the route definition is too long. Removing some waypoints may help
+                                    fit all data into the QR Code.
+                                </p>
+                                <div id="qrcode-buttons" class="d-none d-md-block">
+                                    <div class="mt-2"><small>QR Code Size:</small></div>
+                                    <div
+                                        class="btn-group btn-group-xs"
+                                        role="group"
+                                        aria-label="Change size of QR Code"
+                                    >
+                                        <button
+                                            class="btn btn-secondary qrcode-size-button"
+                                            id="qrcode-create-small"
+                                            data-qrcode-size="256"
+                                            data-i18n="qrcode.small"
+                                        >
+                                            Small
+                                        </button>
+                                        <button
+                                            class="btn btn-secondary qrcode-size-button"
+                                            id="qrcode-create-medium"
+                                            data-qrcode-size="384"
+                                            data-i18n="qrcode.medium"
+                                        >
+                                            Medium
+                                        </button>
+                                        <button
+                                            class="btn btn-secondary qrcode-size-button"
+                                            id="qrcode-create-large"
+                                            data-qrcode-size="512"
+                                            data-i18n="qrcode.large"
+                                        >
+                                            Large
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-0 order-lg-1 mb-3 mb-lg-0">
+                                <div class="mb-3">
+                                    <button class="share-copy-link btn btn-sm btn-primary">
+                                        <i class="fa fa-copy"></i>
+                                        <span data-i18n="share.copy-link">Copy Link to this Route</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <a
+                                        href="https://www.facebook.com/sharer/sharer.php?u={url}"
+                                        class="share-service share-service-facebook btn btn-sm btn-facebook mr-2"
+                                        target="_blank"
+                                        data-i18n="[title]share.tooltip-facebook"
+                                        title="Share on Facebook"
+                                        ><i class="fa fa-facebook"></i
+                                    ></a>
+                                    <a
+                                        href="whatsapp://send?text={url}"
+                                        class="share-service share-service-whatsapp btn btn-sm btn-whatsapp mr-2"
+                                        data-i18n="[title]share.tooltip-whatsapp"
+                                        title="Share on WhatsApp"
+                                        target="_blank"
+                                        ><i class="fa fa-whatsapp"></i
+                                    ></a>
+                                    <a
+                                        href="mailto:?subject=Planned Route&body={url}"
+                                        class="share-service share-service-email btn btn-sm btn-email mr-2"
+                                        data-i18n="[title]share.tooltip-email"
+                                        title="Share by email"
+                                        ><i class="fa fa-envelope"></i
+                                    ></a>
+                                    <button
+                                        class="share-service-mastodon btn btn-sm btn-mastodon"
+                                        data-i18n="[title]share.tooltip-mastodon"
+                                        title="Share on Mastodon"
+                                        hidden
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="15"
+                                            height="15"
+                                            fill="currentColor"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path
+                                                d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
