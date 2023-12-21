@@ -1,12 +1,7 @@
 BR.ShareRoute = L.Class.extend({
-    /**
-     * Sharing via Mastodon is currently disabled by default, because
-     * the share intent fails when the current route URL is longer
-     * than the post character limit for that instance.
-     */
     options: {
         services: {
-            mastodon: false,
+            mastodon: true,
         },
         shortcut: {
             share_action: 65, // char code for 'a' ("action")
@@ -36,16 +31,30 @@ BR.ShareRoute = L.Class.extend({
         });
 
         if (this.options.services.mastodon === true) {
+            let storedMastodonInstance;
+            if (BR.Util.localStorageAvailable()) {
+                storedMastodonInstance = localStorage.getItem('share/mastodonInstance');
+            }
             $('.share-service-mastodon')
                 .removeAttr('hidden')
                 .on('click', function () {
                     let mastodonServer = window.prompt(
                         i18next.t('share.mastodon-enter-server-name'),
-                        'mastodon.social'
+                        storedMastodonInstance ?? 'mastodon.social'
                     );
+
                     if (mastodonServer.indexOf('http') !== 0) {
                         mastodonServer = 'https://' + mastodonServer;
                     }
+
+                    if (BR.Util.localStorageAvailable()) {
+                        try {
+                            localStorage.setItem('share/mastodonInstance', new URL(mastodonServer).hostname);
+                        } catch (exception) {
+                            console.error('Cannot store Mastodon instance', exception);
+                        }
+                    }
+
                     window.open(mastodonServer + '/share?text=' + encodeURIComponent(self.getShareUrl()), '_blank');
                 });
         }
