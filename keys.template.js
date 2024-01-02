@@ -20,7 +20,7 @@
         // Mapillary, https://www.mapillary.com/dashboard/developers
         mapillary: ``,
 
-        // IGN France (for Scan25 base layer), https://geoservices.ign.fr/services-web-issus-des-scans-ign
+        // IGN France (for Scan25 base layer), https://geoservices.ign.fr/actualites/2023-11-20-acces-donnesnonlibres-gpf
         ignf: '',
     };
 })();
