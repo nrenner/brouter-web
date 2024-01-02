@@ -8,7 +8,7 @@
         "max_zoom": 21,
         "name": "IGN France - Plan IGN",
         "type": "tms",
-        "url": "https://wxs.ign.fr/cartes/geoportail/wmts?LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&EXCEPTIONS=text/xml&FORMAT=image/png&SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
+        "url": "https://data.geopf.fr/wmts?LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&EXCEPTIONS=text/xml&FORMAT=image/png&SERVICE=WMTS&VERSION=1.0.0&REQUEST=GetTile&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}"
     },
     "type": "Feature"
 }
