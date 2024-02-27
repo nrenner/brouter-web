@@ -11,49 +11,137 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             expandControls: false,
             mappings: {
                 gradient: {
+                    '-16': {
+                        text: '< -15%',
+                        color: '#81A850',
+                    },
+                    '-15': {
+                        text: '-15%',
+                        color: '#89AA55',
+                    },
+                    '-14': {
+                        text: '-14%',
+                        color: '#91AD59',
+                    },
+                    '-13': {
+                        text: '-13%',
+                        color: '#99AF5E',
+                    },
+                    '-12': {
+                        text: '-12%',
+                        color: '#A1B162',
+                    },
+                    '-11': {
+                        text: '-11%',
+                        color: '#A8B367',
+                    },
+                    '-10': {
+                        text: '-10%',
+                        color: '#B0B66B',
+                    },
+                    '-9': {
+                        text: '-9%',
+                        color: '#B8B870',
+                    },
+                    '-8': {
+                        text: '-8%',
+                        color: '#C0BA75',
+                    },
+                    '-7': {
+                        text: '-7%',
+                        color: '#C8BC79',
+                    },
+                    '-6': {
+                        text: '-6%',
+                        color: '#D0BF7E',
+                    },
                     '-5': {
-                        text: '- 16%+',
-                        color: '#028306',
+                        text: '-5%',
+                        color: '#D8C182',
                     },
                     '-4': {
-                        text: '- 10-15%',
-                        color: '#2AA12E',
+                        text: '-4%',
+                        color: '#E0C387',
                     },
                     '-3': {
-                        text: '- 7-9%',
-                        color: '#53BF56',
+                        text: '-3%',
+                        color: '#E7C58B',
                     },
                     '-2': {
-                        text: '- 4-6%',
-                        color: '#7BDD7E',
+                        text: '-2%',
+                        color: '#EFC890',
                     },
                     '-1': {
-                        text: '- 1-3%',
-                        color: '#A4FBA6',
+                        text: '-1%',
+                        color: '#F7CA94',
                     },
                     0: {
                         text: '0%',
-                        color: '#ffcc99',
+                        color: '#FFCC99',
                     },
                     1: {
-                        text: '1-3%',
-                        color: '#F29898',
+                        text: '1%',
+                        color: '#FCC695',
                     },
                     2: {
-                        text: '4-6%',
-                        color: '#E07575',
+                        text: '2%',
+                        color: '#FAC090',
                     },
                     3: {
-                        text: '7-9%',
-                        color: '#CF5352',
+                        text: '3%',
+                        color: '#F7BA8C',
                     },
                     4: {
-                        text: '10-15%',
-                        color: '#BE312F',
+                        text: '4%',
+                        color: '#F5B588',
                     },
                     5: {
-                        text: '16%+',
-                        color: '#AD0F0C',
+                        text: '5%',
+                        color: '#F2AF83',
+                    },
+                    6: {
+                        text: '6%',
+                        color: '#F0A97F',
+                    },
+                    7: {
+                        text: '7%',
+                        color: '#EDA37A',
+                    },
+                    8: {
+                        text: '8%',
+                        color: '#EB9D76',
+                    },
+                    9: {
+                        text: '9%',
+                        color: '#E89772',
+                    },
+                    10: {
+                        text: '10%',
+                        color: '#E5916D',
+                    },
+                    11: {
+                        text: '11%',
+                        color: '#E38B69',
+                    },
+                    12: {
+                        text: '12%',
+                        color: '#E08665',
+                    },
+                    13: {
+                        text: '13%',
+                        color: '#DE8060',
+                    },
+                    14: {
+                        text: '14%',
+                        color: '#DB7A5C',
+                    },
+                    15: {
+                        text: '15%',
+                        color: '#D97457',
+                    },
+                    16: {
+                        text: '> 15%',
+                        color: '#D66E53',
                     },
                 },
             },
@@ -167,7 +255,11 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                 } else {
                     $('#no-elevation-data').hide();
                 }
-                var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs());
+
+                var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs(), {
+                    interpolate: false,
+                    normalize: false,
+                });
                 this.addData(geojsonFeatures);
 
                 // re-add handlers
@@ -196,6 +288,109 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                 }
                 $('#elevation-chart').collapse('hide');
             }
+        },
+
+        _createLegend: function () {
+            if (this._categories.length > 0) {
+                // find the min and the max gradients for the current profile
+                var minGradient = 16;
+                var maxGradient = -16;
+                // this legend object has the profile gradients as keys; it was built by heightgraph
+                var allLegend = this._categories[this.options.selectedAttributeIdx].legend;
+                for (key in allLegend) {
+                    var gradient = parseInt(key);
+                    if (minGradient > gradient) {
+                        minGradient = gradient;
+                    }
+                    if (maxGradient < gradient) {
+                        maxGradient = gradient;
+                    }
+                }
+
+                // define the simplified legend with all known gradients
+                var simplifiedLegend = [
+                    {
+                        type: -16,
+                        text: this.options.mappings.gradient['-16'].text,
+                        color: this.options.mappings.gradient['-16'].color,
+                    },
+                    {
+                        type: -10,
+                        text: this.options.mappings.gradient['-10'].text,
+                        color: this.options.mappings.gradient['-10'].color,
+                    },
+                    {
+                        type: -5,
+                        text: this.options.mappings.gradient['-5'].text,
+                        color: this.options.mappings.gradient['-5'].color,
+                    },
+                    {
+                        type: 0,
+                        text: this.options.mappings.gradient['0'].text,
+                        color: this.options.mappings.gradient['0'].color,
+                    },
+                    {
+                        type: 5,
+                        text: this.options.mappings.gradient['5'].text,
+                        color: this.options.mappings.gradient['5'].color,
+                    },
+                    {
+                        type: 10,
+                        text: this.options.mappings.gradient['10'].text,
+                        color: this.options.mappings.gradient['10'].color,
+                    },
+                    {
+                        type: 16,
+                        text: this.options.mappings.gradient['16'].text,
+                        color: this.options.mappings.gradient['16'].color,
+                    },
+                ];
+                // then, keep only the range relevant to the current profile
+                // (e.g. if min gradient of profile is -6, remove -16 and -15 from range)
+                for (var i = 0; i < simplifiedLegend.length; i++) {
+                    if (simplifiedLegend[i].type > minGradient) {
+                        simplifiedLegend.splice(0, i - 1);
+                        break;
+                    }
+                }
+                for (var i = simplifiedLegend.length - 1; i > -1; i--) {
+                    if (simplifiedLegend[i].type < maxGradient) {
+                        simplifiedLegend.splice(i + 2);
+                        break;
+                    }
+                }
+
+                this._categories[this.options.selectedAttributeIdx].legend = simplifiedLegend;
+            }
+
+            var existingLegend = document.querySelector('.legend-container');
+            if (existingLegend !== null) {
+                existingLegend.remove();
+            }
+
+            var legend = L.DomUtil.create('div', 'legend-container', this._container);
+            // hack to keep the chart from getting too tall,
+            // and to keep it from growing vertically on window resize
+            legend.style.setProperty('position', 'absolute');
+            // naively align the legend vertically with the y-axis
+            legend.style.setProperty('margin-left', '65px');
+            legend.style.setProperty('margin-top', '-18px');
+
+            var legendLabel = L.DomUtil.create('span', 'legend-hover legend-text', legend);
+            legendLabel.textContent = this._getTranslation('legend') + ':';
+
+            this._categories[this.options.selectedAttributeIdx].legend.forEach((l) => {
+                var color = L.DomUtil.create('span', 'legend-rect', legend);
+                color.style.setProperty('padding-left', '10px');
+                color.style.setProperty('padding-right', '3px');
+                color.style.setProperty('width', '6px');
+                color.style.setProperty('height', '6px');
+                color.style.setProperty('color', l.color);
+                color.innerHTML = '&#9632;';
+
+                var label = L.DomUtil.create('span', 'legend-text', legend);
+                label.textContent = l.text;
+            });
         },
     });
 

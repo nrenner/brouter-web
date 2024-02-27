@@ -970,12 +970,8 @@ table.dataTable.display tbody tr:hover.selected {
 
 /*
  * Heightgraph customizations;
- * since the legend and the gradient types are in the way, hide them;
  * since there's only the gradient layer, hide the layer selector.
  */
-.legend-hover {
-    display: none;
-}
 #selectionText {
     display: none;
 }
