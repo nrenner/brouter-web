@@ -210,7 +210,8 @@
       "trekking-nosteps": "Trekkingrad (keine Treppen)",
       "trekking-steep": "Trekkingrad (steil)",
       "vm-forum-liegerad-schnell": "Liegerad (schnell)",
-      "vm-forum-velomobil-schnell": "Velomobil (schnell)"
+      "vm-forum-velomobil-schnell": "Velomobil (schnell)",
+      "quaelnix-gravel": "QuaelNix"
     },
     "profile-tooltip": "\n({{key}} Taste zum Umschalten)"
   },
@@ -294,7 +295,7 @@
     },
     "tab-tooltip": "{{action}}\n({{toggleKey}} Taste zum Ein-/Ausblenden, {{switchKey}} um zum nächsten Tab zu schalten)"
   },
-  "title": "BRouter Web Client",
+  "title": "VeloRouter",
   "trackasroute": {
     "browse": "Durchsuchen",
     "explainpoi": "(Wegpunkte als POIs anzeigen)",
