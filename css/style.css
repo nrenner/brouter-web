@@ -138,12 +138,46 @@ table.dataTable {
 .navbar {
     /* align with leaflet-control */
     padding: 0.5rem 10px;
+    /*background-color: #f8ce00;*/
+    /*height: 3em;*/
 }
+
+.navbar.bg-bikerouter {
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    background: -webkit-linear-gradient(
+        135deg,
+        purple 0,
+        blue 20%,
+        green 40%,
+        yellow 60%,
+        orange 80%,
+        red 100%
+    ) !important;
+    background: linear-gradient(135deg, purple 0, blue 20%, green 40%, yellow 60%, orange 80%, red 100%) !important;
+}
+
+.navbar-brand {
+    font-size: 0.9rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+.nav-link {
+    text-shadow: 0.5px 0.5px 1px rgb(0 0 0 / 50%);
+}
+
 .nav-link .fa {
     margin-right: 0.2em;
 }
 .navbar-dark .navbar-toggler {
     background-image: none;
+}
+
+.navbar .dropdown-toggle,
+.navbar .nav-item {
+    font-size: 0.8rem;
 }
 
 /* disabled style for "Custom" option, but not for selected items */
@@ -364,6 +398,149 @@ table.dataTable.track-analysis-table tfoot td {
     font-size: 1.2em;
 }
 
+.waypoint-map-icon {
+    padding: 0;
+    line-height: 14px;
+    font-size: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #0057b8;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    -webkit-filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.5));
+}
+
+.waypoint-map-icon-small {
+    font-size: 8px;
+}
+
+.waypoint {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 250px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.waypoint:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    bottom: calc(-1rem - 1px);
+    left: 28px;
+    width: 0;
+    height: 1rem;
+    border-left: 3px solid #d8d8d8;
+}
+
+.waypoint.dragging:not(:last-child)::before {
+    display: none;
+}
+
+.waypoint-flex-item {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.333%;
+    -ms-flex: 0 0 33.333%;
+    flex: 0 0 33.333%;
+}
+
+.waypoint-flex-item-full-width {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+}
+
+.waypoint-icon {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 0.75rem 1.25rem 0.75rem 0.5rem;
+    border-radius: 999px;
+    border: 2px solid #fff;
+    background-color: #0057b8;
+    color: #fff;
+    font-size: 1rem;
+    -webkit-filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.3));
+    cursor: pointer;
+}
+
+.waypoint-icon-start {
+    background-color: #46b001;
+}
+
+.waypoint-icon-end {
+    background-color: #d9534f;
+}
+
+.waypoint-stats-icon svg {
+    width: 13px;
+    height: 13px;
+    color: #aaa;
+}
+
+.waypoint-stats-value {
+    text-align: right;
+    -webkit-flex-basis: 40px;
+    -ms-flex-preferred-size: 40px;
+    flex-basis: 40px;
+}
+
+.waypoint-stats-unit {
+    color: #888;
+}
+
+.waypoint-handle {
+    cursor: pointer;
+    width: 16px;
+    color: #aaa;
+}
+
+.waypoint-handle:hover {
+    color: #666;
+}
+
+.waypoint-details {
+    font-size: 0.7rem;
+}
+
+.waypoint-icon-start {
+    color: #fff;
+}
+
+.waypoint-icon-destination {
+    color: #fff;
+}
+
 /* dashed line animation, derived from Chris Coyier and others
 https://css-tricks.com/svg-line-animation-works/
 */
@@ -423,7 +600,7 @@ https://css-tricks.com/svg-line-animation-works/
 
 .control-slider:hover #route .slider-track,
 .control-slider:active #route .slider-track {
-    background-image: linear-gradient(to bottom, magenta 0%, white 100%);
+    background-image: linear-gradient(to bottom, yellow 0%, white 100%);
 }
 
 .slider-selection {

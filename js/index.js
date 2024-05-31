@@ -30,6 +30,7 @@
             profile,
             trackMessages,
             trackAnalysis,
+            waypoints,
             sidebar,
             drawButton,
             deleteRouteButton,
@@ -225,9 +226,10 @@
         function requestUpdate(updatable) {
             var track = routing.toPolyline(),
                 segments = routing.getSegments(),
-                segmentsLayer = routing._segments;
+                segmentsLayer = routing._segments,
+                latLngs = routing.getWaypoints();
 
-            updatable.update(track, segments, segmentsLayer);
+            updatable.update(track, segments, segmentsLayer, latLngs);
         }
 
         routingOptions = new BR.RoutingOptions();
@@ -305,6 +307,10 @@
             styles: BR.conf.routingStyles,
         });
 
+        waypoints = new BR.Waypoints(map, routing, {
+            requestUpdate: requestUpdate,
+        });
+
         pois = new BR.PoiMarkers(routing);
 
         exportRoute = new BR.Export(router, pois, profile);
@@ -362,6 +368,7 @@
             }
             trackMessages.update(track, segments, segmentsLayer);
             trackAnalysis.update(track, segments);
+            waypoints.update(track, segments, segmentsLayer, latLngs);
 
             exportRoute.update(latLngs, segments);
         }
@@ -376,6 +383,7 @@
                 tab_profile: profile,
                 tab_data: trackMessages,
                 tab_analysis: trackAnalysis,
+                tab_waypoints: waypoints,
             },
         }).addTo(map);
         if (BR.conf.transit) {
