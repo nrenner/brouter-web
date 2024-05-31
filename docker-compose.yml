@@ -1,23 +1,11 @@
-version: '3'
-
+version: '3.8'
 services:
-    ## usage: docker-compose run --rm serve
-    ##      : docker-compose up (-d) serve
-    serve:
-        command: yarn serve
-        image: node:lts
+    brouter-web:
+        build: .
         ports:
-            - '3000:3000'
-        user: '1000'
+            - '8084:80'
         volumes:
-            - ./:/src
-        working_dir: /src
-
-    ## usage: docker-compose run --rm install
-    install:
-        command: yarn install
-        image: node:lts
-        user: '1000'
-        volumes:
-            - ./:/src
-        working_dir: /src
+            - './config.js:/usr/share/nginx/html/config.js'
+            #            - "./keys.js:/usr/share/nginx/html/keys.js"
+            - './profiles:/usr/share/nginx/html/profiles'
+        restart: unless-stopped
