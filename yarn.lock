@@ -1397,10 +1397,10 @@
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.1.0.tgz#497c67a1cef50d1a2459ba60f315e448d2ad87fe"
   integrity sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==
 
-"@maplibre/maplibre-gl-leaflet@0.0.19":
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/@maplibre/maplibre-gl-leaflet/-/maplibre-gl-leaflet-0.0.19.tgz#adea2fe9890978c705f12a6274a6dc8b1467d02b"
-  integrity sha512-NwWqmE8Lmx8uMQS8sgHzGTz/CPfLBnbGns5BjXTmj459BUd7leCx3TVVhg04Pea4fzJeGaiyS2+KdWUVtKNuHg==
+"@maplibre/maplibre-gl-leaflet@0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@maplibre/maplibre-gl-leaflet/-/maplibre-gl-leaflet-0.0.20.tgz#9b68bcb2226f300f3cf03865aa97647ca95f30ee"
+  integrity sha512-W36NFgRbhOic/Bv2dU4f6P3BE2QlhPbselQdf0snY4E36kjmhAl9RKEfAGDmfI1T5bUOmPmWzQDRnvEWqGc+jw==
 
 "@mdn/browser-compat-data@^3.3.14":
   version "3.3.14"
