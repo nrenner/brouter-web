@@ -38,7 +38,7 @@
         "@ideditor/temaki": "5.2.0",
         "@mapbox/maki": "8.0.1",
         "@mapbox/polyline": "1.1.1",
-        "@mapbox/togeojson": "0.16.0",
+        "@mapbox/togeojson": "0.16.2",
         "@maplibre/maplibre-gl-leaflet": "0.0.19",
         "@turf/turf": "6.5.0",
         "Leaflet.vector-markers": "nrenner/Leaflet.vector-markers#2ef80c9",
