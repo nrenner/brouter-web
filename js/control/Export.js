@@ -322,17 +322,39 @@ BR.Export._concatTotalTrack = function (segments) {
             }
             if (fp.voicehints) {
                 if (!p.voicehints) p.voicehints = [];
+                let prevHintIdx = p.voicehints.length - 1;
+                let hintDistanceSum = 0;
                 for (const fpHint of fp.voicehints) {
                     const hint = fpHint.slice();
                     hint[0] += coordOffset;
+                    hintDistanceSum += hint[3];
                     p.voicehints.push(hint);
                 }
+                // fix the distance for the last turn in a segment
+                //
+                // Problem: In a segmented route where each segment is requested
+                // separately the server can't see that we intend to go further.
+                // Therefore the last voicehints/turn can only contain the
+                // distance till the end of that segment.
+                // However: The distance from the start of segment to the next
+                // turn is missing.
+                // Furthermore the server never reports the distance from the
+                // start to the first turn. So we have to calculate that too.
+                if (prevHintIdx >= 0) {
+                    let firstHintDistance = parseInt(fp['track-length'], 10) - hintDistanceSum;
+                    p.voicehints[prevHintIdx][3] += firstHintDistance;
+                }
+            } else if (p.voicehints && p.voicehints.length) {
+                p.voicehints[p.voicehints.length - 1][3] += parseInt(fp['track-length'], 10);
             }
         } else {
             // clone
             properties = Object.assign({}, feature.properties);
-            if (properties.voicehints) {
+            if (properties.voicehints && properties.voicehints.length) {
                 properties.voicehints = properties.voicehints.slice();
+                const last = properties.voicehints.length - 1;
+                // may be modified to fix distance-to-next
+                properties.voicehints[last] = properties.voicehints[last].slice();
             }
             if (properties.times) {
                 properties.times = properties.times.slice();
