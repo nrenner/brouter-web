@@ -103,6 +103,7 @@ BR.RoutingPathQuality = L.Control.extend({
                                 case 'concrete:lanes':
                                 case 'concrete:plates':
                                     surface = 0.6;
+                                    break;
                                 case 'sett':
                                 case 'gravel':
                                 case 'pebblestone':
