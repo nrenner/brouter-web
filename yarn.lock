@@ -8759,10 +8759,10 @@ overpass-frontend@^3.1.1:
     weight-sort "^1.3.1"
     xmlhttprequest "*"
 
-overpass-layer@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.4.0.tgz#7d97b8811fb8fb558dcd8d761aadfd2502c52f4b"
-  integrity sha512-nGosUpMQGkQ/P3Ydki3iw89UmeGjuik1xwWfknG7KjdBB1q50uS5/dwvyvKckGGv7ewdwQOhhnO3WP0j+9+EtA==
+overpass-layer@3.5.4:
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/overpass-layer/-/overpass-layer-3.5.4.tgz#99bb222d9b5f84663363f5ce5468b22a71f0025e"
+  integrity sha512-AjxnmW2mNWn2Y5timHg6HukpMNGqdr8RGuFu9p2qxMrpRdF6OSe8AYTdtsBzC1/dBZX2rC1uRnG3NlqW3s1cyQ==
   dependencies:
     "@turf/along" "^6.5.0"
     "@turf/intersect" "^6.5.0"
@@ -8773,6 +8773,7 @@ overpass-layer@3.4.0:
     event-emitter "^0.3.5"
     html-escape "^2.0.0"
     nearest-point-on-geometry "^1.0.1"
+    osmtogeojson "^3.0.0-beta.5"
     overpass-frontend "^3.1.1"
     twig "^1.15.4"
 
