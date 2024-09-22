@@ -1,0 +1,13 @@
+{
+    "geometry": null,
+    "properties": {
+      "name": "Railway station",
+      "id": "railway_station",
+      "overlay": true,
+      "dataSource": "OverpassAPI",
+      "icon": "temaki-train",
+      "query": "nwr[railway=station];"
+    },
+    "type": "Feature"
+  }
+  

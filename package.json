@@ -367,7 +367,8 @@
                 "icons/museum.svg",
                 "icons/spotting_scope.svg",
                 "icons/cabin.svg",
-                "icons/picnic_shelter.svg"
+                "icons/picnic_shelter.svg",
+                "icons/train.svg"
             ]
         },
         "@fortawesome/fontawesome-free": {
