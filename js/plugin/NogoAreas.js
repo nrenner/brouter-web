@@ -96,7 +96,7 @@ BR.NogoAreas = L.Control.extend({
         });
 
         // prevent instant re-activate when turning off button by both Pointer and Click
-        // events firing in Chrome mobile while L.Map.Tap enabled for circle drawing
+        // events firing in Chrome mobile while L.Map.TapHold enabled for circle drawing
         L.DomEvent.addListener(this.button.button, 'pointerdown', L.DomEvent.stop);
 
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
@@ -424,25 +424,25 @@ BR.NogoAreas = L.Control.extend({
 BR.NogoAreas.include(L.Evented.prototype);
 
 BR.Editable = L.Editable.extend({
-    // Editable relies on L.Map.Tap for touch support. But the Tap handler is not added when
+    // Editable relies on L.Map.TapHold for touch support. But the TapHold handler is not added when
     // the Browser supports Pointer events, which is the case for mobile Chrome. So we add it
     // ourselves in this case, but disabled and only enable while drawing (#259).
-    // Also, we generally disable the Tap handler in the map options for route dragging,
+    // Also, we generally disable the TapHold handler in the map options for route dragging,
     // see Map.js, so we always need to enable for drawing.
 
     initialize: function (map, options) {
         L.Editable.prototype.initialize.call(this, map, options);
 
-        if (!this.map.tap) {
-            this.map.addHandler('tap', L.Map.Tap);
-            this.map.tap.disable();
+        if (!this.map.tapHold) {
+            this.map.addHandler('tapHold', L.Map.TapHold);
+            this.map.tapHold.disable();
         }
     },
 
     registerForDrawing: function (editor) {
-        this._tapEnabled = this.map.tap.enabled();
+        this._tapEnabled = this.map.tapHold.enabled();
         if (!this._tapEnabled) {
-            this.map.tap.enable();
+            this.map.tapHold.enable();
         }
 
         L.Editable.prototype.registerForDrawing.call(this, editor);
@@ -450,7 +450,7 @@ BR.Editable = L.Editable.extend({
 
     unregisterForDrawing: function (editor) {
         if (!this._tapEnabled) {
-            this.map.tap.disable();
+            this.map.tapHold.disable();
         }
 
         L.Editable.prototype.unregisterForDrawing.call(this, editor);
