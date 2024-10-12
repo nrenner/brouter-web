@@ -513,7 +513,7 @@ BR.EditingTooltip = L.Handler.extend({
                     0.5 * (layer.getBounds().getWest() + layer.getBounds().getEast())
                 );
             }
-            L.Layer.prototype.openTooltip.call(this, layer, latlng);
+            L.Layer.prototype.openTooltip.call(this, latlng);
         };
     },
 
