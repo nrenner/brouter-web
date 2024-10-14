@@ -171,7 +171,8 @@ L.BRouter = L.Class.extend({
             xhr.status === 200 &&
             xhr.responseText &&
             // application error when not GeoJSON format (text/plain for errors)
-            xhr.getResponseHeader('Content-Type').split(';')[0] === 'application/vnd.geo+json'
+            (xhr.getResponseHeader('Content-Type').split(';')[0] === 'application/geo+json' ||
+                xhr.getResponseHeader('Content-Type').split(';')[0] === 'application/vnd.geo+json')
         ) {
             // leaflet.spin
             //gpxLayer.fire('data:loaded');
