@@ -38,7 +38,7 @@ BR.TrackMessages = L.Class.extend({
 
     segments: null,
 
-    initialize: function (map, options) {
+    initialize(map, options) {
         L.setOptions(this, options);
         this._map = map;
 
@@ -53,7 +53,7 @@ BR.TrackMessages = L.Class.extend({
         this._mapMouseOutHandlerBound = this.mapMouseOutHandler.bind(this);
     },
 
-    update: function (polyline, segments, layer) {
+    update(polyline, segments, layer) {
         var i,
             messages,
             columns,
@@ -89,8 +89,8 @@ BR.TrackMessages = L.Class.extend({
 
         this._table = $('#datatable').DataTable({
             destroy: true,
-            data: data,
-            columns: columns,
+            data,
+            columns,
             paging: false,
             searching: false,
             info: false,
@@ -109,7 +109,7 @@ BR.TrackMessages = L.Class.extend({
         this.listenMapEvents(layer, true);
     },
 
-    listenMapEvents: function (layer, on) {
+    listenMapEvents(layer, on) {
         if (layer) {
             if (on) {
                 layer.on('mousemove', this._mapMouseMoveHandlerBound);
@@ -121,16 +121,16 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    show: function () {
+    show() {
         this.active = true;
         this.options.requestUpdate(this);
     },
 
-    hide: function () {
+    hide() {
         this.active = false;
     },
 
-    _destroyTable: function () {
+    _destroyTable() {
         var ele;
 
         if ($.fn.DataTable.isDataTable('#datatable')) {
@@ -147,7 +147,7 @@ BR.TrackMessages = L.Class.extend({
         return ele || document.getElementById('datatable');
     },
 
-    _destroyEdges: function () {
+    _destroyEdges() {
         if (this._selectedEdge) {
             this._map.removeLayer(this._selectedEdge);
             this._selectedEdge = null;
@@ -158,7 +158,7 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _getColumns: function (headings, data) {
+    _getColumns(headings, data) {
         var columns = [],
             defaultOptions,
             options,
@@ -175,7 +175,7 @@ BR.TrackMessages = L.Class.extend({
         return columns;
     },
 
-    _getEmptyColumns: function (data) {
+    _getEmptyColumns(data) {
         var empty = new Array(data[0].length),
             i;
 
@@ -192,7 +192,7 @@ BR.TrackMessages = L.Class.extend({
         return empty;
     },
 
-    _getRowEdge: function (tr) {
+    _getRowEdge(tr) {
         var row = this._table.row($(tr)),
             trackLatLngs = this.trackPolyline.getLatLngs(),
             startIndex = row.index() > 0 ? this.trackEdges.edges[row.index() - 1] : 0,
@@ -202,7 +202,7 @@ BR.TrackMessages = L.Class.extend({
         return L.polyline(edgeLatLngs, this.options.edgeStyle);
     },
 
-    _handleHover: function (evt) {
+    _handleHover(evt) {
         var tr = evt.currentTarget;
 
         this._hoveredEdge = this._getRowEdge(tr).addTo(this._map);
@@ -211,12 +211,12 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _handleHoverOut: function (evt) {
+    _handleHoverOut(evt) {
         this._map.removeLayer(this._hoveredEdge);
         this._hoveredEdge = null;
     },
 
-    _toggleSelected: function (evt) {
+    _toggleSelected(evt) {
         var tr = evt.currentTarget;
 
         if (tr.classList.toggle('selected')) {
@@ -237,14 +237,14 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    _toggleSyncMap: function (evt) {
+    _toggleSyncMap(evt) {
         var button = evt.currentTarget;
 
         button.classList.toggle('active');
         this.options.syncMap = !this.options.syncMap;
     },
 
-    mapMouseMoveHandler: function (evt) {
+    mapMouseMoveHandler(evt) {
         // initialize the vars for the closest item calculation
         let closestPointIdx = null;
         // large enough to be trumped by any point on the chart
@@ -292,7 +292,7 @@ BR.TrackMessages = L.Class.extend({
         }
     },
 
-    mapMouseOutHandler: function () {
+    mapMouseOutHandler() {
         if (this._mapHoveredRow) {
             this._mapHoveredRow.classList.remove('hoverRoute');
         }

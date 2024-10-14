@@ -6,7 +6,7 @@ BR.LayersConfig = L.Class.extend({
     // hardcoded, built-in layers with an id set (for URL hash)
     builtInLayers: ['route-quality'],
 
-    initialize: function (map) {
+    initialize(map) {
         this._map = map;
         this._overpassLoadingIndicator = new BR.Message('overpass_loading_indicator', { alert: false });
         this._overpassActiveRequestCount = 0;
@@ -17,7 +17,7 @@ BR.LayersConfig = L.Class.extend({
         this._addLanguageDefaultLayer();
     },
 
-    loadDefaultLayers: function () {
+    loadDefaultLayers() {
         if (BR.Util.localStorageAvailable()) {
             var item = localStorage.getItem('map/defaultLayers');
             if (item) {
@@ -28,21 +28,21 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    storeDefaultLayers: function (baseLayers, overlays) {
+    storeDefaultLayers(baseLayers, overlays) {
         if (BR.Util.localStorageAvailable()) {
             var defaultLayers = {
-                baseLayers: baseLayers,
-                overlays: overlays,
+                baseLayers,
+                overlays,
             };
             localStorage.setItem('map/defaultLayers', JSON.stringify(defaultLayers));
         }
     },
 
-    _replaceLegacyIds: function (idList) {
+    _replaceLegacyIds(idList) {
         return idList.map((id) => (id in this.legacyNameToIdMap ? this.legacyNameToIdMap[id] : id));
     },
 
-    _addLeafletProvidersLayers: function () {
+    _addLeafletProvidersLayers() {
         var includeList = BR.confLayers.leafletProvidersIncludeList;
 
         for (var i = 0; i < includeList.length; i++) {
@@ -50,7 +50,7 @@ BR.LayersConfig = L.Class.extend({
             var obj = {
                 geometry: null,
                 properties: {
-                    id: id,
+                    id,
                     name: id.replace('.', ' '),
                     dataSource: 'leaflet-providers',
                 },
@@ -60,7 +60,7 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    _customizeLayers: function () {
+    _customizeLayers() {
         var propertyOverrides = BR.confLayers.getPropertyOverrides();
 
         for (var id in propertyOverrides) {
@@ -92,7 +92,7 @@ BR.LayersConfig = L.Class.extend({
         BR.layerIndex['ignf-scan25'].geometry = BR.confLayers.franceBbox;
     },
 
-    _addLanguageDefaultLayer: function () {
+    _addLanguageDefaultLayer() {
         // language code -> layer id
         var languageLayersMap = {};
         var i;
@@ -120,7 +120,7 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    isDefaultLayer: function (id, overlay) {
+    isDefaultLayer(id, overlay) {
         var result = false;
         if (overlay) {
             result = this.defaultOverlays.indexOf(id) > -1;
@@ -130,15 +130,15 @@ BR.LayersConfig = L.Class.extend({
         return result;
     },
 
-    getBaseLayers: function () {
+    getBaseLayers() {
         return this._getLayers(this.defaultBaseLayers);
     },
 
-    getOverlays: function () {
+    getOverlays() {
         return this._getLayers(this.defaultOverlays);
     },
 
-    _getLayers: function (ids) {
+    _getLayers(ids) {
         var layers = {};
 
         for (var i = 0; i < ids.length; i++) {
@@ -161,7 +161,7 @@ BR.LayersConfig = L.Class.extend({
 
     // own convention: key placeholder with prefix
     // e.g. ?api_key={keys_openrouteservice}
-    getKeyName: function (url) {
+    getKeyName(url) {
         var result = null;
         // L.Util.template only matches [\w_-]
         var prefix = 'keys_';
@@ -174,7 +174,7 @@ BR.LayersConfig = L.Class.extend({
         if (found) {
             name = found[1];
             result = {
-                name: name,
+                name,
                 urlVar: prefix + name,
             };
         }
@@ -182,18 +182,18 @@ BR.LayersConfig = L.Class.extend({
         return result;
     },
 
-    _showOverpassLoadingIndicator: function () {
+    _showOverpassLoadingIndicator() {
         this._overpassActiveRequestCount++;
         this._overpassLoadingIndicator.showLoading(i18next.t('layers.overpass-loading-indicator'));
     },
 
-    _hideOverpassLoadingIndicator: function () {
+    _hideOverpassLoadingIndicator() {
         if (--this._overpassActiveRequestCount === 0) {
             this._overpassLoadingIndicator.hide();
         }
     },
 
-    getOverpassIconUrl: function (icon) {
+    getOverpassIconUrl(icon) {
         const iconPrefix = /^(maki|temaki|fas)-/;
         let iconUrl = null;
 
@@ -205,7 +205,7 @@ BR.LayersConfig = L.Class.extend({
         return iconUrl;
     },
 
-    createOverpassLayer: function (query, icon) {
+    createOverpassLayer(query, icon) {
         let markerSign = '<i class="fa fa-search icon-white" style="width: 25px;"></i>';
 
         const iconUrl = this.getOverpassIconUrl(icon);
@@ -216,7 +216,7 @@ BR.LayersConfig = L.Class.extend({
         return Object.assign(
             new OverpassLayer({
                 overpassFrontend: this.overpassFrontend,
-                query: query,
+                query,
                 minZoom: 12,
                 feature: {
                     title: '{{ tags.name }}',
@@ -244,7 +244,7 @@ BR.LayersConfig = L.Class.extend({
         );
     },
 
-    renderOverpassPopupBody: function (overpassData) {
+    renderOverpassPopupBody(overpassData) {
         let output = '';
 
         output += '<table class="overpass-tags">';
@@ -301,11 +301,11 @@ BR.LayersConfig = L.Class.extend({
         return output;
     },
 
-    createOpenStreetMapNotesLayer: function () {
+    createOpenStreetMapNotesLayer() {
         return new leafletOsmNotes();
     },
 
-    createMvtLayer: function (props, options) {
+    createMvtLayer(props, options) {
         // remove key, only provided with local style to not add layer when not configured, see _getLayers
         const styleId = props.url?.split('?')[0];
         if (styleId in BR.layerIndex) {
@@ -322,7 +322,7 @@ BR.LayersConfig = L.Class.extend({
         return BR.maplibreGlLazyLoader(options);
     },
 
-    _replaceMvtTileKey: function (style) {
+    _replaceMvtTileKey(style) {
         if (!style) return;
 
         // Sources can be specified by `url` (string) or `tiles` (array), we handle
@@ -348,7 +348,7 @@ BR.LayersConfig = L.Class.extend({
         }
     },
 
-    createGeoJsonLayer: function (props) {
+    createGeoJsonLayer(props) {
         const layer = L.geoJSON(undefined, BR.Track.getGeoJsonOptions());
         fetch(props.url).then(async (response) => {
             const geojson = await response.json();
@@ -357,7 +357,7 @@ BR.LayersConfig = L.Class.extend({
         return layer;
     },
 
-    createLayer: function (layerData) {
+    createLayer(layerData) {
         var props = layerData.properties;
         var url = props.url;
         var layer;

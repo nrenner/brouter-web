@@ -1,5 +1,5 @@
 BR.Util = {
-    get: function (url, cb) {
+    get(url, cb) {
         var xhr = new XMLHttpRequest();
 
         xhr.open('GET', url, true);
@@ -20,7 +20,7 @@ BR.Util = {
         }
     },
 
-    getError: function (xhr) {
+    getError(xhr) {
         var msg = i18next.t('warning.no-response');
         if (xhr.responseText) {
             msg = xhr.responseText;
@@ -30,7 +30,7 @@ BR.Util = {
         return new Error(msg);
     },
 
-    getJson: function (url, context, cb) {
+    getJson(url, context, cb) {
         BR.Util.get(url, function (err, data) {
             if (err) {
                 BR.message.showError('Error getting ' + context + ': ' + err);
@@ -48,7 +48,7 @@ BR.Util = {
         });
     },
 
-    getGeoJson: function (url, context, cb) {
+    getGeoJson(url, context, cb) {
         BR.Util.getJson(url, context, function (err, data) {
             if (err) return cb(err);
 
@@ -70,7 +70,7 @@ BR.Util = {
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API#Testing_for_support_vs_availability
     // by Mozilla Contributors, with modifications;
     // Any copyright is dedicated to the Public Domain. https://creativecommons.org/publicdomain/zero/1.0/
-    localStorageAvailable: function () {
+    localStorageAvailable() {
         try {
             var storage = window.localStorage,
                 x = '__storage_test__';
@@ -83,7 +83,7 @@ BR.Util = {
     },
 
     // see https://stackoverflow.com/a/37141090/1906123
-    getResponsiveBreakpoint: function () {
+    getResponsiveBreakpoint() {
         var envs = { '1xs': 'd-none', '2sm': 'd-sm-none', '3md': 'd-md-none', '4lg': 'd-lg-none', '5xl': 'd-xl-none' };
         var env = '';
 
@@ -101,7 +101,7 @@ BR.Util = {
         return env;
     },
 
-    keyboardShortcutsAllowed: function (keyEvent) {
+    keyboardShortcutsAllowed(keyEvent) {
         // Skip auto-repeating key events
         if (keyEvent.repeat) {
             return false;
@@ -134,13 +134,13 @@ BR.Util = {
     // this method must only be used to sanitize for textContent.
     // do NOT use it to sanitize any attribute,
     // see https://web.archive.org/web/20121208091505/http://benv.ca/2012/10/4/you-are-probably-misusing-DOM-text-methods/
-    sanitizeHTMLContent: function (str) {
+    sanitizeHTMLContent(str) {
         var temp = document.createElement('div');
         temp.textContent = str;
         return temp.innerHTML;
     },
 
-    isCountry: function (country, language) {
+    isCountry(country, language) {
         // de-DE | fr-FR
         var lang = i18next.languages[0].split('-');
 

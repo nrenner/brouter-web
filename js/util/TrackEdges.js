@@ -6,7 +6,7 @@
  */
 BR.TrackEdges = L.Class.extend({
     statics: {
-        getFeature: function (featureMessage) {
+        getFeature(featureMessage) {
             //["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"]
             return {
                 cost: {
@@ -35,7 +35,7 @@ BR.TrackEdges = L.Class.extend({
     /**
      * @param {Array} segments
      */
-    initialize: function (segments) {
+    initialize(segments) {
         this.edges = this.getTrackEdges(segments);
     },
 
@@ -48,7 +48,7 @@ BR.TrackEdges = L.Class.extend({
      *
      * @return {number[]}
      */
-    getTrackEdges: function (segments) {
+    getTrackEdges(segments) {
         var messages,
             segLatLngs,
             length,
@@ -88,7 +88,7 @@ BR.TrackEdges = L.Class.extend({
         return edges;
     },
 
-    getMessageLatLng: function (message) {
+    getMessageLatLng(message) {
         var lon = message[0] / 1000000,
             lat = message[1] / 1000000;
 

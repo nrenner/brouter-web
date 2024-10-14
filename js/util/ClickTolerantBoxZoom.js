@@ -15,16 +15,16 @@ BR.ClickTolerantBoxZoom = L.Map.BoxZoom.extend({
     // already signals dragging to map and thus prevents click
     _preMoved: false,
 
-    moved: function () {
+    moved() {
         return this._preMoved || this._moved;
     },
 
-    _resetState: function () {
+    _resetState() {
         L.Map.BoxZoom.prototype._resetState.call(this);
         this._preMoved = false;
     },
 
-    _onMouseMove: function (e) {
+    _onMouseMove(e) {
         if (!this._moved) {
             const point = this._map.mouseEventToContainerPoint(e);
 
@@ -44,7 +44,7 @@ BR.ClickTolerantBoxZoom = L.Map.BoxZoom.extend({
         L.Map.BoxZoom.prototype._onMouseMove.call(this, e);
     },
 
-    _onMouseUp: function (e) {
+    _onMouseUp(e) {
         L.Map.BoxZoom.prototype._onMouseUp.call(this, e);
 
         if (!this._moved && this._preMoved) {

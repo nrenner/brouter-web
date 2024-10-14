@@ -151,7 +151,7 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             },
         },
 
-        addBelow: function (map) {
+        addBelow(map) {
             // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
             // this.width($('#map').outerWidth());
             this.options.width = $('#content').outerWidth();
@@ -163,6 +163,7 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             function setParent(el, newParent) {
                 newParent.appendChild(el);
             }
+
             this.addTo(map);
 
             // move elevation graph outside of the map
@@ -202,7 +203,7 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             this.update();
         },
 
-        initCollapse: function (map) {
+        initCollapse(map) {
             var self = this;
             var onHide = function () {
                 $('#elevation-btn').removeClass('active');
@@ -231,13 +232,13 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                 });
         },
 
-        _keydownListener: function (e) {
+        _keydownListener(e) {
             if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggle) {
                 $('#elevation-btn').click();
             }
         },
 
-        update: function (track, layer) {
+        update(track, layer) {
             // bring height indicator to front, because of track casing in BR.Routing
             if (this._mouseHeightFocus) {
                 var g = this._mouseHeightFocus._groups[0][0].parentNode;
@@ -290,7 +291,7 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
         },
 
-        _createLegend: function () {
+        _createLegend() {
             if (this._categories.length > 0) {
                 // find the min and the max gradients for the current profile
                 var minGradient = 16;
