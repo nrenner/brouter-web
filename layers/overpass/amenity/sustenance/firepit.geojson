@@ -1,0 +1,12 @@
+{
+  "geometry": null,
+  "properties": {
+    "name": "Firepit",
+    "id": "firepit",
+    "overlay": true,
+    "dataSource": "OverpassAPI",
+    "icon": "temaki-campfire",
+    "query": "nwr[leisure=firepit];"
+  },
+  "type": "Feature"
+}
