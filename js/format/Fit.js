@@ -1,5 +1,5 @@
 BR.Fit = {
-    format: function (geoJson, turnInstructionMode = 0) {
+    format(geoJson, turnInstructionMode = 0) {
         if (!geoJson?.features) return '';
 
         function calcDistance(p1, p2) {

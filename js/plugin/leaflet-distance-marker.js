@@ -24,7 +24,7 @@
  */
 
 L.DistanceMarkers = L.LayerGroup.extend({
-    initialize: function (line, map, options) {
+    initialize(line, map, options) {
         options = options || {};
         var offset = options.offset || 1000;
         var showAll = Math.min(map.getMaxZoom(), options.showAll || 12);
@@ -69,7 +69,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
             // width as base number, one for padding + multiply by number of digits
             var size = [iconSize[0] + iconSize[0] * ('' + text).length, iconSize[1]];
             var icon = L.divIcon({ className: cssClass, html: text, iconSize: size });
-            var marker = L.marker(position.latLng, { title: text, icon: icon, interactive: false });
+            var marker = L.marker(position.latLng, { title: text, icon, interactive: false });
 
             // visible only starting at a specific zoom level
             var zoom = this._minimumZoomLevelForItem(i, showAll);
@@ -106,7 +106,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
         updateMarkerVisibility();
     },
 
-    setOpacity: function (opacity) {
+    setOpacity(opacity) {
         var i,
             keys = Object.keys(this._zoomLayers),
             l = keys.length;
@@ -119,7 +119,7 @@ L.DistanceMarkers = L.LayerGroup.extend({
         }
     },
 
-    _minimumZoomLevelForItem: function (item, showAllLevel) {
+    _minimumZoomLevelForItem(item, showAllLevel) {
         var zoom = showAllLevel,
             i = item;
         while (i > 0 && i % 2 === 0) {

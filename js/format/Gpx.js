@@ -1,6 +1,6 @@
 // derived from BRouter btools.router.OsmTrack.formatAsGpx
 BR.Gpx = {
-    format: function (geoJson, turnInstructionMode = 0, transportMode = 'bike') {
+    format(geoJson, turnInstructionMode = 0, transportMode = 'bike') {
         if (!geoJson?.features) return '';
 
         class GpxTransform {
@@ -55,9 +55,9 @@ BR.Gpx = {
 
         let gpx = togpx(geoJson, {
             creator: (BR.conf.appName || 'BRouter-Web') + ' ' + BR.version,
-            featureTitle: function () {},
-            featureDescription: function () {},
-            featureCoordTimes: function () {},
+            featureTitle() {},
+            featureDescription() {},
+            featureCoordTimes() {},
             transform: gpxTransform,
         });
         const statsComment = BR.Gpx._statsComment(geoJson);
@@ -67,7 +67,7 @@ BR.Gpx = {
     },
 
     // <!-- track-length = 319 filtered ascend = 2 plain-ascend = -1 cost=533 energy=.0kwh time=44s -->
-    _statsComment: function (geoJson) {
+    _statsComment(geoJson) {
         const props = geoJson.features?.[0].properties;
         if (!props) return '';
 

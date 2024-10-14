@@ -5,10 +5,10 @@ BR.OpacitySlider = L.Class.extend({
         orientation: 'vertical',
         defaultValue: BR.conf.defaultOpacity,
         title: '',
-        callback: function (opacity) {},
+        callback(opacity) {},
     },
 
-    initialize: function (options) {
+    initialize(options) {
         L.setOptions(this, options);
 
         var input = (this.input = $('<input id="slider-' + this.options.id + '" type="text"/>')),
@@ -26,7 +26,7 @@ BR.OpacitySlider = L.Class.extend({
                 min: 0,
                 max: 100,
                 step: 1,
-                value: value,
+                value,
                 orientation: this.options.orientation,
                 reversed: this.options.reversed,
                 selection: this.options.reversed ? 'before' : 'after', // inverted, serves as track style, see css
@@ -51,19 +51,19 @@ BR.OpacitySlider = L.Class.extend({
         }
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(0);
         }
     },
 
-    _keyupListener: function (e) {
+    _keyupListener(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.muteKeyCode) {
             this.options.callback(this.input.val() / 100);
         }
     },
 
-    getElement: function () {
+    getElement() {
         return this.input.slider('getElement');
     },
 });
