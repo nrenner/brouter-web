@@ -1,5 +1,5 @@
 BR.TrackStats = L.Class.extend({
-    update: function (polyline, segments) {
+    update(polyline, segments) {
         if (segments.length == 0) {
             $('#stats-container').hide();
             $('#stats-info').show();
@@ -44,7 +44,7 @@ BR.TrackStats = L.Class.extend({
         $('#meanenergy').html(meanEnergy);
     },
 
-    calcStats: function (polyline, segments) {
+    calcStats(polyline, segments) {
         var stats = {
             trackLength: 0,
             filteredAscend: 0,

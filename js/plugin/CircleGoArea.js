@@ -20,14 +20,14 @@ BR.CircleGoArea = L.Control.extend({
         },
     },
 
-    initialize: function (routing, nogos, pois, options) {
+    initialize(routing, nogos, pois, options) {
         this.routing = routing;
         this.nogos = nogos;
         this.pois = pois;
         L.setOptions(this, options);
     },
 
-    onAdd: function (map) {
+    onAdd(map) {
         var self = this;
 
         this.map = map;
@@ -38,7 +38,7 @@ BR.CircleGoArea = L.Control.extend({
                 {
                     stateName: 'activate-circlego',
                     icon: 'fa-circle-o',
-                    onClick: function () {
+                    onClick() {
                         self.draw(true);
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
@@ -49,7 +49,7 @@ BR.CircleGoArea = L.Control.extend({
                 {
                     stateName: 'deactivate-circlego',
                     icon: 'fa-circle-o active',
-                    onClick: function () {
+                    onClick() {
                         self.draw(false);
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
@@ -88,7 +88,7 @@ BR.CircleGoArea = L.Control.extend({
         return container;
     },
 
-    draw: function (enable) {
+    draw(enable) {
         this.drawButton.state(enable ? 'deactivate-circlego' : 'activate-circlego');
         if (enable) {
             this.routing.draw(false);
@@ -109,7 +109,7 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
@@ -120,7 +120,7 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    _getBoundary: function (center, adminLevel, adminLevelFallback) {
+    _getBoundary(center, adminLevel, adminLevelFallback) {
         adminLevel = adminLevel || 8;
         var query =
             '[out:json]; is_in(' +
@@ -165,7 +165,7 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _setBoundary: function (geoJson) {
+    _setBoundary(geoJson) {
         // drop admin_centre nodes
         geoJson.features = geoJson.features.filter(function (feature) {
             return feature.geometry.type !== 'Point';
@@ -173,7 +173,7 @@ BR.CircleGoArea = L.Control.extend({
 
         var boundaryLine = turf.polygonToLine(geoJson.features[0]);
         this.boundaryLayer = L.geoJson(boundaryLine, {
-            style: function (feature) {
+            style(feature) {
                 return {
                     weight: 1,
                     color: 'black',
@@ -199,7 +199,7 @@ BR.CircleGoArea = L.Control.extend({
         this.setOutsideArea(ring);
     },
 
-    _getPolygonForPoint: function (center, featureCollection) {
+    _getPolygonForPoint(center, featureCollection) {
         var polygon = null;
         var point = turf.point(center);
 
@@ -216,15 +216,15 @@ BR.CircleGoArea = L.Control.extend({
         return polygon;
     },
 
-    _getState: function (center) {
+    _getState(center) {
         return this._getPolygonForPoint(center, this.states);
     },
 
-    _getCountry: function (center) {
+    _getCountry(center) {
         return this._getPolygonForPoint(center, this.countries);
     },
 
-    _applyStateRules: function (center) {
+    _applyStateRules(center) {
         var state = this._getState(center);
 
         if (state) {
@@ -255,7 +255,7 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    _applyCountryRules: function (center) {
+    _applyCountryRules(center) {
         var country = this._getCountry(center);
 
         if (country) {
@@ -294,7 +294,7 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     // debugging
-    _logStates: function (states) {
+    _logStates(states) {
         for (var i = 0; i < states.features.length; i++) {
             var state = states.features[i];
             console.log(
@@ -304,12 +304,12 @@ BR.CircleGoArea = L.Control.extend({
     },
 
     // debugging
-    _addGeoJsonLayer: function (states, options) {
+    _addGeoJsonLayer(states, options) {
         // delay, otherwise triggers premature hash update through mapmove
         setTimeout(
             L.bind(function () {
                 L.geoJson(states, {
-                    style: function (feature) {
+                    style(feature) {
                         return L.extend(
                             {
                                 weight: 1,
@@ -327,7 +327,7 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _loadStates: function () {
+    _loadStates() {
         if (this.statesLoading) return;
 
         this.statesLoading = true;
@@ -349,7 +349,7 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _loadCountries: function () {
+    _loadCountries() {
         BR.Util.getJson(
             this.options.countriesUrl,
             'countries',
@@ -364,7 +364,7 @@ BR.CircleGoArea = L.Control.extend({
                     renderer: this.maskRenderer,
                     // use Leaflet.snogylop plugin here, turf.mask too slow (~4s) for some reason
                     invert: true,
-                    style: function (feature) {
+                    style(feature) {
                         return {
                             weight: 1,
                             color: 'darkgreen',
@@ -388,25 +388,25 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _setNogo: function (ring) {
+    _setNogo(ring) {
         this.nogoPolylines = L.geoJson(ring, BR.NogoAreas.prototype.polylineOptions);
         this.nogos.addNogos(null, this.nogoPolylines.getLayers(), null);
     },
 
-    _removeNogo: function () {
+    _removeNogo() {
         if (this.nogoPolylines) {
             this.nogos.removeNogos(null, this.nogoPolylines.getLayers(), null);
             this.nogoPolylines = null;
         }
     },
 
-    _setNogoCircle: function (center) {
+    _setNogoCircle(center) {
         var polygon = this.circleToPolygon(center, this.radius);
         this._setNogo(polygon);
         this.setOutsideArea(polygon);
     },
 
-    setNogoRing: function (center) {
+    setNogoRing(center) {
         this._clearLayers();
         this._removeNogo();
 
@@ -428,7 +428,7 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    _lockOutsideArea: function () {
+    _lockOutsideArea() {
         if (this.outsideArea) {
             this.outsideArea.eachLayer(function (layer) {
                 layer._path.classList.add('circlego-outside');
@@ -437,7 +437,7 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    _unlockOutsideArea: function () {
+    _unlockOutsideArea() {
         if (this.outsideArea) {
             this.outsideArea.eachLayer(function (layer) {
                 layer._path.classList.remove('circlego-outside');
@@ -446,12 +446,12 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    setOutsideArea: function (ring) {
+    setOutsideArea(ring) {
         var mask = turf.mask(turf.polygonize(ring));
 
         this.outsideArea = L.geoJson(mask, {
             renderer: this.maskRenderer,
-            style: function (feature) {
+            style(feature) {
                 return {
                     weight: 4,
                     color: 'black',
@@ -466,11 +466,11 @@ BR.CircleGoArea = L.Control.extend({
         this._lockOutsideArea();
     },
 
-    onMapClick: function (e) {
+    onMapClick(e) {
         this.setCircle([e.latlng.lng, e.latlng.lat]);
     },
 
-    setOptions: function (opts) {
+    setOptions(opts) {
         this.radius = opts.circlego[2];
         if (opts.polylines) {
             this.nogoPolylines = L.featureGroup(opts.polylines, BR.NogoAreas.prototype.polylineOptions);
@@ -478,7 +478,7 @@ BR.CircleGoArea = L.Control.extend({
         this.setCircle([opts.circlego[0], opts.circlego[1]], opts.polylines);
     },
 
-    setCircle: function (center, polylines) {
+    setCircle(center, polylines) {
         var marker = (this.marker = this._createMarker(center));
 
         this.clear();
@@ -503,7 +503,7 @@ BR.CircleGoArea = L.Control.extend({
         this.draw(false);
     },
 
-    _createMarker: function (center) {
+    _createMarker(center) {
         var self = this;
         var icon = (this.icon = L.VectorMarkers.icon({
             icon: 'home',
@@ -519,7 +519,7 @@ BR.CircleGoArea = L.Control.extend({
             '<button id="remove-ringgo-marker" class="btn btn-secondary"><i class="fa fa-trash"></i></button>';
 
         var marker = L.marker([center[1], center[0]], {
-            icon: icon,
+            icon,
             draggable: true,
             // prevent being on top of route markers
             zIndexOffset: -500,
@@ -547,7 +547,7 @@ BR.CircleGoArea = L.Control.extend({
         return marker;
     },
 
-    _onPopupOpen: function (popup, popupContent) {
+    _onPopupOpen(popup, popupContent) {
         var exportName = '';
         var html = '<p>';
         if (this.radius) {
@@ -580,7 +580,7 @@ BR.CircleGoArea = L.Control.extend({
         if (this.nogoPolylines) {
             var link = location.href.replace(/&polylines=[^&]*/, '');
             var geoJson = this.nogoPolylines.toGeoJSON();
-            var gpx = togpx(geoJson, { metadata: { name: exportName, link: link } });
+            var gpx = togpx(geoJson, { metadata: { name: exportName, link } });
             this._setDownloadUrl(gpx, 'application/gpx+xml', 'ringgo-download-gpx');
             this._setDownloadUrl(
                 JSON.stringify(geoJson, null, 2),
@@ -599,12 +599,12 @@ BR.CircleGoArea = L.Control.extend({
         );
     },
 
-    _onPopupClose: function (evt) {
+    _onPopupClose(evt) {
         this._revokeDownloadUrl('ringgo-download-gpx');
         this._revokeDownloadUrl('ringgo-download-geojson');
     },
 
-    _setDownloadUrl: function (text, mimeType, elementId) {
+    _setDownloadUrl(text, mimeType, elementId) {
         var blob = new Blob([text], {
             type: mimeType + ';charset=utf-8',
         });
@@ -613,14 +613,14 @@ BR.CircleGoArea = L.Control.extend({
         download.href = objectUrl;
     },
 
-    _revokeDownloadUrl: function (elementId) {
+    _revokeDownloadUrl(elementId) {
         var download = document.getElementById(elementId);
         if (download) {
             URL.revokeObjectURL(download.href);
         }
     },
 
-    _clearLayers: function () {
+    _clearLayers() {
         if (this.outsideArea) {
             this.map.removeLayer(this.outsideArea);
             this.outsideArea = null;
@@ -631,16 +631,16 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    clear: function () {
+    clear() {
         this.circleLayer.clearLayers();
         this._clearLayers();
     },
 
-    getButton: function () {
+    getButton() {
         return this.drawButton;
     },
 
-    getCircle: function () {
+    getCircle() {
         var circle = this.circleLayer.getLayers().map(function (it) {
             return it.getLatLng();
         });
@@ -651,15 +651,15 @@ BR.CircleGoArea = L.Control.extend({
         }
     },
 
-    toRadians: function (angleInDegrees) {
+    toRadians(angleInDegrees) {
         return (angleInDegrees * Math.PI) / 180;
     },
 
-    toDegrees: function (angleInRadians) {
+    toDegrees(angleInRadians) {
         return (angleInRadians * 180) / Math.PI;
     },
 
-    offset: function (c1, distance, bearing) {
+    offset(c1, distance, bearing) {
         var lon1 = this.toRadians(c1[0]);
         var lat1 = this.toRadians(c1[1]);
         var dByR = distance / 6378137; // distance divided by 6378137 (radius of the earth) wgs84
@@ -673,7 +673,7 @@ BR.CircleGoArea = L.Control.extend({
         return [this.toDegrees(lon), this.toDegrees(lat)];
     },
 
-    circleToPolygon: function (center, radius, numberOfSegments) {
+    circleToPolygon(center, radius, numberOfSegments) {
         var n = numberOfSegments ? numberOfSegments : 64;
 
         var inner = [];

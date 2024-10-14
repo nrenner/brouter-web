@@ -2,7 +2,7 @@ BR.Xml = {
     // modified version of
     // https://gist.github.com/sente/1083506#gistcomment-2254622
     // MIT License, Copyright (c) 2016 Stuart Powers, ES6 version by Jonathan Gruber
-    pretty: function (xml, indentSize = 1) {
+    pretty(xml, indentSize = 1) {
         const PADDING = ' '.repeat(indentSize);
         const newline = '\n';
 

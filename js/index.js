@@ -58,7 +58,7 @@
                 {
                     stateName: 'deactivate-draw',
                     icon: 'fa-pencil active',
-                    onClick: function (control) {
+                    onClick(control) {
                         routing.draw(false);
                         control.state('activate-draw');
                     },
@@ -70,7 +70,7 @@
                 {
                     stateName: 'activate-draw',
                     icon: 'fa-pencil',
-                    onClick: function (control) {
+                    onClick(control) {
                         routing.draw(true);
                         control.state('deactivate-draw');
                     },
@@ -103,13 +103,13 @@
                     stateName: 'activate-beeline',
                     icon: svg.replace(' active', ''),
                     onClick: beelineClickHandler,
-                    title: title,
+                    title,
                 },
                 {
                     stateName: 'deactivate-beeline',
                     icon: svg,
                     onClick: beelineClickHandler,
-                    title: title,
+                    title,
                 },
             ],
         });
@@ -188,10 +188,10 @@
                     },
                 ],
                 value: ['route'],
-                onShown: function () {
+                onShown() {
                     $('button.bootbox-accept', $(this)).focus();
                 },
-                callback: function (result) {
+                callback(result) {
                     if (result !== null) {
                         if (result.indexOf('route') !== -1) {
                             routing.clear();
@@ -290,10 +290,10 @@
             routingOptions.setCustomProfile(null);
         });
         trackMessages = new BR.TrackMessages(map, {
-            requestUpdate: requestUpdate,
+            requestUpdate,
         });
         trackAnalysis = new BR.TrackAnalysis(map, {
-            requestUpdate: requestUpdate,
+            requestUpdate,
         });
 
         routingPathQuality = new BR.RoutingPathQuality(map, layersControl);
@@ -500,7 +500,7 @@
         urlHash.onHashChangeCb = onHashChangeCb;
         urlHash.onInvalidHashChangeCb = onInvalidHashChangeCb;
         urlHash.init(map, {
-            layersControl: layersControl,
+            layersControl,
         });
 
         // activate configured default base layer or first if no hash,

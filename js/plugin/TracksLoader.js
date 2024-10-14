@@ -19,7 +19,7 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
             },
         },
 
-        _initContainer: function () {
+        _initContainer() {
             var thisLoader = this.loader;
 
             var fileInput;
@@ -60,7 +60,7 @@ BR.tracksLoader = function (map, layersControl, routing, pois) {
             return dummy;
         },
 
-        _keydownListener: function (e) {
+        _keydownListener(e) {
             if (
                 BR.Util.keyboardShortcutsAllowed(e) &&
                 e.keyCode === this.options.shortcut.open &&

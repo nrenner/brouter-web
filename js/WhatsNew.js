@@ -1,10 +1,10 @@
 BR.WhatsNew = {
     newOnly: undefined,
 
-    init: function () {
+    init() {
         var self = this;
         self.dismissableMessage = new BR.Message('whats_new_message', {
-            onClosed: function () {
+            onClosed() {
                 document.getElementsByClassName('version')[0].classList.remove('version-new');
                 if (BR.Util.localStorageAvailable()) {
                     localStorage.setItem('changelogVersion', self.getLatestVersion());
@@ -29,21 +29,21 @@ BR.WhatsNew = {
         }
     },
 
-    getLatestVersion: function () {
+    getLatestVersion() {
         return BR.changelog.match('<h2 id="(.*)">')[1];
     },
 
-    getCurrentVersion: function () {
+    getCurrentVersion() {
         if (!BR.Util.localStorageAvailable()) return null;
 
         return localStorage.getItem('changelogVersion');
     },
 
-    hasNewVersions: function () {
+    hasNewVersions() {
         return this.getCurrentVersion() && this.getCurrentVersion() !== this.getLatestVersion();
     },
 
-    prepare: function (newOnly) {
+    prepare(newOnly) {
         if (newOnly === this.newOnly) {
             // do not rebuild modal content unnecessarily
             return;

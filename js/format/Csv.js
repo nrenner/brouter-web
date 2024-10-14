@@ -1,5 +1,5 @@
 BR.Csv = {
-    format: function (geoJson) {
+    format(geoJson) {
         const separator = '\t';
         const newline = '\n';
         const messages = geoJson.features[0].properties.messages;

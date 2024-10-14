@@ -7,7 +7,7 @@ BR.Export = L.Class.extend({
         },
     },
 
-    initialize: function (router, pois, profile) {
+    initialize(router, pois, profile) {
         this.router = router;
         this.pois = pois;
         this.profile = profile;
@@ -38,7 +38,7 @@ BR.Export = L.Class.extend({
         this.update([]);
     },
 
-    update: function (latLngs, segments) {
+    update(latLngs, segments) {
         this.latLngs = latLngs;
         this.segments = segments;
 
@@ -49,7 +49,7 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _warnDownload: function () {
+    _warnDownload() {
         const hasBeeline = BR.Routing.hasBeeline(this.segments);
         const isFit = $('#format-fit').prop('checked');
         $('#export-download-warning').prop('hidden', !hasBeeline && !isFit);
@@ -63,14 +63,14 @@ BR.Export = L.Class.extend({
         document.getElementById('serverExport').title = title;
     },
 
-    _turnInstructionInfo: function () {
+    _turnInstructionInfo() {
         const turnInstructionMode = +this.profile.getProfileVar('turnInstructionMode');
         $('.format-turns-enabled')
             .prop('hidden', turnInstructionMode <= 1)
             .attr('title', i18next.t('export.turns_enabled'));
     },
 
-    _getMimeType: function (format) {
+    _getMimeType(format) {
         const mimeTypeMap = {
             gpx: 'application/gpx+xml;charset=utf-8',
             kml: 'application/vnd.google-earth.kml+xml;charset=utf-8',
@@ -82,7 +82,7 @@ BR.Export = L.Class.extend({
         return mimeTypeMap[format];
     },
 
-    _triggerDownload: function (url, name) {
+    _triggerDownload(url, name) {
         const link = document.createElement('a');
         link.href = url;
         if (name) {
@@ -95,11 +95,11 @@ BR.Export = L.Class.extend({
         link.remove();
     },
 
-    _exportServer: function (e) {
+    _exportServer(e) {
         this._export(e, true);
     },
 
-    _export: function (e, server = false) {
+    _export(e, server = false) {
         var exportForm = document.forms['export'];
         var format = exportForm['format'].value || $('#export-format input:radio:checked').val();
         var name = exportForm['trackname'].value;
@@ -138,7 +138,7 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _formatTrack: function (format, name, includeWaypoints) {
+    _formatTrack(format, name, includeWaypoints) {
         const track = BR.Export._concatTotalTrack(this.segments);
         if (name) {
             track.features[0].properties.name = name;
@@ -166,7 +166,7 @@ BR.Export = L.Class.extend({
         console.error('Export format not implemented: ' + format);
     },
 
-    _addPois: function (track) {
+    _addPois(track) {
         const markers = this.pois.getMarkers();
         for (const poi of markers) {
             const properties = { name: poi.name, type: 'poi' };
@@ -175,7 +175,7 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _addRouteWaypoints: function (track) {
+    _addRouteWaypoints(track) {
         for (const [i, latLng] of this.latLngs.entries()) {
             let name = 'via' + i;
             let type = 'via';
@@ -192,7 +192,7 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _validationMessage: function () {
+    _validationMessage() {
         var trackname = this.trackname;
         var replaceRegex = new RegExp('[^' + this.tracknameAllowedChars + ']', 'g');
 
@@ -205,11 +205,11 @@ BR.Export = L.Class.extend({
         }
     },
 
-    _selectTrackname: function () {
+    _selectTrackname() {
         trackname.setSelectionRange(0, trackname.value.lastIndexOf(BR.Browser.download ? ' (' : ' - '));
     },
 
-    _generateTrackname: function () {
+    _generateTrackname() {
         var trackname = this.trackname;
         this._getCityAtPosition(
             this.latLngs[0],
@@ -225,14 +225,14 @@ BR.Export = L.Class.extend({
                             trackname.value = null;
                         } else if (from === to) {
                             trackname.value = i18next.t('export.route-loop', {
-                                from: from,
-                                distance: distance,
+                                from,
+                                distance,
                             });
                         } else {
                             trackname.value = i18next.t('export.route-from-to', {
-                                from: from,
-                                to: to,
-                                distance: distance,
+                                from,
+                                to,
+                                distance,
                             });
                         }
 
@@ -249,7 +249,7 @@ BR.Export = L.Class.extend({
         );
     },
 
-    _getCityAtPosition: function (lonlat, cb) {
+    _getCityAtPosition(lonlat, cb) {
         var url = L.Util.template(
             'https://nominatim.openstreetmap.org/reverse?lon={lng}&lat={lat}&format=json',
             lonlat
@@ -268,7 +268,7 @@ BR.Export = L.Class.extend({
         );
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (
             BR.Util.keyboardShortcutsAllowed(e) &&
             e.keyCode === this.options.shortcut.export &&

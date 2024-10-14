@@ -1,5 +1,5 @@
 BR.Map = {
-    initMap: function () {
+    initMap() {
         var map, layersControl;
 
         L.setOptions(this, {
@@ -20,7 +20,7 @@ BR.Map = {
             zoomControl: false, // add it manually so that we can translate it
             worldCopyJump: true,
             minZoom: 0,
-            maxZoom: maxZoom,
+            maxZoom,
         });
 
         if (BR.Util.getResponsiveBreakpoint() >= '3md') {
@@ -142,12 +142,12 @@ BR.Map = {
         BR.debug.map = map;
 
         return {
-            map: map,
-            layersControl: layersControl,
+            map,
+            layersControl,
         };
     },
 
-    _renderLayerCredits: function (layers) {
+    _renderLayerCredits(layers) {
         var dl = document.getElementById('credits-maps');
         var i, obj, dt, dd, attribution;
 

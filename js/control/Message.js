@@ -6,12 +6,12 @@ BR.Message = L.Class.extend({
         onClosed: null,
     },
 
-    initialize: function (id, options) {
+    initialize(id, options) {
         L.setOptions(this, options);
         this.id = id;
     },
 
-    _show: function (msg, type) {
+    _show(msg, type) {
         var ele = L.DomUtil.get(this.id),
             iconClass,
             alertClass;
@@ -59,11 +59,11 @@ BR.Message = L.Class.extend({
         }
     },
 
-    hide: function () {
+    hide() {
         $('#' + this.id + ' .alert').alert('close');
     },
 
-    showError: function (err) {
+    showError(err) {
         if (err && err.message) err = err.message;
 
         if (err == 'target island detected for section 0\n') {
@@ -80,15 +80,15 @@ BR.Message = L.Class.extend({
         this._show(err, 'error');
     },
 
-    showWarning: function (msg) {
+    showWarning(msg) {
         this._show(msg, 'warning');
     },
 
-    showInfo: function (msg) {
+    showInfo(msg) {
         this._show(msg, 'info');
     },
 
-    showLoading: function (msg) {
+    showLoading(msg) {
         this._show(msg, 'loading');
     },
 });

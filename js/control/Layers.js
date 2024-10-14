@@ -1,5 +1,5 @@
 BR.Layers = L.Class.extend({
-    _loadLayers: function () {
+    _loadLayers() {
         this._customLayers = {};
 
         if (BR.Util.localStorageAvailable()) {
@@ -28,7 +28,7 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _loadTable: function () {
+    _loadTable() {
         var layersData = [];
         for (layer in this._customLayers) {
             var layerProps = this._customLayers[layer].layerData.properties;
@@ -65,7 +65,7 @@ BR.Layers = L.Class.extend({
         });
     },
 
-    init: function (map, layersControl, baseLayers, overlays) {
+    init(map, layersControl, baseLayers, overlays) {
         this._layersControl = layersControl;
         this._map = map;
         this._layers = {};
@@ -95,7 +95,7 @@ BR.Layers = L.Class.extend({
         };
     },
 
-    _remove: function (evt) {
+    _remove(evt) {
         var row = this._layersTable.row('.selected').data();
         if (row != null) {
             var name = row[0];
@@ -107,7 +107,7 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _addFromInput: function (layerProps) {
+    _addFromInput(layerProps) {
         var layer_name = L.DomUtil.get('layer_name').value;
         var layer_url = L.DomUtil.get('layer_url').value;
 
@@ -123,14 +123,14 @@ BR.Layers = L.Class.extend({
         if (layer_name.length > 0 && layer_url.length > 0) this._addLayer(layerData);
     },
 
-    _addBaseLayer: function (evt) {
+    _addBaseLayer(evt) {
         var layerProps = {
             type: 'tms',
             url: L.DomUtil.get('layer_url').value,
         };
         this._addFromInput(layerProps);
     },
-    _addOverlay: function (evt) {
+    _addOverlay(evt) {
         var layerProps = {
             type: 'tms',
             url: L.DomUtil.get('layer_url').value,
@@ -138,7 +138,7 @@ BR.Layers = L.Class.extend({
         };
         this._addFromInput(layerProps);
     },
-    _addOverpassQuery: function (evt) {
+    _addOverpassQuery(evt) {
         var layerProps = {
             overlay: true,
             dataSource: 'OverpassAPI',
@@ -147,7 +147,7 @@ BR.Layers = L.Class.extend({
         this._addFromInput(layerProps);
     },
 
-    _createTmsProps: function (props) {
+    _createTmsProps(props) {
         var tmsProps = {
             type: 'tms',
             ...props,
@@ -155,7 +155,7 @@ BR.Layers = L.Class.extend({
         return tmsProps;
     },
 
-    _addLayer: function (layerData) {
+    _addLayer(layerData) {
         var props = layerData.properties;
         var layerName = props.name;
 
@@ -167,8 +167,8 @@ BR.Layers = L.Class.extend({
             var layer = this._layersControl.layersConfig.createLayer(layerData);
 
             this._customLayers[layerName] = {
-                layer: layer,
-                layerData: layerData,
+                layer,
+                layerData,
             };
 
             if (props.overlay) {
@@ -185,7 +185,7 @@ BR.Layers = L.Class.extend({
         }
     },
 
-    _sync: function () {
+    _sync() {
         if (BR.Util.localStorageAvailable()) {
             var geojson = {
                 type: 'FeatureCollection',

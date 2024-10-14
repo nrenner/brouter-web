@@ -24,6 +24,6 @@ var brouterCgi = (function () {
     }
 
     return {
-        getUrl: getUrl,
+        getUrl,
     };
 })();

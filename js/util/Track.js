@@ -10,7 +10,7 @@ BR.Track = {
      *
      * @returns {Object} to pass as `options` parameter to `L.geoJson`
      */
-    getGeoJsonOptions: function (layersControl, filterPois = false) {
+    getGeoJsonOptions(layersControl, filterPois = false) {
         // https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0
         const styleMapping = [
             ['stroke', 'color'],
@@ -20,7 +20,7 @@ BR.Track = {
             ['fill-opacity', 'fillOpacity'],
         ];
         return {
-            style: function (geoJsonFeature) {
+            style(geoJsonFeature) {
                 var currentLayerId = layersControl?.getActiveBaseLayer().layer.id;
                 const featureStyle = {
                     color: currentLayerId === 'cyclosm' ? 'yellow' : 'blue',
@@ -34,14 +34,14 @@ BR.Track = {
                 return featureStyle;
             },
             interactive: false,
-            filter: function (geoJsonFeature) {
+            filter(geoJsonFeature) {
                 if (filterPois) {
                     // remove POIs, added separately, see `addPoiMarkers`
                     return !BR.Track.isPoiPoint(geoJsonFeature);
                 }
                 return true;
             },
-            pointToLayer: function (geoJsonPoint, latlng) {
+            pointToLayer(geoJsonPoint, latlng) {
                 // route waypoint (type=from/via/to)
                 return L.marker(latlng, {
                     interactive: false,
@@ -60,7 +60,7 @@ BR.Track = {
      * @param {BR.PoiMarkers} pois POI control instance
      * @param {Object} geoJson GeoJSON object
      */
-    addPoiMarkers: function (pois, geoJson) {
+    addPoiMarkers(pois, geoJson) {
         turf.featureEach(geoJson, function (feature, idx) {
             if (BR.Track.isPoiPoint(feature)) {
                 var coord = turf.getCoord(feature);
@@ -80,7 +80,7 @@ BR.Track = {
      *
      * @param {Object} geoJsonPointFeature GeoJSON Point feature
      */
-    isRouteWaypoint: function (geoJsonPointFeature) {
+    isRouteWaypoint(geoJsonPointFeature) {
         var props = geoJsonPointFeature.properties;
         if (props && props.type) {
             var wptType = props.type;
@@ -96,7 +96,7 @@ BR.Track = {
      *
      * @param {Object} geoJsonFeature GeoJSON feature
      */
-    isPoiPoint: function (geoJsonFeature) {
+    isPoiPoint(geoJsonFeature) {
         return turf.getType(geoJsonFeature) === 'Point' && !BR.Track.isRouteWaypoint(geoJsonFeature);
     },
 };

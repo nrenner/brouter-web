@@ -6,7 +6,7 @@ BR.BingLayer = L.BingLayer.extend({
             ' (<a target="_blank" href="https://go.microsoft.com/?linkid=9710837">TOU</a>)',
     },
 
-    initialize: function (key, options) {
+    initialize(key, options) {
         L.BingLayer.prototype.initialize.call(this, key, options);
 
         this._logo = L.control({ position: 'bottomleft' });
@@ -18,12 +18,12 @@ BR.BingLayer = L.BingLayer.extend({
         };
     },
 
-    onAdd: function (map) {
+    onAdd(map) {
         L.BingLayer.prototype.onAdd.call(this, map);
         map.addControl(this._logo);
     },
 
-    onRemove: function (map) {
+    onRemove(map) {
         L.BingLayer.prototype.onRemove.call(this, map);
         map.removeControl(this._logo);
     },

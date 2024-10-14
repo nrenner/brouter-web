@@ -1,5 +1,5 @@
 BR.ControlLayers = L.Control.Layers.extend({
-    getActiveLayers: function () {
+    getActiveLayers() {
         var result = [];
 
         for (var i = 0; i < this._layers.length; i++) {
@@ -16,7 +16,7 @@ BR.ControlLayers = L.Control.Layers.extend({
         return result;
     },
 
-    getActiveBaseLayer: function () {
+    getActiveBaseLayer() {
         var activeLayers = this.getActiveLayers();
         for (var i = 0; i < activeLayers.length; i++) {
             var obj = activeLayers[i];
@@ -28,7 +28,7 @@ BR.ControlLayers = L.Control.Layers.extend({
         return null;
     },
 
-    removeActiveLayers: function () {
+    removeActiveLayers() {
         var removed = [];
 
         for (var i = 0; i < this._layers.length; i++) {
@@ -42,7 +42,7 @@ BR.ControlLayers = L.Control.Layers.extend({
         return removed;
     },
 
-    getLayer: function (name) {
+    getLayer(name) {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (obj.name === name) {
@@ -53,19 +53,19 @@ BR.ControlLayers = L.Control.Layers.extend({
         return null;
     },
 
-    getBaseLayers: function () {
+    getBaseLayers() {
         return this._layers.filter(function (obj) {
             return !obj.overlay;
         });
     },
 
-    activateLayer: function (obj) {
+    activateLayer(obj) {
         if (!this._map.hasLayer(obj.layer)) {
             this._map.addLayer(obj.layer);
         }
     },
 
-    activateFirstLayer: function () {
+    activateFirstLayer() {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (!obj.overlay) {
@@ -75,14 +75,14 @@ BR.ControlLayers = L.Control.Layers.extend({
         }
     },
 
-    activateBaseLayerIndex: function (index) {
+    activateBaseLayerIndex(index) {
         var baseLayers = this.getBaseLayers();
         var obj = baseLayers[index];
 
         this.activateLayer(obj);
     },
 
-    _addLayer: function (layer, name, overlay) {
+    _addLayer(layer, name, overlay) {
         L.Control.Layers.prototype._addLayer.call(this, layer, name, overlay);
 
         // override z-index assignment to fix that base layers added later

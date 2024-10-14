@@ -20,7 +20,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             },
         },
 
-        setDialogDraggable: function (jqDlgHeader) {
+        setDialogDraggable(jqDlgHeader) {
             jqDlgHeader.on('mousedown', function (mousedownEvt) {
                 var $draggable = $(this);
                 var x = mousedownEvt.pageX - $draggable.offset().left,
@@ -40,15 +40,15 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             });
         },
 
-        getSimplifiedCoords: function (tolerance) {
+        getSimplifiedCoords(tolerance) {
             var simplifiedLine = turf.simplify(this._trackPoints.geometry, {
-                tolerance: tolerance,
+                tolerance,
                 highQuality: true,
             });
             return simplifiedLine.coordinates;
         },
 
-        refreshTestLayer: function () {
+        refreshTestLayer() {
             this.onBusyChanged(true);
             this._testLayer.clearLayers();
 
@@ -73,7 +73,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             return true;
         },
 
-        cleanup: function (e) {
+        cleanup(e) {
             this._testLayer.clearLayers();
             if (
                 this._trackLayer &&
@@ -98,7 +98,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             };
         },
 
-        setSliderRange: function () {
+        setSliderRange() {
             $slider = $('#simplify_tolerance');
             $slider.prop('min', -500);
             var guessedTolerance = this.guessSimplifyTolerance(this._trackPoints);
@@ -116,7 +116,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             this.refreshTestLayer();
         },
 
-        onToleranceSlider: function (e) {
+        onToleranceSlider(e) {
             var guess = parseFloat($(e.target).data('guess'));
             var f = parseFloat(e.target.value);
             var frac = parseFloat($(e.target).prop('max'));
@@ -145,7 +145,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
         },
 
-        findLowestTolerance: function (min, max, guess, frac) {
+        findLowestTolerance(min, max, guess, frac) {
             if (Math.abs(max - min) <= 2) return max;
             var meridian = Math.round((max + min) / 2);
 
@@ -157,7 +157,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             else return this.findLowestTolerance(min, meridian, guess, frac);
         },
 
-        onBusyChanged: function (isBusy) {
+        onBusyChanged(isBusy) {
             if (typeof isBusy === undefined) {
                 isBusy = false;
             }
@@ -165,7 +165,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             else $('#loadedittrack #msg_busy').addClass('invisible');
         },
 
-        onManualCollapse: function (e) {
+        onManualCollapse(e) {
             //workaround for starting with closed collapse
             if ($('#loadedittrack').is(':hidden')) return;
             this._options.isTestMode = $(e.target).hasClass('show');
@@ -176,7 +176,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             } else this.cleanup();
         },
 
-        onAdd: function (map) {
+        onAdd(map) {
             $('#loadedittrack').on(
                 'hidden.bs.modal',
                 function (e) {
@@ -238,11 +238,11 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             return dummy;
         },
 
-        onRemove: function (map) {
+        onRemove(map) {
             // Nothing to do here
         },
 
-        onFileChanged: function (e) {
+        onFileChanged(e) {
             if (!e.target.files[0]) return;
             $(e.target).next('label').text(e.target.files[0].name);
             var testmode = this._options.isTestMode;
@@ -254,7 +254,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
         },
 
-        setLayerNameFromGeojson: function (geoJSON) {
+        setLayerNameFromGeojson(geoJSON) {
             if (geoJSON.type == 'Feature' && geoJSON.properties && geoJSON.properties.name) {
                 this._layerName = geoJSON.properties.name;
                 return;
@@ -270,7 +270,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
         },
 
-        getOptions: function () {
+        getOptions() {
             this._options.showTrackLayer = $('#cb_showtracklayer')[0].checked;
             this._options.showPointAsPoi = $('#cb_showpois')[0].checked;
 
@@ -278,7 +278,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             this._bounds = undefined;
         },
 
-        convertTrackLocal: function () {
+        convertTrackLocal() {
             if ($('#loadedittrackFile')[0].files.length == 0) return;
             this.onBusyChanged(true);
 
@@ -295,7 +295,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             reader.readAsText(trackFile);
         },
 
-        addTrackOverlay: function (geoJSON) {
+        addTrackOverlay(geoJSON) {
             this._trackLayer = L.geoJSON(geoJSON, BR.Track.getGeoJsonOptions(layersControl, true)).addTo(map);
 
             layersControl.addOverlay(this._trackLayer, BR.Util.sanitizeHTMLContent(this._layerName));
@@ -305,7 +305,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             if (this._bounds) map.fitBounds(this._bounds);
         },
 
-        getLineStringsFromGeoJSON: function (geoJSON) {
+        getLineStringsFromGeoJSON(geoJSON) {
             var allLinePoints = [];
             var flat = turf.flatten(geoJSON);
             turf.featureEach(flat, function (feature, idx) {
@@ -321,13 +321,13 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             return linesGeoJSON;
         },
 
-        guessSimplifyTolerance: function (trackPoints) {
+        guessSimplifyTolerance(trackPoints) {
             var tolerance = trackPoints.length / 1000000;
             if (tolerance > 0.8) tolerance = 0.8;
             return tolerance;
         },
 
-        addRoutingPoints: function (geoJSON) {
+        addRoutingPoints(geoJSON) {
             if (this._options.simplifyTolerance < 0)
                 this._options.simplifyTolerance = this.guessSimplifyTolerance(this._trackPoints);
 
@@ -361,7 +361,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             }
         },
 
-        processFile: function (e) {
+        processFile(e) {
             var res = e.target.result;
             var geoJSON = null;
             switch (this._options.format) {
@@ -391,7 +391,7 @@ BR.routeLoader = function (map, layersControl, routing, pois) {
             this.onBusyChanged(false);
         },
 
-        keydownListener: function (e) {
+        keydownListener(e) {
             if (
                 BR.Util.keyboardShortcutsAllowed(e) &&
                 e.keyCode === this._options.shortcut.open &&
