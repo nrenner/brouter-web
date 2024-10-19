@@ -75,14 +75,14 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Everytime the track changes this method is called:
      *
-     * - calculate statistics (way type, surface, smoothness)
+     * - calculate statistics (way type, max speed, surface, smoothness)
      *   for the whole track
      * - renders statistics tables
      * - create event listeners which allow to hover/click a
      *   table row for highlighting matching track segments
      *
      * @param {Polyline} polyline
-     * @param {Array} segments
+     * @param {Array} segments route segments between waypoints
      */
     update(polyline, segments) {
         if (!this.active) {
@@ -105,7 +105,7 @@ BR.TrackAnalysis = L.Class.extend({
         this.trackPolyline = polyline;
         this.trackEdges = new BR.TrackEdges(segments);
 
-        var analysis = this.calcStats(polyline, segments);
+        const analysis = this.calcStats(polyline, segments);
 
         this.render(analysis);
 
@@ -132,6 +132,7 @@ BR.TrackAnalysis = L.Class.extend({
     calcStats(polyline, segments) {
         const analysis = {
             highway: {},
+            maxspeed: {},
             surface: {},
             smoothness: {},
         };
@@ -175,14 +176,19 @@ BR.TrackAnalysis = L.Class.extend({
                                 segments[segmentIndex].feature.properties.messages[messageIndex][3]
                             );
                             break;
+                        case 'maxspeed':
                         case 'surface':
                         case 'smoothness':
                             if (typeof analysis[tagName][wayTagParts[1]] === 'undefined') {
+                                let formattedName = i18next.t([
+                                    'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
+                                    wayTagParts[1],
+                                ]);
+                                if (tagName.indexOf('maxspeed') === 0) {
+                                    formattedName += ' km/h';
+                                }
                                 analysis[tagName][wayTagParts[1]] = {
-                                    formatted_name: i18next.t(
-                                        'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
-                                        wayTagParts[1]
-                                    ),
+                                    formatted_name: formattedName,
                                     name: wayTagParts[1],
                                     subtype: '',
                                     distance: 0.0,
@@ -208,6 +214,10 @@ BR.TrackAnalysis = L.Class.extend({
      * in the tag which matches the given routing type. All other variations
      * are dropped. If no specialized surface/smoothness tag is found, the default value
      * is returned, i.e. `smoothness` or `surface`.
+     *
+     * Also, maxspeed comes in different variations, e.g. `maxspeed`, `maxspeed:forward`,
+     * `maxspeed:backward`. Depending on the existence of the `reversedirection` field
+     * we can select the correct value.
      *
      * @param wayTags tags + values for a way segment
      * @param routingType currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
@@ -239,6 +249,19 @@ BR.TrackAnalysis = L.Class.extend({
             if (tagName.indexOf(':smoothness') !== -1) {
                 let tagNameParts = tagName.split(':');
                 smoothnessTags[tagNameParts[0]] = tagValue;
+                continue;
+            }
+
+            if (tagName === 'maxspeed:forward' && !wayTags.includes('reversedirection=yes')) {
+                normalizedWayTags['maxspeed'] = tagValue;
+                continue;
+            }
+            if (tagName === 'maxspeed:backward' && wayTags.includes('reversedirection=yes')) {
+                normalizedWayTags['maxspeed'] = tagValue;
+                continue;
+            }
+            if (tagName === 'maxspeed') {
+                normalizedWayTags[tagName] = tagValue;
                 continue;
             }
 
@@ -279,10 +302,10 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {Object}
      */
     sortAnalysisData(analysis) {
-        var analysisSortable = {};
-        var result = {};
+        const analysisSortable = {};
+        const result = {};
 
-        for (var type in analysis) {
+        for (const type in analysis) {
             if (!analysis.hasOwnProperty(type)) {
                 continue;
             }
@@ -290,18 +313,24 @@ BR.TrackAnalysis = L.Class.extend({
             result[type] = {};
             analysisSortable[type] = [];
 
-            for (var name in analysis[type]) {
+            for (const name in analysis[type]) {
                 if (!analysis[type].hasOwnProperty(name)) {
                     continue;
                 }
                 analysisSortable[type].push(analysis[type][name]);
             }
 
-            analysisSortable[type].sort(function (a, b) {
-                return b.distance - a.distance;
-            });
+            if (type === 'maxspeed') {
+                analysisSortable[type].sort(function (a, b) {
+                    return parseInt(a.name) - parseInt(b.name);
+                });
+            } else {
+                analysisSortable[type].sort(function (a, b) {
+                    return b.distance - a.distance;
+                });
+            }
 
-            for (var j = 0; j < analysisSortable[type].length; j++) {
+            for (let j = 0; j < analysisSortable[type].length; j++) {
                 result[type][analysisSortable[type][j].formatted_name] = analysisSortable[type][j];
             }
         }
@@ -317,8 +346,8 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {string}
      */
     getTrackType(wayTags) {
-        for (var i = 0; i < wayTags.length; i++) {
-            var wayTagParts = wayTags[i].split('=');
+        for (let i = 0; i < wayTags.length; i++) {
+            const wayTagParts = wayTags[i].split('=');
             if (wayTagParts[0] === 'tracktype') {
                 return wayTagParts[1];
             }
@@ -331,21 +360,19 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Object} analysis
      */
     render(analysis) {
-        var $content = $('#track_statistics');
+        const $content = $('#track_statistics');
 
         $content.html('');
-        $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.highway') + '</h4>')
-        );
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));
         $content.append(this.renderTable('highway', analysis.highway));
-        $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.surface') + '</h4>')
-        );
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
         $content.append(this.renderTable('surface', analysis.surface));
         $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.smoothness') + '</h4>')
+            $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.smoothness')}</h4>`)
         );
         $content.append(this.renderTable('smoothness', analysis.smoothness));
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
+        $content.append(this.renderTable('maxspeed', analysis.maxspeed));
     },
 
     /**
@@ -356,67 +383,45 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {jQuery}
      */
     renderTable(type, data) {
-        var index;
-        var $table = $(
-            '<table data-type="' + type + '" class="mini cell-border stripe dataTable track-analysis-table"></table>'
-        );
-        var $thead = $('<thead></thead>');
+        let index;
+        const $table = $(`<table data-type="${type}" class="mini stripe dataTable track-analysis-table"></table>`);
+        const $thead = $('<thead></thead>');
         $thead.append(
             $('<tr>')
                 .append(
-                    '<th class="track-analysis-header-category">' +
-                        i18next.t('sidebar.analysis.table.category') +
-                        '</th>'
+                    `<th class="track-analysis-header-category">${i18next.t('sidebar.analysis.table.category')}</th>`
                 )
                 .append(
-                    $(
-                        '<th class="track-analysis-header-distance">' +
-                            i18next.t('sidebar.analysis.table.length') +
-                            '</th>'
-                    )
+                    $(`<th class="track-analysis-header-distance">${i18next.t('sidebar.analysis.table.length')}</th>`)
                 )
         );
         $table.append($thead);
-        var $tbody = $('<tbody></tbody>');
+        const $tbody = $('<tbody></tbody>');
 
-        var totalDistance = 0.0;
+        let totalDistance = 0.0;
 
         for (index in data) {
             if (!data.hasOwnProperty(index)) {
                 continue;
             }
-            var $row = $(
-                '<tr data-name="' +
-                    data[index].name +
-                    '" data-subtype="' +
-                    data[index].subtype +
-                    '" data-distance="' +
-                    data[index].distance +
-                    '"></tr>'
-            );
-            $row.append('<td class="track-analysis-title">' + data[index].formatted_name + '</td>');
-            $row.append(
-                '<td class="track-analysis-distance">' + this.formatDistance(data[index].distance) + ' km</td>'
-            );
+            const $row = $(`<tr data-name="${data[index].name}" \
+                data-subtype="${data[index].subtype}" \
+                data-distance="${data[index].distance}"></tr>`);
+            $row.append(`<td class="track-analysis-title">${data[index].formatted_name}</td>`);
+            $row.append(`<td class="track-analysis-distance">${this.formatDistance(data[index].distance)} km</td>`);
             $tbody.append($row);
             totalDistance += data[index].distance;
         }
 
         if (totalDistance < this.totalRouteDistance) {
             $tbody.append(
-                $(
-                    '<tr data-name="internal-unknown" data-distance="' +
-                        (this.totalRouteDistance - totalDistance) +
-                        '"></tr>'
-                )
-                    .append(
-                        $('<td class="track-analysis-title">' + i18next.t('sidebar.analysis.table.unknown') + '</td>')
-                    )
+                $(`<tr data-name="internal-unknown" data-distance="${this.totalRouteDistance - totalDistance}"></tr>`)
+                    .append($(`<td class="track-analysis-title">${i18next.t('sidebar.analysis.table.unknown')}</td>`))
                     .append(
                         $(
-                            '<td class="track-analysis-distance">' +
-                                this.formatDistance(this.totalRouteDistance - totalDistance) +
-                                ' km</td>'
+                            `<td class="track-analysis-distance">${this.formatDistance(
+                                this.totalRouteDistance - totalDistance
+                            )} km</td>`
                         )
                     )
             );
@@ -427,12 +432,12 @@ BR.TrackAnalysis = L.Class.extend({
         $table.append(
             $('<tfoot></tfoot>')
                 .append('<tr></tr>')
-                .append($('<td>' + i18next.t('sidebar.analysis.table.total_known') + '</td>'))
+                .append($(`<td>${i18next.t('sidebar.analysis.table.total_known')}</td>`))
                 .append(
                     $(
-                        '<td class="track-analysis-distance track-analysis-distance-total">' +
-                            this.formatDistance(totalDistance) +
-                            ' km</td>'
+                        `<td class="track-analysis-distance track-analysis-distance-total">${this.formatDistance(
+                            totalDistance
+                        )} km</td>`
                     )
                 )
         );
@@ -451,13 +456,13 @@ BR.TrackAnalysis = L.Class.extend({
     },
 
     handleHover(event) {
-        var $tableRow = $(event.currentTarget);
-        var $table = $tableRow.parents('table').first();
-        var dataType = $table.data('type');
-        var dataName = $tableRow.data('name');
-        var trackType = $tableRow.data('subtype');
+        const $tableRow = $(event.currentTarget);
+        const $table = $tableRow.parents('table').first();
+        const dataType = $table.data('type');
+        const dataName = $tableRow.data('name');
+        const trackType = $tableRow.data('subtype');
 
-        var polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
+        const polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
 
         this.highlightedSegments = L.layerGroup(polylinesForDataType).addTo(this.map);
     },
@@ -467,11 +472,11 @@ BR.TrackAnalysis = L.Class.extend({
     },
 
     toggleSelected(event) {
-        var tableRow = event.currentTarget;
-        var $table = $(tableRow).parents('table').first();
-        var dataType = $table.data('type');
-        var dataName = $(tableRow).data('name');
-        var trackType = $(tableRow).data('subtype');
+        const tableRow = event.currentTarget;
+        const $table = $(tableRow).parents('table').first();
+        const dataType = $table.data('type');
+        const dataName = $(tableRow).data('name');
+        const trackType = $(tableRow).data('subtype');
 
         if (tableRow.classList.toggle('selected')) {
             if (this.highlightedSegment) {
@@ -505,13 +510,13 @@ BR.TrackAnalysis = L.Class.extend({
      * @returns {Polyline[]}
      */
     getPolylinesForDataType(dataType, dataName, trackType) {
-        var polylines = [];
-        var trackLatLngs = this.trackPolyline.getLatLngs();
+        const polylines = [];
+        const trackLatLngs = this.trackPolyline.getLatLngs();
 
-        for (var i = 0; i < this.trackEdges.edges.length; i++) {
+        for (let i = 0; i < this.trackEdges.edges.length; i++) {
             if (this.wayTagsMatchesData(trackLatLngs[this.trackEdges.edges[i]], dataType, dataName, trackType)) {
-                var matchedEdgeIndexStart = i > 0 ? this.trackEdges.edges[i - 1] : 0;
-                var matchedEdgeIndexEnd = this.trackEdges.edges[i] + 1;
+                const matchedEdgeIndexStart = i > 0 ? this.trackEdges.edges[i - 1] : 0;
+                const matchedEdgeIndexEnd = this.trackEdges.edges[i] + 1;
                 polylines.push(
                     L.polyline(
                         trackLatLngs.slice(matchedEdgeIndexStart, matchedEdgeIndexEnd),
@@ -559,19 +564,44 @@ BR.TrackAnalysis = L.Class.extend({
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
                 return this.singleWayTagMatchesData('smoothness', parsed, dataName);
+            case 'maxspeed':
+                return this.singleWayTagMatchesData('maxspeed', parsed, dataName);
         }
 
         return false;
     },
 
     singleWayTagMatchesData(category, parsedData, lookupValue) {
-        var foundValue = null;
+        if (typeof lookupValue === 'number') {
+            lookupValue = lookupValue.toString();
+        }
 
-        for (var iterationKey in parsedData) {
-            if (iterationKey.indexOf(category) !== -1) {
-                foundValue = parsedData[iterationKey];
-                break;
-            }
+        let foundValue = null;
+
+        // We need to handle `maxspeed:forward` and `maxspeed:backward` separately
+        // from all other tags, because we need to consider the `reversedirection`
+        // tag.
+        // Test URL: http://localhost:3000/#map=15/52.2292/13.6204/standard&lonlats=13.61948,52.231611;13.611327,52.227431
+        if (
+            category === 'maxspeed' &&
+            parsedData.hasOwnProperty('maxspeed:forward') &&
+            !parsedData.hasOwnProperty('reversedirection')
+        ) {
+            foundValue = parsedData['maxspeed:forward'];
+        }
+        if (
+            category === 'maxspeed' &&
+            parsedData.hasOwnProperty('maxspeed:backward') &&
+            parsedData.hasOwnProperty('reversedirection') &&
+            parsedData.reversedirection === 'yes'
+        ) {
+            foundValue = parsedData['maxspeed:backward'];
+        }
+
+        // if the special handling for `maxspeed` didn't find a result,
+        // check wayTags for matching property:
+        if (foundValue === null && parsedData.hasOwnProperty(category)) {
+            foundValue = parsedData[category];
         }
 
         if (lookupValue === 'internal-unknown' && foundValue === null) {
