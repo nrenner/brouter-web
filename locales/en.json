@@ -285,10 +285,66 @@
   },
   "sidebar": {
     "analysis": {
+        "data": {
+            "highway": {
+                "footway": "Footway",
+                "path": "Path",
+                "residential": "Residential",
+                "cycleway": "Cycleway",
+                "track": "Track",
+                "service": "Service",
+                "tertiary": "Tertiary",
+                "secondary": "Secondary",
+                "primary": "Primary",
+                "trunk": "Trunk",
+                "motorway": "Motorway",
+                "motorway_link": "Motorway Link",
+                "primary_link": "Primary Link",
+                "secondary_link": "Secondary Link",
+                "tertiary_link": "Tertiary Link",
+                "trunk_link": "Trunk Link",
+                "living_street": "Living Street",
+                "pedestrian": "Pedestrian",
+                "road": "Road",
+                "bridleway": "Bridleway",
+                "steps": "Steps",
+                "sidewalk": "Sidewalk",
+                "crossing": "Crossing",
+                "unclassified": "Unclassified"
+            },
+            "surface": {
+                "asphalt": "Asphalt",
+                "cobblestone": "Cobblestone",
+                "compacted": "Compacted",
+                "dirt": "Dirt",
+                "fine_gravel": "Fine Gravel",
+                "grass": "Grass",
+                "gravel": "Gravel",
+                "ground": "Ground",
+                "paved": "Paved",
+                "sand": "Sand",
+                "unpaved": "Unpaved",
+                "wood": "Wood",
+                "concrete": "Concrete",
+                "paving_stones": "Paving Stones",
+                "sett": "Sett"
+            },
+            "smoothness": {
+                "excellent": "Excellent",
+                "good": "Good",
+                "intermediate": "Intermediate",
+                "bad": "Bad",
+                "very_bad": "Very Bad",
+                "horrible": "Horrible",
+                "very_horrible": "Very Horrible",
+                "impassable": "Impassable"
+            }
+        },
       "header": {
         "highway": "Highway",
         "smoothness": "Smoothness",
-        "surface": "Surface"
+        "surface": "Surface",
+        "maxspeed": "Maximum Speed"
       },
       "table": {
         "category": "Category",

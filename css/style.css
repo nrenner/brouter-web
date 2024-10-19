@@ -350,10 +350,6 @@ table.dataTable.track-analysis-table tfoot td {
     padding-top: 4px;
 }
 
-.track-analysis-title {
-    text-transform: capitalize;
-}
-
 .track-analysis-distance {
     text-align: right;
 }
