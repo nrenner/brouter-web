@@ -45,7 +45,7 @@
         "abortcontroller-polyfill": "1.7.5",
         "async": "2.6.4",
         "bootbox": "5.5.3",
-        "bootstrap": "4.6.2",
+        "bootstrap": "5.0.0",
         "bootstrap-select": "1.13.18",
         "bootstrap-slider": "11.0.2",
         "codemirror": "5.65.13",
