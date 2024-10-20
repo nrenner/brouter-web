@@ -338,7 +338,8 @@
                 "horrible": "Horrible",
                 "very_horrible": "Very Horrible",
                 "impassable": "Impassable"
-            }
+            },
+            "maxspeed": "{{maxspeed}} km/h"
         },
       "header": {
         "highway": "Highway",

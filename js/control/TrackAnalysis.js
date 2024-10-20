@@ -180,13 +180,19 @@ BR.TrackAnalysis = L.Class.extend({
                         case 'surface':
                         case 'smoothness':
                             if (typeof analysis[tagName][wayTagParts[1]] === 'undefined') {
-                                let formattedName = i18next.t([
-                                    'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
-                                    wayTagParts[1],
-                                ]);
+                                let formattedName;
+
                                 if (tagName.indexOf('maxspeed') === 0) {
-                                    formattedName += ' km/h';
+                                    formattedName = i18next.t('sidebar.analysis.data.maxspeed', {
+                                        maxspeed: wayTagParts[1],
+                                    });
+                                } else {
+                                    formattedName = i18next.t([
+                                        'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
+                                        wayTagParts[1],
+                                    ]);
                                 }
+
                                 analysis[tagName][wayTagParts[1]] = {
                                     formatted_name: formattedName,
                                     name: wayTagParts[1],
