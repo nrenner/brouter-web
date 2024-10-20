@@ -82,7 +82,7 @@ BR.TrackAnalysis = L.Class.extend({
      *   table row for highlighting matching track segments
      *
      * @param {Polyline} polyline
-     * @param {Array} segments route segments between waypoints
+     * @param {Array} segments - route segments between waypoints
      */
     update(polyline, segments) {
         if (!this.active) {
@@ -219,8 +219,8 @@ BR.TrackAnalysis = L.Class.extend({
      * `maxspeed:backward`. Depending on the existence of the `reversedirection` field
      * we can select the correct value.
      *
-     * @param wayTags tags + values for a way segment
-     * @param routingType currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
+     * @param wayTags - tags + values for a way segment
+     * @param routingType - currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
      * @returns {*[]}
      */
     normalizeWayTags(wayTags, routingType) {
@@ -502,9 +502,9 @@ BR.TrackAnalysis = L.Class.extend({
      * track edge matches the search, create a Leaflet polyline
      * and add it to the result array.
      *
-     * @param {string} dataType `highway`, `surface`, `smoothness`
-     * @param {string} dataName `primary`, `track, `asphalt`, etc.
-     * @param {string} trackType the tracktype is passed here (e.g.
+     * @param {string} dataType - `highway`, `surface`, `smoothness`
+     * @param {string} dataName - `primary`, `track, `asphalt`, etc.
+     * @param {string} trackType - the tracktype is passed here (e.g.
      * `grade3`), but only in the case that `dataName` is `track`
      *
      * @returns {Polyline[]}
@@ -535,11 +535,11 @@ BR.TrackAnalysis = L.Class.extend({
      * which matches if a tag-pair is missing. Special handling for
      * tracktypes again.
      *
-     * @param {string} wayTags The way tags as provided by brouter, e.g.
+     * @param {string} wayTags - The way tags as provided by brouter, e.g.
      * `highway=secondary surface=asphalt smoothness=good`
-     * @param {string} dataType `highway`, `surface`, `smoothness`
-     * @param {string} dataName `primary`, `track, `asphalt`, etc.
-     * @param {string} trackType the tracktype is passed here (e.g.
+     * @param {string} dataType - `highway`, `surface`, `smoothness`
+     * @param {string} dataName - `primary`, `track, `asphalt`, etc.
+     * @param {string} trackType - the tracktype is passed here (e.g.
      * `grade3`), but only in the case that `dataName` is `track`
      *
      * @returns {boolean}
@@ -616,7 +616,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * 'highway=primary surface=asphalt' => { highway: 'primary', surface: 'asphalt' }
      *
-     * @param wayTags The way tags as provided by brouter, e.g.
+     * @param wayTags - The way tags as provided by brouter, e.g.
      * `highway=secondary surface=asphalt smoothness=good`
      *
      * @returns {object}
@@ -638,7 +638,7 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * { 'highway' : 'path', 'surface' : 'sand' } => ['highway=path', 'surface=sand']
      *
-     * @param wayTags The way tags in object representation
+     * @param wayTags - The way tags in object representation
      *
      * @returns {object}
      */
