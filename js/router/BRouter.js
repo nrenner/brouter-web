@@ -119,29 +119,47 @@ L.BRouter = L.Class.extend({
 
     getUrl(latLngs, beelineFlags, pois, circlego, format, trackname, exportWaypoints) {
         var urlParams = this.getUrlParams(latLngs, beelineFlags, pois, circlego, format);
-        var args = [];
-        if (urlParams.lonlats != null && urlParams.lonlats.length > 0)
-            args.push(L.Util.template('lonlats={lonlats}', urlParams));
-        if (urlParams.straight != null) args.push(L.Util.template('straight={straight}', urlParams));
-        if (urlParams.pois != null && urlParams.pois.length > 0) args.push(L.Util.template('pois={pois}', urlParams));
-        if (urlParams.circlego != null) args.push(L.Util.template('ringgo={circlego}', urlParams));
-        if (urlParams.nogos != null) args.push(L.Util.template('nogos={nogos}', urlParams));
-        if (urlParams.polylines != null) args.push(L.Util.template('polylines={polylines}', urlParams));
-        if (urlParams.polygons != null) args.push(L.Util.template('polygons={polygons}', urlParams));
-        if (urlParams.profile != null) args.push(L.Util.template('profile={profile}', urlParams));
-        if (urlParams.alternativeidx != null) args.push(L.Util.template('alternativeidx={alternativeidx}', urlParams));
-        if (urlParams.format != null) args.push(L.Util.template('format={format}', urlParams));
-        if (trackname)
-            args.push(
-                L.Util.template('trackname={trackname}', {
-                    trackname,
-                })
-            );
-        if (exportWaypoints) args.push('exportWaypoints=1');
 
-        var prepend_host = format != null;
+        let query = new URLSearchParams();
+        if (urlParams.lonlats != null && urlParams.lonlats.length > 0) {
+            query.append('lonlats', urlParams.lonlats);
+        }
+        if (urlParams.straight != null) {
+            query.append('straight', urlParams.straight);
+        }
+        if (urlParams.pois != null && urlParams.pois.length > 0) {
+            query.append('pois', urlParams.pois);
+        }
+        if (urlParams.circlego != null) {
+            query.append('ringgo', urlParams.circlego);
+        }
+        if (urlParams.nogos != null) {
+            query.append('nogos', urlParams.nogos);
+        }
+        if (urlParams.polylines != null) {
+            query.append('polylines', urlParams.polylines);
+        }
+        if (urlParams.polygons != null) {
+            query.append('polygons', urlParams.polygons);
+        }
+        if (urlParams.profile != null) {
+            query.append('profile', urlParams.profile);
+        }
+        if (urlParams.alternativeidx != null) {
+            query.append('alternativeidx', urlParams.alternativeidx);
+        }
+        if (urlParams.format != null) {
+            query.append('format', urlParams.format);
+        }
+        if (trackname) {
+            query.append('trackname', trackname);
+        }
+        if (exportWaypoints) {
+            query.append('exportWaypoints', '1');
+        }
 
-        return (prepend_host ? BR.conf.host : '') + '/brouter?' + args.join('&');
+        const prepend_host = format != null;
+        return `${prepend_host ? BR.conf.host : ''}/brouter?${query.toString()}`;
     },
 
     getRoute(latLngs, cb) {
