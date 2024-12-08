@@ -14,25 +14,64 @@ const fs = require('fs');
 const indexHtmlString = fs.readFileSync('index.html', 'utf8');
 const indexHtml = new DOMParser().parseFromString(indexHtmlString, 'text/html');
 
-// &lonlats=8.467712,49.488117;8.469354,49.488394;8.470556,49.488946;8.469982,49.489176 + turnInstructionMode=2
+// Geojson results created by server for
+//  * lonlats=8.467712,49.488117;8.469354,49.488394;8.470556,49.488946;8.469982,49.489176
+//  * with turnInstructionMode=2
+//
+// a) Each segment separate
+//   * curl "https://brouter.de/brouter?lonlats=8.467712,49.488117|8.469354,49.488394&profile=trekking&alternativeidx=0&format=geojson&profile:turnInstructionMode=2"
+//  * repeated for each segment and copied together
 const segments = require('./data/segments.json');
+// b) All segments in a single request
+//   * curl "https://brouter.de/brouter?lonlats=8.467712,49.488117|8.469354,49.488394|8.470556,49.488946|8.469982,49.489176&profile=trekking&alternativeidx=0&format=geojson&profile:turnInstructionMode=2" > ./data/segments.json
 const brouterTotal = require('./data/brouterTotal.json');
+
+function allowRoundigDifference(obj, field, client, brouter) {
+    if (obj[field] === client) {
+        obj[field] = brouter;
+    }
+}
 
 // resolve intended/accepted differences before comparing
 function adopt(total, brouterTotal) {
     // BRouter total aggregates messages over segments, client total does not,
     // but that's Ok, so just fix for the test comparison
-    const messages = total.features[0].properties.messages;
-    const message = messages[4].slice();
-    messages[4] = message;
-    message[3] = (+message[3] + +messages[2][3] + +messages[3][3]).toString();
-    message[6] = (+message[6] + +messages[2][6] + +messages[3][6]).toString();
-    messages.splice(2, 2);
+    let messages = total.features[0].properties.messages;
 
-    // fix minor float rounding difference
-    total.features[0].properties.times[6] = 28.833; // 28.832
+    // Time & Energy are totals: Client restart those at segment boundary
+    let offsetTime = 0,
+        offsetEnergy = 0;
+    for (let i = 1; i < messages.length; i++) {
+        // 3 - distance, 9 - WayTags, 11 - Time, 12 - Energy
+        let message = messages[i].slice();
+        messages[i] = message;
+        if (message[9] === messages[i - 1][9]) {
+            messages[i - 1][3] = (+message[3] + +messages[i - 1][3]).toString();
+            offsetTime = +messages[i - 1][11];
+            messages[i - 1][11] = (+message[11] + +messages[i - 1][11]).toString();
+            offsetEnergy = +messages[i - 1][12];
+            messages[i - 1][12] = (+message[12] + +messages[i - 1][12]).toString();
+            messages.splice(i, 1);
+            i--;
+        } else {
+            message[11] = (+message[11] + offsetTime).toString();
+            message[12] = (+message[12] + offsetEnergy).toString();
+        }
+    }
 
-    total.features[0].properties.name = brouterTotal.features[0].properties.name;
+    allowRoundigDifference(total.features[0].properties, 'total-energy', '6835', '6837');
+    allowRoundigDifference(total.features[0].properties, 'total-time', '69', '68');
+    allowRoundigDifference(total.features[0].properties, 'filtered ascend', '3', '2');
+    allowRoundigDifference(total.features[0].properties, 'plain-ascend', '2', '-1');
+
+    allowRoundigDifference(total.features[0].properties.messages[2], 11, '41', '42');
+    allowRoundigDifference(total.features[0].properties.messages[2], 12, '4201', '4202');
+    allowRoundigDifference(total.features[0].properties.messages[3], 11, '57', '58');
+    allowRoundigDifference(total.features[0].properties.messages[3], 12, '5817', '5818');
+    allowRoundigDifference(total.features[0].properties.messages[4], 11, '66', '68');
+    allowRoundigDifference(total.features[0].properties.messages[4], 12, '6835', '6837');
+
+    allowRoundigDifference(total.features[0].properties.times, 7, 58.182, 58.183);
 }
 
 let track;
@@ -64,6 +103,17 @@ test('total track', () => {
     total = BR.Export._concatTotalTrack(segments);
     adopt(total, brouterTotal);
     expect(total).toEqual(brouterTotal);
+});
+
+test('hint distance fix', () => {
+    const segmentsCopy = JSON.parse(JSON.stringify(segments, null, 2));
+
+    // general case already tested
+
+    // special case: second segment without hint
+    segmentsCopy[1].feature.properties.voicehints = null;
+    let total = BR.Export._concatTotalTrack(segmentsCopy);
+    expect(total.features[0].properties.voicehints[0][3]).toEqual(294);
 });
 
 test('include route points', () => {

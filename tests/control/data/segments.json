@@ -1,97 +1,98 @@
 [{
-    "feature": {
-            "type": "Feature",
-            "properties": {
-              "creator": "BRouter-1.1",
-              "name": "brouter_1615393581719_0",
-              "track-length": "177",
-              "filtered ascend": "0",
-              "plain-ascend": "1",
-              "total-time": "22",
-              "total-energy": "2213",
-              "cost": "280",
-              "voicehints": [
-                [1,5,0,88.0,89]
-              ],
-              "messages": [
-                ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
-                ["8468340", "49488794", "101", "89", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes", ""],
-                ["8469971", "49488151", "102", "88", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
-              ],
-              "times": [0,9.592,12.271,14.13,19.406,22.134]
-            },
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [8.467714, 49.488115, 101.5],
-                [8.468340, 49.488794, 101.5],
-                [8.468586, 49.488698, 101.5],
-                [8.468743, 49.488636, 101.5],
-                [8.469161, 49.488473, 101.75],
-                [8.469355, 49.488395, 102.0]
-              ]
-            }
+  "feature": {
+      "type": "Feature",
+      "properties": {
+        "creator": "BRouter-1.7.0",
+        "name": "brouter_trekking_0",
+        "track-length": "174",
+        "filtered ascend": "2",
+        "plain-ascend": "2",
+        "total-time": "30",
+        "total-energy": "2990",
+        "cost": "277",
+        "voicehints": [
+          [1,5,0,86.0,89]
+        ],
+        "messages": [
+          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
+          ["8468340", "49488794", "101", "88", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt oneway=yes lcn=yes cycleway:right=lane cycleway:left=no smoothness=good route_bicycle_icn=yes route_bicycle_rcn=yes", "", "14", "1478"],
+          ["8469971", "49488151", "103", "86", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "29", "2990"]
+        ],
+        "times": [0,14.784,18.312,20.496,26.725,29.906]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [8.467714, 49.488114, 101.5],
+          [8.468340, 49.488794, 101.5],
+          [8.468586, 49.488698, 101.5],
+          [8.468743, 49.488636, 101.5],
+          [8.469161, 49.488473, 101.75],
+          [8.469355, 49.488395, 103.5]
+        ]
+      }
     }
 },
 {
-    "feature": {
-            "type": "Feature",
-            "properties": {
-              "creator": "BRouter-1.1",
-              "name": "brouter_1615393581719_0",
-              "track-length": "162",
-              "filtered ascend": "1",
-              "plain-ascend": "-2",
-              "total-time": "17",
-              "total-energy": "1680",
-              "cost": "367",
-              "voicehints": [
-                [1,2,0,99.0,-90],
-                [2,2,0,10.0,-90]
-              ],
-              "messages": [
-                ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
-                ["8469852", "49489230", "99", "162", "1150", "0", "180", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
-              ],
-              "times": [0,6.698,15.683,16.804]
-            },
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [8.469355, 49.488395, 102.0],
-                [8.469971, 49.488151, 103.5],
-                [8.470671, 49.488909, 99.5],
-                [8.470561, 49.488951, 99.5]
-              ]
-            }
+  "feature": {
+      "type": "Feature",
+      "properties": {
+        "creator": "BRouter-1.7.0",
+        "name": "brouter_trekking_0",
+        "track-length": "159",
+        "filtered ascend": "1",
+        "plain-ascend": "-1",
+        "total-time": "30",
+        "total-energy": "2977",
+        "cost": "363",
+        "voicehints": [
+          [1,2,0,98.0,-90],
+          [2,2,0,9.0,-90]
+        ],
+        "messages": [
+          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
+          ["8469971", "49488151", "103", "52", "1150", "0", "0", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "12", "1211"],
+          ["8470671", "49488909", "99", "98", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", "", "28", "2827"],
+          ["8469935", "49489198", "100", "9", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "29", "2977"]
+        ],
+        "times": [0,12.114,28.276,29.773]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [8.469355, 49.488395, 102.0],
+          [8.469971, 49.488151, 103.5],
+          [8.470671, 49.488909, 99.5],
+          [8.470561, 49.488951, 100.0]
+        ]
+      }
     }
-      
 },
 {
-    "feature": {
-            "type": "Feature",
-            "properties": {
-              "creator": "BRouter-1.1",
-              "name": "brouter_1615393581719_0",
-              "track-length": "49",
-              "filtered ascend": "0",
-              "plain-ascend": "1",
-              "total-time": "5",
-              "total-energy": "527",
-              "cost": "56",
-              "messages": [
-                ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
-                ["8469852", "49489230", "100", "49", "1150", "0", "0", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
-              ],
-              "times": [0,5.279]
-            },
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [8.470561, 49.488951, 99.5],
-                [8.469984, 49.489178, 100.0]
-              ]
-            }
-          }
+  "feature": {
+      "type": "Feature",
+      "properties": {
+        "creator": "BRouter-1.7.0",
+        "name": "brouter_trekking_0",
+        "track-length": "49",
+        "filtered ascend": "0",
+        "plain-ascend": "1",
+        "total-time": "9",
+        "total-energy": "868",
+        "cost": "56",
+        "messages": [
+          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
+          ["8469935", "49489198", "100", "49", "1150", "0", "0", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "8", "868"]
+        ],
+        "times": [0,8.688]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [8.470561, 49.488951, 99.5],
+          [8.469984, 49.489178, 100.0]
+        ]
+      }
+    }
 }
 ]

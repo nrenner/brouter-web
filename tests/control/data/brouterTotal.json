@@ -1,45 +1,46 @@
 {
-    "type": "FeatureCollection",
-    "features": [
-      {
-        "type": "Feature",
-        "properties": {
-          "creator": "BRouter-1.1",
-          "name": "brouter_1615489279610_0",
-          "track-length": "388",
-          "filtered ascend": "1",
-          "plain-ascend": "0",
-          "total-time": "44",
-          "total-energy": "4420",
-          "cost": "703",
-          "voicehints": [
-            [1,5,0,88.0,89],
-            [6,2,0,99.0,-90],
-            [7,2,0,10.0,-90]
-          ],
-          "messages": [
-            ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags"],
-            ["8468340", "49488794", "101", "89", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt cycleway=lane oneway=yes lcn=yes smoothness=good route_bicycle_icn=yes route_bicycle_ncn=yes route_bicycle_rcn=yes", ""],
-            ["8469852", "49489230", "100", "299", "1150", "0", "270", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", ""]
-          ],
-          "times": [0,9.592,12.271,14.13,19.406,22.134,28.833,37.817,38.938,44.217]
-        },
-        "geometry": {
-          "type": "LineString",
-          "coordinates": [
-            [8.467714, 49.488115, 101.5],
-            [8.468340, 49.488794, 101.5],
-            [8.468586, 49.488698, 101.5],
-            [8.468743, 49.488636, 101.5],
-            [8.469161, 49.488473, 101.75],
-            [8.469355, 49.488395, 102.0],
-            [8.469971, 49.488151, 103.5],
-            [8.470671, 49.488909, 99.5],
-            [8.470561, 49.488951, 99.5],
-            [8.469984, 49.489178, 100.0]
-          ]
-        }
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "creator": "BRouter-1.7.0",
+        "name": "brouter_trekking_0",
+        "track-length": "382",
+        "filtered ascend": "2",
+        "plain-ascend": "-1",
+        "total-time": "68",
+        "total-energy": "6837",
+        "cost": "696",
+        "voicehints": [
+          [1,5,0,138.0,89],
+          [6,2,0,98.0,-90],
+          [7,2,0,58.0,-90]
+        ],
+        "messages": [
+          ["Longitude", "Latitude", "Elevation", "Distance", "CostPerKm", "ElevCost", "TurnCost", "NodeCost", "InitialCost", "WayTags", "NodeTags", "Time", "Energy"],
+          ["8468340", "49488794", "101", "88", "1000", "0", "0", "0", "0", "highway=residential surface=asphalt oneway=yes lcn=yes cycleway:right=lane cycleway:left=no smoothness=good route_bicycle_icn=yes route_bicycle_rcn=yes", "", "14", "1478"],
+          ["8469971", "49488151", "103", "138", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "42", "4202"],
+          ["8470671", "49488909", "99", "98", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes smoothness=good", "", "58", "5818"],
+          ["8469935", "49489198", "100", "58", "1150", "0", "90", "0", "0", "highway=residential surface=asphalt oneway=yes oneway:bicycle=no smoothness=good", "", "68", "6837"]
+        ],
+        "times": [0,14.784,18.312,20.496,26.725,29.906,42.02,58.183,59.679,68.367]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [8.467714, 49.488114, 101.5],
+          [8.468340, 49.488794, 101.5],
+          [8.468586, 49.488698, 101.5],
+          [8.468743, 49.488636, 101.5],
+          [8.469161, 49.488473, 101.75],
+          [8.469355, 49.488395, 103.5],
+          [8.469971, 49.488151, 103.5],
+          [8.470671, 49.488909, 99.5],
+          [8.470561, 49.488951, 100.0],
+          [8.469984, 49.489178, 100.0]
+        ]
       }
-    ]
-  }
-  
+    }
+  ]
+}
