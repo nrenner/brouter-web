@@ -5,7 +5,7 @@ BR.RoutingOptions = L.Evented.extend({
         },
     },
 
-    initialize: function () {
+    initialize() {
         $('#profile-alternative').on('changed.bs.select', this._getChangeHandler());
 
         var remembered_profile = this.getRememberedProfile();
@@ -35,7 +35,7 @@ BR.RoutingOptions = L.Evented.extend({
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
-    refreshUI: function () {
+    refreshUI() {
         // we do not allow to select more than one profile and/or alternative at a time
         // so we disable the current selected items
         $('#profile-alternative')
@@ -61,7 +61,7 @@ BR.RoutingOptions = L.Evented.extend({
         button.title = button.title + i18next.t('navbar.profile-tooltip', { key: 'G' });
     },
 
-    getOptions: function () {
+    getOptions() {
         var profile = $('#profile option:selected'),
             alternative = $('#alternative option:selected');
         this.refreshUI();
@@ -72,7 +72,7 @@ BR.RoutingOptions = L.Evented.extend({
         };
     },
 
-    setOptions: function (options) {
+    setOptions(options) {
         var values = [
             options.profile ? options.profile : $('#profile option:selected').val(),
             options.alternative ? options.alternative : $('#alternative option:selected').val(),
@@ -86,7 +86,7 @@ BR.RoutingOptions = L.Evented.extend({
         }
     },
 
-    setCustomProfile: function (profile, noUpdate) {
+    setCustomProfile(profile, noUpdate) {
         var profiles_grp, option;
 
         profiles_grp = L.DomUtil.get('profile');
@@ -112,7 +112,7 @@ BR.RoutingOptions = L.Evented.extend({
         }
     },
 
-    getCustomProfile: function () {
+    getCustomProfile() {
         var profiles_grp = L.DomUtil.get('profile'),
             option = profiles_grp.children[0],
             profile = null;
@@ -123,7 +123,7 @@ BR.RoutingOptions = L.Evented.extend({
         return profile;
     },
 
-    rememberProfile: function (profile) {
+    rememberProfile(profile) {
         if (!BR.Util.localStorageAvailable()) {
             return;
         }
@@ -135,7 +135,7 @@ BR.RoutingOptions = L.Evented.extend({
         localStorage.setItem('routingprofile', profile);
     },
 
-    getRememberedProfile: function () {
+    getRememberedProfile() {
         if (!BR.Util.localStorageAvailable()) {
             return null;
         }
@@ -143,14 +143,14 @@ BR.RoutingOptions = L.Evented.extend({
         return localStorage.getItem('routingprofile');
     },
 
-    _getChangeHandler: function () {
+    _getChangeHandler() {
         return L.bind(function (evt) {
             this.rememberProfile(evt.target.options[evt.target.options.selectedIndex].value);
             this.fire('update', { options: this.getOptions() });
         }, this);
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.switch) {
             if (!$('#profile-alternative-form .dropdown').hasClass('show')) {
                 $('#profile-alternative-form button').click();

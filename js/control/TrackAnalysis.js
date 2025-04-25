@@ -35,7 +35,7 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Map} map
      * @param {object} options
      */
-    initialize: function (map, options) {
+    initialize(map, options) {
         this.map = map;
         L.setOptions(this, options);
     },
@@ -60,7 +60,7 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Called by BR.Sidebar when tab is activated
      */
-    show: function () {
+    show() {
         this.active = true;
         this.options.requestUpdate(this);
     },
@@ -68,23 +68,23 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * Called by BR.Sidebar when tab is deactivated
      */
-    hide: function () {
+    hide() {
         this.active = false;
     },
 
     /**
      * Everytime the track changes this method is called:
      *
-     * - calculate statistics (way type, surface, smoothness)
+     * - calculate statistics (way type, max speed, surface, smoothness)
      *   for the whole track
      * - renders statistics tables
      * - create event listeners which allow to hover/click a
      *   table row for highlighting matching track segments
      *
      * @param {Polyline} polyline
-     * @param {Array} segments
+     * @param {Array} segments - route segments between waypoints
      */
-    update: function (polyline, segments) {
+    update(polyline, segments) {
         if (!this.active) {
             return;
         }
@@ -105,7 +105,7 @@ BR.TrackAnalysis = L.Class.extend({
         this.trackPolyline = polyline;
         this.trackEdges = new BR.TrackEdges(segments);
 
-        var analysis = this.calcStats(polyline, segments);
+        const analysis = this.calcStats(polyline, segments);
 
         this.render(analysis);
 
@@ -129,9 +129,10 @@ BR.TrackAnalysis = L.Class.extend({
      * @param segments
      * @returns {Object}
      */
-    calcStats: function (polyline, segments) {
+    calcStats(polyline, segments) {
         const analysis = {
             highway: {},
+            maxspeed: {},
             surface: {},
             smoothness: {},
         };
@@ -175,14 +176,25 @@ BR.TrackAnalysis = L.Class.extend({
                                 segments[segmentIndex].feature.properties.messages[messageIndex][3]
                             );
                             break;
+                        case 'maxspeed':
                         case 'surface':
                         case 'smoothness':
                             if (typeof analysis[tagName][wayTagParts[1]] === 'undefined') {
-                                analysis[tagName][wayTagParts[1]] = {
-                                    formatted_name: i18next.t(
+                                let formattedName;
+
+                                if (tagName.indexOf('maxspeed') === 0) {
+                                    formattedName = i18next.t('sidebar.analysis.data.maxspeed', {
+                                        maxspeed: wayTagParts[1],
+                                    });
+                                } else {
+                                    formattedName = i18next.t([
                                         'sidebar.analysis.data.' + tagName + '.' + wayTagParts[1],
-                                        wayTagParts[1]
-                                    ),
+                                        wayTagParts[1],
+                                    ]);
+                                }
+
+                                analysis[tagName][wayTagParts[1]] = {
+                                    formatted_name: formattedName,
                                     name: wayTagParts[1],
                                     subtype: '',
                                     distance: 0.0,
@@ -209,11 +221,15 @@ BR.TrackAnalysis = L.Class.extend({
      * are dropped. If no specialized surface/smoothness tag is found, the default value
      * is returned, i.e. `smoothness` or `surface`.
      *
-     * @param wayTags tags + values for a way segment
-     * @param routingType currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
+     * Also, maxspeed comes in different variations, e.g. `maxspeed`, `maxspeed:forward`,
+     * `maxspeed:backward`. Depending on the existence of the `reversedirection` field
+     * we can select the correct value.
+     *
+     * @param wayTags - tags + values for a way segment
+     * @param routingType - currently only 'cycling' is supported, can be extended in the future (walking, driving, etc.)
      * @returns {*[]}
      */
-    normalizeWayTags: function (wayTags, routingType) {
+    normalizeWayTags(wayTags, routingType) {
         let normalizedWayTags = {};
         let surfaceTags = {};
         let smoothnessTags = {};
@@ -239,6 +255,19 @@ BR.TrackAnalysis = L.Class.extend({
             if (tagName.indexOf(':smoothness') !== -1) {
                 let tagNameParts = tagName.split(':');
                 smoothnessTags[tagNameParts[0]] = tagValue;
+                continue;
+            }
+
+            if (tagName === 'maxspeed:forward' && !wayTags.includes('reversedirection=yes')) {
+                normalizedWayTags['maxspeed'] = tagValue;
+                continue;
+            }
+            if (tagName === 'maxspeed:backward' && wayTags.includes('reversedirection=yes')) {
+                normalizedWayTags['maxspeed'] = tagValue;
+                continue;
+            }
+            if (tagName === 'maxspeed') {
+                normalizedWayTags[tagName] = tagValue;
                 continue;
             }
 
@@ -278,11 +307,11 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * @returns {Object}
      */
-    sortAnalysisData: function (analysis) {
-        var analysisSortable = {};
-        var result = {};
+    sortAnalysisData(analysis) {
+        const analysisSortable = {};
+        const result = {};
 
-        for (var type in analysis) {
+        for (const type in analysis) {
             if (!analysis.hasOwnProperty(type)) {
                 continue;
             }
@@ -290,18 +319,24 @@ BR.TrackAnalysis = L.Class.extend({
             result[type] = {};
             analysisSortable[type] = [];
 
-            for (var name in analysis[type]) {
+            for (const name in analysis[type]) {
                 if (!analysis[type].hasOwnProperty(name)) {
                     continue;
                 }
                 analysisSortable[type].push(analysis[type][name]);
             }
 
-            analysisSortable[type].sort(function (a, b) {
-                return b.distance - a.distance;
-            });
+            if (type === 'maxspeed') {
+                analysisSortable[type].sort(function (a, b) {
+                    return parseInt(a.name) - parseInt(b.name);
+                });
+            } else {
+                analysisSortable[type].sort(function (a, b) {
+                    return b.distance - a.distance;
+                });
+            }
 
-            for (var j = 0; j < analysisSortable[type].length; j++) {
+            for (let j = 0; j < analysisSortable[type].length; j++) {
                 result[type][analysisSortable[type][j].formatted_name] = analysisSortable[type][j];
             }
         }
@@ -316,9 +351,9 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {string[]} wayTags
      * @returns {string}
      */
-    getTrackType: function (wayTags) {
-        for (var i = 0; i < wayTags.length; i++) {
-            var wayTagParts = wayTags[i].split('=');
+    getTrackType(wayTags) {
+        for (let i = 0; i < wayTags.length; i++) {
+            const wayTagParts = wayTags[i].split('=');
             if (wayTagParts[0] === 'tracktype') {
                 return wayTagParts[1];
             }
@@ -330,22 +365,20 @@ BR.TrackAnalysis = L.Class.extend({
     /**
      * @param {Object} analysis
      */
-    render: function (analysis) {
-        var $content = $('#track_statistics');
+    render(analysis) {
+        const $content = $('#track_statistics');
 
         $content.html('');
-        $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.highway') + '</h4>')
-        );
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.highway')}</h4>`));
         $content.append(this.renderTable('highway', analysis.highway));
-        $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.surface') + '</h4>')
-        );
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.surface')}</h4>`));
         $content.append(this.renderTable('surface', analysis.surface));
         $content.append(
-            $('<h4 class="track-analysis-heading">' + i18next.t('sidebar.analysis.header.smoothness') + '</h4>')
+            $(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.smoothness')}</h4>`)
         );
         $content.append(this.renderTable('smoothness', analysis.smoothness));
+        $content.append($(`<h4 class="track-analysis-heading">${i18next.t('sidebar.analysis.header.maxspeed')}</h4>`));
+        $content.append(this.renderTable('maxspeed', analysis.maxspeed));
     },
 
     /**
@@ -355,68 +388,46 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {Array} data
      * @returns {jQuery}
      */
-    renderTable: function (type, data) {
-        var index;
-        var $table = $(
-            '<table data-type="' + type + '" class="mini cell-border stripe dataTable track-analysis-table"></table>'
-        );
-        var $thead = $('<thead></thead>');
+    renderTable(type, data) {
+        let index;
+        const $table = $(`<table data-type="${type}" class="mini stripe dataTable track-analysis-table"></table>`);
+        const $thead = $('<thead></thead>');
         $thead.append(
             $('<tr>')
                 .append(
-                    '<th class="track-analysis-header-category">' +
-                        i18next.t('sidebar.analysis.table.category') +
-                        '</th>'
+                    `<th class="track-analysis-header-category">${i18next.t('sidebar.analysis.table.category')}</th>`
                 )
                 .append(
-                    $(
-                        '<th class="track-analysis-header-distance">' +
-                            i18next.t('sidebar.analysis.table.length') +
-                            '</th>'
-                    )
+                    $(`<th class="track-analysis-header-distance">${i18next.t('sidebar.analysis.table.length')}</th>`)
                 )
         );
         $table.append($thead);
-        var $tbody = $('<tbody></tbody>');
+        const $tbody = $('<tbody></tbody>');
 
-        var totalDistance = 0.0;
+        let totalDistance = 0.0;
 
         for (index in data) {
             if (!data.hasOwnProperty(index)) {
                 continue;
             }
-            var $row = $(
-                '<tr data-name="' +
-                    data[index].name +
-                    '" data-subtype="' +
-                    data[index].subtype +
-                    '" data-distance="' +
-                    data[index].distance +
-                    '"></tr>'
-            );
-            $row.append('<td class="track-analysis-title">' + data[index].formatted_name + '</td>');
-            $row.append(
-                '<td class="track-analysis-distance">' + this.formatDistance(data[index].distance) + ' km</td>'
-            );
+            const $row = $(`<tr data-name="${data[index].name}" \
+                data-subtype="${data[index].subtype}" \
+                data-distance="${data[index].distance}"></tr>`);
+            $row.append(`<td class="track-analysis-title">${data[index].formatted_name}</td>`);
+            $row.append(`<td class="track-analysis-distance">${this.formatDistance(data[index].distance)} km</td>`);
             $tbody.append($row);
             totalDistance += data[index].distance;
         }
 
         if (totalDistance < this.totalRouteDistance) {
             $tbody.append(
-                $(
-                    '<tr data-name="internal-unknown" data-distance="' +
-                        (this.totalRouteDistance - totalDistance) +
-                        '"></tr>'
-                )
-                    .append(
-                        $('<td class="track-analysis-title">' + i18next.t('sidebar.analysis.table.unknown') + '</td>')
-                    )
+                $(`<tr data-name="internal-unknown" data-distance="${this.totalRouteDistance - totalDistance}"></tr>`)
+                    .append($(`<td class="track-analysis-title">${i18next.t('sidebar.analysis.table.unknown')}</td>`))
                     .append(
                         $(
-                            '<td class="track-analysis-distance">' +
-                                this.formatDistance(this.totalRouteDistance - totalDistance) +
-                                ' km</td>'
+                            `<td class="track-analysis-distance">${this.formatDistance(
+                                this.totalRouteDistance - totalDistance
+                            )} km</td>`
                         )
                     )
             );
@@ -427,12 +438,12 @@ BR.TrackAnalysis = L.Class.extend({
         $table.append(
             $('<tfoot></tfoot>')
                 .append('<tr></tr>')
-                .append($('<td>' + i18next.t('sidebar.analysis.table.total_known') + '</td>'))
+                .append($(`<td>${i18next.t('sidebar.analysis.table.total_known')}</td>`))
                 .append(
                     $(
-                        '<td class="track-analysis-distance track-analysis-distance-total">' +
-                            this.formatDistance(totalDistance) +
-                            ' km</td>'
+                        `<td class="track-analysis-distance track-analysis-distance-total">${this.formatDistance(
+                            totalDistance
+                        )} km</td>`
                     )
                 )
         );
@@ -446,32 +457,32 @@ BR.TrackAnalysis = L.Class.extend({
      * @param {number} meters
      * @returns {string}
      */
-    formatDistance: function (meters) {
+    formatDistance(meters) {
         return (meters / 1000).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
 
-    handleHover: function (event) {
-        var $tableRow = $(event.currentTarget);
-        var $table = $tableRow.parents('table').first();
-        var dataType = $table.data('type');
-        var dataName = $tableRow.data('name');
-        var trackType = $tableRow.data('subtype');
+    handleHover(event) {
+        const $tableRow = $(event.currentTarget);
+        const $table = $tableRow.parents('table').first();
+        const dataType = $table.data('type');
+        const dataName = $tableRow.data('name');
+        const trackType = $tableRow.data('subtype');
 
-        var polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
+        const polylinesForDataType = this.getPolylinesForDataType(dataType, dataName, trackType);
 
         this.highlightedSegments = L.layerGroup(polylinesForDataType).addTo(this.map);
     },
 
-    handleHoverOut: function () {
+    handleHoverOut() {
         this.map.removeLayer(this.highlightedSegments);
     },
 
-    toggleSelected: function (event) {
-        var tableRow = event.currentTarget;
-        var $table = $(tableRow).parents('table').first();
-        var dataType = $table.data('type');
-        var dataName = $(tableRow).data('name');
-        var trackType = $(tableRow).data('subtype');
+    toggleSelected(event) {
+        const tableRow = event.currentTarget;
+        const $table = $(tableRow).parents('table').first();
+        const dataType = $table.data('type');
+        const dataName = $(tableRow).data('name');
+        const trackType = $(tableRow).data('subtype');
 
         if (tableRow.classList.toggle('selected')) {
             if (this.highlightedSegment) {
@@ -497,21 +508,21 @@ BR.TrackAnalysis = L.Class.extend({
      * track edge matches the search, create a Leaflet polyline
      * and add it to the result array.
      *
-     * @param {string} dataType `highway`, `surface`, `smoothness`
-     * @param {string} dataName `primary`, `track, `asphalt`, etc.
-     * @param {string} trackType the tracktype is passed here (e.g.
+     * @param {string} dataType - `highway`, `surface`, `smoothness`
+     * @param {string} dataName - `primary`, `track, `asphalt`, etc.
+     * @param {string} trackType - the tracktype is passed here (e.g.
      * `grade3`), but only in the case that `dataName` is `track`
      *
      * @returns {Polyline[]}
      */
-    getPolylinesForDataType: function (dataType, dataName, trackType) {
-        var polylines = [];
-        var trackLatLngs = this.trackPolyline.getLatLngs();
+    getPolylinesForDataType(dataType, dataName, trackType) {
+        const polylines = [];
+        const trackLatLngs = this.trackPolyline.getLatLngs();
 
-        for (var i = 0; i < this.trackEdges.edges.length; i++) {
+        for (let i = 0; i < this.trackEdges.edges.length; i++) {
             if (this.wayTagsMatchesData(trackLatLngs[this.trackEdges.edges[i]], dataType, dataName, trackType)) {
-                var matchedEdgeIndexStart = i > 0 ? this.trackEdges.edges[i - 1] : 0;
-                var matchedEdgeIndexEnd = this.trackEdges.edges[i] + 1;
+                const matchedEdgeIndexStart = i > 0 ? this.trackEdges.edges[i - 1] : 0;
+                const matchedEdgeIndexEnd = this.trackEdges.edges[i] + 1;
                 polylines.push(
                     L.polyline(
                         trackLatLngs.slice(matchedEdgeIndexStart, matchedEdgeIndexEnd),
@@ -530,16 +541,16 @@ BR.TrackAnalysis = L.Class.extend({
      * which matches if a tag-pair is missing. Special handling for
      * tracktypes again.
      *
-     * @param {string} wayTags The way tags as provided by brouter, e.g.
+     * @param {string} wayTags - The way tags as provided by brouter, e.g.
      * `highway=secondary surface=asphalt smoothness=good`
-     * @param {string} dataType `highway`, `surface`, `smoothness`
-     * @param {string} dataName `primary`, `track, `asphalt`, etc.
-     * @param {string} trackType the tracktype is passed here (e.g.
+     * @param {string} dataType - `highway`, `surface`, `smoothness`
+     * @param {string} dataName - `primary`, `track, `asphalt`, etc.
+     * @param {string} trackType - the tracktype is passed here (e.g.
      * `grade3`), but only in the case that `dataName` is `track`
      *
      * @returns {boolean}
      */
-    wayTagsMatchesData: function (wayTags, dataType, dataName, trackType) {
+    wayTagsMatchesData(wayTags, dataType, dataName, trackType) {
         const parsed = this.wayTagsToObject(wayTags);
 
         switch (dataType) {
@@ -559,19 +570,44 @@ BR.TrackAnalysis = L.Class.extend({
                 return this.singleWayTagMatchesData('surface', parsed, dataName);
             case 'smoothness':
                 return this.singleWayTagMatchesData('smoothness', parsed, dataName);
+            case 'maxspeed':
+                return this.singleWayTagMatchesData('maxspeed', parsed, dataName);
         }
 
         return false;
     },
 
-    singleWayTagMatchesData: function (category, parsedData, lookupValue) {
-        var foundValue = null;
+    singleWayTagMatchesData(category, parsedData, lookupValue) {
+        if (typeof lookupValue === 'number') {
+            lookupValue = lookupValue.toString();
+        }
 
-        for (var iterationKey in parsedData) {
-            if (iterationKey.indexOf(category) !== -1) {
-                foundValue = parsedData[iterationKey];
-                break;
-            }
+        let foundValue = null;
+
+        // We need to handle `maxspeed:forward` and `maxspeed:backward` separately
+        // from all other tags, because we need to consider the `reversedirection`
+        // tag.
+        // Test URL: http://localhost:3000/#map=15/52.2292/13.6204/standard&lonlats=13.61948,52.231611;13.611327,52.227431
+        if (
+            category === 'maxspeed' &&
+            parsedData.hasOwnProperty('maxspeed:forward') &&
+            !parsedData.hasOwnProperty('reversedirection')
+        ) {
+            foundValue = parsedData['maxspeed:forward'];
+        }
+        if (
+            category === 'maxspeed' &&
+            parsedData.hasOwnProperty('maxspeed:backward') &&
+            parsedData.hasOwnProperty('reversedirection') &&
+            parsedData.reversedirection === 'yes'
+        ) {
+            foundValue = parsedData['maxspeed:backward'];
+        }
+
+        // if the special handling for `maxspeed` didn't find a result,
+        // check wayTags for matching property:
+        if (foundValue === null && parsedData.hasOwnProperty(category)) {
+            foundValue = parsedData[category];
         }
 
         if (lookupValue === 'internal-unknown' && foundValue === null) {
@@ -586,12 +622,12 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * 'highway=primary surface=asphalt' => { highway: 'primary', surface: 'asphalt' }
      *
-     * @param wayTags The way tags as provided by brouter, e.g.
+     * @param wayTags - The way tags as provided by brouter, e.g.
      * `highway=secondary surface=asphalt smoothness=good`
      *
      * @returns {object}
      */
-    wayTagsToObject: function (wayTags) {
+    wayTagsToObject(wayTags) {
         let result = {};
         const wayTagPairs = wayTags.feature.wayTags.split(' ');
 
@@ -608,11 +644,11 @@ BR.TrackAnalysis = L.Class.extend({
      *
      * { 'highway' : 'path', 'surface' : 'sand' } => ['highway=path', 'surface=sand']
      *
-     * @param wayTags The way tags in object representation
+     * @param wayTags - The way tags in object representation
      *
      * @returns {object}
      */
-    wayTagsToArray: function (wayTags) {
+    wayTagsToArray(wayTags) {
         let wayTagsArray = [];
         for (let wayTagKey in wayTags) {
             wayTagsArray.push(wayTagKey + '=' + wayTags[wayTagKey]);

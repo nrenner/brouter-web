@@ -33,11 +33,11 @@
      * Only load Maplibre bundles when layer is actually added, using dynamic imports
      */
     BR.MaplibreGlLazyLoader = L.Layer.extend({
-        initialize: function (options) {
+        initialize(options) {
             this.options = options;
         },
 
-        onAdd: function (map) {
+        onAdd(map) {
             if (!('maplibreGL' in L)) {
                 this._load();
             } else {
@@ -46,7 +46,7 @@
             return this;
         },
 
-        onRemove: function (map) {
+        onRemove(map) {
             if (this.glLayer) {
                 this._map.removeLayer(this.glLayer);
             }
@@ -55,12 +55,12 @@
         },
 
         // needed when overlay, also requires `position: absolute` (see css)
-        setZIndex: function (zIndex) {
+        setZIndex(zIndex) {
             this.options.zIndex = zIndex;
             return this;
         },
 
-        setOpacity: function (opacity) {
+        setOpacity(opacity) {
             if (this.glLayer) {
                 const glMap = this.glLayer.getMaplibreMap();
                 if (glMap.getLayer('hillshading')) {
@@ -71,14 +71,14 @@
             }
         },
 
-        _load: async function () {
+        async _load() {
             await importPolyfill('./maplibre-gl.js');
             await importPolyfill('./leaflet-maplibre-gl.js');
 
             this._addGlLayer();
         },
 
-        _addGlLayer: function () {
+        _addGlLayer() {
             this.glLayer = L.maplibreGL(this.options);
             // see LayersConfig.createLayer
             this.glLayer.getAttribution = function () {
@@ -89,7 +89,7 @@
             this._updateZIndex();
         },
 
-        _updateZIndex: function () {
+        _updateZIndex() {
             if (this.glLayer && this.glLayer.getContainer() && this.options.zIndex != null) {
                 this.glLayer.getContainer().style.zIndex = this.options.zIndex;
             }

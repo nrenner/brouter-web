@@ -2,7 +2,7 @@ BR.Profile = L.Evented.extend({
     cache: {},
     saveWarningShown: false,
 
-    initialize: function () {
+    initialize() {
         var textArea = L.DomUtil.get('profile_upload');
         this.editor = CodeMirror.fromTextArea(textArea, {
             lineNumbers: true,
@@ -26,7 +26,7 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    clear: function (evt) {
+    clear(evt) {
         var button = evt.target || evt.srcElement;
 
         evt.preventDefault();
@@ -38,7 +38,7 @@ BR.Profile = L.Evented.extend({
         button.blur();
     },
 
-    update: function (options, cb) {
+    update(options, cb) {
         var profileName = options.profile,
             profileUrl,
             loading = false;
@@ -75,17 +75,17 @@ BR.Profile = L.Evented.extend({
         if (cb && !loading) cb();
     },
 
-    show: function () {
+    show() {
         this.editor.refresh();
     },
 
-    onResize: function () {
+    onResize() {
         this.editor.refresh();
     },
 
     // Returns the initial value of the given profile variable as String, as defined by the assign statement.
     // Intended for all assigned variables, not just parameters with a comment declaration, i.e. no type information used.
-    getProfileVar: function (name) {
+    getProfileVar(name) {
         let value;
         if (this._isParamsFormActive()) {
             const formValues = this._getFormValues();
@@ -106,13 +106,13 @@ BR.Profile = L.Evented.extend({
     },
 
     // Returns car|bike|foot, default is foot
-    getTransportMode: function () {
+    getTransportMode() {
         const isCar = !!this.getProfileVar('validForCars');
         const isBike = !!this.getProfileVar('validForBikes');
         return isCar ? 'car' : isBike ? 'bike' : 'foot';
     },
 
-    _upload: function (evt) {
+    _upload(evt) {
         var button = evt.target || evt.srcElement,
             profile = this._getProfileText();
 
@@ -136,7 +136,7 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _buildCustomProfile: function (profileText) {
+    _buildCustomProfile(profileText) {
         const formValues = this._getFormValues();
         Object.keys(formValues).forEach((name) => {
             const value = formValues[name];
@@ -152,7 +152,7 @@ BR.Profile = L.Evented.extend({
         return profileText;
     },
 
-    _getFormValues: function () {
+    _getFormValues() {
         const obj = {};
         document.querySelectorAll('#profile_params input, #profile_params select').forEach((input) => {
             const name = input.name;
@@ -167,12 +167,12 @@ BR.Profile = L.Evented.extend({
         return obj;
     },
 
-    _save: function (evt) {
+    _save(evt) {
         var profileText = this._buildCustomProfile(this._getProfileText());
         var that = this;
         this.fire('update', {
-            profileText: profileText,
-            callback: function (err, profileId, profileText) {
+            profileText,
+            callback(err, profileId, profileText) {
                 if (!err) {
                     that.profileName = profileId;
                     that.cache[profileId] = profileText;
@@ -181,7 +181,7 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _updateProfile: function (profileName, profileText) {
+    _updateProfile(profileName, profileText) {
         const empty = !this.editor.getValue();
         const clean = this.editor.isClean();
 
@@ -201,7 +201,7 @@ BR.Profile = L.Evented.extend({
         }
     },
 
-    _setValue: function (profileText) {
+    _setValue(profileText) {
         profileText = profileText || '';
 
         var clean = this.editor.isClean();
@@ -220,7 +220,7 @@ BR.Profile = L.Evented.extend({
         }
     },
 
-    _buildParamsForm: function (profileText) {
+    _buildParamsForm(profileText) {
         if (!profileText) return;
 
         // Otherwise, create user friendly form
@@ -278,9 +278,9 @@ BR.Profile = L.Evented.extend({
                     }
 
                     params[name] = {
-                        description: description,
+                        description,
                         type: paramType,
-                        value: value,
+                        value,
                         possible_values: paramValues,
                     };
                 }
@@ -359,11 +359,11 @@ BR.Profile = L.Evented.extend({
         });
     },
 
-    _isParamsFormActive: function () {
+    _isParamsFormActive() {
         return L.DomUtil.get('profile_params_container').classList.contains('active');
     },
 
-    _activateSecondaryTab: function () {
+    _activateSecondaryTab() {
         var profileText = this._getProfileText();
 
         if (this._isParamsFormActive()) {
@@ -373,11 +373,11 @@ BR.Profile = L.Evented.extend({
         }
     },
 
-    _getProfileText: function () {
+    _getProfileText() {
         return this.editor.getValue();
     },
 
-    _getSelectedProfileText: function () {
+    _getSelectedProfileText() {
         return this.cache[this.selectedProfileName] ?? this.editor.getValue();
     },
 });

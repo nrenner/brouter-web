@@ -19,9 +19,9 @@
         touch = touchScreenDetectable ? touchScreen : L.Browser.touch;
 
     BR.Browser = {
-        touchScreen: touchScreen,
-        touchScreenDetectable: touchScreenDetectable,
-        touch: touch,
+        touchScreen,
+        touchScreenDetectable,
+        touch,
         download:
             'Blob' in window &&
             'FileReader' in window &&

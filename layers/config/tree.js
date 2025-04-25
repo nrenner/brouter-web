@@ -147,6 +147,7 @@ BR.confLayers.tree = {
                 'parking_entrance',
                 'parking',
                 'parking_space',
+                'railway_station',
                 'taxi',
                 'vehicle_inspection',
             ]

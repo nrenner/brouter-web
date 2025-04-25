@@ -3,13 +3,13 @@ BR.LayersTab = BR.ControlLayers.extend({
     previewBounds: null,
     saveLayers: [],
 
-    initialize: function (layersConfig, baseLayers, overlays, options) {
+    initialize(layersConfig, baseLayers, overlays, options) {
         L.Control.Layers.prototype.initialize.call(this, baseLayers, overlays, options);
 
         this.layersConfig = layersConfig;
     },
 
-    addTo: function (map) {
+    addTo(map) {
         this._map = map;
         this.onAdd(map);
 
@@ -22,21 +22,21 @@ BR.LayersTab = BR.ControlLayers.extend({
         return this;
     },
 
-    onAdd: function (map) {
+    onAdd(map) {
         BR.ControlLayers.prototype.onAdd.call(this, map);
 
         map.on('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
         map.on('overlayadd overlayremove', this.updateOpacityLabel, this);
     },
 
-    onRemove: function (map) {
+    onRemove(map) {
         BR.ControlLayers.prototype.onRemove.call(this, map);
 
         map.off('baselayerchange overlayadd overlayremove', this.storeActiveLayers, this);
         map.off('overlayadd overlayremove', this.updateOpacityLabel, this);
     },
 
-    initOpacitySlider: function (map) {
+    initOpacitySlider(map) {
         var self = this;
         var overlayOpacitySlider = new BR.OpacitySlider({
             id: 'overlay',
@@ -44,7 +44,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             orientation: 'horizontal',
             defaultValue: 1,
             title: i18next.t('layers.opacity-slider'),
-            callback: function (opacity) {
+            callback(opacity) {
                 for (var i = 0; i < self._layers.length; i++) {
                     const layer = self._layers[i].layer;
                     if (!self._layers[i].overlay || !map.hasLayer(layer)) {
@@ -53,7 +53,7 @@ BR.LayersTab = BR.ControlLayers.extend({
                     if (layer.setOpacity) {
                         layer.setOpacity(opacity);
                     } else if (layer.setStyle) {
-                        layer.setStyle({ opacity: opacity });
+                        layer.setStyle({ opacity });
                     }
                 }
             },
@@ -61,7 +61,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('leaflet-control-layers-overlays-opacity-slider').appendChild(overlayOpacitySlider.getElement());
     },
 
-    initButtons: function () {
+    initButtons() {
         var expandTree = function (e) {
             this.jstree.open_all();
         };
@@ -89,7 +89,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('optional_layers_button').onclick = L.bind(toggleOptionalLayers, this);
     },
 
-    initJsTree: function () {
+    initJsTree() {
         var layerIndex = BR.layerIndex;
         var treeData = this.toJsTree(BR.confLayers.tree);
         var oldSelected = null;
@@ -180,7 +180,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.jstree = $('#optional-layers-tree').jstree(true);
     },
 
-    toJsTree: function (layerTree) {
+    toJsTree(layerTree) {
         var data = {
             children: [],
         };
@@ -218,7 +218,7 @@ BR.LayersTab = BR.ControlLayers.extend({
             // when key required only add if configured
             if (!keyObj || (keyObj && BR.keys[keyObj.name])) {
                 childNode = {
-                    id: id,
+                    id,
                     text: getText(props, parent),
                     icon: self.layersConfig.getOverpassIconUrl(props.icon) || false,
                     state: {
@@ -262,12 +262,13 @@ BR.LayersTab = BR.ControlLayers.extend({
                 walkObject(inTree);
             }
         }
+
         walkTree(layerTree, data);
 
         return data.children;
     },
 
-    storeDefaultLayers: function () {
+    storeDefaultLayers() {
         var baseLayers = [];
         var overlays = [];
 
@@ -289,7 +290,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.layersConfig.storeDefaultLayers(baseLayers, overlays);
     },
 
-    createLayer: function (layerData) {
+    createLayer(layerData) {
         var layer = this.layersConfig.createLayer(layerData);
         var overlay = layerData.properties.overlay;
 
@@ -299,7 +300,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return layer;
     },
 
-    getLayerById: function (id) {
+    getLayerById(id) {
         for (var i = 0; i < this._layers.length; i++) {
             var obj = this._layers[i];
             if (obj.layer.id === id) {
@@ -310,7 +311,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return null;
     },
 
-    getLayerByLegacyName: function (legacyName) {
+    getLayerByLegacyName(legacyName) {
         var obj = null;
         var id = this.layersConfig.legacyNameToIdMap[legacyName];
 
@@ -321,7 +322,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
-    activateDefaultBaseLayer: function () {
+    activateDefaultBaseLayer() {
         var index = BR.conf.defaultBaseLayerIndex || 0;
         var activeBaseLayer = this.getActiveBaseLayer();
         if (!activeBaseLayer) {
@@ -329,11 +330,11 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    saveRemoveActiveLayers: function () {
+    saveRemoveActiveLayers() {
         this.saveLayers = this.removeActiveLayers();
     },
 
-    restoreActiveLayers: function (overlaysOnly) {
+    restoreActiveLayers(overlaysOnly) {
         for (var i = 0; i < this.saveLayers.length; i++) {
             var obj = this.saveLayers[i];
 
@@ -350,7 +351,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         this.saveLayers = [];
     },
 
-    removePreviewLayer: function () {
+    removePreviewLayer() {
         if (this.previewLayer && this._map.hasLayer(this.previewLayer)) {
             this._map.removeLayer(this.previewLayer);
             this.previewLayer = null;
@@ -359,7 +360,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return false;
     },
 
-    showPreviewBounds: function (layerData) {
+    showPreviewBounds(layerData) {
         if (layerData.geometry) {
             this.previewBounds = L.geoJson(layerData.geometry, {
                 // fill/mask outside of bounds polygon with Leaflet.snogylop
@@ -373,21 +374,21 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    removePreviewBounds: function () {
+    removePreviewBounds() {
         if (this.previewBounds && this._map.hasLayer(this.previewBounds)) {
             this._map.removeLayer(this.previewBounds);
             this.previewBounds = null;
         }
     },
 
-    deselectNode: function () {
+    deselectNode() {
         var selected = this.jstree.get_selected();
         if (selected.length > 0) {
             this.jstree.deselect_node(selected[0]);
         }
     },
 
-    onBaselayerchange: function () {
+    onBaselayerchange() {
         // execute after current input click handler,
         // otherwise added overlay checkbox state doesn't update
         setTimeout(
@@ -401,7 +402,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         );
     },
 
-    showPreview: function (layerData) {
+    showPreview(layerData) {
         var layer = this.createLayer(layerData);
         this._map.addLayer(layer);
         this.removePreviewBounds();
@@ -416,7 +417,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('preview').hidden = false;
     },
 
-    hidePreview: function (layer) {
+    hidePreview(layer) {
         this._map.off('baselayerchange', this.onBaselayerchange, this);
         this.removePreviewBounds();
         this.removePreviewLayer();
@@ -425,11 +426,11 @@ BR.LayersTab = BR.ControlLayers.extend({
         L.DomUtil.get('preview').hidden = true;
     },
 
-    toLayerString: function (obj) {
+    toLayerString(obj) {
         return obj.layer.id ? obj.layer.id : obj.name;
     },
 
-    getLayerFromString: function (layerString) {
+    getLayerFromString(layerString) {
         var obj = this.getLayerById(layerString);
 
         if (!obj) {
@@ -445,7 +446,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         return obj;
     },
 
-    storeActiveLayers: function () {
+    storeActiveLayers() {
         if (BR.Util.localStorageAvailable()) {
             var objList = this.getActiveLayers();
             var idList = objList.map(
@@ -459,7 +460,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    loadActiveLayers: function () {
+    loadActiveLayers() {
         if (BR.Util.localStorageAvailable()) {
             var item = localStorage.getItem('map/activeLayers');
 
@@ -478,7 +479,7 @@ BR.LayersTab = BR.ControlLayers.extend({
         }
     },
 
-    updateOpacityLabel: function () {
+    updateOpacityLabel() {
         var slider = $('#leaflet-control-layers-overlays-opacity-slider');
         var overlaysCount = this.getActiveLayers().length - 1;
         if (overlaysCount === 0) {

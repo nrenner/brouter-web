@@ -8,18 +8,18 @@ BR.ShareRoute = L.Class.extend({
         },
     },
 
-    initialize: function () {
+    initialize() {
         L.DomUtil.get('shareButton').onclick = L.bind(this.share, this);
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
-    share: function (event) {
+    share(event) {
         event.preventDefault();
         this.services();
         this.qrcode();
     },
 
-    services: function () {
+    services() {
         const self = this;
 
         $('.share-copy-link').on('click', function () {
@@ -68,7 +68,7 @@ BR.ShareRoute = L.Class.extend({
      *   to the length of the URL
      * - displays buttons to change the size of the QR Code (small, medium, large)
      */
-    qrcode: function () {
+    qrcode() {
         const exportUrl = this.createQrCodeUrl();
 
         this.renderQrCode('share-qrcode-img', exportUrl, this.getQrCodeSizeForUrl(exportUrl));
@@ -78,7 +78,7 @@ BR.ShareRoute = L.Class.extend({
         });
     },
 
-    getQrCodeSizeForUrl: function (url) {
+    getQrCodeSizeForUrl(url) {
         if (url.length < 500) {
             return 256;
         }
@@ -90,7 +90,7 @@ BR.ShareRoute = L.Class.extend({
         return 512;
     },
 
-    renderQrCode: function (elementId, url, size) {
+    renderQrCode(elementId, url, size) {
         $('#share-qrcode-img').empty();
         $('#qrcode-buttons').show();
         $('#qrcode-msg-unknown-error').hide();
@@ -119,7 +119,7 @@ BR.ShareRoute = L.Class.extend({
         }
     },
 
-    createQrCodeUrl: function () {
+    createQrCodeUrl() {
         // We work on a copy of the current location instance to avoid
         // reloading the page (which will happen when the `export` query
         // parameter is added to the actual location object):
@@ -137,7 +137,7 @@ BR.ShareRoute = L.Class.extend({
         return exportLocation.toString();
     },
 
-    getShareUrl: function () {
+    getShareUrl() {
         const exportLocation = new URL(document.location.href);
         const searchParams = new URLSearchParams(exportLocation.search);
         searchParams.delete('export');
@@ -146,7 +146,7 @@ BR.ShareRoute = L.Class.extend({
         return exportLocation.toString();
     },
 
-    _keydownListener: function (event) {
+    _keydownListener(event) {
         if (
             BR.Util.keyboardShortcutsAllowed(event) &&
             event.keyCode === this.options.shortcut.share_action &&

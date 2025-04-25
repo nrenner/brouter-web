@@ -10,12 +10,12 @@ BR.PoiMarkers = L.Control.extend({
             },
         },
     },
-    initialize: function (routing) {
+    initialize(routing) {
         this.routing = routing;
         this.circlego = null;
     },
 
-    onAdd: function (map) {
+    onAdd(map) {
         var self = this;
 
         this.map = map;
@@ -26,7 +26,7 @@ BR.PoiMarkers = L.Control.extend({
                 {
                     stateName: 'activate-poi',
                     icon: 'fa-hand-o-right',
-                    onClick: function () {
+                    onClick() {
                         self.draw(true);
                     },
                     title: i18next.t('keyboard.generic-shortcut', { action: '$t(map.draw-poi-start)', key: 'P' }),
@@ -34,7 +34,7 @@ BR.PoiMarkers = L.Control.extend({
                 {
                     stateName: 'deactivate-poi',
                     icon: 'fa-hand-o-right active',
-                    onClick: function () {
+                    onClick() {
                         self.draw(false);
                     },
                     title: i18next.t('keyboard.generic-shortcut', {
@@ -55,7 +55,7 @@ BR.PoiMarkers = L.Control.extend({
         return container;
     },
 
-    draw: function (enable) {
+    draw(enable) {
         this.drawButton.state(enable ? 'deactivate-poi' : 'activate-poi');
         if (enable) {
             this.routing.draw(false);
@@ -68,7 +68,7 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (!BR.Util.keyboardShortcutsAllowed(e)) {
             return;
         }
@@ -79,13 +79,13 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    onMapClick: function (e) {
+    onMapClick(e) {
         var self = this;
         bootbox.prompt({
             title: i18next.t('map.enter-poi-name'),
             // allow empty name with client-side formatting
             required: !BR.Browser.download,
-            callback: function (result) {
+            callback(result) {
                 if (result !== null) {
                     self.addMarker(e.latlng, result);
                 }
@@ -93,7 +93,7 @@ BR.PoiMarkers = L.Control.extend({
         });
     },
 
-    addMarker: function (latlng, name) {
+    addMarker(latlng, name) {
         var icon = L.VectorMarkers.icon({
             icon: 'star',
             markerColor: BR.conf.markerColors.poi,
@@ -107,7 +107,7 @@ BR.PoiMarkers = L.Control.extend({
             '<p><button id="remove-poi-marker" class="btn btn-secondary"><i class="fa fa-trash"></i></button></p>';
 
         var self = this;
-        var marker = L.marker(latlng, { icon: icon, draggable: true, name: name })
+        var marker = L.marker(latlng, { icon, draggable: true, name })
             .bindPopup(contentWithAction)
             .on('dragend', function () {
                 self.fire('update');
@@ -132,11 +132,11 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    clear: function () {
+    clear() {
         this.markersLayer.clearLayers();
     },
 
-    setMarkers: function (latLngNames) {
+    setMarkers(latLngNames) {
         this.clear();
 
         if (!latLngNames) return;
@@ -147,7 +147,7 @@ BR.PoiMarkers = L.Control.extend({
         }
     },
 
-    getMarkers: function () {
+    getMarkers() {
         return this.markersLayer.getLayers().map(function (it) {
             return {
                 latlng: it.getLatLng(),

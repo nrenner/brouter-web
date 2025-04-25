@@ -29,9 +29,9 @@
             } else {
                 return {
                     center: new L.LatLng(lat, lon),
-                    zoom: zoom,
-                    layers: layers,
-                    additional: additional,
+                    zoom,
+                    layers,
+                    additional,
                 };
             }
         } else {
@@ -65,7 +65,7 @@
             parseHash: L.Hash.parseHash,
             formatHash: L.Hash.formatHash,
 
-            init: function (map, options) {
+            init(map, options) {
                 this.map = map;
                 L.Util.setOptions(this, options);
 
@@ -78,7 +78,7 @@
                 }
             },
 
-            _parseLayers: function (layersParam, layerSeparator) {
+            _parseLayers(layersParam, layerSeparator) {
                 var layers = layersParam.split(layerSeparator).map(
                     L.bind(function (layerEncoded) {
                         var obj = null;
@@ -95,7 +95,7 @@
                 return layers;
             },
 
-            parseLayers: function (layersParam) {
+            parseLayers(layersParam) {
                 var countFoundLayers = function (count, obj) {
                     if (obj) {
                         count++;
@@ -119,7 +119,7 @@
                 return layers;
             },
 
-            activateLayers: function (layers) {
+            activateLayers(layers) {
                 var layersControl = this.options.layersControl;
                 var added = false;
 
@@ -147,7 +147,7 @@
                 }
             },
 
-            formatLayers: function () {
+            formatLayers() {
                 var objList = this.options.layersControl.getActiveLayers();
                 // exclude vector layers (loaded tracks), but not when id set (route quality coding)
                 objList = objList.filter(function (obj) {
@@ -162,7 +162,7 @@
                 return layerList.join(this.options.layerSeparator);
             },
 
-            removeFrom: function (map) {
+            removeFrom(map) {
                 if (this.changeTimeout) {
                     clearTimeout(this.changeTimeout);
                 }
@@ -174,7 +174,7 @@
                 this.map = null;
             },
 
-            onMapMove: function () {
+            onMapMove() {
                 // bail if we're moving the map (updating from a hash),
                 // or if the map is not yet loaded
 
@@ -190,7 +190,7 @@
             },
 
             movingMap: false,
-            update: function () {
+            update() {
                 var hash = location.hash;
                 if (hash === this.lastHash) {
                     return;
@@ -226,7 +226,7 @@
             // defer hash change updates every 100ms
             changeDefer: 100,
             changeTimeout: null,
-            onHashChange: function () {
+            onHashChange() {
                 // throttle calls to update() so that they only happen every
                 // `changeDefer` ms
                 if (!this.changeTimeout) {
@@ -240,7 +240,7 @@
 
             isListening: false,
             hashChangeInterval: null,
-            startListening: function () {
+            startListening() {
                 this.map.on('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
@@ -252,7 +252,7 @@
                 this.isListening = true;
             },
 
-            stopListening: function () {
+            stopListening() {
                 this.map.off('moveend layeradd layerremove', this.onMapMove, this);
 
                 if (HAS_HASHCHANGE) {
@@ -263,7 +263,7 @@
                 this.isListening = false;
             },
 
-            _keyByValue: function (obj, value) {
+            _keyByValue(obj, value) {
                 for (var key in obj) {
                     if (obj.hasOwnProperty(key)) {
                         if (obj[key] === value) {

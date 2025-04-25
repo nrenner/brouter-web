@@ -235,7 +235,7 @@
             const wpt = {
                 ele: coord[2],
                 name: cmd.message,
-                extensions: extensions,
+                extensions,
             };
 
             if (wpt.ele === undefined || wpt.ele === null) {

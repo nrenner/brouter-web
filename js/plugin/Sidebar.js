@@ -17,7 +17,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
         listeningTabs: {},
     },
 
-    initialize: function (id, options) {
+    initialize(id, options) {
         L.Control.Sidebar.prototype.initialize.call(this, id, options);
 
         this.oldTab = null;
@@ -25,7 +25,7 @@ BR.Sidebar = L.Control.Sidebar.extend({
         L.DomEvent.addListener(document, 'keydown', this._keydownListener, this);
     },
 
-    addTo: function (map) {
+    addTo(map) {
         L.Control.Sidebar.prototype.addTo.call(this, map);
 
         this.on('content', this._notifyOnContent, this);
@@ -59,14 +59,14 @@ BR.Sidebar = L.Control.Sidebar.extend({
         return this;
     },
 
-    showPanel: function (id) {
+    showPanel(id) {
         var tab = this._getTab(id);
         tab.hidden = false;
 
         return this;
     },
 
-    _rememberTabState: function () {
+    _rememberTabState() {
         if (BR.Util.localStorageAvailable()) {
             this.on('content closing', this._storeActiveTab, this);
 
@@ -85,42 +85,42 @@ BR.Sidebar = L.Control.Sidebar.extend({
         }
     },
 
-    _notifyShow: function (tab) {
+    _notifyShow(tab) {
         if (tab && tab.show) {
             tab.show();
         }
     },
 
-    _notifyHide: function (tab) {
+    _notifyHide(tab) {
         if (tab && tab.hide) {
             tab.hide();
         }
     },
 
-    _notifyOnContent: function (e) {
+    _notifyOnContent(e) {
         var tab = this.options.listeningTabs[e.id];
         this._notifyHide(this.oldTab);
         this._notifyShow(tab);
         this.oldTab = tab;
     },
 
-    _notifyOnClose: function (e) {
+    _notifyOnClose(e) {
         this._notifyHide(this.oldTab);
         this.oldTab = null;
     },
 
-    _notifyOnResize: function (e) {
+    _notifyOnResize(e) {
         var tab = this.oldTab;
         if (tab && tab.onResize) {
             tab.onResize();
         }
     },
 
-    _storeActiveTab: function (e) {
+    _storeActiveTab(e) {
         localStorage.setItem(this.storageId, e.id || '');
     },
 
-    _keydownListener: function (e) {
+    _keydownListener(e) {
         if (BR.Util.keyboardShortcutsAllowed(e) && e.keyCode === this.options.shortcut.toggleTabs) {
             if ($('#sidebarTabs > ul > li[class=active]').length) {
                 // sidebar is currently open, close current tab

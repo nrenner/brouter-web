@@ -3,7 +3,7 @@ BR.OpacitySliderControl = L.Control.extend({
         position: 'topleft',
     },
 
-    onAdd: function (map) {
+    onAdd(map) {
         var container = L.DomUtil.create('div', 'leaflet-bar control-slider');
 
         // prevent also dragging map in Chrome
