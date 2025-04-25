@@ -122,6 +122,7 @@ BR.confLayers.tree = {
                 'cafe',
                 'drinking_water',
                 'fast_food',
+                'firepit',
                 'food_court',
                 'ice_cream',
                 'pub',
