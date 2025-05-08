@@ -152,8 +152,6 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
         },
 
         addBelow(map) {
-            // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
-            // this.width($('#map').outerWidth());
             this.options.width = $('#content').outerWidth();
 
             if (this.getContainer() != null) {
@@ -239,12 +237,6 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
         },
 
         update(track, layer) {
-            // bring height indicator to front, because of track casing in BR.Routing
-            if (this._mouseHeightFocus) {
-                var g = this._mouseHeightFocus._groups[0][0].parentNode;
-                g.parentNode.appendChild(g);
-            }
-
             if (track && track.getLatLngs().length > 0) {
                 // there is no elevation data available above 60°N, except within 10°E-30°E (issue #365)
                 if (
