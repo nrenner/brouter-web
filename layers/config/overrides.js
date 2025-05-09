@@ -70,9 +70,9 @@ BR.confLayers.getPropertyOverrides = function() {
             'name': i18next.t('map.layer.osmde'),
             'language_code': 'de',
             'attribution': {
-                'html': '&copy; <a target="_blank" href="https://openstreetmap.de/karte.html">openstreetmap.de</a>'
+                'html': '&copy; <a target="_blank" href="https://openstreetmap.de/karte">openstreetmap.de</a>'
             },
-            'mapUrl': 'https://www.openstreetmap.de/karte.html?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF'
+            'mapUrl': 'https://www.openstreetmap.de/karte?zoom={zoom}&lat={lat}&lon={lon}&layers=B000TF'
         },
         'osmfr': {
             'language_code': 'fr',
