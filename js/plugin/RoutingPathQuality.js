@@ -78,6 +78,8 @@ BR.RoutingPathQuality = L.Control.extend({
                         // values rendering the special values moot
                         min: 0,
                         max: 1,
+                        // disables line simplification, so short segments won't disappear on some zoom levels
+                        smoothFactor: 0,
                         discreteStrokes: true,
                     },
                     valueFunction: (function () {
@@ -381,8 +383,12 @@ var HotLineQualityProvider = L.Class.extend({
     initialize(options) {
         this.hotlineOptions = options.hotlineOptions;
         this.valueFunction = options.valueFunction;
+	if(options.convertToArray) {
+	    this._convertToArray = options.convertToArray;
+	}
     },
 
+    /** create hotline layers for segement layers */
     computeLayers(segments) {
         var layers = [];
         if (segments) {
@@ -391,7 +397,7 @@ var HotLineQualityProvider = L.Class.extend({
             for (var i = 0; segments && i < segments.length; i++) {
                 var segment = segments[i];
                 if (segment._routing?.beeline) continue;
-                var vals = this._computeLatLngVals(segment);
+                var vals = this.computeLatLngVals(segment);
                 segmentLatLngs.push(vals);
                 Array.prototype.push.apply(flatLines, vals);
             }
@@ -415,7 +421,9 @@ var HotLineQualityProvider = L.Class.extend({
         return layers;
     },
 
-    _computeLatLngVals(segment) {
+    /** get data for signal segement or track
+     *  Note: this is also used by Heightgraph.js */
+    computeLatLngVals(segment) {
         var latLngVals = [],
             segmentLatLngs = segment.getLatLngs(),
             segmentLength = segmentLatLngs.length;
@@ -434,7 +442,7 @@ var HotLineQualityProvider = L.Class.extend({
     },
 
     _convertToArray(latLng, val) {
-        return [latLng.lat, latLng.lng, val];
+	return [latLng.lat, latLng.lng, val];
     },
 
     _calcMinMaxValues(lines, pct) {
