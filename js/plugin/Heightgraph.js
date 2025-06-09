@@ -113,6 +113,59 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
         },
 
+	/* Logic to reduce some noise (and detail) on altitude and gradient data.
+	 * Aim is to skip over short spikes with jumps that are very rare for 
+	 * real roads.
+	 * While we're at it converts the track to an array of latLng that are our
+	 * private copy.
+	 *
+	 * TODO: This should be more intelligent, maybe there is some more scientific
+	 * approach present somewhere?
+	 */
+	_filterTrack(track) {
+	    let points = [];
+	    let inputLatLngs = track.getLatLngs();
+	    let lastPoint = inputLatLngs[0];
+	    for(let point of inputLatLngs) {
+		const distance = lastPoint.distanceTo(point); // in m
+		let use = false;
+		if(distance > 25) {
+		    // upper limit of stretch for skipping
+		    use = true;
+		} else if(!point.alt || !lastPoint.alt) {
+		    if(distance > 10) {
+			// normal skip limit
+			use = true;
+		    }
+		} else if(distance > 10 &&
+		    // skip some more if gradient is abnormally high
+		    Math.abs((point.alt - lastPoint.alt) / distance) < 0.30
+		) {
+		    use = true;
+		} else if(lastPoint === point) {
+		    use = true;
+		}
+	
+		if(use) {
+		    const newPoint = L.latLng(point.lat, point.lng, point.alt || 0);
+		    newPoint._distance = distance;
+		    points.push(newPoint);
+		    lastPoint = point;
+		}
+	    }
+	    return points;
+	},
+
+	_calcData(points) {
+	    let lastPoint = points[0];
+	    for(let point of points) {
+		const deltaAltitude = point.alt - lastPoint.alt;
+		point._value = Math.round((deltaAltitude / point._distance)*100);
+		lastPoint = point;
+	    }
+	    return points;
+	},
+
         update(track, layer) {
             if (track && track.getLatLngs().length > 0) {
                 // there is no elevation data available above 60°N, except within 10°E-30°E (issue #365)
@@ -126,26 +179,8 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                     $('#no-elevation-data').hide();
                 }
 
-		const dataProvider = new HotLineQualityProvider({
-                    valueFunction(latLng, prevLatLng) {
-			if(latLng.alt === undefined) {
-			    return 0;
-			}
-                        var deltaAltitude = latLng.alt - prevLatLng.alt, // in m
-                            distance = prevLatLng.distanceTo(latLng); // in m
-                        if (distance === 0) {
-                            return 0;
-                        }
-                        return Math.round((deltaAltitude / distance)*100);
-                    },
-		    convertToArray(latLng, val) {
-			let res = L.latLng(latLng);
-			res.alt = res.alt || 0; // may happen on beeline
-			res._value = val;
-			return res;
-		    },
-                });
-		this.addData(dataProvider.computeLatLngVals(track));
+		const points = this._filterTrack(track);
+		this.addData(this._calcData(points));
 		this._createLegend();
 
                 // re-add handlers
