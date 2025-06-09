@@ -22,6 +22,25 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
 	    palette_size: 50,
             expandControls: false,
 	    value2text: (value) => `${value.toFixed(0)}%`,
+	    extratext: (value) => {
+		if(!value?._feature?.wayTags) {
+		    return [];
+		}
+		let data = new URLSearchParams(value._feature.wayTags.replace(/\s+/g, '&')); // eslint-disable-line compat/compat
+		let surface = data.get('surface');
+		let highway = data.get('highway');
+		if(!surface && highway === 'track') {
+		    surface = data.get('tracktype');
+		}
+		let res = [];
+		if(highway) {
+		    res.push([i18next.t('sidebar.analysis.header.highway'), i18next.t(highway)]);
+		}
+		if(surface) {
+		    res.push([i18next.t('sidebar.analysis.header.surface'), i18next.t(surface)]);
+		}
+		return res;
+	    },
             // extra options
             shortcut: {
                 toggle: 69, // char code for 'e'
@@ -149,6 +168,7 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
 		if(use) {
 		    const newPoint = L.latLng(point.lat, point.lng, point.alt || 0);
 		    newPoint._distance = distance;
+		    newPoint._feature = point.feature;
 		    points.push(newPoint);
 		    lastPoint = point;
 		}
