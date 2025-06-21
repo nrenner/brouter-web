@@ -1,4 +1,61 @@
 BR.Heightgraph = function (map, layersControl, routing, pois) {
+    class WeightedMovingAverage {
+	constructor(windowLenMeters) {
+	    this.windowLenMeters = windowLenMeters;
+	    this.sum = 0;
+	    this.cnt = 0;
+	    this.win = [];
+	    this.distance = 0;
+	    // for fillAhead
+	    this.position = 0;
+	}
+
+	factor(point) {
+	    return Math.min(point._distance / this.windowLenMeters, 1);
+	}
+
+	push(point) {
+	    const f = this.factor(point);
+	    this.sum += point._value * f;
+	    this.cnt += f;
+	    this.distance += point._distance;
+	    this.win.push(point);
+	}
+
+	pop() {
+	    if(this.win.length === 0) {
+		return null;
+	    }
+	    const point = this.win.shift();
+	    const f = this.factor(point);
+	    this.sum -= point._value * f;
+	    this.cnt -= f;
+	    this.distance -= point._distance;
+	    return point;
+	}
+	
+	popIfSame(point) {
+	    if(this.win.length > 0 && this.win[0] === point) {
+		this.pop();
+	    }
+	}
+
+	limitBehind() {
+	    while(this.distance > this.windowLenMeters && this.win.length > 1) {
+		this.pop();
+	    }
+	}
+
+	fillAhead(points) {
+	    for(; this.position < points.length && 
+		(this.distance + points[this.position]._distance) < this.windowLenMeters; 
+		this.position++) 
+	    {
+		this.push(points[this.position]);
+	    }
+	}
+    }
+
     Heightgraph = L.Control.Heightgraph.extend({
         options: {
             width: $('#map').outerWidth(),
@@ -132,57 +189,129 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
         },
 
-	/* Logic to reduce some noise (and detail) on altitude and gradient data.
-	 * Aim is to skip over short spikes with jumps that are very rare for 
-	 * real roads.
-	 * While we're at it converts the track to an array of latLng that are our
-	 * private copy.
+	/* Convert incoming Track into array of points and do some Altitude
+	 * filtering.
 	 *
-	 * TODO: This should be more intelligent, maybe there is some more scientific
-	 * approach present somewhere?
+	 * Logic to reduce some noise on altitude. Assuming that most inclines/declines
+	 * are steady but elevation data comes in blocks there are often short
+	 * points with opposite direction. Moste notably on roads with serpentine's.
+	 * 
+	 * I would be very happy if someone with more knowledge replace this with
+	 * something better.
 	 */
 	_filterTrack(track) {
 	    let points = [];
 	    let inputLatLngs = track.getLatLngs();
 	    let lastPoint = inputLatLngs[0];
-	    for(let point of inputLatLngs) {
+	    let lastLastPoint = inputLatLngs[0];
+	    let fixed = 0;
+
+	    for(let i = 0; i < inputLatLngs.length; i++) {
+		const point = inputLatLngs[i];
 		const distance = lastPoint.distanceTo(point); // in m
-		let use = false;
-		if(distance > 25) {
-		    // upper limit of stretch for skipping
-		    use = true;
-		} else if(!point.alt || !lastPoint.alt) {
-		    if(distance > 10) {
-			// normal skip limit
-			use = true;
+
+		const newPoint = L.latLng(point.lat, point.lng, point.alt || 0);
+		newPoint._distance = distance;
+		newPoint._feature = point.feature;
+		points.push(newPoint);
+
+		let dir = Math.sign(point.alt - lastPoint.alt);
+
+		if(distance > 10 || dir === 0 || !point.alt || !lastPoint.alt || !lastLastPoint.alt) {
+		    // do nothing here
+		} else if(Math.sign(point.alt - lastLastPoint.alt) === dir) {
+		    // Check if change in rise/decline is only temporary within the
+		    // next short stretch of 10 meters
+		    const lastPeakPoint = lastPoint;
+		    let peakDistance = 0;
+		    let j = i;
+		    for(; j < inputLatLngs.length && peakDistance < 10; j++) {
+			const peakPoint = inputLatLngs[j];
+			if(!peakPoint.alt || Math.sign(peakPoint.alt - lastPoint.alt) !== dir ) {
+			    break;
+			}
+			peakDistance += lastPeakPoint.distanceTo(peakPoint); 
 		    }
-		} else if(distance > 10 &&
-		    // skip some more if gradient is abnormally high
-		    Math.abs((point.alt - lastPoint.alt) / distance) < 0.30
-		) {
-		    use = true;
-		} else if(lastPoint === point) {
-		    use = true;
+		    const endPoint = inputLatLngs[j];
+		    if(endPoint && endPoint !== point && Math.sign(endPoint.alt - point.alt) !== dir) {
+			// in that case overwrite this part
+			newPoint.alt = (lastPoint.alt + endPoint.alt) / 2;
+		    }
 		}
-	
-		if(use) {
-		    const newPoint = L.latLng(point.lat, point.lng, point.alt || 0);
-		    newPoint._distance = distance;
-		    newPoint._feature = point.feature;
-		    points.push(newPoint);
-		    lastPoint = point;
-		}
+		lastLastPoint = lastPoint;
+		lastPoint = point;
 	    }
 	    return points;
 	},
 
+	/* Calculate (smoothed) gradients for array of points */
 	_calcData(points) {
 	    let lastPoint = points[0];
+	    let maxGrade = 0;
+	    let maxAlt = Number.MIN_SAFE_INTEGER;
+	    let minAlt = Number.MAX_SAFE_INTEGER;
 	    for(let point of points) {
 		const deltaAltitude = point.alt - lastPoint.alt;
-		point._value = Math.round((deltaAltitude / point._distance)*100);
+		point._value = (deltaAltitude / point._distance)*100;
+		if(isNaN(point._value)) {
+		    // guaranteed for first point and might happen for strange other points
+		    // use zero otherwise the average calculation would wipe out everything
+		    point._value = 0;
+		}
+		maxGrade = Math.max(maxGrade, point._value);
+		maxAlt = Math.max(point.alt, maxAlt);
+		minAlt = Math.min(point.alt, minAlt);
 		lastPoint = point;
 	    }
+	    let maxDelta = maxAlt - minAlt;
+
+	    // Decide whether to try smoothing absurde gradients or not.
+	    // Aim is to avoid massive rainbow colored long climbs, without any
+	    // something something like stelvio might have bits with +40% and -15%
+	    // especially the claimed decrease (on the climb!) is miles away from
+	    // reality.
+	    //
+	    // The numbers when and by which amount to smooth are of course
+	    // completely arbitrary. (With aim of making stelvio look reasonable).
+	    //
+	    // We could improve this selection for longer routers by dynamically
+	    // adjust the smoothing base on large segements e.g. every 10km.
+	    // But keep it simple for now
+	    //
+	    // Again would be happy if someone can suggest something with better
+	    // results and/or some scientific base
+
+	    console.debug(`${maxGrade}  - ${maxDelta}`);
+	    if(maxGrade < 15 || (maxDelta < 100 && maxGrade < 30)) {
+		// don't do any smoothing on flat routes
+		console.debug('no smoothing');
+		return points;
+	    }
+	    let windowLenMeters = 15;
+	    if((maxGrade > 20 && maxDelta > 500) || maxGrade > 40) {
+		windowLenMeters = 35;
+	    } else if(maxGrade > 15 || maxDelta > 200) {
+		windowLenMeters = 25;
+	    }
+	    console.debug(`smoothing ${windowLenMeters}`);
+
+	    let behind = new WeightedMovingAverage(windowLenMeters);
+	    let ahead = new WeightedMovingAverage(windowLenMeters);
+	    for(let point of points) {
+		behind.push(point);
+		behind.limitBehind(windowLenMeters, 1);
+		ahead.popIfSame(point);
+		ahead.fillAhead(points, windowLenMeters);
+		//console.debug(`(${behind.sum} + ${ahead.sum}) / (${behind.cnt} + ${ahead.cnt})`);
+		point._newValue = (behind.sum + ahead.sum) / (behind.cnt + ahead.cnt);
+		//console.debug(`${point._value} => ${point._newValue}`);
+	    }
+
+	    for(let point of points) {
+		point._value = point._newValue;
+		delete point._newValue;
+	    }
+
 	    return points;
 	},
 
