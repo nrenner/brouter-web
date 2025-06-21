@@ -1,4 +1,61 @@
 BR.Heightgraph = function (map, layersControl, routing, pois) {
+    class WeightedMovingAverage {
+	constructor(windowLenMeters) {
+	    this.windowLenMeters = windowLenMeters;
+	    this.sum = 0;
+	    this.cnt = 0;
+	    this.win = [];
+	    this.distance = 0;
+	    // for fillAhead
+	    this.position = 0;
+	}
+
+	factor(point) {
+	    return Math.min(point._distance / this.windowLenMeters, 1);
+	}
+
+	push(point) {
+	    const f = this.factor(point);
+	    this.sum += point._value * f;
+	    this.cnt += f;
+	    this.distance += point._distance;
+	    this.win.push(point);
+	}
+
+	pop() {
+	    if(this.win.length === 0) {
+		return null;
+	    }
+	    const point = this.win.shift();
+	    const f = this.factor(point);
+	    this.sum -= point._value * f;
+	    this.cnt -= f;
+	    this.distance -= point._distance;
+	    return point;
+	}
+	
+	popIfSame(point) {
+	    if(this.win.length > 0 && this.win[0] === point) {
+		this.pop();
+	    }
+	}
+
+	limitBehind() {
+	    while(this.distance > this.windowLenMeters && this.win.length > 1) {
+		this.pop();
+	    }
+	}
+
+	fillAhead(points) {
+	    for(; this.position < points.length && 
+		(this.distance + points[this.position]._distance) < this.windowLenMeters; 
+		this.position++) 
+	    {
+		this.push(points[this.position]);
+	    }
+	}
+    }
+
     Heightgraph = L.Control.Heightgraph.extend({
         options: {
             width: $('#map').outerWidth(),
@@ -8,143 +65,39 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                 bottom: 30,
                 left: 70,
             },
+	    // Same as RoutingPathQuality.js for incline
+	    palette: {
+		0.0: '#0000ff', // blue
+		0.25: '#00ffff', // cyan
+		0.5: '#00ff00', // green
+		0.75: '#ffff00', // yellow
+		1.0: '#ff0000', // red
+	    },
+	    // fixed palette color range -15% to +15% (not degree!)
+	    palette_minValue: -15,
+            palette_maxValue: 15,
+	    palette_size: 50,
             expandControls: false,
-            mappings: {
-                gradient: {
-                    '-16': {
-                        text: '< -15%',
-                        color: '#81A850',
-                    },
-                    '-15': {
-                        text: '-15%',
-                        color: '#89AA55',
-                    },
-                    '-14': {
-                        text: '-14%',
-                        color: '#91AD59',
-                    },
-                    '-13': {
-                        text: '-13%',
-                        color: '#99AF5E',
-                    },
-                    '-12': {
-                        text: '-12%',
-                        color: '#A1B162',
-                    },
-                    '-11': {
-                        text: '-11%',
-                        color: '#A8B367',
-                    },
-                    '-10': {
-                        text: '-10%',
-                        color: '#B0B66B',
-                    },
-                    '-9': {
-                        text: '-9%',
-                        color: '#B8B870',
-                    },
-                    '-8': {
-                        text: '-8%',
-                        color: '#C0BA75',
-                    },
-                    '-7': {
-                        text: '-7%',
-                        color: '#C8BC79',
-                    },
-                    '-6': {
-                        text: '-6%',
-                        color: '#D0BF7E',
-                    },
-                    '-5': {
-                        text: '-5%',
-                        color: '#D8C182',
-                    },
-                    '-4': {
-                        text: '-4%',
-                        color: '#E0C387',
-                    },
-                    '-3': {
-                        text: '-3%',
-                        color: '#E7C58B',
-                    },
-                    '-2': {
-                        text: '-2%',
-                        color: '#EFC890',
-                    },
-                    '-1': {
-                        text: '-1%',
-                        color: '#F7CA94',
-                    },
-                    0: {
-                        text: '0%',
-                        color: '#FFCC99',
-                    },
-                    1: {
-                        text: '1%',
-                        color: '#FCC695',
-                    },
-                    2: {
-                        text: '2%',
-                        color: '#FAC090',
-                    },
-                    3: {
-                        text: '3%',
-                        color: '#F7BA8C',
-                    },
-                    4: {
-                        text: '4%',
-                        color: '#F5B588',
-                    },
-                    5: {
-                        text: '5%',
-                        color: '#F2AF83',
-                    },
-                    6: {
-                        text: '6%',
-                        color: '#F0A97F',
-                    },
-                    7: {
-                        text: '7%',
-                        color: '#EDA37A',
-                    },
-                    8: {
-                        text: '8%',
-                        color: '#EB9D76',
-                    },
-                    9: {
-                        text: '9%',
-                        color: '#E89772',
-                    },
-                    10: {
-                        text: '10%',
-                        color: '#E5916D',
-                    },
-                    11: {
-                        text: '11%',
-                        color: '#E38B69',
-                    },
-                    12: {
-                        text: '12%',
-                        color: '#E08665',
-                    },
-                    13: {
-                        text: '13%',
-                        color: '#DE8060',
-                    },
-                    14: {
-                        text: '14%',
-                        color: '#DB7A5C',
-                    },
-                    15: {
-                        text: '15%',
-                        color: '#D97457',
-                    },
-                    16: {
-                        text: '> 15%',
-                        color: '#D66E53',
-                    },
-                },
-            },
+	    value2text: (value) => `${value.toFixed(0)}%`,
+	    extratext: (value) => {
+		if(!value?._feature?.wayTags) {
+		    return [];
+		}
+		let data = new URLSearchParams(value._feature.wayTags.replace(/\s+/g, '&')); // eslint-disable-line compat/compat
+		let surface = data.get('surface');
+		let highway = data.get('highway');
+		if(!surface && highway === 'track') {
+		    surface = data.get('tracktype');
+		}
+		let res = [];
+		if(highway) {
+		    res.push([i18next.t('sidebar.analysis.header.highway'), i18next.t(highway)]);
+		}
+		if(surface) {
+		    res.push([i18next.t('sidebar.analysis.header.surface'), i18next.t(surface)]);
+		}
+		return res;
+	    },
             // extra options
             shortcut: {
                 toggle: 69, // char code for 'e'
@@ -152,8 +105,6 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
         },
 
         addBelow(map) {
-            // waiting for https://github.com/MrMufflon/Leaflet.Elevation/pull/66
-            // this.width($('#map').outerWidth());
             this.options.width = $('#content').outerWidth();
 
             if (this.getContainer() != null) {
@@ -238,13 +189,133 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             }
         },
 
-        update(track, layer) {
-            // bring height indicator to front, because of track casing in BR.Routing
-            if (this._mouseHeightFocus) {
-                var g = this._mouseHeightFocus._groups[0][0].parentNode;
-                g.parentNode.appendChild(g);
-            }
+	/* Convert incoming Track into array of points and do some Altitude
+	 * filtering.
+	 *
+	 * Logic to reduce some noise on altitude. Assuming that most inclines/declines
+	 * are steady but elevation data comes in blocks there are often short
+	 * points with opposite direction. Moste notably on roads with serpentine's.
+	 * 
+	 * I would be very happy if someone with more knowledge replace this with
+	 * something better.
+	 */
+	_filterTrack(track) {
+	    let points = [];
+	    let inputLatLngs = track.getLatLngs();
+	    let lastPoint = inputLatLngs[0];
+	    let lastLastPoint = inputLatLngs[0];
+	    let fixed = 0;
 
+	    for(let i = 0; i < inputLatLngs.length; i++) {
+		const point = inputLatLngs[i];
+		const distance = lastPoint.distanceTo(point); // in m
+
+		const newPoint = L.latLng(point.lat, point.lng, point.alt || 0);
+		newPoint._distance = distance;
+		newPoint._feature = point.feature;
+		points.push(newPoint);
+
+		let dir = Math.sign(point.alt - lastPoint.alt);
+
+		if(distance > 10 || dir === 0 || !point.alt || !lastPoint.alt || !lastLastPoint.alt) {
+		    // do nothing here
+		} else if(Math.sign(point.alt - lastLastPoint.alt) === dir) {
+		    // Check if change in rise/decline is only temporary within the
+		    // next short stretch of 10 meters
+		    const lastPeakPoint = lastPoint;
+		    let peakDistance = 0;
+		    let j = i;
+		    for(; j < inputLatLngs.length && peakDistance < 10; j++) {
+			const peakPoint = inputLatLngs[j];
+			if(!peakPoint.alt || Math.sign(peakPoint.alt - lastPoint.alt) !== dir ) {
+			    break;
+			}
+			peakDistance += lastPeakPoint.distanceTo(peakPoint); 
+		    }
+		    const endPoint = inputLatLngs[j];
+		    if(endPoint && endPoint !== point && Math.sign(endPoint.alt - point.alt) !== dir) {
+			// in that case overwrite this part
+			newPoint.alt = (lastPoint.alt + endPoint.alt) / 2;
+		    }
+		}
+		lastLastPoint = lastPoint;
+		lastPoint = point;
+	    }
+	    return points;
+	},
+
+	/* Calculate (smoothed) gradients for array of points */
+	_calcData(points) {
+	    let lastPoint = points[0];
+	    let maxGrade = 0;
+	    let maxAlt = Number.MIN_SAFE_INTEGER;
+	    let minAlt = Number.MAX_SAFE_INTEGER;
+	    for(let point of points) {
+		const deltaAltitude = point.alt - lastPoint.alt;
+		point._value = (deltaAltitude / point._distance)*100;
+		if(isNaN(point._value)) {
+		    // guaranteed for first point and might happen for strange other points
+		    // use zero otherwise the average calculation would wipe out everything
+		    point._value = 0;
+		}
+		maxGrade = Math.max(maxGrade, point._value);
+		maxAlt = Math.max(point.alt, maxAlt);
+		minAlt = Math.min(point.alt, minAlt);
+		lastPoint = point;
+	    }
+	    let maxDelta = maxAlt - minAlt;
+
+	    // Decide whether to try smoothing absurde gradients or not.
+	    // Aim is to avoid massive rainbow colored long climbs, without any
+	    // something something like stelvio might have bits with +40% and -15%
+	    // especially the claimed decrease (on the climb!) is miles away from
+	    // reality.
+	    //
+	    // The numbers when and by which amount to smooth are of course
+	    // completely arbitrary. (With aim of making stelvio look reasonable).
+	    //
+	    // We could improve this selection for longer routers by dynamically
+	    // adjust the smoothing base on large segements e.g. every 10km.
+	    // But keep it simple for now
+	    //
+	    // Again would be happy if someone can suggest something with better
+	    // results and/or some scientific base
+
+	    console.debug(`${maxGrade}  - ${maxDelta}`);
+	    if(maxGrade < 15 || (maxDelta < 100 && maxGrade < 30)) {
+		// don't do any smoothing on flat routes
+		console.debug('no smoothing');
+		return points;
+	    }
+	    let windowLenMeters = 15;
+	    if((maxGrade > 20 && maxDelta > 500) || maxGrade > 40) {
+		windowLenMeters = 35;
+	    } else if(maxGrade > 15 || maxDelta > 200) {
+		windowLenMeters = 25;
+	    }
+	    console.debug(`smoothing ${windowLenMeters}`);
+
+	    let behind = new WeightedMovingAverage(windowLenMeters);
+	    let ahead = new WeightedMovingAverage(windowLenMeters);
+	    for(let point of points) {
+		behind.push(point);
+		behind.limitBehind(windowLenMeters, 1);
+		ahead.popIfSame(point);
+		ahead.fillAhead(points, windowLenMeters);
+		//console.debug(`(${behind.sum} + ${ahead.sum}) / (${behind.cnt} + ${ahead.cnt})`);
+		point._newValue = (behind.sum + ahead.sum) / (behind.cnt + ahead.cnt);
+		//console.debug(`${point._value} => ${point._newValue}`);
+	    }
+
+	    for(let point of points) {
+		point._value = point._newValue;
+		delete point._newValue;
+	    }
+
+	    return points;
+	},
+
+        update(track, layer) {
             if (track && track.getLatLngs().length > 0) {
                 // there is no elevation data available above 60°N, except within 10°E-30°E (issue #365)
                 if (
@@ -257,11 +328,9 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
                     $('#no-elevation-data').hide();
                 }
 
-                var geojsonFeatures = geoDataExchange.buildGeojsonFeatures(track.getLatLngs(), {
-                    interpolate: false,
-                    normalize: false,
-                });
-                this.addData(geojsonFeatures);
+		const points = this._filterTrack(track);
+		this.addData(this._calcData(points));
+		this._createLegend();
 
                 // re-add handlers
                 if (layer) {
@@ -292,77 +361,12 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
         },
 
         _createLegend() {
-            if (this._categories.length > 0) {
-                // find the min and the max gradients for the current profile
-                var minGradient = 16;
-                var maxGradient = -16;
-                // this legend object has the profile gradients as keys; it was built by heightgraph
-                var allLegend = this._categories[this.options.selectedAttributeIdx].legend;
-                for (key in allLegend) {
-                    var gradient = parseInt(key);
-                    if (minGradient > gradient) {
-                        minGradient = gradient;
-                    }
-                    if (maxGradient < gradient) {
-                        maxGradient = gradient;
-                    }
-                }
-
-                // define the simplified legend with all known gradients
-                var simplifiedLegend = [
-                    {
-                        type: -16,
-                        text: this.options.mappings.gradient['-16'].text,
-                        color: this.options.mappings.gradient['-16'].color,
-                    },
-                    {
-                        type: -10,
-                        text: this.options.mappings.gradient['-10'].text,
-                        color: this.options.mappings.gradient['-10'].color,
-                    },
-                    {
-                        type: -5,
-                        text: this.options.mappings.gradient['-5'].text,
-                        color: this.options.mappings.gradient['-5'].color,
-                    },
-                    {
-                        type: 0,
-                        text: this.options.mappings.gradient['0'].text,
-                        color: this.options.mappings.gradient['0'].color,
-                    },
-                    {
-                        type: 5,
-                        text: this.options.mappings.gradient['5'].text,
-                        color: this.options.mappings.gradient['5'].color,
-                    },
-                    {
-                        type: 10,
-                        text: this.options.mappings.gradient['10'].text,
-                        color: this.options.mappings.gradient['10'].color,
-                    },
-                    {
-                        type: 16,
-                        text: this.options.mappings.gradient['16'].text,
-                        color: this.options.mappings.gradient['16'].color,
-                    },
-                ];
-                // then, keep only the range relevant to the current profile
-                // (e.g. if min gradient of profile is -6, remove -16 and -15 from range)
-                for (var i = 0; i < simplifiedLegend.length; i++) {
-                    if (simplifiedLegend[i].type > minGradient) {
-                        simplifiedLegend.splice(0, i - 1);
-                        break;
-                    }
-                }
-                for (var i = simplifiedLegend.length - 1; i > -1; i--) {
-                    if (simplifiedLegend[i].type < maxGradient) {
-                        simplifiedLegend.splice(i + 2);
-                        break;
-                    }
-                }
-
-                this._categories[this.options.selectedAttributeIdx].legend = simplifiedLegend;
-            }
+            if (this._data.length < 0) {
+		return;
+	    }
+	    // Already calculated by Heightgraph
+	    let minGradient =  Math.max(Math.round(this._palette.realMin / 5) * 5, this.options.palette_minValue);
+	    let maxGradient =  Math.min(Math.round(this._palette.realMax / 5) * 5, this.options.palette_maxValue);
 
             var existingLegend = document.querySelector('.legend-container');
             if (existingLegend !== null) {
@@ -378,20 +382,20 @@ BR.Heightgraph = function (map, layersControl, routing, pois) {
             legend.style.setProperty('margin-top', '-18px');
 
             var legendLabel = L.DomUtil.create('span', 'legend-hover legend-text', legend);
-            legendLabel.textContent = this._getTranslation('legend') + ':';
+            legendLabel.textContent = i18next.t('Legend') + ':';
 
-            this._categories[this.options.selectedAttributeIdx].legend.forEach((l) => {
+	    for(let i = minGradient; i <= maxGradient; i += 5) {
                 var color = L.DomUtil.create('span', 'legend-rect', legend);
                 color.style.setProperty('padding-left', '10px');
                 color.style.setProperty('padding-right', '3px');
                 color.style.setProperty('width', '6px');
                 color.style.setProperty('height', '6px');
-                color.style.setProperty('color', l.color);
+                color.style.setProperty('color', this.getRGBForValue(i));
                 color.innerHTML = '&#9632;';
 
                 var label = L.DomUtil.create('span', 'legend-text', legend);
-                label.textContent = l.text;
-            });
+                label.textContent = `${i} %`;
+            }
         },
     });
 

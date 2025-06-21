@@ -5632,12 +5632,6 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
-geo-data-exchange@alexcojocaru/geo-data-exchange#v2.2.0:
-  version "2.2.0"
-  resolved "https://codeload.github.com/alexcojocaru/geo-data-exchange/tar.gz/d6d517dee5e07e32ef948eecd7a151479a6d7938"
-  dependencies:
-    leaflet "^1.5.0"
-
 geojson-bounds@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/geojson-bounds/-/geojson-bounds-1.0.2.tgz#c4f6e64223b8c919436707fe1acfabe93145b986"
@@ -7689,11 +7683,9 @@ leaflet-triangle-marker@1.0.2, leaflet-triangle-marker@^1.0.1:
   resolved "https://registry.yarnpkg.com/leaflet-triangle-marker/-/leaflet-triangle-marker-1.0.2.tgz#e4c5f1d09d10ae078f8fba87aa32e5884017ad96"
   integrity sha512-J2Xa5UgUV6rU04bcwAdQRptnLm7nSxDtxqfX0Nzb+tz6p3buyEEBkXdOvEgzD6ghuII6BVSXFb4QP8cyVKigXg==
 
-leaflet.heightgraph@nrenner/Leaflet.Heightgraph#0757b2a:
-  version "1.3.4-fork.2"
-  resolved "https://codeload.github.com/nrenner/Leaflet.Heightgraph/tar.gz/0757b2ad101e84f652621498428f8a9504e9df22"
-  dependencies:
-    leaflet "^1.6.0"
+leaflet.heightgraph@tbsmark86/Leaflet.Heightgraph, leaflet.heightgraph@tbsmark86/Leaflet.Heightgraph#115e945:
+  version "1.5.0"
+  resolved "https://codeload.github.com/tbsmark86/Leaflet.Heightgraph/tar.gz/115e945dbd2ded9c7b105e8a9757587f27630d69"
 
 leaflet.locatecontrol@0.79.0:
   version "0.79.0"
@@ -7721,7 +7713,7 @@ leaflet@1.7.1:
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
   integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
 
-leaflet@^1.0.1, leaflet@^1.3.4, leaflet@^1.5.0, leaflet@^1.6.0:
+leaflet@^1.0.1, leaflet@^1.3.4, leaflet@^1.6.0:
   version "1.9.4"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.4.tgz#23fae724e282fa25745aff82ca4d394748db7d8d"
   integrity sha512-nxS1ynzJOmOlHp+iL3FyWqK89GtNL8U8rvlMOsQdTTssxZwCXh8N2NB3GDQOL+YR3XnWyZAxwQixURb+FA74PA==

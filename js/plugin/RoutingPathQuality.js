@@ -78,6 +78,8 @@ BR.RoutingPathQuality = L.Control.extend({
                         // values rendering the special values moot
                         min: 0,
                         max: 1,
+                        // disables line simplification, so short segments won't disappear on some zoom levels
+                        smoothFactor: 0,
                         discreteStrokes: true,
                     },
                     valueFunction: (function () {
