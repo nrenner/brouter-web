@@ -97,7 +97,7 @@ BR.Profile = L.Evented.extend({
         const profileText = this._getSelectedProfileText();
         if (!profileText) return value;
 
-        const regex = new RegExp(`assign\\s*${name}\\s*=?\\s*([\\w\\.]*)`);
+        const regex = new RegExp(`assign\\s*${name}\\s*=?\\s*(-?[\\w\\.]*)`);
         const match = profileText.match(regex);
         if (match) {
             value = match[1];
@@ -143,7 +143,7 @@ BR.Profile = L.Evented.extend({
             var re = new RegExp(
                 '(assign\\s*' +
                     name +
-                    '\\s*=?\\s*)([\\w.]*)(\\s*#\\s*%(.*)%\\s*(\\|\\s*(.*)\\s*\\|\\s*(.*)\\s*)?[\\r\\n])'
+                    '\\s*=?\\s*)(-?[\\w.]*)(\\s*#\\s*%(.*)%\\s*(\\|\\s*(.*)\\s*\\|\\s*(.*)\\s*)?[\\r\\n])'
             );
             profileText = profileText.replace(re, function (match, p1, p2, p3) {
                 return p1 + value + p3;
@@ -233,7 +233,7 @@ BR.Profile = L.Evented.extend({
             global = global[0].split('\n').slice(1);
 
             // Comment is mandatory
-            var assignRegex = /assign\s*(\w*)\s*=?\s*([\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
+            var assignRegex = /assign\s*(\w*)\s*=?\s*(-?[\w\.]*)\s*#\s*%(.*)%\s*(\|\s*(.*)\s*\|\s*(.*)\s*)?$/;
             global.forEach(function (item) {
                 var match = item.match(assignRegex);
                 var value;
