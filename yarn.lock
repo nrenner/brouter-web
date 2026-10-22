@@ -7648,12 +7648,10 @@ leaflet-filelayer@1.2.0:
   resolved "https://registry.yarnpkg.com/leaflet-filelayer/-/leaflet-filelayer-1.2.0.tgz#9f822e68a06072b0b0a8f328ba9419ba96bbccb1"
   integrity sha512-H3HrOOM9bpkrRUacdnWISV0MKZXLBYsX24H4XV+55QbcGCvd9In6oPzANEnhsokHAwNWd9qP6GfiHEFCfn+qkA==
 
-leaflet-geometryutil@0.10.2:
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.10.2.tgz#da418bf90b7b792ba5bd037081c79fd38ce83b94"
-  integrity sha512-NBKO0dW6+Ur0LKa6t5JMBd242lAMjRek23O8awlpvoDmTrb7fqgZC608YLwpZ4TYJZ/RbLu9fclIN8M4pIVwTQ==
-  dependencies:
-    leaflet "^1.6.0"
+leaflet-geometryutil@0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/leaflet-geometryutil/-/leaflet-geometryutil-0.11.0.tgz#129147ecaffbc1d71b48eab639f308709ec46949"
+  integrity sha512-sMKzVFLY9QU8hbcBGQ5yElDJpcp8ICKhhoun4KA+pPIxkv7f/MiYmXVUXNppTkd61RDnQfOLBzZkigUdTV6C6A==
 
 leaflet-hotline@tbsmark86/Leaflet.hotline#25b2457:
   version "0.4.0"
