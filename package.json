@@ -79,7 +79,7 @@
         "leaflet.snogylop": "0.4.0",
         "leaflet.stravasegments": "2.3.2",
         "mapbbcode": "MapBBCode/mapbbcode#v1.2.0",
-        "maplibre-gl": "2.4.0",
+        "maplibre-gl": "6.4.1",
         "overpass-layer": "3.4.0",
         "popper.js": "1.16.1",
         "qrcodejs": "^1.0.0",
